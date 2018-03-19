@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 // import Header from './hearder.js';
 import volunteer from './img/fd.png';
 import './headerstle.css'
+import { Link } from 'react-router'
+
 class Header extends Component {
  
 
@@ -19,9 +21,9 @@ class Header extends Component {
                         <h3 class="content ui inverted header">
                         Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
         </h3>
-                        <div class="conbutton ui massive white button">
+                        <Link to='/register'><div class="conbutton ui massive white button">
                         Register
-        </div>
+                        </div></Link>
                 </div>
                 </div>
             </div>
