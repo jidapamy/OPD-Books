@@ -6,8 +6,8 @@ var knex = require('knex')({
     connection: {
         host: 'localhost',
         user: 'root',
-        password: '020540',
-        database: 'TestHelloworld'
+        password: '1212312121',
+        database: 'OPDBooks'
     }
 });
 
