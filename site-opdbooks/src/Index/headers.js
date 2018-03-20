@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import Navbar from './navbar.js';
-// import Content from './content.js';
-// import Header from './hearder.js';
 import volunteer from './img/fd.png';
 import './headerstle.css'
 import { Link } from 'react-router'

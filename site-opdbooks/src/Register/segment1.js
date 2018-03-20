@@ -21,9 +21,9 @@ const SegmentOne = () => (
                     </div>
                 </div>
                 <div class="column">
-                    <div class="iconClose">
+                    <a href='/'><div class="iconClose">
                         <i class="close icon" end></i>
-                    </div>
+                    </div></a>
                 </div>
             </div>
         </div>
@@ -33,9 +33,7 @@ const SegmentOne = () => (
             </div>
         </div>
         <br/>
-        <div class="one column row">
-            <img src="pic.png" class="pictureCenter" />
-        </div>
+       
        
 
 

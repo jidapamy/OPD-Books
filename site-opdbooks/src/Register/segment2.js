@@ -7,6 +7,7 @@ const SegmentTwo = () => (
 
             <form class="right alight ui form">
                 ประเภทบัตร (Card type)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
                 <div class="ui compact menu">
                     <div role="listbox" aria-expanded="false" class="ui item simple dropdown" tabindex="0">
                         <div class="text" role="alert" aria-live="polite">------- SELECT -------</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 import './headerstle.css'
 class Navbar extends Component {
 
@@ -12,9 +13,9 @@ class Navbar extends Component {
                   <div class="menu item">
                     <a class="ui button">Log in</a>
                   </div>
-                  <div class="menu item">
+                  <Link to='/register'><div class="menu item">
                     <a class="ui primary button">Sign Up</a>
-                  </div>
+                  </div></Link>
                 </div>
           </div>
         </div>
