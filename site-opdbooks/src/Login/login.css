@@ -1,0 +1,8 @@
+.setfeild{
+   width: 360;
+}
+@media only screen and (max-width: 450px) {
+    .setfeild{
+   width: 330;
+}
+}

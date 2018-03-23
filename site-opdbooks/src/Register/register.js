@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import Segment1 from './segment1';
 import Segment2 from './segment2';
-import Segment3 from './segment3';
-import Segment4 from './segment4';
-import 'semantic-ui-css/semantic.min.css';
+const avatarStyle = {
+  backgroundImage: "url('./img/BG.png')"
+};
 
 class Register extends Component {
   render() {
     return (
-      <div>
+      <div style={avatarStyle}>
         <Segment1 />
         <Segment2 />
-        <Segment3 />
-        <Segment4 />
-        <br/>
-        <br/>
       </div>
-
-
-
-
-
     );
   }
 }
