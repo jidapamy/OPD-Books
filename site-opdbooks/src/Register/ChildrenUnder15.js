@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Segment, Form, Select } from 'semantic-ui-react'
 import { nameTypeTh } from './Data/FormData'
 
