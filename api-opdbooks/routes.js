@@ -4,9 +4,9 @@ var router = express.Router();
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '1212312121',
+        host: '13.229.116.222',
+        user: 'opdbooks',
+        password: '12345',
         database: 'OPDBooks'
     }
 });
