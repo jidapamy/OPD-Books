@@ -13,6 +13,11 @@ export const nameTypeTh = [
     { key: 'นาง', text: 'นาง', value: 'นาง' },
     { key: 'นางสาว', text: 'นางสาว', value: 'นางสาว' },
 ]
+export const nameTypeThUP15 = [
+    { key: 'นาย', text: 'นาย', value: 'นาย' },
+    { key: 'นาง', text: 'นาง', value: 'นาง' },
+    { key: 'นางสาว', text: 'นางสาว', value: 'นางสาว' },
+]
 export const nameTypeEng = [
     { key: 'Mr.', text: 'Mr.', value: 'Mr.' },
     { key: 'Mrs.', text: 'Mrs.', value: 'Mrs.' },
@@ -35,10 +40,21 @@ export const typesOfHousing = [
 ] 
 export const nationalityData = [
     { key: 'ไทย', text: 'ไทย', value: 'ไทย' },
+    { key: 'จีน', text: 'จีน', value: 'จีน' },
+    { key: 'อินเดีย', text: 'อินเดีย', value: 'อินเดีย' },
+    { key: 'อื่นๆ', text: 'อื่นๆ', value: 'อื่นๆ' },
 ] 
 export const religionData = [
     { key: 'พุทธ', text: 'พุทธ', value: 'พุทธ' },
+    { key: 'คริสต์', text: 'คริสต์', value: 'คริสต์' },
+    { key: 'อิสลาม', text: 'อิสลาม', value: 'อิสลาม' },
+    { key: 'อื่นๆ', text: 'อื่นๆ', value: 'อื่นๆ' },
 ] 
 export const statusData = [
     { key: 'โสด', text: 'โสด', value: 'โสด' },
+    { key: 'หมั้น', text: 'หมั้น', value: 'หมั้น' },
+    { key: 'แต่งงาน', text: 'แต่งงาน', value: 'แต่งงาน' },
+    { key: 'แยกกันอยู่', text: 'แยกกันอยู่', value: 'แยกกันอยู่' },
+    { key: 'หย่าร้าง', text: 'หย่าร้าง', value: 'หย่าร้าง' },
+    { key: 'หม้าย', text: 'หม้าย', value: 'หม้าย' },
 ] 

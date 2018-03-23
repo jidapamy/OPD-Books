@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components'
 import { Form, Container } from 'semantic-ui-react'
 
 import InfoPateint from './InfoPateint';
@@ -9,9 +10,16 @@ import ChildrenUnder15 from './ChildrenUnder15'
 import Allergy from './Allergy'
 import Footer from './Footer'
 
-const avatarStyle = {
-  backgroundImage: "url('./img/BG.png')"
-};
+import BackgroundImage from './img/BG.png'
+
+// const avatarStyle = {
+//   backgroundImage: "url('./img/BG.png')"
+// };
+
+const Wrapper = styled.div`
+  background: url(${BackgroundImage}) no-repeat center fixed;
+  background-size: 100% 100%;
+`
 
 class Register extends Component {
   state = {
@@ -85,7 +93,7 @@ class Register extends Component {
   render() {
     console.log(this.state)
     return (
-      <div style={avatarStyle}>
+      <Wrapper>
         <Container>
           <Form>
             <HeaderComponent />
@@ -162,7 +170,7 @@ class Register extends Component {
             <br></br><br></br>
           </Form>
         </Container>
-      </div>
+      </Wrapper>
     );
   }
 }
