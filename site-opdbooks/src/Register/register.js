@@ -12,6 +12,9 @@ import Footer from './Footer'
 
 import BackgroundImage from './img/BG.png'
 
+import Provinces from './Data/Province'
+import Amphurs from './Data/Amphur'
+import Districts from './Data/District'
 // const avatarStyle = {
 //   backgroundImage: "url('./img/BG.png')"
 // };
@@ -20,6 +23,10 @@ const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
 `
+
+export const provinces = Provinces;
+export var amphurs = Amphurs;
+export var districts = Districts;
 
 class Register extends Component {
   state = {
@@ -89,6 +96,24 @@ class Register extends Component {
     this.setState({ [field]: value })
   }
 
+  changeProvince = async (field, { value }) => {
+    console.log(value)
+    amphurs = Amphurs
+    amphurs = amphurs.filter(amphur => amphur.value.provinceID === value.id)
+    await this.setField(field,value.value)
+  }
+
+  changeAmphur = async (field, { value }) => {
+    districts = Districts
+    districts = districts.filter(district => district.value.amphurId === value.id)
+    await this.setField(field, value.value)
+  }
+
+  changeDistrict = async (field, { value }) => {
+    await this.setField(field, value.value)
+    await this.setState({zipcode: value.zipcode })
+  }
+
 
   render() {
     console.log(this.state)
@@ -121,6 +146,9 @@ class Register extends Component {
             />
 
             <HomeAddress 
+              changeProvince={this.changeProvince}
+              changeAmphur={this.changeAmphur}
+              changeDistrict={this.changeDistrict}
               setField={this.setField}
               typeofHouse={this.state.typeofHouse}
               address={this.state.address}
