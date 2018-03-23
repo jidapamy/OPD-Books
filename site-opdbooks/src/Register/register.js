@@ -27,6 +27,7 @@ class Register extends Component {
     lastnameEN: '',
     gender:'',
     dob:'',
+    age:'',
     bloodgroup:'',
     nationality:'',
     religion:'',
@@ -101,6 +102,7 @@ class Register extends Component {
               lastnameEN={this.state.lastnameEN}
               gender={this.state.gender}
               dob={this.state.dob}
+              age={this.state.age}
               bloodgroup={this.state.bloodgroup}
               nationality={this.state.nationality}
               religion={this.state.religion}

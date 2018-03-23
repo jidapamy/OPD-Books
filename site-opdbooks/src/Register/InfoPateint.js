@@ -9,7 +9,7 @@ const InfoPateint = ({
     //attribute
     registerDate, cardType, IDCard,
     nameTitleTH, firstnameTH, lastnameTH, nameTitleEN, firstnameEN,
-    lastnameEN, gender, dob, bloodgroup, nationality, religion, status,
+    lastnameEN, gender, dob, age, bloodgroup, nationality, religion, status,
     occupation, homePhonenumber, mobileNumber
     // picture
 }) => (
@@ -31,8 +31,8 @@ const InfoPateint = ({
                     <Form.Input label='Last Name' placeholder='Last Name' width={6} required onChange={e => setField('lastnameEN', e.target.value)} value={lastnameEN}/>
             </Form.Group>
             <Form.Group>
-                <Form.Input label='วัน/เดือน/ปีเกิด' placeholder='ตัวอย่าง 01/01/1997' width={3} />
-                <Form.Input label='อายุ' placeholder='อายุ' width={2} />
+                    <Form.Input label='วัน/เดือน/ปีเกิด' placeholder='ตัวอย่าง 01/01/1997' width={3} onChange={e => setField('dob', e.target.value)} value={dob}/>
+                    <Form.Input label='อายุ' placeholder='อายุ' width={2} onChange={e => setField('age', e.target.value)} value={age}/>
                 <Form.Field control={Select} label='เพศ (Gender)' options={genderData} placeholder='เลือกเพศ' width={3} required onChange={(e, { value }) => setField('gender', value)}/>
                 <Form.Field control={Select} label='กรุ๊ปเลือด (Blood Group)' options={bloodgroupData} placeholder='เลือกกรุ๊ปเลือด' width={4} required onChange={(e, { value }) => setField('bloodgroup', value)}/>
                 <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nationalityData} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)}/>
