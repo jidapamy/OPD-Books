@@ -17,7 +17,7 @@ const InfoPateint = ({
         <Segment>
             <Form.Group widths='equal' >
                 <Form.Input fluid id='registerdate' label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly disabled/>
-                <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardType} placeholder='Select Card Type' width={4} required onChange={(e, { value }) => setField('cardType', value)}/>
+                <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardTypeData} placeholder='Select Card Type' width={4} required onChange={(e, { value }) => setField('cardType', value)}/>
                 <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='' width={8} required onChange={e => setField('IDCard', e.target.value)} value={IDCard}/>
             </Form.Group>
             <Form.Group>
@@ -33,15 +33,15 @@ const InfoPateint = ({
             <Form.Group>
                 <Form.Input label='วัน/เดือน/ปีเกิด' placeholder='ตัวอย่าง 01/01/1997' width={3} />
                 <Form.Input label='อายุ' placeholder='อายุ' width={2} />
-                <Form.Field control={Select} label='เพศ (Gender)' options={gender} placeholder='เลือกเพศ' width={3} required onChange={(e, { value }) => setField('gender', value)}/>
-                <Form.Field control={Select} label='กรุ๊ปเลือด (Blood Group)' options={bloodgroup} placeholder='เลือกกรุ๊ปเลือด' width={4} required onChange={(e, { value }) => setField('bloodgroup', value)}/>
-                <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nameTypeEng} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)}/>
-                <Form.Field control={Select} label='ศาสนา (Religion)' options={nameTypeEng} placeholder='เลือกศาสนา' width={4} required onChange={(e, { value }) => setField('religion', value)}/>
+                <Form.Field control={Select} label='เพศ (Gender)' options={genderData} placeholder='เลือกเพศ' width={3} required onChange={(e, { value }) => setField('gender', value)}/>
+                <Form.Field control={Select} label='กรุ๊ปเลือด (Blood Group)' options={bloodgroupData} placeholder='เลือกกรุ๊ปเลือด' width={4} required onChange={(e, { value }) => setField('bloodgroup', value)}/>
+                <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nationalityData} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)}/>
+                <Form.Field control={Select} label='ศาสนา (Religion)' options={religionData} placeholder='เลือกศาสนา' width={4} required onChange={(e, { value }) => setField('religion', value)}/>
             </Form.Group>
             <Form.Group>
-                    <Form.Field control={Select} label='สถานภาพ (Status)' options={nameTypeEng} placeholder='สถานะ' width={4} required onChange={(e, { value }) => setField('status', value)}/>
+                    <Form.Field control={Select} label='สถานภาพ (Status)' options={statusData} placeholder='สถานะ' width={4} required onChange={(e, { value }) => setField('status', value)}/>
                     <Form.Input label='อาชีพ (Occupation) ' placeholder='อาชีพทำงาน' width={4} onChange={e => setField('occupation', e.target.value)} value={occupation}/>
-                    <Form.Input label='โทรศัพท์บ้าน (Home Phonenumber)' placeholder='โทรศัพท์บ้าน' width={4} required onChange={e => setField('homePhonenumber', e.target.value)} value={homePhonenumber}/>
+                    <Form.Input label='โทรศัพท์บ้าน (Home Phonengit pullเรumber)' placeholder='โทรศัพท์บ้าน' width={4} required onChange={e => setField('homePhonenumber', e.target.value)} value={homePhonenumber}/>
                     <Form.Input label='โทรศัพท์มือถือ (Mobile Number)' placeholder='โทรศัพท์ที่ทำงาน' width={4} onChange={e => setField('mobileNumber', e.target.value)} value={mobileNumber}/>
             </Form.Group>
         </Segment>
