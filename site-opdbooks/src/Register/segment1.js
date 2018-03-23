@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Header, Icon, Image } from 'semantic-ui-react'
 import { Message } from 'semantic-ui-react'
-import { Button, Checkbox, Form, Input, Radio, Select, TextArea, Grid, Container } from 'semantic-ui-react'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Button, Grid, Checkbox, Form, Input, Radio, Select, TextArea, Container } from 'semantic-ui-react'
 
 const options = [
     { key: 'm', text: 'Male', value: 'male' },
@@ -53,8 +52,9 @@ const FormExampleSubcomponentId = () => (
             </Header>
             <br></br>
         </div>
-        <Segment>
+        <Segment raised>
         <Form >
+            
             <Form.Group widths='equal' >
                 <Form.Input fluid id='registerdate' label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readonly />
                 <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardType} placeholder='Select Card Type' width={4} required/>
