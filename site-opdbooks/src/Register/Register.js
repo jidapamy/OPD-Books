@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
 import { Form, Container } from 'semantic-ui-react'
+import styled from 'styled-components'
 
 import InfoPateint from './InfoPateint';
 import HeaderComponent from './HeaderComponent';
@@ -12,106 +12,184 @@ import Footer from './Footer'
 
 import BackgroundImage from './img/BG.png'
 
-import Provinces from './Data/Province'
-import Amphurs from './Data/Amphur'
-import Districts from './Data/District'
-// const avatarStyle = {
-//   backgroundImage: "url('./img/BG.png')"
-// };
+
+const provincesData = require('./Data/Province')
+const amphursData = require('./Data/Amphur')
+const districtsData = require('./Data/District')
+
+var statusPrivilege = false;
 
 const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
 `
 
-export const provinces = Provinces;
-export var amphurs = Amphurs;
-export var districts = Districts;
-
 class Register extends Component {
   state = {
+    //data initialization
+    provinces: [],
+    amphurs: [],
+    districts: [],
+
     //info pateint
     registerDate: '',
     cardType: '',
     IDCard: '',
-    nameTitleTH : '',
-    firstnameTH : '',
+    nameTitleTH: '',
+    firstnameTH: '',
     lastnameTH: '',
     nameTitleEN: '',
     firstnameEN: '',
     lastnameEN: '',
-    gender:'',
-    dob:'',
-    age:'',
-    bloodgroup:'',
-    nationality:'',
-    religion:'',
-    status:'',
-    occupation:'',
-    homePhonenumber:'',
-    mobileNumber:'',
+    gender: '',
+    dob: '',
+    age: '',
+    bloodgroup: '',
+    nationality: '',
+    religion: '',
+    status: '',
+    occupation: '',
+    homePhonenumber: '',
+    mobileNumber: '',
+    congenitalDisease:'ไม่มี',
     // picture:'',
 
     // HomeAddress
-    typeofHouse:'',
-    address:'',
-    province:'',
-    district:'',
-    subDistrict:'',
-    zipcode:'',
+    typeofHouse: '',
+    address: '',
+    province: '',
+    district: '',
+    subDistrict: '',
+    zipcode: '',
 
     //emergencyContact
-    emerTitle:'',
-    emerFirstname:'',
-    emerLastname:'',
-    emerRelationship:'',
-    emerHomePhonenumber:'',
-    emerMobileNumber:'',
+    emerTitle: '',
+    emerFirstname: '',
+    emerLastname: '',
+    emerRelationship: '',
+    emerHomePhonenumber: '',
+    emerMobileNumber: '',
     emerTypeofHouse: '',
     emerAddress: '',
     emerProvince: '',
     emerDistrict: '',
     emerSubDistrict: '',
     emerZipcode: '',
-    statusSameAddress:'',
+    statusSameAddress: false,
 
     //under 15
-    fatherTitle:'',
-    fatherFirstname:'',
-    fatherLastname:'',
-    motherTitle:'',
-    motherFirstname:'',
-    motherLastname:'',
+    fatherFirstname: '',
+    fatherLastname: '',
+    motherFirstname: '',
+    motherLastname: '',
 
     //Allery
-    allergy:'',
-    privilege:'',
+    allergy: '',
+    privilege: '',
+    otherPrivilege: true,
 
     //check agreement
-    agreement:''
+    agreement: false
   }
 
 
   setField = (field, value) => {
     this.setState({ [field]: value })
+    if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode'){
+      this.checkStatusSameAddress();
+    }
   }
 
-  changeProvince = async (field, { value }) => {
-    console.log(value)
-    amphurs = Amphurs
-    amphurs = amphurs.filter(amphur => amphur.value.provinceID === value.id)
-    await this.setField(field,value.value)
+  changeProvince = (field, value) => {
+    if (field === 'emerProvince') {
+      this.checkStatusSameAddress();
+      this.setState({ emerDistrict: '', emerSubDistrict: '', emerZipcode: '' })
+    }else{
+      this.setState({ district: '', subDistrict: '', zipcode: '' })
+    }
+    const province = value.options.filter(option => option.value === value.value)[0]
+    const amphurs = this.state.amphurs.filter(amphur => amphur.provinceid === province.key)
+    this.setState({ amphurs: amphurs })
+    this.setField(field, province.value)
+    
   }
 
-  changeAmphur = async (field, { value }) => {
-    districts = Districts
-    districts = districts.filter(district => district.value.amphurId === value.id)
-    await this.setField(field, value.value)
+  changeAmphur = (field, value) => {
+    if (field === 'emerDistrict') {
+      this.checkStatusSameAddress();
+      this.setState({ emerSubDistrict: '', emerZipcode: '' })
+    } else {
+      this.setState({ subDistrict: '', zipcode: '' })
+    }
+    const amphur = value.options.filter(option => option.value === value.value)[0]
+    const districts = this.state.districts.filter(district => district.amphurid === amphur.key)
+    this.setState({ districts: districts })
+    this.setField(field, amphur.value)
   }
 
-  changeDistrict = async (field, { value }) => {
-    await this.setField(field, value.value)
-    await this.setState({zipcode: value.zipcode })
+  changeDistrict = (field, value) => {
+    const district = value.options.filter(option => option.value === value.value)[0]
+    this.setField(field, district.value)
+    console.log(field)
+    if (field === 'subDistrict')
+      this.setState({ zipcode: district.zipcode })
+    else if (field === 'emerSubDistrict')
+      this.checkStatusSameAddress();
+      this.setState({ emerZipcode: district.zipcode })
+  }
+
+  preparedData = (field) => {
+    console.log('click')
+    if (field === 'a')
+      this.setState({ amphurs: amphursData.default })
+    else if (field === 'd')
+      this.setState({ districts: districtsData.default })
+  }
+
+  checkSameAddress = () => {
+    const check = !this.state.statusSameAddress
+    this.setState({ statusSameAddress: check})
+    if (check){
+      this.setState({
+        emerAddress: this.state.address,
+        emerDistrict: this.state.district,
+        emerProvince: this.state.province,
+        emerSubDistrict: this.state.subDistrict,
+        emerTypeofHouse: this.state.typeofHouse,
+        emerZipcode: this.state.zipcode,
+      });
+    }
+  }
+
+  checkStatusSameAddress=()=>{
+    if (this.state.statusSameAddress) {
+      this.setState({ statusSameAddress: false })
+    }
+  }
+
+  checkAgreement = () => {
+    const agreement = !this.state.agreement
+    this.setState({ agreement: agreement })
+  }
+
+  chooseOther = (field)=>{
+    console.log(field)
+    if (field === 'privilege'){
+      const choose = !this.state.otherPrivilege;
+      this.setState({ otherPrivilege: choose})
+    }
+  }
+
+  calculateAge = () => {
+    console.log(this.state.dob)
+    let dob = this.state.dob
+    let age = 2018-(+dob.substring(6));
+    this.setState({ age: age})
+  }
+
+
+  componentWillMount() {
+    this.setState({ provinces: provincesData.default })
   }
 
 
@@ -124,6 +202,8 @@ class Register extends Component {
             <HeaderComponent />
             <InfoPateint
               setField={this.setField}
+              calculateAge={this.calculateAge}
+
               registerDate={this.state.registerDate}
               cardType={this.state.cardType}
               IDCard={this.state.IDCard}
@@ -145,21 +225,37 @@ class Register extends Component {
               mobileNumber={this.state.mobileNumber}
             />
 
-            <HomeAddress 
+            <HomeAddress
+              preparedData={this.preparedData}
+              provinces={this.state.provinces}
+              amphurs={this.state.amphurs}
+              districts={this.state.districts}
+
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}
               changeDistrict={this.changeDistrict}
               setField={this.setField}
+
               typeofHouse={this.state.typeofHouse}
               address={this.state.address}
               province={this.state.province}
               district={this.state.district}
               subDistrict={this.state.subDistrict}
-              zipcode={this.state.zipcode} 
+              zipcode={this.state.zipcode}
             />
 
-            <EmergencyContact 
+            <EmergencyContact
+              checkSameAddress={this.checkSameAddress}
+              preparedData={this.preparedData}
+              provinces={this.state.provinces}
+              amphurs={this.state.amphurs}
+              districts={this.state.districts}
+
+              changeProvince={this.changeProvince}
+              changeAmphur={this.changeAmphur}
+              changeDistrict={this.changeDistrict}
               setField={this.setField}
+
               emerTitle={this.state.emerTitle}
               emerFirstname={this.state.emerFirstname}
               emerLastname={this.state.emerLastname}
@@ -175,26 +271,27 @@ class Register extends Component {
               statusSameAddress={this.state.statusSameAddress}
             />
 
-            <ChildrenUnder15 
+            <ChildrenUnder15
               setField={this.setField}
-              fatherTitle={this.state.fatherTitle}
               fatherFirstname={this.state.fatherFirstname}
               fatherLastname={this.state.fatherLastname}
-              motherTitle={this.state.motherTitle}
               motherFirstname={this.state.motherFirstname}
               motherLastname={this.state.motherLastname}
             />
 
-            <Allergy 
+            <Allergy
+              chooseOther={this.chooseOther}
               setField={this.setField}
-              allergyfatherTitle={this.state.allergyfatherTitle}
-              privilegefatherTitle={this.state.privilegefatherTitle}
+              otherPrivilege={this.otherPrivilege}
+              allergy={this.state.allergy}
+              privilege={this.state.privilege}
             />
 
             <Footer
-              setField={this.setField} 
+              checkAgreement={this.checkAgreement}
+              setField={this.setField}
               agreement={this.state.agreement}
-              />
+            /> 
             <br></br><br></br>
           </Form>
         </Container>

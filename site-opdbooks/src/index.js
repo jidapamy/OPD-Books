@@ -5,7 +5,7 @@ import Login from './Login/login';
 import Register from './Register/Register';
 import 'semantic-ui-css/semantic.min.css';
 // import {Route, Router,Link,browserHistory} from 'react-router'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 
 ReactDOM.render(

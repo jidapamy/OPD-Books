@@ -177,175 +177,175 @@
     {
         "AMPHUR_ID": 26,
         "AMPHUR_CODE": "1026",
-        "AMPHUR_NAME": "เขตดินแดง",
+        "AMPHUR_NAME": "ดินแดง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 27,
         "AMPHUR_CODE": "1027",
-        "AMPHUR_NAME": "เขตบึงกุ่ม",
+        "AMPHUR_NAME": "บึงกุ่ม",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 28,
         "AMPHUR_CODE": "1028",
-        "AMPHUR_NAME": "เขตสาทร",
+        "AMPHUR_NAME": "สาทร",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 29,
         "AMPHUR_CODE": "1029",
-        "AMPHUR_NAME": "เขตบางซื่อ",
+        "AMPHUR_NAME": "บางซื่อ",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 30,
         "AMPHUR_CODE": "1030",
-        "AMPHUR_NAME": "เขตจตุจักร",
+        "AMPHUR_NAME": "จตุจักร",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 31,
         "AMPHUR_CODE": "1031",
-        "AMPHUR_NAME": "เขตบางคอแหลม",
+        "AMPHUR_NAME": "บางคอแหลม",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 32,
         "AMPHUR_CODE": "1032",
-        "AMPHUR_NAME": "เขตประเวศ",
+        "AMPHUR_NAME": "ประเวศ",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 33,
         "AMPHUR_CODE": "1033",
-        "AMPHUR_NAME": "เขตคลองเตย",
+        "AMPHUR_NAME": "คลองเตย",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 34,
         "AMPHUR_CODE": "1034",
-        "AMPHUR_NAME": "เขตสวนหลวง",
+        "AMPHUR_NAME": "สวนหลวง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 35,
         "AMPHUR_CODE": "1035",
-        "AMPHUR_NAME": "เขตจอมทอง",
+        "AMPHUR_NAME": "จอมทอง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 36,
         "AMPHUR_CODE": "1036",
-        "AMPHUR_NAME": "เขตดอนเมือง",
+        "AMPHUR_NAME": "ดอนเมือง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 37,
         "AMPHUR_CODE": "1037",
-        "AMPHUR_NAME": "เขตราชเทวี",
+        "AMPHUR_NAME": "ราชเทวี",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 38,
         "AMPHUR_CODE": "1038",
-        "AMPHUR_NAME": "เขตลาดพร้าว",
+        "AMPHUR_NAME": "ลาดพร้าว",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 39,
         "AMPHUR_CODE": "1039",
-        "AMPHUR_NAME": "เขตวัฒนา",
+        "AMPHUR_NAME": "วัฒนา",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 40,
         "AMPHUR_CODE": "1040",
-        "AMPHUR_NAME": "เขตบางแค",
+        "AMPHUR_NAME": "บางแค",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 41,
         "AMPHUR_CODE": "1041",
-        "AMPHUR_NAME": "เขตหลักสี่",
+        "AMPHUR_NAME": "หลักสี่",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 42,
         "AMPHUR_CODE": "1042",
-        "AMPHUR_NAME": "เขตสายไหม",
+        "AMPHUR_NAME": "สายไหม",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 43,
         "AMPHUR_CODE": "1043",
-        "AMPHUR_NAME": "เขตคันนายาว",
+        "AMPHUR_NAME": "คันนายาว",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 44,
         "AMPHUR_CODE": "1044",
-        "AMPHUR_NAME": "เขตสะพานสูง",
+        "AMPHUR_NAME": "สะพานสูง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 45,
         "AMPHUR_CODE": "1045",
-        "AMPHUR_NAME": "เขตวังทองหลาง",
+        "AMPHUR_NAME": "วังทองหลาง",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 46,
         "AMPHUR_CODE": "1046",
-        "AMPHUR_NAME": "เขตคลองสามวา",
+        "AMPHUR_NAME": "คลองสามวา",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 47,
         "AMPHUR_CODE": "1047",
-        "AMPHUR_NAME": "เขตบางนา",
+        "AMPHUR_NAME": "บางนา",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 48,
         "AMPHUR_CODE": "1048",
-        "AMPHUR_NAME": "เขตทวีวัฒนา",
+        "AMPHUR_NAME": "ทวีวัฒนา",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 49,
         "AMPHUR_CODE": "1049",
-        "AMPHUR_NAME": "เขตทุ่งครุ",
+        "AMPHUR_NAME": "ทุ่งครุ",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
     {
         "AMPHUR_ID": 50,
         "AMPHUR_CODE": "1050",
-        "AMPHUR_NAME": "เขตบางบอน",
+        "AMPHUR_NAME": "บางบอน",
         "GEO_ID": 2,
         "PROVINCE_ID": 1
     },
