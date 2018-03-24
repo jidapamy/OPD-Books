@@ -1,6 +1,6 @@
 export const genderData = [
-    { key: 'm', text: 'Male', value: 'm' },
-    { key: 'f', text: 'Female', value: 'f' },
+    { key: 'm', text: 'ชาย (Male)', value: 'M' },
+    { key: 'f', text: 'หญิง (Female)', value: 'F' },
 ]
 export const cardTypeData = [
     { key: 'idcard', text: 'ID Card No.', value: 'idcard' },
@@ -31,7 +31,7 @@ export const bloodgroupData = [
     { key: 'ไม่ระบุ', text: 'ไม่ระบุ', value: 'ไม่ระบุ' },
 ]
 export const typesOfHousing = [
-    { key: 'อพาร์ทเม้นท์', text: 'อพาร์ทเม้นท์', value: 'อพาร์ทเม้นท์' },
+    { key: 'apartment', text: 'อพาร์ทเม้นท์', value: 'อพาร์ทเม้นท์' },
     { key: 'บ้านเดี่ยว', text: 'บ้านเดี่ยว', value: 'บ้านเดี่ยว' },
     { key: 'ทาวน์เฮาส์', text: 'ทาวน์เฮาส์', value: 'ทาวน์เฮาส์' },
     { key: 'แฟลต', text: 'แฟลต', value: 'แฟลต' },
