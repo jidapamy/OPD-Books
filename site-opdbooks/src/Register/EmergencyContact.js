@@ -1,7 +1,7 @@
 import React from 'react';
 import { Label, Segment, Checkbox, Form, Select } from 'semantic-ui-react'
 // import { provinces, amphurs, districts } from './Register'
-import { typesOfHousing, nameTypeTh, nameTypeThUP15 } from './Data/FormData'
+import { typesOfHousing, nameTypeThUP15 } from './Data/FormData'
 
 
 const EmergencyContact = ({

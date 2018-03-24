@@ -13,10 +13,10 @@ const InfoPateint = ({
     //method
     setField, calculateAge,
     //attribute
-    registerDate, cardType, IDCard,
+    registerDate, cardType, idCard,
     nameTitleTH, firstnameTH, lastnameTH, nameTitleEN, firstnameEN,
     lastnameEN, gender, dob, age, bloodgroup, nationality, religion, status,
-    occupation, homePhonenumber, mobileNumber
+    occupartion, homePhonenumber, mobileNumber
     // picture
 }) => (
         <div>
@@ -38,7 +38,7 @@ const InfoPateint = ({
                 <Form.Group widths='equal' >
                     <Form.Input fluid id='registerdate' label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly disabled />
                     <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardTypeData} placeholder='Select Card Type' width={4} required onChange={(e, { value }) => setField('cardType', value)} />
-                    <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='' width={8} required onChange={e => setField('IDCard', e.target.value)} value={IDCard} />
+                    <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='' width={8} required onChange={e => setField('idCard', e.target.value)} value={idCard} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Field control={Select} label='คำนำหน้า' options={nameTypeTh} placeholder='เลือกคำนำหน้า' width={4} required onChange={(e, { value }) => setField('nameTitleTH', value)} />
@@ -60,7 +60,7 @@ const InfoPateint = ({
                 </Form.Group>
                 <Form.Group>
                     <Form.Field control={Select} label='สถานภาพ (Status)' options={statusData} placeholder='สถานะ' width={3} required onChange={(e, { value }) => setField('status', value)} />
-                    <Form.Input label='อาชีพ (Occupation) ' placeholder='อาชีพทำงาน' width={4} onChange={e => setField('occupation', e.target.value)} value={occupation} />
+                    <Form.Input label='อาชีพ (occupartion) ' placeholder='อาชีพทำงาน' width={4} onChange={e => setField('occupartion', e.target.value)} value={occupartion} />
                     <Form.Input label='โทรศัพท์บ้าน (Home Phonenumber)' placeholder='โทรศัพท์บ้าน' width={5} onChange={e => setField('homePhonenumber', e.target.value)} value={homePhonenumber} />
                     <Form.Input label='โทรศัพท์มือถือ (Mobile Number)' placeholder='โทรศัพท์ที่ทำงาน' width={4} onChange={e => setField('mobileNumber', e.target.value)} value={mobileNumber} required/>
                 </Form.Group>

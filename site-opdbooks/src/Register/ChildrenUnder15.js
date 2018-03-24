@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label,Segment, Form, Select } from 'semantic-ui-react'
+import { Label,Segment, Form } from 'semantic-ui-react'
 
 const ChildrenUnder15 = ({
     //method

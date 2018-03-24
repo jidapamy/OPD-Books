@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Button, Checkbox, Form, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
-var agreement=false;
 const GridColumn = styled(Grid.Column) `
     display: flex;
     justify-content: center;
