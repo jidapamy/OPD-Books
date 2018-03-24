@@ -8,7 +8,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const routes = require('./routes')
+const routes = require('./Routes')
 
 app.use('/', routes)
 
