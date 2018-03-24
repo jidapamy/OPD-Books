@@ -28,8 +28,10 @@ class Register extends Component {
   state = {
     //data initialization
     provinces: [],
-    amphurs: [],
-    districts: [],
+    amphursHome: [],
+    districtsHome: [],
+    amphursEmer: [],
+    districtsEmer: [],
 
     //info pateint
     registerDate: '',
@@ -51,7 +53,7 @@ class Register extends Component {
     occupation: '',
     homePhonenumber: '',
     mobileNumber: '',
-    congenitalDisease:'ไม่มี',
+    congenitalDisease: 'ไม่มี',
     // picture:'',
 
     // HomeAddress
@@ -95,61 +97,85 @@ class Register extends Component {
 
   setField = (field, value) => {
     this.setState({ [field]: value })
-    if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode'){
+    if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode') {
       this.checkStatusSameAddress();
     }
   }
 
   changeProvince = (field, value) => {
+    console.log(field)
     if (field === 'emerProvince') {
+      console.log('if emerProvince')
       this.checkStatusSameAddress();
-      this.setState({ emerDistrict: '', emerSubDistrict: '', emerZipcode: '' })
-    }else{
+      this.setState({ amphursEmer:'',districtsEmer:'', emerDistrict: '', emerSubDistrict: '', emerZipcode: '' })
+      const province = value.options.filter(option => option.value === value.value)[0]
+      const amphurs = this.state.amphursEmer.filter(amphur => amphur.provinceid === province.key)
+      this.setState({ amphursEmer: amphurs })
+      this.setField(field, province.value)
+    } else {
       this.setState({ district: '', subDistrict: '', zipcode: '' })
+      const province = value.options.filter(option => option.value === value.value)[0]
+      const amphurs = this.state.amphursHome.filter(amphur => amphur.provinceid === province.key)
+      console.log(amphurs)
+      this.setState({ amphursHome: amphurs })
+      this.setField(field, province.value)
     }
-    const province = value.options.filter(option => option.value === value.value)[0]
-    const amphurs = this.state.amphurs.filter(amphur => amphur.provinceid === province.key)
-    this.setState({ amphurs: amphurs })
-    this.setField(field, province.value)
-    
+
   }
 
   changeAmphur = (field, value) => {
+    console.log(field)
     if (field === 'emerDistrict') {
       this.checkStatusSameAddress();
-      this.setState({ emerSubDistrict: '', emerZipcode: '' })
+      this.setState({ districtsEmer: '' ,emerSubDistrict: '', emerZipcode: '' })
+      const amphur = value.options.filter(option => option.value === value.value)[0]
+      const districts = this.state.districtsEmer.filter(district => district.amphurid === amphur.key)
+      this.setState({ districtsEmer: districts })
+      this.setField(field, amphur.value)
     } else {
       this.setState({ subDistrict: '', zipcode: '' })
+      const amphur = value.options.filter(option => option.value === value.value)[0]
+      const districts = this.state.districtsHome.filter(district => district.amphurid === amphur.key)
+      this.setState({ districtsHome: districts })
+      this.setField(field, amphur.value)
     }
-    const amphur = value.options.filter(option => option.value === value.value)[0]
-    const districts = this.state.districts.filter(district => district.amphurid === amphur.key)
-    this.setState({ districts: districts })
-    this.setField(field, amphur.value)
   }
 
   changeDistrict = (field, value) => {
     const district = value.options.filter(option => option.value === value.value)[0]
     this.setField(field, district.value)
     console.log(field)
-    if (field === 'subDistrict')
+    if (field === 'subDistrict') {
       this.setState({ zipcode: district.zipcode })
-    else if (field === 'emerSubDistrict')
+    }
+    else if (field === 'emerSubDistrict') {
       this.checkStatusSameAddress();
       this.setState({ emerZipcode: district.zipcode })
+    }
   }
 
-  preparedData = (field) => {
+  preparedData = (field, part) => {
     console.log('click')
-    if (field === 'a')
-      this.setState({ amphurs: amphursData.default })
-    else if (field === 'd')
-      this.setState({ districts: districtsData.default })
+    if (part === "Home") {
+      if (field === 'a')
+        this.setState({ amphursHome: amphursData.default })
+      else if (field === 'd')
+        this.setState({ districtsHome: districtsData.default })
+    } else {
+      if (field === 'a')
+        this.setState({ amphursEmer: amphursData.default })
+      else if (field === 'd')
+        this.setState({ districtsEmer: districtsData.default })
+    }
+
   }
 
   checkSameAddress = () => {
+    this.setState({ amphursEmer: this.state.amphursHome, districtsEmer: this.state.districtsHome })
     const check = !this.state.statusSameAddress
-    this.setState({ statusSameAddress: check})
-    if (check){
+    this.setState({ statusSameAddress: check })
+    console.log(this.state.subDistrict + '  ' + this.state.district)
+    if (check) {
       this.setState({
         emerAddress: this.state.address,
         emerDistrict: this.state.district,
@@ -161,7 +187,7 @@ class Register extends Component {
     }
   }
 
-  checkStatusSameAddress=()=>{
+  checkStatusSameAddress = () => {
     if (this.state.statusSameAddress) {
       this.setState({ statusSameAddress: false })
     }
@@ -172,19 +198,19 @@ class Register extends Component {
     this.setState({ agreement: agreement })
   }
 
-  chooseOther = (field)=>{
+  chooseOther = (field) => {
     console.log(field)
-    if (field === 'privilege'){
+    if (field === 'privilege') {
       const choose = !this.state.otherPrivilege;
-      this.setState({ otherPrivilege: choose})
+      this.setState({ otherPrivilege: choose })
     }
   }
 
   calculateAge = () => {
     console.log(this.state.dob)
     let dob = this.state.dob
-    let age = 2018-(+dob.substring(6));
-    this.setState({ age: age})
+    let age = 2018 - (+dob.substring(6));
+    this.setState({ age: age })
   }
 
 
@@ -228,8 +254,8 @@ class Register extends Component {
             <HomeAddress
               preparedData={this.preparedData}
               provinces={this.state.provinces}
-              amphurs={this.state.amphurs}
-              districts={this.state.districts}
+              amphurs={this.state.amphursHome}
+              districts={this.state.districtsHome}
 
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}
@@ -248,8 +274,8 @@ class Register extends Component {
               checkSameAddress={this.checkSameAddress}
               preparedData={this.preparedData}
               provinces={this.state.provinces}
-              amphurs={this.state.amphurs}
-              districts={this.state.districts}
+              amphurs={this.state.amphursEmer}
+              districts={this.state.districtsEmer}
 
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}
@@ -291,7 +317,7 @@ class Register extends Component {
               checkAgreement={this.checkAgreement}
               setField={this.setField}
               agreement={this.state.agreement}
-            /> 
+            />
             <br></br><br></br>
           </Form>
         </Container>
