@@ -65,11 +65,11 @@ router.post('/addPateint', async function (req, res) {
 //     res.send(data);
 // })
 
-// router.get('/amphurDB', async (req, res) => {
-//     var data = await knex.table('amphur')
-//         .select()
-//     res.send(data);
-// })
+router.get('/amphurDB', async (req, res) => {
+    var data = await knex.table('amphur')
+        .select()
+    res.send(data);
+})
 
 // router.get('/districtDB', async (req, res) => {
 //     var data = await knex.table('district')
