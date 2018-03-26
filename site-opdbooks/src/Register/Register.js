@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Container , Modal} from 'semantic-ui-react'
 import styled from 'styled-components'
 import axios from 'axios'
+import moment from 'moment';
+
 
 import InfoPateint from './InfoPateint';
 import HeaderComponent from './HeaderComponent';
@@ -47,7 +49,7 @@ class Register extends Component {
     districtsEmer: [],
 
     //info pateint
-    registerDate: '',
+    registerDate: moment().format('dddd Do MMMM YYYY'),
     cardType: '',
     idCard: '',
     nameTitleTH: '',
@@ -57,7 +59,7 @@ class Register extends Component {
     firstnameEN: '',
     lastnameEN: '',
     gender: '',
-    dob: '',
+    dob: null,
     age: '',
     bloodgroup: '',
     nationality: '',
@@ -221,8 +223,9 @@ class Register extends Component {
   }
 
   calculateAge = () => {
-    console.log(this.state.dob)
-    let dob = this.state.dob
+    console.log('calculateAge : ' +this.state.dob)
+    let dob = '' + this.state.dob
+    console.log(dob)
     let age = 2018 - (+dob.substring(6));
     this.setState({ age: age })
   }
@@ -239,7 +242,7 @@ class Register extends Component {
       firstnameEN: this.state.firstnameEN,
       lastnameEN: this.state.lastnameEN,
       gender: this.state.gender,
-      dob: this.state.dob,
+      dob: moment().utc(this.state.dob, "DD-MM-YYYY"),
       bloodgroup: this.state.bloodgroup,
       nationality: this.state.nationality,
       religion: this.state.religion,
@@ -328,8 +331,20 @@ class Register extends Component {
     this.insertPateint.bind();
   }
 
+  setDateOfBirth= async (value)=>{
+    await this.setState({ dob: value.format('DD/MM/YYYY')})
+    this.calculateAge();    
+  }
+
+  test = () => {
+    console.log('test')
+  }
+
   render() {
-    console.log(this.state)
+    // if(this.state.dob !== null)
+console.log(this.state)
+    // console.log(moment('02-05-1997', 'MM-DD-YYYY'))
+    // console.log((moment().utc('12-04-2012', "DD-MM-YYYY").valueOf()).format('DD-MM-YYYY'))
     return (
       <Wrapper>
         <Container>
@@ -338,6 +353,8 @@ class Register extends Component {
             <InfoPateint
               setField={this.setField}
               calculateAge={this.calculateAge}
+              setDateOfBirth={this.setDateOfBirth}
+              test={this.test}
 
               registerDate={this.state.registerDate}
               cardType={this.state.cardType}

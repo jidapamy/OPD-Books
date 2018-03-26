@@ -7,7 +7,8 @@ import Test from './Test';
 
 import Register from './Register/Register';
 import 'semantic-ui-css/semantic.min.css';
-// import {Route, Router,Link,browserHistory} from 'react-router'
+import 'react-datepicker/dist/react-datepicker.css';
+
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 

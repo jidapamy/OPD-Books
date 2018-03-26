@@ -1,36 +1,35 @@
-import React, { Component } from 'react';
-import 'semantic-ui-css/semantic.min.css';
-// import CSS from './style.css';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 
-class SelectDate extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            startDate: moment()
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(date) {
-        this.setState({
-            startDate: date
-        });
-    }
-
-    render() {
+const SelectDate = ({
+    setDateOfBirth, calculateAge, dob,
+}) => {
+    console.log('>>>>>'+dob)
+    if( dob !== null || dob != undefined){
         return <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChange}
+            placeholderText="ex. 01/01/1990"
+            selected={moment(dob, 'DD/MM/YYYY')}
+            onChange={e => setDateOfBirth(e)}
             dateFormatCalendar={"MMM YYYY"}
             minDate={moment().subtract(145, "year")}
             maxDate={moment().add(0, "year")}
             showYearDropdown
             showMonthDropdown
-        />;
+        />
     }
+    return <DatePicker
+        placeholderText="ex. 01/01/1990"
+        selected={dob}
+        onChange={e => setDateOfBirth(e)}
+        dateFormatCalendar={"MMM YYYY"}
+        minDate={moment().subtract(145, "year")}
+        maxDate={moment().add(0, "year")}
+        showYearDropdown
+        showMonthDropdown
+    />
 }
+    
+
 
 export default SelectDate
