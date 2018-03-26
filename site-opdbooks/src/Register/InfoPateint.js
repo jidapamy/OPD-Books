@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Segment, Header, Image, Form, Select, Grid } from 'semantic-ui-react'
+import { Segment, Header, Image, Form, Select, Grid} from 'semantic-ui-react'
 import { nameTypeTh, bloodgroupData, cardTypeData, genderData, nameTypeEng, nationalityData, religionData, statusData } from './Data/FormData'
+import Date from './Date'
+import DatePicker from 'react-datepicker';
+
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -16,7 +19,7 @@ const InfoPateint = ({
     registerDate, cardType, idCard,
     nameTitleTH, firstnameTH, lastnameTH, nameTitleEN, firstnameEN,
     lastnameEN, gender, dob, age, bloodgroup, nationality, religion, status,
-    occupartion, homePhonenumber, mobileNumber
+    occupartion, homePhonenumber, mobileNumber ,startDate
     // picture
 }) => (
         <div>
@@ -51,8 +54,8 @@ const InfoPateint = ({
                     <Form.Input label='Last Name' placeholder='Last Name' width={6} required onChange={e => setField('lastnameEN', e.target.value)} value={lastnameEN} />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Input label='วัน/เดือน/ปีเกิด (DOB)' placeholder='ex. 01/01/1997' width={3} onChange={e => setField('dob', e.target.value)} onBlur={() => calculateAge()} value={dob} />
-                    <Form.Input label='อายุ (age)' placeholder='อายุ' width={2} value={age} readOnly />
+                    <Form.Field control={Date} label='วัน/เดือน/ปีเกิด' placeholder='ตัวอย่าง 01/01/1997' width={3} onChange={e => setField('dob', e.target.value)} onBlur={() => calculateAge()} value={dob} />
+                    <Form.Input label='อายุ' placeholder='อายุ' width={2} value={age} readOnly />
                     <Form.Field control={Select} label='เพศ (Gender)' options={genderData} placeholder='เลือกเพศ' width={3} required onChange={(e, { value }) => setField('gender', value)} />
                     <Form.Field control={Select} label='กรุ๊ปเลือด (Blood Group)' options={bloodgroupData} placeholder='เลือกกรุ๊ปเลือด' width={4} required onChange={(e, { value }) => setField('bloodgroup', value)} />
                     <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nationalityData} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)} />
