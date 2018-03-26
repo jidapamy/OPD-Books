@@ -19,6 +19,7 @@ router.post('/addPateint', async function (req, res) {
     var data = await knex.table('PateintRecords')
         .insert({
             hospitalNumber: hospitalNumber,
+            registerDate: req.body.registerDate,
             idCard: req.body.idCard,
             nameTitleTH: req.body.nameTitleTH,
             firstnameTH: req.body.firstnameTH,
@@ -111,13 +112,15 @@ router.post('/addPateint', async function (req, res) {
 
             statusSameAddress: req.body.statusSameAddress
         })
-
+    console.log(data)
+    console.log('Success')
     res.end('ADD Success');
 });
 
 router.get('/provinceDB', async (req, res) => {
     var data = await knex.table('provinces')
         .select()
+        console.log('province')
     res.send(data);
 })
 
