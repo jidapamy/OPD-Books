@@ -49,7 +49,7 @@ class Register extends Component {
     districtsEmer: [],
 
     //info pateint
-    registerDate: moment().format('dddd Do MMMM YYYY'),
+    registerDate: moment().format('LLLL'),
     cardType: '',
     idCard: '',
     nameTitleTH: '',
@@ -232,8 +232,10 @@ class Register extends Component {
 
   //Connect API
   insertPateint = async () => {
+    console.log(this.state.registerDate)
     console.log('inserting')
     await axios.post('http://localhost:3003/addPateint', {
+      registerDate: this.state.registerDate,
       idCard: this.state.idCard,
       nameTitleTH: this.state.nameTitleTH,
       firstnameTH: this.state.firstnameTH,
@@ -242,7 +244,7 @@ class Register extends Component {
       firstnameEN: this.state.firstnameEN,
       lastnameEN: this.state.lastnameEN,
       gender: this.state.gender,
-      dob: moment().utc(this.state.dob, "DD-MM-YYYY"),
+      dob: this.state.dob,
       bloodgroup: this.state.bloodgroup,
       nationality: this.state.nationality,
       religion: this.state.religion,
@@ -465,7 +467,7 @@ console.log(this.state)
             /> */}
 
 
-            {/* <Form.Group inline>
+            <Form.Group inline>
               <Form.Field control={Checkbox}
                 label='ข้าพเจ้าขอรับรองว่าข้อมูลบุคคลทั้งหมดตามที่แจ้งแก่เจ้าหน้าที่ของคลินิกนี้ถูกต้อง และตรงกับความเป็นจริงทุกประการ หากมีข้อความใดไม่ถูกต้องหรือไม่ตรงกับความจริง และอาจจะทำให้เกิดความเสียหายแก่ตัวข้าพเจ้าหรือบุคคลอื่นใด ข้าพเจ้ายินยอมรับผิดชอบในความเสียหายที่เกิดขึ้นทุกประการ และอนุญาตให้เผยแพร่ข้อมูลข้องข้าพเจ้าในระบบในเครือของคลินิก'
                 onChange={this.checkAgreement}
@@ -480,7 +482,7 @@ console.log(this.state)
                   <h3>CANCEL</h3>
                 </Button>
               </Link>
-            </GridColumn> */}
+            </GridColumn>
 
 
           {/* <Modal size={'mini'} open={true} onClose={this.close}>
