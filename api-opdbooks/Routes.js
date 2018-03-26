@@ -115,23 +115,23 @@ router.post('/addPateint', async function (req, res) {
     res.end('ADD Success');
 });
 
-// router.get('/province', async (req, res) => {
-//     var data = await knex.table('province')
-//         .select()
-//     res.send(data);
-// })
+router.get('/provinceDB', async (req, res) => {
+    var data = await knex.table('provinces')
+        .select()
+    res.send(data);
+})
 
-// router.get('/amphurDB', async (req, res) => {
-//     var data = await knex.table('amphur')
-//         .select()
-//     res.send(data);
-// })
+router.get('/amphurDB', async (req, res) => {
+    var data = await knex.table('amphures')
+        .select()
+    res.send(data);
+})
 
-// router.get('/districtDB', async (req, res) => {
-//     var data = await knex.table('district')
-//         .select()
-//     res.send(data);
-// })
+router.get('/districtDB', async (req, res) => {
+    var data = await knex.table('districts')
+        .select()
+    res.send(data);
+})
 
 // router.get('/zipcode', async (req, res) => {
 //     var data = await knex.table('zipcode')
@@ -187,8 +187,8 @@ router.get('/province', async (req, res) => {
     const data = provinces
         .map(province => ({
             key: province.PROVINCE_ID,
-            text: province.PROVINCE_NAME,
-            value: province.PROVINCE_NAME
+            text: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG+')',
+            value: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')'
         }))
         .sort((a, b) => a.text.localeCompare(b.text))
     res.send(data);
@@ -199,8 +199,8 @@ router.get('/amphur', async (req, res) => {
     const data = amphors
         .map(amphor => ({
             key: amphor.AMPHUR_ID,
-            text: amphor.AMPHUR_NAME,
-            value: amphor.AMPHUR_NAME,
+            text: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            value: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
             provinceid: amphor.PROVINCE_ID,
         }))
         .sort((a, b) => a.text.localeCompare(b.text))
