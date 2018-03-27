@@ -1,0 +1,13 @@
+.InputHideBorder {
+FONT-WEIGHT: normal;
+FONT-SIZE: 11px;
+COLOR: #666666;
+FONT-FAMILY: "Verdana";
+border-left-style:none;
+border-bottom-style:none;
+border-right-style:none;
+border-top-style:none;
+border:0px;
+background:inherit;
+
+} 

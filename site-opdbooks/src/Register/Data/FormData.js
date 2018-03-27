@@ -60,3 +60,10 @@ export const statusData = [
     { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
     
 ] 
+export const countryData = [
+  { key: 'English', text: 'English', value: 'English' },
+  { key: 'French', text: 'French', value: 'French' },
+  { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
+  { key: 'German', text: 'German', value: 'German' },
+  { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
+]

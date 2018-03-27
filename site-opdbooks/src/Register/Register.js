@@ -68,6 +68,7 @@ class Register extends Component {
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
+    language:'',
     congenitalDisease: 'ไม่มี',
     // picture:'',
 
@@ -377,6 +378,7 @@ console.log(this.state)
               occupartion={this.state.occupartion}
               homePhonenumber={this.state.homePhonenumber}
               mobileNumber={this.state.mobileNumber}
+              country={this.state.country}
             />
 
             <HomeAddress
