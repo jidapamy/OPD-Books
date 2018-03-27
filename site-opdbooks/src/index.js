@@ -12,7 +12,7 @@ import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 ReactDOM.render(
     <Router>
         <div>
-        <Route exact path='/' component={App}/>
+        <Route exact path='/' component={Home}/>
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login} />
         <Route path='/home' component={Home} />
