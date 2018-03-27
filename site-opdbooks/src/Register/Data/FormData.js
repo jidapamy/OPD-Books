@@ -28,7 +28,7 @@ export const bloodgroupData = [
     { key: 'A', text: 'A', value: 'A' },
     { key: 'B', text: 'B', value: 'B' },
     { key: 'AB', text: 'AB', value: 'AB' },
-    { key: 'ไม่ระบุ', text: 'ไม่ระบุ', value: 'ไม่ระบุ' },
+    { key: 'Unknown', text: 'ไม่ระบุ (Unknown)', value: 'ไม่ระบุ (Unknown)' },
 ]
 export const typesOfHousing = [
     { key: 'apartment', text: 'อพาร์ทเม้นท์', value: 'อพาร์ทเม้นท์' },
@@ -36,25 +36,27 @@ export const typesOfHousing = [
     { key: 'ทาวน์เฮาส์', text: 'ทาวน์เฮาส์', value: 'ทาวน์เฮาส์' },
     { key: 'แฟลต', text: 'แฟลต', value: 'แฟลต' },
     { key: 'คอนโดมิเนียม', text: 'คอนโดมิเนียม', value: 'คอนโดมิเนียม' },
-    { key: 'อื่นๆ', text: 'อื่นๆ', value: 'อื่นๆ' }
+    { key: 'Other', text: 'อื่นๆ', value: 'อื่นๆ' },
 ] 
 export const nationalityData = [
-    { key: 'ไทย', text: 'ไทย', value: 'ไทย' },
-    { key: 'จีน', text: 'จีน', value: 'จีน' },
-    { key: 'อินเดีย', text: 'อินเดีย', value: 'อินเดีย' },
-    { key: 'อื่นๆ', text: 'อื่นๆ', value: 'อื่นๆ' },
+    { key: 'Thai', text: 'ไทย (Thai)', value: 'ไทย (Thai)' },
+    { key: 'Chinese', text: 'จีน (Chinese)', value: 'จีน (Chinese)' },
+    { key: 'Indian', text: 'อินเดีย (Indian)', value: 'อินเดีย (Indian)' },
+    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
 ] 
 export const religionData = [
-    { key: 'พุทธ', text: 'พุทธ', value: 'พุทธ' },
-    { key: 'คริสต์', text: 'คริสต์', value: 'คริสต์' },
-    { key: 'อิสลาม', text: 'อิสลาม', value: 'อิสลาม' },
-    { key: 'อื่นๆ', text: 'อื่นๆ', value: 'อื่นๆ' },
+    { key: 'Buddhism', text: 'พุทธ (Buddhism)', value: 'พุทธ (Buddhism)' },
+    { key: 'Christian', text: 'คริสต์ (Christian)', value: 'คริสต์ (Christian)' },
+    { key: 'Muslim', text: 'อิสลาม (Muslim)', value: 'อิสลาม (Muslim)' },
+    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
 ] 
 export const statusData = [
-    { key: 'โสด', text: 'โสด', value: 'โสด' },
-    { key: 'หมั้น', text: 'หมั้น', value: 'หมั้น' },
-    { key: 'แต่งงาน', text: 'แต่งงาน', value: 'แต่งงาน' },
-    { key: 'แยกกันอยู่', text: 'แยกกันอยู่', value: 'แยกกันอยู่' },
-    { key: 'หย่าร้าง', text: 'หย่าร้าง', value: 'หย่าร้าง' },
-    { key: 'หม้าย', text: 'หม้าย', value: 'หม้าย' },
+    { key: 'Single', text: 'โสด (Single)', value: 'โสด (Single)' },
+    { key: 'Engaged', text: 'หมั้น (Engaged)', value: 'หมั้น (Engaged)' },
+    { key: 'Married', text: 'แต่งงาน (Married)', value: 'แต่งงาน (Married)' },
+    { key: 'Brokeup', text: 'แยกกันอยู่ (Broke up with bf/gf)', value: 'แยกกันอยู่ (Broke up with bf/gf)' },
+    { key: 'Divorced', text: 'หย่าร้าง (Divorced)', value: 'หย่าร้าง (Divorced)' },
+    { key: 'Widowed', text: 'หม้าย (Widowed)', value: 'หม้าย (Widowed)' },
+    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
+    
 ] 

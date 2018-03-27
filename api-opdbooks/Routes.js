@@ -11,71 +11,139 @@ var knex = require('knex')({
     }
 });
 
-router.get('/', async (req, res) => {
-    var data = await knex.table('PateintRecords')
+router.post('/addPateint', async function (req, res) {
+    var idCards = await knex.table('PateintRecords')
+        .select('idcard')
+        .where('idcard', req.body.idCard)
+    if (idCards === null || idCards.length === 0){
+        var maxHN = await knex.table('PateintRecords')
+            .select()
+            .max('hospitalNumber as maxHN')
+        var hospitalNumber = (maxHN[0].maxHN) + 1
+        var data = await knex.table('PateintRecords')
+            .insert({
+                hospitalNumber: hospitalNumber,
+                registerDate: req.body.registerDate,
+                idCard: req.body.idCard,
+                nameTitleTH: req.body.nameTitleTH,
+                firstnameTH: req.body.firstnameTH,
+                lastnameTH: req.body.lastnameTH,
+                nameTitleEN: req.body.nameTitleEN,
+                firstnameEN: req.body.firstnameEN,
+                lastnameEN: req.body.lastnameEN,
+                gender: req.body.gender,
+                dob: req.body.dob,
+                bloodgroup: req.body.bloodgroup,
+                nationality: req.body.nationality,
+                religion: req.body.religion,
+                status: req.body.status,
+                occupartion: req.body.occupartion,
+                homePhonenumber: req.body.homePhonenumber,
+                mobileNumber: req.body.mobileNumber,
+                congenitalDisease: req.body.congenitalDisease,
+                typeofHouse: req.body.typeofHouse,
+                address: req.body.address,
+                province: req.body.province,
+                district: req.body.district,
+                subDistrict: req.body.subDistrict,
+                zipcode: req.body.zipcode,
+                emerTitle: req.body.emerTitle,
+                emerFirstname: req.body.emerFirstname,
+                emerLastname: req.body.emerLastname,
+                emerRelationship: req.body.emerRelationship,
+                emerHomePhonenumber: req.body.emerHomePhonenumber,
+                emerMobileNumber: req.body.emerMobileNumber,
+                emerTypeofHouse: req.body.emerTypeofHouse,
+                emerAddress: req.body.emerAddress,
+                emerProvince: req.body.emerProvince,
+                emerDistrict: req.body.emerDistrict,
+                emerSubDistrict: req.body.emerSubDistrict,
+                emerZipcode: req.body.emerZipcode,
+                statusSameAddress: req.body.statusSameAddress,
+                fatherFirstname: req.body.fatherFirstname,
+                fatherLastname: req.body.fatherLastname,
+                motherFirstname: req.body.motherFirstname,
+                motherLastname: req.body.motherLastname,
+                allergy: req.body.allergy,
+                privilege: req.body.privilege,
+
+
+                nameTitleTH: req.body.nameTitleTH,
+                firstnameTH: req.body.firstnameTH,
+                lastnameTH: req.body.lastnameTH,
+                nameTitleEN: req.body.nameTitleEN,
+                firstnameEN: req.body.firstnameEN,
+                lastnameEN: req.body.lastnameEN,
+                gender: req.body.gender,
+                dob: req.body.dob,
+                occupartion: req.body.occupartion,
+                idCard: req.body.idCard,
+                bloodgroup: req.body.bloodgroup,
+                nationality: req.body.nationality,
+                religion: req.body.religion,
+                status: req.body.status,
+                homePhonenumber: req.body.homePhonenumber,
+                mobileNumber: req.body.mobileNumber,
+                congenitalDisease: req.body.congenitalDisease,
+
+                fatherFirstname: req.body.fatherFirstname,
+                fatherLastname: req.body.fatherLastname,
+                motherFirstname: req.body.motherFirstname,
+                motherLastname: req.body.motherLastname,
+
+                typeofHouse: req.body.typeofHouse,
+                address: req.body.address,
+                province: req.body.province,
+                district: req.body.district,
+                subDistrict: req.body.subDistrict,
+                zipcode: req.body.zipcode,
+
+                emerTitle: req.body.emerTitle,
+                emerFirstname: req.body.emerFirstname,
+                emerLastname: req.body.emerLastname,
+                emerRelationship: req.body.emerRelationship,
+                emerHomePhonenumber: req.body.emerHomePhonenumber,
+                emerMobileNumber: req.body.emerMobileNumber,
+                emerTypeofHouse: req.body.emerTypeofHouse,
+                emerAddress: req.body.emerAddress,
+                emerProvince: req.body.emerProvince,
+                emerDistrict: req.body.emerDistrict,
+                emerSubDistrict: req.body.emerSubDistrict,
+                emerZipcode: req.body.emerZipcode,
+
+                privilege: req.body.privilege,
+                allergy: req.body.allergy,
+
+                statusSameAddress: req.body.statusSameAddress
+            })
+        console.log(data)
+        console.log('Success')
+        res.end('ADD Success');
+    }else{
+        res.end('ซ้ำ');
+    }
+
+   
+});
+
+router.get('/provinceDB', async (req, res) => {
+    var data = await knex.table('provinces')
+        .select()
+    console.log('province')
+    res.send(data);
+})
+
+router.get('/amphurDB', async (req, res) => {
+    var data = await knex.table('amphures')
         .select()
     res.send(data);
 })
 
-router.post('/addPateint', async function (req, res) {
-    console.log(req.body)
-    var data = await knex.table('PateintRecords')
-        .insert({
-            hospitalNumber: req.body.hospitalNumber,
-            nameTitleTH: req.body.nameTitleTH,
-            firstnameTH: req.body.firstnameTH,
-            lastnameTH: req.body.lastnameTH,
-            nameTitleEN: req.body.nameTitleEN,
-            firstnameEN: req.body.firstnameEN,
-            lastnameEN: req.body.lastnameEN,
-            gender: req.body.gender,
-            dob: req.body.dob,
-            occupartion: req.body.occupartion,
-            idcard: req.body.idcard,
-            bloodGroup: req.body.bloodGroup,
-            nationality: req.body.nationality,
-            religion: req.body.religion,
-            status: req.body.status,
-            homePhonenumber: req.body.homePhonenumber,
-            mobileNumber: req.body.mobileNumber,
-            nameFather: req.body.nameFather,
-            nameMother: req.body.nameMother,
-            typeofHouse: req.body.typeofHouse,
-            address: req.body.address,
-            province: req.body.province,
-            district: req.body.district,
-            subDistrict: req.body.subDistrict,
-            zipcode: req.body.zipcode,
-            emerName: req.body.emerName,
-            emerRelationship: req.body.emerRelationship,
-            emerHomePhonenumber: req.body.emerHomePhonenumber,
-            emerMobileNumber: req.body.emerMobileNumber,
-            emerAddress: req.body.emerAddress,
-            privilege: req.body.privilege,
-            allergy: req.body.allergy,
-            congenitalDisease: req.body.congenitalDisease,
-        })
-
-    res.end('ADD Success');
-});
-
-// router.get('/province', async (req, res) => {
-//     var data = await knex.table('province')
-//         .select()
-//     res.send(data);
-// })
-
-// router.get('/amphurDB', async (req, res) => {
-//     var data = await knex.table('amphur')
-//         .select()
-//     res.send(data);
-// })
-
-// router.get('/districtDB', async (req, res) => {
-//     var data = await knex.table('district')
-//         .select()
-//     res.send(data);
-// })
+router.get('/districtDB', async (req, res) => {
+    var data = await knex.table('districts')
+        .select()
+    res.send(data);
+})
 
 // router.get('/zipcode', async (req, res) => {
 //     var data = await knex.table('zipcode')
@@ -113,7 +181,7 @@ router.get('/comblie', (req, res) => {
                             key: district.DISTRICT_ID,
                             text: district.DISTRICT_NAME,
                             value: district.DISTRICT_NAME,
-                            zipcode : zipcodes
+                            zipcode: zipcodes
                                 .filter(zipcode => zipcode.DISTRICT_CODE === district.DISTRICT_CODE)
                                 .map(zipcode => (
                                     zipcode.ZIPCODE
@@ -131,8 +199,8 @@ router.get('/province', async (req, res) => {
     const data = provinces
         .map(province => ({
             key: province.PROVINCE_ID,
-            text: province.PROVINCE_NAME,
-            value: province.PROVINCE_NAME
+            text: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')',
+            value: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')'
         }))
         .sort((a, b) => a.text.localeCompare(b.text))
     res.send(data);
@@ -143,8 +211,8 @@ router.get('/amphur', async (req, res) => {
     const data = amphors
         .map(amphor => ({
             key: amphor.AMPHUR_ID,
-            text: amphor.AMPHUR_NAME,
-            value: amphor.AMPHUR_NAME,
+            text: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            value: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
             provinceid: amphor.PROVINCE_ID,
         }))
         .sort((a, b) => a.text.localeCompare(b.text))
@@ -167,5 +235,20 @@ router.get('/district', async (req, res) => {
         .sort((a, b) => a.text.localeCompare(b.text))
     res.send(data);
 })
+
+router.get('/validateIdcard', async (req, res) => {
+    var data = await knex.table('PateintRecords')
+        .select('idcard')
+    // .where('idcard',idcard)
+    res.send(data);
+})
+router.get('/validateIdcard/:id', async (req, res) => {
+    var data = await knex.table('PateintRecords')
+        .select('idcard')
+        .where('idcard', req.params.id)
+    res.send(data);
+})
+
+
 
 module.exports = router
