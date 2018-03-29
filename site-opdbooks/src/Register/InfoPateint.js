@@ -22,7 +22,6 @@ const InfoPateint = ({
     occupartion, homePhonenumber, mobileNumber ,startDate
     // picture
 }) => {
-    console.log('>>>> '+dob)
     return <div>
         <Segment>
             <Form.Group widths='equal' >

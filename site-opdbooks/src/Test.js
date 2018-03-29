@@ -1,40 +1,86 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import HomeAddress from './Register/HomeAddress'
+import HomeAddressForeigner from './Register/HomeAddressOfForeigner'
+import { Form } from 'semantic-ui-react'
 
-class ModalExampleSize extends Component {
-  state = { open: false }
+// const Address = () => {
+//   console.log(this.state.mymy)
+//   if (this.state.mymy){
+//     return <div>
+//             <h1>ID CARD</h1>
+//             <HomeAddress />
+//           </div>
+//   }
+//   return <div>
+//             <h1>Passport</h1>
+//             <HomeAddressForeigner />
+//          </div>
 
-  show = size => () => this.setState({ size, open: true })
-  close = () => this.setState({ open: false })
+// }
+
+// const options = [
+//   { key: 1, text: 'idcard', value: 'idcard' },
+//   { key: 2, text: 'passpot', value: 'passpot' },
+// ]
+
+class Test extends Component {
+  state = {
+    mymy:true,
+    test1:'',
+    test2: '',
+    test3: '',
+    test4: '',
+  }
+  submit = (e) => {
+    console.log('submit')
+    console.log(e)
+  }
 
   render() {
-    const { open, size } = this.state
-
+    // const button = this.state.mymy===true ? (
+    //   <div>
+    //     <h1>ID CARD</h1>
+    //     <HomeAddress />
+    //   </div>
+    // ) : (
+    //     <div>
+    //       <h1>Passport</h1>
+    //       <HomeAddressForeigner />
+    //     </div>
+    // );
+    console.log(this.state.mymy)
     return (
       <div>
-        <Button onClick={this.show('mini')}>Mini</Button>
-        <Button onClick={this.show('tiny')}>Tiny</Button>
-        <Button onClick={this.show('small')}>Small</Button>
-        <Button onClick={this.show('large')}>Large</Button>
-        <Button onClick={this.show('fullscreen')}>Fullscreen</Button>
+        <Form onSubmit={this.submit(this)} >
+          <Form.Group widths='equal'>
+            <Form.Input fluid label='Test 1' placeholder='Test 1' name='test1' ref='test1'/>
+            <Form.Input fluid label='Test 2' placeholder='Test 2' name='test2' />
+            <Form.Input fluid label='Test 3' placeholder='Test 3' name='test3' />
+          </Form.Group>
+          <Form.Button type='submit' primary>Submit</Form.Button>
+        </Form>
 
-        <Modal size={size} open={open} onClose={this.close}>
-          <Modal.Header>
-            Delete Your Account
-          </Modal.Header>
-          <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button negative>
-              No
-            </Button>
-            <Button positive icon='checkmark' labelPosition='right' content='Yes' />
-          </Modal.Actions>
-        </Modal>
+
+
+        {/* <Input placeholder='Test 1...' name='test1' />
+        <Input placeholder='Test 2...' name='test2' />
+        <Input placeholder='Test 3...' name='test3' />
+        <Input placeholder='Test 4...' name='test4' />
+        <Button primary onClick={this.Submit}>Primary</Button>
+         */}
+        {/* <Menu compact>
+          <Dropdown text='Dropdown' 
+                    options={options} 
+                    simple 
+                    item 
+                    value={this.state.idcardType}/>
+        </Menu>
+        <br/>
+        <br/>
+        {button} */}
       </div>
     )
   }
 }
 
-export default ModalExampleSize
+export default Test

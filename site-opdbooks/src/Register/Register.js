@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import { Form, Container , Modal} from 'semantic-ui-react'
+import { Form, Container, Modal, Button, Checkbox, Grid} from 'semantic-ui-react'
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment';
 
 
 import InfoPateint from './InfoPateint';
-import HeaderComponent from './HeaderComponent';
 import HomeAddress from './HomeAddress'
-import HomeAddressOfForeign from './HomeAddressOfForeign'
+import HomeAddressOfForeigner from './HomeAddressOfForeigner'
 import EmergencyContact from './EmergencyContact'
 import ChildrenUnder15 from './ChildrenUnder15'
 import Allergy from './Allergy'
 import Footer from './Footer'
 
-import { Button, Checkbox, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
@@ -106,7 +104,10 @@ class Register extends Component {
     otherPrivilege: true,
 
     //check agreement
-    agreement: false
+    agreement: false,
+
+    //validate
+    
   }
 
 
@@ -287,7 +288,7 @@ class Register extends Component {
   }
 
   checkThaiPateint = () => {
-    if(this.state.idCard==='idcard'){
+    if (this.state.cardType === 'idcard' || this.state.cardType === ''){
       return <HomeAddress
               preparedData={this.preparedData}
               provinces={this.state.provinces}
@@ -307,7 +308,7 @@ class Register extends Component {
               zipcode={this.state.zipcode}
             />
     }
-    return  <HomeAddressOfForeign
+    return <HomeAddressOfForeigner
               preparedData={this.preparedData}
               provinces={this.state.provinces}
               amphurs={this.state.amphursHome}
@@ -344,14 +345,13 @@ class Register extends Component {
 
   render() {
     // if(this.state.dob !== null)
-console.log(this.state)
+    console.log(this.state)
     // console.log(moment('02-05-1997', 'MM-DD-YYYY'))
     // console.log((moment().utc('12-04-2012', "DD-MM-YYYY").valueOf()).format('DD-MM-YYYY'))
     return (
       <Wrapper>
         <Container>
           <Form onSubmit={this.insertPateint}>
-            <HeaderComponent />
             <InfoPateint
               setField={this.setField}
               calculateAge={this.calculateAge}
@@ -379,44 +379,7 @@ console.log(this.state)
               mobileNumber={this.state.mobileNumber}
             />
 
-            <HomeAddress
-              preparedData={this.preparedData}
-              provinces={this.state.provinces}
-              amphurs={this.state.amphursHome}
-              districts={this.state.districtsHome}
-
-              changeProvince={this.changeProvince}
-              changeAmphur={this.changeAmphur}
-              changeDistrict={this.changeDistrict}
-              setField={this.setField}
-
-              typeofHouse={this.state.typeofHouse}
-              address={this.state.address}
-              province={this.state.province}
-              district={this.state.district}
-              subDistrict={this.state.subDistrict}
-              zipcode={this.state.zipcode}
-            />
-
-            {/* <HomeAddressOfForeign
-              preparedData={this.preparedData}
-              provinces={this.state.provinces}
-              amphurs={this.state.amphursHome}
-              districts={this.state.districtsHome}
-
-              changeProvince={this.changeProvince}
-              changeAmphur={this.changeAmphur}
-              changeDistrict={this.changeDistrict}
-              setField={this.setField}
-
-              typeofHouse={this.state.typeofHouse}
-              address={this.state.address}
-              province={this.state.province}
-              district={this.state.district}
-              subDistrict={this.state.subDistrict}
-              zipcode={this.state.zipcode}
-              /> */}
-
+            {this.checkThaiPateint()}
             <EmergencyContact
               checkSameAddress={this.checkSameAddress}
               preparedData={this.preparedData}
@@ -460,13 +423,6 @@ console.log(this.state)
               privilege={this.state.privilege}
             />
 
-            {/* <Footer
-              checkAgreement={this.checkAgreement}
-              setField={this.setField}
-              agreement={this.state.agreement}
-            /> */}
-
-
             <Form.Group inline>
               <Form.Field control={Checkbox}
                 label='ข้าพเจ้าขอรับรองว่าข้อมูลบุคคลทั้งหมดตามที่แจ้งแก่เจ้าหน้าที่ของคลินิกนี้ถูกต้อง และตรงกับความเป็นจริงทุกประการ หากมีข้อความใดไม่ถูกต้องหรือไม่ตรงกับความจริง และอาจจะทำให้เกิดความเสียหายแก่ตัวข้าพเจ้าหรือบุคคลอื่นใด ข้าพเจ้ายินยอมรับผิดชอบในความเสียหายที่เกิดขึ้นทุกประการ และอนุญาตให้เผยแพร่ข้อมูลข้องข้าพเจ้าในระบบในเครือของคลินิก'
@@ -483,22 +439,6 @@ console.log(this.state)
                 </Button>
               </Link>
             </GridColumn>
-
-
-          {/* <Modal size={'mini'} open={true} onClose={this.close}>
-          <Modal.Header>
-            Delete Your Account
-          </Modal.Header>
-          <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button negative>
-              No
-            </Button>
-            <Button positive icon='checkmark' labelPosition='right' content='Yes' />
-          </Modal.Actions>
-        </Modal> */}
             <br></br><br></br>
           </Form>
         </Container>
