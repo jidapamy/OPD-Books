@@ -66,7 +66,7 @@ class Register extends Component {
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
-    language:'',
+    country:'',
     congenitalDisease: 'ไม่มี',
     // picture:'',
 
@@ -108,6 +108,24 @@ class Register extends Component {
     agreement: false,
 
     //validate
+    errorIdCard:false,
+    errorNameTitleTH: '',
+    errorFirstnameTH: '',
+    errorLastnameTH: '',
+    errorNameTitleEN: '',
+    errorFirstnameEN: '',
+    errorLastnameEN: '',
+    errorGender: '',
+    errorDob: null,
+    errorAge: '',
+    errorBloodgroup: '',
+    errorNationality: '',
+    errorReligion: '',
+    errorStatus: '',
+    errorMobileNumber: '',
+    errorCountry: '',
+    errorCongenitalDisease: 'ไม่มี',
+
     
   }
 

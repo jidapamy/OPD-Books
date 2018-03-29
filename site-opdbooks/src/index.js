@@ -6,7 +6,6 @@ import Home from './BetaIndex/Home';
 import Test from './Test';
 
 import Register from './Register/Register';
-import RegisterTest from './RegisterTest/Register';
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,7 +18,6 @@ ReactDOM.render(
         <div>
         <Route exact path='/' component={Home}/>
         <Route path='/register' component={Register}/>
-        <Route path='/RegisterTest' component={RegisterTest} />
         <Route path='/login' component={Login} />
         <Route path='/home' component={Home} />
         <Route path='/test' component={Test} />

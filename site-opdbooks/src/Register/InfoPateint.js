@@ -19,8 +19,11 @@ const InfoPateint = ({
     registerDate, cardType, idCard,
     nameTitleTH, firstnameTH, lastnameTH, nameTitleEN, firstnameEN,
     lastnameEN, gender, dob, age, bloodgroup, nationality, religion, status,
-    occupartion, homePhonenumber, mobileNumber ,startDate,language
+    occupartion, homePhonenumber, mobileNumber, startDate, country,
     // picture
+
+    // validate
+    errorIdCard,
 }) => {
     return <div>
         <Segment>
@@ -43,7 +46,7 @@ const InfoPateint = ({
             </div>
             <Form.Group widths='equal' >
                 <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardTypeData} placeholder='เลือกประเภทบัตร' width={4} required onChange={(e, { value }) => setField('cardType', value)} />
-                <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='เลขบัตรประชาชน/Passport No.' width={6} required onChange={e => setField('idCard', e.target.value)} value={idCard} />
+                <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='เลขบัตรประชาชน/Passport No.' width={6} required onChange={e => setField('idCard', e.target.value)} value={idCard} error={errorIdCard}/>
                 <Form.Field control={() => Date({ setDateOfBirth, calculateAge, dob })} label='วัน/เดือน/ปีเกิด (Dob)' width={3} required/>
                 <Form.Input label='อายุ' placeholder='อายุ' width={3} value={age} readOnly required/>
             </Form.Group>
