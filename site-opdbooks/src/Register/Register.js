@@ -66,6 +66,7 @@ class Register extends Component {
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
+    language:'',
     congenitalDisease: 'ไม่มี',
     // picture:'',
 
@@ -377,6 +378,7 @@ class Register extends Component {
               occupartion={this.state.occupartion}
               homePhonenumber={this.state.homePhonenumber}
               mobileNumber={this.state.mobileNumber}
+              country={this.state.country}
             />
 
             {this.checkThaiPateint()}

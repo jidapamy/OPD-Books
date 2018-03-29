@@ -78,15 +78,15 @@ class ContainerExampleContainer extends React.Component {
                                 />
                             </Grid.Column>
                             <Grid.Column width={8}>
-                                <Header as='h3' style={{ fontSize: '2em' }}>We Help Companies and Companions</Header>
-                                <p style={{ fontSize: '1.33em' }}><br></br>
-                                    We can give your company superpowers to do things that they never thought possible. Let us delight
-                                    your customers and empower your needs... through pure data analytics.
-                            </p>
-                                <Header as='h3' style={{ fontSize: '2em' }}>We Make Bananas That Can Dance</Header>
-                                <p style={{ fontSize: '1.33em' }}>
-                                    Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.
-                            </p>
+                                <Header as='h3' style={{ fontSize: '2em' }}>The patient go to other clinic </Header>
+                                <p style={{ fontSize: '1em' }}><br></br>
+                                    When patient comes to clinic, registrar will ask patient about his ID card 
+                                    name and surname for search in the system if not found any data , they must be register by fill in new patient registration form on paper and must check for allowing their profile record will share on blockchain. After that, registrar fills patient data and push confirm button for save in the system then the system will generate unique  hospital number for the patient.<br></br>
+                                    <b>Step1: </b>The system push data in blockchain in term of adding new patient. Block in blockchain is broadcast to every node in network and wait for every node approve the transaction is valid ,then <br></br>
+                                    <b>Step2: </b>the block can be added to chain.  <br></br>
+                                    <b>Step4: </b>After the patients finish authorization profile record on their smartphone . The patient will get cured in order. First, come to nurse, she will asks for the symptoms. Next, send them to the doctor for diagnosis and then patients wait for the medicine from the pharmacist. Finally,  the pharmacist push button treatment finished. <br></br>
+                                    The system will push data on blockchain. and Blockchain will do consensus process to add a transaction in chain. [Click] : then treatment finished.
+                                </p>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -95,15 +95,13 @@ class ContainerExampleContainer extends React.Component {
                     <Grid container stackable verticalAlign='middle'>
                         <Grid.Row>
                             <Grid.Column width={8}>
-                                <Header as='h3' style={{ fontSize: '2em' }}>We Help Companies and Companions</Header>
-                                <p style={{ fontSize: '1.33em' }}><br></br>
-                                    We can give your company superpowers to do things that they never thought possible. Let us delight
-                                    your customers and empower your needs... through pure data analytics.
-                            </p>
-                                <Header as='h3' style={{ fontSize: '2em' }}>We Make Bananas That Can Dance</Header>
-                                <p style={{ fontSize: '1.33em' }}><br></br>
-                                    Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.
-                            </p>
+                                <Header as='h3' style={{ fontSize: '2em' }}>The patient go to other clinic </Header>
+                                <p style={{ fontSize: '1em' }}><br></br>
+                                    <b>Step1: </b>When patient come to other clinic. the patient has a member already. he can tell his ID card to the registrar without registration new patient again.<br></br>
+                                    <b>Step2: </b>The system will be query data in blockchain with patient’s id card.<br></br>
+                                    <b>Step3: </b>The registrar push button for request access to patient data and wait for the patient to be authorized. then patients can cure in this clinic. <br></br>
+                                    <b>Step4: </b>when treatment finished the system will push data on blockchain and Blockchain will doing consensus process to add a transaction in chain. 
+                                </p>
                             </Grid.Column>
                             <Grid.Column floated='left' width={6}>
                                 <Image

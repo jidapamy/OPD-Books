@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Segment, Header, Image, Form, Select, Grid} from 'semantic-ui-react'
-import { nameTypeTh, bloodgroupData, cardTypeData, genderData, nameTypeEng, nationalityData, religionData, statusData } from './Data/FormData'
+import { nameTypeTh, bloodgroupData, cardTypeData, genderData, nameTypeEng, nationalityData, religionData, statusData ,countryData} from './Data/FormData'
 import Date from './Date'
 import DatePicker from 'react-datepicker';
-
+import './style.css';
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -19,15 +19,15 @@ const InfoPateint = ({
     registerDate, cardType, idCard,
     nameTitleTH, firstnameTH, lastnameTH, nameTitleEN, firstnameEN,
     lastnameEN, gender, dob, age, bloodgroup, nationality, religion, status,
-    occupartion, homePhonenumber, mobileNumber ,startDate
+    occupartion, homePhonenumber, mobileNumber ,startDate,language
     // picture
 }) => {
     return <div>
         <Segment>
             <Form.Group widths='equal' >
-                <Form.Input fluid id='registerdate' label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly value={registerDate} />
+                <Form.Input fluid id='registerdate' style={{border:'0 px'}}  label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly value={registerDate} />
             </Form.Group>
-            <Header as='h2' attached='top' textAlign='center'>
+            <Header style={{border: '0px'}} as='h2' attached='top' textAlign='center'>
                 ใบลงทะเบียนผู้ป่วยใหม่
                         <br></br>
                 NEW PATIENT RESGISTRATION FORM
@@ -57,11 +57,18 @@ const InfoPateint = ({
                 <Form.Input label='First name' placeholder='First name' width={6}  onChange={e => setField('firstnameEN', e.target.value)} value={firstnameEN} />
                 <Form.Input label='Last Name' placeholder='Last Name' width={6} onChange={e => setField('lastnameEN', e.target.value)} value={lastnameEN} />
             </Form.Group>
+            
             <Form.Group>
+                <Form.Input label='โรคประจำตัว( Congenital Disease)' placeholder='Last Name' width={4}  />
                 <Form.Field control={Select} label='เพศ (Gender)' options={genderData} placeholder='เลือกเพศ' width={4} required onChange={(e, { value }) => setField('gender', value)} />
                 <Form.Field control={Select} label='กรุ๊ปเลือด (Blood Group)' options={bloodgroupData} placeholder='เลือกกรุ๊ปเลือด' width={4} required onChange={(e, { value }) => setField('bloodgroup', value)} />
-                <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nationalityData} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)} />
+                <Form.Field control={Select} label='ประเทศ (country)' options={countryData} placeholder='เลือกประเทศ' width={4} required onChange={(e, { value }) => setField('religion', value)} />
+            </Form.Group>
+            <Form.Group>
                 <Form.Field control={Select} label='ศาสนา (Religion)' options={religionData} placeholder='เลือกศาสนา' width={4} required onChange={(e, { value }) => setField('religion', value)} />
+                <Form.Input label='ศาสนาอื่นๆ (Religion other)' placeholder='Last Name' width={4}  />
+                <Form.Field control={Select} label='สัญชาติ (Nationality) ' options={nationalityData} placeholder='เลือกสัญชาติ' width={4} required onChange={(e, { value }) => setField('nationality', value)} />
+                <Form.Input label='สัญชาติอื่นๆ (Nationality other)' placeholder='Last Name' width={4}  />
             </Form.Group>
             <Form.Group>
                 <Form.Field control={Select} label='สถานภาพ (Status)' options={statusData} placeholder='สถานะ' width={4} required onChange={(e, { value }) => setField('status', value)} />
@@ -69,6 +76,8 @@ const InfoPateint = ({
                 <Form.Input label='โทรศัพท์บ้าน (Home Phonenumber)' placeholder='โทรศัพท์บ้าน' width={4} onChange={e => setField('homePhonenumber', e.target.value)} value={homePhonenumber} />
                 <Form.Input label='โทรศัพท์มือถือ (Mobile Number)' placeholder='โทรศัพท์ที่ทำงาน' width={4} onChange={e => setField('mobileNumber', e.target.value)} value={mobileNumber} required />
             </Form.Group>
+             
+
 
         </Segment>
         <br></br>
