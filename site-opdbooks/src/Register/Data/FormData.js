@@ -7,8 +7,8 @@ export const cardTypeData = [
     { key: 'passport', text: 'Passport No.', value: 'passport' },
 ]
 export const nameTypeTh = [
-    { key: 'เด็กชาย', text: 'เด็กชาย', value: 'เด็กชาย' },
-    { key: 'เด็กหญิง', text: 'เด็กหญิง', value: 'เด็กหญิง' },
+    { key: 'เด็กชาย', text: 'เด็กชาย (Master)', value: 'เด็กชาย' },
+    { key: 'เด็กหญิง', text: 'เด็กหญิง (Miss)', value: 'เด็กหญิง' },
     { key: 'นาย', text: 'นาย', value: 'นาย' },
     { key: 'นาง', text: 'นาง', value: 'นาง' },
     { key: 'นางสาว', text: 'นางสาว', value: 'นางสาว' },
@@ -31,12 +31,12 @@ export const bloodgroupData = [
     { key: 'Unknown', text: 'ไม่ระบุ (Unknown)', value: 'ไม่ระบุ (Unknown)' },
 ]
 export const typesOfHousing = [
-    { key: 'apartment', text: 'อพาร์ทเม้นท์', value: 'อพาร์ทเม้นท์' },
-    { key: 'บ้านเดี่ยว', text: 'บ้านเดี่ยว', value: 'บ้านเดี่ยว' },
-    { key: 'ทาวน์เฮาส์', text: 'ทาวน์เฮาส์', value: 'ทาวน์เฮาส์' },
-    { key: 'แฟลต', text: 'แฟลต', value: 'แฟลต' },
-    { key: 'คอนโดมิเนียม', text: 'คอนโดมิเนียม', value: 'คอนโดมิเนียม' },
-    { key: 'Other', text: 'อื่นๆ', value: 'อื่นๆ' },
+    { key: 'Apartment', text: 'อพาร์ทเม้นท์ (Apartment)', value: 'อพาร์ทเม้นท์ (Apartment)' },
+    { key: 'Single-family', text: 'บ้านเดี่ยว (Single-family house)', value: 'บ้านเดี่ยว (Single-family house)' },
+    { key: 'Townhouse', text: 'ทาวน์เฮาส์ (Townhouse)', value: 'ทาวน์เฮาส์ (Townhouse)' },
+    { key: 'Flat', text: 'แฟลต (Flat)', value: 'แฟลต (Flat)' },
+    { key: 'Condominium', text: 'คอนโดมิเนียม (Condominium)', value: 'คอนโดมิเนียม (Condominium)' },
+    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
 ] 
 export const nationalityData = [
     { key: 'Thai', text: 'ไทย (Thai)', value: 'ไทย (Thai)' },
