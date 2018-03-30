@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Container , Modal} from 'semantic-ui-react'
+import { Form, Container ,Modal ,Header ,Icon,Button, Checkbox, Grid, Image} from 'semantic-ui-react'
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment';
 
-
 import InfoPateint from './InfoPateint';
-import HeaderComponent from './HeaderComponent';
 import HomeAddress from './HomeAddress'
 import HomeAddressOfForeign from './HomeAddressOfForeign'
 import EmergencyContact from './EmergencyContact'
@@ -14,7 +12,6 @@ import ChildrenUnder15 from './ChildrenUnder15'
 import Allergy from './Allergy'
 import Footer from './Footer'
 
-import { Button, Checkbox, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
@@ -33,14 +30,33 @@ const GridColumn = styled(Grid.Column) `
     justify-content: center;
     align-items: center;
 `
+const ModalCancel = styled(Modal) `
+  
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    
+`
+const ModalConfirm = styled(Modal) `
+  
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    
+`
+
 const ButtomSize = styled(Button) `
     font-size:20px;
     padding:10px;
     margin-left:10px;
 `
-
 class Register extends Component {
+
   state = {
+    // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
+     open: 'false',
     //data initialization
     provinces: [],
     amphursHome: [],
@@ -68,7 +84,7 @@ class Register extends Component {
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
-    language:'',
+    country:'',
     congenitalDisease: 'ไม่มี',
     // picture:'',
 
@@ -109,7 +125,7 @@ class Register extends Component {
     //check agreement
     agreement: false
   }
-
+  
 
   setField = (field, value) => {
     this.setState({ [field]: value })
@@ -343,6 +359,11 @@ class Register extends Component {
     console.log('test')
   }
 
+  // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
+  handleOpen = () => this.setState({ modalOpen: true })
+  handleClose = () => this.setState({ modalOpen: false })
+// <<<<<<<<------------->>>>>>>>
+
   render() {
     // if(this.state.dob !== null)
 console.log(this.state)
@@ -352,7 +373,6 @@ console.log(this.state)
       <Wrapper>
         <Container>
           <Form onSubmit={this.insertPateint}>
-            <HeaderComponent />
             <InfoPateint
               setField={this.setField}
               calculateAge={this.calculateAge}
@@ -467,7 +487,7 @@ console.log(this.state)
               setField={this.setField}
               agreement={this.state.agreement}
             /> */}
-
+{/* <ModalConfirm  trigger={<Button onClick={this.handleClose} disabled={!this.state.agreement} color='green'><h3>CANCEL</h3></Button>}   */}
 
             <Form.Group inline>
               <Form.Field control={Checkbox}
@@ -476,14 +496,33 @@ console.log(this.state)
               />
             </Form.Group>
             <GridColumn width={16}>
-              <Button disabled={!this.state.agreement} color='green'>
-                <h3>CONFIRM</h3>
-              </Button>
               < Link to='/'>
                 <Button color='google plus'>
                   <h3>CANCEL</h3>
                 </Button>
               </Link>
+              <ModalConfirm   trigger={<Button disabled={!this.state.agreement} onClick={this.handleOpen} color='green'><h3>CONFIRM</h3></Button>}
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                size='small'  closeIcon>
+                  <Header icon='check' content='ยืนยันการสมัคร' />
+                  <Modal.Content>
+                    <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='red' onClick={this.handleClose} inverted>
+                      <Icon name='remove' /> No
+                    </Button>
+                   < Link to='/'> <Button color='green' inverted>
+                       <Icon name='checkmark' /> Yes
+                    </Button>
+                    </Link>
+                  </Modal.Actions>
+              </ModalConfirm>
+              {/* <Button disabled={!this.state.agreement} color='green'>
+                <h3>CONFIRM</h3>
+              </Button> */}
+              
             </GridColumn>
 
 

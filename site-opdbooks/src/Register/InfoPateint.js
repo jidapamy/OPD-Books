@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Segment, Header, Image, Form, Select, Grid} from 'semantic-ui-react'
+import { Segment, Header, Image, Form, Select, Grid,Container} from 'semantic-ui-react'
 import { nameTypeTh, bloodgroupData, cardTypeData, genderData, nameTypeEng, nationalityData, religionData, statusData ,countryData} from './Data/FormData'
 import Date from './Date'
 import DatePicker from 'react-datepicker';
 import './style.css';
+import HeaderForm from './HeaderForm';
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -24,24 +25,31 @@ const InfoPateint = ({
 }) => {
     console.log('>>>> '+dob)
     return <div>
-        <Segment>
+        <Segment.Group>
+            <Segment>
             <Form.Group widths='equal' >
                 <Form.Input fluid id='registerdate' style={{border:'0 px'}}  label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly value={registerDate} />
             </Form.Group>
-            <Header style={{border: '0px'}} as='h2' attached='top' textAlign='center'>
+            <HeaderForm/>
+            {/* <Header style={{border: '0px'}} as='h2' attached='top' textAlign='center'>
                 ใบลงทะเบียนผู้ป่วยใหม่
                         <br></br>
                 NEW PATIENT RESGISTRATION FORM
-                </Header>
+            </Header>
+                
             <div>
                 <Header as='h2' icon textAlign='center'>
                     <Header.Content>
                         <p>รูปประจำตัว</p>
                     </Header.Content>
-                    <GridColumn width={16}><Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular /></GridColumn>
+                   
+                <GridColumn ><Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular /></GridColumn>
+                    
                 </Header>
                 <br></br>
-            </div>
+            </div> */}
+            </Segment>
+            <Segment>
             <Form.Group widths='equal' >
                 <Form.Field control={Select} label='ประเภทบัตร (Card type)' options={cardTypeData} placeholder='เลือกประเภทบัตร' width={4} required onChange={(e, { value }) => setField('cardType', value)} />
                 <Form.Input fluid id='cardid' label='เลขบัตรประชาชน  (ID CARD No./Passport No.)' placeholder='เลขบัตรประชาชน/Passport No.' width={6} required onChange={e => setField('idCard', e.target.value)} value={idCard} />
@@ -79,8 +87,8 @@ const InfoPateint = ({
             </Form.Group>
              
 
-
-        </Segment>
+            </Segment>
+        </Segment.Group>
         <br></br>
     </div>
 }
