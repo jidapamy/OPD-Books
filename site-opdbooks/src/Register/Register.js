@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { Form, Container ,Modal ,Header ,Icon,Button, Checkbox, Grid, Image} from 'semantic-ui-react'
-=======
-import { Form, Container, Modal, Button, Checkbox, Grid} from 'semantic-ui-react'
->>>>>>> 359353d1fea5bcfeb36ecb015c22bc9a72071c99
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment';
@@ -470,7 +466,7 @@ class Register extends Component {
               privilege={this.state.privilege}
             />
 
-<<<<<<< HEAD
+
             {/* <Footer
               checkAgreement={this.checkAgreement}
               setField={this.setField}
@@ -478,8 +474,7 @@ class Register extends Component {
             /> */}
 {/* <ModalConfirm  trigger={<Button onClick={this.handleClose} disabled={!this.state.agreement} color='green'><h3>CANCEL</h3></Button>}   */}
 
-=======
->>>>>>> 359353d1fea5bcfeb36ecb015c22bc9a72071c99
+
             <Form.Group inline>
               <Form.Field control={Checkbox}
                 label='ข้าพเจ้าขอรับรองว่าข้อมูลบุคคลทั้งหมดตามที่แจ้งแก่เจ้าหน้าที่ของคลินิกนี้ถูกต้อง และตรงกับความเป็นจริงทุกประการ หากมีข้อความใดไม่ถูกต้องหรือไม่ตรงกับความจริง และอาจจะทำให้เกิดความเสียหายแก่ตัวข้าพเจ้าหรือบุคคลอื่นใด ข้าพเจ้ายินยอมรับผิดชอบในความเสียหายที่เกิดขึ้นทุกประการ และอนุญาตให้เผยแพร่ข้อมูลข้องข้าพเจ้าในระบบในเครือของคลินิก'
