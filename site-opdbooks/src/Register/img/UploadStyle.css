@@ -1,0 +1,26 @@
+
+
+.IconCamera{
+    width: 35px;
+    height: 35px;
+    border-radius: 500px !important; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DFE4ED;
+    text-align: center;
+    /* margin-left: 73%;
+    margin-top:75%; */
+    margin-left: 73%;
+    margin-top:-25%;
+}
+
+
+.DivPicCenter{
+    text-align: center;
+}
+
+.GridCenter{
+    text-align: center;
+    width: 100%;
+}
+
