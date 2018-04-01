@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Container, Modal, Button, Checkbox, Grid} from 'semantic-ui-react'
+import { Message,Form, Container, Modal, Button, Checkbox, Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
-import axios from 'axios'
+import axios from './../lib/axois'
 import moment from 'moment';
 
 
@@ -48,26 +48,23 @@ class Register extends Component {
 
     //info pateint
     registerDate: moment().format('LLLL'),
-    cardType: '',
+    cardType: 'idcard',
     idCard: '',
-    nameTitleTH: '',
-    firstnameTH: '',
-    lastnameTH: '',
-    nameTitleEN: '',
-    firstnameEN: '',
-    lastnameEN: '',
+    nameTitle: '',
+    firstname: '',
+    lastname: '',
     gender: '',
     dob: null,
     age: '',
     bloodgroup: '',
-    nationality: '',
-    religion: '',
+    nationality: 'ไทย (Thai)',
+    religion: 'พุทธ (Buddhism)',
     status: '',
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
-    country:'',
-    congenitalDisease: 'ไม่มี',
+    country: 'ไทย',
+    congenitalDisease: '',
     // picture:'',
 
     // HomeAddress
@@ -108,35 +105,148 @@ class Register extends Component {
     agreement: false,
 
     //validate
-    errorIdCard:false,
-    errorNameTitleTH: '',
-    errorFirstnameTH: '',
-    errorLastnameTH: '',
-    errorNameTitleEN: '',
-    errorFirstnameEN: '',
-    errorLastnameEN: '',
-    errorGender: '',
-    errorDob: null,
-    errorAge: '',
-    errorBloodgroup: '',
-    errorNationality: '',
-    errorReligion: '',
-    errorStatus: '',
-    errorMobileNumber: '',
-    errorCountry: '',
-    errorCongenitalDisease: 'ไม่มี',
-
-    
+    errorIdCard: { status: false, message: '' },
+    errorNameTitle: { status: false, message: '' },
+    errorFirstname: { status: false, message: '' },
+    errorLastname: { status: false, message: '' },
+    errorGender: { status: false, message: '' },
+    errorDob: { status: false, message: '' },
+    errorAge: { status: false, message: '' },
+    errorBloodgroup: { status: false, message: '' },
+    errorNationality: { status: false, message: '' },
+    errorReligion: { status: false, message: '' },
+    errorStatus: { status: false, message: '' },
+    errorMobileNumber: { status: false, message: '' },
+    errorCountry: { status: false, message: '' },
+    errorCongenitalDisease: { status: false, message: '' },
   }
 
+
+  componentWillMount() {
+    this.setState({ provinces: provincesData.default })
+  }
 
   setField = (field, value) => {
     this.setState({ [field]: value })
     if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode') {
       this.checkStatusSameAddress();
     }
+    if (field === 'cardType') {
+      this.setState({ errorIdCard: { status: false, message: '' } })
+    }
   }
 
+  //Change Form depend on cardType
+  checkThaiPateint = () => {
+    if (this.state.cardType === 'idcard' || this.state.cardType === '') {
+      return <HomeAddress
+        preparedData={this.preparedData}
+        provinces={this.state.provinces}
+        amphurs={this.state.amphursHome}
+        districts={this.state.districtsHome}
+
+        changeProvince={this.changeProvince}
+        changeAmphur={this.changeAmphur}
+        changeDistrict={this.changeDistrict}
+        setField={this.setField}
+
+        typeofHouse={this.state.typeofHouse}
+        address={this.state.address}
+        province={this.state.province}
+        district={this.state.district}
+        subDistrict={this.state.subDistrict}
+        zipcode={this.state.zipcode}
+      />
+    }
+    return <HomeAddressOfForeigner
+      preparedData={this.preparedData}
+      provinces={this.state.provinces}
+      amphurs={this.state.amphursHome}
+      districts={this.state.districtsHome}
+
+      changeProvince={this.changeProvince}
+      changeAmphur={this.changeAmphur}
+      changeDistrict={this.changeDistrict}
+      setField={this.setField}
+
+      typeofHouse={this.state.typeofHouse}
+      address={this.state.address}
+      province={this.state.province}
+      district={this.state.district}
+      subDistrict={this.state.subDistrict}
+      zipcode={this.state.zipcode}
+    />
+
+  }
+
+
+  validateSyntaxIdcard = () => {
+    const error = { status: false, message: '' };
+    this.setState({ errorIdCard: error })
+    if (this.state.cardType === 'idcard' && this.state.idCard.length === 13 && this.state.idCard.match(/^[0-9]+$/) ||
+      this.state.cardType === 'passport' && this.state.idCard.length === 9 && this.state.idCard.match(/^[a-zA-Z]{2}[0-9]{7}$/)) {
+      return true;
+    } else {
+      if (this.state.cardType === 'idcard') {
+        if (this.state.idCard.length !== 13) {
+          error.status = true;
+          error.message += '//รหัสประชาชนต้องมี 13 หลัก!  ';
+        }
+        if (!this.state.idCard.match(/^[0-9]+$/)) {
+          error.status = true;
+          error.message += '//รหัสประชาชนต้องเป็นตัวเลขเท่านั้น  ';
+        }
+      } else {
+        if (this.state.idCard.length !== 9) {
+          error.status = true;
+          error.message += '//Passport number exactly 9 characters.  ';
+        }
+        if (!this.state.idCard.match(/^[a-zA-Z]{2}[0-9]{7}$/)) {
+          error.status = true;
+          error.message += '//Passport number pattern missing.  ';
+        }
+
+        console.log(error)
+        this.setState({ errorIdCard: error })
+        return false;
+      }
+    }
+  }
+
+  checkIdcard = async (e) => {
+    console.log('checkIdcard')
+    if (this.validateSyntaxIdcard()) {
+      console.log('idCard :' + this.state.idCard)
+      const pateint = await axios.get(`/checkIDCard/${this.state.idCard}`)
+      console.log(pateint.data)
+      if (pateint.data){
+        console.log('ผ่านจ้า')
+      }else{
+        const error = { status: true, message: '' };
+        if(this.state.cardType === 'idcard'){
+          error.message = 'เลขบัตรประชาชนนี้มีใช้แล้ว'
+        }else{
+          error.message = 'The passport number is duplicated'
+        }
+        this.setState({ errorIdCard: error })
+      }
+    }
+  }
+
+  //DateOfBirth
+  setDateOfBirth = async (value) => {
+    await this.setState({ dob: value.format('DD/MM/YYYY') })
+    this.calculateAge();
+  }
+  calculateAge = () => {
+    console.log('calculateAge : ' + this.state.dob)
+    let dob = '' + this.state.dob
+    console.log(dob)
+    let age = 2018 - (+dob.substring(6));
+    this.setState({ age: age })
+  }
+
+  //Address
   changeProvince = (field, value) => {
     console.log(field)
     if (field === 'emerProvince') {
@@ -155,9 +265,7 @@ class Register extends Component {
       this.setState({ amphursHome: amphurs })
       this.setField(field, province.value)
     }
-
   }
-
   changeAmphur = (field, value) => {
     console.log(field)
     if (field === 'emerDistrict') {
@@ -175,11 +283,9 @@ class Register extends Component {
       this.setField(field, amphur.value)
     }
   }
-
   changeDistrict = (field, value) => {
     const district = value.options.filter(option => option.value === value.value)[0]
     this.setField(field, district.value)
-    console.log(field)
     if (field === 'subDistrict') {
       this.setState({ zipcode: district.zipcode })
     }
@@ -188,9 +294,7 @@ class Register extends Component {
       this.setState({ emerZipcode: district.zipcode })
     }
   }
-
   preparedData = (field, part) => {
-    console.log('click')
     if (part === "Home") {
       if (field === 'a')
         this.setState({ amphursHome: amphursData.default })
@@ -202,9 +306,7 @@ class Register extends Component {
       else if (field === 'd')
         this.setState({ districtsEmer: districtsData.default })
     }
-
   }
-
   checkSameAddress = () => {
     this.setState({ amphursEmer: this.state.amphursHome, districtsEmer: this.state.districtsHome })
     const check = !this.state.statusSameAddress
@@ -221,48 +323,30 @@ class Register extends Component {
       });
     }
   }
-
   checkStatusSameAddress = () => {
     if (this.state.statusSameAddress) {
       this.setState({ statusSameAddress: false })
     }
   }
 
+
+  //Footer
   checkAgreement = () => {
     console.log('agree')
     const agreement = !this.state.agreement
     this.setState({ agreement: agreement })
   }
 
-  chooseOther = (field) => {
-    console.log(field)
-    if (field === 'privilege') {
-      const choose = !this.state.otherPrivilege;
-      this.setState({ otherPrivilege: choose })
-    }
-  }
-
-  calculateAge = () => {
-    console.log('calculateAge : ' +this.state.dob)
-    let dob = '' + this.state.dob
-    console.log(dob)
-    let age = 2018 - (+dob.substring(6));
-    this.setState({ age: age })
-  }
-
   //Connect API
   insertPateint = async () => {
     console.log(this.state.registerDate)
     console.log('inserting')
-    await axios.post('http://localhost:3003/addPateint', {
+    await axios.post('/addPateint', {
       registerDate: this.state.registerDate,
       idCard: this.state.idCard,
-      nameTitleTH: this.state.nameTitleTH,
-      firstnameTH: this.state.firstnameTH,
-      lastnameTH: this.state.lastnameTH,
-      nameTitleEN: this.state.nameTitleEN,
-      firstnameEN: this.state.firstnameEN,
-      lastnameEN: this.state.lastnameEN,
+      nameTitle: this.state.nameTitle,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       gender: this.state.gender,
       dob: this.state.dob,
       bloodgroup: this.state.bloodgroup,
@@ -302,60 +386,17 @@ class Register extends Component {
     console.log('Success!!!')
   }
 
-  componentWillMount() {
-    this.setState({ provinces: provincesData.default })
-  }
+  // chooseOther = (field) => {
+  //   console.log(field)
+  //   if (field === 'privilege') {
+  //     const choose = !this.state.otherPrivilege;
+  //     this.setState({ otherPrivilege: choose })
+  //   }
+  // }
 
-  checkThaiPateint = () => {
-    if (this.state.cardType === 'idcard' || this.state.cardType === ''){
-      return <HomeAddress
-              preparedData={this.preparedData}
-              provinces={this.state.provinces}
-              amphurs={this.state.amphursHome}
-              districts={this.state.districtsHome}
-
-              changeProvince={this.changeProvince}
-              changeAmphur={this.changeAmphur}
-              changeDistrict={this.changeDistrict}
-              setField={this.setField}
-
-              typeofHouse={this.state.typeofHouse}
-              address={this.state.address}
-              province={this.state.province}
-              district={this.state.district}
-              subDistrict={this.state.subDistrict}
-              zipcode={this.state.zipcode}
-            />
-    }
-    return <HomeAddressOfForeigner
-              preparedData={this.preparedData}
-              provinces={this.state.provinces}
-              amphurs={this.state.amphursHome}
-              districts={this.state.districtsHome}
-
-              changeProvince={this.changeProvince}
-              changeAmphur={this.changeAmphur}
-              changeDistrict={this.changeDistrict}
-              setField={this.setField}
-
-              typeofHouse={this.state.typeofHouse}
-              address={this.state.address}
-              province={this.state.province}
-              district={this.state.district}
-              subDistrict={this.state.subDistrict}
-              zipcode={this.state.zipcode}
-    />
-
-  }
-
-  validate = () =>{
+  validate = () => {
     console.log('insert')
     this.insertPateint.bind();
-  }
-
-  setDateOfBirth= async (value)=>{
-    await this.setState({ dob: value.format('DD/MM/YYYY')})
-    this.calculateAge();    
   }
 
   test = () => {
@@ -363,29 +404,32 @@ class Register extends Component {
   }
 
   render() {
-    // if(this.state.dob !== null)
-    console.log(this.state)
-    // console.log(moment('02-05-1997', 'MM-DD-YYYY'))
-    // console.log((moment().utc('12-04-2012', "DD-MM-YYYY").valueOf()).format('DD-MM-YYYY'))
+    // console.log(this.state)
     return (
       <Wrapper>
         <Container>
+          <Message 
+            hidden={!this.state.errorIdCard.status}
+            error
+            header= {this.state.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
+            content= {this.state.errorIdCard.message}
+          />
           <Form onSubmit={this.insertPateint}>
             <InfoPateint
+              checkIdcard={this.checkIdcard}
               setField={this.setField}
               calculateAge={this.calculateAge}
               setDateOfBirth={this.setDateOfBirth}
               test={this.test}
 
+              errorIdCard={this.state.errorIdCard}
+
               registerDate={this.state.registerDate}
               cardType={this.state.cardType}
               idCard={this.state.idCard}
-              nameTitleTH={this.state.nameTitleTH}
-              firstnameTH={this.state.firstnameTH}
-              lastnameTH={this.state.lastnameTH}
-              nameTitleEN={this.state.nameTitleEN}
-              firstnameEN={this.state.firstnameEN}
-              lastnameEN={this.state.lastnameEN}
+              nameTitle={this.state.nameTitle}
+              firstname={this.state.firstname}
+              lastname={this.state.lastname}
               gender={this.state.gender}
               dob={this.state.dob}
               age={this.state.age}
@@ -397,6 +441,7 @@ class Register extends Component {
               homePhonenumber={this.state.homePhonenumber}
               mobileNumber={this.state.mobileNumber}
               country={this.state.country}
+              congenitalDisease={this.state.congenitalDisease}
             />
 
             {this.checkThaiPateint()}
