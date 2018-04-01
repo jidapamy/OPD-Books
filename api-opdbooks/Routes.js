@@ -25,15 +25,13 @@ router.post('/addPateint', async function (req, res) {
                 hospitalNumber: hospitalNumber,
                 registerDate: req.body.registerDate,
                 idCard: req.body.idCard,
-                nameTitleTH: req.body.nameTitleTH,
-                firstnameTH: req.body.firstnameTH,
-                lastnameTH: req.body.lastnameTH,
-                nameTitleEN: req.body.nameTitleEN,
-                firstnameEN: req.body.firstnameEN,
-                lastnameEN: req.body.lastnameEN,
+                nameTitle: req.body.nameTitle,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
                 gender: req.body.gender,
                 dob: req.body.dob,
                 bloodgroup: req.body.bloodgroup,
+                country : req.body.country,
                 nationality: req.body.nationality,
                 religion: req.body.religion,
                 status: req.body.status,
@@ -66,54 +64,6 @@ router.post('/addPateint', async function (req, res) {
                 motherLastname: req.body.motherLastname,
                 allergy: req.body.allergy,
                 privilege: req.body.privilege,
-
-
-                nameTitleTH: req.body.nameTitleTH,
-                firstnameTH: req.body.firstnameTH,
-                lastnameTH: req.body.lastnameTH,
-                nameTitleEN: req.body.nameTitleEN,
-                firstnameEN: req.body.firstnameEN,
-                lastnameEN: req.body.lastnameEN,
-                gender: req.body.gender,
-                dob: req.body.dob,
-                occupartion: req.body.occupartion,
-                idCard: req.body.idCard,
-                bloodgroup: req.body.bloodgroup,
-                nationality: req.body.nationality,
-                religion: req.body.religion,
-                status: req.body.status,
-                homePhonenumber: req.body.homePhonenumber,
-                mobileNumber: req.body.mobileNumber,
-                congenitalDisease: req.body.congenitalDisease,
-
-                fatherFirstname: req.body.fatherFirstname,
-                fatherLastname: req.body.fatherLastname,
-                motherFirstname: req.body.motherFirstname,
-                motherLastname: req.body.motherLastname,
-
-                typeofHouse: req.body.typeofHouse,
-                address: req.body.address,
-                province: req.body.province,
-                district: req.body.district,
-                subDistrict: req.body.subDistrict,
-                zipcode: req.body.zipcode,
-
-                emerTitle: req.body.emerTitle,
-                emerFirstname: req.body.emerFirstname,
-                emerLastname: req.body.emerLastname,
-                emerRelationship: req.body.emerRelationship,
-                emerHomePhonenumber: req.body.emerHomePhonenumber,
-                emerMobileNumber: req.body.emerMobileNumber,
-                emerTypeofHouse: req.body.emerTypeofHouse,
-                emerAddress: req.body.emerAddress,
-                emerProvince: req.body.emerProvince,
-                emerDistrict: req.body.emerDistrict,
-                emerSubDistrict: req.body.emerSubDistrict,
-                emerZipcode: req.body.emerZipcode,
-
-                privilege: req.body.privilege,
-                allergy: req.body.allergy,
-
                 statusSameAddress: req.body.statusSameAddress
             })
         console.log(data)
@@ -122,13 +72,42 @@ router.post('/addPateint', async function (req, res) {
     }else{
         res.end('ซ้ำ');
     }
-
-   
 });
+
+router.get('/checkidcard/:id', async (req, res) => {
+    var idCards = await knex.table('PateintRecords')
+                .select('idCard')
+                .where('idCard',req.params.id)
+    console.log(idCards)
+    if (idCards === null || idCards.length === 0) {
+        console.log(idCards.length)
+        res.send(true); // หาไม่เจอ (ผ่าน)
+    }else{
+        res.send(false); // หาเจอ (ไม่ผ่าน)
+    }
+})
+
+router.get('/checkidcard', async (req, res) => {
+    var data = await knex.table('PateintRecords')
+        .select()
+    console.log('PateintRecords')
+    res.send(data);
+})
+
+
+
 
 router.get('/provinceDB', async (req, res) => {
     var data = await knex.table('provinces')
         .select()
+    console.log('province')
+    res.send(data);
+})
+
+router.get('/:ID', async (req, res) => {
+    var data = await knex.table('provinces')
+        .select()
+        .where('PROVINCE_ID',req.params.ID)
     console.log('province')
     res.send(data);
 })
