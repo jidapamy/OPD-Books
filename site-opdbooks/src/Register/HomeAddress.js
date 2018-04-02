@@ -25,6 +25,7 @@ const HomeAddress = ({
                     <Form.Input label='รหัสไปรษณีย์ (Postal Code)' placeholder='รหัสไปรษณีย์' width={6} onChange={e => setField('zipcode', e.target.value)} value={zipcode} required />   
             </Form.Group>
         </Segment>
+
         <br></br>
     </div>
 )

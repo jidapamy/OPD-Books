@@ -6,22 +6,17 @@ export const cardTypeData = [
     { key: 'idcard', text: 'ID Card No.', value: 'idcard' },
     { key: 'passport', text: 'Passport No.', value: 'passport' },
 ]
-export const nameTypeTh = [
-    { key: 'เด็กชาย', text: 'เด็กชาย (Master)', value: 'เด็กชาย' },
-    { key: 'เด็กหญิง', text: 'เด็กหญิง (Miss)', value: 'เด็กหญิง' },
-    { key: 'นาย', text: 'นาย', value: 'นาย' },
-    { key: 'นาง', text: 'นาง', value: 'นาง' },
-    { key: 'นางสาว', text: 'นางสาว', value: 'นางสาว' },
+export const nameType = [
+    { key: 'เด็กชาย', text: 'เด็กชาย (Master)', value: 'เด็กชาย (Master)' },
+    { key: 'เด็กหญิง', text: 'เด็กหญิง (Miss.)', value: 'เด็กหญิง (Miss.)' },
+    { key: 'นาย', text: 'นาย (Mr.)', value: 'นาย (Mr.)' },
+    { key: 'นาง', text: 'นาง (Mrs.)', value: 'นาง (Mrs.)' },
+    { key: 'นางสาว', text: 'นางสาว (Miss.)', value: 'นางสาว (Miss.)' },
 ]
 export const nameTypeThUP15 = [
-    { key: 'นาย', text: 'นาย', value: 'นาย' },
-    { key: 'นาง', text: 'นาง', value: 'นาง' },
-    { key: 'นางสาว', text: 'นางสาว', value: 'นางสาว' },
-]
-export const nameTypeEng = [
-    { key: 'Mr.', text: 'Mr.', value: 'Mr.' },
-    { key: 'Mrs.', text: 'Mrs.', value: 'Mrs.' },
-    { key: 'Miss', text: 'Miss', value: 'Miss' },
+    { key: 'นาย', text: 'นาย (Mr.)', value: 'นาย (Mr.)' },
+    { key: 'นาง', text: 'นาง (Mrs.)', value: 'นาง (Mrs.)' },
+    { key: 'นางสาว', text: 'นางสาว (Miss.)', value: 'นางสาว (Miss.)' },
 ]
 export const bloodgroupData = [
     { key: 'O', text: 'O', value: 'O' },
@@ -61,6 +56,7 @@ export const statusData = [
     
 ] 
 export const countryData = [
+  { key: 'Thai', text: 'ไทย', value: 'ไทย' },
   { key: 'English', text: 'English', value: 'English' },
   { key: 'French', text: 'French', value: 'French' },
   { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
