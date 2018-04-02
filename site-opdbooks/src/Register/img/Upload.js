@@ -8,7 +8,7 @@ import DivPicCenter from './camera.png';
 import GridCenter from './camera.png';
 
 
-const GridColumns = styled(Dropzone,Image) `
+const GridColumns = styled(Dropzone) `
     
     width: 150px;
     height: 150px;
@@ -18,6 +18,8 @@ const GridColumns = styled(Dropzone,Image) `
     border-radius: 500px !important; 
     margin-left: 43%;
 `
+
+
 
 
 export default class Basic extends React.Component {
@@ -33,7 +35,6 @@ export default class Basic extends React.Component {
 
     _handleSubmit(e) {
         e.preventDefault();
-        // TODO: do something with -> this.state.file
     }
 
     _handleImageChange(e) {
@@ -63,7 +64,7 @@ export default class Basic extends React.Component {
             <section className="GridCenter">
                 <div className="DivPicCenter">
                     <GridColumns type="file" onChange={this._handleImageChange}>
-                        <Image circular>{$imagePreview}</Image>
+                        <Image class="img" circular>{$imagePreview}</Image>
                         <div className="IconCamera">
                             <Image src={cameraIcon} />
                         </div>

@@ -33,23 +33,6 @@ const InfoPateint = ({
                 <Form.Input fluid id='registerdate' style={{border:'0 px'}}  label='วันที่ทำประวัติ (Register Date)' placeholder='' width={4} readOnly value={registerDate} />
             </Form.Group>
             <HeaderForm/>
-            {/* <Header style={{border: '0px'}} as='h2' attached='top' textAlign='center'>
-                ใบลงทะเบียนผู้ป่วยใหม่
-                        <br></br>
-                NEW PATIENT RESGISTRATION FORM
-            </Header>
-                
-            <div>
-                <Header as='h2' icon textAlign='center'>
-                    <Header.Content>
-                        <p>รูปประจำตัว</p>
-                    </Header.Content>
-                   
-                <GridColumn ><Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular /></GridColumn>
-                    
-                </Header>
-                <br></br>
-            </div> */}
             </Segment>
             <Segment>
             <Form.Group widths='equal' >
