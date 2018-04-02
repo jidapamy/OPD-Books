@@ -7,7 +7,8 @@ import cameraIcon from './camera.png';
 import DivPicCenter from './camera.png';
 import GridCenter from './camera.png';
 
-const GridColumns = styled(Dropzone) `
+
+const GridColumns = styled(Dropzone,Image) `
     
     width: 150px;
     height: 150px;
@@ -20,42 +21,59 @@ const GridColumns = styled(Dropzone) `
 
 
 export default class Basic extends React.Component {
-    constructor() {
-        super()
-        this.state = { files: [] }
+    constructor(props) {
+        super(props);
+        this.state = {
+            file: '',
+            imagePreviewUrl: ''
+        };
+        this._handleImageChange = this._handleImageChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
 
-    onDrop(files) {
-        this.setState({
-            files
-        });
+    _handleSubmit(e) {
+        e.preventDefault();
+        // TODO: do something with -> this.state.file
+    }
+
+    _handleImageChange(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
     }
 
     render() {
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = <Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular />;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        }
+
         return (
             <section className="GridCenter">
                 <div className="DivPicCenter">
-                    <GridColumns onDrop={this.onDrop.bind(this)}>
-                        <Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular />
+                    <GridColumns type="file" onChange={this._handleImageChange}>
+                        <Image circular>{$imagePreview}</Image>
                         <div className="IconCamera">
                             <Image src={cameraIcon} />
                         </div>
                     </GridColumns>
+
                 </div>
-                <br />
-
-                <aside>
-                    <h2>Flie รูปที่อัพโหลดมา</h2>
-                    <ul>
-                        {
-                            this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-                        }
-                    </ul>
-                </aside>
-
             </section>
 
-        );
-    }
-}
 
+        )
+    }
+
+}

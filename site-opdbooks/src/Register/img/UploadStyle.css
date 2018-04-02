@@ -12,6 +12,7 @@
     margin-top:75%; */
     margin-left: 73%;
     margin-top:-25%;
+    margin-top:-20%;
 }
 
 
@@ -22,5 +23,10 @@
 .GridCenter{
     text-align: center;
     width: 100%;
+}
+
+.ui.circular.image{
+    width: 150px;
+    height: 150px;
 }
 
