@@ -33,7 +33,6 @@ export default class Basic extends React.Component {
 
     _handleSubmit(e) {
         e.preventDefault();
-        // TODO: do something with -> this.state.file
     }
 
     _handleImageChange(e) {
