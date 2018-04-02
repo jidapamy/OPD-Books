@@ -4,6 +4,8 @@ import App from './Index/app';
 import Login from './Login/login';
 import Home from './BetaIndex/Home';
 import Test from './Test';
+import Basic from './Register/img/Upload';
+
 
 import Register from './Register/Register';
 
@@ -21,6 +23,8 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/home' component={Home} />
         <Route path='/test' component={Test} />
+        <Route path='/img' component={Basic} />
+        
         </div>
     </Router>,document.getElementById('root')
     );
