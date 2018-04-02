@@ -4,12 +4,8 @@ import App from './Index/app';
 import Login from './Login/login';
 import Home from './BetaIndex/Home';
 import Test from './Test';
-<<<<<<< HEAD
-import TestHome from './containers/home'
-=======
 import Basic from './Register/img/Upload';
 
->>>>>>> feature/image
 
 import Register from './Register/Register';
 
@@ -26,13 +22,9 @@ ReactDOM.render(
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login} />
         <Route path='/home' component={Home} />
-<<<<<<< HEAD
-        <Route path='/test' component={TestHome} />
-=======
         <Route path='/test' component={Test} />
         <Route path='/img' component={Basic} />
         
->>>>>>> feature/image
         </div>
     </Router>,document.getElementById('root')
     );
