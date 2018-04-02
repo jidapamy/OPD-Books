@@ -61,5 +61,5 @@ export const countryData = [
   { key: 'French', text: 'French', value: 'French' },
   { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
   { key: 'German', text: 'German', value: 'German' },
-  { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
+  { key: 'China', text: 'China', value: 'China' },
 ]
