@@ -37,7 +37,7 @@ export default class MenuExampleSecondaryPointing extends Component {
                 
             
           
-<div class='headerTheme'></div>
+<div className='headerTheme'></div>
 
 {/* <Image src={BG} /> */ }
             

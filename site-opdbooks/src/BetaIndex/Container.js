@@ -126,7 +126,7 @@ class ContainerExampleContainer extends React.Component {
 
                 
                 <Segment style={{ padding: '4em 0em', border: '0px', fontFamily: 'Kanit' }} vertical className="wow zoomIn" data-wow-delay="0.2s">
-                    <Container textAlign>
+                    <Container center="true">
                         <Header as='h3' style={{ fontSize: '2em', textAlign: 'center' }}>HOW TO</Header>
                         <p style={{ fontSize: '1.33em' }}>
                             การสมัครทะเบียนผู้ป่วยใหม่

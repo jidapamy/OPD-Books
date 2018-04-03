@@ -64,7 +64,9 @@ export default class Basic extends React.Component {
             <section className="GridCenter">
                 <div className="DivPicCenter">
                     <GridColumns type="file" onChange={this._handleImageChange}>
-                        <Image class="img" circular>{$imagePreview}</Image>
+                        <Image className="circular" circular>
+                        <div className="setImage">{$imagePreview}</div>
+                        </Image>
                         <div className="IconCamera">
                             <Image src={cameraIcon} />
                         </div>

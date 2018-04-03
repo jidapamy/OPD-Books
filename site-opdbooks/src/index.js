@@ -5,13 +5,9 @@ import Login from './Login/login';
 import Home from './BetaIndex/Home';
 import Test from './Test';
 import Basic from './Register/img/Upload';
-
-
 import Register from './Register/Register';
-
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 
