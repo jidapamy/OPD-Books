@@ -3,7 +3,7 @@ import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox,
 import styled from 'styled-components'
 import axios from './../lib/axois'
 import moment from 'moment';
-
+import ScrollUpButton from "react-scroll-up-button";
 import InfoPateint from './InfoPateint';
 import HomeAddress from './HomeAddress'
 import HomeAddressOfForeigner from './HomeAddressOfForeigner'
@@ -455,6 +455,7 @@ class Register extends Component {
     console.log(this.state)
     console.log('AGE : '+moment().format('YYYY'))
     return (
+      
       <Wrapper>
         <Container>
           <Message
@@ -537,15 +538,6 @@ class Register extends Component {
               privilege={this.state.privilege}
             />
 
-
-            {/* <Footer
-              checkAgreement={this.checkAgreement}
-              setField={this.setField}
-              agreement={this.state.agreement}
-            /> */}
-            {/* <ModalConfirm  trigger={<Button onClick={this.handleClose} disabled={!this.state.agreement} color='green'><h3>CANCEL</h3></Button>}   */}
-
-
             <Form.Group inline>
               <Form.Field control={Checkbox}
                 label='ข้าพเจ้าขอรับรองว่าข้อมูลบุคคลทั้งหมดตามที่แจ้งแก่เจ้าหน้าที่ของคลินิกนี้ถูกต้อง และตรงกับความเป็นจริงทุกประการ หากมีข้อความใดไม่ถูกต้องหรือไม่ตรงกับความจริง และอาจจะทำให้เกิดความเสียหายแก่ตัวข้าพเจ้าหรือบุคคลอื่นใด ข้าพเจ้ายินยอมรับผิดชอบในความเสียหายที่เกิดขึ้นทุกประการ และอนุญาตให้เผยแพร่ข้อมูลข้องข้าพเจ้าในระบบในเครือของคลินิก'
@@ -562,31 +554,30 @@ class Register extends Component {
                 trigger={<Button disabled={!this.state.agreement} onClick={this.handleOpen} color='green'><h3>CONFIRM</h3></Button>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
-                size='small'
-                closeIcon>
-                <Header icon='check' content='ยืนยันการสมัคร' />
-                <Modal.Content>
-                  <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color='red' onClick={this.handleClose} inverted>
-                    <Icon name='remove' /> No
+                size='small'  closeIcon>
+                  <Header icon='check' content='ยืนยันการสมัคร' />
+                  <Modal.Content>
+                    <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
+                    <p style={{color:'red'}}>***กรณีข้อมูลของท่านไม่ตรงกับความเป็นจริงท่านสามารถแจ้งความประสงค์ที่จะขอแก้ไขได้โดยผ่านคลินิกที่อยู่ในเครือ</p>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='red' onClick={this.handleClose} inverted>
+                      <Icon name='remove' /> No
                     </Button>
-                  < Link to='/'> <Button color='green' inverted>
-                    <Icon name='checkmark' /> Yes
+                   < Link to='/home'> <Button color='green' inverted>
+                       <Icon name='checkmark' /> Yes
                     </Button>
                   </Link>
                 </Modal.Actions>
               </ModalConfirm>
-              {/* <Button disabled={!this.state.agreement} color='green'>
-                <h3>CONFIRM</h3>
-              </Button> */}
-
+              
             </GridColumn>
             <br></br><br></br>
           </Form>
         </Container>
+        <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled"/>
       </Wrapper>
+      
     );
   }
 }

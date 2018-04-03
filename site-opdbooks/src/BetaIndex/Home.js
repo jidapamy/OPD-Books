@@ -11,7 +11,7 @@ class Home extends Component {
         return (
             <div >
                 <Navbar/>
-                {/* <Headers/> */}
+                <Headers/>
                 <Content/>
                 {/* <Footer/> */}
             </div>

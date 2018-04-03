@@ -11,4 +11,39 @@ border:0px;
 background:inherit;
 
 } 
+.ScrollUpButton__Container{
+      background-color: #C1C1C1 !important;
+      border-radius: 50%;
+      border: 5px solid #C1C1C1;
+      height: 50px;
+      position: fixed;
+      bottom: 20px;
+      width: 50px;
+      -webkit-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      -webkit-transition-property: opacity, right;
+      transition-property: opacity, right;
+      cursor: pointer;
+      opacity: 0;
+      right: -75px;
+    }
 
+    .ScrollUpButton__Toggled{
+      opacity: 1;
+      right: 20px;
+    }
+.ModalConfirm{
+    position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+}
+@media (max-width: 480px){
+    
+.ModalConfirm{
+    position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -20%) !important;
+}
+}

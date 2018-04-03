@@ -8,7 +8,7 @@ class Navbar extends Component {
       <div >
         <div class="header ui large top fixed inverted menu">
           <div class=" ui container inverted ">
-            <a class=" active item">Home</a><a class="item">About</a>
+            <a href="/home" class=" active item">Home</a><a class="item">About</a>
                 <div class="right menu">
                   <div class="menu item">
                 <a href="/login" class="ui button">Log in</a>

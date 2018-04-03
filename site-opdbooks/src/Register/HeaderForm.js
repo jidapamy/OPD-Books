@@ -26,7 +26,7 @@ const HeaderExampleUsersIcon = () => (
      <GridColumn ><Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular /></GridColumn>
      </Basic>
     </Header>
-    <br></br> <br></br> 
+    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> 
   </div>
 )
 
