@@ -3,7 +3,7 @@ import { Form, Container ,Modal ,Header ,Icon,Button, Checkbox, Grid, Image} fro
 import styled from 'styled-components'
 import axios from 'axios'
 import moment from 'moment';
-
+import ScrollUpButton from "react-scroll-up-button";
 import InfoPateint from './InfoPateint';
 import HomeAddress from './HomeAddress'
 import HomeAddressOfForeigner from './HomeAddressOfForeigner'
@@ -391,6 +391,7 @@ class Register extends Component {
     // console.log(moment('02-05-1997', 'MM-DD-YYYY'))
     // console.log((moment().utc('12-04-2012', "DD-MM-YYYY").valueOf()).format('DD-MM-YYYY'))
     return (
+      
       <Wrapper>
         <Container>
           <Form onSubmit={this.insertPateint}>
@@ -494,26 +495,26 @@ class Register extends Component {
                   <Header icon='check' content='ยืนยันการสมัคร' />
                   <Modal.Content>
                     <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
+                    <p style={{color:'red'}}>***กรณีข้อมูลของท่านไม่ตรงกับความเป็นจริงท่านสามารถแจ้งความประสงค์ที่จะขอแก้ไขได้โดยผ่านเค้าเตอร์คลินิกนั้นๆ</p>
                   </Modal.Content>
                   <Modal.Actions>
                     <Button color='red' onClick={this.handleClose} inverted>
                       <Icon name='remove' /> No
                     </Button>
-                   < Link to='/'> <Button color='green' inverted>
+                   < Link to='/home'> <Button color='green' inverted>
                        <Icon name='checkmark' /> Yes
                     </Button>
                     </Link>
                   </Modal.Actions>
               </ModalConfirm>
-              {/* <Button disabled={!this.state.agreement} color='green'>
-                <h3>CONFIRM</h3>
-              </Button> */}
               
             </GridColumn>
             <br></br><br></br>
           </Form>
         </Container>
+        <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled"/>
       </Wrapper>
+      
     );
   }
 }

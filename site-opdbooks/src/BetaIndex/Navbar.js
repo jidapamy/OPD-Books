@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import './style.css';
 import { Link } from 'react-router-dom';
 import PhotoHeader from './img/photoHeader.png';
+import Particles from 'react-particles-js';
 const imgheader = styled.img `
      width:100%;
 `
@@ -23,11 +24,6 @@ const ImageSizeHeader = styled(Segment) `
     background: linear-gradient(to left, #2F80ED 0%, #33ADFF 100%); 
     -webkit-box-shadow: 0px 50px 100px 0 rgba(47, 128, 237, 0.35);
     box-shadow: 0px 50px 100px 0 rgba(47, 128, 237, 0.35);
-`
-const ImageSizeHeader2 = styled(Header) `
-     
-     background-color:red;
-    
 `
 const ContainHeaderTop = styled(Header) `
     position: absolute;
@@ -50,6 +46,14 @@ const ButtonHeaderMid = styled(Button) `
     z-index: 5;
     
 `
+const ParticlesAb = styled(Particles) `
+     position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    
+`
 
 
 export default class MenuExampleSecondaryPointing extends Component {
@@ -63,25 +67,26 @@ export default class MenuExampleSecondaryPointing extends Component {
 
         return (
             <div>
+                
+
                 <Menu fixed='top'>
                 <Menu pointing secondary attached='top' color='teal' size='huge' >
-                    <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+                        <Link to='/home'><Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
                     <Menu.Menu position='right' >
                         <Link to='/login'><Menu.Item name='Sign In' active={activeItem === 'Sign In'} onClick={this.handleItemClick} /></Link>
                         <Link to='/register'><Menu.Item name='Sign Up' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} /></Link>
                     </Menu.Menu>
                 </Menu>
            </Menu>
-                <Header className="ContainHeaderTop" style={{ fontSize: '6em',color:'white' }} >PROJECT OPD BOOKS</Header>
+           
+                {/* <Header className="ContainHeaderTop" style={{ fontSize: '6em',color:'white' }} >PROJECT OPD BOOKS</Header>
                 <Header className="ContainHeaderMid" style={{ fontSize: '2em', color: 'white' }} >Patient Registration Management By Blockchain</Header>
                 <Link to='/register'><Button className="ButtonHeaderMid" style={{ fontSize: '3em' }} inverted>Sign UP</Button></Link>
                 
                 <ImageSizeHeader style={{ border: '0px' }}></ImageSizeHeader>
-                
-                
-            <div class='headerTheme'></div>
+
+            <div class='headerTheme'></div> */}
             
-            {/* <Image src={BG} /> */}
             </div>
             
             
