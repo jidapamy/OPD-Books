@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Message, Header, Icon,Image, Form, Container, Modal, Button, Checkbox, Grid } from 'semantic-ui-react'
+import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
 import axios from './../lib/axois'
 import moment from 'moment';
@@ -56,7 +56,7 @@ class Register extends Component {
 
   state = {
     // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
-     open: 'false',
+    open: 'false',
     //data initialization
     provinces: [],
     amphursHome: [],
@@ -138,7 +138,6 @@ class Register extends Component {
     errorCountry: { status: false, message: '' },
     errorCongenitalDisease: { status: false, message: '' },
   }
-  
 
   componentWillMount() {
     this.setState({ provinces: provincesData.default })
@@ -151,8 +150,27 @@ class Register extends Component {
     }
     if (field === 'cardType') {
       this.setState({ errorIdCard: { status: false, message: '' } })
+      this.changeCardtype()
+    }
+    if (field === 'nameTitle'){
+      if (value === 'นาย (Mr.)' || value === 'เด็กชาย (Master)'){
+        this.setState({gender : 'M'})
+      }else{
+        this.setState({ gender: 'F' })
+      }
     }
   }
+
+  changeCardtype = async () => {
+    console.log(this.state.cardType)
+    if (this.state.cardType !== 'idcard'){
+      await this.setState({nationality: 'ไทย (Thai)',religion: 'พุทธ (Buddhism)',country: 'ไทย'})
+    }else{
+      await this.setState({nationality: '',religion: '',country: ''})
+    }
+  }
+
+
 
   //Change Form depend on cardType
   checkThaiPateint = () => {
@@ -175,25 +193,26 @@ class Register extends Component {
         subDistrict={this.state.subDistrict}
         zipcode={this.state.zipcode}
       />
+    }else{
+      return <HomeAddressOfForeigner
+        preparedData={this.preparedData}
+        provinces={this.state.provinces}
+        amphurs={this.state.amphursHome}
+        districts={this.state.districtsHome}
+
+        changeProvince={this.changeProvince}
+        changeAmphur={this.changeAmphur}
+        changeDistrict={this.changeDistrict}
+        setField={this.setField}
+
+        typeofHouse={this.state.typeofHouse}
+        address={this.state.address}
+        province={this.state.province}
+        district={this.state.district}
+        subDistrict={this.state.subDistrict}
+        zipcode={this.state.zipcode}
+      />
     }
-    return <HomeAddressOfForeigner
-      preparedData={this.preparedData}
-      provinces={this.state.provinces}
-      amphurs={this.state.amphursHome}
-      districts={this.state.districtsHome}
-
-      changeProvince={this.changeProvince}
-      changeAmphur={this.changeAmphur}
-      changeDistrict={this.changeDistrict}
-      setField={this.setField}
-
-      typeofHouse={this.state.typeofHouse}
-      address={this.state.address}
-      province={this.state.province}
-      district={this.state.district}
-      subDistrict={this.state.subDistrict}
-      zipcode={this.state.zipcode}
-    />
 
   }
 
@@ -237,13 +256,13 @@ class Register extends Component {
       console.log('idCard :' + this.state.idCard)
       const pateint = await axios.get(`/checkIDCard/${this.state.idCard}`)
       console.log(pateint.data)
-      if (pateint.data){
+      if (pateint.data) {
         console.log('ผ่านจ้า')
-      }else{
+      } else {
         const error = { status: true, message: '' };
-        if(this.state.cardType === 'idcard'){
+        if (this.state.cardType === 'idcard') {
           error.message = 'เลขบัตรประชาชนนี้มีใช้แล้ว'
-        }else{
+        } else {
           error.message = 'The passport number is duplicated'
         }
         this.setState({ errorIdCard: error })
@@ -260,8 +279,14 @@ class Register extends Component {
     console.log('calculateAge : ' + this.state.dob)
     let dob = '' + this.state.dob
     console.log(dob)
-    let age = 2018 - (+dob.substring(6));
-    this.setState({ age: age })
+    let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
+    let month = (+(moment().format('MM'))) - (+dob.substring(3,5));
+    let tmp = year+" ปี"
+    if(year === 0){
+      month = month
+      tmp = year + " ปี "+month + " เดือน"
+    }
+    this.setState({ age: tmp})
   }
 
   //Address
@@ -424,18 +449,19 @@ class Register extends Component {
   // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
   handleOpen = () => this.setState({ modalOpen: true })
   handleClose = () => this.setState({ modalOpen: false })
-// <<<<<<<<------------->>>>>>>>
+  // <<<<<<<<------------->>>>>>>>
 
   render() {
-    // console.log(this.state)
+    console.log(this.state)
+    console.log('AGE : '+moment().format('YYYY'))
     return (
       <Wrapper>
         <Container>
-          <Message 
+          <Message
             hidden={!this.state.errorIdCard.status}
             error
-            header= {this.state.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
-            content= {this.state.errorIdCard.message}
+            header={this.state.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
+            content={this.state.errorIdCard.message}
           />
           <Form onSubmit={this.insertPateint}>
             <InfoPateint
@@ -517,7 +543,7 @@ class Register extends Component {
               setField={this.setField}
               agreement={this.state.agreement}
             /> */}
-{/* <ModalConfirm  trigger={<Button onClick={this.handleClose} disabled={!this.state.agreement} color='green'><h3>CANCEL</h3></Button>}   */}
+            {/* <ModalConfirm  trigger={<Button onClick={this.handleClose} disabled={!this.state.agreement} color='green'><h3>CANCEL</h3></Button>}   */}
 
 
             <Form.Group inline>
@@ -532,28 +558,30 @@ class Register extends Component {
                   <h3>CANCEL</h3>
                 </Button>
               </Link>
-              <ModalConfirm   trigger={<Button disabled={!this.state.agreement} onClick={this.handleOpen} color='green'><h3>CONFIRM</h3></Button>}
+              <ModalConfirm
+                trigger={<Button disabled={!this.state.agreement} onClick={this.handleOpen} color='green'><h3>CONFIRM</h3></Button>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
-                size='small'  closeIcon>
-                  <Header icon='check' content='ยืนยันการสมัคร' />
-                  <Modal.Content>
-                    <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button color='red' onClick={this.handleClose} inverted>
-                      <Icon name='remove' /> No
+                size='small'
+                closeIcon>
+                <Header icon='check' content='ยืนยันการสมัคร' />
+                <Modal.Content>
+                  <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color='red' onClick={this.handleClose} inverted>
+                    <Icon name='remove' /> No
                     </Button>
-                   < Link to='/'> <Button color='green' inverted>
-                       <Icon name='checkmark' /> Yes
+                  < Link to='/'> <Button color='green' inverted>
+                    <Icon name='checkmark' /> Yes
                     </Button>
-                    </Link>
-                  </Modal.Actions>
+                  </Link>
+                </Modal.Actions>
               </ModalConfirm>
               {/* <Button disabled={!this.state.agreement} color='green'>
                 <h3>CONFIRM</h3>
               </Button> */}
-              
+
             </GridColumn>
             <br></br><br></br>
           </Form>
