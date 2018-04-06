@@ -74,15 +74,20 @@ const InfoPateint = (props) => {
                         label='คำนำหน้า (Title)'
                         options={nameType}
                         placeholder='เลือก (Select)'
-                        width={4}
+                        width={3}
                         onChange={(e, { value }) => setField('nameTitle', value)}
                         value={props.nameTitle.value}
                         required
                     />
                     <Form.Input
+                        label='คำนำหน้าอื่นๆ (Title Other.)'
+                        placeholder='คำนำหน้าอื่นๆ'
+                        width={3}
+                    />
+                    <Form.Input
                         label='ชื่อจริง (Firstname)'
                         placeholder='ชื่อจริง (Firstname)'
-                        width={6}
+                        width={5}
                         onChange={e => setField('firstname', e.target.value)}
                         value={props.firstname}
                         required
@@ -90,7 +95,7 @@ const InfoPateint = (props) => {
                     <Form.Input
                         label='นามสกุล (Lastname)'
                         placeholder='นามสกุล (Lastname)'
-                        width={6}
+                        width={5}
                         onChange={e => setField('lastname', e.target.value)}
                         value={props.lastname}
                         required

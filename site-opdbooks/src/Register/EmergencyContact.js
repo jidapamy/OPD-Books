@@ -27,24 +27,105 @@ const EmergencyContact = ({
             </Form.Group>
             <br></br>
             <Form.Group>
-                    <Form.Field control={Select} label='คำนำหน้า' options={nameTypeThUP15} placeholder='เลือกคำนำหน้า' width={6} onChange={(e, { value }) => setField('emerTitle', value)}/>
-                    <Form.Input label='ชื่อจริง' placeholder='ชื่อ' width={6} onChange={e => setField('emerFirstname', e.target.value)} value={emerFirstname}/>
-                    <Form.Input label='นามสกุล' placeholder='นามสกุล' width={6} onChange={e => setField('emerLastname', e.target.value)} value={emerLastname}/>
+                    <Form.Field 
+                    control={Select} 
+                    label='คำนำหน้า' 
+                    options={nameTypeThUP15} 
+                    placeholder='เลือกคำนำหน้า' 
+                    width={3} 
+                    onChange={(e, { value }) => setField('emerTitle', value)}
+                    />
+                    <Form.Input
+                        label='คำนำหน้าอื่นๆ (Title Other.)'
+                        placeholder='คำนำหน้าอื่นๆ'
+                        width={3}
+                    />
+                    <Form.Input
+                     label='ชื่อจริง' 
+                     placeholder='ชื่อ' 
+                     width={5} 
+                     onChange={e => setField('emerFirstname', e.target.value)} 
+                     value={emerFirstname}
+                     />
+                    <Form.Input 
+                    label='นามสกุล' 
+                    placeholder='นามสกุล'
+                    width={5} onChange={e => setField('emerLastname', e.target.value)}
+                    value={emerLastname}
+                    />
             </Form.Group>
             <Form.Group>
-                    <Form.Input label='เกี่ยวข้องเป็น (Relationship)' placeholder='ความสัมพันธ์' width={6} onChange={e => setField('emerRelationship', e.target.value)} value={emerRelationship}/>
-                    <Form.Input label='โทรศัพท์บ้าน (Home Phone Number)' placeholder='เบอร์โทรศัพท์บ้าน' width={6} onChange={e => setField('emerHomePhonenumber', e.target.value)} value={emerHomePhonenumber}/>
-                    <Form.Input label='โทรศัพท์มือถือ (Mobile Phone)' placeholder='เบอร์โทรศัพท์มือถือ' width={6} onChange={e => setField('emerMobileNumber', e.target.value)} value={emerMobileNumber}/>
+                    <Form.Input 
+                    label='เกี่ยวข้องเป็น (Relationship)' 
+                    placeholder='ความสัมพันธ์' width={6} 
+                    onChange={e => setField('emerRelationship', e.target.value)} 
+                    value={emerRelationship}
+                    />
+                    <Form.Input 
+                    label='โทรศัพท์บ้าน (Home Phone Number)' 
+                    placeholder='เบอร์โทรศัพท์บ้าน' width={6} 
+                    onChange={e => setField('emerHomePhonenumber', e.target.value)} 
+                    value={emerHomePhonenumber}
+                    />
+                    <Form.Input 
+                    label='โทรศัพท์มือถือ (Mobile Phone)' 
+                    placeholder='เบอร์โทรศัพท์มือถือ' 
+                    width={6} 
+                    onChange={e => setField('emerMobileNumber', e.target.value)} 
+                    value={emerMobileNumber}
+                    />
             </Form.Group>
             <Form.Group>
-                    <Form.Field control={Select} label='ประเภทที่พักอาศัย (Types of Housing)' options={typesOfHousing} placeholder='เลือกประเภทที่พักอาศัย' width={6} value={emerTypeofHouse} onChange={(e, { value }) => setField('emerTypeofHouse', value)}/>
-                    <Form.Input label='ที่อยู่(Address) ' placeholder='บ้านเลขที่/หมู่/ถนน' width={6} onChange={e => setField('emerAddress', e.target.value)} value={emerAddress} />
-                    <Form.Field control={Select} label='จังหวัด (Province)' options={provinces} placeholder='เลือกจังหวัด' width={6} onClick={() => preparedData('a', 'Emer')} value={emerProvince} onChange={(e, value) => changeProvince('emerProvince', value)} />
+                    <Form.Field 
+                    control={Select} 
+                    label='ประเภทที่พักอาศัย (Types of Housing)' 
+                    options={typesOfHousing} placeholder='เลือกประเภทที่พักอาศัย' 
+                    width={6} value={emerTypeofHouse} 
+                    onChange={(e, { value }) => setField('emerTypeofHouse', value)}
+                    />
+                    <Form.Input 
+                    label='ที่อยู่(Address) ' 
+                    placeholder='บ้านเลขที่/หมู่/ถนน' 
+                    width={6} 
+                    onChange={e => setField('emerAddress', e.target.value)} 
+                    value={emerAddress} 
+                    />
+                    <Form.Field 
+                    control={Select} 
+                    label='จังหวัด (Province)' 
+                    options={provinces} 
+                    placeholder='เลือกจังหวัด' 
+                    width={6} 
+                    onClick={() => preparedData('a', 'Emer')} 
+                    value={emerProvince} 
+                    onChange={(e, value) => changeProvince('emerProvince', value)} 
+                    />
             </Form.Group>
             <Form.Group>
-                    <Form.Field control={Select} label='เขต/อำเภอ (District)' options={amphurs} placeholder='เลือกเขต/อำเภอ' width={6} onClick={() => preparedData('d', 'Emer')} value={emerDistrict} onChange={(e, value) => changeAmphur('emerDistrict', value)} />
-                    <Form.Field control={Select} label='แขวง/ตำบล (Sub-District)' options={districts} placeholder='แขวง/ตำบล' width={6} value={emerSubDistrict} onChange={(e, value) => changeDistrict('emerSubDistrict', value)} />
-                <Form.Input label='รหัสไปรษณีย์ (Postal Code)' placeholder='รหัสไปรษณีย์' width={6} onChange={e => setField('emerZipcode', e.target.value)} value={emerZipcode} />
+                    <Form.Field 
+                    control={Select} 
+                    label='เขต/อำเภอ (District)' 
+                    options={amphurs} placeholder='เลือกเขต/อำเภอ' 
+                    width={6} onClick={() => preparedData('d', 'Emer')} 
+                    value={emerDistrict} 
+                    onChange={(e, value) => changeAmphur('emerDistrict', value)} 
+                    />
+                    <Form.Field 
+                    control={Select} 
+                    label='แขวง/ตำบล (Sub-District)' 
+                    options={districts} 
+                    placeholder='แขวง/ตำบล' 
+                    width={6} 
+                    value={emerSubDistrict} 
+                    onChange={(e, value) => changeDistrict('emerSubDistrict', value)} 
+                    />
+                <Form.Input 
+                label='รหัสไปรษณีย์ (Postal Code)' 
+                placeholder='รหัสไปรษณีย์' 
+                width={6} 
+                onChange={e => setField('emerZipcode', e.target.value)} 
+                value={emerZipcode} 
+                />
             </Form.Group>
         </Segment>
         <br></br>

@@ -54,10 +54,7 @@ const ButtomSize = styled(Button) `
 class Register extends Component {
 
   state = {
-    // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
-    open: 'false',
-
-    //data initialization
+    
     provinces: [],
     amphursHome: [],
     districtsHome: [],
@@ -487,8 +484,8 @@ class Register extends Component {
           'สมัครเสร็จสิ้น!',
           'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
           'success',
+          this.props.history.push('/home')
         )
-        this.props.history.push('/home')
       }
     })
   }

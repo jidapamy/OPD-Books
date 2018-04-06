@@ -12,7 +12,7 @@ const Allergy = ({
                 <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติการแพ้ยา อาหาร และสารอื่นๆ (History of Food Or Drug Allergy)</h4></Label>
                 <br></br><br></br>
                 <Segment color='teal'>
-                    <h3 >คุณมีประวัติการแพ้หรือไม่</h3 >
+                    <h3 >คุณมีประวัติการแพ้หรือไม่<span style={{color:'red'}}>*</span></h3 >
                     <br></br>
                     <Form.Group inline>
                         <Form.Radio 
@@ -39,7 +39,7 @@ const Allergy = ({
                     </Form.Group>
                 </Segment>
                 <Segment color='teal'>
-                    <h3>สิทธิในการรักษา</h3>
+                    <h3>สิทธิในการรักษา<span style={{ color: 'red' }}>*</span></h3>
                     <br></br>
                     <Form.Group inline>
                         <Form.Radio 
