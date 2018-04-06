@@ -38,7 +38,7 @@ const EmergencyContact = (props) => {
                     label='นามสกุล' 
                     placeholder='นามสกุล'
                     width={5} onChange={e => setField('emerLastname', e.target.value)}
-                    value={emerLastname}
+                    value={props.emerLastname}
                     />
             </Form.Group>
             <Form.Group>
@@ -46,20 +46,20 @@ const EmergencyContact = (props) => {
                     label='เกี่ยวข้องเป็น (Relationship)' 
                     placeholder='ความสัมพันธ์' width={6} 
                     onChange={e => setField('emerRelationship', e.target.value)} 
-                    value={emerRelationship}
+                    value={props.emerRelationship}
                     />
                     <Form.Input 
                     label='โทรศัพท์บ้าน (Home Phone Number)' 
                     placeholder='เบอร์โทรศัพท์บ้าน' width={6} 
                     onChange={e => setField('emerHomePhonenumber', e.target.value)} 
-                    value={emerHomePhonenumber}
+                    value={props.emerHomePhonenumber}
                     />
                     <Form.Input 
                     label='โทรศัพท์มือถือ (Mobile Phone)' 
                     placeholder='เบอร์โทรศัพท์มือถือ' 
                     width={6} 
                     onChange={e => setField('emerMobileNumber', e.target.value)} 
-                    value={emerMobileNumber}
+                    value={props.emerMobileNumber}
                     />
             </Form.Group>
             <Form.Group>
@@ -67,7 +67,7 @@ const EmergencyContact = (props) => {
                     control={Select} 
                     label='ประเภทที่พักอาศัย (Types of Housing)' 
                     options={typesOfHousing} placeholder='เลือกประเภทที่พักอาศัย' 
-                    width={6} value={emerTypeofHouse} 
+                    width={6} value={props.emerTypeofHouse} 
                     onChange={(e, { value }) => setField('emerTypeofHouse', value)}
                     />
                     <Form.Input 
@@ -75,43 +75,43 @@ const EmergencyContact = (props) => {
                     placeholder='บ้านเลขที่/หมู่/ถนน' 
                     width={6} 
                     onChange={e => setField('emerAddress', e.target.value)} 
-                    value={emerAddress} 
+                    value={props.emerAddress} 
                     />
                     <Form.Field 
                     control={Select} 
                     label='จังหวัด (Province)' 
-                    options={provinces} 
+                    options={props.provinces} 
                     placeholder='เลือกจังหวัด' 
                     width={6} 
                     onClick={() => preparedData('a', 'Emer')} 
-                    value={emerProvince} 
-                    onChange={(e, value) => changeProvince('emerProvince', value)} 
+                    value={props.emerProvince} 
+                    onChange={(e, value) => props.changeProvince('emerProvince', value)} 
                     />
             </Form.Group>
             <Form.Group>
                     <Form.Field 
                     control={Select} 
                     label='เขต/อำเภอ (District)' 
-                    options={amphurs} placeholder='เลือกเขต/อำเภอ' 
+                    options={props.amphurs} placeholder='เลือกเขต/อำเภอ' 
                     width={6} onClick={() => preparedData('d', 'Emer')} 
-                    value={emerDistrict} 
-                    onChange={(e, value) => changeAmphur('emerDistrict', value)} 
+                    value={props.emerDistrict} 
+                    onChange={(e, value) => props.changeAmphur('emerDistrict', value)} 
                     />
                     <Form.Field 
                     control={Select} 
                     label='แขวง/ตำบล (Sub-District)' 
-                    options={districts} 
+                    options={props.districts} 
                     placeholder='แขวง/ตำบล' 
                     width={6} 
-                    value={emerSubDistrict} 
-                    onChange={(e, value) => changeDistrict('emerSubDistrict', value)} 
+                    value={props.emerSubDistrict} 
+                    onChange={(e, value) => props.changeDistrict('emerSubDistrict', value)} 
                     />
                 <Form.Input 
                 label='รหัสไปรษณีย์ (Postal Code)' 
                 placeholder='รหัสไปรษณีย์' 
                 width={6} 
                 onChange={e => setField('emerZipcode', e.target.value)} 
-                value={emerZipcode} 
+                value={props.emerZipcode} 
                 />
             </Form.Group>
         </Segment>

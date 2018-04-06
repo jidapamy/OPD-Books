@@ -78,7 +78,7 @@ class Register extends Component {
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
-    country: 'ไทย',
+    country: 'Thailand',
     congenitalDisease: '',
     // picture:'',
 
