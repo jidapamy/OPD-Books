@@ -20,8 +20,7 @@ import asiaGray from './img/asiaGray.jpg';
 import myGray from './img/myGray.jpg';
 import stampGray from './img/stampGray.jpg';
 import WOW from 'wowjs';
-import iconhowto1 from './img/icon-howto-1.png'
-import iconhowto2 from './img/icon-howto-2.png'
+
 const GridColumn = styled(Grid.Column) `
     display: flex;
     justify-content: center;
@@ -133,23 +132,7 @@ class ContainerExampleContainer extends React.Component {
                             หากเป็นผู้ป่วยใหม่ ต้องลงทะเบียนผู้ป่วยก่อนจะทำการรักษา
                             ซึ่ง ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง ได้แก่
                             </p>
-                        <Grid columns={2}>
-                            <Grid.Column>
-                                <Image
-                                    size='large'
-                                    label={{ as: 'a', corner: 'left', icon: 'heart' }}
-                                    src={iconhowto1}
-                                />
-                            </Grid.Column>
-
-                            <Grid.Column>
-                                <Image
-                                    size='large'
-                                    label={{ as: 'a', color: 'red', corner: 'right', icon: 'save' }}
-                                    src={iconhowto2}
-                                />
-                            </Grid.Column>
-                        </Grid>
+                       
 )
                         1. ลงทะเบียนบน website ผ่านทาง computer หรือ
                                 smart phone ของตัวผู้ป่วยเอง
@@ -159,10 +142,10 @@ class ContainerExampleContainer extends React.Component {
                                 หลังทำการลงทะเบียนเสร็จแล้ว ข้อมูลทะเบียนของผู้ป่วย
                                 จะถูกเก็บไว้บน blockchain ทันที
                             <br></br><br></br>
-                        เพียงเท่านี้ผู้ป่วยก็จะสามารถเข้ารับการรักษากับคลินิกได้เลย
+                        <h4>เพียงเท่านี้ผู้ป่วยก็จะสามารถเข้ารับการรักษากับคลินิกได้เลย
                                 รวมถึงสามารถเข้ารับการรักษากับคลินิกอื่นๆ ที่ใช้ blockchain
                                 เหมือนกันได้เลย โดยไม่ต้องทำการสมัครทะเบียนผู้ป่วยใหม่
-                        ระบบที่จัดการทะเบียนผู้ป่วยสำหรับคลินิกในเครือเดียวกันโดยใช้ Technology blockchian  มาใช้ในการ Share ข้อมูลผู้ป่วยร่วมกัน ทำให้ผู้ป่วย ไม่ต้องลงทะเบียนผู้ป่วยหลายๆครั้ง และข้อมูลของผู้ป่วยมีความปลอดภัยซึ่งเป็นจุดสำคัญของระบบนี้ รวมไปถึงช่วยให้บุคลากรในคลินิก ทำงานรวดเร็วขึ้นและลดการใช้เอกสารกระดาษเปลี่ยนให้เป็นการเก็บข้อมูลแบบ electronic
+                        ระบบที่จัดการทะเบียนผู้ป่วยสำหรับคลินิกในเครือเดียวกันโดยใช้ Technology blockchian  มาใช้ในการ Share ข้อมูลผู้ป่วยร่วมกัน ทำให้ผู้ป่วย ไม่ต้องลงทะเบียนผู้ป่วยหลายๆครั้ง และข้อมูลของผู้ป่วยมีความปลอดภัยซึ่งเป็นจุดสำคัญของระบบนี้ รวมไปถึงช่วยให้บุคลากรในคลินิก ทำงานรวดเร็วขึ้นและลดการใช้เอกสารกระดาษเปลี่ยนให้เป็นการเก็บข้อมูลแบบ electronic</h4>
 
                     </Container>
                 </Segment>

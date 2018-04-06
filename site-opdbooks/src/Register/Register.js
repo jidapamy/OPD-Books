@@ -39,7 +39,6 @@ const ModalCancel = styled(Modal) `
     
 `
 const ModalConfirm = styled(Modal) `
-  
         position: absolute;
         top: 50%;
         left: 50%;
@@ -57,6 +56,7 @@ class Register extends Component {
   state = {
     // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
     open: 'false',
+
     //data initialization
     provinces: [],
     amphursHome: [],
@@ -75,8 +75,8 @@ class Register extends Component {
     dob: null,
     age: '',
     bloodgroup: '',
-    nationality: 'ไทย (Thai)',
-    religion: 'พุทธ (Buddhism)',
+    nationality: { disabled: true, value: 'ไทย (Thai)' },
+    religion: { disabled: true, value: 'พุทธ (Buddhism)'},
     status: '',
     occupartion: '',
     homePhonenumber: '',
@@ -115,9 +115,8 @@ class Register extends Component {
     motherLastname: '',
 
     //Allery
-    allergy: '',
-    privilege: '',
-    otherPrivilege: true,
+    allergy: { disabled: true, value: ''},
+    privilege: { disabled: true, value: ''},
 
     //check agreement
     agreement: false,
@@ -137,6 +136,16 @@ class Register extends Component {
     errorMobileNumber: { status: false, message: '' },
     errorCountry: { status: false, message: '' },
     errorCongenitalDisease: { status: false, message: '' },
+
+    //other
+    othernameTitle: '',
+    othernationality: '',
+    otherreligion: '',
+    otherallergy: '',
+    otherprivilege: '',
+
+    //modal
+    modalOpen:false
   }
 
   componentWillMount() {
@@ -144,6 +153,7 @@ class Register extends Component {
   }
 
   setField = (field, value) => {
+    console.log(field +' / '+value)
     this.setState({ [field]: value })
     if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode') {
       this.checkStatusSameAddress();
@@ -159,6 +169,24 @@ class Register extends Component {
         this.setState({ gender: 'F' })
       }
     }
+
+    // other
+    if (field === 'nameTitle' || field === 'nationality' || field === 'religion' || field === 'allergy' || field === 'privilege'){
+      if (value === 'other') {
+        this.setState({ [field]: { disabled: false, value: value } })
+      } else {
+        console.log('else .. ' + 'other'+field)
+        this.setState({ [field]: { disabled: true, value: value }, ['other' + field]: '' })
+      }
+    }
+  }
+
+  enableOtherField = (field) => {
+    this.setState({ [field] : { disabled: false, value: '' } })
+  }
+
+  setFieldOther=(field , value)=>{
+    this.setState({ field: { disabled: false, value: value } })
   }
 
   changeCardtype = async () => {
@@ -384,6 +412,12 @@ class Register extends Component {
   insertPateint = async () => {
     console.log(this.state.registerDate)
     console.log('inserting')
+    const nationality = !this.state.nationality.disabled ?  this.state.othernationality : this.state.nationality.value
+    const religion = !this.state.religion.disabled ? this.state.otherreligion : this.state.religion.value
+    const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
+    const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
+
+
     await axios.post('/addPateint', {
       registerDate: this.state.registerDate,
       idCard: this.state.idCard,
@@ -393,8 +427,8 @@ class Register extends Component {
       gender: this.state.gender,
       dob: this.state.dob,
       bloodgroup: this.state.bloodgroup,
-      nationality: this.state.nationality,
-      religion: this.state.religion,
+      nationality: nationality,
+      religion: religion,
       status: this.state.status,
       occupartion: this.state.occupartion,
       homePhonenumber: this.state.homePhonenumber,
@@ -423,8 +457,8 @@ class Register extends Component {
       fatherLastname: this.state.fatherLastname,
       motherFirstname: this.state.motherFirstname,
       motherLastname: this.state.motherLastname,
-      allergy: this.state.allergy,
-      privilege: this.state.privilege,
+      allergy: allergy,
+      privilege: privilege,
     })
     console.log('Success!!!')
   }
@@ -462,23 +496,29 @@ class Register extends Component {
 
 
   validate = () => {
-    console.log('insert')
-    this.insertPateint.bind();
-  }
+    console.log('validate')
+    console.log(this.state.modalOpen)
 
-  test = () => {
-    console.log('test')
+    // required field
+    if (this.state.idCard !== '' && this.state.nameTitle !== '' && this.state.firstname !== '' && 
+        this.state.lastname !== '' && this.state.gender !== '' && this.state.dob !== null &&
+        this.state.bloodgroup !== '' && this.state.nationality !== '' && this.state.religion !== '' && 
+        this.state.status !== '' && this.state.mobileNumber !== '' && this.state.country !== '' && 
+        this.state.congenitalDisease !== '' && this.state.typeofHouse !== '' && this.state.address !== '' && 
+        this.state.province !== '' && this.state.district !== '' && this.state.subDistrict !== '' &&
+        this.state.zipcode !== '' && this.state.allergy !== '' && this.state.privilege !== ''){
+        this.setState({ modalOpen: true })
+      }
   }
 
   // << เซ็ทปุ่มให้กดปิด ไม่ต้องรีหน้า >> 
-  handleOpen = () => this.setState({ modalOpen: true })
+  // handleOpen = () => this.setState({ modalOpen: true })
   handleClose = () => this.setState({ modalOpen: false })
   // <<<<<<<<------------->>>>>>>>
 
   render() {
     
     console.log(this.state)
-    console.log('AGE : '+moment().format('YYYY'))
     return (
       
       <Wrapper>
@@ -495,7 +535,6 @@ class Register extends Component {
               setField={this.setField}
               calculateAge={this.calculateAge}
               setDateOfBirth={this.setDateOfBirth}
-              test={this.test}
 
               errorIdCard={this.state.errorIdCard}
 
@@ -517,6 +556,9 @@ class Register extends Component {
               mobileNumber={this.state.mobileNumber}
               country={this.state.country}
               congenitalDisease={this.state.congenitalDisease}
+              othernameTitle={this.state.othernameTitle}
+              othernationality={this.state.othernationality}
+              otherreligion={this.state.otherreligion}
             />
 
             {this.checkThaiPateint()}
@@ -561,6 +603,8 @@ class Register extends Component {
               otherPrivilege={this.otherPrivilege}
               allergy={this.state.allergy}
               privilege={this.state.privilege}
+              otherallergy={this.state.otherallergy}
+              otherprivilege={this.state.otherprivilege}
             />
 
             <Form.Group inline>
