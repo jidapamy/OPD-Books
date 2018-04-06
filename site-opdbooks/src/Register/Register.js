@@ -204,41 +204,21 @@ class Register extends Component {
   checkThaiPateint = () => {
     if (this.state.cardType === 'idcard' || this.state.cardType === '') {
       return <HomeAddress
-        preparedData={this.preparedData}
         provinces={this.state.provinces}
         amphurs={this.state.amphursHome}
         districts={this.state.districtsHome}
 
+        preparedData={this.preparedData}
         changeProvince={this.changeProvince}
         changeAmphur={this.changeAmphur}
         changeDistrict={this.changeDistrict}
         setField={this.setField}
 
-        typeofHouse={this.state.typeofHouse}
-        address={this.state.address}
-        province={this.state.province}
-        district={this.state.district}
-        subDistrict={this.state.subDistrict}
         zipcode={this.state.zipcode}
       />
     }else{
       return <HomeAddressOfForeigner
-        preparedData={this.preparedData}
-        provinces={this.state.provinces}
-        amphurs={this.state.amphursHome}
-        districts={this.state.districtsHome}
-
-        changeProvince={this.changeProvince}
-        changeAmphur={this.changeAmphur}
-        changeDistrict={this.changeDistrict}
         setField={this.setField}
-
-        typeofHouse={this.state.typeofHouse}
-        address={this.state.address}
-        province={this.state.province}
-        district={this.state.district}
-        subDistrict={this.state.subDistrict}
-        zipcode={this.state.zipcode}
       />
     }
 
@@ -323,7 +303,7 @@ class Register extends Component {
     if (field === 'emerProvince') {
       console.log('if emerProvince')
       this.checkStatusSameAddress();
-      this.setState({ amphursEmer: '', districtsEmer: '', emerDistrict: '', emerSubDistrict: '', emerZipcode: '' })
+      this.setState({ amphursEmer: [], districtsEmer: [], emerDistrict: [], emerSubDistrict: [], emerZipcode: '' })
       const province = value.options.filter(option => option.value === value.value)[0]
       const amphurs = this.state.amphursEmer.filter(amphur => amphur.provinceid === province.key)
       this.setState({ amphursEmer: amphurs })
@@ -379,10 +359,11 @@ class Register extends Component {
     }
   }
   checkSameAddress = () => {
+    console.log('checkSameAddress')
     this.setState({ amphursEmer: this.state.amphursHome, districtsEmer: this.state.districtsHome })
     const check = !this.state.statusSameAddress
     this.setState({ statusSameAddress: check })
-    console.log(this.state.subDistrict + '  ' + this.state.district)
+    console.log(check)
     if (check) {
       this.setState({
         emerAddress: this.state.address,
@@ -522,6 +503,7 @@ class Register extends Component {
               mobileNumber={this.state.mobileNumber}
               country={this.state.country}
               congenitalDisease={this.state.congenitalDisease}
+              
               othernameTitle={this.state.othernameTitle}
               othernationality={this.state.othernationality}
               otherreligion={this.state.otherreligion}
@@ -529,29 +511,30 @@ class Register extends Component {
 
             {this.checkThaiPateint()}
             <EmergencyContact
-              checkSameAddress={this.checkSameAddress}
-              preparedData={this.preparedData}
               provinces={this.state.provinces}
               amphurs={this.state.amphursEmer}
               districts={this.state.districtsEmer}
 
+              checkSameAddress={this.checkSameAddress}
+              preparedData={this.preparedData}
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}
               changeDistrict={this.changeDistrict}
               setField={this.setField}
 
-              emerTitle={this.state.emerTitle}
               emerFirstname={this.state.emerFirstname}
               emerLastname={this.state.emerLastname}
               emerRelationship={this.state.emerRelationship}
               emerHomePhonenumber={this.state.emerHomePhonenumber}
               emerMobileNumber={this.state.emerMobileNumber}
+
               emerTypeofHouse={this.state.emerTypeofHouse}
               emerAddress={this.state.emerAddress}
               emerProvince={this.state.emerProvince}
               emerDistrict={this.state.emerDistrict}
               emerSubDistrict={this.state.emerSubDistrict}
               emerZipcode={this.state.emerZipcode}
+
               statusSameAddress={this.state.statusSameAddress}
             />
 
@@ -564,9 +547,7 @@ class Register extends Component {
             />
 
             <Allergy
-              chooseOther={this.chooseOther}
               setField={this.setField}
-              otherPrivilege={this.otherPrivilege}
               allergy={this.state.allergy}
               privilege={this.state.privilege}
               otherallergy={this.state.otherallergy}
