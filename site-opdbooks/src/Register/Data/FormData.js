@@ -31,19 +31,19 @@ export const typesOfHousing = [
     { key: 'Townhouse', text: 'ทาวน์เฮาส์ (Townhouse)', value: 'ทาวน์เฮาส์ (Townhouse)' },
     { key: 'Flat', text: 'แฟลต (Flat)', value: 'แฟลต (Flat)' },
     { key: 'Condominium', text: 'คอนโดมิเนียม (Condominium)', value: 'คอนโดมิเนียม (Condominium)' },
-    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
+    { key: 'other', text: 'อื่นๆ (Other)', value: 'other' },
 ] 
 export const nationalityData = [
     { key: 'Thai', text: 'ไทย (Thai)', value: 'ไทย (Thai)' },
     { key: 'Chinese', text: 'จีน (Chinese)', value: 'จีน (Chinese)' },
     { key: 'Indian', text: 'อินเดีย (Indian)', value: 'อินเดีย (Indian)' },
-    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
+    { key: 'other', text: 'อื่นๆ (Other)', value: 'other' },
 ] 
 export const religionData = [
     { key: 'Buddhism', text: 'พุทธ (Buddhism)', value: 'พุทธ (Buddhism)' },
     { key: 'Christian', text: 'คริสต์ (Christian)', value: 'คริสต์ (Christian)' },
     { key: 'Muslim', text: 'อิสลาม (Muslim)', value: 'อิสลาม (Muslim)' },
-    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
+    { key: 'other', text: 'อื่นๆ (Other)', value: 'other' },
 ] 
 export const statusData = [
     { key: 'Single', text: 'โสด (Single)', value: 'โสด (Single)' },
@@ -52,7 +52,7 @@ export const statusData = [
     { key: 'Brokeup', text: 'แยกกันอยู่ (Broke up with bf/gf)', value: 'แยกกันอยู่ (Broke up with bf/gf)' },
     { key: 'Divorced', text: 'หย่าร้าง (Divorced)', value: 'หย่าร้าง (Divorced)' },
     { key: 'Widowed', text: 'หม้าย (Widowed)', value: 'หม้าย (Widowed)' },
-    { key: 'Other', text: 'อื่นๆ (Other)', value: 'อื่นๆ (Other)' },
+    { key: 'other', text: 'อื่นๆ (Other)', value: 'other' },
     
 ] 
 export const countryData = [
