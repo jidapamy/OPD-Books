@@ -10,9 +10,8 @@ const InfoPateint = (props) => {
     const setDateOfBirth = props.setDateOfBirth 
     const calculateAge = props.calculateAge
 
-    console.log('dob >> '+dob)
-    console.log('props.dob >>' +props.dob)
-    return <div>
+    return (
+    <div>
         <Segment.Group>
             <Segment>
                 <Form.Group widths='equal' >
@@ -23,7 +22,8 @@ const InfoPateint = (props) => {
                         placeholder=''
                         width={4}
                         readOnly
-                        value={props.registerDate} />
+                        value={props.registerDate} 
+                     />
                 </Form.Group>
                 <HeaderForm/>
             </Segment>
@@ -208,7 +208,7 @@ const InfoPateint = (props) => {
         </Segment.Group>
         <br></br>
     </div>
-}
+    )}
 
 
 export default InfoPateint
