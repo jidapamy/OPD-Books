@@ -40,6 +40,10 @@ export default class Basic extends React.Component {
         e.preventDefault();
     }
 
+    _handleSubmit(e) {
+        e.preventDefault();
+    }
+
     _handleImageChange(e) {
         e.preventDefault();
 
