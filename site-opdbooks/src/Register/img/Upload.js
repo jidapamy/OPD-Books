@@ -10,8 +10,8 @@ import FileBase64 from 'react-file-base64';
 
 const GridColumns = styled(Dropzone) `
     
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-width: 0.1px;
     border-color: #A8AEB9;
     border-style: solid;
@@ -58,20 +58,17 @@ export default class Basic extends React.Component {
         return (
             <section className="GridCenter">
                 <div className="DivPicCenter">
-                    <GridColumns type="file" onChange={this._handleImageChange}>
+                    <GridColumns type="file" onChange={this.handleImageChange}>
                         <Image className="circular" circular>
-                            <div className="setImage">
-                             <Image src={this.state.imagePreviewUrl === '' ?  this.imageDefault : this.state.imagePreviewUrl} size='small' circular />
-                            </div>
+                            {/* <div className="setImage"> */}
+                             <Image className="setImage" src={this.state.imagePreviewUrl === '' ?  this.imageDefault : this.state.imagePreviewUrl} size='small'  />
+                            {/* </div> */}
                         </Image>
                         <div className="IconCamera">
                             <Image src={cameraIcon} />
                         </div>
                     </GridColumns>
                 </div>
-                <br />
-
-
             </section>
 
 

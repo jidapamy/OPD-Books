@@ -4,28 +4,15 @@ import { Label, Segment, Checkbox, Form, Select } from 'semantic-ui-react'
 import { typesOfHousing, nameTypeThUP15 } from './Data/FormData'
 
 
-const EmergencyContact = ({
-    //method
-    setField, changeProvince, changeAmphur, changeDistrict, preparedData, checkSameAddress,
-    //attribute
-    emerTitle, emerFirstname, emerLastname, emerRelationship, emerHomePhonenumber, 
-    emerMobileNumber, emerTypeofHouse, emerAddress, emerProvince,
-    emerDistrict, emerSubDistrict, emerZipcode, statusSameAddress,
-    //data
-    districts, provinces, amphurs
-}) => (
-    <div>
-        <Segment>
-            <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีฉุกเฉินติดต่อ (Contact First And Last Name In Case Of Emergency)</h4></Label>
-            <br></br><br></br>
-            {/* <Message color='yellow'>
-                <Message.Header>โปรดระบุสิ่งที่แพ้</Message.Header>
-                <p>โปรดระบุ ข้อมูล บิดา มารดา หรือ ผู้ปกครอง ในกรณีที่คนไข้อายุต่ำกว่า 15 ปี</p>
-            </Message> */}
-            <Form.Group>
-                    <Form.Field control={Checkbox} label='ที่อยู่เดียวกับที่อยู่ปัจจุบัน' checked={statusSameAddress} onChange={() => checkSameAddress()} />
-            </Form.Group>
-            <br></br>
+const EmergencyContact = (props) => {
+    const setField = props.setField
+    const preparedData = props.preparedData
+    return (
+        <div>
+            <Segment>
+                <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีฉุกเฉินติดต่อ (Contact First And Last Name In Case Of Emergency)</h4></Label>
+                <br></br><br></br>
+                
             <Form.Group>
                     <Form.Field 
                     control={Select} 
@@ -45,7 +32,7 @@ const EmergencyContact = ({
                      placeholder='ชื่อ' 
                      width={5} 
                      onChange={e => setField('emerFirstname', e.target.value)} 
-                     value={emerFirstname}
+                     value={props.emerFirstname}
                      />
                     <Form.Input 
                     label='นามสกุล' 
@@ -131,5 +118,6 @@ const EmergencyContact = ({
         <br></br>
     </div>
 )
+}
 
 export default EmergencyContact

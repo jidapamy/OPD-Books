@@ -1,12 +1,9 @@
 import React from 'react';
 import { Label, Segment, Form, Radio} from 'semantic-ui-react'
 
-const Allergy = ({
-    //method
-    setField, chooseOther,
-    //attribute
-    allergy, privilege, otherprivilege, otherallergy
-}) => (
+const Allergy = (props) => {
+    const setField = props.setField
+    return (
         <div>
             <Segment>
                 <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติการแพ้ยา อาหาร และสารอื่นๆ (History of Food Or Drug Allergy)</h4></Label>
@@ -18,22 +15,22 @@ const Allergy = ({
                         <Form.Radio 
                             label='ไม่เคยมีประวัติแพ้ ( No )' 
                             value='ไม่มี' 
-                            checked={allergy.value === 'ไม่มี'} 
+                            checked={props.allergy.value === 'ไม่มี'} 
                             onChange={(e, { value }) => setField('allergy', value)} 
                         />
                         <Form.Radio
                             label='มีประวัติแพ้, โปรดระบุ (Yes, Pleasespecify)'
                             value='other'
-                            checked={allergy.value === 'other'}
+                            checked={props.allergy.value === 'other'}
                             onChange={(e, { value }) => setField('allergy', value)}
                         />
                         <Form.Input 
                             label='' 
                             placeholder='โปรดระบุสิ่งที่แพ้' 
                             width={4} 
-                            disabled={allergy.disabled}
+                            disabled={props.allergy.disabled}
                             onChange={e => setField('otherallergy', e.target.value)} 
-                            value={otherallergy}
+                            value={props.otherallergy}
                         />
                         <br></br>
                     </Form.Group>
@@ -45,21 +42,21 @@ const Allergy = ({
                         <Form.Radio 
                             value='ข้าราชการ' 
                             label='ข้าราชการ' 
-                            checked={privilege.value === 'ข้าราชการ'} 
+                            checked={props.privilege.value === 'ข้าราชการ'} 
                             width={4} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
                             value='ครอบครัวข้าราชการ' 
                             label='ครอบครัวข้าราชการ' 
-                            checked={privilege.value === 'ครอบครัวข้าราชการ'} 
+                            checked={props.privilege.value === 'ครอบครัวข้าราชการ'} 
                             width={4} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
                             value='รัฐวิสาหิจ' 
                             label='รัฐวิสาหิจ'
-                            checked={privilege.value === 'รัฐวิสาหิจ'} 
+                            checked={props.privilege.value === 'รัฐวิสาหิจ'} 
                             width={2} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
@@ -70,30 +67,30 @@ const Allergy = ({
                             value='ครอบครัวรัฐวิสาหกิจ' 
                             label='ครอบครัวรัฐวิสาหกิจ' 
                             width={4} 
-                            checked={privilege.value === 'ครอบครัวรัฐวิสาหกิจ'} 
+                            checked={props.privilege.value === 'ครอบครัวรัฐวิสาหกิจ'} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
                             value='บุคคลทั่วไป' 
                             label='บุคคลทั่วไป' 
                             width={4} 
-                            checked={privilege.value === 'บุคคลทั่วไป'} 
+                            checked={props.privilege.value === 'บุคคลทั่วไป'} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
                             value='other' 
                             label='อื่นๆ'
                             width={2} 
-                            checked={privilege.value === 'other'}  
+                            checked={props.privilege.value === 'other'}  
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Input 
                             label=''
                             placeholder='โปรดระบุสิทธิ์การรักษาอื่นๆ' 
                             width={4} 
-                            disabled={privilege.disabled} 
+                            disabled={props.privilege.disabled} 
                             onChange={e => setField('otherprivilege', e.target.value)}
-                            value={otherprivilege}
+                            value={props.otherprivilege}
                         />
                         <br></br>
                     </Form.Group>
@@ -101,6 +98,6 @@ const Allergy = ({
             </Segment>
             <br></br>
         </div>
-    )
+    )}
 
 export default Allergy
