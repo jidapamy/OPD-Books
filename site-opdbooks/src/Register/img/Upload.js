@@ -10,13 +10,11 @@ import FileBase64 from 'react-file-base64';
 
 const GridColumns = styled(Dropzone) `
     
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-width: 0.1px;
     border-color: #A8AEB9;
-    border-style: solid;
     border-radius: 500px !important; 
-    margin-left: 43%;
 `
 
 
@@ -42,35 +40,32 @@ export default class Basic extends React.Component {
                 file: file,
                 imagePreviewUrl: reader.result
             });
-            console.log( reader.result)
+            console.log(reader.result)
         }
         console.log(file);
         reader.readAsDataURL(file)
     }
 
     render() {
-        let { imagePreviewUrl } = this.state;
-        let $imagePreview =  <Image src='https://react.semantic-ui.com/assets/images/avatar/large/stevie.jpg' size='small' circular />;
-        if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />);
-        }
 
+        const GridColumns = styled(Dropzone) `
+            width: 150px !important;
+            height: 150px !important;
+            border-width: 0.1px;
+            border-color: #A8AEB9;
+            border-style: solid;
+            border-radius: 500px !important; 
+            background-size: cover;
+            float:center;
+            margin:auto;
+            background-image : url(${this.state.imagePreviewUrl === '' ? this.imageDefault : this.state.imagePreviewUrl})
+        `
         return (
-            <section className="GridCenter">
-                <div className="DivPicCenter">
                     <GridColumns type="file" onChange={this.handleImageChange}>
-                        <Image className="circular" circular>
-                            {/* <div className="setImage"> */}
-                             <Image className="setImage" src={this.state.imagePreviewUrl === '' ?  this.imageDefault : this.state.imagePreviewUrl} size='small'  />
-                            {/* </div> */}
-                        </Image>
                         <div className="IconCamera">
                             <Image src={cameraIcon} />
                         </div>
                     </GridColumns>
-                </div>
-            </section>
-
 
         )
     }
