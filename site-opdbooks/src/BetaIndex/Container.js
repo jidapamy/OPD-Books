@@ -20,8 +20,8 @@ import asiaGray from './img/asiaGray.jpg';
 import myGray from './img/myGray.jpg';
 import stampGray from './img/stampGray.jpg';
 import WOW from 'wowjs';
-
-
+import iconhowto1 from './img/icon-howto-1.png'
+import iconhowto2 from './img/icon-howto-2.png'
 const GridColumn = styled(Grid.Column) `
     display: flex;
     justify-content: center;
@@ -133,6 +133,24 @@ class ContainerExampleContainer extends React.Component {
                             หากเป็นผู้ป่วยใหม่ ต้องลงทะเบียนผู้ป่วยก่อนจะทำการรักษา
                             ซึ่ง ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง ได้แก่
                             </p>
+                        <Grid columns={2}>
+                            <Grid.Column>
+                                <Image
+                                    size='large'
+                                    label={{ as: 'a', corner: 'left', icon: 'heart' }}
+                                    src={iconhowto1}
+                                />
+                            </Grid.Column>
+
+                            <Grid.Column>
+                                <Image
+                                    size='large'
+                                    label={{ as: 'a', color: 'red', corner: 'right', icon: 'save' }}
+                                    src={iconhowto2}
+                                />
+                            </Grid.Column>
+                        </Grid>
+)
                         1. ลงทะเบียนบน website ผ่านทาง computer หรือ
                                 smart phone ของตัวผู้ป่วยเอง
                             <br></br>
@@ -148,8 +166,7 @@ class ContainerExampleContainer extends React.Component {
 
                     </Container>
                 </Segment>
-
-
+               
                 {/* << ส่วน ICON บอกจุดมุ่งหมายข้อดีของเรา >> */}
 
                 <Segment style={{ paddingTob: '2em', border: '0px' }} >
@@ -289,8 +306,6 @@ class ContainerExampleContainer extends React.Component {
                                     <List link inverted>
                                         <List.Item as='a'>Sitemap</List.Item>
                                         <List.Item as='a'>Contact Us</List.Item>
-                                        <List.Item as='a'>Religious Ceremonies</List.Item>
-                                        <List.Item as='a'>Gazebo Plans</List.Item>
                                     </List>
                                 </Grid.Column>
                                 <Grid.Column width={3}>
@@ -298,8 +313,7 @@ class ContainerExampleContainer extends React.Component {
                                     <List link inverted>
                                         <List.Item as='a'>Banana Pre-Order</List.Item>
                                         <List.Item as='a'>DNA FAQ</List.Item>
-                                        <List.Item as='a'>How To Access</List.Item>
-                                        <List.Item as='a'>Favorite X-Men</List.Item>
+                                        
                                     </List>
                                 </Grid.Column>
                                 <Grid.Column width={7}>

@@ -11,15 +11,15 @@ import EmergencyContact from './EmergencyContact'
 import ChildrenUnder15 from './ChildrenUnder15'
 import Allergy from './Allergy'
 import Footer from './Footer'
-
 import { Link } from 'react-router-dom';
-
-
 import BackgroundImage from './img/BG.png'
+
+import swal from 'sweetalert2';
 
 const provincesData = require('./Data/Province')
 const amphursData = require('./Data/Amphur')
 const districtsData = require('./Data/District')
+
 
 const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
@@ -437,6 +437,30 @@ class Register extends Component {
   //   }
   // }
 
+
+  RunPopUp = async () => {
+    swal({
+      title: 'ยืนยันการสมัคร?',
+      text: "ข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1FCB4A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'CONFIRM!'
+    }).then((result) => {
+      if (result.value) {
+        swal(
+          'สมัครเสร็จสิ้น!',
+          'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
+          'success',
+        )
+        this.props.history.push('/home')
+      }
+    })
+  }
+
+
+
   validate = () => {
     console.log('insert')
     this.insertPateint.bind();
@@ -452,6 +476,7 @@ class Register extends Component {
   // <<<<<<<<------------->>>>>>>>
 
   render() {
+    
     console.log(this.state)
     console.log('AGE : '+moment().format('YYYY'))
     return (
@@ -550,27 +575,9 @@ class Register extends Component {
                   <h3>CANCEL</h3>
                 </Button>
               </Link>
-              <ModalConfirm
-                trigger={<Button disabled={!this.state.agreement} onClick={this.handleOpen} color='green'><h3>CONFIRM</h3></Button>}
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
-                size='small'  closeIcon>
-                  <Header icon='check' content='ยืนยันการสมัคร' />
-                  <Modal.Content>
-                    <p>คุณแน่ใจแล้วหรือไม่ว่าข้อมูลที่คุณกรอกตรงตามความเป็นความจริง?</p>
-                    <p style={{color:'red'}}>***กรณีข้อมูลของท่านไม่ตรงกับความเป็นจริงท่านสามารถแจ้งความประสงค์ที่จะขอแก้ไขได้โดยผ่านคลินิกที่อยู่ในเครือ</p>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button color='red' onClick={this.handleClose} inverted>
-                      <Icon name='remove' /> No
-                    </Button>
-                   < Link to='/home'> <Button color='green' inverted>
-                       <Icon name='checkmark' /> Yes
-                    </Button>
-                  </Link>
-                </Modal.Actions>
-              </ModalConfirm>
-              
+                
+              <Button disabled={!this.state.agreement} onClick={() => this.RunPopUp()} color='green'><h3>CONFIRM</h3></Button>
+                         
             </GridColumn>
             <br></br><br></br>
           </Form>
