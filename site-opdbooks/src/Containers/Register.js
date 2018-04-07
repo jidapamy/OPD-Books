@@ -467,7 +467,7 @@ class Register extends Component {
   }
 
   changeAmphur = (field, value) => {
-    const amphur = value.options.filter(option => option.value === value.value)[0]
+    const amphur = value.options.filter(option =>  option.value === value.value)[0]
     const districts = districtsData.default[amphur.key]
     if (field === 'emerDistrict') {
       this.checkStatusSameAddress();
