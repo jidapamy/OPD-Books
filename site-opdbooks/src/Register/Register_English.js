@@ -453,7 +453,7 @@ class Register_English extends Component {
   RunPopUp = async () => {
     swal({
       title: 'Confirm Registration?',
-      text: "ข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
+      text: "I confirm that the information given in this form is true.",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#1FCB4A',
@@ -462,8 +462,8 @@ class Register_English extends Component {
     }).then((result) => {
       if (result.value) {
         swal(
-          'สมัครเสร็จสิ้น!',
-          'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
+          'Registration Complete!',
+          'You already registration complete, try to log-in into the system to get started.',
           'success',
           this.props.history.push('/home')
         )
@@ -504,7 +504,7 @@ class Register_English extends Component {
           <Message
             hidden={!this.state.errorIdCard.status}
             error
-            header={this.state.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
+            header={this.state.cardType === 'idcard' ? 'Invalid-data' : 'Invalid'}
             content={this.state.errorIdCard.message}
           />
           <Form onSubmit={this.insertPateint}>

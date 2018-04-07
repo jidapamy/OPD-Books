@@ -14,8 +14,8 @@ const Allergy_English = (props) => {
                     <Form.Group inline>
                         <Form.Radio 
                             label='No' 
-                            value='ไม่มี' 
-                            checked={props.allergy.value === 'ไม่มี'} 
+                            value='No' 
+                            checked={props.allergy.value === 'No'} 
                             onChange={(e, { value }) => setField('allergy', value)} 
                         />
                         <Form.Radio
@@ -40,23 +40,23 @@ const Allergy_English = (props) => {
                     <br></br>
                     <Form.Group inline>
                         <Form.Radio 
-                            value='ข้าราชการ' 
+                            value='Government-Officer' 
                             label='Government Officer' 
-                            checked={props.privilege.value === 'ข้าราชการ'} 
+                            checked={props.privilege.value === 'Government-Officer'} 
                             width={4} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
-                            value='ครอบครัวข้าราชการ' 
+                            value='Government-family' 
                             label='Government Officer&#39;s family' 
-                            checked={props.privilege.value === 'ครอบครัวข้าราชการ'} 
+                            checked={props.privilege.value === 'Government-family'} 
                             width={4} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
-                            value='รัฐวิสาหกิจ' 
+                            value='State-Enterprise' 
                             label='State Enterprise Employee '
-                            checked={props.privilege.value === 'รัฐวิสาหกิจ'} 
+                            checked={props.privilege.value === 'State-Enterprise'} 
                             width={2} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
@@ -64,17 +64,17 @@ const Allergy_English = (props) => {
 
                     <Form.Group inline>
                         <Form.Radio 
-                            value='ครอบครัวรัฐวิสาหกิจ' 
+                            value='State-Enterprise-family' 
                             label='State Enterprise Employee&#39;s family' 
                             width={4} 
-                            checked={props.privilege.value === 'ครอบครัวรัฐวิสาหกิจ'} 
+                            checked={props.privilege.value === 'State-Enterprise-family'} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
-                            value='บุคคลทั่วไป' 
+                            value='General-Public' 
                             label='General Public' 
                             width={4} 
-                            checked={props.privilege.value === 'บุคคลทั่วไป'} 
+                            checked={props.privilege.value === 'General-Public'} 
                             onChange={(e, { value }) => setField('privilege', value)}
                         />
                         <Form.Radio 
