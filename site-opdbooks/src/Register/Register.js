@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import BackgroundImage from './img/BG.png'
 
 import swal from 'sweetalert2';
+import { nameType, bloodgroupData, cardTypeData, genderData, nationalityData, religionData, statusData, countryData } from './Data/FormData'
 
 const provincesData = require('./Data/Province')
 const amphursData = require('./Data/Amphur')
@@ -72,13 +73,13 @@ class Register extends Component {
     dob: null,
     age: '',
     bloodgroup: '',
-    nationality: { disabled: true, value: 'ไทย (Thai)' },
-    religion: { disabled: true, value: 'พุทธ (Buddhism)'},
+    nationality: 'ไทย (Thai)',
+    religion: 'พุทธ (Buddhism)',
     status: '',
     occupartion: '',
     homePhonenumber: '',
     mobileNumber: '',
-    country: 'Thailand',
+    country: '',
     congenitalDisease: '',
     // picture:'',
 
@@ -142,7 +143,22 @@ class Register extends Component {
     otherprivilege: '',
 
     //modal
-    modalOpen:false
+    modalOpen:false,
+
+
+    //dataOther
+    religionData: religionData,
+    nationalityData: nationalityData,
+    statusData: statusData,
+    countryData: countryData,
+    bloodgroupData: bloodgroupData,
+    nameTypeData: nameTypeData,
+    cardTypeData: cardTypeData,
+    genderData: genderData,
+    typesOfHousingData: typesOfHousingData,
+    nameTypeThUP15Data: nameTypeThUP15Data,
+
+    
   }
 
   componentWillMount() {
@@ -168,14 +184,14 @@ class Register extends Component {
     }
 
     // other
-    if (field === 'nameTitle' || field === 'nationality' || field === 'religion' || field === 'allergy' || field === 'privilege'){
-      if (value === 'other') {
-        this.setState({ [field]: { disabled: false, value: value } })
-      } else {
-        console.log('else .. ' + 'other'+field)
-        this.setState({ [field]: { disabled: true, value: value }, ['other' + field]: '' })
-      }
-    }
+    // if (field === 'nameTitle' || field === 'nationality' || field === 'religion' || field === 'allergy' || field === 'privilege'){
+    //   if (value === 'other') {
+    //     this.setState({ [field]: { disabled: false, value: value } })
+    //   } else {
+    //     console.log('else .. ' + 'other'+field)
+    //     this.setState({ [field]: { disabled: true, value: value }, ['other' + field]: '' })
+    //   }
+    // }
   }
 
   enableOtherField = (field) => {
@@ -514,8 +530,19 @@ class Register extends Component {
               calculateAge={this.calculateAge}
               setDateOfBirth={this.setDateOfBirth}
 
+              nationalityData={this.state.nationalityData}
+              religionData={this.state.religionData}
+              statusData={this.state.statusData}
+              countryData={this.state.countryData}
+              bloodgroupData={this.state.bloodgroupData}
+              nameTypeData={this.state.nameTypeData}
+              cardTypeData={this.state.cardTypeData}
+              typesOfHousingData={this.state.typesOfHousingData}
+              nameTypeThUP15Data={this.state.nameTypeThUP15Data}
+
               errorIdCard={this.state.errorIdCard}
 
+              religionTest={this.state.religionTest}
               registerDate={this.state.registerDate}
               cardType={this.state.cardType}
               idCard={this.state.idCard}
