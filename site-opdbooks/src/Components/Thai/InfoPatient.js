@@ -1,9 +1,9 @@
 import React from 'react';
-import {
-    genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData, typesOfHousingData,
-    nationalityData, religionData, statusData, countryData
-} from './../../Static/data/FormDatas'
-import { Segment, Form, Select, } from 'semantic-ui-react'
+// import {
+//     genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData, typesOfHousingData,
+//     nationalityData, religionData, statusData, countryData
+// } from './../../Static/data/FormDatas'
+import { Segment, Form, Select, Dropdown } from 'semantic-ui-react'
 import Date from './../Date'
 // import HeaderForm from './HeaderForm';
 
@@ -15,14 +15,17 @@ const InfoPateint = (props) => {
     const Country = () => {
         if (props.cardType !== 'idcard') {
             return <Form.Field
-                control={Select}
-                label='ประเทศ (Country)'
-                options={countryData}
+                control={Dropdown}
+                search selection
+                wrapSelection={false}
+                options={props.countryData}
                 placeholder='เลือกประเทศ'
+                label='ประเทศ (Country)'
                 width={4}
                 onChange={(e, { value }) => setField('country', value)}
                 value={props.country}
-                required />
+                required
+            />
         }else{
             return <Form.Input
                 label='ประเทศ (Country)'
@@ -56,7 +59,7 @@ const InfoPateint = (props) => {
                         <Form.Field
                             control={Select}
                             label='ประเภทบัตร (Card type)'
-                            options={cardTypeData}
+                            options={props.cardTypeData}
                             placeholder='เลือกประเภทบัตร'
                             width={4}
                             onChange={(e, { value }) => props.changeCardType(value)}
@@ -94,13 +97,21 @@ const InfoPateint = (props) => {
 
                     <Form.Group>
                         <Form.Field
-                            control={Select}
+                            control={Dropdown}
+                            search
+                            selection
+                            allowAdditions
+                            onAddItem={(e, { value }) => {
+                                const arr = props.titleNameData
+                                setField('titleNameData', [{ text: value, value }, ...props.titleNameData])
+                            }}
+                            additionLabel='other : '
                             label='คำนำหน้า (Title)'
-                            options={titleNameData}
+                            options={props.titleNameData}
                             placeholder='เลือก (Select)'
                             width={4}
-                            onChange={(e, { value }) => props.setGender(value)}
-                            value={props.nameTitle.value}
+                            onChange={(e, { value }) => setField('nameTitle',value)}
+                            value={props.nameTitle}//ลบvalue
                             required
                         />
                         <Form.Input
@@ -133,7 +144,7 @@ const InfoPateint = (props) => {
                         <Form.Field
                             control={Select}
                             label='เพศ (Gender)'
-                            options={genderData}
+                            options={props.genderData}
                             placeholder='เลือกเพศ'
                             width={4}
                             onChange={(e, { value }) => setField('gender', value)}
@@ -143,7 +154,7 @@ const InfoPateint = (props) => {
                         <Form.Field
                             control={Select}
                             label='กรุ๊ปเลือด (BloodGroup)'
-                            options={bloodgroupData}
+                            options={props.bloodgroupData}
                             placeholder='เลือกกรุ๊ปเลือด'
                             width={4}
                             onChange={(e, { value }) => setField('bloodgroup', value)}
@@ -154,30 +165,41 @@ const InfoPateint = (props) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Field
-                            control={Select}
+                            control={Dropdown}
+                            search
+                            selection
+                            allowAdditions
+                            onAddItem={(e, { value }) => {
+                                const arr = props.religionData
+                                setField('religionData', [{ text: value, value }, ...props.religionData])
+                            }}
+                            additionLabel='other : '
                             label='ศาสนา (Religion)'
-                            options={religionData}
+                            options={props.religionData}
                             placeholder='เลือกศาสนา'
                             width={4}
-                            onChange={(e, { value }) => props.chooseOther('religion', value)}
-                            value={props.religion.value}
+                            onChange={(e, { value }) => setField('religion', value)}
+                            value={props.religion}
                             required
                         />
-                        <Form.Input
-                            label='ศาสนาอื่นๆ (Religion other)'
-                            placeholder='ศาสนาอื่นๆ'
-                            width={4}
-                            disabled={props.religion.disabled}
-                            onChange={e => setField('otherreligion', e.target.value)}
-                            value={props.otherreligion} />
+                        
                         <Form.Field
+                            control={Dropdown}
+                            search
+                            selection
+                            allowAdditions
+                            onAddItem={(e, { value }) => {
+                                const arr = props.nationalityData
+                                setField('nationalityData', [{ text: value, value }, ...props.nationalityData])
+                            }}
+                            additionLabel='other : '
                             control={Select}
                             label='สัญชาติ (Nationality)'
-                            options={nationalityData}
+                            options={props.nationalityData}
                             placeholder='เลือกสัญชาติ'
                             width={4}
-                            onChange={(e, { value }) => props.chooseOther('nationality', value)}
-                            value={props.nationality.value}
+                            onChange={(e, { value }) => setField('nationality', value)}
+                            value={props.nationality}
                             required />
                         <Form.Input
                             label='สัญชาติอื่นๆ (Nationality other)'
@@ -191,7 +213,7 @@ const InfoPateint = (props) => {
                         <Form.Field
                             control={Select}
                             label='สถานภาพ (Status)'
-                            options={statusData}
+                            options={props.statusData}
                             placeholder='สถานะ'
                             width={4}
                             onChange={(e, { value }) => setField('status', value)}

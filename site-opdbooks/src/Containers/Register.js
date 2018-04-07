@@ -22,6 +22,10 @@ import HomeAddressOfForeigner from './../Components/Foreigner/HomeAddressOfForei
 //public
 import BackgroundImage from './../Static/img/BG.png'
 import { validateTextTh, validateTextEn } from './../Static/data/Validate'
+import { 
+  genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData, 
+  typesOfHousingData, nationalityData, religionData, statusData, countryData } from './../Static/data/FormDatas'
+
 
 const provincesData = require('./../Static/data/Provinces')
 const amphursData = require('./../Static/data/Amphurs')
@@ -80,8 +84,8 @@ class Register extends Component {
     dob: null,
     age: '',
     bloodgroup: '',
-    nationality: { disabled: true, value: 'ไทย (Thai)' },
-    religion: { disabled: true, value: 'พุทธ (Buddhism)' },
+    nationality: 'ไทย (Thai)' ,
+    religion: 'พุทธ (Buddhism)',
     status: '',
     occupartion: '',
     homePhonenumber: '',
@@ -152,14 +156,23 @@ class Register extends Component {
     requiredEmerZipcode: false,
 
     //other
-    othernameTitle: '',
-    othernationality: '',
-    otherreligion: '',
     otherallergy: '',
     otherprivilege: '',
 
     //modal
-    modalOpen: false
+    modalOpen: false,
+
+    //dataOther
+    genderData: genderData,
+    cardTypeData: cardTypeData,
+    titleNameData: titleNameData,
+    titleNameParentData: titleNameParentData,
+    bloodgroupData: bloodgroupData,
+    typesOfHousingData: typesOfHousingData,
+    nationalityData: nationalityData,
+    religionData: religionData,
+    statusData: statusData,
+    countryData: countryData,
   }
 
   emerOldAddress = {};
@@ -193,8 +206,8 @@ class Register extends Component {
       await this.setState({
         cardType: value,
         erroridcard: false,
-        nationality: { disabled: true, value: 'ไทย (Thai)' },
-        religion: { disabled: true, value: 'พุทธ (Buddhism)' },
+        nationality: 'ไทย (Thai)',
+        religion: 'พุทธ (Buddhism)',
         country: 'ไทย'
       })
     } else {
@@ -202,8 +215,8 @@ class Register extends Component {
       await this.setState({
         cardType: value,
         erroridcard: false,
-        nationality: { disabled: true, value: '' },
-        religion: { disabled: true, value: '' },
+        nationality: '',
+        religion: '',
         country: ''
       })
     }
@@ -580,8 +593,8 @@ class Register extends Component {
   insertPateint = async () => {
     console.log(this.state.registerDate)
     console.log('inserting')
-    const nationality = !this.state.nationality.disabled ? this.state.othernationality : this.state.nationality.value
-    const religion = !this.state.religion.disabled ? this.state.otherreligion : this.state.religion.value
+    // const nationality = !this.state.nationality.disabled ? this.state.othernationality : this.state.nationality.value
+    // const religion = !this.state.religion.disabled ? this.state.otherreligion : this.state.religion.value
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
 
@@ -594,8 +607,8 @@ class Register extends Component {
                                       gender: this.state.gender,
                                       dob: this.state.dob,
                                       bloodgroup: this.state.bloodgroup,
-                                      nationality: nationality,
-                                      religion: religion,
+                                      nationality: this.state.nationality,
+                                      religion: this.state.religion,
                                       status: this.state.status,
                                       occupartion: this.state.occupartion,
                                       homePhonenumber: this.state.homePhonenumber,
@@ -683,10 +696,17 @@ class Register extends Component {
               mobileNumber={this.state.mobileNumber}
               country={this.state.country}
               congenitalDisease={this.state.congenitalDisease}
-              //Other
-              othernameTitle={this.state.othernameTitle}
-              othernationality={this.state.othernationality}
-              otherreligion={this.state.otherreligion}
+              //data
+              genderData={this.state.genderData}
+              cardTypeData={this.state.cardTypeData}
+              titleNameData={this.state.titleNameData}
+              titleNameParentData={this.state.titleNameParentData}
+              bloodgroupData={this.state.bloodgroupData}
+              typesOfHousingData={this.state.typesOfHousingData}
+              nationalityData={this.state.nationalityData}
+              religionData={this.state.religionData}
+              statusData={this.state.statusData}
+              countryData={this.state.countryData}
             />
 
             <HomeAddress
