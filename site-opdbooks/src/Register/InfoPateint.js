@@ -48,7 +48,7 @@ const InfoPateint = (props) => {
                         onBlur={e => props.checkIdcard(e)}
                         onChange={e => setField('idCard', e.target.value)}
                         value={props.idCard}
-                        error={props.errorIdCard.status}
+                        error={props.erroridcard.status}
                         autoFocus
                         required
                     />

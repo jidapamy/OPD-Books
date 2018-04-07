@@ -119,7 +119,7 @@ class Register extends Component {
     agreement: false,
 
     //validate
-    errorIdCard: { status: false, message: '' },
+    erroridcard: { status: false, message: '' },
     errorNameTitle: { status: false, message: '' },
     errorFirstname: { status: false, message: '' },
     errorLastname: { status: false, message: '' },
@@ -156,7 +156,7 @@ class Register extends Component {
       this.checkStatusSameAddress();
     }
     if (field === 'cardType') {
-      this.setState({ errorIdCard: { status: false, message: '' } })
+      this.setState({ erroridcard: { status: false, message: '' } })
       this.changeCardtype()
     }
     if (field === 'nameTitle'){
@@ -224,7 +224,7 @@ class Register extends Component {
 
   validateSyntaxIdcard = () => {
     const error = { status: false, message: '' };
-    this.setState({ errorIdCard: error })
+    this.setState({ erroridcard: error })
     if (this.state.cardType === 'idcard' && this.state.idCard.length === 13 && this.state.idCard.match(/^[0-9]+$/) ||
       this.state.cardType === 'passport' && this.state.idCard.length === 9 && this.state.idCard.match(/^[a-zA-Z]{2}[0-9]{7}$/)) {
       return true;
@@ -249,7 +249,7 @@ class Register extends Component {
         }
 
         console.log(error)
-        this.setState({ errorIdCard: error })
+        this.setState({ erroridcard: error })
         return false;
       }
     }
@@ -270,7 +270,7 @@ class Register extends Component {
         } else {
           error.message = 'The passport number is duplicated'
         }
-        this.setState({ errorIdCard: error })
+        this.setState({ erroridcard: error })
       }
     }
   }
@@ -502,10 +502,10 @@ class Register extends Component {
       <Wrapper>
         <Container>
           <Message
-            hidden={!this.state.errorIdCard.status}
+            hidden={!this.state.erroridcard.status}
             error
             header={this.state.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
-            content={this.state.errorIdCard.message}
+            content={this.state.erroridcard.message}
           />
           <Form onSubmit={this.insertPateint}>
             <InfoPateint
@@ -514,7 +514,7 @@ class Register extends Component {
               calculateAge={this.calculateAge}
               setDateOfBirth={this.setDateOfBirth}
 
-              errorIdCard={this.state.errorIdCard}
+              erroridcard={this.state.erroridcard}
 
               registerDate={this.state.registerDate}
               cardType={this.state.cardType}

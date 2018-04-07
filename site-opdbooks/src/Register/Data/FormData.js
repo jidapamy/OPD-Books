@@ -72,7 +72,6 @@ export const countryData = [
   { key: 'Aruba', text: 'Aruba', value: 'Aruba' },
   { key: 'Australia', text: 'Australia', value: 'Australia' },
   { key: 'Azerbaijan', text: 'Azerbaijan', value: 'Azerbaijan' },
-  { key: 'Bahrain', text: 'Bahrain', value: 'Bahrain' },
   { key: 'Austria', text: 'Austria', value: 'Austria' },
   { key: 'Bahamas', text: 'Bahamas', value: 'Bahamas' },
   { key: 'Bahrain', text: 'Bahrain', value: 'Bahrain' },
