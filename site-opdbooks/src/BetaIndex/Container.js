@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Button, Container, Divider, Grid, Header, Icon,
-    Image, List, Menu, Responsive, Segment, Sidebar,
-    Visibility, Card, Step, Advertisement, Reveal
+    Button, Container, Grid, Header,
+    Image, List, Segment, Card, Reveal, Icon
 } from 'semantic-ui-react'
 import styled from 'styled-components'
 // << IMPORT PHOTO >>
@@ -20,6 +19,9 @@ import asiaGray from './img/asiaGray.jpg';
 import myGray from './img/myGray.jpg';
 import stampGray from './img/stampGray.jpg';
 import WOW from 'wowjs';
+import iconhowto1 from './img/icon-howto-1.png'
+import iconhowto2 from './img/icon-howto-2.png'
+import { Link } from 'react-router-dom';
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -126,27 +128,45 @@ class ContainerExampleContainer extends React.Component {
                 
                 <Segment style={{ padding: '4em 0em', border: '0px', fontFamily: 'Kanit' }} vertical className="wow zoomIn" data-wow-delay="0.2s">
                     <Container center="true">
-                        <Header as='h3' style={{ fontSize: '2em', textAlign: 'center' }}>HOW TO</Header>
-                        <p style={{ fontSize: '1.33em' }}>
+                        <Header as='h3' style={{ fontSize: '3em', textAlign: 'center' }}>HOW TO</Header>
+                        <p style={{ fontSize: '1.33em',textIndent: '30px' }}>
+                            ระบบของเราจะช่วยอำนวยความสะดวกให้แก่ ผู้ป่วย จากแต่ก่อน ผู้ป่วยต้อง กรอกฟอร์ม ทะเบียนผู้ป่วยใหม่ทุกครั้งในเวลา 
+                            ที่ผู้ป่วย ได้ไปรักษาคลินิก ใหม่ๆ ระบบเราจะเป็นการรวบรวมแต่ละคลินิกเข้าด้วยกัน ดังนั้นผู้ป่วยเพียงลงเทียนผู้ป่วยใหม่ครั้งเดียวไม่ว่า 
+                            ผู้ป่วยจะไปที่ไหน ผู้ป่วยสามารถที่จะเข้ารับการรักษา คลินิกที่ได้ลงทะเบียนกับเราไว้ได้ อย่างรวดเร็วไม่ต้องไปเสียเวลาลงทะเบียนผู้ป่วยใหม่ 
+                            โดยระบบของเรา จะมีข้อมูลผู้ป่วย อยู่บน Blockchain ที่สามารถเชื่อมต่อข้อมูลผู้ป่วย กระจายไปแต่ละคลินิกในเครือของเราได้ทุกคลินิกนดยสามารถทราบข้อมูลของผู้ป่วยได้ทันที 
+                            </p><br></br>
+                        <p style={{ fontSize: '1.33em', textIndent: '30px' }}>    
+                            ระบบที่จัดการทะเบียนผู้ป่วยสำหรับคลินิกในเครือเดียวกันโดยใช้ Technology blockchian  มาใช้ในการ Share ข้อมูลผู้ป่วยร่วมกัน ทำให้ผู้ป่วย ไม่ต้องลงทะเบียนผู้ป่วยหลายๆครั้ง และข้อมูลของผู้ป่วยมีความปลอดภัยซึ่งเป็นจุดสำคัญของระบบนี้ รวมไปถึงช่วยให้บุคลากรในคลินิก ทำงานรวดเร็วขึ้นและลดการใช้เอกสารกระดาษเปลี่ยนให้เป็นการเก็บข้อมูลแบบ electronic<br></br>
                             การสมัครทะเบียนผู้ป่วยใหม่
-                            หากเป็นผู้ป่วยใหม่ ต้องลงทะเบียนผู้ป่วยก่อนจะทำการรักษา
-                            ซึ่ง ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง ได้แก่
+                            หากเป็นผู้ป่วยใหม่ ต้องลงทะเบียนผู้ป่วยก่อนจะทำการรักษาผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ
                             </p>
-                       
-)
-                        1. ลงทะเบียนบน website ผ่านทาง computer หรือ
-                                smart phone ของตัวผู้ป่วยเอง
-                            <br></br>
-                        2. ลงทะเบียนกับทางเคาท์เตอร์ฝ่ายทะเบียนของคลินิก
-                                แต่ไม่ว่าผู้ป่วยจะเลือกลงทะเบียนผ่านช่องทางใดก็ตาม
-                                หลังทำการลงทะเบียนเสร็จแล้ว ข้อมูลทะเบียนของผู้ป่วย
-                                จะถูกเก็บไว้บน blockchain ทันที
-                            <br></br><br></br>
-                        <h4>เพียงเท่านี้ผู้ป่วยก็จะสามารถเข้ารับการรักษากับคลินิกได้เลย
-                                รวมถึงสามารถเข้ารับการรักษากับคลินิกอื่นๆ ที่ใช้ blockchain
-                                เหมือนกันได้เลย โดยไม่ต้องทำการสมัครทะเบียนผู้ป่วยใหม่
-                        ระบบที่จัดการทะเบียนผู้ป่วยสำหรับคลินิกในเครือเดียวกันโดยใช้ Technology blockchian  มาใช้ในการ Share ข้อมูลผู้ป่วยร่วมกัน ทำให้ผู้ป่วย ไม่ต้องลงทะเบียนผู้ป่วยหลายๆครั้ง และข้อมูลของผู้ป่วยมีความปลอดภัยซึ่งเป็นจุดสำคัญของระบบนี้ รวมไปถึงช่วยให้บุคลากรในคลินิก ทำงานรวดเร็วขึ้นและลดการใช้เอกสารกระดาษเปลี่ยนให้เป็นการเก็บข้อมูลแบบ electronic</h4>
+                            {/* <Header as='h3' style={{ fontSize: '1.7em', textAlign: 'center' }}>ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ </Header> */}
+                            
+                        <Grid columns='equal' stackable width={4}>
 
+                            <Grid.Row textAlign='center'>
+                                
+                                <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em',marginLeft:'20%' }} className="wow zoomIn" data-wow-delay="0.2s">
+                                    <GridColumn>
+                                        {/* <Image size='medium'src={iconhowto1} /> */}
+                                        <Card
+                                            color='teal'
+                                            image={iconhowto1}
+                                        />
+                                    </GridColumn>
+                                </Grid.Column>
+                                <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em', marginRight: '20%' }} className="wow zoomIn" data-wow-delay="0.2s">
+                                    <GridColumn>
+                                        {/* <Image size='medium'src={iconhowto2} /> */}
+                                        <Card
+                                            color='teal'
+                                            image={iconhowto2}
+                                        />
+                                        </GridColumn>
+                                </Grid.Column>
+
+                            </Grid.Row>
+                        </Grid>
                     </Container>
                 </Segment>
                
@@ -285,23 +305,24 @@ class ContainerExampleContainer extends React.Component {
                         <Grid divided inverted stackable>
                             <Grid.Row>
                                 <Grid.Column width={3}>
-                                    <Header inverted as='h4' content='About' />
+                                    <Header inverted as='h4' content='OPD Page' />
                                     <List link inverted>
-                                        <List.Item as='a'>Sitemap</List.Item>
-                                        <List.Item as='a'>Contact Us</List.Item>
+                                        <List.Item as='a'>SignUp</List.Item>
+                                        <List.Item as='a'>SignIn</List.Item>
                                     </List>
                                 </Grid.Column>
                                 <Grid.Column width={3}>
-                                    <Header inverted as='h4' content='Services' />
+                                    <Header inverted as='h4' content='Contract' />
                                     <List link inverted>
-                                        <List.Item as='a'>Banana Pre-Order</List.Item>
-                                        <List.Item as='a'>DNA FAQ</List.Item>
-                                        
+                                        <Button circular color='facebook' icon='facebook' />
+                                        <Button circular color='twitter' icon='twitter' />
+                                        <Button circular color='linkedin' icon='linkedin' />
+                                        <Button circular color='google plus' icon='google plus' />
                                     </List>
                                 </Grid.Column>
                                 <Grid.Column width={7}>
                                     <Header as='h4' inverted>Footer Header</Header>
-                                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                                    <p>เว็บ OPD Books เป็นเว็บเกี่ยวกับ เวชระเบียนผู้ป่วยโดยนำเทคโนโลยี Block chain เข้ามาใช้.</p>
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>

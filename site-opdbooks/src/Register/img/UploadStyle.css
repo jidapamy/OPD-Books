@@ -9,29 +9,5 @@
     border-color: #DFE4ED;
     text-align: center;
     margin-left: 73%;
-    margin-top:-25%;
-    margin-top:-20%;
-}
-
-
-.DivPicCenter{
-    text-align: center;
-}
-
-.GridCenter{
-    text-align: center;
-    width: 100%;
-}
-
-.circularUpload{
-    width: 100% !important;
-    height: 100% !important;
-    /* border-radius:500%; */
-}
-
-.setImage {
-    display: block;
-    max-width: 100%;
-    width: 100% !important;
-    /* border-radius:500%; */
+    margin-top:74%;
 }

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const ImageSizeHeader = styled(Segment) `
     width: 1400px; 
     height: 1000px; 
-    left: -20px; 
+    left: -30px; 
     top: -300px;
     border-radius: 50px;
     -webkit-transform: rotate(15deg);

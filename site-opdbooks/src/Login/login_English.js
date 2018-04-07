@@ -2,9 +2,8 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import './login.css'
 import { Link } from 'react-router-dom';
-import LoginHeader from './header_Login.js';
 
-const LoginForm = () => (
+const LoginForm_English = () => (
     <div className='login-form'>
         {/*
       Heads up! The styles below are necessary for the correct render of this example.
@@ -18,7 +17,6 @@ const LoginForm = () => (
         height: 100%;
       }
     `}</style>
-    <LoginHeader />
         <Grid
             textAlign='center'
             style={{ height: '100%' }}
@@ -36,13 +34,13 @@ const LoginForm = () => (
                             fluid
                             icon='user'
                             iconPosition='left'
-                            placeholder='บัตรประจำตัวประชาชน'
+                            placeholder='ID Card No.'
                         />
                         <Form.Input class="setfeild" style={{ width: '90%' }}
                             fluid
                             icon='lock'
                             iconPosition='left'
-                            placeholder='วัน/เดือน/ปีเกิด (16072540)'
+                            placeholder='date of birth (16/07/2540)'
                             type='password'
                         />
 
@@ -54,8 +52,7 @@ const LoginForm = () => (
                 </Message>
             </Grid.Column>
         </Grid>
-        
     </div>
 )
 
-export default LoginForm
+export default LoginForm_English 
