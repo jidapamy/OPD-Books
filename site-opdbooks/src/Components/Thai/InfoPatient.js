@@ -1,19 +1,39 @@
 import React from 'react';
-import { nameTypeData, bloodgroupData, cardTypeData, genderData, nationalityData, religionData, statusData, countryData } from './Data/FormData'
-import { Segment, Form, Select, Dropdown } from 'semantic-ui-react'
-import Date from './Date'
-import OtherDropdown from './OtherDropdown'
-import DropdownTest from './Test';
-import HeaderForm from './HeaderForm';
-
-
+import {
+    genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData, typesOfHousingData,
+    nationalityData, religionData, statusData, countryData
+} from './../../Static/data/FormDatas'
+import { Segment, Form, Select, } from 'semantic-ui-react'
+import Date from './../Date'
+// import HeaderForm from './HeaderForm';
 
 const InfoPateint = (props) => {
     const setField = props.setField
     const dob = props.dob
     const setDateOfBirth = props.setDateOfBirth
     const calculateAge = props.calculateAge
-
+    const Country = () => {
+        if (props.cardType !== 'idcard') {
+            return <Form.Field
+                control={Select}
+                label='ประเทศ (Country)'
+                options={countryData}
+                placeholder='เลือกประเทศ'
+                width={4}
+                onChange={(e, { value }) => setField('country', value)}
+                value={props.country}
+                required />
+        }else{
+            return <Form.Input
+                label='ประเทศ (Country)'
+                width={4}
+                value={props.country}
+                readOnly
+                required
+            />
+        }
+    }
+    
     return (
         <div>
             <Segment.Group>
@@ -29,7 +49,7 @@ const InfoPateint = (props) => {
                             value={props.registerDate}
                         />
                     </Form.Group>
-                    <HeaderForm />
+                    {/* <HeaderForm /> */}
                 </Segment>
                 <Segment>
                     <Form.Group widths='equal' >
@@ -39,7 +59,7 @@ const InfoPateint = (props) => {
                             options={cardTypeData}
                             placeholder='เลือกประเภทบัตร'
                             width={4}
-                            onChange={(e, { value }) => setField('cardType', value)}
+                            onChange={(e, { value }) => props.changeCardType(value)}
                             value={props.cardType}
                             required
                         />
@@ -52,12 +72,12 @@ const InfoPateint = (props) => {
                             onBlur={e => props.checkIdcard(e)}
                             onChange={e => setField('idCard', e.target.value)}
                             value={props.idCard}
-                            error={props.errorIdCard}
+                            error={props.erroridcard}
                             autoFocus
                             required
                         />
                         <Form.Field
-                            control={() => Date({ setDateOfBirth, calculateAge, dob })}
+                            control={() => Date({ setDateOfBirth, dob })}
                             label='วัน/เดือน/ปีเกิด (Dob)'
                             width={3}
                             required
@@ -76,22 +96,17 @@ const InfoPateint = (props) => {
                         <Form.Field
                             control={Select}
                             label='คำนำหน้า (Title)'
-                            options={nameTypeData}
+                            options={titleNameData}
                             placeholder='เลือก (Select)'
-                            width={3}
-                            onChange={(e, { value }) => setField('nameTitle', value)}
+                            width={4}
+                            onChange={(e, { value }) => props.setGender(value)}
                             value={props.nameTitle.value}
                             required
                         />
                         <Form.Input
-                            label='คำนำหน้าอื่นๆ (Title Other.)'
-                            placeholder='คำนำหน้าอื่นๆ'
-                            width={3}
-                        />
-                        <Form.Input
                             label='ชื่อจริง (Firstname)'
                             placeholder='ชื่อจริง (Firstname)'
-                            width={5}
+                            width={6}
                             onChange={e => setField('firstname', e.target.value)}
                             value={props.firstname}
                             required
@@ -99,7 +114,7 @@ const InfoPateint = (props) => {
                         <Form.Input
                             label='นามสกุล (Lastname)'
                             placeholder='นามสกุล (Lastname)'
-                            width={5}
+                            width={6}
                             onChange={e => setField('lastname', e.target.value)}
                             value={props.lastname}
                             required
@@ -135,70 +150,34 @@ const InfoPateint = (props) => {
                             value={props.bloodgroup}
                             required
                         />
-                        <Form.Field
-                            control={Dropdown}
-                            search selection
-                            wrapSelection={false}
-                            options={countryData}
-                            placeholder='เลือกประเทศ'
-                            label='ประเทศ (Country)'
-                            width={4}
-                            onChange={(e, { value }) => setField('country', value)}
-                            value={props.country}
-                            required
-                        />
-
+                        {Country()}
                     </Form.Group>
                     <Form.Group>
-                        {/* <Form.Field
-                            control={() => OtherDropdown({ 
-                                    field: 'religion', 
-                                    options: props.religionData, 
-                                    placeholder: 'เลือกศาสนา', 
-                                    value: props.religionTest, 
-                                    setField }
-                            )}
-                            label='ศาสนา (Religion)'
-                            width={4 }
-                            required
-                        /> */}
                         <Form.Field
-                            control={Dropdown}
-                            search
-                            selection
-                            allowAdditions
-                            onAddItem={(e, { value }) =>{
-                                const arr = props.religionData
-                                setField('religionData', [{ text: value, value }, ...props.religionData])
-                            }}
-                            additionLabel='other : '
+                            control={Select}
                             label='ศาสนา (Religion)'
-                            options={props.religionData}
+                            options={religionData}
                             placeholder='เลือกศาสนา'
                             width={4}
-                            onChange={(e, { value }) => setField('religion', value)}
-                            value={props.religion}
+                            onChange={(e, { value }) => props.chooseOther('religion', value)}
+                            value={props.religion.value}
                             required
                         />
-
-                
-                        {/* <Dropdown search selection wrapSelection={false} options={countryData} placeholder='Choose an option' /> */}
+                        <Form.Input
+                            label='ศาสนาอื่นๆ (Religion other)'
+                            placeholder='ศาสนาอื่นๆ'
+                            width={4}
+                            disabled={props.religion.disabled}
+                            onChange={e => setField('otherreligion', e.target.value)}
+                            value={props.otherreligion} />
                         <Form.Field
-                            control={Dropdown}
-                            search
-                            selection
-                            allowAdditions
-                            onAddItem={(e, { value }) => {
-                                const arr = props.nationalityData
-                                setField('nationalityData', [{ text: value, value }, ...props.nationalityData])
-                            }}
-                            additionLabel='other : '
+                            control={Select}
                             label='สัญชาติ (Nationality)'
-                            options={props.nationalityData}
+                            options={nationalityData}
                             placeholder='เลือกสัญชาติ'
                             width={4}
-                            onChange={(e, { value }) => setField('nationality', value)}
-                            value={props.nationality}
+                            onChange={(e, { value }) => props.chooseOther('nationality', value)}
+                            value={props.nationality.value}
                             required />
                         <Form.Input
                             label='สัญชาติอื่นๆ (Nationality other)'
@@ -228,16 +207,20 @@ const InfoPateint = (props) => {
                         />
                         <Form.Input
                             label='โทรศัพท์บ้าน (Home Phonenumber)'
-                            placeholder='โทรศัพท์บ้าน'
+                            placeholder='ex. 021111111'
                             width={4}
                             onChange={e => setField('homePhonenumber', e.target.value)}
+                            onBlur={e => props.validateSyntaxPhoneNumber('homePhonenumber', e.target.value)}
+                            error={props.errorhomePhonenumber}
                             value={props.homePhonenumber}
                         />
                         <Form.Input
                             label='โทรศัพท์มือถือ (Mobile Number)'
-                            placeholder='โทรศัพท์ที่ทำงาน'
+                            placeholder='ex. 0811111111'
                             width={4}
                             onChange={e => setField('mobileNumber', e.target.value)}
+                            onBlur={e => props.validateSyntaxPhoneNumber('mobileNumber', e.target.value)}
+                            error={props.errormobileNumber}
                             value={props.mobileNumber}
                             required />
                     </Form.Group>

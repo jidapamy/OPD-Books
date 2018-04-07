@@ -1,6 +1,6 @@
 import React from 'react';
 import { Label, Segment, Form, Select } from 'semantic-ui-react'
-import { typesOfHousingData } from './Data/FormData'
+import { typesOfHousingData } from './../../Static/data/FormDatas'
 
 const HomeAddress = (props) => {
     const setField = props.setField
@@ -33,7 +33,7 @@ const HomeAddress = (props) => {
                     options={props.provinces} 
                     placeholder='เลือกจังหวัด' 
                     width={6} 
-                    onClick={() => preparedData('a', 'Home')} 
+                    value={props.province}
                     onChange={(e, value) => props.changeProvince('province', value)} 
                     required 
                 />
@@ -45,7 +45,7 @@ const HomeAddress = (props) => {
                     options={props.amphurs} 
                     placeholder='เลือกเขต/อำเภอ' 
                     width={6} 
-                    onClick={() => preparedData('d', 'Home')} 
+                    value={props.district}
                     onChange={(e, value) => props.changeAmphur('district', value)} 
                     required 
                 />
@@ -55,6 +55,7 @@ const HomeAddress = (props) => {
                     options={props.districts} 
                     placeholder='แขวง/ตำบล' 
                     width={6} 
+                    value={props.subDistrict}
                     onChange={(e, value) => props.changeDistrict('subDistrict', value)} 
                     required 
                 />

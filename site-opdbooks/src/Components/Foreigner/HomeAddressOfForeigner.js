@@ -1,8 +1,8 @@
 import React from 'react';
 import { Label, Segment, Form, Select } from 'semantic-ui-react'
-import { typesOfHousingData } from './Data/FormData'
+import { typesOfHousingData } from './../../Static/data/FormDatas'
 
-const HomeAddressOfForeign = (props) => {
+const HomeAddress = (props) => {
     const setField = props.setField
     return (
         <div>
@@ -63,4 +63,4 @@ const HomeAddressOfForeign = (props) => {
     )
 }
 
-export default HomeAddressOfForeign
+export default HomeAddress

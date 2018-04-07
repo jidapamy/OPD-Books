@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import './login.css'
 import { Link } from 'react-router-dom';
+import LoginHeader from './header_Login.js';
 
 const LoginForm = () => (
     <div className='login-form'>
@@ -17,6 +18,7 @@ const LoginForm = () => (
         height: 100%;
       }
     `}</style>
+    <LoginHeader />
         <Grid
             textAlign='center'
             style={{ height: '100%' }}
@@ -52,6 +54,7 @@ const LoginForm = () => (
                 </Message>
             </Grid.Column>
         </Grid>
+        
     </div>
 )
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Label, Segment, Checkbox, Form, Select } from 'semantic-ui-react'
 // import { provinces, amphurs, districts } from './Register'
-import { typesOfHousing, nameTypeThUP15 } from './Data/FormData'
+import { typesOfHousingData, nameTypeThUP15Data } from './Data/FormData'
 
 
 const EmergencyContact = (props) => {
@@ -17,7 +17,7 @@ const EmergencyContact = (props) => {
                     <Form.Field 
                     control={Select} 
                     label='คำนำหน้า' 
-                    options={nameTypeThUP15} 
+                    options={nameTypeThUP15Data} 
                     placeholder='เลือกคำนำหน้า' 
                     width={3} 
                     onChange={(e, { value }) => setField('emerTitle', value)}
@@ -66,7 +66,7 @@ const EmergencyContact = (props) => {
                     <Form.Field 
                     control={Select} 
                     label='ประเภทที่พักอาศัย (Types of Housing)' 
-                    options={typesOfHousing} placeholder='เลือกประเภทที่พักอาศัย' 
+                    options={typesOfHousingData} placeholder='เลือกประเภทที่พักอาศัย' 
                     width={6} value={props.emerTypeofHouse} 
                     onChange={(e, { value }) => setField('emerTypeofHouse', value)}
                     />

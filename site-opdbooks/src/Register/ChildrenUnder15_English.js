@@ -11,14 +11,14 @@ const ChildrenUnder15_English = (props) => {
             <Form.Group>
                     <Form.Input 
                         label='Father&#39;s firstname' 
-                        placeholder='ชื่อ' 
+                        placeholder='Father&#39;s firstname' 
                         width={8} 
                         onChange={e => setField('fatherFirstname', e.target.value)} 
                         value={props.fatherFirstname} 
                     />
                     <Form.Input 
                         label='Father&#39;s lastname' 
-                        placeholder='นามสกุล' 
+                        placeholder='Father&#39;s lastname' 
                         width={8} 
                         onChange={e => setField('fatherLastname', e.target.value)} 
                         value={props.fatherLastname} 
@@ -27,13 +27,13 @@ const ChildrenUnder15_English = (props) => {
             <Form.Group>
                     <Form.Input 
                         label='Mother&#39;s firstname' 
-                        placeholder='ชื่อ' 
+                        placeholder='Mother&#39;s firstname' 
                         width={8} 
                         onChange={e => setField('motherFirstname', e.target.value)} 
                         value={props.motherFirstname} />
                     <Form.Input 
-                        label='นามสกุล (Mother&#39;s lastname)' 
-                        placeholder='นามสกุล' 
+                        label='Mother&#39;s lastname' 
+                        placeholder='Mother&#39;s lastname' 
                         width={8} 
                         onChange={e => setField('motherLastname', e.target.value)} 
                         value={props.motherLastname} />

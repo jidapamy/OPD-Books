@@ -15,7 +15,7 @@ router.post('/addPateint', async function (req, res) {
     var idCards = await knex.table('PateintRecords')
         .select('idcard')
         .where('idcard', req.body.idCard)
-    if (idCards === null || idCards.length === 0){
+    if (idCards === null || idCards.length === 0) {
         var maxHN = await knex.table('PateintRecords')
             .select()
             .max('hospitalNumber as maxHN')
@@ -31,7 +31,7 @@ router.post('/addPateint', async function (req, res) {
                 gender: req.body.gender,
                 dob: req.body.dob,
                 bloodgroup: req.body.bloodgroup,
-                country : req.body.country,
+                country: req.body.country,
                 nationality: req.body.nationality,
                 religion: req.body.religion,
                 status: req.body.status,
@@ -69,57 +69,45 @@ router.post('/addPateint', async function (req, res) {
         console.log(data)
         console.log('Success')
         res.end('ADD Success');
-    }else{
+    } else {
         res.end('ซ้ำ');
     }
 });
 
 router.get('/checkidcard/:id', async (req, res) => {
     var idCards = await knex.table('PateintRecords')
-                .select('idCard')
-                .where('idCard',req.params.id)
+        .select('idCard')
+        .where('idCard', req.params.id)
     console.log(idCards)
     if (idCards === null || idCards.length === 0) {
         console.log(idCards.length)
         res.send(true); // หาไม่เจอ (ผ่าน)
-    }else{
+    } else {
         res.send(false); // หาเจอ (ไม่ผ่าน)
     }
 })
 
-router.get('/checkidcard', async (req, res) => {
-    var data = await knex.table('PateintRecords')
-        .select()
-    console.log('PateintRecords')
-    res.send(data);
-})
-
-
-
-
 router.get('/provinceDB', async (req, res) => {
-    var data = await knex.table('provinces')
+    var data = await knex.table('province')
         .select()
-    console.log('province')
-    res.send(data);
-})
-
-router.get('/:ID', async (req, res) => {
-    var data = await knex.table('provinces')
-        .select()
-        .where('PROVINCE_ID',req.params.ID)
-    console.log('province')
     res.send(data);
 })
 
 router.get('/amphurDB', async (req, res) => {
-    var data = await knex.table('amphures')
+    var data = await knex.table('amphur')
+        .select()
+    res.send(data);
+})
+
+router.get('/amphurDB/:id', async (req, res) => {
+    var data = await knex.table('amphur')
+        .where('PROVINCE_ID', req.params.id)
         .select()
     res.send(data);
 })
 
 router.get('/districtDB', async (req, res) => {
-    var data = await knex.table('districts')
+    var data = await knex.table('district')
         .select()
     res.send(data);
 })
@@ -137,70 +125,47 @@ router.get('/districtDB', async (req, res) => {
 //     res.send(data);
 // })
 
-const provinces = require('./Thailand/Province.json')
-const amphors = require('./Thailand/Amphur.json')
-const districts = require('./Thailand/District.json')
-const zipcodes = require('./Thailand/Zipcode.json')
-
-router.get('/comblie', (req, res) => {
-    const data = provinces
-        .map(province => ({
-            key: province.PROVINCE_ID,
-            text: province.PROVINCE_NAME,
-            value: province.PROVINCE_NAME,
-            amphurs: amphors
-                .filter(amphor => amphor.PROVINCE_ID === province.PROVINCE_ID)
-                .map(amphor => ({
-                    key: amphor.AMPHUR_ID,
-                    text: amphor.AMPHUR_NAME,
-                    value: amphor.AMPHUR_NAME,
-                    districts: districts
-                        .filter(district => district.AMPHUR_ID === amphor.AMPHUR_ID)
-                        .map(district => ({
-                            key: district.DISTRICT_ID,
-                            text: district.DISTRICT_NAME,
-                            value: district.DISTRICT_NAME,
-                            zipcode: zipcodes
-                                .filter(zipcode => zipcode.DISTRICT_CODE === district.DISTRICT_CODE)
-                                .map(zipcode => (
-                                    zipcode.ZIPCODE
-                                ))[0] || ''
-                        }))
-                }))
-        }))
-        .sort((a, b) => a.text.localeCompare(b.text))
-    res.send(data)
-})
 
 
-const thailand = require('./Thailand.json')
-router.get('/province', async (req, res) => {
-    const data = provinces
-        .map(province => ({
-            key: province.PROVINCE_ID,
-            text: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')',
-            value: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')'
-        }))
-        .sort((a, b) => a.text.localeCompare(b.text))
-    res.send(data);
-})
-
-
-router.get('/amphur', async (req, res) => {
-    const data = amphors
+router.get('/amphurTest', async (req, res) => {
+    var provinceDB = await knex.table('province').select()
+    var provinceJSON = await provinceDB.map(province => ({
+        key: province.PROVINCE_ID,
+        text: province.PROVINCE_NAME,
+        value: province.PROVINCE_NAME
+    }))
+    var amphurDB = await knex.table('amphur').select()
+    var amphurJSON = amphurDB
         .map(amphor => ({
             key: amphor.AMPHUR_ID,
-            text: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
-            value: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            text: amphor.AMPHUR_NAME ,
+            value: amphor.AMPHUR_NAME ,
             provinceid: amphor.PROVINCE_ID,
         }))
-        .sort((a, b) => a.text.localeCompare(b.text))
-    res.send(data);
+        // .sort((a, b) => a.provinceid-b.provinceid)
+
+    let arr =[]
+    for (let i = 0; i < provinceJSON.length; i++){
+        let tmp =[]
+        for (let j = 0; j < amphurJSON.length;j++){
+            if (amphurJSON[j].provinceid === provinceJSON[i].key){
+                tmp.push(amphurJSON[j])
+            }
+        }
+        arr[provinceJSON[i].key] = tmp.sort((a, b) => a.text.localeCompare(b.text))
+    }
+
+    res.send(arr);
 })
 
-router.get('/district', async (req, res) => {
-    const data = districts
-        .map(district => ({
+router.get('/districtTest', async (req, res) => {
+    var amphurDB = await knex.table('amphur').select()
+    var amphurJSON = await amphurDB.map(amphur => ({
+        key: amphur.AMPHUR_ID,
+    }))
+    var districtrDB = await knex.table('district').select()
+    var districtJSON = districtrDB
+            .map(district => ({
             key: district.DISTRICT_ID,
             text: district.DISTRICT_NAME,
             value: district.DISTRICT_NAME,
@@ -211,9 +176,119 @@ router.get('/district', async (req, res) => {
                     zipcode.ZIPCODE
                 ))[0] || ''
         }))
-        .sort((a, b) => a.text.localeCompare(b.text))
+
+    let arr = []
+    for (let i = 0; i < amphurJSON.length; i++) {
+        let tmp = []
+        for (let j = 0; j < districtJSON.length; j++) {
+            if (districtJSON[j].amphurid === amphurJSON[i].key) {
+                tmp.push(districtJSON[j])
+            }
+        }
+        arr[amphurJSON[i].key] = tmp.sort((a, b) => a.text.localeCompare(b.text))
+        // arr.push(tmp.sort((a, b) => a.text.localeCompare(b.text)))
+    }
+
+    res.send(arr);
+})
+
+
+
+
+
+
+const provinces = require('./Thailand/Province.json')
+const amphors = require('./Thailand/Amphur.json')
+const districts = require('./Thailand/District.json')
+const zipcodes = require('./Thailand/Zipcode.json')
+
+// router.get('/comblie', (req, res) => {
+//     const data = provinces
+//         .map(province => ({
+//             key: province.PROVINCE_ID,
+//             text: province.PROVINCE_NAME,
+//             value: province.PROVINCE_NAME,
+//             amphurs: amphors
+//                 .filter(amphor => amphor.PROVINCE_ID === province.PROVINCE_ID)
+//                 .map(amphor => ({
+//                     key: amphor.AMPHUR_ID,
+//                     text: amphor.AMPHUR_NAME,
+//                     value: amphor.AMPHUR_NAME,
+//                     districts: districts
+//                         .filter(district => district.AMPHUR_ID === amphor.AMPHUR_ID)
+//                         .map(district => ({
+//                             key: district.DISTRICT_ID,
+//                             text: district.DISTRICT_NAME,
+//                             value: district.DISTRICT_NAME,
+//                             zipcode: zipcodes
+//                                 .filter(zipcode => zipcode.DISTRICT_CODE === district.DISTRICT_CODE)
+//                                 .map(zipcode => (
+//                                     zipcode.ZIPCODE
+//                                 ))[0] || ''
+//                         }))
+//                 }))
+//         }))
+//         .sort((a, b) => a.text.localeCompare(b.text))
+//     res.send(data)
+// })
+
+
+// const thailand = require('./Thailand.json')
+// router.get('/province', async (req, res) => {
+//     const data = provinces
+//         .map(province => ({
+//             key: province.PROVINCE_ID,
+//             text: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')',
+//             value: province.PROVINCE_NAME + ' (' + province.PROVINCE_NAME_ENG + ')'
+//         }))
+//         .sort((a, b) => a.text.localeCompare(b.text))
+//     res.send(data);
+// })
+
+
+router.get('/amphur', async (req, res) => {
+    const data = amphors
+        .map(amphor => ({
+            key: amphor.AMPHUR_ID,
+            text: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            value: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            provinceid: amphor.PROVINCE_ID,
+        }))
+    .sort((a, b) => a.provinceid.localeCompare(b.provinceid))
+
     res.send(data);
 })
+
+router.get('/amphur/:id', async (req, res) => {
+    console.log(req.params.id)
+    const data = amphors
+        .map(amphor => ({
+            key: amphor.AMPHUR_ID,
+            text: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            value: amphor.AMPHUR_NAME + ' (' + amphor.AMPHUR_NAME_ENG + ')',
+            provinceid: amphor.PROVINCE_ID,
+        }))
+        .filter(amphor => amphor.PROVINCE_ID === req.params.id)
+    res.send(data);
+})
+
+
+// router.get('/district', async (req, res) => {
+//     const data = districts
+//         .map(district => ({
+//             key: district.DISTRICT_ID,
+//             text: district.DISTRICT_NAME,
+//             value: district.DISTRICT_NAME,
+//             amphurid: district.AMPHUR_ID,
+//             zipcode: zipcodes
+//                 .filter(zipcode => zipcode.DISTRICT_CODE === district.DISTRICT_CODE)
+//                 .map(zipcode => (
+//                     zipcode.ZIPCODE
+//                 ))[0] || ''
+//         }))
+//         .sort((a, b) => a.text.localeCompare(b.text))
+//     res.send(data);
+// })
 
 router.get('/validateIdcard', async (req, res) => {
     var data = await knex.table('PateintRecords')

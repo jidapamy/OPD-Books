@@ -1,5 +1,5 @@
 import React from 'react';
-import { nameType, bloodgroupData, cardTypeData, genderData, nationalityData, religionData, statusData, countryData } from './Data/FormData'
+import { nameTypeData, bloodgroupData, cardTypeData, genderData, nationalityData, religionData, statusData, countryData } from './Data/FormData'
 import { Segment, Form, Select,} from 'semantic-ui-react'
 import Date from './Date'
 import HeaderForm from './HeaderForm';
@@ -72,7 +72,7 @@ const InfoPateint_English = (props) => {
                     <Form.Field
                         control={Select}
                         label='Title'
-                        options={nameType}
+                        options={nameTypeData}
                         placeholder='Select Title'
                         width={3}
                         onChange={(e, { value }) => setField('nameTitle', value)}
