@@ -40,9 +40,7 @@ export default class Basic extends React.Component {
                 file: file,
                 imagePreviewUrl: reader.result
             });
-            console.log(reader.result)
         }
-        console.log(file);
         reader.readAsDataURL(file)
     }
 

@@ -240,7 +240,6 @@ class Register extends Component {
   }
 
   validateSyntaxIdcard = () => {
-    console.log('validateSyntaxIdcard')
     const error = { status: false, message: '' }
     if (this.state.cardType === 'idcard' && this.state.idCard.length === 13 && this.state.idCard.match(/^[0-9]+$/) ||
       this.state.cardType === 'passport' && this.state.idCard.length === 9 && this.state.idCard.match(/^[a-zA-Z]{2}[0-9]{7}$/)) {
@@ -266,7 +265,6 @@ class Register extends Component {
         error.message += '//Passport number pattern missing.  ';
       }
     }
-    console.log(error.message)
     this.setErrorMsg('erroridcard', error.message)
     return false;
   }
@@ -306,7 +304,6 @@ class Register extends Component {
   }
 
   setErrorMsg = (key, value) => {
-    console.log('setErrorMsg')
     const arr = this.state.errorText;
     let duplicated = false;
     if (arr.length !== 0) {
@@ -325,18 +322,15 @@ class Register extends Component {
       arr.push({ key: key, value: value })
     }
 
-    console.log(arr)
     this.setState({ [key]: true, errorText: arr })
   }
 
   setErrorMsgSplice = (key) => {
-    console.log('setErrorMsgSplice' + '// KEY ' + key)
     const arr = this.state.errorText;
     let indexSplice = -1;
     if (arr.length !== 0) {
       for (let i = 0; i <= arr.length - 1; i++) {
         if (arr[i].key === key) {
-          console.log(arr[i])
           indexSplice = i
           break;
         }
@@ -420,9 +414,7 @@ class Register extends Component {
         requiredEmerSubDistrict: true,
         requiredEmerZipcode: true,
       })
-    } else {
-      console.log('else')
-    }
+    } 
   }
 
   clearField = () => {
@@ -528,7 +520,6 @@ class Register extends Component {
         districtsEmer: this.state.districtsEmer,
         statusSameAddress: !check
       }
-      console.log(this.emerOldAddress)
       this.setState({
         amphursEmer: this.state.amphursHome,
         districtsEmer: this.state.districtsHome,
@@ -576,7 +567,6 @@ class Register extends Component {
   }
 
   validate = () => {
-    console.log('validate')
     // required field
     if (this.state.idCard !== '' && this.state.nameTitle !== '' && this.state.firstname !== '' &&
       this.state.lastname !== '' && this.state.gender !== '' && this.state.dob !== null &&
@@ -591,8 +581,6 @@ class Register extends Component {
 
   //Connect API
   insertPateint = async () => {
-    console.log(this.state.registerDate)
-    console.log('inserting')
     // const nationality = !this.state.nationality.disabled ? this.state.othernationality : this.state.nationality.value
     // const religion = !this.state.religion.disabled ? this.state.otherreligion : this.state.religion.value
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
@@ -640,7 +628,6 @@ class Register extends Component {
                                       allergy: allergy,
                                       privilege: privilege,
                                     })
-    console.log('Success!!!')
     return result;
   }
 
@@ -650,7 +637,6 @@ class Register extends Component {
 
 
   render() {
-    console.log(this.state)
     const errorList = this.state.errorText.map(msg => (msg.value))
     return (
       <Wrapper>
