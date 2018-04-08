@@ -92,7 +92,7 @@ class Register extends Component {
     mobileNumber: '',
     country: 'ไทย',
     congenitalDisease: '',
-    // picture:'',
+    picture:'',
 
     // HomeAddress
     typeofHouse: '',
@@ -696,6 +696,7 @@ class Register extends Component {
               mobileNumber={this.state.mobileNumber}
               country={this.state.country}
               congenitalDisease={this.state.congenitalDisease}
+              picture={this.state.picture}
               //data
               genderData={this.state.genderData}
               cardTypeData={this.state.cardTypeData}
