@@ -1,6 +1,6 @@
 import React from 'react';
-import { Label, Segment, Form, Select } from 'semantic-ui-react'
-import { typesOfHousingData } from './../../Static/data/FormDatas'
+import { Label, Segment, Form, Select, Dropdown } from 'semantic-ui-react'
+// import { typesOfHousingData } from './../../Static/data/FormDatas'
 
 const HomeAddress = (props) => {
     const setField = props.setField
@@ -12,12 +12,21 @@ const HomeAddress = (props) => {
             <br></br><br></br>
             <Form.Group>
                 <Form.Field
-                    control={Select} 
+                    control={Dropdown}
+                    search
+                    selection
+                    allowAdditions
+                    onAddItem={(e, { value }) => {
+                            const arr = props.typesOfHousingData
+                            setField('typesOfHousingData', [{ text: value, value }, ...props.typesOfHousingData])
+                        }}
+                    additionLabel='other : '
                     label='ประเภทที่พักอาศัย (Types of Housing)' 
-                    options={typesOfHousingData} 
+                    options={props.typesOfHousingData} 
                     placeholder='เลือกประเภทที่พักอาศัย' 
                     width={6} 
-                    onChange={(e, { value }) => setField('typeofHouse', value)} 
+                    onChange={(e, { value }) => setField('typeofHouse', value)}
+                    value={props.typeofHouse} 
                     required 
                 />
                 <Form.Input 
@@ -28,7 +37,10 @@ const HomeAddress = (props) => {
                     required 
                 />
                 <Form.Field 
-                    control={Select} 
+                    control={Dropdown}
+                    search selection
+                    wrapSelection={false}
+                    options={props.provinces}
                     label='จังหวัด (Province)' 
                     options={props.provinces} 
                     placeholder='เลือกจังหวัด' 
@@ -40,7 +52,10 @@ const HomeAddress = (props) => {
             </Form.Group>
             <Form.Group>
                 <Form.Field 
-                    control={Select}
+                    control={Dropdown}
+                    search selection
+                    wrapSelection={false}
+                    options={props.amphurs}
                     label='เขต/อำเภอ (District)' 
                     options={props.amphurs} 
                     placeholder='เลือกเขต/อำเภอ' 
@@ -49,8 +64,11 @@ const HomeAddress = (props) => {
                     onChange={(e, value) => props.changeAmphur('district', value)} 
                     required 
                 />
-                <Form.Field 
-                    control={Select} 
+                <Form.Field
+                    control={Dropdown}
+                    search selection
+                    wrapSelection={false}
+                    options={props.districts} 
                     label='แขวง/ตำบล (Sub-District)' 
                     options={props.districts} 
                     placeholder='แขวง/ตำบล' 

@@ -1,11 +1,6 @@
 import React from 'react';
-// import {
-//     genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData, typesOfHousingData,
-//     nationalityData, religionData, statusData, countryData
-// } from './../../Static/data/FormDatas'
 import { Segment, Form, Select, Dropdown } from 'semantic-ui-react'
 import Date from './../Date'
-// import HeaderForm from './HeaderForm';
 
 const InfoPateint = (props) => {
     const setField = props.setField
@@ -21,7 +16,7 @@ const InfoPateint = (props) => {
                 options={props.countryData}
                 placeholder='เลือกประเทศ'
                 label='ประเทศ (Country)'
-                width={4}
+                width={6}
                 onChange={(e, { value }) => setField('country', value)}
                 value={props.country}
                 required
@@ -29,7 +24,7 @@ const InfoPateint = (props) => {
         }else{
             return <Form.Input
                 label='ประเทศ (Country)'
-                width={4}
+                width={6}
                 value={props.country}
                 readOnly
                 required
@@ -110,7 +105,7 @@ const InfoPateint = (props) => {
                             options={props.titleNameData}
                             placeholder='เลือก (Select)'
                             width={4}
-                            onChange={(e, { value }) => setField('nameTitle',value)}
+                            onChange={(e, { value }) => setField('nameTitle',value)}//
                             value={props.nameTitle}//ลบvalue
                             required
                         />
@@ -146,7 +141,7 @@ const InfoPateint = (props) => {
                             label='เพศ (Gender)'
                             options={props.genderData}
                             placeholder='เลือกเพศ'
-                            width={4}
+                            width={6}
                             onChange={(e, { value }) => setField('gender', value)}
                             value={props.gender}
                             required
@@ -156,12 +151,12 @@ const InfoPateint = (props) => {
                             label='กรุ๊ปเลือด (BloodGroup)'
                             options={props.bloodgroupData}
                             placeholder='เลือกกรุ๊ปเลือด'
-                            width={4}
+                            width={6}
                             onChange={(e, { value }) => setField('bloodgroup', value)}
                             value={props.bloodgroup}
                             required
                         />
-                        {Country()}
+                        
                     </Form.Group>
                     <Form.Group>
                         <Form.Field
@@ -182,7 +177,6 @@ const InfoPateint = (props) => {
                             value={props.religion}
                             required
                         />
-                        
                         <Form.Field
                             control={Dropdown}
                             search
@@ -197,17 +191,11 @@ const InfoPateint = (props) => {
                             label='สัญชาติ (Nationality)'
                             options={props.nationalityData}
                             placeholder='เลือกสัญชาติ'
-                            width={4}
+                            width={6}
                             onChange={(e, { value }) => setField('nationality', value)}
                             value={props.nationality}
                             required />
-                        <Form.Input
-                            label='สัญชาติอื่นๆ (Nationality other)'
-                            placeholder='สัญชาติอื่นๆ'
-                            width={4}
-                            disabled={props.nationality.disabled}
-                            onChange={e => setField('othernationality', e.target.value)}
-                            value={props.othernationality} />
+                        {Country()}
                     </Form.Group>
                     <Form.Group>
                         <Form.Field

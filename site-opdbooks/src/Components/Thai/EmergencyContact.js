@@ -1,6 +1,6 @@
 import React from 'react';
-import { Label, Segment, Checkbox, Form, Select, Button } from 'semantic-ui-react'
-import { typesOfHousingData, titleNameParentData } from './../../Static/data/FormDatas'
+import { Label, Segment, Checkbox, Form, Select, Button, Dropdown } from 'semantic-ui-react'
+// import { typesOfHousingData, titleNameParentData } from './../../Static/data/FormDatas'
 
 
 const EmergencyContact = (props) => {
@@ -29,13 +29,21 @@ const EmergencyContact = (props) => {
                 <br></br>
                 <Form.Group>
                     <Form.Field
-                        control={Select}
+                        control={Dropdown}
+                        search
+                        selection
+                        allowAdditions
+                        onAddItem={(e, { value }) => {
+                            const arr = props.titleNameParentData
+                            setField('titleNameParentData', [{ text: value, value }, ...props.titleNameParentData])
+                        }}
+                        additionLabel='other : '
                         label='คำนำหน้า'
-                        options={titleNameParentData}
+                        options={props.titleNameParentData}
                         placeholder='เลือกคำนำหน้า'
                         width={6}
                         onChange={async (e, { value }) => {
-                            await setField('emerTitle', value)
+                            await setField('emerTitle', value) 
                             emergencyField();
                         }}
                         value={props.emerTitle} 
@@ -104,9 +112,17 @@ const EmergencyContact = (props) => {
                 </Form.Group>
                 <Form.Group>
                     <Form.Field
-                        control={Select}
+                        control={Dropdown}
+                        search
+                        selection
+                        allowAdditions
+                        onAddItem={(e, { value }) => {
+                            const arr = props.typesOfHousingData
+                            setField('typesOfHousingData', [{ text: value, value }, ...props.typesOfHousingData])
+                        }}
+                        additionLabel='other : '
                         label='ประเภทที่พักอาศัย (Types of Housing)'
-                        options={typesOfHousingData}
+                        options={props.typesOfHousingData}
                         placeholder='เลือกประเภทที่พักอาศัย'
                         width={6}
                         value={props.emerTypeofHouse}
@@ -115,6 +131,7 @@ const EmergencyContact = (props) => {
                             props.checkStatusSameAddress()
                             emergencyField();
                         }} 
+                        value={props.emerTypeofHouse} 
                         required={props.requiredEmerTypeofHouse}
                     />
                     <Form.Input
@@ -130,7 +147,9 @@ const EmergencyContact = (props) => {
                         required={props.requiredEmerAddress}
                     />
                     <Form.Field
-                        control={Select}
+                        control={Dropdown}
+                        search selection
+                        wrapSelection={false}
                         label='จังหวัด (Province)'
                         options={props.provinces}
                         placeholder='เลือกจังหวัด'
@@ -142,7 +161,9 @@ const EmergencyContact = (props) => {
                 </Form.Group>
                 <Form.Group>
                     <Form.Field
-                        control={Select}
+                        control={Dropdown}
+                        search selection
+                        wrapSelection={false}
                         label='เขต/อำเภอ (District)'
                         options={props.amphurs}
                         placeholder='เลือกเขต/อำเภอ'
@@ -152,7 +173,9 @@ const EmergencyContact = (props) => {
                         required={props.requiredEmerDistrict}
                     />
                     <Form.Field
-                        control={Select}
+                        control={Dropdown}
+                        search selection
+                        wrapSelection={false}
                         label='แขวง/ตำบล (Sub-District)'
                         options={props.districts}
                         placeholder='แขวง/ตำบล'

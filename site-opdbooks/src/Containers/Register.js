@@ -700,9 +700,7 @@ class Register extends Component {
               genderData={this.state.genderData}
               cardTypeData={this.state.cardTypeData}
               titleNameData={this.state.titleNameData}
-              titleNameParentData={this.state.titleNameParentData}
               bloodgroupData={this.state.bloodgroupData}
-              typesOfHousingData={this.state.typesOfHousingData}
               nationalityData={this.state.nationalityData}
               religionData={this.state.religionData}
               statusData={this.state.statusData}
@@ -723,6 +721,8 @@ class Register extends Component {
               district={this.state.district}
               subDistrict={this.state.subDistrict}
               zipcode={this.state.zipcode}
+
+              typesOfHousingData={this.state.typesOfHousingData}
             />
 
             <EmergencyContact
@@ -773,6 +773,9 @@ class Register extends Component {
               requiredEmerDistrict={this.state.requiredEmerDistrict}
               requiredEmerSubDistrict={this.state.requiredEmerSubDistrict}
               requiredEmerZipcode={this.state.requiredEmerZipcode}
+
+              titleNameParentData={this.state.titleNameParentData}
+              typesOfHousingData={this.state.typesOfHousingData}
             />
 
 
