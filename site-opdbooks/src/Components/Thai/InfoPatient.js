@@ -1,6 +1,7 @@
 import React from 'react';
 import { Segment, Form, Select, Dropdown } from 'semantic-ui-react'
 import Date from './../Date'
+import HeaderForm from './HeaderForm';
 
 const InfoPateint = (props) => {
     const setField = props.setField
@@ -47,7 +48,7 @@ const InfoPateint = (props) => {
                             value={props.registerDate}
                         />
                     </Form.Group>
-                    {/* <HeaderForm /> */}
+                    <HeaderForm picture={props.picture} setField={setField}/>
                 </Segment>
                 <Segment>
                     <Form.Group widths='equal' >
