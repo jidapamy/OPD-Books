@@ -6,6 +6,8 @@ import swal from 'sweetalert2';
 import styled from 'styled-components'
 import ScrollUpButton from "react-scroll-up-button";
 
+import { web3 , contract } from './../lib/web3';
+
 //lib
 import axios from './../lib/axois'
 
@@ -152,8 +154,6 @@ class Register extends Component {
     requiredEmerAddress: false,
     requiredEmerProvince: false,
     requiredEmerDistrict: false,
-    requiredEmerSubDistrict: false,
-    requiredEmerZipcode: false,
 
     //other
     otherallergy: '',
@@ -172,7 +172,9 @@ class Register extends Component {
     nationalityData: nationalityData,
     religionData: religionData,
     statusData: statusData,
-    countryData: countryData,
+    countryData: countryData,    requiredEmerSubDistrict: false,
+    requiredEmerZipcode: false,
+
   }
 
   emerOldAddress = {};
@@ -568,6 +570,7 @@ class Register extends Component {
 
   validate = () => {
     // required field
+    console.log('validate')
     if (this.state.idCard !== '' && this.state.nameTitle !== '' && this.state.firstname !== '' &&
       this.state.lastname !== '' && this.state.gender !== '' && this.state.dob !== null &&
       this.state.bloodgroup !== '' && this.state.nationality !== '' && this.state.religion !== '' &&
@@ -581,54 +584,75 @@ class Register extends Component {
 
   //Connect API
   insertPateint = async () => {
-    // const nationality = !this.state.nationality.disabled ? this.state.othernationality : this.state.nationality.value
-    // const religion = !this.state.religion.disabled ? this.state.otherreligion : this.state.religion.value
+    console.log('insertPateint')
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
+    const hn = '123/61';
+    const defaultAccount = { from: web3.eth.accounts[0], gas: 4000000 }
+    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, ' ', defaultAccount)
+    contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
+    contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
+    contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)
 
-    const result = await axios.post('/addPateint', {
-                                      registerDate: this.state.registerDate,
-                                      idCard: this.state.idCard,
-                                      nameTitle: this.state.nameTitle,
-                                      firstname: this.state.firstname,
-                                      lastname: this.state.lastname,
-                                      gender: this.state.gender,
-                                      dob: this.state.dob,
-                                      bloodgroup: this.state.bloodgroup,
-                                      nationality: this.state.nationality,
-                                      religion: this.state.religion,
-                                      status: this.state.status,
-                                      occupartion: this.state.occupartion,
-                                      homePhonenumber: this.state.homePhonenumber,
-                                      mobileNumber: this.state.mobileNumber,
-                                      congenitalDisease: this.state.congenitalDisease,
-                                      typeofHouse: this.state.typeofHouse,
-                                      address: this.state.address,
-                                      province: this.state.province,
-                                      district: this.state.district,
-                                      subDistrict: this.state.subDistrict,
-                                      zipcode: this.state.zipcode,
-                                      emerTitle: this.state.emerTitle,
-                                      emerFirstname: this.state.emerFirstname,
-                                      emerLastname: this.state.emerLastname,
-                                      emerRelationship: this.state.emerRelationship,
-                                      emerHomePhonenumber: this.state.emerHomePhonenumber,
-                                      emerMobileNumber: this.state.emerMobileNumber,
-                                      emerTypeofHouse: this.state.emerTypeofHouse,
-                                      emerAddress: this.state.emerAddress,
-                                      emerProvince: this.state.emerProvince,
-                                      emerDistrict: this.state.emerDistrict,
-                                      emerSubDistrict: this.state.emerSubDistrict,
-                                      emerZipcode: this.state.emerZipcode,
-                                      statusSameAddress: this.state.statusSameAddress,
-                                      fatherFirstname: this.state.fatherFirstname,
-                                      fatherLastname: this.state.fatherLastname,
-                                      motherFirstname: this.state.motherFirstname,
-                                      motherLastname: this.state.motherLastname,
-                                      allergy: allergy,
-                                      privilege: privilege,
-                                    })
-    return result;
+    contract.setAddressPatient(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    
+    contract.setPatientAllergy(this.state.idCard, allergy, privilege, defaultAccount);
+
+    if(this.state.emerTitle != '' || this.state.emerFirstname != '' || this.state.emerLastname != ''){
+      contract.setEmergencyContactPart1(this.state.idCard, this.state.emerTitle, this.state.emerFirstname, this.state.emerLastname, this.state.emerRelationship, this.state.emerHomePhonenumber, this.state.emerMobileNumber, defaultAccount)
+      contract.setEmergencyContactPart2(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    }
+    
+    if(this.state.age < 15){
+      contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
+    }
+    
+    
+   
+   
+    // const result = await axios.post('/addPateint', {
+    //                                   registerDate: this.state.registerDate,
+    //                                   idCard: this.state.idCard,
+    //                                   nameTitle: this.state.nameTitle,
+    //                                   firstname: this.state.firstname,
+    //                                   lastname: this.state.lastname,
+    //                                   gender: this.state.gender,
+    //                                   dob: this.state.dob,
+    //                                   bloodgroup: this.state.bloodgroup,
+    //                                   nationality: this.state.nationality,
+    //                                   religion: this.state.religion,
+    //                                   status: this.state.status,
+    //                                   occupartion: this.state.occupartion,
+    //                                   homePhonenumber: this.state.homePhonenumber,
+    //                                   mobileNumber: this.state.mobileNumber,
+    //                                   congenitalDisease: this.state.congenitalDisease,
+    //                                   typeofHouse: this.state.typeofHouse,
+    //                                   address: this.state.address,
+    //                                   province: this.state.province,
+    //                                   district: this.state.district,
+    //                                   subDistrict: this.state.subDistrict,
+    //                                   zipcode: this.state.zipcode,
+    //                                   emerTitle: this.state.emerTitle,
+    //                                   emerFirstname: this.state.emerFirstname,
+    //                                   emerLastname: this.state.emerLastname,
+    //                                   emerRelationship: this.state.emerRelationship,
+    //                                   emerHomePhonenumber: this.state.emerHomePhonenumber,
+    //                                   emerMobileNumber: this.state.emerMobileNumber,
+    //                                   emerTypeofHouse: this.state.emerTypeofHouse,
+    //                                   emerAddress: this.state.emerAddress,
+    //                                   emerProvince: this.state.emerProvince,
+    //                                   emerDistrict: this.state.emerDistrict,
+    //                                   emerSubDistrict: this.state.emerSubDistrict,
+    //                                   emerZipcode: this.state.emerZipcode,
+    //                                   statusSameAddress: this.state.statusSameAddress,
+    //                                   fatherFirstname: this.state.fatherFirstname,
+    //                                   fatherLastname: this.state.fatherLastname,
+    //                                   motherFirstname: this.state.motherFirstname,
+    //                                   motherLastname: this.state.motherLastname,
+    //                                   allergy: allergy,
+    //                                   privilege: privilege,
+    //                                 })
+    // return result;
   }
 
   componentWillMount() {
@@ -638,6 +662,7 @@ class Register extends Component {
 
   render() {
     const errorList = this.state.errorText.map(msg => (msg.value))
+    console.log(this.state)
     return (
       <Wrapper>
         <Container>
@@ -648,7 +673,7 @@ class Register extends Component {
             list={errorList}
           />
 
-          <Form onSubmit={this.insertPateint}>
+          <Form>
             <InfoPatient
               //Validate
               erroridcard={this.state.erroridcard}
@@ -694,7 +719,7 @@ class Register extends Component {
               countryData={this.state.countryData}
             />
 
-            <HomeAddress
+           <HomeAddress
               provinces={this.state.provinces}
               amphurs={this.state.amphursHome}
               districts={this.state.districtsHome}

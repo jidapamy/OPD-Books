@@ -66,8 +66,6 @@ router.post('/addPateint', async function (req, res) {
                 privilege: req.body.privilege,
                 statusSameAddress: req.body.statusSameAddress
             })
-        console.log(data)
-        console.log('Success')
         res.end('ADD Success');
     } else {
         res.end('ซ้ำ');
@@ -78,9 +76,7 @@ router.get('/checkidcard/:id', async (req, res) => {
     var idCards = await knex.table('PateintRecords')
         .select('idCard')
         .where('idCard', req.params.id)
-    console.log(idCards)
     if (idCards === null || idCards.length === 0) {
-        console.log(idCards.length)
         res.send(true); // หาไม่เจอ (ผ่าน)
     } else {
         res.send(false); // หาเจอ (ไม่ผ่าน)
@@ -260,7 +256,6 @@ router.get('/amphur', async (req, res) => {
 })
 
 router.get('/amphur/:id', async (req, res) => {
-    console.log(req.params.id)
     const data = amphors
         .map(amphor => ({
             key: amphor.AMPHUR_ID,
