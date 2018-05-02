@@ -628,4 +628,4 @@ const PatientRecordContract = web3.eth.contract(
     ]
 );
 
-export const contract = PatientRecordContract.at('0x800d506f3799b52c430e749952f535b2d1e072b7');
+export const contract = PatientRecordContract.at('0x13c738270b1a014e2124e3a9487bf38c721c675d');
