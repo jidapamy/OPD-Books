@@ -61,6 +61,7 @@ const InfoPateint = (props) => {
                             onChange={(e, { value }) => props.changeCardType(value)}
                             value={props.cardType}
                             required
+                            error={true}
                         />
                         <Form.Input
                             loading={false}
@@ -87,6 +88,32 @@ const InfoPateint = (props) => {
                             width={3}
                             value={props.age}
                             readOnly
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Input
+                            label='อีเมล์ (Email)'
+                            placeholder='อีเมล์ (Email)'
+                            width={4}
+                            onChange={e => setField('email', e.target.value)}
+                            value={props.email}
+                            required
+                        />
+                        <Form.Input
+                            label='รหัสผ่าน (Password)'
+                            placeholder='รหัสผ่าน (Password)'
+                            width={6}
+                            onChange={e => setField('password', e.target.value)}
+                            value={props.password}
+                            required
+                        />
+                        <Form.Input
+                            label='ยืนยันรหัสผ่าน (ConfirmPassword)'
+                            placeholder='ยืนยันรหัสผ่าน (ConfirmPassword)'
+                            width={6}
+                            onChange={e => setField('confirmpassword', e.target.value)}
+                            value={props.password}
                             required
                         />
                     </Form.Group>

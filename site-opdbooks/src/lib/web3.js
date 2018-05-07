@@ -18,31 +18,31 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_typeofHouse",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_patienaddress",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_province",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_district",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_subDistrict",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_zipcode",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setAddressPatient",
@@ -56,31 +56,31 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerTitle",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerFirstname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerLastname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerRelationship",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerHomePhonenumber",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerMobileNumber",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setEmergencyContactPart1",
@@ -94,31 +94,31 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerTypeofHouse",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerAddress",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerProvince",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerDistrict",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerSubDistrict",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_emerZipcode",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setEmergencyContactPart2",
@@ -132,19 +132,23 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_registerDate",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_hospitalnumber",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_photo",
-                    "type": "string"
+                    "type": "bytes32"
+                },
+                {
+                    "name": "_password",
+                    "type": "bytes32"
                 }
             ],
             "name": "setInfoPatientPart1",
@@ -158,27 +162,27 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_dob",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_titlename",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_firstname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_lastname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_gender",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setInfoPatientPart2",
@@ -192,27 +196,27 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_congenitaldisease",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_bloodgroup",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_religion",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_nationality",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_country",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setInfoPatientPart3",
@@ -226,23 +230,23 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_statuspatient",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_occupartion",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_homephonenumber",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_mobilenumber",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setInfoPatientPart4",
@@ -256,15 +260,15 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_allergy",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_privilege",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setPatientAllergy",
@@ -278,23 +282,23 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_fatherFirstname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_fatherLastname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_motherFirstname",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "_motherLastname",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "setPatientParent",
@@ -308,34 +312,48 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getAddressPatient",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getAllPatient",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bytes32[]"
                 }
             ],
             "payable": false,
@@ -347,34 +365,119 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
+                },
+                {
+                    "name": "_password",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "getCheckLogin",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "_idcard",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "getCheckstatus",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "_idcard",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "getDetailPatient",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "_idcard",
+                    "type": "bytes32"
                 }
             ],
             "name": "getEmergencyContactPart1",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -386,34 +489,34 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getEmergencyContactPart2",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -425,26 +528,30 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getInfoPatientPart1",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
+                },
+                {
+                    "name": "",
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -456,30 +563,30 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getInfoPatientPart2",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -491,30 +598,30 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getInfoPatientPart3",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -526,26 +633,26 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getInfoPatientPart4",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -557,18 +664,18 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getPatientAllergy",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -580,26 +687,26 @@ const PatientRecordContract = web3.eth.contract(
             "inputs": [
                 {
                     "name": "_idcard",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "name": "getPatientParent",
             "outputs": [
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -618,7 +725,7 @@ const PatientRecordContract = web3.eth.contract(
             "outputs": [
                 {
                     "name": "",
-                    "type": "address"
+                    "type": "bytes32"
                 }
             ],
             "payable": false,
@@ -628,4 +735,6 @@ const PatientRecordContract = web3.eth.contract(
     ]
 );
 
-export const contract = PatientRecordContract.at('0x13c738270b1a014e2124e3a9487bf38c721c675d');
+export const contract = PatientRecordContract.at('0x84dceafb5e360d363806aa81030b9e199ec1a73f');
+
+export const defaultAccount = { from: web3.eth.accounts[0], gas: 4000000 }
