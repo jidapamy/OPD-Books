@@ -6,7 +6,7 @@ import { Label, Segment, Checkbox, Form, Select, Button, Dropdown } from 'semant
 const EmergencyContact = (props) => {
     const setField = props.setField
     const preparedData = props.preparedData
-    const emergencyField = props.emergencyField
+    const setRequiredField = props.setRequiredField
     return (
         <div>
             <Segment>
@@ -22,8 +22,8 @@ const EmergencyContact = (props) => {
                         label='ที่อยู่เดียวกับที่อยู่ปัจจุบัน'
                         checked={props.statusSameAddress}
                         onChange={async () => {
-                            await props.checkSameAddress()
-                            emergencyField();
+                            await props.chooseSameAddress()
+                            setRequiredField();
                         }} />
                 </Form.Group>
                 <br></br>
@@ -44,7 +44,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e, { value }) => {
                             await setField('emerTitle', value) 
-                            emergencyField();
+                            setRequiredField();
                         }}
                         value={props.emerTitle} 
                         required={props.requiredEmerTitle}
@@ -55,7 +55,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerFirstname', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         value={props.emerFirstname} 
                         required={props.requiredEmerFirstname}
@@ -66,7 +66,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerLastname', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         value={props.emerLastname} 
                         required={props.requiredEmerLastname}
@@ -79,7 +79,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerRelationship', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         value={props.emerRelationship}
                         required={props.requiredEmerRelationship}
@@ -90,7 +90,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerHomePhonenumber', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         onBlur={e => props.validateSyntaxPhoneNumber('emerHomePhonenumber', e.target.value)}
                         value={props.emerHomePhonenumber} 
@@ -102,7 +102,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerMobileNumber', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         onBlur={e => props.validateSyntaxPhoneNumber('emerMobileNumber', e.target.value)}
                         value={props.emerMobileNumber} 
@@ -128,8 +128,8 @@ const EmergencyContact = (props) => {
                         value={props.emerTypeofHouse}
                         onChange={async (e, { value }) => {
                             setField('emerTypeofHouse', value)
-                            props.checkStatusSameAddress()
-                            emergencyField();
+                            props.changeStatusSameAddress()
+                            setRequiredField();
                         }} 
                         value={props.emerTypeofHouse} 
                         required={props.requiredEmerTypeofHouse}
@@ -140,8 +140,8 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async(e) => {
                             setField('emerAddress', e.target.value)
-                            props.checkStatusSameAddress()
-                            emergencyField();
+                            props.changeStatusSameAddress()
+                            setRequiredField();
                         }}
                         value={props.emerAddress} 
                         required={props.requiredEmerAddress}
@@ -190,7 +190,7 @@ const EmergencyContact = (props) => {
                         width={6}
                         onChange={async (e) => {
                             await setField('emerZipcode', e.target.value)
-                            emergencyField();
+                            setRequiredField();
                         }}
                         value={props.emerZipcode}
                         required={props.requiredEmerZipcode}

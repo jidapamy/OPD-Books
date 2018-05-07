@@ -172,7 +172,8 @@ class Register extends Component {
     nationalityData: nationalityData,
     religionData: religionData,
     statusData: statusData,
-    countryData: countryData,    requiredEmerSubDistrict: false,
+    countryData: countryData,    
+    requiredEmerSubDistrict: false,
     requiredEmerZipcode: false,
 
   }
@@ -379,7 +380,7 @@ class Register extends Component {
     }
   }
 
-  emergencyField = () => {
+  setRequiredField = () => {
     if (this.state.emerTitle === '' && this.state.emerFirstname === '' && this.state.emerLastname === '' &&
       this.state.emerRelationship === '' && this.state.emerHomePhonenumber === '' && this.state.emerMobileNumber === '' &&
       this.state.emerTypeofHouse === '' && this.state.emerAddress === '' && this.state.emerProvince === '' &&
@@ -453,8 +454,8 @@ class Register extends Component {
     const province = value.options.filter(option => option.value === value.value)[0]
     const amphurs = amphursData.default[province.key]
     if (field === 'emerProvince') {
-      this.checkStatusSameAddress();
-      this.emergencyField();
+      this.changeStatusSameAddress();
+      this.setRequiredField();
       this.setState({
         emerDistrict: '',
         emerSubDistrict: '',
@@ -477,8 +478,8 @@ class Register extends Component {
     const amphur = value.options.filter(option =>  option.value === value.value)[0]
     const districts = districtsData.default[amphur.key]
     if (field === 'emerDistrict') {
-      this.checkStatusSameAddress();
-      this.emergencyField();
+      this.changeStatusSameAddress();
+      this.setRequiredField();
       this.setState({
         emerSubDistrict: '',
         emerZipcode: '',
@@ -502,13 +503,13 @@ class Register extends Component {
       this.setState({ zipcode: district.zipcode })
     }
     else if (field === 'emerSubDistrict') {
-      this.emergencyField();
-      this.checkStatusSameAddress();
+      this.setRequiredField();
+      this.changeStatusSameAddress();
       this.setState({ emerZipcode: district.zipcode })
     }
   }
 
-  checkSameAddress = () => {
+  chooseSameAddress = () => {
     const check = !this.state.statusSameAddress
     if (check) {
       this.emerOldAddress = {
@@ -538,7 +539,7 @@ class Register extends Component {
     }
   }
 
-  checkStatusSameAddress = () => {
+  changeStatusSameAddress = () => {
     if (this.state.statusSameAddress) {
       this.setState({ statusSameAddress: false })
     }
@@ -556,7 +557,7 @@ class Register extends Component {
       confirmButtonText: 'CONFIRM!'
     }).then((result) => {
       if (result.value) {
-        if(this.insertPateint()){
+        if(this.insertPatient()){
           swal(
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
@@ -583,8 +584,8 @@ class Register extends Component {
   }
 
   //Connect API
-  insertPateint = async () => {
-    console.log('insertPateint')
+  insertPatient = async () => {
+    console.log('insertPatient')
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = '123/61';
@@ -607,8 +608,7 @@ class Register extends Component {
       contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
     }
     
-    
-   
+  
    
     // const result = await axios.post('/addPateint', {
     //                                   registerDate: this.state.registerDate,
@@ -750,9 +750,9 @@ class Register extends Component {
               //method
               validateSyntaxPhoneNumber={this.validateSyntaxPhoneNumber}
               clearField={this.clearField}
-              emergencyField={this.emergencyField}
-              checkStatusSameAddress={this.checkStatusSameAddress}
-              checkSameAddress={this.checkSameAddress}
+              setRequiredField={this.setRequiredField}
+              changeStatusSameAddress={this.changeStatusSameAddress}
+              chooseSameAddress={this.chooseSameAddress}
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}
               changeDistrict={this.changeDistrict}
