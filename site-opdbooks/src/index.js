@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './Index/app';
-import Login from './Login/login';
+// import Login from './Login/login';
+import Login from './Containers/Login';
+
 import Home from './BetaIndex/Home';
+import ProfilePatient from './Containers/PatientProfile';
+import DashBoard from './Containers/DashBoard';
 import Register from './Containers/Register';
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -15,6 +19,8 @@ ReactDOM.render(
         <Route exact path='/' component={Home}/>
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/profile' component={ProfilePatient} />
+        <Route path='/dashboard' component={DashBoard} />
         </div>
     </Router>,document.getElementById('root')
     );

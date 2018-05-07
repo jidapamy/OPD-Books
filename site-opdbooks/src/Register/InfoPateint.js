@@ -74,6 +74,33 @@ const InfoPateint = (props) => {
 
                     <Form.Group>
                         <Form.Field
+                            label='อีเมล์ (Email)'
+                            placeholder='อีเมล์ (Email)'
+                            width={6}
+                            onChange={e => setField('email', e.target.value)}
+                            value={props.email}
+                            required
+                        />
+                        <Form.Input
+                            label='พลาสเวิร์ด (Password)'
+                            placeholder='พลาสเวิร์ด (Password)'
+                            width={5}
+                            onChange={e => setField('password', e.target.value)}
+                            value={props.password}
+                            required
+                        />
+                        <Form.Input
+                            label='ยืนยันพลาสเวิร์ด (ConfirmPassword)'
+                            placeholder='ยืนยันพลาสเวิร์ด (ConfirmPassword)'
+                            width={5}
+                            onChange={e => setField('confirmpassword', e.target.value)}
+                            value={props.password}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Field
                             control={Select}
                             label='คำนำหน้า (Title)'
                             options={nameTypeData}
