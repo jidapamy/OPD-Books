@@ -178,7 +178,7 @@ class SidebarBottomOverlay extends Component {
     if (data) {
       this.setState({
         result: data,
-        open:false
+        // open:false
       })
       this.getPatient(data)
     }
@@ -423,7 +423,7 @@ class SidebarBottomOverlay extends Component {
           </Segment>
         </Container>
 
-        <PopupQRCode size={'mini'} open={open} onClose={this.close}>
+        <PopupQRCode size={'mini'} open={open} onClose={this.close} >
 
           <Modal.Content >
             <QrReader
@@ -434,7 +434,7 @@ class SidebarBottomOverlay extends Component {
             />
             <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
             <Container textAlign={'center'} size='medium'>Hash: {this.state.result}</Container>
-            <Button floated='left' size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '5%',paddingBottom: '2%' }} fluid > Close</Button>
+            <Button floated='left' size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '5%',marginBottom: '5%' }} fluid > Close</Button>
 
           </Modal.Content>
         </PopupQRCode>

@@ -153,7 +153,7 @@ class Register_English extends Component {
     console.log(field +' / '+value)
     this.setState({ [field]: value })
     if (field === 'emerTypeofHouse' || field === 'emerAddress' || field === 'emerZipcode') {
-      this.checkStatusSameAddress();
+      this.();
     }
     if (field === 'cardType') {
       this.setState({ errorIdCard: { status: false, message: '' } })
@@ -299,7 +299,7 @@ class Register_English extends Component {
     console.log(field)
     if (field === 'emerProvince') {
       console.log('if emerProvince')
-      this.checkStatusSameAddress();
+      this.changeStatusSameAddress();
       this.setState({ amphursEmer: [], districtsEmer: [], emerDistrict: [], emerSubDistrict: [], emerZipcode: '' })
       const province = value.options.filter(option => option.value === value.value)[0]
       const amphurs = this.state.amphursEmer.filter(amphur => amphur.provinceid === province.key)
@@ -317,7 +317,7 @@ class Register_English extends Component {
   changeAmphur = (field, value) => {
     console.log(field)
     if (field === 'emerDistrict') {
-      this.checkStatusSameAddress();
+      this.changeStatusSameAddress();
       this.setState({ districtsEmer: '', emerSubDistrict: '', emerZipcode: '' })
       const amphur = value.options.filter(option => option.value === value.value)[0]
       const districts = this.state.districtsEmer.filter(district => district.amphurid === amphur.key)
@@ -338,7 +338,7 @@ class Register_English extends Component {
       this.setState({ zipcode: district.zipcode })
     }
     else if (field === 'emerSubDistrict') {
-      this.checkStatusSameAddress();
+      this.changeStatusSameAddress();
       this.setState({ emerZipcode: district.zipcode })
     }
   }
@@ -355,8 +355,8 @@ class Register_English extends Component {
         this.setState({ districtsEmer: districtsData.default })
     }
   }
-  checkSameAddress = () => {
-    console.log('checkSameAddress')
+  chooseSameAddress = () => {
+    console.log('chooseSameAddress')
     this.setState({ amphursEmer: this.state.amphursHome, districtsEmer: this.state.districtsHome })
     const check = !this.state.statusSameAddress
     this.setState({ statusSameAddress: check })
@@ -372,7 +372,7 @@ class Register_English extends Component {
       });
     }
   }
-  checkStatusSameAddress = () => {
+  changeStatusSameAddress = () => {
     if (this.state.statusSameAddress) {
       this.setState({ statusSameAddress: false })
     }
@@ -387,7 +387,7 @@ class Register_English extends Component {
   }
 
   //Connect API
-  insertPateint = async () => {
+  insertPatient = async () => {
     console.log(this.state.registerDate)
     console.log('inserting')
     const nationality = !this.state.nationality.disabled ?  this.state.othernationality : this.state.nationality.value
@@ -507,7 +507,7 @@ class Register_English extends Component {
             header={this.state.cardType === 'idcard' ? 'Invalid-data' : 'Invalid'}
             content={this.state.errorIdCard.message}
           />
-          <Form onSubmit={this.insertPateint}>
+          <Form onSubmit={this.insertPatient}>
             <InfoPateint
               checkIdcard={this.checkIdcard}
               setField={this.setField}
@@ -546,7 +546,7 @@ class Register_English extends Component {
               amphurs={this.state.amphursEmer}
               districts={this.state.districtsEmer}
 
-              checkSameAddress={this.checkSameAddress}
+              chooseSameAddress={this.chooseSameAddress}
               preparedData={this.preparedData}
               changeProvince={this.changeProvince}
               changeAmphur={this.changeAmphur}

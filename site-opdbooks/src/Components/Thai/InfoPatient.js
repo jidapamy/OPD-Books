@@ -99,6 +99,7 @@ const InfoPateint = (props) => {
                             onChange={e => setField('email', e.target.value)}
                             value={props.email}
                             required
+                            type='email'
                         />
                         <Form.Input
                             label='รหัสผ่าน (Password)'
