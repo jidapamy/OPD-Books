@@ -12,9 +12,9 @@ export default class PatientRecord extends Component {
 
     login = () => {
         console.log(this.state)
-        const result = contract.getCheckLogin("1101500929520", "12321AS")
+        const result = contract.getCheckLogin(this.state.citizenId,this.state.password)
         console.log(result)
-        console.log(contract.getCheckLogin("1101500929520", "12321AS"))
+        console.log(contract.getCheckLogin("1670433847213", "12321AS"))
         if(result){
             this.props.history.push({
                 pathname: '/profile',
@@ -25,6 +25,7 @@ export default class PatientRecord extends Component {
 
     render() {
         // console.log(this.state)
+        
         return (
             <div className='login-form'>
                 <style>{`

@@ -591,7 +591,7 @@ class Register extends Component {
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = '123/61';
-    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, ' ', defaultAccount)
+    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, defaultAccount)
     contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
     contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
     contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)

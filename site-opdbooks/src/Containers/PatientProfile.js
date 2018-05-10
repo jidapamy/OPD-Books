@@ -118,7 +118,7 @@ export default class PatientRecord extends Component {
 
         open: false ,
 
-        QRCode:'ew2hj23g438d0bv7ds64fsds37'
+        QRCode:'1670433847213'
 
     }
     show = dimmer => () => this.setState({ dimmer, open: true })
@@ -127,6 +127,18 @@ export default class PatientRecord extends Component {
     //Connect API
     componentWillMount() {
         console.log(contract)
+        // const InfoPatientPart1 = contract.getInfoPatientPart1("1670433847213", defaultAccount);
+        // const InfoPatientPart2 = contract.getInfoPatientPart2("1670433847213", defaultAccount);
+        // const InfoPatientPart3 = contract.getInfoPatientPart3("1670433847213", defaultAccount);
+        // const InfoPatientPart4 = contract.getInfoPatientPart4("1670433847213", defaultAccount);
+
+        // const AddressPatient = contract.getAddressPatient("1670433847213", defaultAccount);
+        // const PatientAllergy = contract.getPatientAllergy("1670433847213", defaultAccount);
+
+        // const EmergencyContactPart1 = contract.getEmergencyContactPart1("1670433847213", defaultAccount)
+        // const EmergencyContactPart2 = contract.getEmergencyContactPart2("1670433847213", defaultAccount)
+
+        // const PatientParent = contract.getPatientParent("1670433847213", defaultAccount)
         const InfoPatientPart1 = contract.getInfoPatientPart1(this.props.location.state.citizenId, defaultAccount);
         
         const InfoPatientPart2 = contract.getInfoPatientPart2(this.props.location.state.citizenId, defaultAccount);
@@ -142,7 +154,7 @@ export default class PatientRecord extends Component {
 
         const PatientParent = contract.getPatientParent(this.props.location.state.citizenId, defaultAccount)
         
-
+        
         this.setState({
             //InfoPatient Part1
             registerDate: web3.toAscii(InfoPatientPart1[0]),
