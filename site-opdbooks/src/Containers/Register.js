@@ -178,7 +178,6 @@ class Register extends Component {
     countryData: countryData,    
     requiredEmerSubDistrict: false,
     requiredEmerZipcode: false,
-
   }
 
   emerOldAddress = {};
