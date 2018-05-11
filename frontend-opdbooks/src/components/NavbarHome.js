@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import './../static/style/Navbar.css'
+
+
 export default class Navbar extends Component {
+
     state = { activeItem: 'home' }
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
     render() {
+
         const { activeItem } = this.state
+
         return (
             <div>
+
                 <Menu pointing secondary color={'teal'}>
-                            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+                    <Link to='/'><Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
                     <Menu.Menu position='right'>
                             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
                         <Menu.Item>
@@ -18,6 +25,7 @@ export default class Navbar extends Component {
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>
+
             </div>
         )
     }

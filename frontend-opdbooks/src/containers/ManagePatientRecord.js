@@ -253,25 +253,25 @@ export default class ManagePatientRecord extends Component {
 
   insertPatient = async () => {
     console.log('insertPatient')
-    const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
-    const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
+    // const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
+    // const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = 'HP2312';
-    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, defaultAccount)
-    contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
-    contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
-    contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)
+    contract.setInfoPatientPart1(this.state.patient.idCard, this.state.patient.registerDate, hn, defaultAccount)
+    contract.setInfoPatientPart2(this.state.patient.idCard, this.state.patient.dob, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, this.state.patient.gender, defaultAccount);
+    contract.setInfoPatientPart3(this.state.patient.idCard, this.state.patient.congenitalDisease, this.state.patient.bloodgroup, this.state.patient.religion, this.state.patient.nationality, this.state.patient.country, defaultAccount);
+    contract.setInfoPatientPart4(this.state.patient.idCard, this.state.patient.status, this.state.patient.occupartion, this.state.patient.homePhonenumber, this.state.patient.mobileNumber, defaultAccount)
 
-    contract.setAddressPatient(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    contract.setAddressPatient(this.state.patient.idCard, this.state.patient.typeofHouse, this.state.patient.address, this.state.patient.province, this.state.patient.district, this.state.patient.subDistrict, this.state.patient.zipcode, defaultAccount)
 
-    contract.setPatientAllergy(this.state.idCard, allergy, privilege, defaultAccount);
+    contract.setPatientAllergy(this.state.patient.idCard, this.state.patient.allergy, this.state.patient.privilege, defaultAccount);
 
-    if (this.state.emerTitle != '' || this.state.emerFirstname != '' || this.state.emerLastname != '') {
-      contract.setEmergencyContactPart1(this.state.idCard, this.state.emerTitle, this.state.emerFirstname, this.state.emerLastname, this.state.emerRelationship, this.state.emerHomePhonenumber, this.state.emerMobileNumber, defaultAccount)
-      contract.setEmergencyContactPart2(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    if (this.state.patient.emerTitle != '' || this.state.patient.emerFirstname != '' || this.state.patient.emerLastname != '') {
+      contract.setEmergencyContactPart1(this.state.patient.idCard, this.state.patient.emerTitle, this.state.patient.emerFirstname, this.state.patient.emerLastname, this.state.patient.emerRelationship, this.state.patient.emerHomePhonenumber, this.state.patient.emerMobileNumber, defaultAccount)
+      contract.setEmergencyContactPart2(this.state.patient.idCard, this.state.patient.typeofHouse, this.state.patient.address, this.state.patient.province, this.state.patient.district, this.state.patient.subDistrict, this.state.patient.zipcode, defaultAccount)
     }
 
     if (this.state.age < 15) {
-      contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
+      contract.setPatientParent(this.state.patient.idCard, this.state.patient.fatherFirstname, this.state.patient.fatherLastname, this.state.patient.motherFirstname, this.state.patient.motherLastname, defaultAccount)
     }
   }
 
@@ -293,7 +293,7 @@ export default class ManagePatientRecord extends Component {
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
             'success',
-            this.props.history.push('/login')
+            this.props.history.push('/signin')
           )
         }
       }

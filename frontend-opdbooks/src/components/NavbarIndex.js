@@ -13,8 +13,8 @@ export default class Navbar extends Component {
                     <Menu pointing secondary attached='top' color='teal' size='huge' >
                         <Link to='/home'><Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
                         <Menu.Menu position='right' >
-                            <Link to='/login'><Menu.Item name='Sign In' active={activeItem === 'Sign In'} onClick={this.handleItemClick} /></Link>
-                            <Link to='/register'><Menu.Item name='Sign Up' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} /></Link>
+                            <Link to='/signin'><Menu.Item name='Sign In' active={activeItem === 'Sign In'} onClick={this.handleItemClick} /></Link>
+                            <Link to='/signup'><Menu.Item name='Sign Up' active={activeItem === 'Sign Up'} onClick={this.handleItemClick} /></Link>
                         </Menu.Menu>
                     </Menu>
                 </Menu>

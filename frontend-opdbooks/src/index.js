@@ -14,8 +14,8 @@ ReactDOM.render(
     <Router>
         <div>
             <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={ManagePatientRecord} />
+            <Route path='/signin' component={Login} />
+            <Route path='/signup' component={ManagePatientRecord} />
             <Route path='/profile' component={ProfilePatient} />
             <Route path='/dashboard' component={DashBoard} />
         </div>
