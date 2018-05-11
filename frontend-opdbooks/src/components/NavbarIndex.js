@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-
+import './../static/style/Navbar.css'
 export default class Navbar extends Component {
     state = { activeItem: 'home' }
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })

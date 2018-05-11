@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Modal, Container, Table, Grid, Divider,Label,Card } from 'semantic-ui-react'
 import styled from 'styled-components'
 import QrReader from 'react-qr-reader'
+import Navbar from './../components/NavbarHome';
 import { defaultAccount, contract,web3 } from './../lib/web3';
 
 const PopupQRCode = styled(Modal) `
@@ -194,15 +195,10 @@ class SidebarBottomOverlay extends Component {
     const { activeItem } = this.state
     return (
       <div>
-        <Menu pointing secondary color={'teal'}>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Menu position='right'>
-            <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
-            <Menu.Item>
-              <Button color='teal' basic floated='left' onClick={this.show('mini')}><Icon name='qrcode'/>Scan QRCode</Button>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
+        <Navbar
+            role='emp'
+             show={this.show}
+        ></Navbar>
 
         <Container >
           
