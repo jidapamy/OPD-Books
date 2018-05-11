@@ -58,7 +58,7 @@ export default class PatientProfile extends Component {
         registerDate: '',
         hospitalnumber: '',
         // photo: web3.toAscii(InfoPatientPart1[2]),
-        idcard: '',
+        citizenId: '',
 
         //InfoPatient Part2
         dob: '',
@@ -117,8 +117,7 @@ export default class PatientProfile extends Component {
 
         open: false ,
 
-        QRCode:'ew2hj23g438d0bv7ds64fsds37'
-
+        QRCode:''
     }
     show = dimmer => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
@@ -147,7 +146,8 @@ export default class PatientProfile extends Component {
             registerDate: web3.toAscii(InfoPatientPart1[0]),
             hospitalnumber: web3.toAscii(InfoPatientPart1[1]),
             // photo: web3.toAscii(InfoPatientPart1[2]),
-            idcard:(InfoPatientPart1[3]),
+            citizenId: web3.toAscii(InfoPatientPart1[2]),
+            QRCode:web3.toAscii(InfoPatientPart1[2]),
 
             //InfoPatient Part2
             dob: web3.toAscii(InfoPatientPart2[0]),
@@ -204,18 +204,13 @@ export default class PatientProfile extends Component {
             //PatientAllergy
             allergy: web3.toAscii(PatientAllergy[0]),
             privilege: web3.toAscii(PatientAllergy[1]),
-            
+        
             
             
         })
     }
 
-    
-    
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-       
-
     render() {
         const { open, size } = this.state
         const { activeItem } = this.state
@@ -283,7 +278,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 ID Card.
                                                             </Header.Subheader>
-                                                            {this.state.idcard}
+                                                            {this.state.citizenId}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>

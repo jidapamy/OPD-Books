@@ -22,8 +22,9 @@ import ErrorMessage from './../components/ErrorMessage'
 
 
 //provider
-import { setErrorMsg, setErrorMsgSplice } from './../components/Validate';
-import { defaultAccount, contract } from './../lib/web3';
+import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
+import { defaultAccount, contract,web3 } from './../lib/web3';
+import axios from './../lib/axois'
 
 //static
 import BackgroundImage from './../static/img/BG.png'
@@ -251,27 +252,32 @@ export default class ManagePatientRecord extends Component {
     }
   }
 
-  insertPatient = async () => {
+  insertPatient = () => {
     console.log('insertPatient')
     // const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     // const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = 'HP2312';
-    contract.setInfoPatientPart1(this.state.patient.idCard, this.state.patient.registerDate, hn, defaultAccount)
-    contract.setInfoPatientPart2(this.state.patient.idCard, this.state.patient.dob, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, this.state.patient.gender, defaultAccount);
-    contract.setInfoPatientPart3(this.state.patient.idCard, this.state.patient.congenitalDisease, this.state.patient.bloodgroup, this.state.patient.religion, this.state.patient.nationality, this.state.patient.country, defaultAccount);
-    contract.setInfoPatientPart4(this.state.patient.idCard, this.state.patient.status, this.state.patient.occupartion, this.state.patient.homePhonenumber, this.state.patient.mobileNumber, defaultAccount)
+    contract.setInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.currentDate), web3.fromAscii(hn), web3.fromAscii(this.state.patient.password), defaultAccount)
+    contract.setInfoPatientPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.dob), web3.fromAscii(this.state.patient.nameTitle), web3.fromAscii(this.state.patient.firstname), web3.fromAscii(this.state.patient.lastname), web3.fromAscii(this.state.patient.gender), defaultAccount);
+    contract.setInfoPatientPart3(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.congenitalDisease), web3.fromAscii(this.state.patient.bloodgroup), web3.fromAscii(this.state.patient.religion), web3.fromAscii(this.state.patient.nationality), web3.fromAscii(this.state.patient.country), defaultAccount);
+    contract.setInfoPatientPart4(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.status), web3.fromAscii(this.state.patient.occupartion), web3.fromAscii(this.state.patient.homePhonenumber), web3.fromAscii(this.state.patient.mobileNumber), web3.fromAscii(this.state.patient.email), defaultAccount);
+    contract.setEmail(web3.fromAscii(this.state.patient.email), defaultAccount);
 
-    contract.setAddressPatient(this.state.patient.idCard, this.state.patient.typeofHouse, this.state.patient.address, this.state.patient.province, this.state.patient.district, this.state.patient.subDistrict, this.state.patient.zipcode, defaultAccount)
+    const result = contract.getInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId));
+    result.map(res => {
+      console.log(web3.toAscii(res))
+    })
+    contract.setAddressPatient(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), web3.fromAscii(this.state.patient.address), web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
 
-    contract.setPatientAllergy(this.state.patient.idCard, this.state.patient.allergy, this.state.patient.privilege, defaultAccount);
+    contract.setPatientAllergy(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.allergy), web3.fromAscii(this.state.patient.privilege), defaultAccount);
 
     if (this.state.patient.emerTitle != '' || this.state.patient.emerFirstname != '' || this.state.patient.emerLastname != '') {
-      contract.setEmergencyContactPart1(this.state.patient.idCard, this.state.patient.emerTitle, this.state.patient.emerFirstname, this.state.patient.emerLastname, this.state.patient.emerRelationship, this.state.patient.emerHomePhonenumber, this.state.patient.emerMobileNumber, defaultAccount)
-      contract.setEmergencyContactPart2(this.state.patient.idCard, this.state.patient.typeofHouse, this.state.patient.address, this.state.patient.province, this.state.patient.district, this.state.patient.subDistrict, this.state.patient.zipcode, defaultAccount)
+      contract.setEmergencyContactPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.emerTitle), web3.fromAscii(this.state.patient.emerFirstname), web3.fromAscii(this.state.patient.emerLastname), web3.fromAscii(this.state.patient.emerRelationship), web3.fromAscii(this.state.patient.emerHomePhonenumber), web3.fromAscii(this.state.patient.emerMobileNumber), defaultAccount)
+      contract.setEmergencyContactPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), web3.fromAscii(this.state.patient.address), web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
     }
 
     if (this.state.age < 15) {
-      contract.setPatientParent(this.state.patient.idCard, this.state.patient.fatherFirstname, this.state.patient.fatherLastname, this.state.patient.motherFirstname, this.state.patient.motherLastname, defaultAccount)
+      contract.setPatientParent(this.state.patient.citizenId, this.state.patient.fatherFirstname, this.state.patient.fatherLastname, this.state.patient.motherFirstname, this.state.patient.motherLastname, defaultAccount)
     }
   }
 
@@ -309,6 +315,7 @@ export default class ManagePatientRecord extends Component {
 
   render() {
     console.log(this.state)
+    // console.log('idcard', web3.fromAscii('1231231231231'))
     // const errorList = this.state.errorText.map(msg => (msg.value))
     return (
       <Wrapper>
@@ -380,7 +387,7 @@ export default class ManagePatientRecord extends Component {
             </Form.Group>
             <GridColumn width={16}>
               <Button disabled={!this.state.agreement}
-                onClick={() => this.validate()}
+                onClick={() => this.insertPatient()}
                 color='green'>
                 <h3>CONFIRM</h3>
               </Button>
@@ -388,6 +395,18 @@ export default class ManagePatientRecord extends Component {
 
             </GridColumn>
             <br></br><br></br>
+            <Button onClick={()=>{
+              console.log('1231231231231', web3.fromAscii('1231231231231'))
+              console.log(this.state.currentDate, web3.fromAscii(this.state.currentDate))
+              console.log('HP2312', web3.fromAscii('HP2312'))
+              console.log('1234567890!', web3.fromAscii('1234567890'))
+              contract.setInfoPatientPart1(web3.fromAscii('1231231231232'), web3.fromAscii(this.state.currentDate), web3.fromAscii('HP2312'), web3.fromAscii('1234567890'), defaultAccount)
+              const result = contract.getInfoPatientPart1(web3.fromAscii('1231231231232'));
+              result.map(res => {
+                console.log(web3.toAscii(res))
+              })
+              
+            }}>CLICK</Button>
           </Form>
         </Container>
         <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />

@@ -12,7 +12,7 @@ export const ErrorField = {
     nationality: false,
     religion: false,
     status: false,
-    occupation: false,
+    occupartion: false,
     country: false,
     congenitalDisease: false,
     homePhonenumber: false,

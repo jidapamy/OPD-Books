@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import axios from './../lib/axois';
-import { setErrorMsg, setErrorMsgSplice } from './Validate';
+import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
 
 export default class CitizenIdField extends Component {
     state = {

@@ -3,34 +3,6 @@ export const abi = [
         "constant": true,
         "inputs": [
             {
-<<<<<<< HEAD
-                "name": "_idcard",
-                "type": "bytes32"
-            },
-            {
-                "name": "_typeofHouse",
-                "type": "bytes32"
-            },
-            {
-                "name": "_patienaddress",
-                "type": "bytes32"
-            },
-            {
-                "name": "_province",
-                "type": "bytes32"
-            },
-            {
-                "name": "_district",
-                "type": "bytes32"
-            },
-            {
-                "name": "_subDistrict",
-                "type": "bytes32"
-            },
-            {
-                "name": "_zipcode",
-                "type": "bytes32"
-=======
                 "name": "_citizenId",
                 "type": "string"
             },
@@ -67,7 +39,6 @@ export const abi = [
             {
                 "name": "",
                 "type": "bool"
->>>>>>> a8d41b18f79646cf827c325f11af49de0b1b27a8
             }
         ],
         "payable": false,

@@ -12,13 +12,13 @@ export default class PatientRecord extends Component {
 
     login = () => {
         console.log(this.state)
-        const result = contract.getCheckLogin(this.state.citizenId,this.state.password)
+        const result = contract.Login(web3.fromAscii(this.state.citizenId), web3.fromAscii(this.state.password))
         console.log(result)
-        console.log(contract.getCheckLogin("1670433847213", "12321AS"))
-        if(result){
+        console.log(contract.Login("1670433847213", "12321AS"))
+        if (result){
             this.props.history.push({
                 pathname: '/profile',
-                state: { citizenId: this.state.citizenId }
+                state: { citizenId: web3.fromAscii(this.state.citizenId) }
             })
         }
     }

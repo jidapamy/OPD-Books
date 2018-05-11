@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
-import { setErrorMsg, setErrorMsgSplice } from './Validate';
+import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
 
 export default class Password extends Component {
 
+    state = {
+        password:null,
+        confirmpassword:null
+    }
     passwordField = [{
         label: 'รหัสผ่าน (Password)',
         placeholder: 'รหัสผ่าน (Password)',
@@ -16,11 +20,6 @@ export default class Password extends Component {
         attribute: 'confirmpassword',
         error: false
     }]
-
-    state = {
-        password: null,
-        confirmpassword: null,
-    }
 
     checkPassword = () => {
         this.props.setPatientDetail('password', '')
@@ -64,7 +63,7 @@ export default class Password extends Component {
                 onBlur={() => this.checkPassword()}
                 onChange={e => {
                     this.props.setFieldAndValidate('password',e.target.value)
-                    this.setState({[text.attribute] : e.target.value})
+                    this.setState({[text.attribute]:e.target.value})
                 }}
                 error={this.props.errorField.password}
                 required

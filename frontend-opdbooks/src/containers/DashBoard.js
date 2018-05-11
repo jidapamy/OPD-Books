@@ -31,7 +31,7 @@ class SidebarBottomOverlay extends Component {
         registerDate: '',
         hospitalnumber: '',
         // photo: web3.toAscii(InfoPatientPart1[2]),
-        idcard: '',
+        citizenId: '',
 
         //InfoPatient Part2
         dob: '',
@@ -110,7 +110,7 @@ class SidebarBottomOverlay extends Component {
             registerDate: web3.toAscii(InfoPatientPart1[0]),
             hospitalnumber: web3.toAscii(InfoPatientPart1[1]),
             // photo: web3.toAscii(InfoPatientPart1[2]),
-            idcard:(InfoPatientPart1[3]),
+            citizenId: web3.toAscii(InfoPatientPart1[2]),
 
             //InfoPatient Part2
             dob: web3.toAscii(InfoPatientPart2[0]),
@@ -206,7 +206,7 @@ class SidebarBottomOverlay extends Component {
             <Icon name='user circle outline' />
               {this.state.titlename}{this.state.firstname} {this.state.lastname}
               <Header.Subheader>
-                <Label as='a' basic color='teal'>ID Card: {this.state.idcard}</Label>
+              <Label as='a' basic color='teal'>ID Card: {this.state.citizenId}</Label><Label as='a' basic color='teal'>E-mail: {this.state.email}</Label>
             </Header.Subheader>
           </Header>
 
