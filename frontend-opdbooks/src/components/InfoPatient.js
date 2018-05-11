@@ -9,8 +9,8 @@ import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
 
 
 import {
-    titleNameChildData,genderData, cardTypeData, titleNameData, titleNameParentData, bloodgroupData,
-    typesOfHousingData, nationalityData, religionData, statusData, countryData
+    titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
+    nationalityData, religionData, statusData, countryData
 } from './../static/data/FormDatas.js'
 
 
@@ -20,7 +20,7 @@ export default class InfoPateint extends Component {
         errorText: []
     }
 
-    Country = () => {
+    showCountry = () => {
         if (this.props.cardType !== 'idcard') {
             return <Form.Field
                 control={Dropdown}
@@ -60,9 +60,9 @@ export default class InfoPateint extends Component {
     //     // this.props.setField('errorText', result.arr)
     // }
 
-    changeCardType = (value) => {
-        this.props.setField('cardType', value)
-    }
+    // changeCardType = (value) => {
+    //     this.props.setField('cardType', value)
+    // }
 
     validateEmail = (value) => {
         if (value.match(/^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]/)){
@@ -75,6 +75,10 @@ export default class InfoPateint extends Component {
             const result = setErrorMsg('email', this.props.cardType === 'idcard' ? `โปรดใส่ '@' และป้อนส่วนที่ต่อท้าย '@' ในที่อยู่อีเมลล์, '${value}' ไม่สมบูรณ์` : `Please include an '@' and enter the part following '@' in the email address. '${value}' is incomplete. `, this.props.errorText)
             this.props.setField('errorInfo', result.arr)
         }
+    }
+
+    checkEmailDuplicate = () =>{
+
     }
 
     render() {
@@ -105,7 +109,7 @@ export default class InfoPateint extends Component {
                                 options={cardTypeData}
                                 placeholder='เลือกประเภทบัตร'
                                 width={4}
-                                onChange={(e, { value }) => this.changeCardType(value)}
+                                onChange={(e, { value }) => this.props.setField('cardType', value)}
                                 value={this.props.cardType}
                                 required
                             />
@@ -256,7 +260,7 @@ export default class InfoPateint extends Component {
                                 required
                                 error={this.props.errorField.nationality}
                             />
-                            {this.Country()}
+                            {this.showCountry()}
                         </Form.Group>
                         <Form.Group>
                             <Form.Field

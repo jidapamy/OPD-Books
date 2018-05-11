@@ -22,8 +22,8 @@ import ErrorMessage from './../components/ErrorMessage'
 
 
 //provider
-import { setErrorMsg, setErrorMsgSplice } from './../components/Validate';
-// import { defaultAccount, contract } from './../lib/web3';
+import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
+import { defaultAccount, contract } from './../lib/web3';
 import axios from './../lib/axois'
 
 //static
@@ -319,7 +319,7 @@ export default class ManagePatientRecord extends Component {
     //                                   allergy: allergy,
     //                                   privilege: privilege,
     //                                 })
-    return result;
+    // return result;
   }
 
   showPopupConfirm = async () => {
