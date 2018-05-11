@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import Dashboard from './DashBoard'
 import { defaultAccount, contract,web3 } from './../lib/web3';
 import { QRCode } from 'react-qr-svg';
+import Navbar from './../components/NavbarHome';
 const Menus = styled(Menu) `
    
     position: fixed;
@@ -221,30 +222,17 @@ export default class PatientProfile extends Component {
         var  QRCodes  = `${this.state.QRCode}`
 
         return (
+            
             <Segment.Group style={{ border: '0px' }}>
-
-
-
-
-                <Segment style={{ paddingLeft: '15em' }} >
-
-                    <Menus color={'teal'} secondary inverted vertical >
-                        <Menu.Item>
-                            <img src={iconOpd} style={{ paddingBottom: '1em', paddingTop: '1em' }} />
-                        </Menu.Item>
-                        <MenyItem name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-                        {/* <MenyItem name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
-                        <MenyItem name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} /> */}
-                        <MenyItem name='Logout' active={activeItem === 'Logout'} onClick={this.handleItemClick} />
-                    </Menus>
-
+                <Navbar
+                    role='patient'
+                    show={this.show}
+                ></Navbar>
+                <Segment  >
                     <Header as='h2' >
-                        <Icon name='user circle outline' style={{ paddingLeft: '1.5em' }} />
+                        <Icon name='user circle outline'  />
                         <Header.Content >
-                            Profile Patient 
-
-                             <Button color='teal' basic floated='right' onClick={this.show('mini')}><Icon name='qrcode' />My QRCode</Button>
-                            
+                            <Header textAlign='center'>Profile Patient</Header>   
                              <PopupQRCode size={'mini'} open={open} onClose={this.close}>
                                 
                                 <Modal.Content >
@@ -264,17 +252,8 @@ export default class PatientProfile extends Component {
                                     
                                 </Modal.Content>
                             </PopupQRCode>
-
-                           
-
-
-                            {/* <Button color='teal' basic floated='right' onClick={() => this.showQRCode()}><Icon name='qrcode' />My QRCode</Button> */}
-                        </Header.Content>
-                        
-                        <Divider />
+                        </Header.Content>                                         
                     </Header>
-
-
                     <Grid columns='equal' stackable >
 
                         <Grid.Row textAlign='center'>

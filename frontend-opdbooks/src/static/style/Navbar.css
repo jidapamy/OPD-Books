@@ -1,0 +1,77 @@
+.image {
+  background-color: #490D40;
+  background: url(https://static.wixstatic.com/media/de2056_3bafaae06ffa43268fdc17e2fa479574~mv2.jpg) no-repeat center center;
+  background-size: cover;
+  height: 570px;
+  margin-top: -20px;
+}
+.image .heading {
+  color: #00b5ad;
+  text-align: center;
+  padding-top: 200px;
+  font-family: Kanit;
+  font-size: 50px;
+}
+.image p {
+  text-align: center;
+  padding: 20px 60px;
+}
+.image p .btn {
+  background-color: transparent;
+  color: #00b5ad;
+  border: 1px solid #00b5ad;
+  padding: 20px;
+  font-size: 4.2em;
+  border-radius: 6px;
+
+  
+
+}
+.image p .btn:hover {
+  color: #00b5ad;
+  border-color: #00b5ad;
+}
+
+.navbar {
+  height: 80px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  z-index: 100;
+  transition: background-color 1s ease 0s;
+}
+
+.navbar-default .navbar-brand {
+  margin-top: 10px;
+  color: white;
+}
+.navbar-default .navbar-brand:hover {
+  color: #C57ED3;
+  border: 1px solid #C57ED3;
+}
+
+.about {
+  background-color: #C57ED3;
+  color: #490D40;
+  height: 600px;
+  text-align: center;
+  margin-top: -20px;
+}
+.about h2 {
+  padding-top: 220px;
+}
+.about p {
+  padding: 20px 80px;
+}
+
+video.fullscreen { 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translate(-50%, -50%);
+}
