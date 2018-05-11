@@ -5,7 +5,7 @@ import DateField from './DateField';
 import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
-import { setErrorMsg, setErrorMsgSplice } from './Validate';
+import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
 
 
 import {
