@@ -25,6 +25,6 @@ export const MedicalRecord = {
     treatment: '',
     recommendation: '',
     appointment: '',
-    dateTimeOfNurse: '',
+    dateTimeOfDoctor: '',
     medicines: []
 }

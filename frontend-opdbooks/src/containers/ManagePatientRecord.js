@@ -23,7 +23,8 @@ import ErrorMessage from './../components/ErrorMessage'
 
 //provider
 import { setErrorMsg, setErrorMsgSplice } from './../components/Validate';
-import { defaultAccount, contract } from './../lib/web3';
+// import { defaultAccount, contract } from './../lib/web3';
+import axios from './../lib/axois'
 
 //static
 import BackgroundImage from './../static/img/BG.png'
@@ -256,23 +257,70 @@ export default class ManagePatientRecord extends Component {
     const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = '123/61';
-    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, ' ', defaultAccount)
-    contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
-    contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
-    contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)
 
-    contract.setAddressPatient(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    //blockchain
+    // contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, ' ', defaultAccount)
+    // contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
+    // contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
+    // contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)
 
-    contract.setPatientAllergy(this.state.idCard, allergy, privilege, defaultAccount);
+    // contract.setAddressPatient(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
 
-    if (this.state.emerTitle != '' || this.state.emerFirstname != '' || this.state.emerLastname != '') {
-      contract.setEmergencyContactPart1(this.state.idCard, this.state.emerTitle, this.state.emerFirstname, this.state.emerLastname, this.state.emerRelationship, this.state.emerHomePhonenumber, this.state.emerMobileNumber, defaultAccount)
-      contract.setEmergencyContactPart2(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
-    }
+    // contract.setPatientAllergy(this.state.idCard, allergy, privilege, defaultAccount);
 
-    if (this.state.age < 15) {
-      contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
-    }
+    // if (this.state.emerTitle != '' || this.state.emerFirstname != '' || this.state.emerLastname != '') {
+    //   contract.setEmergencyContactPart1(this.state.idCard, this.state.emerTitle, this.state.emerFirstname, this.state.emerLastname, this.state.emerRelationship, this.state.emerHomePhonenumber, this.state.emerMobileNumber, defaultAccount)
+    //   contract.setEmergencyContactPart2(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    // }
+
+    // if (this.state.age < 15) {
+    //   contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
+    // }
+
+    //db
+    const result = await axios.post('/addPateint', {
+                                      registerDate: this.state.registerDate,
+                                      idCard: this.state.idCard,
+                                      nameTitle: this.state.nameTitle,
+                                      firstname: this.state.firstname,
+                                      lastname: this.state.lastname,
+                                      gender: this.state.gender,
+                                      dob: this.state.dob,
+                                      bloodgroup: this.state.bloodgroup,
+                                      nationality: this.state.nationality,
+                                      religion: this.state.religion,
+                                      status: this.state.status,
+                                      occupartion: this.state.occupartion,
+                                      homePhonenumber: this.state.homePhonenumber,
+                                      mobileNumber: this.state.mobileNumber,
+                                      congenitalDisease: this.state.congenitalDisease,
+                                      typeofHouse: this.state.typeofHouse,
+                                      address: this.state.address,
+                                      province: this.state.province,
+                                      district: this.state.district,
+                                      subDistrict: this.state.subDistrict,
+                                      zipcode: this.state.zipcode,
+                                      emerTitle: this.state.emerTitle,
+                                      emerFirstname: this.state.emerFirstname,
+                                      emerLastname: this.state.emerLastname,
+                                      emerRelationship: this.state.emerRelationship,
+                                      emerHomePhonenumber: this.state.emerHomePhonenumber,
+                                      emerMobileNumber: this.state.emerMobileNumber,
+                                      emerTypeofHouse: this.state.emerTypeofHouse,
+                                      emerAddress: this.state.emerAddress,
+                                      emerProvince: this.state.emerProvince,
+                                      emerDistrict: this.state.emerDistrict,
+                                      emerSubDistrict: this.state.emerSubDistrict,
+                                      emerZipcode: this.state.emerZipcode,
+                                      statusSameAddress: this.state.statusSameAddress,
+                                      fatherFirstname: this.state.fatherFirstname,
+                                      fatherLastname: this.state.fatherLastname,
+                                      motherFirstname: this.state.motherFirstname,
+                                      motherLastname: this.state.motherLastname,
+                                      allergy: allergy,
+                                      privilege: privilege,
+                                    })
+    return result;
   }
 
   showPopupConfirm = async () => {
