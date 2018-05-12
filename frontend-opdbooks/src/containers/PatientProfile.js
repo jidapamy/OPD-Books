@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List,Button, Modal, Popup } from 'semantic-ui-react'
+import { Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Button, Modal, Popup, Form, TextArea } from 'semantic-ui-react'
 import styled from 'styled-components'
 import iconOpd from './../static/img/IconOPDs.png';
 import swal from 'sweetalert2';
@@ -7,6 +7,11 @@ import Dashboard from './DashBoard'
 import { defaultAccount, contract,web3 } from './../lib/web3';
 import { QRCode } from 'react-qr-svg';
 import Navbar from './../components/NavbarHome';
+import moment from 'moment';
+const CryptoJS = require("crypto-js");
+
+
+
 const Menus = styled(Menu) `
    
     position: fixed;
@@ -119,6 +124,9 @@ export default class PatientProfile extends Component {
 
         QRCode:''
     }
+
+    
+
     show = dimmer => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
 
@@ -212,10 +220,18 @@ export default class PatientProfile extends Component {
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render() {
+
         const { open, size } = this.state
         const { activeItem } = this.state
-        var  QRCodes  = `${this.state.QRCode}`
 
+        const currentDate = moment().format('ll')
+        console.log('currentDate: ' + currentDate)
+        // Encrypt //
+        var ciphertext = CryptoJS.AES.encrypt('OPDBooks@' + currentDate+'@'+`${this.state.citizenId}`, 'OPDQR');
+        console.log('ciphertext: ' + ciphertext)
+        var QRCodes = ''+ciphertext
+        console.log('QRCodes: ' + QRCodes)
+        
         return (
             
             <Segment.Group style={{ border: '0px' }}>
@@ -241,7 +257,10 @@ export default class PatientProfile extends Component {
                                         value={QRCodes}
                                     />
                                     <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-                                    <Container textAlign={'center'} size='medium'>Hash: {this.state.QRCode}</Container>
+                                    {/* <Form>
+                                        <TextArea placeholder='Tell us more' >Hash: {QRCodes}</TextArea>
+                                    </Form> */}
+                                    {/* <Container textAlign={'center'} size='medium'>Hash: {QRCodes}</Container> */}
 
                                     <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
                                     

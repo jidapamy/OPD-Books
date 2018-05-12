@@ -3,8 +3,11 @@ import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Modal, Container, 
 import styled from 'styled-components'
 import QrReader from 'react-qr-reader'
 import Navbar from './../components/NavbarHome';
+import moment from 'moment';
+import swal from 'sweetalert2';
 import { defaultAccount, contract,web3 } from './../lib/web3';
 
+const CryptoJS = require("crypto-js");
 const PopupQRCode = styled(Modal) `
 position: fixed;
 top: 70%;
@@ -173,24 +176,63 @@ class SidebarBottomOverlay extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  close = () => this.setState({ open: false , })
 
   handleScan(data) {
+    // Decrypt
     if (data) {
-      this.setState({
-        result: data,
-        // open:false
-      })
-      this.getPatient(data)
-    }
+      const currentDate = moment().format('ll')
+      var bytes = CryptoJS.AES.decrypt(data.toString(), 'OPDQR');
+      var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+      let res = [] = plaintext.split("@");
+      // เช็คว่าตรงตามเงื่อนไขหรือไม่ เป็นQR ของClinicหรือไม่
+        if (res[0]=='OPDBooks'){
+
+              if (res[1] == '' + currentDate){
+                    swal({
+                      type: 'success',
+                      title: 'Your work has been saved',
+                      html:
+                      '<p>Hash: ' + bytes+'</p>',
+                      
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                    this.setState({ result: res[2], open: false })
+                    this.getPatient(res[2])
+              } else {
+                      swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        showConfirmButton: false,
+                        timer: 2000
+                      })
+                      this.setState({ result: 'Your listing is not available in the system.',open: false})
+              }
+              
+        }else{
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.setState({ result: 'Your listing is not available in the system.', open: false })
+        }
   }
+}
+
   handleError(err) {
     console.error(err)
+   
   }
 
 
   render() {
-
+    
+    
     const { open, size } = this.state
     const { activeItem } = this.state
     return (
@@ -419,8 +461,13 @@ class SidebarBottomOverlay extends Component {
           </Segment>
         </Container>
 
-        <PopupQRCode size={'mini'} open={open} onClose={this.close} >
-
+        <PopupQRCode 
+          size={'mini'} 
+          open={open} 
+          onClose={() => {
+            this.setState({ open: !this.state.open, result: '' })
+          }} >
+          <Header textAlign={'center'} size='large'>Scan QRCode</Header>
           <Modal.Content >
             <QrReader
               delay={this.state.delay}
@@ -428,8 +475,8 @@ class SidebarBottomOverlay extends Component {
               onScan={this.handleScan}
               style={{ width: '100%' }}
             />
-            <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-            <Container textAlign={'center'} size='medium'>Hash: {this.state.result}</Container>
+            {/* <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header> */}
+            {/* <Container textAlign={'center'} size='medium'>Hash: {this.state.result}</Container> */}
             <Button floated='left' size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '5%',marginBottom: '5%' }} fluid > Close</Button>
 
           </Modal.Content>

@@ -387,7 +387,7 @@ export default class ManagePatientRecord extends Component {
             </Form.Group>
             <GridColumn width={16}>
               <Button disabled={!this.state.agreement}
-                onClick={() => this.insertPatient()}
+                onClick={() => this.validate()}
                 color='green'>
                 <h3>CONFIRM</h3>
               </Button>
@@ -395,18 +395,7 @@ export default class ManagePatientRecord extends Component {
 
             </GridColumn>
             <br></br><br></br>
-            <Button onClick={()=>{
-              console.log('1231231231231', web3.fromAscii('1231231231231'))
-              console.log(this.state.currentDate, web3.fromAscii(this.state.currentDate))
-              console.log('HP2312', web3.fromAscii('HP2312'))
-              console.log('1234567890!', web3.fromAscii('1234567890'))
-              contract.setInfoPatientPart1(web3.fromAscii('1231231231232'), web3.fromAscii(this.state.currentDate), web3.fromAscii('HP2312'), web3.fromAscii('1234567890'), defaultAccount)
-              const result = contract.getInfoPatientPart1(web3.fromAscii('1231231231232'));
-              result.map(res => {
-                console.log(web3.toAscii(res))
-              })
-              
-            }}>CLICK</Button>
+           
           </Form>
         </Container>
         <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
