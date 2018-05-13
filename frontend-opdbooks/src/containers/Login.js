@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 // import './login.css'
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert2';
 import { defaultAccount, contract, web3 } from './../lib/web3';
 
 export default class PatientRecord extends Component {
@@ -19,6 +20,14 @@ export default class PatientRecord extends Component {
             this.props.history.push({
                 pathname: '/profile',
                 state: { citizenId: web3.fromAscii(this.state.citizenId) }
+            })
+        }else{
+            swal({
+                type: 'error',
+                title: 'Sorry',
+                text: 'Incorrect Password',
+                showConfirmButton: false,
+                timer: 2000
             })
         }
     }

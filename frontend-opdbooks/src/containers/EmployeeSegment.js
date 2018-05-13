@@ -301,7 +301,7 @@ class SidebarBottomOverlay extends Component {
     const { open, size } = this.state
     const { activeItem } = this.state
     return (
-      <div>
+      <div style={{ backgroundColor: '#00b5ad1a' }}>
         <Navbar
             role='emp'
              show={this.show}
@@ -387,6 +387,7 @@ class SidebarBottomOverlay extends Component {
               </Container>
           
         <Container style={{paddingTop:'2%'}}>
+          
           <Segment>
             <Header as='h1' color='teal' content='Address' />
             <Divider></Divider>

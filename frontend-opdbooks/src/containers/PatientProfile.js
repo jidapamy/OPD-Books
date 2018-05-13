@@ -3,7 +3,7 @@ import { Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, La
 import styled from 'styled-components'
 import iconOpd from './../static/img/IconOPDs.png';
 import swal from 'sweetalert2';
-import Dashboard from './DashBoard'
+import EmployeeSegment from './EmployeeSegment'
 import { defaultAccount, contract,web3 } from './../lib/web3';
 import { QRCode } from 'react-qr-svg';
 import Navbar from './../components/NavbarHome';
