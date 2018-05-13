@@ -47,33 +47,16 @@ export default class InfoPateint extends Component {
         }
     }
 
-    // setField = (field, value) => {
-    //     this.setState({ [field]: value })
-    // }
-
-    // setFieldAndValidate = (field, value) => {
-    //     // this.setState({ [field]: value })
-    //     this.props.setPatientDetail(field, value)
-    //     this.props.errorField[field] = false
-    //     this.props.setField('reState','')
-    //     // const result = setErrorMsgSplice('info', this.state.errorText)
-    //     // this.props.setField('errorText', result.arr)
-    // }
-
-    // changeCardType = (value) => {
-    //     this.props.setField('cardType', value)
-    // }
-
     validateEmail = (value) => {
         if (value.match(/^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]/)){
             // ^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]+.[A-Za-z]{2,64}
             this.props.errorField.email = false
             const result = setErrorMsgSplice('email', this.props.errorText)
-            this.props.setField('errorInfo', result.arr)
+            this.props.setField('errorInfo', result)
         }else{
             this.props.errorField.email = true
             const result = setErrorMsg('email', this.props.cardType === 'idcard' ? `โปรดใส่ '@' และป้อนส่วนที่ต่อท้าย '@' ในที่อยู่อีเมลล์, '${value}' ไม่สมบูรณ์` : `Please include an '@' and enter the part following '@' in the email address. '${value}' is incomplete. `, this.props.errorText)
-            this.props.setField('errorInfo', result.arr)
+            this.props.setField('errorInfo', result)
         }
     }
 

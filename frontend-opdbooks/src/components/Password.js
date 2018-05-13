@@ -17,6 +17,11 @@ export default class Password extends Component {
         error: false
     }]
 
+    state = {
+        password: null,
+        confirmpassword: null,
+    }
+
     checkPassword = () => {
         this.props.setPatientDetail('password', '')
         const error = { status: false, message: '' }
@@ -45,7 +50,7 @@ export default class Password extends Component {
                 result = setErrorMsgSplice('password', this.props.errorText)
                 this.props.setPatientDetail('password', this.state.password)
             }
-            this.props.setField('errorInfo', result.arr)
+            this.props.setField('errorInfo', result)
         }
     }
 
@@ -59,6 +64,7 @@ export default class Password extends Component {
                 onBlur={() => this.checkPassword()}
                 onChange={e => {
                     this.props.setFieldAndValidate('password',e.target.value)
+                    this.setState({[text.attribute] : e.target.value})
                 }}
                 error={this.props.errorField.password}
                 required

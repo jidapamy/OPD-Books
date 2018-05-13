@@ -14,7 +14,7 @@ export function setErrorMsg (key, value, arr) {
     if (!duplicated || arr.length === 0) {
         arr.push({ key: key, value: value })
     }
-    return { status: true, arr: arr }
+    return arr
 }
 
 
@@ -32,7 +32,7 @@ export function setErrorMsgSplice (key, arr) {
         if (indexSplice > -1) {
             arr.splice(indexSplice, 1);
         }
-        return { status: true, arr: arr }
+        return  arr
         // this.setState({ [key]: false, errorText: arr })
     }
 

@@ -23,7 +23,7 @@ export default class CitizenIdField extends Component {
                 }
                 this.setState({ erroridcard: error.status })
                 const result = setErrorMsg('erroridcard', error.message, this.props.errorText)
-                this.props.setField('errorInfo', result.arr)
+                this.props.setField('errorInfo', result)
             }else{
                 this.props.setPatientDetail('citizenId',this.state.citizenId)
             }
@@ -36,7 +36,7 @@ export default class CitizenIdField extends Component {
             this.props.cardType === 'passport' && this.state.citizenId.length === 9 && this.state.citizenId.match(/^[a-zA-Z]{2}[0-9]{7}$/)) {
             const result = setErrorMsgSplice('citizenId' , this.props.errorText)
             this.setState({ erroridcard: error.status })
-            this.props.setField('errorInfo', result.arr)
+            this.props.setField('errorInfo', result)
             return true;
         }else{
             if (this.props.cardType === 'idcard') {
@@ -48,7 +48,7 @@ export default class CitizenIdField extends Component {
         }
         const result = setErrorMsg('citizenId', error.message, this.props.errorText)
         this.setState({ erroridcard: error.status })
-        this.props.setField('errorInfo', result.arr)
+        this.props.setField('errorInfo', result)
         return false;
     }
 
