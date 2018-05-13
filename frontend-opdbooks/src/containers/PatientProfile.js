@@ -239,15 +239,13 @@ export default class PatientProfile extends Component {
         console.log('QRCodes: ' + QRCodes)
         
         return (
-          
-          <div>
-                <Navbar
-                    role='patient'
-                    show={this.show}
-                ></Navbar>
-           
-            <Segment.Group style={{ border: '0px' }}>
-                <Segment  >
+
+                <Segment.Group style={{ border: '0px'}}>
+                    <Navbar
+                        role='patient'
+                        show={this.show}
+                    ></Navbar>
+                    <Segment style={{ backgroundColor: '#00b5ad1a' }} >
                     <Header as='h2' icon textAlign='center'>
                         <Icon name='user' circular />
                         <Header.Content>
@@ -269,6 +267,7 @@ export default class PatientProfile extends Component {
                                          }}
                                         value={QRCodes}
                                     />
+                                   
                                     <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
                                     {/* <Form>
                                         <TextArea placeholder='Tell us more' >Hash: {QRCodes}</TextArea>
@@ -297,8 +296,8 @@ export default class PatientProfile extends Component {
                                             <Grid columns={3} >
                                                 <Grid.Column>
                                                     <Segment basic>
-                                                        <Header as='h2' icon>
-                                                            <Header.Subheader>
+                                                        <Header as='h2' icon >
+                                                            <Header.Subheader >
                                                                 Host No.
                                                             </Header.Subheader>
                                                             {this.state.hospitalnumber}
@@ -370,7 +369,7 @@ export default class PatientProfile extends Component {
                                                 <Grid.Column>
                                                     <Segment basic>
                                                         <Header as='h2' icon>
-                                                            <Header.Subheader>
+                                                            <Header.Subheader >
                                                                 Congenital Disease
                                                             </Header.Subheader>
                                                             {this.state.congenitaldisease}
@@ -782,8 +781,7 @@ export default class PatientProfile extends Component {
                 </Segment>
                
             </Segment.Group>
-            </div>
-                       
+
         )
     }
 }
