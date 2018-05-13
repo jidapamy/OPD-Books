@@ -91,7 +91,8 @@ export default class HomeAddress extends Component {
     render() {
         return (
             <div>
-                <Form.Group>
+                
+                <Form.Group >
                     <Form.Field
                         control={Dropdown}
                         search
@@ -180,6 +181,7 @@ export default class HomeAddress extends Component {
                         error={this.props.field === 'home' ? this.props.errorField.zipcode : this.props.errorField.emerZipcode}
                     />
                 </Form.Group>
+               
             </div>
         )
     }

@@ -6,7 +6,7 @@ import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
 import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
-
+import { defaultAccount, contract, web3 } from './../lib/web3';
 
 import {
     titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
@@ -53,22 +53,42 @@ export default class InfoPateint extends Component {
             this.props.errorField.email = false
             const result = setErrorMsgSplice('email', this.props.errorText)
             this.props.setField('errorInfo', result)
+            return true;
         }else{
             this.props.errorField.email = true
             const result = setErrorMsg('email', this.props.cardType === 'idcard' ? `โปรดใส่ '@' และป้อนส่วนที่ต่อท้าย '@' ในที่อยู่อีเมลล์, '${value}' ไม่สมบูรณ์` : `Please include an '@' and enter the part following '@' in the email address. '${value}' is incomplete. `, this.props.errorText)
             this.props.setField('errorInfo', result)
+            return false;
         }
     }
 
-    checkEmailDuplicate = () =>{
-
+    checkEmailDuplicate = (value) =>{
+        if (this.validateEmail(value)){
+            // syntax pass
+            const email = contract.checkDuplicateEmail(web3.fromAscii(value))
+            console.log('email', email)
+            if (email) {
+                console.log('email ใช้แล้ว')
+                let error = ''
+                if (this.props.cardType === 'idcard') {
+                    error = 'E-mail นี้มีอยู่ในระบบแล้ว'
+                } else {
+                    error = 'This E-mail is already exists in the system'
+                }
+                this.props.errorField.email = true;
+                const result = setErrorMsg('email', error, this.props.errorText)
+                this.props.setField('errorInfo', result)
+            } else {
+                this.props.setFieldAndValidate('email', value)
+            }
+        }
     }
 
     render() {
         return (
             <div>
-                <Segment.Group >
-                    <Segment >
+                <Segment.Group style={{  borderRadius:'2rem'}}>
+                    <Segment style={{  borderRadius: '2rem' }} >
                         <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติส่วนตัว (Personal Information)</h4></Label>
                         <br /><br />
                         <ErrorMessage
@@ -99,9 +119,10 @@ export default class InfoPateint extends Component {
                             <CitizenIdField
                                 cardType={this.props.cardType}
                                 patient={this.props.patient}
-                                setPatientDetail={this.props.setPatientDetail}
+                                setFieldAndValidate={this.props.setFieldAndValidate}
                                 errorText={this.props.errorText}
                                 setField={this.props.setField}
+                                errorField={this.props.errorField}
                             />
                             <DateField
                                 patient={this.props.patient}
@@ -125,8 +146,10 @@ export default class InfoPateint extends Component {
                                 label='อีเมลล์ (Email)'
                                 placeholder='อีเมลล์ (Email)'
                                 width={6}
-                                onChange={e => this.props.setFieldAndValidate('email', e.target.value) }
-                                onBlur={e => this.validateEmail(e.target.value)}
+                                onChange={e => this.props.setFieldAndValidate('email', e.target.value)}
+                                onBlur={e => {
+                                    this.checkEmailDuplicate(e.target.value)
+                                }}
                                 required
                                 type='email'
                                 error={this.props.errorField.email}

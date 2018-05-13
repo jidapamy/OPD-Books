@@ -25,14 +25,14 @@ export default class Allergy extends Component {
     render() {
         return (
             <div>
-                <Segment>
+                <Segment style={{ borderRadius: '2rem' }}>
                     <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติการแพ้ยา อาหาร และสารอื่นๆ (History of Food Or Drug Allergy)</h4></Label>
                     <br/><br/>
                     <ErrorMessage
                         errorText={this.props.errorText}
                         cardType={this.props.cardType}
                     />
-                    <Segment color={this.props.errorField.allergy ? 'red' : 'teal'}>
+                    <Segment color={this.props.errorField.allergy ? 'red' : 'teal'} style={{ borderRadius: '2rem' }}>
                         <h3 >คุณมีประวัติการแพ้หรือไม่<span style={{ color: 'red' }}> * </span></h3 >
                         <br></br>
                         <Form.Group inline>
@@ -63,7 +63,7 @@ export default class Allergy extends Component {
                             <br></br>
                         </Form.Group>
                     </Segment>
-                    <Segment color={this.props.errorField.privilege ? 'red' : 'teal'}>
+                    <Segment color={this.props.errorField.privilege ? 'red' : 'teal'} style={{ borderRadius: '2rem' }}>
                         <h3>สิทธิในการรักษา<span style={{ color: 'red' }}>*</span></h3>
                         <br></br>
                         <Form.Group inline>

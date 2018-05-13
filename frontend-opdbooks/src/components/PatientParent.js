@@ -6,14 +6,14 @@ export default class PatientParent extends Component {
     render(){
         return (
             <div>
-                <Segment>
+                <Segment style={{ borderRadius: '2rem' }}>
                     <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีผู้เยาว์ในความปกครอง (อายุไม่ถึง 15 ปี บริบูรณ์) กรุณากรอกข้อมูล (In case under 15 years old) <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h4></Label>
                     <br/><br/>
                     <ErrorMessage
                         errorText={this.props.errorText}
                         cardType={this.props.cardType}
                     />
-                    <Form.Group>
+                    <Form.Group >
                         <Form.Input
                             label='ชื่อจริงบิดา (Father&#39;s firstname)'
                             placeholder='ชื่อ'
@@ -29,7 +29,7 @@ export default class PatientParent extends Component {
                             error={this.props.errorField.fatherLastname}
                         />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group style={{ borderRadius: '2rem' }}>
                         <Form.Input
                             label='ชื่อจริงมารดา (Mother&#39;s firstname)'
                             placeholder='ชื่อ'

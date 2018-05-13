@@ -23,7 +23,7 @@ import ErrorMessage from './../components/ErrorMessage'
 
 //provider
 import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
-import { defaultAccount, contract } from './../lib/web3';
+import { defaultAccount, contract,web3 } from './../lib/web3';
 import axios from './../lib/axois'
 
 //static
@@ -38,6 +38,11 @@ const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
 `
+
+const ContanierTop = styled(Container) `
+    padding-top:4%;
+`
+
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -252,74 +257,33 @@ export default class ManagePatientRecord extends Component {
     }
   }
 
-  insertPatient = async () => {
+  insertPatient = () => {
     console.log('insertPatient')
-    const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
-    const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
+    // const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
+    // const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = 'HP2312';
-    contract.setInfoPatientPart1(this.state.idCard, this.state.registerDate, hn, defaultAccount)
-    contract.setInfoPatientPart2(this.state.idCard, this.state.dob, this.state.nameTitle, this.state.firstname, this.state.lastname, this.state.gender, defaultAccount);
-    contract.setInfoPatientPart3(this.state.idCard, this.state.congenitalDisease, this.state.bloodgroup, this.state.religion, this.state.nationality, this.state.country, defaultAccount);
-    contract.setInfoPatientPart4(this.state.idCard, this.state.status, this.state.occupartion, this.state.homePhonenumber, this.state.mobileNumber, defaultAccount)
+    contract.setInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.currentDate), web3.fromAscii(hn), web3.fromAscii(this.state.patient.password), defaultAccount)
+    contract.setInfoPatientPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.dob), web3.fromAscii(this.state.patient.nameTitle), web3.fromAscii(this.state.patient.firstname), web3.fromAscii(this.state.patient.lastname), web3.fromAscii(this.state.patient.gender), defaultAccount);
+    contract.setInfoPatientPart3(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.congenitalDisease), web3.fromAscii(this.state.patient.bloodgroup), web3.fromAscii(this.state.patient.religion), web3.fromAscii(this.state.patient.nationality), web3.fromAscii(this.state.patient.country), defaultAccount);
+    contract.setInfoPatientPart4(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.status), web3.fromAscii(this.state.patient.occupartion), web3.fromAscii(this.state.patient.homePhonenumber === '' ? '-' : this.state.patient.homePhonenumber ), web3.fromAscii(this.state.patient.mobileNumber), web3.fromAscii(this.state.patient.email), defaultAccount);
+    contract.setEmail(web3.fromAscii(this.state.patient.email), defaultAccount);
 
-    //blockchain
-    // contract.setAddressPatient(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
+    const result = contract.getInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId));
+    result.map(res => {
+      console.log(web3.toAscii(res))
+    })
+    contract.setAddressPatient(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), web3.fromAscii(this.state.patient.address), web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
 
-    // contract.setPatientAllergy(this.state.idCard, allergy, privilege, defaultAccount);
+    contract.setPatientAllergy(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.allergy), web3.fromAscii(this.state.patient.privilege), defaultAccount);
 
-    // if (this.state.emerTitle != '' || this.state.emerFirstname != '' || this.state.emerLastname != '') {
-    //   contract.setEmergencyContactPart1(this.state.idCard, this.state.emerTitle, this.state.emerFirstname, this.state.emerLastname, this.state.emerRelationship, this.state.emerHomePhonenumber, this.state.emerMobileNumber, defaultAccount)
-    //   contract.setEmergencyContactPart2(this.state.idCard, this.state.typeofHouse, this.state.address, this.state.province, this.state.district, this.state.subDistrict, this.state.zipcode, defaultAccount)
-    // }
+    if (this.state.patient.emerTitle != '' || this.state.patient.emerFirstname != '' || this.state.patient.emerLastname != '') {
+      contract.setEmergencyContactPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.emerTitle), web3.fromAscii(this.state.patient.emerFirstname), web3.fromAscii(this.state.patient.emerLastname), web3.fromAscii(this.state.patient.emerRelationship), web3.fromAscii(this.state.patient.emerHomePhonenumber), web3.fromAscii(this.state.patient.emerMobileNumber), defaultAccount)
+      contract.setEmergencyContactPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), web3.fromAscii(this.state.patient.address), web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
+    }
 
-    // if (this.state.age < 15) {
-    //   contract.setPatientParent(this.state.idCard, this.state.fatherFirstname, this.state.fatherLastname, this.state.motherFirstname, this.state.motherLastname, defaultAccount)
-    // }
-
-    //db
-    // const result = await axios.post('/addPateint', {
-    //                                   registerDate: this.state.registerDate,
-    //                                   idCard: this.state.idCard,
-    //                                   nameTitle: this.state.nameTitle,
-    //                                   firstname: this.state.firstname,
-    //                                   lastname: this.state.lastname,
-    //                                   gender: this.state.gender,
-    //                                   dob: this.state.dob,
-    //                                   bloodgroup: this.state.bloodgroup,
-    //                                   nationality: this.state.nationality,
-    //                                   religion: this.state.religion,
-    //                                   status: this.state.status,
-    //                                   occupartion: this.state.occupartion,
-    //                                   homePhonenumber: this.state.homePhonenumber,
-    //                                   mobileNumber: this.state.mobileNumber,
-    //                                   congenitalDisease: this.state.congenitalDisease,
-    //                                   typeofHouse: this.state.typeofHouse,
-    //                                   address: this.state.address,
-    //                                   province: this.state.province,
-    //                                   district: this.state.district,
-    //                                   subDistrict: this.state.subDistrict,
-    //                                   zipcode: this.state.zipcode,
-    //                                   emerTitle: this.state.emerTitle,
-    //                                   emerFirstname: this.state.emerFirstname,
-    //                                   emerLastname: this.state.emerLastname,
-    //                                   emerRelationship: this.state.emerRelationship,
-    //                                   emerHomePhonenumber: this.state.emerHomePhonenumber,
-    //                                   emerMobileNumber: this.state.emerMobileNumber,
-    //                                   emerTypeofHouse: this.state.emerTypeofHouse,
-    //                                   emerAddress: this.state.emerAddress,
-    //                                   emerProvince: this.state.emerProvince,
-    //                                   emerDistrict: this.state.emerDistrict,
-    //                                   emerSubDistrict: this.state.emerSubDistrict,
-    //                                   emerZipcode: this.state.emerZipcode,
-    //                                   statusSameAddress: this.state.statusSameAddress,
-    //                                   fatherFirstname: this.state.fatherFirstname,
-    //                                   fatherLastname: this.state.fatherLastname,
-    //                                   motherFirstname: this.state.motherFirstname,
-    //                                   motherLastname: this.state.motherLastname,
-    //                                   allergy: allergy,
-    //                                   privilege: privilege,
-    //                                 })
-    // return result;
+    if (this.state.age < 15) {
+      contract.setPatientParent(this.state.patient.citizenId, this.state.patient.fatherFirstname, this.state.patient.fatherLastname, this.state.patient.motherFirstname, this.state.patient.motherLastname, defaultAccount)
+    }
   }
 
   showPopupConfirm = async () => {
@@ -340,7 +304,7 @@ export default class ManagePatientRecord extends Component {
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
             'success',
-            this.props.history.push('/login')
+            this.props.history.push('/signin')
           )
         }
       }
@@ -356,12 +320,14 @@ export default class ManagePatientRecord extends Component {
 
   render() {
     console.log(this.state)
+    // console.log('idcard', web3.fromAscii('1231231231231'))
     // const errorList = this.state.errorText.map(msg => (msg.value))
     return (
       <Wrapper>
-        <Container>
+        <ContanierTop>
+          <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
           <Form>
-            <InfoPatient
+            <InfoPatient style={{borderRadius:'20px'}}
               patient={this.state.patient}
               currentDate={this.state.currentDate}
               setPatientDetail={this.setPatientDetail}
@@ -373,7 +339,7 @@ export default class ManagePatientRecord extends Component {
               setFieldAndValidate={this.setFieldAndValidate}
               requiredAllParentField={this.state.requiredAllParentField}
             />
-            <Segment>
+            <Segment style={{ borderRadius: '2rem' }}>
               <Label as='a' color='teal' ribbon ><h4 style={{ fontFamily: 'Kanit' }}>ที่อยู่ปัจจุบัน (โปรดระบุอย่างละเอียด) (Home Address)</h4></Label>
               <br /><br />
               <ErrorMessage
@@ -435,8 +401,9 @@ export default class ManagePatientRecord extends Component {
 
             </GridColumn>
             <br></br><br></br>
+           
           </Form>
-        </Container>
+        </ContanierTop>
         <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
       </Wrapper>
     )

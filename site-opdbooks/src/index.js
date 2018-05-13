@@ -6,7 +6,7 @@ import Login from './Containers/Login';
 
 import Home from './BetaIndex/Home';
 import ProfilePatient from './Containers/PatientProfile';
-import DashBoard from './Containers/DashBoard';
+import EmployeeSegment from './Containers/EmployeeSegment';
 import Register from './Containers/Register';
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -20,7 +20,7 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route path='/profile' component={ProfilePatient} />
-        <Route path='/dashboard' component={DashBoard} />
+        <Route path='/EmployeeSegment' component={EmployeeSegment} />
         </div>
     </Router>,document.getElementById('root')
     );

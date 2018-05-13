@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List,Button, Modal, Popup } from 'semantic-ui-react'
+import { Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Button, Modal, Popup, Form, TextArea } from 'semantic-ui-react'
 import styled from 'styled-components'
 import iconOpd from './../static/img/IconOPDs.png';
 import swal from 'sweetalert2';
-import Dashboard from './DashBoard'
+import EmployeeSegment from './EmployeeSegment'
 import { defaultAccount, contract,web3 } from './../lib/web3';
 import { QRCode } from 'react-qr-svg';
 import Navbar from './../components/NavbarHome';
+import moment from 'moment';
+//static
+import BackgroundImage from './../static/img/BG.png'
+const CryptoJS = require("crypto-js");
+
+
+
 const Menus = styled(Menu) `
    
     position: fixed;
@@ -51,6 +58,10 @@ transform: translate(-50%, -50%);
 width: 50%;
 `
 
+const Wrapper = styled(Grid)`
+  background: url(${BackgroundImage}) no-repeat center fixed;
+  background-size: 100% 100%;
+`
 export default class PatientProfile extends Component {
     state = { 
         activeItem: 'home',
@@ -58,7 +69,7 @@ export default class PatientProfile extends Component {
         registerDate: '',
         hospitalnumber: '',
         // photo: web3.toAscii(InfoPatientPart1[2]),
-        idcard: '',
+        citizenId: '',
 
         //InfoPatient Part2
         dob: '',
@@ -117,9 +128,11 @@ export default class PatientProfile extends Component {
 
         open: false ,
 
-        QRCode:'ew2hj23g438d0bv7ds64fsds37'
-
+        QRCode:''
     }
+
+    
+
     show = dimmer => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
 
@@ -147,7 +160,8 @@ export default class PatientProfile extends Component {
             registerDate: web3.toAscii(InfoPatientPart1[0]),
             hospitalnumber: web3.toAscii(InfoPatientPart1[1]),
             // photo: web3.toAscii(InfoPatientPart1[2]),
-            idcard:(InfoPatientPart1[3]),
+            citizenId: web3.toAscii(InfoPatientPart1[2]),
+            QRCode:web3.toAscii(InfoPatientPart1[2]),
 
             //InfoPatient Part2
             dob: web3.toAscii(InfoPatientPart2[0]),
@@ -173,7 +187,7 @@ export default class PatientProfile extends Component {
             
             //AddressPatient
             typeofHouse: web3.toAscii(AddressPatient[0]),
-            patientaddress: web3.toAscii(AddressPatient[1]),
+            patientaddress: AddressPatient[1],
             province: web3.toAscii(AddressPatient[2]),
             district: web3.toAscii(AddressPatient[3]),
             subDistrict: web3.toAscii(AddressPatient[4]),
@@ -189,7 +203,7 @@ export default class PatientProfile extends Component {
 
             //EmergencyContact Part2
             emerTypeofHouse: web3.toAscii(EmergencyContactPart2[0]),
-            emerAddress: web3.toAscii(EmergencyContactPart2[1]),
+            emerAddress: EmergencyContactPart2[1],
             emerProvince: web3.toAscii(EmergencyContactPart2[2]),
             emerDistrict: web3.toAscii(EmergencyContactPart2[3]),
             emerSubDistrict: web3.toAscii(EmergencyContactPart2[4]),
@@ -204,35 +218,43 @@ export default class PatientProfile extends Component {
             //PatientAllergy
             allergy: web3.toAscii(PatientAllergy[0]),
             privilege: web3.toAscii(PatientAllergy[1]),
-            
+        
             
             
         })
     }
 
-    
-    
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-       
-
     render() {
+
         const { open, size } = this.state
         const { activeItem } = this.state
-        var  QRCodes  = `${this.state.QRCode}`
 
+        const currentDate = moment().format('ll')
+        console.log('currentDate: ' + currentDate)
+        // Encrypt //
+        var ciphertext = CryptoJS.AES.encrypt('OPDBooks@' + currentDate+'@'+`${this.state.citizenId}`, 'OPDQR');
+        console.log('ciphertext: ' + ciphertext)
+        var QRCodes = ''+ciphertext
+        console.log('QRCodes: ' + QRCodes)
+        
         return (
-            
-            <Segment.Group style={{ border: '0px' }}>
-                <Navbar
-                    role='patient'
-                    show={this.show}
-                ></Navbar>
-                <Segment  >
-                    <Header as='h2' >
-                        <Icon name='user circle outline'  />
+
+                <Segment.Group style={{ border: '0px'}}>
+                    <Navbar
+                        role='patient'
+                        show={this.show}
+                    ></Navbar>
+                    <Segment style={{ backgroundColor: '#00b5ad1a' }} >
+                    <Header as='h2' icon textAlign='center'>
+                        <Icon name='user' circular />
+                        <Header.Content>
+                            {this.state.titlename}{this.state.firstname} {this.state.lastname}
+                        </Header.Content>
+                    
+                    
                         <Header.Content >
-                            <Header textAlign='center'>Profile Patient</Header>   
+                            
                              <PopupQRCode size={'mini'} open={open} onClose={this.close}>
                                 
                                 <Modal.Content >
@@ -245,31 +267,37 @@ export default class PatientProfile extends Component {
                                          }}
                                         value={QRCodes}
                                     />
+                                   
                                     <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-                                    <Container textAlign={'center'} size='medium'>Hash: {this.state.QRCode}</Container>
+                                    {/* <Form>
+                                        <TextArea placeholder='Tell us more' >Hash: {QRCodes}</TextArea>
+                                    </Form> */}
+                                    {/* <Container textAlign={'center'} size='medium'>Hash: {QRCodes}</Container> */}
 
                                     <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
                                     
                                 </Modal.Content>
                             </PopupQRCode>
+
+
                         </Header.Content>                                         
                     </Header>
+                    <Container>
                     <Grid columns='equal' stackable >
 
                         <Grid.Row textAlign='center'>
                             
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                                <Segment  color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='address book outline' content='Profile' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
                                                 <Grid.Column>
                                                     <Segment basic>
-                                                        <Header as='h2' icon>
-                                                            <Header.Subheader>
+                                                        <Header as='h2' icon >
+                                                            <Header.Subheader >
                                                                 Host No.
                                                             </Header.Subheader>
                                                             {this.state.hospitalnumber}
@@ -283,7 +311,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 ID Card.
                                                             </Header.Subheader>
-                                                            {this.state.idcard}
+                                                            {this.state.citizenId}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>
@@ -341,7 +369,7 @@ export default class PatientProfile extends Component {
                                                 <Grid.Column>
                                                     <Segment basic>
                                                         <Header as='h2' icon>
-                                                            <Header.Subheader>
+                                                            <Header.Subheader >
                                                                 Congenital Disease
                                                             </Header.Subheader>
                                                             {this.state.congenitaldisease}
@@ -408,7 +436,7 @@ export default class PatientProfile extends Component {
                                                 </Grid.Column>
                                             </Grid>
                                             
-                                        </Segment>        
+                                        </Segment >        
                                     </Segment.Group>
                                 </GridColumnleft>
                             </Grid.Column>
@@ -417,8 +445,8 @@ export default class PatientProfile extends Component {
                         <Grid.Row textAlign='center'>
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                            <Segment color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='first aid' content='History Or Drung Allergy' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
@@ -454,8 +482,8 @@ export default class PatientProfile extends Component {
 
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                            <Segment color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='volume control phone' content='Contact' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
@@ -505,8 +533,8 @@ export default class PatientProfile extends Component {
 
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                            <Segment color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='home' content='Address' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
@@ -522,7 +550,7 @@ export default class PatientProfile extends Component {
                                                 </Grid.Column>
 
                                                 <Grid.Column>
-                                                    <Segment basic>
+                                                        <Segment basic >
                                                     <Header as='h2' icon>
                                                         <Header.Subheader>
                                                             Address
@@ -586,8 +614,8 @@ export default class PatientProfile extends Component {
 
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                            <Segment color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='heartbeat' content='Contact First And Last Name In Case Of Emergency' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
@@ -630,7 +658,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 District
                                                             </Header.Subheader>
-                                                            {this.state.district}
+                                                            {this.state.emerDistrict}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>
@@ -709,11 +737,11 @@ export default class PatientProfile extends Component {
                             </Grid.Column>
                         </Grid.Row>
 
-                        <Grid.Row textAlign='center'>
+                        <Grid.Row textAlign='center' >
                             <Grid.Column  >
                                 <GridColumnleft>
-                                    <Segment.Group>
-                                        <Segment >
+                                        <Segment.Group style={{ borderRadius: '2rem' }}>
+                                            <Segment color='teal' style={{ borderRadius: '2rem' }}>
                                             <Header as='h3' textAlign='center' icon='child' content='In Case Under 15 Year Old' />
                                             <Divider></Divider>
                                             <Grid columns={3} >
@@ -749,8 +777,9 @@ export default class PatientProfile extends Component {
 
 
                     </Grid>
-
+                    </Container>         
                 </Segment>
+               
             </Segment.Group>
 
         )

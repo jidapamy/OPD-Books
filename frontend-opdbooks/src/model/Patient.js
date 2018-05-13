@@ -12,7 +12,7 @@ export const Patient = {
     nationality: '',
     religion: '',
     status: '',
-    occupation: '',
+    occupartion: '',
     country: '',
     congenitalDisease: '',
     homePhonenumber: '',
