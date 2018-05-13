@@ -16,7 +16,7 @@ export default class Navbar extends Component {
         return (
             <div>
 
-                <Menu pointing secondary color={'teal'} size='huge'>
+                <Menu pointing secondary color={'teal'} size='medium'>
                     <Link to='/'><Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
                     <Menu.Menu position='right'>
                         <Link to='/'><Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} /></Link>

@@ -14,10 +14,7 @@ export default class DateField extends Component {
         console.log(value)
         await this.setState({ dob: value.format('DD/MM/YYYY') })
         this.calculateAge();
-        // this.props.setPatientDetail('dob', value.format('DD/MM/YYYY'))
         this.props.setFieldAndValidate('dob', value.format('DD/MM/YYYY'))
-        // const result = setErrorMsgSplice('dob', this.props.errorText)
-        // this.props.setField('errorText', result.arr)
     }
 
     calculateAge = () => {

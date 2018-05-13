@@ -53,7 +53,7 @@ export default class PhoneNumber extends Component {
             this.props.errorField[field] = true
             result = setErrorMsg(field, error.message, this.props.errorText)
         }
-        this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result.arr)
+        this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
     }
 
     render() {

@@ -126,7 +126,7 @@ export default class EmergencyContact extends Component {
     render() {
         return (
             <div>
-                <Segment>
+                <Segment style={{ borderRadius: '2rem' }}>
                     <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีฉุกเฉินติดต่อ (Contact First And Last Name In Case Of Emergency)</h4></Label>
                     <br /><br />
                     <ErrorMessage

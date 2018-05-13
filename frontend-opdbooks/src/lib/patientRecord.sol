@@ -178,7 +178,7 @@ contract PatientProfile {
                 infoPatient.infoPart1.citizenId = _citizenId;
                 infoPatient.infoPart1.password = _password;
                 
-                patientAccounts.push(_citizenId) -1;
+                
                
             
     }

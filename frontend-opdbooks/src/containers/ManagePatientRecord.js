@@ -39,6 +39,11 @@ const Wrapper = styled.div`
   background-size: 100% 100%;
 `
 
+const ContanierTop = styled(Container) `
+    padding-top:4%;
+`
+
+
 const GridColumn = styled(Grid.Column) `
     display: flex;
     justify-content: center;
@@ -260,7 +265,7 @@ export default class ManagePatientRecord extends Component {
     contract.setInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.currentDate), web3.fromAscii(hn), web3.fromAscii(this.state.patient.password), defaultAccount)
     contract.setInfoPatientPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.dob), web3.fromAscii(this.state.patient.nameTitle), web3.fromAscii(this.state.patient.firstname), web3.fromAscii(this.state.patient.lastname), web3.fromAscii(this.state.patient.gender), defaultAccount);
     contract.setInfoPatientPart3(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.congenitalDisease), web3.fromAscii(this.state.patient.bloodgroup), web3.fromAscii(this.state.patient.religion), web3.fromAscii(this.state.patient.nationality), web3.fromAscii(this.state.patient.country), defaultAccount);
-    contract.setInfoPatientPart4(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.status), web3.fromAscii(this.state.patient.occupartion), web3.fromAscii(this.state.patient.homePhonenumber), web3.fromAscii(this.state.patient.mobileNumber), web3.fromAscii(this.state.patient.email), defaultAccount);
+    contract.setInfoPatientPart4(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.status), web3.fromAscii(this.state.patient.occupartion), web3.fromAscii(this.state.patient.homePhonenumber === '' ? '-' : this.state.patient.homePhonenumber ), web3.fromAscii(this.state.patient.mobileNumber), web3.fromAscii(this.state.patient.email), defaultAccount);
     contract.setEmail(web3.fromAscii(this.state.patient.email), defaultAccount);
 
     const result = contract.getInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId));
@@ -319,9 +324,10 @@ export default class ManagePatientRecord extends Component {
     // const errorList = this.state.errorText.map(msg => (msg.value))
     return (
       <Wrapper>
-        <Container>
+        <ContanierTop>
+          <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
           <Form>
-            <InfoPatient
+            <InfoPatient style={{borderRadius:'20px'}}
               patient={this.state.patient}
               currentDate={this.state.currentDate}
               setPatientDetail={this.setPatientDetail}
@@ -333,7 +339,7 @@ export default class ManagePatientRecord extends Component {
               setFieldAndValidate={this.setFieldAndValidate}
               requiredAllParentField={this.state.requiredAllParentField}
             />
-            <Segment>
+            <Segment style={{ borderRadius: '2rem' }}>
               <Label as='a' color='teal' ribbon ><h4 style={{ fontFamily: 'Kanit' }}>ที่อยู่ปัจจุบัน (โปรดระบุอย่างละเอียด) (Home Address)</h4></Label>
               <br /><br />
               <ErrorMessage
@@ -397,7 +403,7 @@ export default class ManagePatientRecord extends Component {
             <br></br><br></br>
            
           </Form>
-        </Container>
+        </ContanierTop>
         <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
       </Wrapper>
     )

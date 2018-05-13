@@ -92,6 +92,69 @@ class SidebarBottomOverlay extends Component {
         privilege: ''
   }
 
+  emptyField = {
+    //InfoPatient Part1
+    registerDate: '',
+    hospitalnumber: '',
+    // photo: web3.toAscii(InfoPatientPart1[2]),
+    citizenId: '',
+
+    //InfoPatient Part2
+    dob: '',
+    titlename: '',
+    firstname: '',
+    lastname: '',
+    gender: '',
+
+    //InfoPatient Part3
+    congenitaldisease: '',
+    bloodgroup: '',
+    religion: '',
+    nationality: '',
+    country: '',
+
+    //InfoPatient Part4
+    statuspatient: '',
+    occupartion: '',
+    homephonenumber: '',
+    mobilenumber: '',
+    email: '',
+
+    //AddressPatient
+    typeofHouse: '',
+    patientaddress: '',
+    province: '',
+    district: '',
+    subDistrict: '',
+    zipcode: '',
+
+    //EmergencyContact Part1
+    emerTitle: '',
+    emerFirstname: '',
+    emerLastname: '',
+    emerRelationship: '',
+    emerHomePhonenumber: '',
+    emerMobileNumber: '',
+
+    //EmergencyContact Part2
+    emerTypeofHouse: '',
+    emerAddress: '',
+    emerProvince: '',
+    emerDistrict: '',
+    emerSubDistrict: '',
+    emerZipcode: '',
+
+    //PatientParent
+    fatherFirstname: '',
+    fatherLastname: '',
+    motherFirstname: '',
+    motherLastname: '',
+
+    //PatientAllergy
+    allergy: '',
+    privilege: ''
+  }
+
   getPatient = (qrCode) => {
         console.log(contract)
         const InfoPatientPart1 = contract.getInfoPatientPart1(qrCode, defaultAccount);
@@ -209,6 +272,7 @@ class SidebarBottomOverlay extends Component {
                         timer: 2000
                       })
                       this.setState({ result: 'Your listing is not available in the system.',open: false})
+                      this.setState(this.emptyField)
               }
               
         }else{
@@ -220,6 +284,7 @@ class SidebarBottomOverlay extends Component {
               timer: 2000
             })
             this.setState({ result: 'Your listing is not available in the system.', open: false })
+            this.setState(this.emptyField)
         }
   }
 }
@@ -322,7 +387,6 @@ class SidebarBottomOverlay extends Component {
               </Container>
           
         <Container style={{paddingTop:'2%'}}>
-          
           <Segment>
             <Header as='h1' color='teal' content='Address' />
             <Divider></Divider>
