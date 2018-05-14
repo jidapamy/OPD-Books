@@ -157,7 +157,7 @@ export default class PatientProfile extends Component {
         const EmergencyContactPart2 = contract.getEmergencyContactPart2(this.props.location.state.citizenId, defaultAccount)
 
         const PatientParent = contract.getPatientParent(this.props.location.state.citizenId, defaultAccount)
-        
+        console.log('PatientParent', PatientParent)
 
         this.setState({
             //InfoPatient Part1
@@ -223,8 +223,6 @@ export default class PatientProfile extends Component {
             allergy: web3.toAscii(PatientAllergy[0]),
             privilege: web3.toAscii(PatientAllergy[1]),
         
-            
-            
         })
         }
     }
@@ -327,7 +325,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 Name
                                                             </Header.Subheader>
-                                                            {this.state.titlename}{this.state.firstname} {this.state.lastname}
+                                                            {this.state.titlename} {this.state.firstname} {this.state.lastname}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>
@@ -340,7 +338,7 @@ export default class PatientProfile extends Component {
                                                     <Segment basic>
                                                         <Header as='h2' icon>
                                                             <Header.Subheader>
-                                                                Date of Brith
+                                                                Date of Birth
                                                             </Header.Subheader>
                                                             {this.state.dob}
                                                         </Header>
@@ -386,7 +384,7 @@ export default class PatientProfile extends Component {
                                                     <Segment basic>
                                                         <Header as='h2' icon>
                                                             <Header.Subheader>
-                                                                Occupartion
+                                                                Occupation
                                                             </Header.Subheader>
                                                             {this.state.occupartion}
                                                         </Header>
@@ -756,7 +754,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 Father Name
                                                             </Header.Subheader>
-                                                            {this.state.fatherFirstname}{this.state.fatherLastname}
+                                                            {this.state.fatherFirstname} {this.state.fatherLastname}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>
@@ -767,7 +765,7 @@ export default class PatientProfile extends Component {
                                                             <Header.Subheader>
                                                                 Mother Name
                                                             </Header.Subheader>
-                                                            {this.state.motherFirstname}{this.state.motherLastname}
+                                                            {this.state.motherFirstname} {this.state.motherLastname}
                                                         </Header>
                                                     </Segment>
                                                 </Grid.Column>

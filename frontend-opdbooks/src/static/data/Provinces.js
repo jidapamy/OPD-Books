@@ -2,387 +2,387 @@ const Provinces = [
     {
         "key": 64,
         "text": "กระบี่",
-        "value": "กระบี่"
+        "value": "Krabi"
     },
     {
         "key": 1,
         "text": "กรุงเทพมหานคร",
-        "value": "กรุงเทพมหานคร"
+        "value": "Bangkok"
     },
     {
         "key": 56,
         "text": "กาญจนบุรี",
-        "value": "กาญจนบุรี"
+        "value": "Kanchanaburi"
     },
     {
         "key": 34,
         "text": "กาฬสินธุ์",
-        "value": "กาฬสินธุ์"
+        "value": "Kalasin"
     },
     {
         "key": 49,
         "text": "กำแพงเพชร",
-        "value": "กำแพงเพชร"
+        "value": "Kamphaeng Phet"
     },
     {
         "key": 28,
         "text": "ขอนแก่น",
-        "value": "ขอนแก่น"
+        "value": "Khon Kaen"
     },
     {
         "key": 13,
         "text": "จันทบุรี",
-        "value": "จันทบุรี"
+        "value": "Chanthaburi"
     },
     {
         "key": 15,
         "text": "ฉะเชิงเทรา",
-        "value": "ฉะเชิงเทรา"
+        "value": "Chachoengsao"
     },
     {
         "key": 11,
         "text": "ชลบุรี",
-        "value": "ชลบุรี"
+        "value": "Chon Buri"
     },
     {
         "key": 9,
         "text": "ชัยนาท",
-        "value": "ชัยนาท"
+        "value": "Chai Nat"
     },
     {
         "key": 25,
         "text": "ชัยภูมิ",
-        "value": "ชัยภูมิ"
+        "value": "Chaiyaphum"
     },
     {
         "key": 69,
         "text": "ชุมพร",
-        "value": "ชุมพร"
+        "value": "Chumphon"
     },
     {
         "key": 45,
         "text": "เชียงราย",
-        "value": "เชียงราย"
+        "value": "Chiang Rai"
     },
     {
         "key": 38,
         "text": "เชียงใหม่",
-        "value": "เชียงใหม่"
+        "value": "Chiang Mai"
     },
     {
         "key": 72,
         "text": "ตรัง",
-        "value": "ตรัง"
+        "value": "Trang"
     },
     {
         "key": 14,
         "text": "ตราด",
-        "value": "ตราด"
+        "value": "Trat"
     },
     {
         "key": 50,
         "text": "ตาก",
-        "value": "ตาก"
+        "value": "Tak"
     },
     {
         "key": 17,
         "text": "นครนายก",
-        "value": "นครนายก"
+        "value": "Nakhon Nayok"
     },
     {
         "key": 58,
         "text": "นครปฐม",
-        "value": "นครปฐม"
+        "value": "Nakhon Pathom"
     },
     {
         "key": 36,
         "text": "นครพนม",
-        "value": "นครพนม"
+        "value": "Nakhon Phanom"
     },
     {
         "key": 19,
         "text": "นครราชสีมา",
-        "value": "นครราชสีมา"
+        "value": "Nakhon Ratchasima"
     },
     {
         "key": 63,
         "text": "นครศรีธรรมราช",
-        "value": "นครศรีธรรมราช"
+        "value": "Nakhon Si Thammarat"
     },
     {
         "key": 47,
         "text": "นครสวรรค์",
-        "value": "นครสวรรค์"
+        "value": "Nakhon Sawan"
     },
     {
         "key": 3,
         "text": "นนทบุรี",
-        "value": "นนทบุรี"
+        "value": "Nonthaburi"
     },
     {
         "key": 76,
         "text": "นราธิวาส",
-        "value": "นราธิวาส"
+        "value": "Narathiwat"
     },
     {
         "key": 43,
         "text": "น่าน",
-        "value": "น่าน"
+        "value": "Nan"
     },
     {
         "key": 77,
         "text": "บึงกาฬ",
-        "value": "บึงกาฬ"
+        "value": "buogkan"
     },
     {
         "key": 20,
         "text": "บุรีรัมย์",
-        "value": "บุรีรัมย์"
+        "value": "Buri Ram"
     },
     {
         "key": 4,
         "text": "ปทุมธานี",
-        "value": "ปทุมธานี"
+        "value": "Pathum Thani"
     },
     {
         "key": 62,
         "text": "ประจวบคีรีขันธ์",
-        "value": "ประจวบคีรีขันธ์"
+        "value": "Prachuap Khiri Khan"
     },
     {
         "key": 16,
         "text": "ปราจีนบุรี",
-        "value": "ปราจีนบุรี"
+        "value": "Prachin Buri"
     },
     {
         "key": 74,
         "text": "ปัตตานี",
-        "value": "ปัตตานี"
+        "value": "Pattani"
     },
     {
         "key": 5,
         "text": "พระนครศรีอยุธยา",
-        "value": "พระนครศรีอยุธยา"
+        "value": "Phra Nakhon Si Ayutthaya"
     },
     {
         "key": 44,
         "text": "พะเยา",
-        "value": "พะเยา"
+        "value": "Phayao"
     },
     {
         "key": 65,
         "text": "พังงา",
-        "value": "พังงา"
+        "value": "Phangnga"
     },
     {
         "key": 73,
         "text": "พัทลุง",
-        "value": "พัทลุง"
+        "value": "Phatthalung"
     },
     {
         "key": 53,
         "text": "พิจิตร",
-        "value": "พิจิตร"
+        "value": "Phichit"
     },
     {
         "key": 52,
         "text": "พิษณุโลก",
-        "value": "พิษณุโลก"
+        "value": "Phitsanulok"
     },
     {
         "key": 61,
         "text": "เพชรบุรี",
-        "value": "เพชรบุรี"
+        "value": "Phetchaburi"
     },
     {
         "key": 54,
         "text": "เพชรบูรณ์",
-        "value": "เพชรบูรณ์"
+        "value": "Phetchabun"
     },
     {
         "key": 42,
         "text": "แพร่",
-        "value": "แพร่"
+        "value": "Phrae"
     },
     {
         "key": 66,
         "text": "ภูเก็ต",
-        "value": "ภูเก็ต"
+        "value": "Phuket"
     },
     {
         "key": 32,
         "text": "มหาสารคาม",
-        "value": "มหาสารคาม"
+        "value": "Maha Sarakham"
     },
     {
         "key": 37,
         "text": "มุกดาหาร",
-        "value": "มุกดาหาร"
+        "value": "Mukdahan"
     },
     {
         "key": 46,
         "text": "แม่ฮ่องสอน",
-        "value": "แม่ฮ่องสอน"
+        "value": "Mae Hong Son"
     },
     {
         "key": 24,
         "text": "ยโสธร",
-        "value": "ยโสธร"
+        "value": "Yasothon"
     },
     {
         "key": 75,
         "text": "ยะลา",
-        "value": "ยะลา"
+        "value": "Yala"
     },
     {
         "key": 33,
         "text": "ร้อยเอ็ด",
-        "value": "ร้อยเอ็ด"
+        "value": "Roi Et"
     },
     {
         "key": 68,
         "text": "ระนอง",
-        "value": "ระนอง"
+        "value": "Ranong"
     },
     {
         "key": 12,
         "text": "ระยอง",
-        "value": "ระยอง"
+        "value": "Rayong"
     },
     {
         "key": 55,
         "text": "ราชบุรี",
-        "value": "ราชบุรี"
+        "value": "Ratchaburi"
     },
     {
         "key": 7,
         "text": "ลพบุรี",
-        "value": "ลพบุรี"
+        "value": "Loburi"
     },
     {
         "key": 40,
         "text": "ลำปาง",
-        "value": "ลำปาง"
+        "value": "Lampang"
     },
     {
         "key": 39,
         "text": "ลำพูน",
-        "value": "ลำพูน"
+        "value": "Lamphun"
     },
     {
         "key": 30,
         "text": "เลย",
-        "value": "เลย"
+        "value": "Loei"
     },
     {
         "key": 22,
         "text": "ศรีสะเกษ",
-        "value": "ศรีสะเกษ"
+        "value": "Si Sa Ket"
     },
     {
         "key": 35,
         "text": "สกลนคร",
-        "value": "สกลนคร"
+        "value": "Sakon Nakhon"
     },
     {
         "key": 70,
         "text": "สงขลา",
-        "value": "สงขลา"
+        "value": "Songkhla"
     },
     {
         "key": 71,
         "text": "สตูล",
-        "value": "สตูล"
+        "value": "Satun"
     },
     {
         "key": 2,
         "text": "สมุทรปราการ",
-        "value": "สมุทรปราการ"
+        "value": "Samut Prakan"
     },
     {
         "key": 60,
         "text": "สมุทรสงคราม",
-        "value": "สมุทรสงคราม"
+        "value": "Samut Songkhram"
     },
     {
         "key": 59,
         "text": "สมุทรสาคร",
-        "value": "สมุทรสาคร"
+        "value": "Samut Sakhon"
     },
     {
         "key": 18,
         "text": "สระแก้ว",
-        "value": "สระแก้ว"
+        "value": "Sa Kaeo"
     },
     {
         "key": 10,
         "text": "สระบุรี",
-        "value": "สระบุรี"
+        "value": "Saraburi"
     },
     {
         "key": 8,
         "text": "สิงห์บุรี",
-        "value": "สิงห์บุรี"
+        "value": "Sing Buri"
     },
     {
         "key": 51,
         "text": "สุโขทัย",
-        "value": "สุโขทัย"
+        "value": "Sukhothai"
     },
     {
         "key": 57,
         "text": "สุพรรณบุรี",
-        "value": "สุพรรณบุรี"
+        "value": "Suphan Buri"
     },
     {
         "key": 67,
         "text": "สุราษฎร์ธานี",
-        "value": "สุราษฎร์ธานี"
+        "value": "Surat Thani"
     },
     {
         "key": 21,
         "text": "สุรินทร์",
-        "value": "สุรินทร์"
+        "value": "Surin"
     },
     {
         "key": 31,
         "text": "หนองคาย",
-        "value": "หนองคาย"
+        "value": "Nong Khai"
     },
     {
         "key": 27,
         "text": "หนองบัวลำภู",
-        "value": "หนองบัวลำภู"
+        "value": "Nong Bua Lam Phu"
     },
     {
         "key": 6,
         "text": "อ่างทอง",
-        "value": "อ่างทอง"
+        "value": "Ang Thong"
     },
     {
         "key": 26,
         "text": "อำนาจเจริญ",
-        "value": "อำนาจเจริญ"
+        "value": "Amnat Charoen"
     },
     {
         "key": 29,
         "text": "อุดรธานี",
-        "value": "อุดรธานี"
+        "value": "Udon Thani"
     },
     {
         "key": 41,
         "text": "อุตรดิตถ์",
-        "value": "อุตรดิตถ์"
+        "value": "Uttaradit"
     },
     {
         "key": 48,
         "text": "อุทัยธานี",
-        "value": "อุทัยธานี"
+        "value": "Uthai Thani"
     },
     {
         "key": 23,
         "text": "อุบลราชธานี",
-        "value": "อุบลราชธานี"
+        "value": "Ubon Ratchathani"
     }
 ]
 export default Provinces;

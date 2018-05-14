@@ -83,30 +83,66 @@ router.get('/checkidcard/:id', async (req, res) => {
     }
 })
 
+//ENG
 router.get('/provinceDB', async (req, res) => {
-    var data = await knex.table('province')
+    var data = await knex.table('provinces')
         .select()
     res.send(data);
 })
 
 router.get('/amphurDB', async (req, res) => {
-    var data = await knex.table('amphur')
+    var data = await knex.table('amphures')
         .select()
     res.send(data);
 })
 
 router.get('/amphurDB/:id', async (req, res) => {
-    var data = await knex.table('amphur')
+    var data = await knex.table('amphurs')
         .where('PROVINCE_ID', req.params.id)
         .select()
     res.send(data);
 })
 
 router.get('/districtDB', async (req, res) => {
-    var data = await knex.table('district')
+    var data = await knex.table('districts')
         .select()
     res.send(data);
 })
+
+
+
+
+
+
+
+
+
+// router.get('/provinceDB', async (req, res) => {
+//     var data = await knex.table('province')
+//         .select()
+//     res.send(data);
+// })
+
+// router.get('/amphurDB', async (req, res) => {
+//     var data = await knex.table('amphur')
+//         .select()
+//     res.send(data);
+// })
+
+// router.get('/amphurDB/:id', async (req, res) => {
+//     var data = await knex.table('amphur')
+//         .where('PROVINCE_ID', req.params.id)
+//         .select()
+//     res.send(data);
+// })
+
+// router.get('/districtDB', async (req, res) => {
+//     var data = await knex.table('district')
+//         .select()
+//     res.send(data);
+// })
+
+
 
 // router.get('/zipcode', async (req, res) => {
 //     var data = await knex.table('zipcode')
@@ -120,22 +156,31 @@ router.get('/districtDB', async (req, res) => {
 //         .where('province.PROVINCE_ID', req.params.id)
 //     res.send(data);
 // })
-
-
-
-router.get('/amphurTest', async (req, res) => {
-    var provinceDB = await knex.table('province').select()
+router.get('/provinceJson', async (req, res) => {
+    var provinceDB = await knex.table('provinces').select()
     var provinceJSON = await provinceDB.map(province => ({
         key: province.PROVINCE_ID,
         text: province.PROVINCE_NAME,
-        value: province.PROVINCE_NAME
+        value: province.PROVINCE_NAME_ENG
     }))
-    var amphurDB = await knex.table('amphur').select()
+        .sort((a, b) => a.text.localeCompare(b.text))
+    res.send(provinceJSON);
+})
+
+
+router.get('/amphurTest', async (req, res) => {
+    var provinceDB = await knex.table('provinces').select()
+    var provinceJSON = await provinceDB.map(province => ({
+        key: province.PROVINCE_ID,
+        text: province.PROVINCE_NAME,
+        value: province.PROVINCE_NAME_ENG
+    }))
+    var amphurDB = await knex.table('amphures').select()
     var amphurJSON = amphurDB
         .map(amphor => ({
             key: amphor.AMPHUR_ID,
             text: amphor.AMPHUR_NAME ,
-            value: amphor.AMPHUR_NAME ,
+            value: amphor.AMPHUR_NAME_ENG ,
             provinceid: amphor.PROVINCE_ID,
         }))
         // .sort((a, b) => a.provinceid-b.provinceid)
@@ -155,16 +200,16 @@ router.get('/amphurTest', async (req, res) => {
 })
 
 router.get('/districtTest', async (req, res) => {
-    var amphurDB = await knex.table('amphur').select()
+    var amphurDB = await knex.table('amphures').select()
     var amphurJSON = await amphurDB.map(amphur => ({
         key: amphur.AMPHUR_ID,
     }))
-    var districtrDB = await knex.table('district').select()
+    var districtrDB = await knex.table('districts').select()
     var districtJSON = districtrDB
             .map(district => ({
             key: district.DISTRICT_ID,
             text: district.DISTRICT_NAME,
-            value: district.DISTRICT_NAME,
+            value: district.DISTRICT_NAME_ENG,
             amphurid: district.AMPHUR_ID,
             zipcode: zipcodes
                 .filter(zipcode => zipcode.DISTRICT_CODE === district.DISTRICT_CODE)

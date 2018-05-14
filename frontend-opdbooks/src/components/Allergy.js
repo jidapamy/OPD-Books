@@ -12,7 +12,7 @@ export default class Allergy extends Component {
     }
 
     chooseChoice = (field, value) => {
-        if (value === 'ไม่มี' || value === 'ข้าราชการ' || value === 'ครอบครัวข้าราชการ' || value === 'รัฐวิสาหิจ' ||
+        if (value === 'not have' || value === 'ข้าราชการ' || value === 'ครอบครัวข้าราชการ' || value === 'รัฐวิสาหิจ' ||
             value === 'ครอบครัวรัฐวิสาหกิจ' || value === 'บุคคลทั่วไป') {
             this.setState({ ['disabledOther' + field]: true })
             this.setState({ ['other'+field]: '' })
@@ -38,8 +38,8 @@ export default class Allergy extends Component {
                         <Form.Group inline>
                             <Form.Radio
                                 label='ไม่เคยมีประวัติแพ้ ( No )'
-                                value='ไม่มี'
-                                checked={this.props.patient.allergy === 'ไม่มี'}
+                                value='not have'
+                                checked={this.props.patient.allergy === 'not have'}
                                 onChange={(e, { value }) => this.chooseChoice('allergy', value)}
                             />
                             <Form.Radio

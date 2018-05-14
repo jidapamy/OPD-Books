@@ -21,6 +21,11 @@ export default class Password extends Component {
         error: false
     }]
 
+    state = {
+        password: null,
+        confirmpassword: null,
+    }
+
     checkPassword = () => {
         this.props.setPatientDetail('password', '')
         const error = { status: false, message: '' }

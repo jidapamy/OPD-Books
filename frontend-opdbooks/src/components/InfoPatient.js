@@ -34,9 +34,9 @@ export default class InfoPateint extends Component {
                 required
             />
         } else {
-            this.props.setPatientDetail('country', 'ไทย (Thai)')
-            this.props.setPatientDetail('religion', 'พุทธ (Buddhism)')
-            this.props.setPatientDetail('nationality', 'ไทย (Thai)')
+            this.props.setPatientDetail('country', 'Thai')
+            this.props.setPatientDetail('religion', 'Buddhism')
+            this.props.setPatientDetail('nationality', 'Thai')
             return <Form.Input
                 label='ประเทศ (Country)'
                 value={this.props.patient.country}

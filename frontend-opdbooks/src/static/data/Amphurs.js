@@ -3,346 +3,346 @@ const Amphurs = [
     [
         {
             "key": 33,
-            "text": "คลองเตย",
-            "value": "คลองเตย",
+            "text": "เขตคลองเตย   ",
+            "value": "Khet Khlong Toei",
             "provinceid": 1
         },
         {
             "key": 18,
-            "text": "คลองสาน",
-            "value": "คลองสาน",
+            "text": "เขตคลองสาน   ",
+            "value": "Khet Khlong San",
             "provinceid": 1
         },
         {
             "key": 46,
-            "text": "คลองสามวา",
-            "value": "คลองสามวา",
+            "text": "เขตคลองสามวา   ",
+            "value": "Khet Khlong Sam Wa",
             "provinceid": 1
         },
         {
             "key": 43,
-            "text": "คันนายาว",
-            "value": "คันนายาว",
+            "text": "เขตคันนายาว   ",
+            "value": "Khet Khan Na Yao",
             "provinceid": 1
         },
         {
             "key": 30,
-            "text": "จตุจักร",
-            "value": "จตุจักร",
+            "text": "เขตจตุจักร   ",
+            "value": "Khet Chatuchak",
             "provinceid": 1
         },
         {
             "key": 35,
-            "text": "จอมทอง",
-            "value": "จอมทอง",
+            "text": "เขตจอมทอง   ",
+            "value": "Khet Chom Thong",
             "provinceid": 1
         },
         {
             "key": 36,
-            "text": "ดอนเมือง",
-            "value": "ดอนเมือง",
+            "text": "เขตดอนเมือง   ",
+            "value": "Khet Don Mueang",
             "provinceid": 1
         },
         {
             "key": 26,
-            "text": "ดินแดง",
-            "value": "ดินแดง",
+            "text": "เขตดินแดง   ",
+            "value": "Khet Din Daeng",
             "provinceid": 1
         },
         {
             "key": 2,
-            "text": "ดุสิต",
-            "value": "ดุสิต",
+            "text": "เขตดุสิต   ",
+            "value": "Khet Dusit",
             "provinceid": 1
         },
         {
             "key": 19,
-            "text": "ตลิ่งชัน",
-            "value": "ตลิ่งชัน",
+            "text": "เขตตลิ่งชัน   ",
+            "value": "Khet Taling Chan",
             "provinceid": 1
         },
         {
             "key": 48,
-            "text": "ทวีวัฒนา",
-            "value": "ทวีวัฒนา",
+            "text": "เขตทวีวัฒนา   ",
+            "value": "Khet Thawi Watthana",
             "provinceid": 1
         },
         {
             "key": 49,
-            "text": "ทุ่งครุ",
-            "value": "ทุ่งครุ",
+            "text": "เขตทุ่งครุ   ",
+            "value": "Khet Thung Khru",
             "provinceid": 1
         },
         {
             "key": 15,
-            "text": "ธนบุรี",
-            "value": "ธนบุรี",
+            "text": "เขตธนบุรี   ",
+            "value": "Khet Thon Buri",
             "provinceid": 1
         },
         {
             "key": 20,
-            "text": "บางกอกน้อย",
-            "value": "บางกอกน้อย",
+            "text": "เขตบางกอกน้อย   ",
+            "value": "Khet Bangkok Noi",
             "provinceid": 1
         },
         {
             "key": 16,
-            "text": "บางกอกใหญ่",
-            "value": "บางกอกใหญ่",
+            "text": "เขตบางกอกใหญ่   ",
+            "value": "Khet Bangkok Yai",
             "provinceid": 1
         },
         {
             "key": 6,
-            "text": "บางกะปิ",
-            "value": "บางกะปิ",
+            "text": "เขตบางกะปิ   ",
+            "value": "Khet Bang Kapi",
             "provinceid": 1
         },
         {
             "key": 21,
-            "text": "บางขุนเทียน",
-            "value": "บางขุนเทียน",
+            "text": "เขตบางขุนเทียน   ",
+            "value": "Khet Bang Khun Thian",
             "provinceid": 1
         },
         {
             "key": 5,
-            "text": "บางเขน",
-            "value": "บางเขน",
+            "text": "เขตบางเขน   ",
+            "value": "Khet Bang Khen",
             "provinceid": 1
         },
         {
             "key": 31,
-            "text": "บางคอแหลม",
-            "value": "บางคอแหลม",
+            "text": "เขตบางคอแหลม   ",
+            "value": "Khet Bang Kho Laem",
             "provinceid": 1
         },
         {
             "key": 40,
-            "text": "บางแค",
-            "value": "บางแค",
+            "text": "เขตบางแค   ",
+            "value": "Khet Bang Khae",
             "provinceid": 1
         },
         {
             "key": 29,
-            "text": "บางซื่อ",
-            "value": "บางซื่อ",
+            "text": "เขตบางซื่อ   ",
+            "value": "Khet Bang Sue",
             "provinceid": 1
         },
         {
             "key": 47,
-            "text": "บางนา",
-            "value": "บางนา",
+            "text": "เขตบางนา   ",
+            "value": "Khet Bang Na",
             "provinceid": 1
         },
         {
             "key": 50,
-            "text": "บางบอน",
-            "value": "บางบอน",
+            "text": "เขตบางบอน   ",
+            "value": "Khet Bang Bon",
             "provinceid": 1
         },
         {
             "key": 25,
-            "text": "บางพลัด",
-            "value": "บางพลัด",
+            "text": "เขตบางพลัด   ",
+            "value": "Khet Bang Phlat",
             "provinceid": 1
         },
         {
             "key": 4,
-            "text": "บางรัก",
-            "value": "บางรัก",
-            "provinceid": 1
-        },
-        {
-            "key": 51,
-            "text": "บ้านทะวาย",
-            "value": "บ้านทะวาย",
+            "text": "เขตบางรัก   ",
+            "value": "Khet Bang Rak",
             "provinceid": 1
         },
         {
             "key": 27,
-            "text": "บึงกุ่ม",
-            "value": "บึงกุ่ม",
+            "text": "เขตบึงกุ่ม   ",
+            "value": "Khet Bueng Kum",
             "provinceid": 1
         },
         {
             "key": 7,
-            "text": "ปทุมวัน",
-            "value": "ปทุมวัน",
+            "text": "เขตปทุมวัน   ",
+            "value": "Khet Pathum Wan",
             "provinceid": 1
         },
         {
             "key": 32,
-            "text": "ประเวศ",
-            "value": "ประเวศ",
+            "text": "เขตประเวศ   ",
+            "value": "Khet Prawet",
             "provinceid": 1
         },
         {
             "key": 8,
-            "text": "ป้อมปราบศัตรูพ่าย",
-            "value": "ป้อมปราบศัตรูพ่าย",
+            "text": "เขตป้อมปราบศัตรูพ่าย   ",
+            "value": "Khet Pom Prap Sattru Phai",
             "provinceid": 1
         },
         {
             "key": 14,
-            "text": "พญาไท",
-            "value": "พญาไท",
+            "text": "เขตพญาไท   ",
+            "value": "Khet Phaya Thai",
             "provinceid": 1
         },
         {
             "key": 9,
-            "text": "พระโขนง",
-            "value": "พระโขนง",
+            "text": "เขตพระโขนง   ",
+            "value": "Khet Phra Khanong",
             "provinceid": 1
         },
         {
             "key": 1,
-            "text": "พระนคร",
-            "value": "พระนคร",
+            "text": "เขตพระนคร   ",
+            "value": "Khet Phra Nakhon",
             "provinceid": 1
         },
         {
             "key": 22,
-            "text": "ภาษีเจริญ",
-            "value": "ภาษีเจริญ",
+            "text": "เขตภาษีเจริญ   ",
+            "value": "Khet Phasi Charoen",
             "provinceid": 1
         },
         {
             "key": 10,
-            "text": "มีนบุรี",
-            "value": "มีนบุรี",
+            "text": "เขตมีนบุรี   ",
+            "value": "Khet Min Buri",
             "provinceid": 1
         },
         {
             "key": 12,
-            "text": "ยานนาวา",
-            "value": "ยานนาวา",
+            "text": "เขตยานนาวา   ",
+            "value": "Khet Yan Nawa",
             "provinceid": 1
         },
         {
             "key": 37,
-            "text": "ราชเทวี",
-            "value": "ราชเทวี",
+            "text": "เขตราชเทวี   ",
+            "value": "Khet Ratchathewi",
             "provinceid": 1
         },
         {
             "key": 24,
-            "text": "ราษฎร์บูรณะ",
-            "value": "ราษฎร์บูรณะ",
+            "text": "เขตราษฎร์บูรณะ   ",
+            "value": "Khet Rat Burana",
             "provinceid": 1
         },
         {
             "key": 11,
-            "text": "ลาดกระบัง",
-            "value": "ลาดกระบัง",
+            "text": "เขตลาดกระบัง   ",
+            "value": "Khet Lat Krabang",
             "provinceid": 1
         },
         {
             "key": 38,
-            "text": "ลาดพร้าว",
-            "value": "ลาดพร้าว",
+            "text": "เขตลาดพร้าว   ",
+            "value": "Khet Lat Phrao",
             "provinceid": 1
         },
         {
             "key": 45,
-            "text": "วังทองหลาง",
-            "value": "วังทองหลาง",
+            "text": "เขตวังทองหลาง   ",
+            "value": "Khet Wang Thonglang",
             "provinceid": 1
         },
         {
             "key": 39,
-            "text": "วัฒนา",
-            "value": "วัฒนา",
+            "text": "เขตวัฒนา   ",
+            "value": "Khet Watthana",
             "provinceid": 1
         },
         {
             "key": 34,
-            "text": "สวนหลวง",
-            "value": "สวนหลวง",
+            "text": "เขตสวนหลวง   ",
+            "value": "Khet Suan Luang",
             "provinceid": 1
         },
         {
             "key": 44,
-            "text": "สะพานสูง",
-            "value": "สะพานสูง",
+            "text": "เขตสะพานสูง   ",
+            "value": "Khet Saphan Sung",
             "provinceid": 1
         },
         {
             "key": 13,
-            "text": "สัมพันธวงศ์",
-            "value": "สัมพันธวงศ์",
+            "text": "เขตสัมพันธวงศ์   ",
+            "value": "Khet Samphanthawong",
             "provinceid": 1
         },
         {
             "key": 28,
-            "text": "สาทร",
-            "value": "สาทร",
+            "text": "เขตสาทร   ",
+            "value": "Khet Sathon",
             "provinceid": 1
         },
         {
             "key": 42,
-            "text": "สายไหม",
-            "value": "สายไหม",
+            "text": "เขตสายไหม   ",
+            "value": "Khet Sai Mai",
             "provinceid": 1
         },
         {
             "key": 23,
-            "text": "หนองแขม",
-            "value": "หนองแขม",
+            "text": "เขตหนองแขม   ",
+            "value": "Khet Nong Khaem",
             "provinceid": 1
         },
         {
             "key": 3,
-            "text": "หนองจอก",
-            "value": "หนองจอก",
+            "text": "เขตหนองจอก   ",
+            "value": "Khet  Nong Chok",
             "provinceid": 1
         },
         {
             "key": 41,
-            "text": "หลักสี่",
-            "value": "หลักสี่",
+            "text": "เขตหลักสี่   ",
+            "value": "Khet Lak Si",
             "provinceid": 1
         },
         {
             "key": 17,
-            "text": "ห้วยขวาง",
-            "value": "ห้วยขวาง",
+            "text": "เขตห้วยขวาง   ",
+            "value": "Khet Huai Khwang",
+            "provinceid": 1
+        },
+        {
+            "key": 51,
+            "text": "บ้านทะวาย   ",
+            "value": "Bantawai",
             "provinceid": 1
         }
     ],
     [
         {
             "key": 53,
-            "text": "บางบ่อ",
-            "value": "บางบ่อ",
+            "text": "บางบ่อ   ",
+            "value": "Bang Bo",
             "provinceid": 2
         },
         {
             "key": 54,
-            "text": "บางพลี",
-            "value": "บางพลี",
+            "text": "บางพลี   ",
+            "value": "Bang Phli",
             "provinceid": 2
         },
         {
             "key": 57,
-            "text": "บางเสาธง",
-            "value": "บางเสาธง",
+            "text": "บางเสาธง   ",
+            "value": "Bang Sao Thong",
             "provinceid": 2
         },
         {
             "key": 55,
-            "text": "พระประแดง",
-            "value": "พระประแดง",
+            "text": "พระประแดง   ",
+            "value": "Phra Pradaeng",
             "provinceid": 2
         },
         {
             "key": 56,
-            "text": "พระสมุทรเจดีย์",
-            "value": "พระสมุทรเจดีย์",
+            "text": "พระสมุทรเจดีย์   ",
+            "value": "Phra Samut Chedi",
             "provinceid": 2
         },
         {
             "key": 52,
-            "text": "เมืองสมุทรปราการ",
-            "value": "เมืองสมุทรปราการ",
+            "text": "เมืองสมุทรปราการ   ",
+            "value": "Mueang Samut Prakan",
             "provinceid": 2
         }
     ],
@@ -350,631 +350,631 @@ const Amphurs = [
         {
             "key": 64,
             "text": "เทศบาลนครนนทบุรี (สาขาแขวงท่าทราย)",
-            "value": "เทศบาลนครนนทบุรี (สาขาแขวงท่าทราย)",
+            "value": "Tetsaban Nonthaburi",
             "provinceid": 3
         },
         {
             "key": 65,
             "text": "เทศบาลเมืองปากเกร็ด",
-            "value": "เทศบาลเมืองปากเกร็ด",
+            "value": "Tetsaban Pak Kret",
             "provinceid": 3
         },
         {
             "key": 62,
-            "text": "ไทรน้อย",
-            "value": "ไทรน้อย",
+            "text": "ไทรน้อย   ",
+            "value": "Sai Noi",
             "provinceid": 3
         },
         {
             "key": 59,
-            "text": "บางกรวย",
-            "value": "บางกรวย",
+            "text": "บางกรวย   ",
+            "value": "Bang Kruai",
             "provinceid": 3
         },
         {
             "key": 61,
-            "text": "บางบัวทอง",
-            "value": "บางบัวทอง",
+            "text": "บางบัวทอง   ",
+            "value": "Bang Bua Thong",
             "provinceid": 3
         },
         {
             "key": 60,
-            "text": "บางใหญ่",
-            "value": "บางใหญ่",
+            "text": "บางใหญ่   ",
+            "value": "Bang Yai",
             "provinceid": 3
         },
         {
             "key": 63,
-            "text": "ปากเกร็ด",
-            "value": "ปากเกร็ด",
+            "text": "ปากเกร็ด   ",
+            "value": "Pak Kret",
             "provinceid": 3
         },
         {
             "key": 58,
-            "text": "เมืองนนทบุรี",
-            "value": "เมืองนนทบุรี",
+            "text": "เมืองนนทบุรี   ",
+            "value": "Mueang Nonthaburi",
             "provinceid": 3
         }
     ],
     [
         {
             "key": 67,
-            "text": "คลองหลวง",
-            "value": "คลองหลวง",
+            "text": "คลองหลวง   ",
+            "value": "Khlong Luang",
             "provinceid": 4
         },
         {
             "key": 68,
-            "text": "ธัญบุรี",
-            "value": "ธัญบุรี",
+            "text": "ธัญบุรี   ",
+            "value": "Thanyaburi",
             "provinceid": 4
         },
         {
             "key": 66,
-            "text": "เมืองปทุมธานี",
-            "value": "เมืองปทุมธานี",
+            "text": "เมืองปทุมธานี   ",
+            "value": "Mueang Pathum Thani",
             "provinceid": 4
         },
         {
             "key": 70,
-            "text": "ลาดหลุมแก้ว",
-            "value": "ลาดหลุมแก้ว",
+            "text": "ลาดหลุมแก้ว   ",
+            "value": "Lat Lum Kaeo",
             "provinceid": 4
         },
         {
             "key": 71,
-            "text": "ลำลูกกา",
-            "value": "ลำลูกกา",
+            "text": "ลำลูกกา   ",
+            "value": "Lam Luk Ka",
             "provinceid": 4
         },
         {
             "key": 73,
             "text": "ลำลูกกา (สาขาตำบลคูคต)",
-            "value": "ลำลูกกา (สาขาตำบลคูคต)",
+            "value": "Khlong Luang(Kukod)",
             "provinceid": 4
         },
         {
             "key": 72,
-            "text": "สามโคก",
-            "value": "สามโคก",
+            "text": "สามโคก   ",
+            "value": "Sam Khok",
             "provinceid": 4
         },
         {
             "key": 69,
-            "text": "หนองเสือ",
-            "value": "หนองเสือ",
+            "text": "หนองเสือ   ",
+            "value": "Nong Suea",
             "provinceid": 4
         }
     ],
     [
         {
             "key": 75,
-            "text": "ท่าเรือ",
-            "value": "ท่าเรือ",
+            "text": "ท่าเรือ   ",
+            "value": "Tha Ruea",
             "provinceid": 5
         },
         {
             "key": 76,
-            "text": "นครหลวง",
-            "value": "นครหลวง",
+            "text": "นครหลวง   ",
+            "value": "Nakhon Luang",
             "provinceid": 5
         },
         {
             "key": 86,
-            "text": "บางซ้าย",
-            "value": "บางซ้าย",
+            "text": "บางซ้าย   ",
+            "value": "Bang Sai",
             "provinceid": 5
         },
         {
             "key": 77,
-            "text": "บางไทร",
-            "value": "บางไทร",
+            "text": "บางไทร   ",
+            "value": "Bang Sai",
             "provinceid": 5
         },
         {
             "key": 78,
-            "text": "บางบาล",
-            "value": "บางบาล",
+            "text": "บางบาล   ",
+            "value": "Bang Ban",
             "provinceid": 5
         },
         {
             "key": 80,
-            "text": "บางปะหัน",
-            "value": "บางปะหัน",
+            "text": "บางปะหัน   ",
+            "value": "Bang Pahan",
             "provinceid": 5
         },
         {
             "key": 79,
-            "text": "บางปะอิน",
-            "value": "บางปะอิน",
+            "text": "บางปะอิน   ",
+            "value": "Bang Pa-in",
             "provinceid": 5
         },
         {
             "key": 89,
-            "text": "บ้านแพรก",
-            "value": "บ้านแพรก",
+            "text": "บ้านแพรก   ",
+            "value": "Ban Phraek",
             "provinceid": 5
         },
         {
             "key": 81,
-            "text": "ผักไห่",
-            "value": "ผักไห่",
+            "text": "ผักไห่   ",
+            "value": "Phak Hai",
             "provinceid": 5
         },
         {
             "key": 74,
-            "text": "พระนครศรีอยุธยา",
-            "value": "พระนครศรีอยุธยา",
+            "text": "พระนครศรีอยุธยา   ",
+            "value": "Phra Nakhon Si Ayutthaya",
             "provinceid": 5
         },
         {
             "key": 82,
-            "text": "ภาชี",
-            "value": "ภาชี",
+            "text": "ภาชี   ",
+            "value": "Phachi",
             "provinceid": 5
         },
         {
             "key": 88,
-            "text": "มหาราช",
-            "value": "มหาราช",
+            "text": "มหาราช   ",
+            "value": "Maha Rat",
             "provinceid": 5
         },
         {
             "key": 83,
-            "text": "ลาดบัวหลวง",
-            "value": "ลาดบัวหลวง",
+            "text": "ลาดบัวหลวง   ",
+            "value": "Lat Bua Luang",
             "provinceid": 5
         },
         {
             "key": 84,
-            "text": "วังน้อย",
-            "value": "วังน้อย",
+            "text": "วังน้อย   ",
+            "value": "Wang Noi",
             "provinceid": 5
         },
         {
             "key": 85,
-            "text": "เสนา",
-            "value": "เสนา",
+            "text": "เสนา   ",
+            "value": "Sena",
             "provinceid": 5
         },
         {
             "key": 87,
-            "text": "อุทัย",
-            "value": "อุทัย",
+            "text": "อุทัย   ",
+            "value": "Uthai",
             "provinceid": 5
         }
     ],
     [
         {
             "key": 91,
-            "text": "ไชโย",
-            "value": "ไชโย",
+            "text": "ไชโย   ",
+            "value": "Chaiyo",
             "provinceid": 6
         },
         {
             "key": 92,
-            "text": "ป่าโมก",
-            "value": "ป่าโมก",
+            "text": "ป่าโมก   ",
+            "value": "Pa Mok",
             "provinceid": 6
         },
         {
             "key": 93,
-            "text": "โพธิ์ทอง",
-            "value": "โพธิ์ทอง",
+            "text": "โพธิ์ทอง   ",
+            "value": "Pho Thong",
             "provinceid": 6
         },
         {
             "key": 90,
-            "text": "เมืองอ่างทอง",
-            "value": "เมืองอ่างทอง",
+            "text": "เมืองอ่างทอง   ",
+            "value": "Mueang Ang Thong",
             "provinceid": 6
         },
         {
             "key": 95,
-            "text": "วิเศษชัยชาญ",
-            "value": "วิเศษชัยชาญ",
+            "text": "วิเศษชัยชาญ   ",
+            "value": "Wiset Chai Chan",
             "provinceid": 6
         },
         {
             "key": 96,
-            "text": "สามโก้",
-            "value": "สามโก้",
+            "text": "สามโก้   ",
+            "value": "Samko",
             "provinceid": 6
         },
         {
             "key": 94,
-            "text": "แสวงหา",
-            "value": "แสวงหา",
+            "text": "แสวงหา   ",
+            "value": "Sawaeng Ha",
             "provinceid": 6
         }
     ],
     [
         {
             "key": 105,
-            "text": "โคกเจริญ",
-            "value": "โคกเจริญ",
+            "text": "โคกเจริญ   ",
+            "value": "Khok Charoen",
             "provinceid": 7
         },
         {
             "key": 99,
-            "text": "โคกสำโรง",
-            "value": "โคกสำโรง",
+            "text": "โคกสำโรง   ",
+            "value": "Khok Samrong",
             "provinceid": 7
         },
         {
             "key": 100,
-            "text": "ชัยบาดาล",
-            "value": "ชัยบาดาล",
+            "text": "ชัยบาดาล   ",
+            "value": "Chai Badan",
             "provinceid": 7
         },
         {
             "key": 101,
-            "text": "ท่าวุ้ง",
-            "value": "ท่าวุ้ง",
+            "text": "ท่าวุ้ง   ",
+            "value": "Tha Wung",
             "provinceid": 7
         },
         {
             "key": 103,
-            "text": "ท่าหลวง",
-            "value": "ท่าหลวง",
+            "text": "ท่าหลวง   ",
+            "value": "Tha Luang",
             "provinceid": 7
         },
         {
             "key": 108,
             "text": "บ้านเช่า",
-            "value": "บ้านเช่า",
+            "value": "Amphoe Ban Chao",
             "provinceid": 7
         },
         {
             "key": 102,
-            "text": "บ้านหมี่",
-            "value": "บ้านหมี่",
+            "text": "บ้านหมี่   ",
+            "value": "Ban Mi",
             "provinceid": 7
         },
         {
             "key": 98,
-            "text": "พัฒนานิคม",
-            "value": "พัฒนานิคม",
+            "text": "พัฒนานิคม   ",
+            "value": "Phatthana Nikhom",
             "provinceid": 7
         },
         {
             "key": 97,
-            "text": "เมืองลพบุรี",
-            "value": "เมืองลพบุรี",
+            "text": "เมืองลพบุรี   ",
+            "value": "Mueang Lop Buri",
             "provinceid": 7
         },
         {
             "key": 106,
-            "text": "ลำสนธิ",
-            "value": "ลำสนธิ",
+            "text": "ลำสนธิ   ",
+            "value": "Lam Sonthi",
             "provinceid": 7
         },
         {
             "key": 104,
-            "text": "สระโบสถ์",
-            "value": "สระโบสถ์",
+            "text": "สระโบสถ์   ",
+            "value": "Sa Bot",
             "provinceid": 7
         },
         {
             "key": 107,
-            "text": "หนองม่วง",
-            "value": "หนองม่วง",
+            "text": "หนองม่วง   ",
+            "value": "Nong Muang",
             "provinceid": 7
         }
     ],
     [
         {
             "key": 111,
-            "text": "ค่ายบางระจัน",
-            "value": "ค่ายบางระจัน",
+            "text": "ค่ายบางระจัน   ",
+            "value": "Khai Bang Rachan",
             "provinceid": 8
         },
         {
             "key": 113,
-            "text": "ท่าช้าง",
-            "value": "ท่าช้าง",
+            "text": "ท่าช้าง   ",
+            "value": "Tha Chang",
             "provinceid": 8
         },
         {
             "key": 110,
-            "text": "บางระจัน",
-            "value": "บางระจัน",
+            "text": "บางระจัน   ",
+            "value": "Bang Rachan",
             "provinceid": 8
         },
         {
             "key": 112,
-            "text": "พรหมบุรี",
-            "value": "พรหมบุรี",
+            "text": "พรหมบุรี   ",
+            "value": "Phrom Buri",
             "provinceid": 8
         },
         {
             "key": 109,
-            "text": "เมืองสิงห์บุรี",
-            "value": "เมืองสิงห์บุรี",
+            "text": "เมืองสิงห์บุรี   ",
+            "value": "Mueang Sing Buri",
             "provinceid": 8
         },
         {
             "key": 114,
-            "text": "อินทร์บุรี",
-            "value": "อินทร์บุรี",
+            "text": "อินทร์บุรี   ",
+            "value": "In Buri",
             "provinceid": 8
         }
     ],
     [
         {
             "key": 122,
-            "text": "เนินขาม",
-            "value": "เนินขาม",
+            "text": "เนินขาม   ",
+            "value": "Noen Kham",
             "provinceid": 9
         },
         {
             "key": 116,
-            "text": "มโนรมย์",
-            "value": "มโนรมย์",
+            "text": "มโนรมย์   ",
+            "value": "Manorom",
             "provinceid": 9
         },
         {
             "key": 115,
-            "text": "เมืองชัยนาท",
-            "value": "เมืองชัยนาท",
+            "text": "เมืองชัยนาท   ",
+            "value": "Mueang Chai Nat",
             "provinceid": 9
         },
         {
             "key": 117,
-            "text": "วัดสิงห์",
-            "value": "วัดสิงห์",
+            "text": "วัดสิงห์   ",
+            "value": "Wat Sing",
             "provinceid": 9
         },
         {
             "key": 119,
-            "text": "สรรคบุรี",
-            "value": "สรรคบุรี",
+            "text": "สรรคบุรี   ",
+            "value": "Sankhaburi",
             "provinceid": 9
         },
         {
             "key": 118,
-            "text": "สรรพยา",
-            "value": "สรรพยา",
+            "text": "สรรพยา   ",
+            "value": "Sapphaya",
             "provinceid": 9
         },
         {
             "key": 121,
-            "text": "หนองมะโมง",
-            "value": "หนองมะโมง",
+            "text": "หนองมะโมง   ",
+            "value": "Nong Mamong",
             "provinceid": 9
         },
         {
             "key": 120,
-            "text": "หันคา",
-            "value": "หันคา",
+            "text": "หันคา   ",
+            "value": "Hankha",
             "provinceid": 9
         }
     ],
     [
         {
             "key": 124,
-            "text": "แก่งคอย",
-            "value": "แก่งคอย",
+            "text": "แก่งคอย   ",
+            "value": "Kaeng Khoi",
             "provinceid": 10
         },
         {
             "key": 135,
-            "text": "เฉลิมพระเกียรติ",
-            "value": "เฉลิมพระเกียรติ",
+            "text": "เฉลิมพระเกียรติ   ",
+            "value": "Chaloem Phra Kiat",
             "provinceid": 10
         },
         {
             "key": 129,
-            "text": "ดอนพุด",
-            "value": "ดอนพุด",
+            "text": "ดอนพุด   ",
+            "value": "Don Phut",
             "provinceid": 10
         },
         {
             "key": 128,
-            "text": "บ้านหมอ",
-            "value": "บ้านหมอ",
+            "text": "บ้านหมอ   ",
+            "value": "Ban Mo",
             "provinceid": 10
         },
         {
             "key": 131,
-            "text": "พระพุทธบาท",
-            "value": "พระพุทธบาท",
+            "text": "พระพุทธบาท   ",
+            "value": "Phra Phutthabat",
             "provinceid": 10
         },
         {
             "key": 133,
-            "text": "มวกเหล็ก",
-            "value": "มวกเหล็ก",
+            "text": "มวกเหล็ก   ",
+            "value": "Muak Lek",
             "provinceid": 10
         },
         {
             "key": 123,
-            "text": "เมืองสระบุรี",
-            "value": "เมืองสระบุรี",
+            "text": "เมืองสระบุรี   ",
+            "value": "Mueang Saraburi",
             "provinceid": 10
         },
         {
             "key": 134,
-            "text": "วังม่วง",
-            "value": "วังม่วง",
+            "text": "วังม่วง   ",
+            "value": "Wang Muang",
             "provinceid": 10
         },
         {
             "key": 126,
-            "text": "วิหารแดง",
-            "value": "วิหารแดง",
+            "text": "วิหารแดง   ",
+            "value": "Wihan Daeng",
             "provinceid": 10
         },
         {
             "key": 132,
-            "text": "เสาไห้",
-            "value": "เสาไห้",
+            "text": "เสาไห้   ",
+            "value": "Sao Hai",
             "provinceid": 10
         },
         {
             "key": 125,
-            "text": "หนองแค",
-            "value": "หนองแค",
+            "text": "หนองแค   ",
+            "value": "Nong Khae",
             "provinceid": 10
         },
         {
             "key": 127,
-            "text": "หนองแซง",
-            "value": "หนองแซง",
+            "text": "หนองแซง   ",
+            "value": "Nong Saeng",
             "provinceid": 10
         },
         {
             "key": 130,
-            "text": "หนองโดน",
-            "value": "หนองโดน",
+            "text": "หนองโดน   ",
+            "value": "Nong Don",
             "provinceid": 10
         }
     ],
     [
         {
             "key": 146,
-            "text": "เกาะจันทร์",
-            "value": "เกาะจันทร์",
+            "text": "เกาะจันทร์   ",
+            "value": "Ko Chan",
             "provinceid": 11
         },
         {
             "key": 143,
-            "text": "เกาะสีชัง",
-            "value": "เกาะสีชัง",
+            "text": "เกาะสีชัง   ",
+            "value": "Ko Sichang",
             "provinceid": 11
         },
         {
             "key": 148,
             "text": "ท้องถิ่นเทศบาลเมืองหนองปรือ",
-            "value": "ท้องถิ่นเทศบาลเมืองหนองปรือ",
+            "value": "Tong Tin Tetsaban Mueang Nong Prue",
             "provinceid": 11
         },
         {
             "key": 149,
             "text": "เทศบาลตำบลแหลมฉบัง",
-            "value": "เทศบาลตำบลแหลมฉบัง",
+            "value": "Tetsaban Tambon Lamsabang",
             "provinceid": 11
         },
         {
             "key": 150,
             "text": "เทศบาลเมืองชลบุรี",
-            "value": "เทศบาลเมืองชลบุรี",
+            "value": "Mueang Chon Buri",
             "provinceid": 11
         },
         {
             "key": 145,
-            "text": "บ่อทอง",
-            "value": "บ่อทอง",
+            "text": "บ่อทอง   ",
+            "value": "Bo Thong",
             "provinceid": 11
         },
         {
             "key": 139,
-            "text": "บางละมุง",
-            "value": "บางละมุง",
+            "text": "บางละมุง   ",
+            "value": "Bang Lamung",
             "provinceid": 11
         },
         {
             "key": 137,
-            "text": "บ้านบึง",
-            "value": "บ้านบึง",
+            "text": "บ้านบึง   ",
+            "value": "Ban Bueng",
             "provinceid": 11
         },
         {
             "key": 141,
-            "text": "พนัสนิคม",
-            "value": "พนัสนิคม",
+            "text": "พนัสนิคม   ",
+            "value": "Phanat Nikhom",
             "provinceid": 11
         },
         {
             "key": 140,
-            "text": "พานทอง",
-            "value": "พานทอง",
+            "text": "พานทอง   ",
+            "value": "Phan Thong",
             "provinceid": 11
         },
         {
             "key": 136,
-            "text": "เมืองชลบุรี",
-            "value": "เมืองชลบุรี",
+            "text": "เมืองชลบุรี   ",
+            "value": "Mueang Chon Buri",
             "provinceid": 11
         },
         {
             "key": 142,
-            "text": "ศรีราชา",
-            "value": "ศรีราชา",
+            "text": "ศรีราชา   ",
+            "value": "Si Racha",
             "provinceid": 11
         },
         {
             "key": 144,
-            "text": "สัตหีบ",
-            "value": "สัตหีบ",
+            "text": "สัตหีบ   ",
+            "value": "Sattahip",
             "provinceid": 11
         },
         {
             "key": 147,
             "text": "สัตหีบ (สาขาตำบลบางเสร่)",
-            "value": "สัตหีบ (สาขาตำบลบางเสร่)",
+            "value": "Sattahip(Bang Sre)",
             "provinceid": 11
         },
         {
             "key": 138,
-            "text": "หนองใหญ่",
-            "value": "หนองใหญ่",
+            "text": "หนองใหญ่   ",
+            "value": "Nong Yai",
             "provinceid": 11
         }
     ],
     [
         {
             "key": 153,
-            "text": "แกลง",
-            "value": "แกลง",
+            "text": "แกลง   ",
+            "value": "Klaeng",
             "provinceid": 12
         },
         {
             "key": 157,
-            "text": "เขาชะเมา",
-            "value": "เขาชะเมา",
+            "text": "เขาชะเมา   ",
+            "value": "Khao Chamao",
             "provinceid": 12
         },
         {
             "key": 158,
-            "text": "นิคมพัฒนา",
-            "value": "นิคมพัฒนา",
+            "text": "นิคมพัฒนา   ",
+            "value": "Nikhom Phatthana",
             "provinceid": 12
         },
         {
             "key": 155,
-            "text": "บ้านค่าย",
-            "value": "บ้านค่าย",
+            "text": "บ้านค่าย   ",
+            "value": "Ban Khai",
             "provinceid": 12
         },
         {
             "key": 152,
-            "text": "บ้านฉาง",
-            "value": "บ้านฉาง",
+            "text": "บ้านฉาง   ",
+            "value": "Ban Chang",
             "provinceid": 12
         },
         {
             "key": 156,
-            "text": "ปลวกแดง",
-            "value": "ปลวกแดง",
+            "text": "ปลวกแดง   ",
+            "value": "Pluak Daeng",
             "provinceid": 12
         },
         {
             "key": 151,
-            "text": "เมืองระยอง",
-            "value": "เมืองระยอง",
+            "text": "เมืองระยอง   ",
+            "value": "Mueang Rayong",
             "provinceid": 12
         },
         {
             "key": 154,
-            "text": "วังจันทร์",
-            "value": "วังจันทร์",
+            "text": "วังจันทร์   ",
+            "value": "Wang Chan",
             "provinceid": 12
         },
         {
             "key": 159,
             "text": "สาขาตำบลมาบข่า",
-            "value": "สาขาตำบลมาบข่า",
+            "value": "Saka Tambon Mabka",
             "provinceid": 12
         }
     ],
@@ -982,553 +982,553 @@ const Amphurs = [
         {
             "key": 170,
             "text": "กิ่งอำเภอกำพุธ",
-            "value": "กิ่งอำเภอกำพุธ",
+            "value": "King Amphoe Kampud",
             "provinceid": 13
         },
         {
             "key": 167,
-            "text": "แก่งหางแมว",
-            "value": "แก่งหางแมว",
+            "text": "แก่งหางแมว   ",
+            "value": "Kaeng Hang Maeo",
             "provinceid": 13
         },
         {
             "key": 161,
-            "text": "ขลุง",
-            "value": "ขลุง",
+            "text": "ขลุง   ",
+            "value": "Khlung",
             "provinceid": 13
         },
         {
             "key": 169,
-            "text": "เขาคิชฌกูฏ",
-            "value": "เขาคิชฌกูฏ",
+            "text": "เขาคิชฌกูฏ   ",
+            "value": "Khoa Khitchakut",
             "provinceid": 13
         },
         {
             "key": 162,
-            "text": "ท่าใหม่",
-            "value": "ท่าใหม่",
+            "text": "ท่าใหม่   ",
+            "value": "Tha Mai",
             "provinceid": 13
         },
         {
             "key": 168,
-            "text": "นายายอาม",
-            "value": "นายายอาม",
+            "text": "นายายอาม   ",
+            "value": "Na Yai Am",
             "provinceid": 13
         },
         {
             "key": 163,
-            "text": "โป่งน้ำร้อน",
-            "value": "โป่งน้ำร้อน",
+            "text": "โป่งน้ำร้อน   ",
+            "value": "Pong Nam Ron",
             "provinceid": 13
         },
         {
             "key": 164,
-            "text": "มะขาม",
-            "value": "มะขาม",
+            "text": "มะขาม   ",
+            "value": "Makham",
             "provinceid": 13
         },
         {
             "key": 160,
-            "text": "เมืองจันทบุรี",
-            "value": "เมืองจันทบุรี",
+            "text": "เมืองจันทบุรี   ",
+            "value": "Mueang Chanthaburi",
             "provinceid": 13
         },
         {
             "key": 166,
-            "text": "สอยดาว",
-            "value": "สอยดาว",
+            "text": "สอยดาว   ",
+            "value": "Soi Dao",
             "provinceid": 13
         },
         {
             "key": 165,
-            "text": "แหลมสิงห์",
-            "value": "แหลมสิงห์",
+            "text": "แหลมสิงห์   ",
+            "value": "Laem Sing",
             "provinceid": 13
         }
     ],
     [
         {
             "key": 176,
-            "text": "เกาะกูด",
-            "value": "เกาะกูด",
+            "text": "เกาะกูด   ",
+            "value": "Ko Kut",
             "provinceid": 14
         },
         {
             "key": 177,
-            "text": "เกาะช้าง",
-            "value": "เกาะช้าง",
+            "text": "เกาะช้าง   ",
+            "value": "Ko Chang",
             "provinceid": 14
         },
         {
             "key": 173,
-            "text": "เขาสมิง",
-            "value": "เขาสมิง",
+            "text": "เขาสมิง   ",
+            "value": "Khao Saming",
             "provinceid": 14
         },
         {
             "key": 172,
-            "text": "คลองใหญ่",
-            "value": "คลองใหญ่",
+            "text": "คลองใหญ่   ",
+            "value": "Khlong Yai",
             "provinceid": 14
         },
         {
             "key": 174,
-            "text": "บ่อไร่",
-            "value": "บ่อไร่",
+            "text": "บ่อไร่   ",
+            "value": "Bo Rai",
             "provinceid": 14
         },
         {
             "key": 171,
-            "text": "เมืองตราด",
-            "value": "เมืองตราด",
+            "text": "เมืองตราด   ",
+            "value": "Mueang Trat",
             "provinceid": 14
         },
         {
             "key": 175,
-            "text": "แหลมงอบ",
-            "value": "แหลมงอบ",
+            "text": "แหลมงอบ   ",
+            "value": "Laem Ngop",
             "provinceid": 14
         }
     ],
     [
         {
             "key": 188,
-            "text": "คลองเขื่อน",
-            "value": "คลองเขื่อน",
+            "text": "คลองเขื่อน   ",
+            "value": "Khlong Khuean",
             "provinceid": 15
         },
         {
             "key": 187,
-            "text": "ท่าตะเกียบ",
-            "value": "ท่าตะเกียบ",
+            "text": "ท่าตะเกียบ   ",
+            "value": "Tha Takiap",
             "provinceid": 15
         },
         {
             "key": 179,
-            "text": "บางคล้า",
-            "value": "บางคล้า",
+            "text": "บางคล้า   ",
+            "value": "Bang Khla",
             "provinceid": 15
         },
         {
             "key": 180,
-            "text": "บางน้ำเปรี้ยว",
-            "value": "บางน้ำเปรี้ยว",
+            "text": "บางน้ำเปรี้ยว   ",
+            "value": "Bang Nam Priao",
             "provinceid": 15
         },
         {
             "key": 181,
-            "text": "บางปะกง",
-            "value": "บางปะกง",
+            "text": "บางปะกง   ",
+            "value": "Bang Pakong",
             "provinceid": 15
         },
         {
             "key": 182,
-            "text": "บ้านโพธิ์",
-            "value": "บ้านโพธิ์",
+            "text": "บ้านโพธิ์   ",
+            "value": "Ban Pho",
             "provinceid": 15
         },
         {
             "key": 186,
-            "text": "แปลงยาว",
-            "value": "แปลงยาว",
+            "text": "แปลงยาว   ",
+            "value": "Plaeng Yao",
             "provinceid": 15
         },
         {
             "key": 183,
-            "text": "พนมสารคาม",
-            "value": "พนมสารคาม",
+            "text": "พนมสารคาม   ",
+            "value": "Phanom Sarakham",
             "provinceid": 15
         },
         {
             "key": 178,
-            "text": "เมืองฉะเชิงเทรา",
-            "value": "เมืองฉะเชิงเทรา",
+            "text": "เมืองฉะเชิงเทรา   ",
+            "value": "Mueang Chachoengsao",
             "provinceid": 15
         },
         {
             "key": 184,
-            "text": "ราชสาส์น",
-            "value": "ราชสาส์น",
+            "text": "ราชสาส์น   ",
+            "value": "Ratchasan",
             "provinceid": 15
         },
         {
             "key": 185,
-            "text": "สนามชัยเขต",
-            "value": "สนามชัยเขต",
+            "text": "สนามชัยเขต   ",
+            "value": "Sanam Chai Khet",
             "provinceid": 15
         }
     ],
     [
         {
             "key": 190,
-            "text": "กบินทร์บุรี",
-            "value": "กบินทร์บุรี",
+            "text": "กบินทร์บุรี   ",
+            "value": "Kabin Buri",
             "provinceid": 16
         },
         {
             "key": 201,
-            "text": "คลองหาด",
-            "value": "คลองหาด",
+            "text": "คลองหาด   ",
+            "value": "Khlong Hat",
             "provinceid": 16
         },
         {
             "key": 199,
-            "text": "ตาพระยา",
-            "value": "ตาพระยา",
+            "text": "ตาพระยา   ",
+            "value": "Ta Phraya",
             "provinceid": 16
         },
         {
             "key": 191,
-            "text": "นาดี",
-            "value": "นาดี",
+            "text": "นาดี   ",
+            "value": "Na Di",
             "provinceid": 16
         },
         {
             "key": 194,
-            "text": "บ้านสร้าง",
-            "value": "บ้านสร้าง",
+            "text": "บ้านสร้าง   ",
+            "value": "Ban Sang",
             "provinceid": 16
         },
         {
             "key": 195,
-            "text": "ประจันตคาม",
-            "value": "ประจันตคาม",
+            "text": "ประจันตคาม   ",
+            "value": "Prachantakham",
             "provinceid": 16
         },
         {
             "key": 189,
-            "text": "เมืองปราจีนบุรี",
-            "value": "เมืองปราจีนบุรี",
+            "text": "เมืองปราจีนบุรี   ",
+            "value": "Mueang Prachin Buri",
             "provinceid": 16
         },
         {
             "key": 193,
-            "text": "วังน้ำเย็น",
-            "value": "วังน้ำเย็น",
+            "text": "วังน้ำเย็น   ",
+            "value": "Wang Nam Yen",
             "provinceid": 16
         },
         {
             "key": 200,
-            "text": "วัฒนานคร",
-            "value": "วัฒนานคร",
+            "text": "วัฒนานคร   ",
+            "value": "Watthana Nakhon",
             "provinceid": 16
         },
         {
             "key": 196,
-            "text": "ศรีมหาโพธิ",
-            "value": "ศรีมหาโพธิ",
+            "text": "ศรีมหาโพธิ   ",
+            "value": "Si Maha Phot",
             "provinceid": 16
         },
         {
             "key": 197,
-            "text": "ศรีมโหสถ",
-            "value": "ศรีมโหสถ",
+            "text": "ศรีมโหสถ   ",
+            "value": "Si Mahosot",
             "provinceid": 16
         },
         {
             "key": 192,
-            "text": "สระแก้ว",
-            "value": "สระแก้ว",
+            "text": "สระแก้ว   ",
+            "value": "Sa Kaeo",
             "provinceid": 16
         },
         {
             "key": 198,
-            "text": "อรัญประเทศ",
-            "value": "อรัญประเทศ",
+            "text": "อรัญประเทศ   ",
+            "value": "Aranyaprathet",
             "provinceid": 16
         }
     ],
     [
         {
             "key": 204,
-            "text": "บ้านนา",
-            "value": "บ้านนา",
+            "text": "บ้านนา   ",
+            "value": "Ban Na",
             "provinceid": 17
         },
         {
             "key": 203,
-            "text": "ปากพลี",
-            "value": "ปากพลี",
+            "text": "ปากพลี   ",
+            "value": "Pak Phli",
             "provinceid": 17
         },
         {
             "key": 202,
-            "text": "เมืองนครนายก",
-            "value": "เมืองนครนายก",
+            "text": "เมืองนครนายก   ",
+            "value": "Mueang Nakhon Nayok",
             "provinceid": 17
         },
         {
             "key": 205,
-            "text": "องครักษ์",
-            "value": "องครักษ์",
+            "text": "องครักษ์   ",
+            "value": "Ongkharak",
             "provinceid": 17
         }
     ],
     [
         {
             "key": 212,
-            "text": "เขาฉกรรจ์",
-            "value": "เขาฉกรรจ์",
+            "text": "เขาฉกรรจ์   ",
+            "value": "Khao Chakan",
             "provinceid": 18
         },
         {
             "key": 207,
-            "text": "คลองหาด",
-            "value": "คลองหาด",
+            "text": "คลองหาด   ",
+            "value": "Khlong Hat",
             "provinceid": 18
         },
         {
             "key": 213,
-            "text": "โคกสูง",
-            "value": "โคกสูง",
+            "text": "โคกสูง   ",
+            "value": "Khok Sung",
             "provinceid": 18
         },
         {
             "key": 208,
-            "text": "ตาพระยา",
-            "value": "ตาพระยา",
+            "text": "ตาพระยา   ",
+            "value": "Ta Phraya",
             "provinceid": 18
         },
         {
             "key": 206,
-            "text": "เมืองสระแก้ว",
-            "value": "เมืองสระแก้ว",
+            "text": "เมืองสระแก้ว   ",
+            "value": "Mueang Sa Kaeo",
             "provinceid": 18
         },
         {
             "key": 209,
-            "text": "วังน้ำเย็น",
-            "value": "วังน้ำเย็น",
+            "text": "วังน้ำเย็น   ",
+            "value": "Wang Nam Yen",
             "provinceid": 18
         },
         {
             "key": 214,
-            "text": "วังสมบูรณ์",
-            "value": "วังสมบูรณ์",
+            "text": "วังสมบูรณ์   ",
+            "value": "Wang Sombun",
             "provinceid": 18
         },
         {
             "key": 210,
-            "text": "วัฒนานคร",
-            "value": "วัฒนานคร",
+            "text": "วัฒนานคร   ",
+            "value": "Watthana Nakhon",
             "provinceid": 18
         },
         {
             "key": 211,
-            "text": "อรัญประเทศ",
-            "value": "อรัญประเทศ",
+            "text": "อรัญประเทศ   ",
+            "value": "Aranyaprathet",
             "provinceid": 18
         }
     ],
     [
         {
             "key": 237,
-            "text": "แก้งสนามนาง",
-            "value": "แก้งสนามนาง",
+            "text": "แก้งสนามนาง   ",
+            "value": "Kaeng Sanam Nang",
             "provinceid": 19
         },
         {
             "key": 233,
-            "text": "ขามทะเลสอ",
-            "value": "ขามทะเลสอ",
+            "text": "ขามทะเลสอ   ",
+            "value": "Kham Thale So",
             "provinceid": 19
         },
         {
             "key": 225,
-            "text": "ขามสะแกแสง",
-            "value": "ขามสะแกแสง",
+            "text": "ขามสะแกแสง   ",
+            "value": "Kham Sakaesaeng",
             "provinceid": 19
         },
         {
             "key": 218,
-            "text": "คง",
-            "value": "คง",
+            "text": "คง   ",
+            "value": "Khong",
             "provinceid": 19
         },
         {
             "key": 216,
-            "text": "ครบุรี",
-            "value": "ครบุรี",
+            "text": "ครบุรี   ",
+            "value": "Khon Buri",
             "provinceid": 19
         },
         {
             "key": 220,
-            "text": "จักราช",
-            "value": "จักราช",
+            "text": "จักราช   ",
+            "value": "Chakkarat",
             "provinceid": 19
         },
         {
             "key": 246,
-            "text": "เฉลิมพระเกียรติ",
-            "value": "เฉลิมพระเกียรติ",
+            "text": "เฉลิมพระเกียรติ   ",
+            "value": "Chaloem Phra Kiat",
             "provinceid": 19
         },
         {
             "key": 231,
-            "text": "ชุมพวง",
-            "value": "ชุมพวง",
+            "text": "ชุมพวง   ",
+            "value": "Chum Phuang",
             "provinceid": 19
         },
         {
             "key": 221,
-            "text": "โชคชัย",
-            "value": "โชคชัย",
+            "text": "โชคชัย   ",
+            "value": "Chok Chai",
             "provinceid": 19
         },
         {
             "key": 222,
-            "text": "ด่านขุนทด",
-            "value": "ด่านขุนทด",
+            "text": "ด่านขุนทด   ",
+            "value": "Dan Khun Thot",
             "provinceid": 19
         },
         {
             "key": 247,
             "text": "ท้องถิ่นเทศบาลตำบลโพธิ์กลาง",
-            "value": "ท้องถิ่นเทศบาลตำบลโพธิ์กลาง",
+            "value": "Pho Krang",
             "provinceid": 19
         },
         {
             "key": 240,
-            "text": "เทพารักษ์",
-            "value": "เทพารักษ์",
+            "text": "เทพารักษ์   ",
+            "value": "Thepharak",
             "provinceid": 19
         },
         {
             "key": 238,
-            "text": "โนนแดง",
-            "value": "โนนแดง",
+            "text": "โนนแดง   ",
+            "value": "Non Daeng",
             "provinceid": 19
         },
         {
             "key": 223,
-            "text": "โนนไทย",
-            "value": "โนนไทย",
+            "text": "โนนไทย   ",
+            "value": "Non Thai",
             "provinceid": 19
         },
         {
             "key": 249,
             "text": "โนนลาว",
-            "value": "โนนลาว",
+            "value": "Non Lao",
             "provinceid": 19
         },
         {
             "key": 224,
-            "text": "โนนสูง",
-            "value": "โนนสูง",
+            "text": "โนนสูง   ",
+            "value": "Non Sung",
             "provinceid": 19
         },
         {
             "key": 244,
-            "text": "บัวลาย",
-            "value": "บัวลาย",
+            "text": "บัวลาย   ",
+            "value": "Bua Lai",
             "provinceid": 19
         },
         {
             "key": 226,
-            "text": "บัวใหญ่",
-            "value": "บัวใหญ่",
+            "text": "บัวใหญ่   ",
+            "value": "Bua Yai",
             "provinceid": 19
         },
         {
             "key": 219,
-            "text": "บ้านเหลื่อม",
-            "value": "บ้านเหลื่อม",
+            "text": "บ้านเหลื่อม   ",
+            "value": "Ban Lueam",
             "provinceid": 19
         },
         {
             "key": 227,
-            "text": "ประทาย",
-            "value": "ประทาย",
+            "text": "ประทาย   ",
+            "value": "Prathai",
             "provinceid": 19
         },
         {
             "key": 228,
-            "text": "ปักธงชัย",
-            "value": "ปักธงชัย",
+            "text": "ปักธงชัย   ",
+            "value": "Pak Thong Chai",
             "provinceid": 19
         },
         {
             "key": 235,
-            "text": "ปากช่อง",
-            "value": "ปากช่อง",
+            "text": "ปากช่อง   ",
+            "value": "Pak Chong",
             "provinceid": 19
         },
         {
             "key": 242,
-            "text": "พระทองคำ",
-            "value": "พระทองคำ",
+            "text": "พระทองคำ   ",
+            "value": "Phra Thong Kham",
             "provinceid": 19
         },
         {
             "key": 229,
-            "text": "พิมาย",
-            "value": "พิมาย",
+            "text": "พิมาย   ",
+            "value": "Phimai",
             "provinceid": 19
         },
         {
             "key": 215,
-            "text": "เมืองนครราชสีมา",
-            "value": "เมืองนครราชสีมา",
+            "text": "เมืองนครราชสีมา   ",
+            "value": "Mueang Nakhon Ratchasima",
             "provinceid": 19
         },
         {
             "key": 241,
-            "text": "เมืองยาง",
-            "value": "เมืองยาง",
+            "text": "เมืองยาง   ",
+            "value": "Mueang Yang",
             "provinceid": 19
         },
         {
             "key": 243,
-            "text": "ลำทะเมนชัย",
-            "value": "ลำทะเมนชัย",
+            "text": "ลำทะเมนชัย   ",
+            "value": "Lam Thamenchai",
             "provinceid": 19
         },
         {
             "key": 239,
-            "text": "วังน้ำเขียว",
-            "value": "วังน้ำเขียว",
+            "text": "วังน้ำเขียว   ",
+            "value": "Wang Nam Khiao",
             "provinceid": 19
         },
         {
             "key": 248,
             "text": "สาขาตำบลมะค่า-พลสงคราม",
-            "value": "สาขาตำบลมะค่า-พลสงคราม",
+            "value": "Ma Ka-Pon Songkram",
             "provinceid": 19
         },
         {
             "key": 234,
-            "text": "สีคิ้ว",
-            "value": "สีคิ้ว",
+            "text": "สีคิ้ว   ",
+            "value": "Sikhio",
             "provinceid": 19
         },
         {
             "key": 245,
-            "text": "สีดา",
-            "value": "สีดา",
+            "text": "สีดา   ",
+            "value": "Sida",
             "provinceid": 19
         },
         {
             "key": 232,
-            "text": "สูงเนิน",
-            "value": "สูงเนิน",
+            "text": "สูงเนิน   ",
+            "value": "Sung Noen",
             "provinceid": 19
         },
         {
             "key": 217,
-            "text": "เสิงสาง",
-            "value": "เสิงสาง",
+            "text": "เสิงสาง   ",
+            "value": "Soeng Sang",
             "provinceid": 19
         },
         {
             "key": 236,
-            "text": "หนองบุญมาก",
-            "value": "หนองบุญมาก",
+            "text": "หนองบุญมาก   ",
+            "value": "Nong Bunnak",
             "provinceid": 19
         },
         {
             "key": 230,
-            "text": "ห้วยแถลง",
-            "value": "ห้วยแถลง",
+            "text": "ห้วยแถลง   ",
+            "value": "Huai Thalaeng",
             "provinceid": 19
         }
     ],
@@ -1536,639 +1536,639 @@ const Amphurs = [
         {
             "key": 252,
             "text": "กระสัง",
-            "value": "กระสัง",
+            "value": "Krasang",
             "provinceid": 20
         },
         {
             "key": 251,
-            "text": "คูเมือง",
-            "value": "คูเมือง",
+            "text": "คูเมือง   ",
+            "value": "Khu Mueang",
             "provinceid": 20
         },
         {
             "key": 271,
-            "text": "แคนดง",
-            "value": "แคนดง",
+            "text": "แคนดง   ",
+            "value": "Khaen Dong",
             "provinceid": 20
         },
         {
             "key": 272,
-            "text": "เฉลิมพระเกียรติ",
-            "value": "เฉลิมพระเกียรติ",
+            "text": "เฉลิมพระเกียรติ   ",
+            "value": "Chaloem Phra Kiat",
             "provinceid": 20
         },
         {
             "key": 267,
-            "text": "ชำนิ",
-            "value": "ชำนิ",
+            "text": "ชำนิ   ",
+            "value": "Chamni",
             "provinceid": 20
         },
         {
             "key": 253,
-            "text": "นางรอง",
-            "value": "นางรอง",
+            "text": "นางรอง   ",
+            "value": "Nang Rong",
             "provinceid": 20
         },
         {
             "key": 262,
-            "text": "นาโพธิ์",
-            "value": "นาโพธิ์",
+            "text": "นาโพธิ์   ",
+            "value": "Na Pho",
             "provinceid": 20
         },
         {
             "key": 269,
-            "text": "โนนดินแดง",
-            "value": "โนนดินแดง",
+            "text": "โนนดินแดง   ",
+            "value": "Din Daeng",
             "provinceid": 20
         },
         {
             "key": 266,
-            "text": "โนนสุวรรณ",
-            "value": "โนนสุวรรณ",
+            "text": "โนนสุวรรณ   ",
+            "value": "Non Suwan",
             "provinceid": 20
         },
         {
             "key": 257,
-            "text": "บ้านกรวด",
-            "value": "บ้านกรวด",
+            "text": "บ้านกรวด   ",
+            "value": "Ban Kruat",
             "provinceid": 20
         },
         {
             "key": 270,
-            "text": "บ้านด่าน",
-            "value": "บ้านด่าน",
+            "text": "บ้านด่าน   ",
+            "value": "Ban Dan",
             "provinceid": 20
         },
         {
             "key": 268,
-            "text": "บ้านใหม่ไชยพจน์",
-            "value": "บ้านใหม่ไชยพจน์",
+            "text": "บ้านใหม่ไชยพจน์   ",
+            "value": "Ban Mai Chaiyaphot",
             "provinceid": 20
         },
         {
             "key": 256,
-            "text": "ประโคนชัย",
-            "value": "ประโคนชัย",
+            "text": "ประโคนชัย   ",
+            "value": "Prakhon Chai",
             "provinceid": 20
         },
         {
             "key": 261,
-            "text": "ปะคำ",
-            "value": "ปะคำ",
+            "text": "ปะคำ   ",
+            "value": "Pakham",
             "provinceid": 20
         },
         {
             "key": 264,
-            "text": "พลับพลาชัย",
-            "value": "พลับพลาชัย",
+            "text": "พลับพลาชัย   ",
+            "value": "Phlapphla Chai",
             "provinceid": 20
         },
         {
             "key": 258,
-            "text": "พุทไธสง",
-            "value": "พุทไธสง",
+            "text": "พุทไธสง   ",
+            "value": "Phutthaisong",
             "provinceid": 20
         },
         {
             "key": 250,
-            "text": "เมืองบุรีรัมย์",
-            "value": "เมืองบุรีรัมย์",
+            "text": "เมืองบุรีรัมย์   ",
+            "value": "Mueang Buri Ram",
             "provinceid": 20
         },
         {
             "key": 255,
-            "text": "ละหานทราย",
-            "value": "ละหานทราย",
+            "text": "ละหานทราย   ",
+            "value": "Lahan Sai",
             "provinceid": 20
         },
         {
             "key": 259,
-            "text": "ลำปลายมาศ",
-            "value": "ลำปลายมาศ",
+            "text": "ลำปลายมาศ   ",
+            "value": "Lam Plai Mat",
             "provinceid": 20
         },
         {
             "key": 260,
-            "text": "สตึก",
-            "value": "สตึก",
+            "text": "สตึก   ",
+            "value": "Satuek",
             "provinceid": 20
         },
         {
             "key": 254,
-            "text": "หนองกี่",
-            "value": "หนองกี่",
+            "text": "หนองกี่   ",
+            "value": "Nong Ki",
             "provinceid": 20
         },
         {
             "key": 263,
-            "text": "หนองหงส์",
-            "value": "หนองหงส์",
+            "text": "หนองหงส์   ",
+            "value": "Nong Hong",
             "provinceid": 20
         },
         {
             "key": 265,
-            "text": "ห้วยราช",
-            "value": "ห้วยราช",
+            "text": "ห้วยราช   ",
+            "value": "Huai Rat",
             "provinceid": 20
         }
     ],
     [
         {
             "key": 278,
-            "text": "กาบเชิง",
-            "value": "กาบเชิง",
+            "text": "กาบเชิง   ",
+            "value": "Kap Choeng",
             "provinceid": 21
         },
         {
             "key": 288,
-            "text": "เขวาสินรินทร์",
-            "value": "เขวาสินรินทร์",
+            "text": "เขวาสินรินทร์   ",
+            "value": "Khwao Sinarin",
             "provinceid": 21
         },
         {
             "key": 276,
-            "text": "จอมพระ",
-            "value": "จอมพระ",
+            "text": "จอมพระ   ",
+            "value": "Chom Phra",
             "provinceid": 21
         },
         {
             "key": 274,
-            "text": "ชุมพลบุรี",
-            "value": "ชุมพลบุรี",
+            "text": "ชุมพลบุรี   ",
+            "value": "Chumphon Buri",
             "provinceid": 21
         },
         {
             "key": 275,
-            "text": "ท่าตูม",
-            "value": "ท่าตูม",
+            "text": "ท่าตูม   ",
+            "value": "Tha Tum",
             "provinceid": 21
         },
         {
             "key": 289,
-            "text": "โนนนารายณ์",
-            "value": "โนนนารายณ์",
+            "text": "โนนนารายณ์   ",
+            "value": "Non Narai",
             "provinceid": 21
         },
         {
             "key": 285,
-            "text": "บัวเชด",
-            "value": "บัวเชด",
+            "text": "บัวเชด   ",
+            "value": "Buachet",
             "provinceid": 21
         },
         {
             "key": 277,
-            "text": "ปราสาท",
-            "value": "ปราสาท",
+            "text": "ปราสาท   ",
+            "value": "Prasat",
             "provinceid": 21
         },
         {
             "key": 286,
-            "text": "พนมดงรัก",
-            "value": "พนมดงรัก",
+            "text": "พนมดงรัก   ",
+            "value": "Phanom Dong Rak",
             "provinceid": 21
         },
         {
             "key": 273,
-            "text": "เมืองสุรินทร์",
-            "value": "เมืองสุรินทร์",
+            "text": "เมืองสุรินทร์   ",
+            "value": "Mueang Surin",
             "provinceid": 21
         },
         {
             "key": 279,
-            "text": "รัตนบุรี",
-            "value": "รัตนบุรี",
+            "text": "รัตนบุรี   ",
+            "value": "Rattanaburi",
             "provinceid": 21
         },
         {
             "key": 283,
-            "text": "ลำดวน",
-            "value": "ลำดวน",
+            "text": "ลำดวน   ",
+            "value": "Lamduan",
             "provinceid": 21
         },
         {
             "key": 287,
-            "text": "ศรีณรงค์",
-            "value": "ศรีณรงค์",
+            "text": "ศรีณรงค์   ",
+            "value": "Si Narong",
             "provinceid": 21
         },
         {
             "key": 281,
-            "text": "ศีขรภูมิ",
-            "value": "ศีขรภูมิ",
+            "text": "ศีขรภูมิ   ",
+            "value": "Sikhoraphum",
             "provinceid": 21
         },
         {
             "key": 280,
-            "text": "สนม",
-            "value": "สนม",
+            "text": "สนม   ",
+            "value": "Sanom",
             "provinceid": 21
         },
         {
             "key": 282,
-            "text": "สังขะ",
-            "value": "สังขะ",
+            "text": "สังขะ   ",
+            "value": "Sangkha",
             "provinceid": 21
         },
         {
             "key": 284,
-            "text": "สำโรงทาบ",
-            "value": "สำโรงทาบ",
+            "text": "สำโรงทาบ   ",
+            "value": "Samrong Thap",
             "provinceid": 21
         }
     ],
     [
         {
             "key": 293,
-            "text": "กันทรลักษ์",
-            "value": "กันทรลักษ์",
+            "text": "กันทรลักษ์   ",
+            "value": "Kantharalak",
             "provinceid": 22
         },
         {
             "key": 292,
-            "text": "กันทรารมย์",
-            "value": "กันทรารมย์",
+            "text": "กันทรารมย์   ",
+            "value": "Kanthararom",
             "provinceid": 22
         },
         {
             "key": 294,
-            "text": "ขุขันธ์",
-            "value": "ขุขันธ์",
+            "text": "ขุขันธ์   ",
+            "value": "Khukhan",
             "provinceid": 22
         },
         {
             "key": 297,
-            "text": "ขุนหาญ",
-            "value": "ขุนหาญ",
+            "text": "ขุนหาญ   ",
+            "value": "Khun Han",
             "provinceid": 22
         },
         {
             "key": 304,
-            "text": "น้ำเกลี้ยง",
-            "value": "น้ำเกลี้ยง",
+            "text": "น้ำเกลี้ยง   ",
+            "value": "Si Rattana",
             "provinceid": 22
         },
         {
             "key": 302,
-            "text": "โนนคูณ",
-            "value": "โนนคูณ",
+            "text": "โนนคูณ   ",
+            "value": "Non Khun",
             "provinceid": 22
         },
         {
             "key": 300,
-            "text": "บึงบูรพ์",
-            "value": "บึงบูรพ์",
+            "text": "บึงบูรพ์   ",
+            "value": "Bueng Bun",
             "provinceid": 22
         },
         {
             "key": 308,
-            "text": "เบญจลักษ์",
-            "value": "เบญจลักษ์",
+            "text": "เบญจลักษ์   ",
+            "value": "Benchalak",
             "provinceid": 22
         },
         {
             "key": 296,
-            "text": "ปรางค์กู่",
-            "value": "ปรางค์กู่",
+            "text": "ปรางค์กู่   ",
+            "value": "Prang Ku",
             "provinceid": 22
         },
         {
             "key": 309,
-            "text": "พยุห์",
-            "value": "พยุห์",
+            "text": "พยุห์   ",
+            "value": "Phayu",
             "provinceid": 22
         },
         {
             "key": 310,
-            "text": "โพธิ์ศรีสุวรรณ",
-            "value": "โพธิ์ศรีสุวรรณ",
+            "text": "โพธิ์ศรีสุวรรณ   ",
+            "value": "Pho Si Suwan",
             "provinceid": 22
         },
         {
             "key": 295,
-            "text": "ไพรบึง",
-            "value": "ไพรบึง",
+            "text": "ไพรบึง   ",
+            "value": "Phrai Bueng",
             "provinceid": 22
         },
         {
             "key": 306,
-            "text": "ภูสิงห์",
-            "value": "ภูสิงห์",
+            "text": "ภูสิงห์   ",
+            "value": "Phu Sing",
             "provinceid": 22
         },
         {
             "key": 307,
-            "text": "เมืองจันทร์",
-            "value": "เมืองจันทร์",
+            "text": "เมืองจันทร์   ",
+            "value": "Mueang Chan",
             "provinceid": 22
         },
         {
             "key": 290,
-            "text": "เมืองศรีสะเกษ",
-            "value": "เมืองศรีสะเกษ",
+            "text": "เมืองศรีสะเกษ   ",
+            "value": "Mueang Si Sa Ket",
             "provinceid": 22
         },
         {
             "key": 291,
-            "text": "ยางชุมน้อย",
-            "value": "ยางชุมน้อย",
+            "text": "ยางชุมน้อย   ",
+            "value": "Yang Chum Noi",
             "provinceid": 22
         },
         {
             "key": 298,
-            "text": "ราษีไศล",
-            "value": "ราษีไศล",
+            "text": "ราษีไศล   ",
+            "value": "Rasi Salai",
             "provinceid": 22
         },
         {
             "key": 305,
-            "text": "วังหิน",
-            "value": "วังหิน",
+            "text": "วังหิน   ",
+            "value": "Wang Hin",
             "provinceid": 22
         },
         {
             "key": 303,
-            "text": "ศรีรัตนะ",
-            "value": "ศรีรัตนะ",
+            "text": "ศรีรัตนะ   ",
+            "value": "Si Rattana",
             "provinceid": 22
         },
         {
             "key": 311,
-            "text": "ศิลาลาด",
-            "value": "ศิลาลาด",
+            "text": "ศิลาลาด   ",
+            "value": "Sila Lat",
             "provinceid": 22
         },
         {
             "key": 301,
-            "text": "ห้วยทับทัน",
-            "value": "ห้วยทับทัน",
+            "text": "ห้วยทับทัน   ",
+            "value": "Huai Thap Than",
             "provinceid": 22
         },
         {
             "key": 299,
-            "text": "อุทุมพรพิสัย",
-            "value": "อุทุมพรพิสัย",
+            "text": "อุทุมพรพิสัย   ",
+            "value": "Uthumphon Phisai",
             "provinceid": 22
         }
     ],
     [
         {
             "key": 334,
-            "text": "กิ่งอำเภอลืออำนาจ",
-            "value": "กิ่งอำเภอลืออำนาจ",
+            "text": "กิ่งอำเภอลืออำนาจ   ",
+            "value": "King Amphoe Lue Amnat",
             "provinceid": 23
         },
         {
             "key": 339,
-            "text": "กิ่งอำเภอศรีหลักชัย",
-            "value": "กิ่งอำเภอศรีหลักชัย",
+            "text": "กิ่งอำเภอศรีหลักชัย   ",
+            "value": "King Amphoe Sri Lunk Chai",
             "provinceid": 23
         },
         {
             "key": 323,
-            "text": "กุดข้าวปุ้น",
-            "value": "กุดข้าวปุ้น",
+            "text": "กุดข้าวปุ้น   ",
+            "value": "Kut Khaopun",
             "provinceid": 23
         },
         {
             "key": 316,
-            "text": "เขมราฐ",
-            "value": "เขมราฐ",
+            "text": "เขมราฐ   ",
+            "value": "Khemarat",
             "provinceid": 23
         },
         {
             "key": 315,
-            "text": "เขื่องใน",
-            "value": "เขื่องใน",
+            "text": "เขื่องใน   ",
+            "value": "Khueang Nai",
             "provinceid": 23
         },
         {
             "key": 314,
-            "text": "โขงเจียม",
-            "value": "โขงเจียม",
+            "text": "โขงเจียม   ",
+            "value": "Khong Chiam",
             "provinceid": 23
         },
         {
             "key": 317,
             "text": "ชานุมาน",
-            "value": "ชานุมาน",
+            "value": "Shanuman",
             "provinceid": 23
         },
         {
             "key": 335,
-            "text": "ดอนมดแดง",
-            "value": "ดอนมดแดง",
+            "text": "ดอนมดแดง   ",
+            "value": "Don Mot Daeng",
             "provinceid": 23
         },
         {
             "key": 318,
-            "text": "เดชอุดม",
-            "value": "เดชอุดม",
+            "text": "เดชอุดม   ",
+            "value": "Det Udom",
             "provinceid": 23
         },
         {
             "key": 322,
-            "text": "ตระการพืชผล",
-            "value": "ตระการพืชผล",
+            "text": "ตระการพืชผล   ",
+            "value": "Trakan Phuet Phon",
             "provinceid": 23
         },
         {
             "key": 331,
-            "text": "ตาลสุม",
-            "value": "ตาลสุม",
+            "text": "ตาลสุม   ",
+            "value": "Tan Sum",
             "provinceid": 23
         },
         {
             "key": 337,
-            "text": "ทุ่งศรีอุดม",
-            "value": "ทุ่งศรีอุดม",
+            "text": "ทุ่งศรีอุดม   ",
+            "value": "Thung Si Udom",
             "provinceid": 23
         },
         {
             "key": 319,
-            "text": "นาจะหลวย",
-            "value": "นาจะหลวย",
+            "text": "นาจะหลวย   ",
+            "value": "Na Chaluai",
             "provinceid": 23
         },
         {
             "key": 341,
-            "text": "นาตาล",
-            "value": "นาตาล",
+            "text": "นาตาล   ",
+            "value": "Na Tan",
             "provinceid": 23
         },
         {
             "key": 340,
-            "text": "นาเยีย",
-            "value": "นาเยีย",
+            "text": "นาเยีย   ",
+            "value": "Na Yia",
             "provinceid": 23
         },
         {
             "key": 344,
-            "text": "น้ำขุ่น",
-            "value": "น้ำขุ่น",
+            "text": "น้ำขุ่น   ",
+            "value": "Nam Khun",
             "provinceid": 23
         },
         {
             "key": 320,
-            "text": "น้ำยืน",
-            "value": "น้ำยืน",
+            "text": "น้ำยืน   ",
+            "value": "Nam Yuen",
             "provinceid": 23
         },
         {
             "key": 321,
-            "text": "บุณฑริก",
-            "value": "บุณฑริก",
+            "text": "บุณฑริก   ",
+            "value": "Buntharik",
             "provinceid": 23
         },
         {
             "key": 338,
-            "text": "ปทุมราชวงศา",
-            "value": "ปทุมราชวงศา",
+            "text": "ปทุมราชวงศา   ",
+            "value": "Pathum Ratchawongsa",
             "provinceid": 23
         },
         {
             "key": 324,
             "text": "พนา",
-            "value": "พนา",
+            "value": "Phana",
             "provinceid": 23
         },
         {
             "key": 330,
-            "text": "พิบูลมังสาหาร",
-            "value": "พิบูลมังสาหาร",
+            "text": "พิบูลมังสาหาร   ",
+            "value": "Phibun Mangsahan",
             "provinceid": 23
         },
         {
             "key": 332,
-            "text": "โพธิ์ไทร",
-            "value": "โพธิ์ไทร",
+            "text": "โพธิ์ไทร   ",
+            "value": "Pho Sai",
             "provinceid": 23
         },
         {
             "key": 325,
-            "text": "ม่วงสามสิบ",
-            "value": "ม่วงสามสิบ",
+            "text": "ม่วงสามสิบ   ",
+            "value": "Muang Sam Sip",
             "provinceid": 23
         },
         {
             "key": 312,
-            "text": "เมืองอุบลราชธานี",
-            "value": "เมืองอุบลราชธานี",
+            "text": "เมืองอุบลราชธานี   ",
+            "value": "Mueang Ubon Ratchathani",
             "provinceid": 23
         },
         {
             "key": 326,
-            "text": "วารินชำราบ",
-            "value": "วารินชำราบ",
+            "text": "วารินชำราบ   ",
+            "value": "Warin Chamrap",
             "provinceid": 23
         },
         {
             "key": 313,
-            "text": "ศรีเมืองใหม่",
-            "value": "ศรีเมืองใหม่",
+            "text": "ศรีเมืองใหม่   ",
+            "value": "Si Mueang Mai",
             "provinceid": 23
         },
         {
             "key": 343,
-            "text": "สว่างวีระวงศ์",
-            "value": "สว่างวีระวงศ์",
+            "text": "สว่างวีระวงศ์   ",
+            "value": "Sawang Wirawong",
             "provinceid": 23
         },
         {
             "key": 333,
-            "text": "สำโรง",
-            "value": "สำโรง",
+            "text": "สำโรง   ",
+            "value": "Samrong",
             "provinceid": 23
         },
         {
             "key": 336,
-            "text": "สิรินธร",
-            "value": "สิรินธร",
+            "text": "สิรินธร   ",
+            "value": "Sirindhorn",
             "provinceid": 23
         },
         {
             "key": 345,
             "text": "สุวรรณวารี",
-            "value": "สุวรรณวารี",
+            "value": "Suwan Wari",
             "provinceid": 23
         },
         {
             "key": 328,
-            "text": "เสนางคนิคม",
-            "value": "เสนางคนิคม",
+            "text": "เสนางคนิคม   ",
+            "value": "Senangkhanikhom",
             "provinceid": 23
         },
         {
             "key": 329,
             "text": "หัวตะพาน",
-            "value": "หัวตะพาน",
+            "value": "Hua Taphan",
             "provinceid": 23
         },
         {
             "key": 342,
-            "text": "เหล่าเสือโก้ก",
-            "value": "เหล่าเสือโก้ก",
+            "text": "เหล่าเสือโก้ก   ",
+            "value": "Lao Suea Kok",
             "provinceid": 23
         },
         {
             "key": 327,
-            "text": "อำนาจเจริญ",
-            "value": "อำนาจเจริญ",
+            "text": "อำนาจเจริญ   ",
+            "value": "Amnat Charoen",
             "provinceid": 23
         }
     ],
     [
         {
             "key": 348,
-            "text": "กุดชุม",
-            "value": "กุดชุม",
+            "text": "กุดชุม   ",
+            "value": "Kut Chum",
             "provinceid": 24
         },
         {
             "key": 352,
-            "text": "ค้อวัง",
-            "value": "ค้อวัง",
+            "text": "ค้อวัง   ",
+            "value": "Kho Wang",
             "provinceid": 24
         },
         {
             "key": 349,
-            "text": "คำเขื่อนแก้ว",
-            "value": "คำเขื่อนแก้ว",
+            "text": "คำเขื่อนแก้ว   ",
+            "value": "Kham Khuean Kaeo",
             "provinceid": 24
         },
         {
             "key": 347,
-            "text": "ทรายมูล",
-            "value": "ทรายมูล",
+            "text": "ทรายมูล   ",
+            "value": "Sai Mun",
             "provinceid": 24
         },
         {
             "key": 354,
-            "text": "ไทยเจริญ",
-            "value": "ไทยเจริญ",
+            "text": "ไทยเจริญ   ",
+            "value": "Thai Charoen",
             "provinceid": 24
         },
         {
             "key": 350,
-            "text": "ป่าติ้ว",
-            "value": "ป่าติ้ว",
+            "text": "ป่าติ้ว   ",
+            "value": "Pa Tio",
             "provinceid": 24
         },
         {
             "key": 351,
-            "text": "มหาชนะชัย",
-            "value": "มหาชนะชัย",
+            "text": "มหาชนะชัย   ",
+            "value": "Maha Chana Chai",
             "provinceid": 24
         },
         {
             "key": 346,
-            "text": "เมืองยโสธร",
-            "value": "เมืองยโสธร",
+            "text": "เมืองยโสธร   ",
+            "value": "Mueang Yasothon",
             "provinceid": 24
         },
         {
             "key": 353,
-            "text": "เลิงนกทา",
-            "value": "เลิงนกทา",
+            "text": "เลิงนกทา   ",
+            "value": "Loeng Nok Tha",
             "provinceid": 24
         }
     ],
@@ -2176,1963 +2176,1963 @@ const Amphurs = [
         {
             "key": 374,
             "text": "กิ่งอำเภอซับใหญ่ (สาขาตำบลซับใหญ่)",
-            "value": "กิ่งอำเภอซับใหญ่ (สาขาตำบลซับใหญ่)",
+            "value": "King Amphoe Sap Yai",
             "provinceid": 25
         },
         {
             "key": 358,
-            "text": "เกษตรสมบูรณ์",
-            "value": "เกษตรสมบูรณ์",
+            "text": "เกษตรสมบูรณ์   ",
+            "value": "Kaset Sombun",
             "provinceid": 25
         },
         {
             "key": 366,
-            "text": "แก้งคร้อ",
-            "value": "แก้งคร้อ",
+            "text": "แก้งคร้อ   ",
+            "value": "Kaeng Khro",
             "provinceid": 25
         },
         {
             "key": 378,
             "text": "แก้งคร้อ (สาขาตำบลท่ามะไฟหวาน)",
-            "value": "แก้งคร้อ (สาขาตำบลท่ามะไฟหวาน)",
+            "value": "Kaeng Khro",
             "provinceid": 25
         },
         {
             "key": 357,
-            "text": "คอนสวรรค์",
-            "value": "คอนสวรรค์",
+            "text": "คอนสวรรค์   ",
+            "value": "Khon Sawan",
             "provinceid": 25
         },
         {
             "key": 367,
-            "text": "คอนสาร",
-            "value": "คอนสาร",
+            "text": "คอนสาร   ",
+            "value": "Khon San",
             "provinceid": 25
         },
         {
             "key": 379,
             "text": "คอนสาร (สาขาตำบลโนนคูณ)",
-            "value": "คอนสาร (สาขาตำบลโนนคูณ)",
+            "value": "Khon San",
             "provinceid": 25
         },
         {
             "key": 360,
-            "text": "จัตุรัส",
-            "value": "จัตุรัส",
+            "text": "จัตุรัส   ",
+            "value": "Chatturat",
             "provinceid": 25
         },
         {
             "key": 370,
-            "text": "ซับใหญ่",
-            "value": "ซับใหญ่",
+            "text": "ซับใหญ่   ",
+            "value": "Sap Yai",
             "provinceid": 25
         },
         {
             "key": 363,
-            "text": "เทพสถิต",
-            "value": "เทพสถิต",
+            "text": "เทพสถิต   ",
+            "value": "Thep Sathit",
             "provinceid": 25
         },
         {
             "key": 376,
             "text": "เทพสถิต (สาขาตำบลนายางกลัก)",
-            "value": "เทพสถิต (สาขาตำบลนายางกลัก)",
+            "value": "Thep Sathit",
             "provinceid": 25
         },
         {
             "key": 369,
-            "text": "เนินสง่า",
-            "value": "เนินสง่า",
+            "text": "เนินสง่า   ",
+            "value": "Noen Sa-nga",
             "provinceid": 25
         },
         {
             "key": 356,
-            "text": "บ้านเขว้า",
-            "value": "บ้านเขว้า",
+            "text": "บ้านเขว้า   ",
+            "value": "Ban Khwao",
             "provinceid": 25
         },
         {
             "key": 365,
-            "text": "บ้านแท่น",
-            "value": "บ้านแท่น",
+            "text": "บ้านแท่น   ",
+            "value": "Ban Thaen",
             "provinceid": 25
         },
         {
             "key": 377,
             "text": "บ้านแท่น (สาขาตำบลบ้านเต่า)",
-            "value": "บ้านแท่น (สาขาตำบลบ้านเต่า)",
+            "value": "Ban Thaen",
             "provinceid": 25
         },
         {
             "key": 361,
-            "text": "บำเหน็จณรงค์",
-            "value": "บำเหน็จณรงค์",
+            "text": "บำเหน็จณรงค์   ",
+            "value": "Bamnet Narong",
             "provinceid": 25
         },
         {
             "key": 368,
-            "text": "ภักดีชุมพล",
-            "value": "ภักดีชุมพล",
+            "text": "ภักดีชุมพล   ",
+            "value": "Phakdi Chumphon",
             "provinceid": 25
         },
         {
             "key": 364,
-            "text": "ภูเขียว",
-            "value": "ภูเขียว",
+            "text": "ภูเขียว   ",
+            "value": "Phu Khiao",
             "provinceid": 25
         },
         {
             "key": 355,
-            "text": "เมืองชัยภูมิ",
-            "value": "เมืองชัยภูมิ",
+            "text": "เมืองชัยภูมิ   ",
+            "value": "Mueang Chaiyaphum",
             "provinceid": 25
         },
         {
             "key": 371,
             "text": "เมืองชัยภูมิ (สาขาตำบลโนนสำราญ)",
-            "value": "เมืองชัยภูมิ (สาขาตำบลโนนสำราญ)",
+            "value": "Mueang Chaiyaphum(Non Sumran)",
             "provinceid": 25
         },
         {
             "key": 375,
             "text": "สาขาตำบลโคกเพชร",
-            "value": "สาขาตำบลโคกเพชร",
+            "value": "Coke Phet",
             "provinceid": 25
         },
         {
             "key": 372,
             "text": "สาขาตำบลบ้านหว่าเฒ่า",
-            "value": "สาขาตำบลบ้านหว่าเฒ่า",
+            "value": "Ban Wha Tao",
             "provinceid": 25
         },
         {
             "key": 359,
-            "text": "หนองบัวแดง",
-            "value": "หนองบัวแดง",
+            "text": "หนองบัวแดง   ",
+            "value": "Nong Bua Daeng",
             "provinceid": 25
         },
         {
             "key": 373,
             "text": "หนองบัวแดง (สาขาตำบลวังชมภู)",
-            "value": "หนองบัวแดง (สาขาตำบลวังชมภู)",
+            "value": "Nong Bua Daeng",
             "provinceid": 25
         },
         {
             "key": 362,
-            "text": "หนองบัวระเหว",
-            "value": "หนองบัวระเหว",
+            "text": "หนองบัวระเหว   ",
+            "value": "Nong Bua Rawe",
             "provinceid": 25
         }
     ],
     [
         {
             "key": 381,
-            "text": "ชานุมาน",
-            "value": "ชานุมาน",
+            "text": "ชานุมาน   ",
+            "value": "Chanuman",
             "provinceid": 26
         },
         {
             "key": 382,
-            "text": "ปทุมราชวงศา",
-            "value": "ปทุมราชวงศา",
+            "text": "ปทุมราชวงศา   ",
+            "value": "Pathum Ratchawongsa",
             "provinceid": 26
         },
         {
             "key": 383,
-            "text": "พนา",
-            "value": "พนา",
+            "text": "พนา   ",
+            "value": "Phana",
             "provinceid": 26
         },
         {
             "key": 380,
-            "text": "เมืองอำนาจเจริญ",
-            "value": "เมืองอำนาจเจริญ",
+            "text": "เมืองอำนาจเจริญ   ",
+            "value": "Mueang Amnat Charoen",
             "provinceid": 26
         },
         {
             "key": 386,
-            "text": "ลืออำนาจ",
-            "value": "ลืออำนาจ",
+            "text": "ลืออำนาจ   ",
+            "value": "Lue Amnat",
             "provinceid": 26
         },
         {
             "key": 384,
-            "text": "เสนางคนิคม",
-            "value": "เสนางคนิคม",
+            "text": "เสนางคนิคม   ",
+            "value": "Senangkhanikhom",
             "provinceid": 26
         },
         {
             "key": 385,
-            "text": "หัวตะพาน",
-            "value": "หัวตะพาน",
+            "text": "หัวตะพาน   ",
+            "value": "Hua Taphan",
             "provinceid": 26
         }
     ],
     [
         {
             "key": 388,
-            "text": "นากลาง",
-            "value": "นากลาง",
+            "text": "นากลาง   ",
+            "value": "Na Klang",
             "provinceid": 27
         },
         {
             "key": 392,
-            "text": "นาวัง",
-            "value": "นาวัง",
+            "text": "นาวัง   ",
+            "value": "Na Wang",
             "provinceid": 27
         },
         {
             "key": 389,
-            "text": "โนนสัง",
-            "value": "โนนสัง",
+            "text": "โนนสัง   ",
+            "value": "Non Sang",
             "provinceid": 27
         },
         {
             "key": 387,
-            "text": "เมืองหนองบัวลำภู",
-            "value": "เมืองหนองบัวลำภู",
+            "text": "เมืองหนองบัวลำภู   ",
+            "value": "Mueang Nong Bua Lam Phu",
             "provinceid": 27
         },
         {
             "key": 390,
-            "text": "ศรีบุญเรือง",
-            "value": "ศรีบุญเรือง",
+            "text": "ศรีบุญเรือง   ",
+            "value": "Si Bun Rueang",
             "provinceid": 27
         },
         {
             "key": 391,
-            "text": "สุวรรณคูหา",
-            "value": "สุวรรณคูหา",
+            "text": "สุวรรณคูหา   ",
+            "value": "Suwannakhuha",
             "provinceid": 27
         }
     ],
     [
         {
             "key": 401,
-            "text": "กระนวน",
-            "value": "กระนวน",
+            "text": "กระนวน   ",
+            "value": "Kranuan",
             "provinceid": 28
         },
         {
             "key": 411,
-            "text": "เขาสวนกวาง",
-            "value": "เขาสวนกวาง",
+            "text": "เขาสวนกวาง   ",
+            "value": "Khao Suan Kwang",
             "provinceid": 28
         },
         {
             "key": 414,
-            "text": "โคกโพธิ์ไชย",
-            "value": "โคกโพธิ์ไชย",
+            "text": "โคกโพธิ์ไชย   ",
+            "value": "Khok Pho Chai",
             "provinceid": 28
         },
         {
             "key": 410,
-            "text": "ชนบท",
-            "value": "ชนบท",
+            "text": "ชนบท   ",
+            "value": "Chonnabot",
             "provinceid": 28
         },
         {
             "key": 397,
-            "text": "ชุมแพ",
-            "value": "ชุมแพ",
+            "text": "ชุมแพ   ",
+            "value": "Chum Phae",
             "provinceid": 28
         },
         {
             "key": 413,
-            "text": "ซำสูง",
-            "value": "ซำสูง",
+            "text": "ซำสูง   ",
+            "value": "Sam Sung",
             "provinceid": 28
         },
         {
             "key": 419,
             "text": "ท้องถิ่นเทศบาลตำบลบ้านเป็ด",
-            "value": "ท้องถิ่นเทศบาลตำบลบ้านเป็ด",
+            "value": "Ban Pet",
             "provinceid": 28
         },
         {
             "key": 420,
             "text": "เทศบาลตำบลเมืองพล",
-            "value": "เทศบาลตำบลเมืองพล",
+            "value": "Tet Saban Tambon Muang Phon",
             "provinceid": 28
         },
         {
             "key": 399,
-            "text": "น้ำพอง",
-            "value": "น้ำพอง",
+            "text": "น้ำพอง   ",
+            "value": "Nam Phong",
             "provinceid": 28
         },
         {
             "key": 417,
-            "text": "โนนศิลา",
-            "value": "โนนศิลา",
+            "text": "โนนศิลา   ",
+            "value": "Non Sila",
             "provinceid": 28
         },
         {
             "key": 402,
-            "text": "บ้านไผ่",
-            "value": "บ้านไผ่",
+            "text": "บ้านไผ่   ",
+            "value": "Ban Phai",
             "provinceid": 28
         },
         {
             "key": 394,
-            "text": "บ้านฝาง",
-            "value": "บ้านฝาง",
+            "text": "บ้านฝาง   ",
+            "value": "Ban Fang",
             "provinceid": 28
         },
         {
             "key": 416,
-            "text": "บ้านแฮด",
-            "value": "บ้านแฮด",
+            "text": "บ้านแฮด   ",
+            "value": "Ban Haet",
             "provinceid": 28
         },
         {
             "key": 403,
-            "text": "เปือยน้อย",
-            "value": "เปือยน้อย",
+            "text": "เปือยน้อย   ",
+            "value": "Pueai Noi",
             "provinceid": 28
         },
         {
             "key": 395,
-            "text": "พระยืน",
-            "value": "พระยืน",
+            "text": "พระยืน   ",
+            "value": "Phra Yuen",
             "provinceid": 28
         },
         {
             "key": 404,
-            "text": "พล",
-            "value": "พล",
+            "text": "พล   ",
+            "value": "Phon",
             "provinceid": 28
         },
         {
             "key": 412,
-            "text": "ภูผาม่าน",
-            "value": "ภูผาม่าน",
+            "text": "ภูผาม่าน   ",
+            "value": "Phu Pha Man",
             "provinceid": 28
         },
         {
             "key": 408,
-            "text": "ภูเวียง",
-            "value": "ภูเวียง",
+            "text": "ภูเวียง   ",
+            "value": "Phu Wiang",
             "provinceid": 28
         },
         {
             "key": 409,
-            "text": "มัญจาคีรี",
-            "value": "มัญจาคีรี",
+            "text": "มัญจาคีรี   ",
+            "value": "Mancha Khiri",
             "provinceid": 28
         },
         {
             "key": 393,
-            "text": "เมืองขอนแก่น",
-            "value": "เมืองขอนแก่น",
+            "text": "เมืองขอนแก่น   ",
+            "value": "Mueang Khon Kaen",
             "provinceid": 28
         },
         {
             "key": 418,
-            "text": "เวียงเก่า",
-            "value": "เวียงเก่า",
+            "text": "เวียงเก่า   ",
+            "value": "Wiang Kao",
             "provinceid": 28
         },
         {
             "key": 406,
-            "text": "แวงน้อย",
-            "value": "แวงน้อย",
+            "text": "แวงน้อย   ",
+            "value": "Waeng Noi",
             "provinceid": 28
         },
         {
             "key": 405,
-            "text": "แวงใหญ่",
-            "value": "แวงใหญ่",
+            "text": "แวงใหญ่   ",
+            "value": "Waeng Yai",
             "provinceid": 28
         },
         {
             "key": 398,
-            "text": "สีชมพู",
-            "value": "สีชมพู",
+            "text": "สีชมพู   ",
+            "value": "Si Chomphu",
             "provinceid": 28
         },
         {
             "key": 415,
-            "text": "หนองนาคำ",
-            "value": "หนองนาคำ",
+            "text": "หนองนาคำ   ",
+            "value": "Nong Na Kham",
             "provinceid": 28
         },
         {
             "key": 396,
-            "text": "หนองเรือ",
-            "value": "หนองเรือ",
+            "text": "หนองเรือ   ",
+            "value": "Nong Ruea",
             "provinceid": 28
         },
         {
             "key": 407,
-            "text": "หนองสองห้อง",
-            "value": "หนองสองห้อง",
+            "text": "หนองสองห้อง   ",
+            "value": "Nong Song Hong",
             "provinceid": 28
         },
         {
             "key": 400,
-            "text": "อุบลรัตน์",
-            "value": "อุบลรัตน์",
+            "text": "อุบลรัตน์   ",
+            "value": "Ubolratana",
             "provinceid": 28
         }
     ],
     [
         {
             "key": 422,
-            "text": "กุดจับ",
-            "value": "กุดจับ",
+            "text": "กุดจับ   ",
+            "value": "Kut Chap",
             "provinceid": 29
         },
         {
             "key": 424,
-            "text": "กุมภวาปี",
-            "value": "กุมภวาปี",
+            "text": "กุมภวาปี   ",
+            "value": "Kumphawapi",
             "provinceid": 29
         },
         {
             "key": 444,
-            "text": "กู่แก้ว",
-            "value": "กู่แก้ว",
+            "text": "กู่แก้ว   ",
+            "value": "Ku Kaeo",
             "provinceid": 29
         },
         {
             "key": 428,
-            "text": "ไชยวาน",
-            "value": "ไชยวาน",
+            "text": "ไชยวาน   ",
+            "value": "Chai Wan",
             "provinceid": 29
         },
         {
             "key": 427,
-            "text": "ทุ่งฝน",
-            "value": "ทุ่งฝน",
+            "text": "ทุ่งฝน   ",
+            "value": "Thung Fon",
             "provinceid": 29
         },
         {
             "key": 434,
-            "text": "นากลาง",
-            "value": "นากลาง",
+            "text": "นากลาง   ",
+            "value": "Na Klang",
             "provinceid": 29
         },
         {
             "key": 442,
-            "text": "นายูง",
-            "value": "นายูง",
+            "text": "นายูง   ",
+            "value": "Na Yung",
             "provinceid": 29
         },
         {
             "key": 438,
-            "text": "น้ำโสม",
-            "value": "น้ำโสม",
+            "text": "น้ำโสม   ",
+            "value": "Nam Som",
             "provinceid": 29
         },
         {
             "key": 425,
-            "text": "โนนสะอาด",
-            "value": "โนนสะอาด",
+            "text": "โนนสะอาด   ",
+            "value": "Non Sa-at",
             "provinceid": 29
         },
         {
             "key": 436,
-            "text": "โนนสัง",
-            "value": "โนนสัง",
+            "text": "โนนสัง   ",
+            "value": "Non Sang",
             "provinceid": 29
         },
         {
             "key": 431,
-            "text": "บ้านดุง",
-            "value": "บ้านดุง",
+            "text": "บ้านดุง   ",
+            "value": "Ban Dung",
             "provinceid": 29
         },
         {
             "key": 437,
-            "text": "บ้านผือ",
-            "value": "บ้านผือ",
+            "text": "บ้านผือ   ",
+            "value": "Ban Phue",
             "provinceid": 29
         },
         {
             "key": 445,
-            "text": "ประจักษ์ศิลปาคม",
-            "value": "ประจักษ์ศิลปาคม",
+            "text": "ประจักษ์ศิลปาคม   ",
+            "value": "rachak-sinlapakhom",
             "provinceid": 29
         },
         {
             "key": 443,
-            "text": "พิบูลย์รักษ์",
-            "value": "พิบูลย์รักษ์",
+            "text": "พิบูลย์รักษ์   ",
+            "value": "Phibun Rak",
             "provinceid": 29
         },
         {
             "key": 439,
-            "text": "เพ็ญ",
-            "value": "เพ็ญ",
+            "text": "เพ็ญ   ",
+            "value": "Phen",
             "provinceid": 29
         },
         {
             "key": 421,
-            "text": "เมืองอุดรธานี",
-            "value": "เมืองอุดรธานี",
+            "text": "เมืองอุดรธานี   ",
+            "value": "Mueang Udon Thani",
             "provinceid": 29
         },
         {
             "key": 430,
-            "text": "วังสามหมอ",
-            "value": "วังสามหมอ",
+            "text": "วังสามหมอ   ",
+            "value": "Wang Sam Mo",
             "provinceid": 29
         },
         {
             "key": 429,
-            "text": "ศรีธาตุ",
-            "value": "ศรีธาตุ",
+            "text": "ศรีธาตุ   ",
+            "value": "Si That",
             "provinceid": 29
         },
         {
             "key": 433,
-            "text": "ศรีบุญเรือง",
-            "value": "ศรีบุญเรือง",
+            "text": "ศรีบุญเรือง   ",
+            "value": "Si Bun Rueang",
             "provinceid": 29
         },
         {
             "key": 440,
-            "text": "สร้างคอม",
-            "value": "สร้างคอม",
+            "text": "สร้างคอม   ",
+            "value": "Sang Khom",
             "provinceid": 29
         },
         {
             "key": 435,
-            "text": "สุวรรณคูหา",
-            "value": "สุวรรณคูหา",
+            "text": "สุวรรณคูหา   ",
+            "value": "Suwannakhuha",
             "provinceid": 29
         },
         {
             "key": 432,
             "text": "หนองบัวลำภู",
-            "value": "หนองบัวลำภู",
+            "value": "Nong Bua Lam Phu",
             "provinceid": 29
         },
         {
             "key": 423,
-            "text": "หนองวัวซอ",
-            "value": "หนองวัวซอ",
+            "text": "หนองวัวซอ   ",
+            "value": "Nong Wua So",
             "provinceid": 29
         },
         {
             "key": 441,
-            "text": "หนองแสง",
-            "value": "หนองแสง",
+            "text": "หนองแสง   ",
+            "value": "Nong Saeng",
             "provinceid": 29
         },
         {
             "key": 426,
-            "text": "หนองหาน",
-            "value": "หนองหาน",
+            "text": "หนองหาน   ",
+            "value": "Nong Han",
             "provinceid": 29
         }
     ],
     [
         {
             "key": 448,
-            "text": "เชียงคาน",
-            "value": "เชียงคาน",
+            "text": "เชียงคาน   ",
+            "value": "Chiang Khan",
             "provinceid": 30
         },
         {
             "key": 450,
-            "text": "ด่านซ้าย",
-            "value": "ด่านซ้าย",
+            "text": "ด่านซ้าย   ",
+            "value": "Dan Sai",
             "provinceid": 30
         },
         {
             "key": 453,
-            "text": "ท่าลี่",
-            "value": "ท่าลี่",
+            "text": "ท่าลี่   ",
+            "value": "Tha Li",
             "provinceid": 30
         },
         {
             "key": 447,
-            "text": "นาด้วง",
-            "value": "นาด้วง",
+            "text": "นาด้วง   ",
+            "value": "Na Duang",
             "provinceid": 30
         },
         {
             "key": 451,
-            "text": "นาแห้ว",
-            "value": "นาแห้ว",
+            "text": "นาแห้ว   ",
+            "value": "Na Haeo",
             "provinceid": 30
         },
         {
             "key": 449,
-            "text": "ปากชม",
-            "value": "ปากชม",
+            "text": "ปากชม   ",
+            "value": "Pak Chom",
             "provinceid": 30
         },
         {
             "key": 457,
-            "text": "ผาขาว",
-            "value": "ผาขาว",
+            "text": "ผาขาว   ",
+            "value": "Pha Khao",
             "provinceid": 30
         },
         {
             "key": 455,
-            "text": "ภูกระดึง",
-            "value": "ภูกระดึง",
+            "text": "ภูกระดึง   ",
+            "value": "Phu Kradueng",
             "provinceid": 30
         },
         {
             "key": 452,
-            "text": "ภูเรือ",
-            "value": "ภูเรือ",
+            "text": "ภูเรือ   ",
+            "value": "Phu Ruea",
             "provinceid": 30
         },
         {
             "key": 456,
-            "text": "ภูหลวง",
-            "value": "ภูหลวง",
+            "text": "ภูหลวง   ",
+            "value": "Phu Luang",
             "provinceid": 30
         },
         {
             "key": 446,
-            "text": "เมืองเลย",
-            "value": "เมืองเลย",
+            "text": "เมืองเลย   ",
+            "value": "Mueang Loei",
             "provinceid": 30
         },
         {
             "key": 454,
-            "text": "วังสะพุง",
-            "value": "วังสะพุง",
+            "text": "วังสะพุง   ",
+            "value": "Wang Saphung",
             "provinceid": 30
         },
         {
             "key": 459,
-            "text": "หนองหิน",
-            "value": "หนองหิน",
+            "text": "หนองหิน   ",
+            "value": "Nong Hin",
             "provinceid": 30
         },
         {
             "key": 458,
-            "text": "เอราวัณ",
-            "value": "เอราวัณ",
+            "text": "เอราวัณ   ",
+            "value": "Erawan",
             "provinceid": 30
         }
     ],
     [
         {
             "key": 461,
-            "text": "ท่าบ่อ",
-            "value": "ท่าบ่อ",
+            "text": "ท่าบ่อ   ",
+            "value": "Tha Bo",
             "provinceid": 31
         },
         {
             "key": 474,
-            "text": "เฝ้าไร่",
-            "value": "เฝ้าไร่",
+            "text": "เฝ้าไร่   ",
+            "value": "Fao Rai",
             "provinceid": 31
         },
         {
             "key": 476,
-            "text": "โพธิ์ตาก",
-            "value": "โพธิ์ตาก",
+            "text": "โพธิ์ตาก   ",
+            "value": "Pho Tak",
             "provinceid": 31
         },
         {
             "key": 464,
-            "text": "โพนพิสัย",
-            "value": "โพนพิสัย",
+            "text": "โพนพิสัย   ",
+            "value": "Phon Phisai",
             "provinceid": 31
         },
         {
             "key": 460,
-            "text": "เมืองหนองคาย",
-            "value": "เมืองหนองคาย",
+            "text": "เมืองหนองคาย   ",
+            "value": "Mueang Nong Khai",
             "provinceid": 31
         },
         {
             "key": 475,
-            "text": "รัตนวาปี",
-            "value": "รัตนวาปี",
+            "text": "รัตนวาปี   ",
+            "value": "Rattanawapi",
             "provinceid": 31
         },
         {
             "key": 466,
-            "text": "ศรีเชียงใหม่",
-            "value": "ศรีเชียงใหม่",
+            "text": "ศรีเชียงใหม่   ",
+            "value": "Si Chiang Mai",
             "provinceid": 31
         },
         {
             "key": 473,
-            "text": "สระใคร",
-            "value": "สระใคร",
+            "text": "สระใคร   ",
+            "value": "Sakhrai",
             "provinceid": 31
         },
         {
             "key": 467,
-            "text": "สังคม",
-            "value": "สังคม",
+            "text": "สังคม   ",
+            "value": "Sangkhom",
             "provinceid": 31
         }
     ],
     [
         {
             "key": 480,
-            "text": "กันทรวิชัย",
-            "value": "กันทรวิชัย",
+            "text": "กันทรวิชัย   ",
+            "value": "Kantharawichai",
             "provinceid": 32
         },
         {
             "key": 488,
-            "text": "กุดรัง",
-            "value": "กุดรัง",
+            "text": "กุดรัง   ",
+            "value": "Kut Rang",
             "provinceid": 32
         },
         {
             "key": 478,
-            "text": "แกดำ",
-            "value": "แกดำ",
+            "text": "แกดำ   ",
+            "value": "Kae Dam",
             "provinceid": 32
         },
         {
             "key": 479,
-            "text": "โกสุมพิสัย",
-            "value": "โกสุมพิสัย",
+            "text": "โกสุมพิสัย   ",
+            "value": "Kosum Phisai",
             "provinceid": 32
         },
         {
             "key": 489,
-            "text": "ชื่นชม",
-            "value": "ชื่นชม",
+            "text": "ชื่นชม   ",
+            "value": "Chuen Chom",
             "provinceid": 32
         },
         {
             "key": 481,
-            "text": "เชียงยืน",
-            "value": "เชียงยืน",
+            "text": "เชียงยืน   ",
+            "value": "Kantharawichai",
             "provinceid": 32
         },
         {
             "key": 483,
-            "text": "นาเชือก",
-            "value": "นาเชือก",
+            "text": "นาเชือก   ",
+            "value": "Na Chueak",
             "provinceid": 32
         },
         {
             "key": 486,
-            "text": "นาดูน",
-            "value": "นาดูน",
+            "text": "นาดูน   ",
+            "value": "Na Dun",
             "provinceid": 32
         },
         {
             "key": 482,
-            "text": "บรบือ",
-            "value": "บรบือ",
+            "text": "บรบือ   ",
+            "value": "Borabue",
             "provinceid": 32
         },
         {
             "key": 484,
-            "text": "พยัคฆภูมิพิสัย",
-            "value": "พยัคฆภูมิพิสัย",
+            "text": "พยัคฆภูมิพิสัย   ",
+            "value": "Phayakkhaphum Phisai",
             "provinceid": 32
         },
         {
             "key": 477,
-            "text": "เมืองมหาสารคาม",
-            "value": "เมืองมหาสารคาม",
+            "text": "เมืองมหาสารคาม   ",
+            "value": "Mueang Maha Sarakham",
             "provinceid": 32
         },
         {
             "key": 487,
-            "text": "ยางสีสุราช",
-            "value": "ยางสีสุราช",
+            "text": "ยางสีสุราช   ",
+            "value": "Yang Sisurat",
             "provinceid": 32
         },
         {
             "key": 485,
-            "text": "วาปีปทุม",
-            "value": "วาปีปทุม",
+            "text": "วาปีปทุม   ",
+            "value": "Wapi Pathum",
             "provinceid": 32
         },
         {
             "key": 490,
             "text": "หลุบ",
-            "value": "หลุบ",
+            "value": "Lub",
             "provinceid": 32
         }
     ],
     [
         {
             "key": 492,
-            "text": "เกษตรวิสัย",
-            "value": "เกษตรวิสัย",
+            "text": "เกษตรวิสัย   ",
+            "value": "Kaset Wisai",
             "provinceid": 33
         },
         {
             "key": 494,
-            "text": "จตุรพักตรพิมาน",
-            "value": "จตุรพักตรพิมาน",
+            "text": "จตุรพักตรพิมาน   ",
+            "value": "Chaturaphak Phiman",
             "provinceid": 33
         },
         {
             "key": 507,
-            "text": "จังหาร",
-            "value": "จังหาร",
+            "text": "จังหาร   ",
+            "value": "Changhan",
             "provinceid": 33
         },
         {
             "key": 508,
-            "text": "เชียงขวัญ",
-            "value": "เชียงขวัญ",
+            "text": "เชียงขวัญ   ",
+            "value": "Chiang Khwan",
             "provinceid": 33
         },
         {
             "key": 510,
-            "text": "ทุ่งเขาหลวง",
-            "value": "ทุ่งเขาหลวง",
+            "text": "ทุ่งเขาหลวง   ",
+            "value": "Thung Khao Luangกิ่",
             "provinceid": 33
         },
         {
             "key": 495,
-            "text": "ธวัชบุรี",
-            "value": "ธวัชบุรี",
+            "text": "ธวัชบุรี   ",
+            "value": "Thawat Buri",
             "provinceid": 33
         },
         {
             "key": 493,
-            "text": "ปทุมรัตต์",
-            "value": "ปทุมรัตต์",
+            "text": "ปทุมรัตต์   ",
+            "value": "Pathum Rat",
             "provinceid": 33
         },
         {
             "key": 496,
-            "text": "พนมไพร",
-            "value": "พนมไพร",
+            "text": "พนมไพร   ",
+            "value": "Phanom Phrai",
             "provinceid": 33
         },
         {
             "key": 498,
-            "text": "โพธิ์ชัย",
-            "value": "โพธิ์ชัย",
+            "text": "โพธิ์ชัย   ",
+            "value": "Pho Chai",
             "provinceid": 33
         },
         {
             "key": 503,
-            "text": "โพนทราย",
-            "value": "โพนทราย",
+            "text": "โพนทราย   ",
+            "value": "Phon Sai",
             "provinceid": 33
         },
         {
             "key": 497,
-            "text": "โพนทอง",
-            "value": "โพนทอง",
+            "text": "โพนทอง   ",
+            "value": "Phon Thong",
             "provinceid": 33
         },
         {
             "key": 505,
-            "text": "เมยวดี",
-            "value": "เมยวดี",
+            "text": "เมยวดี   ",
+            "value": "Moei Wadi",
             "provinceid": 33
         },
         {
             "key": 491,
-            "text": "เมืองร้อยเอ็ด",
-            "value": "เมืองร้อยเอ็ด",
+            "text": "เมืองร้อยเอ็ด   ",
+            "value": "Mueang Roi Et",
             "provinceid": 33
         },
         {
             "key": 502,
-            "text": "เมืองสรวง",
-            "value": "เมืองสรวง",
+            "text": "เมืองสรวง   ",
+            "value": "Mueang Suang",
             "provinceid": 33
         },
         {
             "key": 506,
-            "text": "ศรีสมเด็จ",
-            "value": "ศรีสมเด็จ",
+            "text": "ศรีสมเด็จ   ",
+            "value": "Si Somdet",
             "provinceid": 33
         },
         {
             "key": 501,
-            "text": "สุวรรณภูมิ",
-            "value": "สุวรรณภูมิ",
+            "text": "สุวรรณภูมิ   ",
+            "value": "Suwannaphum",
             "provinceid": 33
         },
         {
             "key": 500,
-            "text": "เสลภูมิ",
-            "value": "เสลภูมิ",
+            "text": "เสลภูมิ   ",
+            "value": "Selaphum",
             "provinceid": 33
         },
         {
             "key": 499,
-            "text": "หนองพอก",
-            "value": "หนองพอก",
+            "text": "หนองพอก   ",
+            "value": "Nong Phok",
             "provinceid": 33
         },
         {
             "key": 509,
-            "text": "หนองฮี",
-            "value": "หนองฮี",
+            "text": "หนองฮี   ",
+            "value": "Nong Hi",
             "provinceid": 33
         },
         {
             "key": 504,
-            "text": "อาจสามารถ",
-            "value": "อาจสามารถ",
+            "text": "อาจสามารถ   ",
+            "value": "At Samat",
             "provinceid": 33
         }
     ],
     [
         {
             "key": 513,
-            "text": "กมลาไสย",
-            "value": "กมลาไสย",
+            "text": "กมลาไสย   ",
+            "value": "Kamalasai",
             "provinceid": 34
         },
         {
             "key": 515,
-            "text": "กุฉินารายณ์",
-            "value": "กุฉินารายณ์",
+            "text": "กุฉินารายณ์   ",
+            "value": "Kuchinarai",
             "provinceid": 34
         },
         {
             "key": 516,
-            "text": "เขาวง",
-            "value": "เขาวง",
+            "text": "เขาวง   ",
+            "value": "Khao Wong",
             "provinceid": 34
         },
         {
             "key": 520,
-            "text": "คำม่วง",
-            "value": "คำม่วง",
+            "text": "คำม่วง   ",
+            "value": "Kham Muang",
             "provinceid": 34
         },
         {
             "key": 528,
-            "text": "ฆ้องชัย",
-            "value": "ฆ้องชัย",
+            "text": "ฆ้องชัย   ",
+            "value": "Khong Chai",
             "provinceid": 34
         },
         {
             "key": 527,
-            "text": "ดอนจาน",
-            "value": "ดอนจาน",
+            "text": "ดอนจาน   ",
+            "value": "Don Chan",
             "provinceid": 34
         },
         {
             "key": 521,
-            "text": "ท่าคันโท",
-            "value": "ท่าคันโท",
+            "text": "ท่าคันโท   ",
+            "value": "Tha Khantho",
             "provinceid": 34
         },
         {
             "key": 526,
-            "text": "นาคู",
-            "value": "นาคู",
+            "text": "นาคู   ",
+            "value": "Na Khu",
             "provinceid": 34
         },
         {
             "key": 512,
-            "text": "นามน",
-            "value": "นามน",
+            "text": "นามน   ",
+            "value": "Na Mon",
             "provinceid": 34
         },
         {
             "key": 511,
-            "text": "เมืองกาฬสินธุ์",
-            "value": "เมืองกาฬสินธุ์",
+            "text": "เมืองกาฬสินธุ์   ",
+            "value": "Mueang Kalasin",
             "provinceid": 34
         },
         {
             "key": 517,
-            "text": "ยางตลาด",
-            "value": "ยางตลาด",
+            "text": "ยางตลาด   ",
+            "value": "Yang Talat",
             "provinceid": 34
         },
         {
             "key": 514,
-            "text": "ร่องคำ",
-            "value": "ร่องคำ",
+            "text": "ร่องคำ   ",
+            "value": "Rong Kham",
             "provinceid": 34
         },
         {
             "key": 523,
-            "text": "สมเด็จ",
-            "value": "สมเด็จ",
+            "text": "สมเด็จ   ",
+            "value": "Somdet",
             "provinceid": 34
         },
         {
             "key": 519,
-            "text": "สหัสขันธ์",
-            "value": "สหัสขันธ์",
+            "text": "สหัสขันธ์   ",
+            "value": "Sahatsakhan",
             "provinceid": 34
         },
         {
             "key": 525,
-            "text": "สามชัย",
-            "value": "สามชัย",
+            "text": "สามชัย   ",
+            "value": "Sam Chai",
             "provinceid": 34
         },
         {
             "key": 522,
-            "text": "หนองกุงศรี",
-            "value": "หนองกุงศรี",
+            "text": "หนองกุงศรี   ",
+            "value": "Nong Kung Si",
             "provinceid": 34
         },
         {
             "key": 524,
-            "text": "ห้วยผึ้ง",
-            "value": "ห้วยผึ้ง",
+            "text": "ห้วยผึ้ง   ",
+            "value": "Huai Phueng",
             "provinceid": 34
         },
         {
             "key": 518,
-            "text": "ห้วยเม็ก",
-            "value": "ห้วยเม็ก",
+            "text": "ห้วยเม็ก   ",
+            "value": "Huai Mek",
             "provinceid": 34
         }
     ],
     [
         {
             "key": 531,
-            "text": "กุดบาก",
-            "value": "กุดบาก",
+            "text": "กุดบาก   ",
+            "value": "Kut Bak",
             "provinceid": 35
         },
         {
             "key": 530,
-            "text": "กุสุมาลย์",
-            "value": "กุสุมาลย์",
+            "text": "กุสุมาลย์   ",
+            "value": "Kusuman",
             "provinceid": 35
         },
         {
             "key": 537,
-            "text": "คำตากล้า",
-            "value": "คำตากล้า",
+            "text": "คำตากล้า   ",
+            "value": "Kham Ta Kla",
             "provinceid": 35
         },
         {
             "key": 543,
-            "text": "โคกศรีสุพรรณ",
-            "value": "โคกศรีสุพรรณ",
+            "text": "โคกศรีสุพรรณ   ",
+            "value": "Khok Si Suphan",
             "provinceid": 35
         },
         {
             "key": 544,
-            "text": "เจริญศิลป์",
-            "value": "เจริญศิลป์",
+            "text": "เจริญศิลป์   ",
+            "value": "Charoen Sin",
             "provinceid": 35
         },
         {
             "key": 542,
-            "text": "เต่างอย",
-            "value": "เต่างอย",
+            "text": "เต่างอย   ",
+            "value": "Tao Ngoi",
             "provinceid": 35
         },
         {
             "key": 535,
-            "text": "นิคมน้ำอูน",
-            "value": "นิคมน้ำอูน",
+            "text": "นิคมน้ำอูน   ",
+            "value": "Nikhom Nam Un",
             "provinceid": 35
         },
         {
             "key": 538,
-            "text": "บ้านม่วง",
-            "value": "บ้านม่วง",
+            "text": "บ้านม่วง   ",
+            "value": "Ban Muang",
             "provinceid": 35
         },
         {
             "key": 548,
             "text": "บ้านหัน",
-            "value": "บ้านหัน",
+            "value": "Banhan",
             "provinceid": 35
         },
         {
             "key": 532,
-            "text": "พรรณานิคม",
-            "value": "พรรณานิคม",
+            "text": "พรรณานิคม   ",
+            "value": "Phanna Nikhom",
             "provinceid": 35
         },
         {
             "key": 533,
-            "text": "พังโคน",
-            "value": "พังโคน",
+            "text": "พังโคน   ",
+            "value": "Phang Khon",
             "provinceid": 35
         },
         {
             "key": 545,
-            "text": "โพนนาแก้ว",
-            "value": "โพนนาแก้ว",
+            "text": "โพนนาแก้ว   ",
+            "value": "Phon Na Kaeo",
             "provinceid": 35
         },
         {
             "key": 546,
-            "text": "ภูพาน",
-            "value": "ภูพาน",
+            "text": "ภูพาน   ",
+            "value": "Phu Phan",
             "provinceid": 35
         },
         {
             "key": 529,
-            "text": "เมืองสกลนคร",
-            "value": "เมืองสกลนคร",
+            "text": "เมืองสกลนคร   ",
+            "value": "Mueang Sakon Nakhon",
             "provinceid": 35
         },
         {
             "key": 536,
-            "text": "วานรนิวาส",
-            "value": "วานรนิวาส",
+            "text": "วานรนิวาส   ",
+            "value": "Wanon Niwat",
             "provinceid": 35
         },
         {
             "key": 547,
             "text": "วานรนิวาส (สาขาตำบลกุดเรือคำ)",
-            "value": "วานรนิวาส (สาขาตำบลกุดเรือคำ)",
+            "value": "Wanon Niwat",
             "provinceid": 35
         },
         {
             "key": 534,
-            "text": "วาริชภูมิ",
-            "value": "วาริชภูมิ",
+            "text": "วาริชภูมิ   ",
+            "value": "Waritchaphum",
             "provinceid": 35
         },
         {
             "key": 540,
-            "text": "สว่างแดนดิน",
-            "value": "สว่างแดนดิน",
+            "text": "สว่างแดนดิน   ",
+            "value": "Sawang Daen Din",
             "provinceid": 35
         },
         {
             "key": 541,
-            "text": "ส่องดาว",
-            "value": "ส่องดาว",
+            "text": "ส่องดาว   ",
+            "value": "Song Dao",
             "provinceid": 35
         },
         {
             "key": 539,
-            "text": "อากาศอำนวย",
-            "value": "อากาศอำนวย",
+            "text": "อากาศอำนวย   ",
+            "value": "Akat Amnuai",
             "provinceid": 35
         }
     ],
     [
         {
             "key": 551,
-            "text": "ท่าอุเทน",
-            "value": "ท่าอุเทน",
+            "text": "ท่าอุเทน   ",
+            "value": "Tha Uthen",
             "provinceid": 36
         },
         {
             "key": 553,
-            "text": "ธาตุพนม",
-            "value": "ธาตุพนม",
+            "text": "ธาตุพนม   ",
+            "value": "That Phanom",
             "provinceid": 36
         },
         {
             "key": 555,
-            "text": "นาแก",
-            "value": "นาแก",
+            "text": "นาแก   ",
+            "value": "Na Kae",
             "provinceid": 36
         },
         {
             "key": 559,
-            "text": "นาทม",
-            "value": "นาทม",
+            "text": "นาทม   ",
+            "value": "Na Thom",
             "provinceid": 36
         },
         {
             "key": 557,
-            "text": "นาหว้า",
-            "value": "นาหว้า",
+            "text": "นาหว้า   ",
+            "value": "Na Wa",
             "provinceid": 36
         },
         {
             "key": 552,
-            "text": "บ้านแพง",
-            "value": "บ้านแพง",
+            "text": "บ้านแพง   ",
+            "value": "Ban Phaeng",
             "provinceid": 36
         },
         {
             "key": 550,
-            "text": "ปลาปาก",
-            "value": "ปลาปาก",
+            "text": "ปลาปาก   ",
+            "value": "Pla Pak",
             "provinceid": 36
         },
         {
             "key": 558,
-            "text": "โพนสวรรค์",
-            "value": "โพนสวรรค์",
+            "text": "โพนสวรรค์   ",
+            "value": "Phon Sawan",
             "provinceid": 36
         },
         {
             "key": 549,
-            "text": "เมืองนครพนม",
-            "value": "เมืองนครพนม",
+            "text": "เมืองนครพนม   ",
+            "value": "Mueang Nakhon Phanom",
             "provinceid": 36
         },
         {
             "key": 554,
-            "text": "เรณูนคร",
-            "value": "เรณูนคร",
+            "text": "เรณูนคร   ",
+            "value": "Renu Nakhon",
             "provinceid": 36
         },
         {
             "key": 560,
-            "text": "วังยาง",
-            "value": "วังยาง",
+            "text": "วังยาง   ",
+            "value": "Wang Yang",
             "provinceid": 36
         },
         {
             "key": 556,
-            "text": "ศรีสงคราม",
-            "value": "ศรีสงคราม",
+            "text": "ศรีสงคราม   ",
+            "value": "Si Songkhram",
             "provinceid": 36
         }
     ],
     [
         {
             "key": 565,
-            "text": "คำชะอี",
-            "value": "คำชะอี",
+            "text": "คำชะอี   ",
+            "value": "Khamcha-i",
             "provinceid": 37
         },
         {
             "key": 564,
-            "text": "ดงหลวง",
-            "value": "ดงหลวง",
+            "text": "ดงหลวง   ",
+            "value": "Dong Luang",
             "provinceid": 37
         },
         {
             "key": 563,
-            "text": "ดอนตาล",
-            "value": "ดอนตาล",
+            "text": "ดอนตาล   ",
+            "value": "Don Tan",
             "provinceid": 37
         },
         {
             "key": 562,
-            "text": "นิคมคำสร้อย",
-            "value": "นิคมคำสร้อย",
+            "text": "นิคมคำสร้อย   ",
+            "value": "Nikhom Kham Soi",
             "provinceid": 37
         },
         {
             "key": 561,
-            "text": "เมืองมุกดาหาร",
-            "value": "เมืองมุกดาหาร",
+            "text": "เมืองมุกดาหาร   ",
+            "value": "Mueang Mukdahan",
             "provinceid": 37
         },
         {
             "key": 567,
-            "text": "หนองสูง",
-            "value": "หนองสูง",
+            "text": "หนองสูง   ",
+            "value": "Nong Sung",
             "provinceid": 37
         },
         {
             "key": 566,
-            "text": "หว้านใหญ่",
-            "value": "หว้านใหญ่",
+            "text": "หว้านใหญ่   ",
+            "value": "Wan Yai",
             "provinceid": 37
         }
     ],
     [
         {
             "key": 569,
-            "text": "จอมทอง",
-            "value": "จอมทอง",
+            "text": "จอมทอง   ",
+            "value": "Chom Thong",
             "provinceid": 38
         },
         {
             "key": 571,
-            "text": "เชียงดาว",
-            "value": "เชียงดาว",
+            "text": "เชียงดาว   ",
+            "value": "Chiang Dao",
             "provinceid": 38
         },
         {
             "key": 588,
-            "text": "ไชยปราการ",
-            "value": "ไชยปราการ",
+            "text": "ไชยปราการ   ",
+            "value": "Chai Prakan",
             "provinceid": 38
         },
         {
             "key": 584,
-            "text": "ดอยเต่า",
-            "value": "ดอยเต่า",
+            "text": "ดอยเต่า   ",
+            "value": "Doi Tao",
             "provinceid": 38
         },
         {
             "key": 572,
-            "text": "ดอยสะเก็ด",
-            "value": "ดอยสะเก็ด",
+            "text": "ดอยสะเก็ด   ",
+            "value": "Doi Saket",
             "provinceid": 38
         },
         {
             "key": 591,
-            "text": "ดอยหล่อ",
-            "value": "ดอยหล่อ",
+            "text": "ดอยหล่อ   ",
+            "value": "Doi Lo",
             "provinceid": 38
         },
         {
             "key": 592,
             "text": "เทศบาลนครเชียงใหม่ (สาขาแขวงกาลวิละ)",
-            "value": "เทศบาลนครเชียงใหม่ (สาขาแขวงกาลวิละ)",
+            "value": "Tet Saban Nakorn Chiangmai(Kan lawi la)",
             "provinceid": 38
         },
         {
             "key": 593,
-            "text": "เทศบาลนครเชียงใหม่ (สาขาแขวงศรีวิชั)",
-            "value": "เทศบาลนครเชียงใหม่ (สาขาแขวงศรีวิชั)",
+            "text": "เทศบาลนครเชียงใหม่ (สาขาแขวงศรีวิชัย)",
+            "value": "Tet Saban Nakorn Chiangmai(Sri Wi)",
             "provinceid": 38
         },
         {
             "key": 594,
             "text": "เทศบาลนครเชียงใหม่ (สาขาเม็งราย)",
-            "value": "เทศบาลนครเชียงใหม่ (สาขาเม็งราย)",
+            "value": "Tet Saban Nakorn Chiangmai(Meng Rai)",
             "provinceid": 38
         },
         {
             "key": 576,
-            "text": "ฝาง",
-            "value": "ฝาง",
+            "text": "ฝาง   ",
+            "value": "Fang",
             "provinceid": 38
         },
         {
             "key": 578,
-            "text": "พร้าว",
-            "value": "พร้าว",
+            "text": "พร้าว   ",
+            "value": "Phrao",
             "provinceid": 38
         },
         {
             "key": 568,
-            "text": "เมืองเชียงใหม่",
-            "value": "เมืองเชียงใหม่",
+            "text": "เมืองเชียงใหม่   ",
+            "value": "Mueang Chiang Mai",
             "provinceid": 38
         },
         {
             "key": 570,
-            "text": "แม่แจ่ม",
-            "value": "แม่แจ่ม",
+            "text": "แม่แจ่ม   ",
+            "value": "Mae Chaem",
             "provinceid": 38
         },
         {
             "key": 573,
-            "text": "แม่แตง",
-            "value": "แม่แตง",
+            "text": "แม่แตง   ",
+            "value": "Mae Taeng",
             "provinceid": 38
         },
         {
             "key": 574,
-            "text": "แม่ริม",
-            "value": "แม่ริม",
+            "text": "แม่ริม   ",
+            "value": "Mae Rim",
             "provinceid": 38
         },
         {
             "key": 589,
-            "text": "แม่วาง",
-            "value": "แม่วาง",
+            "text": "แม่วาง   ",
+            "value": "Mae Wang",
             "provinceid": 38
         },
         {
             "key": 590,
-            "text": "แม่ออน",
-            "value": "แม่ออน",
+            "text": "แม่ออน   ",
+            "value": "Mae On",
             "provinceid": 38
         },
         {
             "key": 577,
-            "text": "แม่อาย",
-            "value": "แม่อาย",
+            "text": "แม่อาย   ",
+            "value": "Mae Ai",
             "provinceid": 38
         },
         {
             "key": 587,
-            "text": "เวียงแหง",
-            "value": "เวียงแหง",
+            "text": "เวียงแหง   ",
+            "value": "Wiang Haeng",
             "provinceid": 38
         },
         {
             "key": 575,
-            "text": "สะเมิง",
-            "value": "สะเมิง",
+            "text": "สะเมิง   ",
+            "value": "Samoeng",
             "provinceid": 38
         },
         {
             "key": 580,
-            "text": "สันกำแพง",
-            "value": "สันกำแพง",
+            "text": "สันกำแพง   ",
+            "value": "San Kamphaeng",
             "provinceid": 38
         },
         {
             "key": 581,
-            "text": "สันทราย",
-            "value": "สันทราย",
+            "text": "สันทราย   ",
+            "value": "San Sai",
             "provinceid": 38
         },
         {
             "key": 579,
-            "text": "สันป่าตอง",
-            "value": "สันป่าตอง",
+            "text": "สันป่าตอง   ",
+            "value": "San Pa Tong",
             "provinceid": 38
         },
         {
             "key": 586,
-            "text": "สารภี",
-            "value": "สารภี",
+            "text": "สารภี   ",
+            "value": "Saraphi",
             "provinceid": 38
         },
         {
             "key": 582,
-            "text": "หางดง",
-            "value": "หางดง",
+            "text": "หางดง   ",
+            "value": "Hang Dong",
             "provinceid": 38
         },
         {
             "key": 585,
-            "text": "อมก๋อย",
-            "value": "อมก๋อย",
+            "text": "อมก๋อย   ",
+            "value": "Omkoi",
             "provinceid": 38
         },
         {
             "key": 583,
-            "text": "ฮอด",
-            "value": "ฮอด",
+            "text": "ฮอด   ",
+            "value": "Hot",
             "provinceid": 38
         }
     ],
     [
         {
             "key": 599,
-            "text": "ทุ่งหัวช้าง",
-            "value": "ทุ่งหัวช้าง",
+            "text": "ทุ่งหัวช้าง   ",
+            "value": "Thung Hua Chang",
             "provinceid": 39
         },
         {
             "key": 601,
-            "text": "บ้านธิ",
-            "value": "บ้านธิ",
+            "text": "บ้านธิ   ",
+            "value": "Ban Thi",
             "provinceid": 39
         },
         {
             "key": 597,
-            "text": "บ้านโฮ่ง",
-            "value": "บ้านโฮ่ง",
+            "text": "บ้านโฮ่ง   ",
+            "value": "Ban Hong",
             "provinceid": 39
         },
         {
             "key": 600,
-            "text": "ป่าซาง",
-            "value": "ป่าซาง",
+            "text": "ป่าซาง   ",
+            "value": "Pa Sang",
             "provinceid": 39
         },
         {
             "key": 595,
-            "text": "เมืองลำพูน",
-            "value": "เมืองลำพูน",
+            "text": "เมืองลำพูน   ",
+            "value": "Mueang Lamphun",
             "provinceid": 39
         },
         {
             "key": 596,
-            "text": "แม่ทา",
-            "value": "แม่ทา",
+            "text": "แม่ทา   ",
+            "value": "Mae Tha",
             "provinceid": 39
         },
         {
             "key": 598,
-            "text": "ลี้",
-            "value": "ลี้",
+            "text": "ลี้   ",
+            "value": "Li",
             "provinceid": 39
         },
         {
             "key": 602,
-            "text": "เวียงหนองล่อง",
-            "value": "เวียงหนองล่อง",
+            "text": "เวียงหนองล่อง   ",
+            "value": "Wiang Nong Long",
             "provinceid": 39
         }
     ],
     [
         {
             "key": 605,
-            "text": "เกาะคา",
-            "value": "เกาะคา",
+            "text": "เกาะคา   ",
+            "value": "Ko Kha",
             "provinceid": 40
         },
         {
             "key": 607,
-            "text": "งาว",
-            "value": "งาว",
+            "text": "งาว   ",
+            "value": "Ngao",
             "provinceid": 40
         },
         {
             "key": 608,
-            "text": "แจ้ห่ม",
-            "value": "แจ้ห่ม",
+            "text": "แจ้ห่ม   ",
+            "value": "Chae Hom",
             "provinceid": 40
         },
         {
             "key": 610,
-            "text": "เถิน",
-            "value": "เถิน",
+            "text": "เถิน   ",
+            "value": "Thoen",
             "provinceid": 40
         },
         {
             "key": 615,
-            "text": "เมืองปาน",
-            "value": "เมืองปาน",
+            "text": "เมืองปาน   ",
+            "value": "Mueang Pan",
             "provinceid": 40
         },
         {
             "key": 603,
-            "text": "เมืองลำปาง",
-            "value": "เมืองลำปาง",
+            "text": "เมืองลำปาง   ",
+            "value": "Mueang Lampang",
             "provinceid": 40
         },
         {
             "key": 612,
-            "text": "แม่ทะ",
-            "value": "แม่ทะ",
+            "text": "แม่ทะ   ",
+            "value": "Mae Tha",
             "provinceid": 40
         },
         {
             "key": 611,
-            "text": "แม่พริก",
-            "value": "แม่พริก",
+            "text": "แม่พริก   ",
+            "value": "Mae Phrik",
             "provinceid": 40
         },
         {
             "key": 604,
-            "text": "แม่เมาะ",
-            "value": "แม่เมาะ",
+            "text": "แม่เมาะ   ",
+            "value": "Mae Mo",
             "provinceid": 40
         },
         {
             "key": 609,
-            "text": "วังเหนือ",
-            "value": "วังเหนือ",
+            "text": "วังเหนือ   ",
+            "value": "Wang Nuea",
             "provinceid": 40
         },
         {
             "key": 613,
-            "text": "สบปราบ",
-            "value": "สบปราบ",
+            "text": "สบปราบ   ",
+            "value": "Sop Prap",
             "provinceid": 40
         },
         {
             "key": 606,
-            "text": "เสริมงาม",
-            "value": "เสริมงาม",
+            "text": "เสริมงาม   ",
+            "value": "Soem Ngam",
             "provinceid": 40
         },
         {
             "key": 614,
-            "text": "ห้างฉัตร",
-            "value": "ห้างฉัตร",
+            "text": "ห้างฉัตร   ",
+            "value": "Hang Chat",
             "provinceid": 40
         }
     ],
     [
         {
             "key": 617,
-            "text": "ตรอน",
-            "value": "ตรอน",
+            "text": "ตรอน   ",
+            "value": "Tron",
             "provinceid": 41
         },
         {
             "key": 624,
-            "text": "ทองแสนขัน",
-            "value": "ทองแสนขัน",
+            "text": "ทองแสนขัน   ",
+            "value": "Thong Saen Khan",
             "provinceid": 41
         },
         {
             "key": 618,
-            "text": "ท่าปลา",
-            "value": "ท่าปลา",
+            "text": "ท่าปลา   ",
+            "value": "Tha Pla",
             "provinceid": 41
         },
         {
             "key": 619,
-            "text": "น้ำปาด",
-            "value": "น้ำปาด",
+            "text": "น้ำปาด   ",
+            "value": "Nam Pat",
             "provinceid": 41
         },
         {
             "key": 621,
-            "text": "บ้านโคก",
-            "value": "บ้านโคก",
+            "text": "บ้านโคก   ",
+            "value": "Ban Khok",
             "provinceid": 41
         },
         {
             "key": 622,
-            "text": "พิชัย",
-            "value": "พิชัย",
+            "text": "พิชัย   ",
+            "value": "Phichai",
             "provinceid": 41
         },
         {
             "key": 620,
-            "text": "ฟากท่า",
-            "value": "ฟากท่า",
+            "text": "ฟากท่า   ",
+            "value": "Fak Tha",
             "provinceid": 41
         },
         {
             "key": 616,
-            "text": "เมืองอุตรดิตถ์",
-            "value": "เมืองอุตรดิตถ์",
+            "text": "เมืองอุตรดิตถ์   ",
+            "value": "Mueang Uttaradit",
             "provinceid": 41
         },
         {
             "key": 623,
-            "text": "ลับแล",
-            "value": "ลับแล",
+            "text": "ลับแล   ",
+            "value": "Laplae",
             "provinceid": 41
         }
     ],
     [
         {
             "key": 629,
-            "text": "เด่นชัย",
-            "value": "เด่นชัย",
+            "text": "เด่นชัย   ",
+            "value": "Den Chai",
             "provinceid": 42
         },
         {
             "key": 625,
-            "text": "เมืองแพร่",
-            "value": "เมืองแพร่",
+            "text": "เมืองแพร่   ",
+            "value": "Mueang Phrae",
             "provinceid": 42
         },
         {
             "key": 626,
-            "text": "ร้องกวาง",
-            "value": "ร้องกวาง",
+            "text": "ร้องกวาง   ",
+            "value": "Rong Kwang",
             "provinceid": 42
         },
         {
             "key": 627,
-            "text": "ลอง",
-            "value": "ลอง",
+            "text": "ลอง   ",
+            "value": "Long",
             "provinceid": 42
         },
         {
             "key": 631,
-            "text": "วังชิ้น",
-            "value": "วังชิ้น",
+            "text": "วังชิ้น   ",
+            "value": "Wang Chin",
             "provinceid": 42
         },
         {
             "key": 630,
-            "text": "สอง",
-            "value": "สอง",
+            "text": "สอง   ",
+            "value": "Song",
             "provinceid": 42
         },
         {
             "key": 628,
-            "text": "สูงเม่น",
-            "value": "สูงเม่น",
+            "text": "สูงเม่น   ",
+            "value": "Sung Men",
             "provinceid": 42
         },
         {
             "key": 632,
-            "text": "หนองม่วงไข่",
-            "value": "หนองม่วงไข่",
+            "text": "หนองม่วงไข่   ",
+            "value": "Nong Muang Khai",
             "provinceid": 42
         }
     ],
     [
         {
             "key": 647,
-            "text": "เฉลิมพระเกียรติ",
-            "value": "เฉลิมพระเกียรติ",
+            "text": "เฉลิมพระเกียรติ   ",
+            "value": "Chaloem Phra Kiat",
             "provinceid": 43
         },
         {
             "key": 641,
-            "text": "เชียงกลาง",
-            "value": "เชียงกลาง",
+            "text": "เชียงกลาง   ",
+            "value": "Chiang Klang",
             "provinceid": 43
         },
         {
             "key": 638,
-            "text": "ท่าวังผา",
-            "value": "ท่าวังผา",
+            "text": "ท่าวังผา   ",
+            "value": "Tha Wang Pha",
             "provinceid": 43
         },
         {
             "key": 640,
-            "text": "ทุ่งช้าง",
-            "value": "ทุ่งช้าง",
+            "text": "ทุ่งช้าง   ",
+            "value": "Thung Chang",
             "provinceid": 43
         },
         {
             "key": 636,
-            "text": "นาน้อย",
-            "value": "นาน้อย",
+            "text": "นาน้อย   ",
+            "value": "Na Noi",
             "provinceid": 43
         },
         {
             "key": 642,
-            "text": "นาหมื่น",
-            "value": "นาหมื่น",
+            "text": "นาหมื่น   ",
+            "value": "Na Muen",
             "provinceid": 43
         },
         {
             "key": 644,
-            "text": "บ่อเกลือ",
-            "value": "บ่อเกลือ",
+            "text": "บ่อเกลือ   ",
+            "value": "Bo Kluea",
             "provinceid": 43
         },
         {
             "key": 635,
-            "text": "บ้านหลวง",
-            "value": "บ้านหลวง",
+            "text": "บ้านหลวง   ",
+            "value": "Ban Luang",
             "provinceid": 43
         },
         {
             "key": 637,
-            "text": "ปัว",
-            "value": "ปัว",
+            "text": "ปัว   ",
+            "value": "Pua",
             "provinceid": 43
         },
         {
             "key": 646,
-            "text": "ภูเพียง",
-            "value": "ภูเพียง",
+            "text": "ภูเพียง   ",
+            "value": "Phu Phiang",
             "provinceid": 43
         },
         {
             "key": 633,
-            "text": "เมืองน่าน",
-            "value": "เมืองน่าน",
+            "text": "เมืองน่าน   ",
+            "value": "Mueang Nan",
             "provinceid": 43
         },
         {
             "key": 634,
-            "text": "แม่จริม",
-            "value": "แม่จริม",
+            "text": "แม่จริม   ",
+            "value": "Mae Charim",
             "provinceid": 43
         },
         {
             "key": 639,
-            "text": "เวียงสา",
-            "value": "เวียงสา",
+            "text": "เวียงสา   ",
+            "value": "Wiang Sa",
             "provinceid": 43
         },
         {
             "key": 645,
-            "text": "สองแคว",
-            "value": "สองแคว",
+            "text": "สองแคว   ",
+            "value": "Song Khwae",
             "provinceid": 43
         },
         {
             "key": 643,
-            "text": "สันติสุข",
-            "value": "สันติสุข",
+            "text": "สันติสุข   ",
+            "value": "Santi Suk",
             "provinceid": 43
         }
     ],
     [
         {
             "key": 649,
-            "text": "จุน",
-            "value": "จุน",
+            "text": "จุน   ",
+            "value": "Chun",
             "provinceid": 44
         },
         {
             "key": 650,
-            "text": "เชียงคำ",
-            "value": "เชียงคำ",
+            "text": "เชียงคำ   ",
+            "value": "Chiang Kham",
             "provinceid": 44
         },
         {
             "key": 651,
-            "text": "เชียงม่วน",
-            "value": "เชียงม่วน",
+            "text": "เชียงม่วน   ",
+            "value": "Chiang Muan",
             "provinceid": 44
         },
         {
             "key": 652,
-            "text": "ดอกคำใต้",
-            "value": "ดอกคำใต้",
+            "text": "ดอกคำใต้   ",
+            "value": "Dok Khamtai",
             "provinceid": 44
         },
         {
             "key": 653,
-            "text": "ปง",
-            "value": "ปง",
+            "text": "ปง   ",
+            "value": "Pong",
             "provinceid": 44
         },
         {
             "key": 656,
-            "text": "ภูกามยาว",
-            "value": "ภูกามยาว",
+            "text": "ภูกามยาว   ",
+            "value": "Phu Kamyao",
             "provinceid": 44
         },
         {
             "key": 655,
-            "text": "ภูซาง",
-            "value": "ภูซาง",
+            "text": "ภูซาง   ",
+            "value": "Phu Sang",
             "provinceid": 44
         },
         {
             "key": 648,
-            "text": "เมืองพะเยา",
-            "value": "เมืองพะเยา",
+            "text": "เมืองพะเยา   ",
+            "value": "Mueang Phayao",
             "provinceid": 44
         },
         {
             "key": 654,
-            "text": "แม่ใจ",
-            "value": "แม่ใจ",
+            "text": "แม่ใจ   ",
+            "value": "Mae Chai",
             "provinceid": 44
         }
     ],
     [
         {
             "key": 670,
-            "text": "ขุนตาล",
-            "value": "ขุนตาล",
+            "text": "ขุนตาล   ",
+            "value": "Khun Tan",
             "provinceid": 45
         },
         {
             "key": 659,
-            "text": "เชียงของ",
-            "value": "เชียงของ",
+            "text": "เชียงของ   ",
+            "value": "Chiang Khong",
             "provinceid": 45
         },
         {
             "key": 664,
-            "text": "เชียงแสน",
-            "value": "เชียงแสน",
+            "text": "เชียงแสน   ",
+            "value": "Chiang Saen",
             "provinceid": 45
         },
         {
             "key": 674,
-            "text": "ดอยหลวง",
-            "value": "ดอยหลวง",
+            "text": "ดอยหลวง   ",
+            "value": "Doi Luang",
             "provinceid": 45
         },
         {
             "key": 660,
-            "text": "เทิง",
-            "value": "เทิง",
+            "text": "เทิง   ",
+            "value": "Thoeng",
             "provinceid": 45
         },
         {
             "key": 662,
-            "text": "ป่าแดด",
-            "value": "ป่าแดด",
+            "text": "ป่าแดด   ",
+            "value": "Pa Daet",
             "provinceid": 45
         },
         {
             "key": 668,
-            "text": "พญาเม็งราย",
-            "value": "พญาเม็งราย",
+            "text": "พญาเม็งราย   ",
+            "value": "Phaya Mengrai",
             "provinceid": 45
         },
         {
             "key": 661,
-            "text": "พาน",
-            "value": "พาน",
+            "text": "พาน   ",
+            "value": "Phan",
             "provinceid": 45
         },
         {
             "key": 657,
-            "text": "เมืองเชียงราย",
-            "value": "เมืองเชียงราย",
+            "text": "เมืองเชียงราย   ",
+            "value": "Mueang Chiang Rai",
             "provinceid": 45
         },
         {
             "key": 663,
-            "text": "แม่จัน",
-            "value": "แม่จัน",
+            "text": "แม่จัน   ",
+            "value": "Mae Chan",
             "provinceid": 45
         },
         {
             "key": 671,
-            "text": "แม่ฟ้าหลวง",
-            "value": "แม่ฟ้าหลวง",
+            "text": "แม่ฟ้าหลวง   ",
+            "value": "Mae Fa Luang",
             "provinceid": 45
         },
         {
             "key": 672,
-            "text": "แม่ลาว",
-            "value": "แม่ลาว",
+            "text": "แม่ลาว   ",
+            "value": "Mae Lao",
             "provinceid": 45
         },
         {
             "key": 666,
-            "text": "แม่สรวย",
-            "value": "แม่สรวย",
+            "text": "แม่สรวย   ",
+            "value": "Mae Suai",
             "provinceid": 45
         },
         {
             "key": 665,
-            "text": "แม่สาย",
-            "value": "แม่สาย",
+            "text": "แม่สาย   ",
+            "value": "Mae Sai",
             "provinceid": 45
         },
         {
             "key": 669,
-            "text": "เวียงแก่น",
-            "value": "เวียงแก่น",
+            "text": "เวียงแก่น   ",
+            "value": "Wiang Kaen",
             "provinceid": 45
         },
         {
             "key": 658,
-            "text": "เวียงชัย",
-            "value": "เวียงชัย",
+            "text": "เวียงชัย   ",
+            "value": "Wiang Chai",
             "provinceid": 45
         },
         {
             "key": 673,
-            "text": "เวียงเชียงรุ้ง",
-            "value": "เวียงเชียงรุ้ง",
+            "text": "เวียงเชียงรุ้ง   ",
+            "value": "Wiang Chiang Rung",
             "provinceid": 45
         },
         {
             "key": 667,
-            "text": "เวียงป่าเป้า",
-            "value": "เวียงป่าเป้า",
+            "text": "เวียงป่าเป้า   ",
+            "value": "Wiang Pa Pao",
             "provinceid": 45
         }
     ],
     [
         {
             "key": 676,
-            "text": "ขุนยวม",
-            "value": "ขุนยวม",
+            "text": "ขุนยวม   ",
+            "value": "Khun Yuam",
             "provinceid": 46
         },
         {
             "key": 681,
-            "text": "ปางมะผ้า",
-            "value": "ปางมะผ้า",
+            "text": "ปางมะผ้า   ",
+            "value": "Pang Mapha",
             "provinceid": 46
         },
         {
             "key": 677,
-            "text": "ปาย",
-            "value": "ปาย",
+            "text": "ปาย   ",
+            "value": "Pai",
             "provinceid": 46
         },
         {
             "key": 682,
             "text": "ม่วยต่อ",
-            "value": "ม่วยต่อ",
+            "value": "Muen Tor",
             "provinceid": 46
         },
         {
             "key": 675,
-            "text": "เมืองแม่ฮ่องสอน",
-            "value": "เมืองแม่ฮ่องสอน",
+            "text": "เมืองแม่ฮ่องสอน   ",
+            "value": "Mueang Mae Hong Son",
             "provinceid": 46
         },
         {
             "key": 679,
-            "text": "แม่ลาน้อย",
-            "value": "แม่ลาน้อย",
+            "text": "แม่ลาน้อย   ",
+            "value": "Mae La Noi",
             "provinceid": 46
         },
         {
             "key": 678,
-            "text": "แม่สะเรียง",
-            "value": "แม่สะเรียง",
+            "text": "แม่สะเรียง   ",
+            "value": "Mae Sariang",
             "provinceid": 46
         },
         {
             "key": 680,
-            "text": "สบเมย",
-            "value": "สบเมย",
+            "text": "สบเมย   ",
+            "value": "Sop Moei",
             "provinceid": 46
         }
     ],
@@ -4140,227 +4140,227 @@ const Amphurs = [
         {
             "key": 699,
             "text": "กิ่งอำเภอชุมตาบง (สาขาตำบลชุมตาบง)",
-            "value": "กิ่งอำเภอชุมตาบง (สาขาตำบลชุมตาบง)",
+            "value": "Chum Ta Bong",
             "provinceid": 47
         },
         {
             "key": 688,
-            "text": "เก้าเลี้ยว",
-            "value": "เก้าเลี้ยว",
+            "text": "เก้าเลี้ยว   ",
+            "value": "Kao Liao",
             "provinceid": 47
         },
         {
             "key": 684,
-            "text": "โกรกพระ",
-            "value": "โกรกพระ",
+            "text": "โกรกพระ   ",
+            "value": "Krok Phra",
             "provinceid": 47
         },
         {
             "key": 697,
-            "text": "ชุมตาบง",
-            "value": "ชุมตาบง",
+            "text": "ชุมตาบง   ",
+            "value": "Chum Ta Bong",
             "provinceid": 47
         },
         {
             "key": 685,
-            "text": "ชุมแสง",
-            "value": "ชุมแสง",
+            "text": "ชุมแสง   ",
+            "value": "Chum Saeng",
             "provinceid": 47
         },
         {
             "key": 694,
-            "text": "ตากฟ้า",
-            "value": "ตากฟ้า",
+            "text": "ตากฟ้า   ",
+            "value": "Tak Fa",
             "provinceid": 47
         },
         {
             "key": 689,
-            "text": "ตาคลี",
-            "value": "ตาคลี",
+            "text": "ตาคลี   ",
+            "value": "Takhli",
             "provinceid": 47
         },
         {
             "key": 690,
-            "text": "ท่าตะโก",
-            "value": "ท่าตะโก",
+            "text": "ท่าตะโก   ",
+            "value": "Takhli",
             "provinceid": 47
         },
         {
             "key": 687,
-            "text": "บรรพตพิสัย",
-            "value": "บรรพตพิสัย",
+            "text": "บรรพตพิสัย   ",
+            "value": "Banphot Phisai",
             "provinceid": 47
         },
         {
             "key": 692,
-            "text": "พยุหะคีรี",
-            "value": "พยุหะคีรี",
+            "text": "พยุหะคีรี   ",
+            "value": "Phayuha Khiri",
             "provinceid": 47
         },
         {
             "key": 691,
-            "text": "ไพศาลี",
-            "value": "ไพศาลี",
+            "text": "ไพศาลี   ",
+            "value": "Phaisali",
             "provinceid": 47
         },
         {
             "key": 683,
-            "text": "เมืองนครสวรรค์",
-            "value": "เมืองนครสวรรค์",
+            "text": "เมืองนครสวรรค์   ",
+            "value": "Mueang Nakhon Sawan",
             "provinceid": 47
         },
         {
             "key": 696,
-            "text": "แม่เปิน",
-            "value": "แม่เปิน",
+            "text": "แม่เปิน   ",
+            "value": "Mae Poen",
             "provinceid": 47
         },
         {
             "key": 695,
-            "text": "แม่วงก์",
-            "value": "แม่วงก์",
+            "text": "แม่วงก์   ",
+            "value": "Mae Wong",
             "provinceid": 47
         },
         {
             "key": 700,
             "text": "แม่วงก์ (สาขาตำบลแม่เล่ย์)",
-            "value": "แม่วงก์ (สาขาตำบลแม่เล่ย์)",
+            "value": "Mea Ley",
             "provinceid": 47
         },
         {
             "key": 693,
-            "text": "ลาดยาว",
-            "value": "ลาดยาว",
+            "text": "ลาดยาว   ",
+            "value": "Phayuha Khiri",
             "provinceid": 47
         },
         {
             "key": 698,
             "text": "สาขาตำบลห้วยน้ำหอม",
-            "value": "สาขาตำบลห้วยน้ำหอม",
+            "value": "Huen Nam Hom",
             "provinceid": 47
         },
         {
             "key": 686,
-            "text": "หนองบัว",
-            "value": "หนองบัว",
+            "text": "หนองบัว   ",
+            "value": "Nong Bua",
             "provinceid": 47
         }
     ],
     [
         {
             "key": 702,
-            "text": "ทัพทัน",
-            "value": "ทัพทัน",
+            "text": "ทัพทัน   ",
+            "value": "Thap Than",
             "provinceid": 48
         },
         {
             "key": 706,
-            "text": "บ้านไร่",
-            "value": "บ้านไร่",
+            "text": "บ้านไร่   ",
+            "value": "Ban Rai",
             "provinceid": 48
         },
         {
             "key": 701,
-            "text": "เมืองอุทัยธานี",
-            "value": "เมืองอุทัยธานี",
+            "text": "เมืองอุทัยธานี   ",
+            "value": "Mueang Uthai Thani",
             "provinceid": 48
         },
         {
             "key": 707,
-            "text": "ลานสัก",
-            "value": "ลานสัก",
+            "text": "ลานสัก   ",
+            "value": "Lan Sak",
             "provinceid": 48
         },
         {
             "key": 703,
-            "text": "สว่างอารมณ์",
-            "value": "สว่างอารมณ์",
+            "text": "สว่างอารมณ์   ",
+            "value": "Sawang Arom",
             "provinceid": 48
         },
         {
             "key": 705,
-            "text": "หนองขาหย่าง",
-            "value": "หนองขาหย่าง",
+            "text": "หนองขาหย่าง   ",
+            "value": "Nong Khayang",
             "provinceid": 48
         },
         {
             "key": 704,
-            "text": "หนองฉาง",
-            "value": "หนองฉาง",
+            "text": "หนองฉาง   ",
+            "value": "Nong Chang",
             "provinceid": 48
         },
         {
             "key": 708,
-            "text": "ห้วยคต",
-            "value": "ห้วยคต",
+            "text": "ห้วยคต   ",
+            "value": "Huai Khot",
             "provinceid": 48
         }
     ],
     [
         {
             "key": 719,
-            "text": "โกสัมพีนคร",
-            "value": "โกสัมพีนคร",
+            "text": "โกสัมพีนคร   ",
+            "value": "Kosamphi Nakhon",
             "provinceid": 49
         },
         {
             "key": 712,
-            "text": "ขาณุวรลักษบุรี",
-            "value": "ขาณุวรลักษบุรี",
+            "text": "ขาณุวรลักษบุรี   ",
+            "value": "Khanu Woralaksaburi",
             "provinceid": 49
         },
         {
             "key": 713,
-            "text": "คลองขลุง",
-            "value": "คลองขลุง",
+            "text": "คลองขลุง   ",
+            "value": "Khlong Khlung",
             "provinceid": 49
         },
         {
             "key": 711,
-            "text": "คลองลาน",
-            "value": "คลองลาน",
+            "text": "คลองลาน   ",
+            "value": "Khlong Lan",
             "provinceid": 49
         },
         {
             "key": 716,
-            "text": "ทรายทองวัฒนา",
-            "value": "ทรายทองวัฒนา",
+            "text": "ทรายทองวัฒนา   ",
+            "value": "Sai Thong Watthana",
             "provinceid": 49
         },
         {
             "key": 710,
-            "text": "ไทรงาม",
-            "value": "ไทรงาม",
+            "text": "ไทรงาม   ",
+            "value": "Sai Ngam",
             "provinceid": 49
         },
         {
             "key": 718,
-            "text": "บึงสามัคคี",
-            "value": "บึงสามัคคี",
+            "text": "บึงสามัคคี   ",
+            "value": "Bueng Samakkhi",
             "provinceid": 49
         },
         {
             "key": 717,
-            "text": "ปางศิลาทอง",
-            "value": "ปางศิลาทอง",
+            "text": "ปางศิลาทอง   ",
+            "value": "Pang Sila Thong",
             "provinceid": 49
         },
         {
             "key": 714,
-            "text": "พรานกระต่าย",
-            "value": "พรานกระต่าย",
+            "text": "พรานกระต่าย   ",
+            "value": "Phran Kratai",
             "provinceid": 49
         },
         {
             "key": 709,
-            "text": "เมืองกำแพงเพชร",
-            "value": "เมืองกำแพงเพชร",
+            "text": "เมืองกำแพงเพชร   ",
+            "value": "Mueang Kamphaeng Phet",
             "provinceid": 49
         },
         {
             "key": 715,
-            "text": "ลานกระบือ",
-            "value": "ลานกระบือ",
+            "text": "ลานกระบือ   ",
+            "value": "Lan Krabue",
             "provinceid": 49
         }
     ],
@@ -4368,1727 +4368,1727 @@ const Amphurs = [
         {
             "key": 729,
             "text": "กิ่งอำเภอท่าปุย",
-            "value": "กิ่งอำเภอท่าปุย",
+            "value": "King Ta Pui",
             "provinceid": 50
         },
         {
             "key": 724,
-            "text": "ท่าสองยาง",
-            "value": "ท่าสองยาง",
+            "text": "ท่าสองยาง   ",
+            "value": "Tha Song Yang",
             "provinceid": 50
         },
         {
             "key": 721,
-            "text": "บ้านตาก",
-            "value": "บ้านตาก",
+            "text": "บ้านตาก   ",
+            "value": "Ban Tak",
             "provinceid": 50
         },
         {
             "key": 726,
-            "text": "พบพระ",
-            "value": "พบพระ",
+            "text": "พบพระ   ",
+            "value": "Phop Phra",
             "provinceid": 50
         },
         {
             "key": 720,
-            "text": "เมืองตาก",
-            "value": "เมืองตาก",
+            "text": "เมืองตาก   ",
+            "value": "Mueang Tak",
             "provinceid": 50
         },
         {
             "key": 723,
-            "text": "แม่ระมาด",
-            "value": "แม่ระมาด",
+            "text": "แม่ระมาด   ",
+            "value": "Mae Ramat",
             "provinceid": 50
         },
         {
             "key": 725,
-            "text": "แม่สอด",
-            "value": "แม่สอด",
+            "text": "แม่สอด   ",
+            "value": "Mae Sot",
             "provinceid": 50
         },
         {
             "key": 728,
-            "text": "วังเจ้า",
-            "value": "วังเจ้า",
+            "text": "วังเจ้า   ",
+            "value": "Wang Chao",
             "provinceid": 50
         },
         {
             "key": 722,
-            "text": "สามเงา",
-            "value": "สามเงา",
+            "text": "สามเงา   ",
+            "value": "Sam Ngao",
             "provinceid": 50
         },
         {
             "key": 727,
-            "text": "อุ้มผาง",
-            "value": "อุ้มผาง",
+            "text": "อุ้มผาง   ",
+            "value": "Umphang",
             "provinceid": 50
         }
     ],
     [
         {
             "key": 733,
-            "text": "กงไกรลาศ",
-            "value": "กงไกรลาศ",
+            "text": "กงไกรลาศ   ",
+            "value": "Kong Krailat",
             "provinceid": 51
         },
         {
             "key": 732,
-            "text": "คีรีมาศ",
-            "value": "คีรีมาศ",
+            "text": "คีรีมาศ   ",
+            "value": "Khiri Mat",
             "provinceid": 51
         },
         {
             "key": 738,
-            "text": "ทุ่งเสลี่ยม",
-            "value": "ทุ่งเสลี่ยม",
+            "text": "ทุ่งเสลี่ยม   ",
+            "value": "Thung Saliam",
             "provinceid": 51
         },
         {
             "key": 731,
-            "text": "บ้านด่านลานหอย",
-            "value": "บ้านด่านลานหอย",
+            "text": "บ้านด่านลานหอย   ",
+            "value": "Ban Dan Lan Hoi",
             "provinceid": 51
         },
         {
             "key": 730,
-            "text": "เมืองสุโขทัย",
-            "value": "เมืองสุโขทัย",
+            "text": "เมืองสุโขทัย   ",
+            "value": "Mueang Sukhothai",
             "provinceid": 51
         },
         {
             "key": 737,
-            "text": "ศรีนคร",
-            "value": "ศรีนคร",
+            "text": "ศรีนคร   ",
+            "value": "Si Nakhon",
             "provinceid": 51
         },
         {
             "key": 734,
-            "text": "ศรีสัชนาลัย",
-            "value": "ศรีสัชนาลัย",
+            "text": "ศรีสัชนาลัย   ",
+            "value": "Si Satchanalai",
             "provinceid": 51
         },
         {
             "key": 735,
-            "text": "ศรีสำโรง",
-            "value": "ศรีสำโรง",
+            "text": "ศรีสำโรง   ",
+            "value": "Si Samrong",
             "provinceid": 51
         },
         {
             "key": 736,
-            "text": "สวรรคโลก",
-            "value": "สวรรคโลก",
+            "text": "สวรรคโลก   ",
+            "value": "Sawankhalok",
             "provinceid": 51
         }
     ],
     [
         {
             "key": 741,
-            "text": "ชาติตระการ",
-            "value": "ชาติตระการ",
+            "text": "ชาติตระการ   ",
+            "value": "Chat Trakan",
             "provinceid": 52
         },
         {
             "key": 740,
-            "text": "นครไทย",
-            "value": "นครไทย",
+            "text": "นครไทย   ",
+            "value": "Nakhon Thai",
             "provinceid": 52
         },
         {
             "key": 747,
-            "text": "เนินมะปราง",
-            "value": "เนินมะปราง",
+            "text": "เนินมะปราง   ",
+            "value": "Noen Maprang",
             "provinceid": 52
         },
         {
             "key": 743,
-            "text": "บางกระทุ่ม",
-            "value": "บางกระทุ่ม",
+            "text": "บางกระทุ่ม   ",
+            "value": "Bang Krathum",
             "provinceid": 52
         },
         {
             "key": 742,
-            "text": "บางระกำ",
-            "value": "บางระกำ",
+            "text": "บางระกำ   ",
+            "value": "Bang Rakam",
             "provinceid": 52
         },
         {
             "key": 744,
-            "text": "พรหมพิราม",
-            "value": "พรหมพิราม",
+            "text": "พรหมพิราม   ",
+            "value": "Phrom Phiram",
             "provinceid": 52
         },
         {
             "key": 739,
-            "text": "เมืองพิษณุโลก",
-            "value": "เมืองพิษณุโลก",
+            "text": "เมืองพิษณุโลก   ",
+            "value": "Mueang Phitsanulok",
             "provinceid": 52
         },
         {
             "key": 746,
-            "text": "วังทอง",
-            "value": "วังทอง",
+            "text": "วังทอง   ",
+            "value": "Wang Thong",
             "provinceid": 52
         },
         {
             "key": 745,
-            "text": "วัดโบสถ์",
-            "value": "วัดโบสถ์",
+            "text": "วัดโบสถ์   ",
+            "value": "Wat Bot",
             "provinceid": 52
         }
     ],
     [
         {
             "key": 758,
-            "text": "ดงเจริญ",
-            "value": "ดงเจริญ",
+            "text": "ดงเจริญ   ",
+            "value": "Dong Charoen",
             "provinceid": 53
         },
         {
             "key": 751,
-            "text": "ตะพานหิน",
-            "value": "ตะพานหิน",
+            "text": "ตะพานหิน   ",
+            "value": "Taphan Hin",
             "provinceid": 53
         },
         {
             "key": 755,
-            "text": "ทับคล้อ",
-            "value": "ทับคล้อ",
+            "text": "ทับคล้อ   ",
+            "value": "Tap Khlo",
             "provinceid": 53
         },
         {
             "key": 752,
-            "text": "บางมูลนาก",
-            "value": "บางมูลนาก",
+            "text": "บางมูลนาก   ",
+            "value": "Bang Mun Nak",
             "provinceid": 53
         },
         {
             "key": 757,
-            "text": "บึงนาราง",
-            "value": "บึงนาราง",
+            "text": "บึงนาราง   ",
+            "value": "Bueng Na Rang",
             "provinceid": 53
         },
         {
             "key": 753,
-            "text": "โพทะเล",
-            "value": "โพทะเล",
+            "text": "โพทะเล   ",
+            "value": "Pho Thale",
             "provinceid": 53
         },
         {
             "key": 750,
-            "text": "โพธิ์ประทับช้าง",
-            "value": "โพธิ์ประทับช้าง",
+            "text": "โพธิ์ประทับช้าง   ",
+            "value": "Pho Prathap Chang",
             "provinceid": 53
         },
         {
             "key": 748,
-            "text": "เมืองพิจิตร",
-            "value": "เมืองพิจิตร",
+            "text": "เมืองพิจิตร   ",
+            "value": "Mueang Phichit",
             "provinceid": 53
         },
         {
             "key": 759,
-            "text": "วชิรบารมี",
-            "value": "วชิรบารมี",
+            "text": "วชิรบารมี   ",
+            "value": "Wachirabarami",
             "provinceid": 53
         },
         {
             "key": 749,
-            "text": "วังทรายพูน",
-            "value": "วังทรายพูน",
+            "text": "วังทรายพูน   ",
+            "value": "Wang Sai Phun",
             "provinceid": 53
         },
         {
             "key": 756,
-            "text": "สากเหล็ก",
-            "value": "สากเหล็ก",
+            "text": "สากเหล็ก   ",
+            "value": "Sak Lek",
             "provinceid": 53
         },
         {
             "key": 754,
-            "text": "สามง่าม",
-            "value": "สามง่าม",
+            "text": "สามง่าม   ",
+            "value": "Sam Ngam",
             "provinceid": 53
         }
     ],
     [
         {
             "key": 770,
-            "text": "เขาค้อ",
-            "value": "เขาค้อ",
+            "text": "เขาค้อ   ",
+            "value": "Khao Kho",
             "provinceid": 54
         },
         {
             "key": 761,
-            "text": "ชนแดน",
-            "value": "ชนแดน",
+            "text": "ชนแดน   ",
+            "value": "Chon Daen",
             "provinceid": 54
         },
         {
             "key": 768,
-            "text": "น้ำหนาว",
-            "value": "น้ำหนาว",
+            "text": "น้ำหนาว   ",
+            "value": "Nam Nao",
             "provinceid": 54
         },
         {
             "key": 767,
-            "text": "บึงสามพัน",
-            "value": "บึงสามพัน",
+            "text": "บึงสามพัน   ",
+            "value": "Bueng Sam Phan",
             "provinceid": 54
         },
         {
             "key": 760,
-            "text": "เมืองเพชรบูรณ์",
-            "value": "เมืองเพชรบูรณ์",
+            "text": "เมืองเพชรบูรณ์   ",
+            "value": "Mueang Phetchabun",
             "provinceid": 54
         },
         {
             "key": 769,
-            "text": "วังโป่ง",
-            "value": "วังโป่ง",
+            "text": "วังโป่ง   ",
+            "value": "Wang Pong",
             "provinceid": 54
         },
         {
             "key": 764,
-            "text": "วิเชียรบุรี",
-            "value": "วิเชียรบุรี",
+            "text": "วิเชียรบุรี   ",
+            "value": "Wichian Buri",
             "provinceid": 54
         },
         {
             "key": 765,
-            "text": "ศรีเทพ",
-            "value": "ศรีเทพ",
+            "text": "ศรีเทพ   ",
+            "value": "Si Thep",
             "provinceid": 54
         },
         {
             "key": 766,
-            "text": "หนองไผ่",
-            "value": "หนองไผ่",
+            "text": "หนองไผ่   ",
+            "value": "Nong Phai",
             "provinceid": 54
         },
         {
             "key": 763,
-            "text": "หล่มเก่า",
-            "value": "หล่มเก่า",
+            "text": "หล่มเก่า   ",
+            "value": "Lom Kao",
             "provinceid": 54
         },
         {
             "key": 762,
-            "text": "หล่มสัก",
-            "value": "หล่มสัก",
+            "text": "หล่มสัก   ",
+            "value": "Lom Sak",
             "provinceid": 54
         }
     ],
     [
         {
             "key": 772,
-            "text": "จอมบึง",
-            "value": "จอมบึง",
+            "text": "จอมบึง   ",
+            "value": "Chom Bueng",
             "provinceid": 55
         },
         {
             "key": 774,
-            "text": "ดำเนินสะดวก",
-            "value": "ดำเนินสะดวก",
+            "text": "ดำเนินสะดวก   ",
+            "value": "Damnoen Saduak",
             "provinceid": 55
         },
         {
             "key": 781,
-            "text": "ท้องถิ่นเทศบาลตำบลบ้านฆ้อง",
-            "value": "ท้องถิ่นเทศบาลตำบลบ้านฆ้อง",
+            "text": "ท้องถิ่นเทศบาลตำบลบ้านฆ้อง   ",
+            "value": "Tet Saban Ban Kong",
             "provinceid": 55
         },
         {
             "key": 776,
-            "text": "บางแพ",
-            "value": "บางแพ",
+            "text": "บางแพ   ",
+            "value": "Bang Phae",
             "provinceid": 55
         },
         {
             "key": 780,
-            "text": "บ้านคา",
-            "value": "บ้านคา",
+            "text": "บ้านคา   ",
+            "value": "Ban Kha",
             "provinceid": 55
         },
         {
             "key": 775,
-            "text": "บ้านโป่ง",
-            "value": "บ้านโป่ง",
+            "text": "บ้านโป่ง   ",
+            "value": "Ban Pong",
             "provinceid": 55
         },
         {
             "key": 778,
-            "text": "ปากท่อ",
-            "value": "ปากท่อ",
+            "text": "ปากท่อ   ",
+            "value": "Pak Tho",
             "provinceid": 55
         },
         {
             "key": 777,
-            "text": "โพธาราม",
-            "value": "โพธาราม",
+            "text": "โพธาราม   ",
+            "value": "Photharam",
             "provinceid": 55
         },
         {
             "key": 771,
-            "text": "เมืองราชบุรี",
-            "value": "เมืองราชบุรี",
+            "text": "เมืองราชบุรี   ",
+            "value": "Mueang Ratchaburi",
             "provinceid": 55
         },
         {
             "key": 779,
-            "text": "วัดเพลง",
-            "value": "วัดเพลง",
+            "text": "วัดเพลง   ",
+            "value": "Wat Phleng",
             "provinceid": 55
         },
         {
             "key": 773,
-            "text": "สวนผึ้ง",
-            "value": "สวนผึ้ง",
+            "text": "สวนผึ้ง   ",
+            "value": "Suan Phueng",
             "provinceid": 55
         }
     ],
     [
         {
             "key": 792,
-            "text": "ด่านมะขามเตี้ย",
-            "value": "ด่านมะขามเตี้ย",
+            "text": "ด่านมะขามเตี้ย   ",
+            "value": "Dan Makham Tia",
             "provinceid": 56
         },
         {
             "key": 788,
-            "text": "ทองผาภูมิ",
-            "value": "ทองผาภูมิ",
+            "text": "ทองผาภูมิ   ",
+            "value": "Pha Phum",
             "provinceid": 56
         },
         {
             "key": 787,
-            "text": "ท่าม่วง",
-            "value": "ท่าม่วง",
+            "text": "ท่าม่วง   ",
+            "value": "Tha Muang",
             "provinceid": 56
         },
         {
             "key": 786,
-            "text": "ท่ามะกา",
-            "value": "ท่ามะกา",
+            "text": "ท่ามะกา   ",
+            "value": "Tha Maka",
             "provinceid": 56
         },
         {
             "key": 783,
-            "text": "ไทรโยค",
-            "value": "ไทรโยค",
+            "text": "ไทรโยค   ",
+            "value": "Sai Yok",
             "provinceid": 56
         },
         {
             "key": 784,
-            "text": "บ่อพลอย",
-            "value": "บ่อพลอย",
+            "text": "บ่อพลอย   ",
+            "value": "Bo Phloi",
             "provinceid": 56
         },
         {
             "key": 796,
             "text": "บ้านทวน",
-            "value": "บ้านทวน",
+            "value": "Ban Tuan",
             "provinceid": 56
         },
         {
             "key": 790,
-            "text": "พนมทวน",
-            "value": "พนมทวน",
+            "text": "พนมทวน   ",
+            "value": "Phanom Thuan",
             "provinceid": 56
         },
         {
             "key": 782,
-            "text": "เมืองกาญจนบุรี",
-            "value": "เมืองกาญจนบุรี",
+            "text": "เมืองกาญจนบุรี   ",
+            "value": "Mueang Kanchanaburi",
             "provinceid": 56
         },
         {
             "key": 791,
-            "text": "เลาขวัญ",
-            "value": "เลาขวัญ",
+            "text": "เลาขวัญ   ",
+            "value": "Lao Khwan",
             "provinceid": 56
         },
         {
             "key": 785,
-            "text": "ศรีสวัสดิ์",
-            "value": "ศรีสวัสดิ์",
+            "text": "ศรีสวัสดิ์   ",
+            "value": "Si Sawat",
             "provinceid": 56
         },
         {
             "key": 789,
-            "text": "สังขละบุรี",
-            "value": "สังขละบุรี",
+            "text": "สังขละบุรี   ",
+            "value": "Sangkhla Buri",
             "provinceid": 56
         },
         {
             "key": 795,
             "text": "สาขาตำบลท่ากระดาน",
-            "value": "สาขาตำบลท่ากระดาน",
+            "value": "Tha Kra Dan",
             "provinceid": 56
         },
         {
             "key": 793,
-            "text": "หนองปรือ",
-            "value": "หนองปรือ",
+            "text": "หนองปรือ   ",
+            "value": "Nong Prue",
             "provinceid": 56
         },
         {
             "key": 794,
-            "text": "ห้วยกระเจา",
-            "value": "ห้วยกระเจา",
+            "text": "ห้วยกระเจา   ",
+            "value": "Huai Krachao",
             "provinceid": 56
         }
     ],
     [
         {
             "key": 802,
-            "text": "ดอนเจดีย์",
-            "value": "ดอนเจดีย์",
+            "text": "ดอนเจดีย์   ",
+            "value": "Don Chedi",
             "provinceid": 57
         },
         {
             "key": 799,
-            "text": "ด่านช้าง",
-            "value": "ด่านช้าง",
+            "text": "ด่านช้าง   ",
+            "value": "Dan Chang",
             "provinceid": 57
         },
         {
             "key": 798,
-            "text": "เดิมบางนางบวช",
-            "value": "เดิมบางนางบวช",
+            "text": "เดิมบางนางบวช   ",
+            "value": "Doem Bang Nang Buat",
             "provinceid": 57
         },
         {
             "key": 800,
-            "text": "บางปลาม้า",
-            "value": "บางปลาม้า",
+            "text": "บางปลาม้า   ",
+            "value": "Bang Pla Ma",
             "provinceid": 57
         },
         {
             "key": 797,
-            "text": "เมืองสุพรรณบุรี",
-            "value": "เมืองสุพรรณบุรี",
+            "text": "เมืองสุพรรณบุรี   ",
+            "value": "Mueang Suphan Buri",
             "provinceid": 57
         },
         {
             "key": 801,
-            "text": "ศรีประจันต์",
-            "value": "ศรีประจันต์",
+            "text": "ศรีประจันต์   ",
+            "value": "Si Prachan",
             "provinceid": 57
         },
         {
             "key": 803,
-            "text": "สองพี่น้อง",
-            "value": "สองพี่น้อง",
+            "text": "สองพี่น้อง   ",
+            "value": "Song Phi Nong",
             "provinceid": 57
         },
         {
             "key": 804,
-            "text": "สามชุก",
-            "value": "สามชุก",
+            "text": "สามชุก   ",
+            "value": "Sam Chuk",
             "provinceid": 57
         },
         {
             "key": 806,
-            "text": "หนองหญ้าไซ",
-            "value": "หนองหญ้าไซ",
+            "text": "หนองหญ้าไซ   ",
+            "value": "Nong Ya Sai",
             "provinceid": 57
         },
         {
             "key": 805,
-            "text": "อู่ทอง",
-            "value": "อู่ทอง",
+            "text": "อู่ทอง   ",
+            "value": "U Thong",
             "provinceid": 57
         }
     ],
     [
         {
             "key": 808,
-            "text": "กำแพงแสน",
-            "value": "กำแพงแสน",
+            "text": "กำแพงแสน   ",
+            "value": "Kamphaeng Saen",
             "provinceid": 58
         },
         {
             "key": 810,
-            "text": "ดอนตูม",
-            "value": "ดอนตูม",
+            "text": "ดอนตูม   ",
+            "value": "Don Tum",
             "provinceid": 58
         },
         {
             "key": 809,
-            "text": "นครชัยศรี",
-            "value": "นครชัยศรี",
+            "text": "นครชัยศรี   ",
+            "value": "Nakhon Chai Si",
             "provinceid": 58
         },
         {
             "key": 811,
-            "text": "บางเลน",
-            "value": "บางเลน",
+            "text": "บางเลน   ",
+            "value": "Bang Len",
             "provinceid": 58
         },
         {
             "key": 813,
-            "text": "พุทธมณฑล",
-            "value": "พุทธมณฑล",
+            "text": "พุทธมณฑล   ",
+            "value": "Phutthamonthon",
             "provinceid": 58
         },
         {
             "key": 807,
-            "text": "เมืองนครปฐม",
-            "value": "เมืองนครปฐม",
+            "text": "เมืองนครปฐม   ",
+            "value": "Mueang Nakhon Pathom",
             "provinceid": 58
         },
         {
             "key": 812,
-            "text": "สามพราน",
-            "value": "สามพราน",
+            "text": "สามพราน   ",
+            "value": "Sam Phran",
             "provinceid": 58
         }
     ],
     [
         {
             "key": 815,
-            "text": "กระทุ่มแบน",
-            "value": "กระทุ่มแบน",
+            "text": "กระทุ่มแบน   ",
+            "value": "Krathum Baen",
             "provinceid": 59
         },
         {
             "key": 816,
-            "text": "บ้านแพ้ว",
-            "value": "บ้านแพ้ว",
+            "text": "บ้านแพ้ว   ",
+            "value": "Ban Phaeo",
             "provinceid": 59
         },
         {
             "key": 814,
-            "text": "เมืองสมุทรสาคร",
-            "value": "เมืองสมุทรสาคร",
+            "text": "เมืองสมุทรสาคร   ",
+            "value": "Mueang Samut Sakhon",
             "provinceid": 59
         }
     ],
     [
         {
             "key": 818,
-            "text": "บางคนที",
-            "value": "บางคนที",
+            "text": "บางคนที   ",
+            "value": "Bang Khonthi",
             "provinceid": 60
         },
         {
             "key": 817,
-            "text": "เมืองสมุทรสงคราม",
-            "value": "เมืองสมุทรสงคราม",
+            "text": "เมืองสมุทรสงคราม   ",
+            "value": "Mueang Samut Songkhram",
             "provinceid": 60
         },
         {
             "key": 819,
-            "text": "อัมพวา",
-            "value": "อัมพวา",
+            "text": "อัมพวา   ",
+            "value": "Amphawa",
             "provinceid": 60
         }
     ],
     [
         {
             "key": 827,
-            "text": "แก่งกระจาน",
-            "value": "แก่งกระจาน",
+            "text": "แก่งกระจาน   ",
+            "value": "Kaeng Krachan",
             "provinceid": 61
         },
         {
             "key": 821,
-            "text": "เขาย้อย",
-            "value": "เขาย้อย",
+            "text": "เขาย้อย   ",
+            "value": "Khao Yoi",
             "provinceid": 61
         },
         {
             "key": 823,
-            "text": "ชะอำ",
-            "value": "ชะอำ",
+            "text": "ชะอำ   ",
+            "value": "Cha-am",
             "provinceid": 61
         },
         {
             "key": 824,
-            "text": "ท่ายาง",
-            "value": "ท่ายาง",
+            "text": "ท่ายาง   ",
+            "value": "Tha Yang",
             "provinceid": 61
         },
         {
             "key": 825,
-            "text": "บ้านลาด",
-            "value": "บ้านลาด",
+            "text": "บ้านลาด   ",
+            "value": "Ban Lat",
             "provinceid": 61
         },
         {
             "key": 826,
-            "text": "บ้านแหลม",
-            "value": "บ้านแหลม",
+            "text": "บ้านแหลม   ",
+            "value": "Ban Laem",
             "provinceid": 61
         },
         {
             "key": 820,
-            "text": "เมืองเพชรบุรี",
-            "value": "เมืองเพชรบุรี",
+            "text": "เมืองเพชรบุรี   ",
+            "value": "Mueang Phetchaburi",
             "provinceid": 61
         },
         {
             "key": 822,
-            "text": "หนองหญ้าปล้อง",
-            "value": "หนองหญ้าปล้อง",
+            "text": "หนองหญ้าปล้อง   ",
+            "value": "Nong Ya Plong",
             "provinceid": 61
         }
     ],
     [
         {
             "key": 829,
-            "text": "กุยบุรี",
-            "value": "กุยบุรี",
+            "text": "กุยบุรี   ",
+            "value": "Kui Buri",
             "provinceid": 62
         },
         {
             "key": 830,
-            "text": "ทับสะแก",
-            "value": "ทับสะแก",
+            "text": "ทับสะแก   ",
+            "value": "Thap Sakae",
             "provinceid": 62
         },
         {
             "key": 831,
-            "text": "บางสะพาน",
-            "value": "บางสะพาน",
+            "text": "บางสะพาน   ",
+            "value": "Bang Saphan",
             "provinceid": 62
         },
         {
             "key": 832,
-            "text": "บางสะพานน้อย",
-            "value": "บางสะพานน้อย",
+            "text": "บางสะพานน้อย   ",
+            "value": "Bang Saphan Noi",
             "provinceid": 62
         },
         {
             "key": 833,
-            "text": "ปราณบุรี",
-            "value": "ปราณบุรี",
+            "text": "ปราณบุรี   ",
+            "value": "Pran Buri",
             "provinceid": 62
         },
         {
             "key": 828,
-            "text": "เมืองประจวบคีรีขันธ์",
-            "value": "เมืองประจวบคีรีขันธ์",
+            "text": "เมืองประจวบคีรีขันธ์   ",
+            "value": "Mueang Prachuap Khiri Khan",
             "provinceid": 62
         },
         {
             "key": 835,
-            "text": "สามร้อยยอด",
-            "value": "สามร้อยยอด",
+            "text": "สามร้อยยอด   ",
+            "value": "Sam Roi Yot",
             "provinceid": 62
         },
         {
             "key": 834,
-            "text": "หัวหิน",
-            "value": "หัวหิน",
+            "text": "หัวหิน   ",
+            "value": "Hua Hin",
             "provinceid": 62
         }
     ],
     [
         {
             "key": 850,
-            "text": "ขนอม",
-            "value": "ขนอม",
+            "text": "ขนอม   ",
+            "value": "Khanom",
             "provinceid": 63
         },
         {
             "key": 854,
-            "text": "จุฬาภรณ์",
-            "value": "จุฬาภรณ์",
+            "text": "จุฬาภรณ์   ",
+            "value": "Chulabhorn",
             "provinceid": 63
         },
         {
             "key": 839,
-            "text": "ฉวาง",
-            "value": "ฉวาง",
+            "text": "ฉวาง   ",
+            "value": "Chawang",
             "provinceid": 63
         },
         {
             "key": 858,
-            "text": "เฉลิมพระเกียรติ",
-            "value": "เฉลิมพระเกียรติ",
+            "text": "เฉลิมพระเกียรติ   ",
+            "value": "Chaloem Phra Kiat",
             "provinceid": 63
         },
         {
             "key": 842,
-            "text": "ชะอวด",
-            "value": "ชะอวด",
+            "text": "ชะอวด   ",
+            "value": "Cha-uat",
             "provinceid": 63
         },
         {
             "key": 857,
-            "text": "ช้างกลาง",
-            "value": "ช้างกลาง",
+            "text": "ช้างกลาง   ",
+            "value": "Chang Klang",
             "provinceid": 63
         },
         {
             "key": 841,
-            "text": "เชียรใหญ่",
-            "value": "เชียรใหญ่",
+            "text": "เชียรใหญ่   ",
+            "value": "Chian Yai",
             "provinceid": 63
         },
         {
             "key": 859,
             "text": "เชียรใหญ่ (สาขาตำบลเสือหึง)",
-            "value": "เชียรใหญ่ (สาขาตำบลเสือหึง)",
+            "value": "Chian Yai",
             "provinceid": 63
         },
         {
             "key": 853,
-            "text": "ถ้ำพรรณรา",
-            "value": "ถ้ำพรรณรา",
+            "text": "ถ้ำพรรณรา   ",
+            "value": "Tham Phannara",
             "provinceid": 63
         },
         {
             "key": 843,
-            "text": "ท่าศาลา",
-            "value": "ท่าศาลา",
+            "text": "ท่าศาลา   ",
+            "value": "Tha Sala",
             "provinceid": 63
         },
         {
             "key": 844,
-            "text": "ทุ่งสง",
-            "value": "ทุ่งสง",
+            "text": "ทุ่งสง   ",
+            "value": "Thung Song",
             "provinceid": 63
         },
         {
             "key": 863,
             "text": "ทุ่งสง (สาขาตำบลกะปาง)",
-            "value": "ทุ่งสง (สาขาตำบลกะปาง)",
+            "value": "Thung Song",
             "provinceid": 63
         },
         {
             "key": 846,
-            "text": "ทุ่งใหญ่",
-            "value": "ทุ่งใหญ่",
+            "text": "ทุ่งใหญ่   ",
+            "value": "Thung Yai",
             "provinceid": 63
         },
         {
             "key": 856,
-            "text": "นบพิตำ",
-            "value": "นบพิตำ",
+            "text": "นบพิตำ   ",
+            "value": "Nopphitam",
             "provinceid": 63
         },
         {
             "key": 845,
-            "text": "นาบอน",
-            "value": "นาบอน",
+            "text": "นาบอน   ",
+            "value": "Na Bon",
             "provinceid": 63
         },
         {
             "key": 852,
-            "text": "บางขัน",
-            "value": "บางขัน",
+            "text": "บางขัน   ",
+            "value": "Bang Khan",
             "provinceid": 63
         },
         {
             "key": 847,
-            "text": "ปากพนัง",
-            "value": "ปากพนัง",
+            "text": "ปากพนัง   ",
+            "value": "Pak Phanang",
             "provinceid": 63
         },
         {
             "key": 837,
-            "text": "พรหมคีรี",
-            "value": "พรหมคีรี",
+            "text": "พรหมคีรี   ",
+            "value": "Phrom Khiri",
             "provinceid": 63
         },
         {
             "key": 855,
-            "text": "พระพรหม",
-            "value": "พระพรหม",
+            "text": "พระพรหม   ",
+            "value": "Phra Phrom",
             "provinceid": 63
         },
         {
             "key": 840,
-            "text": "พิปูน",
-            "value": "พิปูน",
+            "text": "พิปูน   ",
+            "value": "Phipun",
             "provinceid": 63
         },
         {
             "key": 836,
-            "text": "เมืองนครศรีธรรมราช",
-            "value": "เมืองนครศรีธรรมราช",
+            "text": "เมืองนครศรีธรรมราช   ",
+            "value": "Mueang Nakhon Si Thammarat",
             "provinceid": 63
         },
         {
             "key": 848,
-            "text": "ร่อนพิบูลย์",
-            "value": "ร่อนพิบูลย์",
+            "text": "ร่อนพิบูลย์   ",
+            "value": "Ron Phibun",
             "provinceid": 63
         },
         {
             "key": 861,
             "text": "ร่อนพิบูลย์ (สาขาตำบลหินตก)",
-            "value": "ร่อนพิบูลย์ (สาขาตำบลหินตก)",
+            "value": "Ron Phibun",
             "provinceid": 63
         },
         {
             "key": 838,
-            "text": "ลานสกา",
-            "value": "ลานสกา",
+            "text": "ลานสกา   ",
+            "value": "Lan Saka",
             "provinceid": 63
         },
         {
             "key": 860,
             "text": "สาขาตำบลสวนหลวง",
-            "value": "สาขาตำบลสวนหลวง",
+            "value": "Suan Luang",
             "provinceid": 63
         },
         {
             "key": 849,
-            "text": "สิชล",
-            "value": "สิชล",
+            "text": "สิชล   ",
+            "value": "Sichon",
             "provinceid": 63
         },
         {
             "key": 851,
-            "text": "หัวไทร",
-            "value": "หัวไทร",
+            "text": "หัวไทร   ",
+            "value": "Hua Sai",
             "provinceid": 63
         },
         {
             "key": 862,
             "text": "หัวไทร (สาขาตำบลควนชะลิก)",
-            "value": "หัวไทร (สาขาตำบลควนชะลิก)",
+            "value": "Hua Sai",
             "provinceid": 63
         }
     ],
     [
         {
             "key": 866,
-            "text": "เกาะลันตา",
-            "value": "เกาะลันตา",
+            "text": "เกาะลันตา   ",
+            "value": "Ko Lanta",
             "provinceid": 64
         },
         {
             "key": 865,
-            "text": "เขาพนม",
-            "value": "เขาพนม",
+            "text": "เขาพนม   ",
+            "value": "Khao Phanom",
             "provinceid": 64
         },
         {
             "key": 867,
-            "text": "คลองท่อม",
-            "value": "คลองท่อม",
+            "text": "คลองท่อม   ",
+            "value": "Khlong Thom",
             "provinceid": 64
         },
         {
             "key": 869,
-            "text": "ปลายพระยา",
-            "value": "ปลายพระยา",
+            "text": "ปลายพระยา   ",
+            "value": "Plai Phraya",
             "provinceid": 64
         },
         {
             "key": 864,
-            "text": "เมืองกระบี่",
-            "value": "เมืองกระบี่",
+            "text": "เมืองกระบี่   ",
+            "value": "Mueang Krabi",
             "provinceid": 64
         },
         {
             "key": 870,
-            "text": "ลำทับ",
-            "value": "ลำทับ",
+            "text": "ลำทับ   ",
+            "value": "Lam Thap",
             "provinceid": 64
         },
         {
             "key": 871,
-            "text": "เหนือคลอง",
-            "value": "เหนือคลอง",
+            "text": "เหนือคลอง   ",
+            "value": "Nuea Khlong",
             "provinceid": 64
         },
         {
             "key": 868,
-            "text": "อ่าวลึก",
-            "value": "อ่าวลึก",
+            "text": "อ่าวลึก   ",
+            "value": "Ao Luek",
             "provinceid": 64
         }
     ],
     [
         {
             "key": 874,
-            "text": "กะปง",
-            "value": "กะปง",
+            "text": "กะปง   ",
+            "value": "Kapong",
             "provinceid": 65
         },
         {
             "key": 873,
-            "text": "เกาะยาว",
-            "value": "เกาะยาว",
+            "text": "เกาะยาว   ",
+            "value": "Ko Yao",
             "provinceid": 65
         },
         {
             "key": 877,
-            "text": "คุระบุรี",
-            "value": "คุระบุรี",
+            "text": "คุระบุรี   ",
+            "value": "Khura Buri",
             "provinceid": 65
         },
         {
             "key": 875,
-            "text": "ตะกั่วทุ่ง",
-            "value": "ตะกั่วทุ่ง",
+            "text": "ตะกั่วทุ่ง   ",
+            "value": "Takua Thung",
             "provinceid": 65
         },
         {
             "key": 876,
-            "text": "ตะกั่วป่า",
-            "value": "ตะกั่วป่า",
+            "text": "ตะกั่วป่า   ",
+            "value": "Takua Pa",
             "provinceid": 65
         },
         {
             "key": 878,
-            "text": "ทับปุด",
-            "value": "ทับปุด",
+            "text": "ทับปุด   ",
+            "value": "Thap Put",
             "provinceid": 65
         },
         {
             "key": 879,
-            "text": "ท้ายเหมือง",
-            "value": "ท้ายเหมือง",
+            "text": "ท้ายเหมือง   ",
+            "value": "Thai Mueang",
             "provinceid": 65
         },
         {
             "key": 872,
-            "text": "เมืองพังงา",
-            "value": "เมืองพังงา",
+            "text": "เมืองพังงา   ",
+            "value": "Mueang Phang-nga",
             "provinceid": 65
         }
     ],
     [
         {
             "key": 881,
-            "text": "กะทู้",
-            "value": "กะทู้",
+            "text": "กะทู้   ",
+            "value": "Kathu",
             "provinceid": 66
         },
         {
             "key": 882,
-            "text": "ถลาง",
-            "value": "ถลาง",
+            "text": "ถลาง   ",
+            "value": "Thalang",
             "provinceid": 66
         },
         {
             "key": 883,
-            "text": "ทุ่งคา",
-            "value": "ทุ่งคา",
+            "text": "ทุ่งคา   ",
+            "value": "Tung Ka",
             "provinceid": 66
         },
         {
             "key": 880,
-            "text": "เมืองภูเก็ต",
-            "value": "เมืองภูเก็ต",
+            "text": "เมืองภูเก็ต   ",
+            "value": "Mueang Phuket",
             "provinceid": 66
         }
     ],
     [
         {
             "key": 885,
-            "text": "กาญจนดิษฐ์",
-            "value": "กาญจนดิษฐ์",
+            "text": "กาญจนดิษฐ์   ",
+            "value": "Kanchanadit",
             "provinceid": 67
         },
         {
             "key": 903,
             "text": "เกาะพงัน (สาขาตำบลเกาะเต่า)",
-            "value": "เกาะพงัน (สาขาตำบลเกาะเต่า)",
+            "value": "Ko Pha-ngan",
             "provinceid": 67
         },
         {
             "key": 888,
-            "text": "เกาะพะงัน",
-            "value": "เกาะพะงัน",
+            "text": "เกาะพะงัน   ",
+            "value": "Ko Pha-ngan",
             "provinceid": 67
         },
         {
             "key": 887,
-            "text": "เกาะสมุย",
-            "value": "เกาะสมุย",
+            "text": "เกาะสมุย   ",
+            "value": "Ko Samui",
             "provinceid": 67
         },
         {
             "key": 891,
-            "text": "คีรีรัฐนิคม",
-            "value": "คีรีรัฐนิคม",
+            "text": "คีรีรัฐนิคม   ",
+            "value": "Khiri Rat Nikhom",
             "provinceid": 67
         },
         {
             "key": 897,
-            "text": "เคียนซา",
-            "value": "เคียนซา",
+            "text": "เคียนซา   ",
+            "value": "Khian Sa",
             "provinceid": 67
         },
         {
             "key": 901,
-            "text": "ชัยบุรี",
-            "value": "ชัยบุรี",
+            "text": "ชัยบุรี   ",
+            "value": "Chai Buri",
             "provinceid": 67
         },
         {
             "key": 889,
-            "text": "ไชยา",
-            "value": "ไชยา",
+            "text": "ไชยา   ",
+            "value": "Chaiya",
             "provinceid": 67
         },
         {
             "key": 886,
-            "text": "ดอนสัก",
-            "value": "ดอนสัก",
+            "text": "ดอนสัก   ",
+            "value": "Don Sak",
             "provinceid": 67
         },
         {
             "key": 894,
-            "text": "ท่าฉาง",
-            "value": "ท่าฉาง",
+            "text": "ท่าฉาง   ",
+            "value": "Tha Chang",
             "provinceid": 67
         },
         {
             "key": 890,
-            "text": "ท่าชนะ",
-            "value": "ท่าชนะ",
+            "text": "ท่าชนะ   ",
+            "value": "Tha Chana",
             "provinceid": 67
         },
         {
             "key": 904,
             "text": "บ้านดอน",
-            "value": "บ้านดอน",
+            "value": "Ban Don",
             "provinceid": 67
         },
         {
             "key": 892,
-            "text": "บ้านตาขุน",
-            "value": "บ้านตาขุน",
+            "text": "บ้านตาขุน   ",
+            "value": "Ban Ta Khun",
             "provinceid": 67
         },
         {
             "key": 896,
-            "text": "บ้านนาเดิม",
-            "value": "บ้านนาเดิม",
+            "text": "บ้านนาเดิม   ",
+            "value": "Ban Na Doem",
             "provinceid": 67
         },
         {
             "key": 895,
-            "text": "บ้านนาสาร",
-            "value": "บ้านนาสาร",
+            "text": "บ้านนาสาร   ",
+            "value": "Ban Na San",
             "provinceid": 67
         },
         {
             "key": 893,
-            "text": "พนม",
-            "value": "พนม",
+            "text": "พนม   ",
+            "value": "Phanom",
             "provinceid": 67
         },
         {
             "key": 899,
-            "text": "พระแสง",
-            "value": "พระแสง",
+            "text": "พระแสง   ",
+            "value": "Phrasaeng",
             "provinceid": 67
         },
         {
             "key": 900,
-            "text": "พุนพิน",
-            "value": "พุนพิน",
+            "text": "พุนพิน   ",
+            "value": "Phunphin",
             "provinceid": 67
         },
         {
             "key": 884,
-            "text": "เมืองสุราษฎร์ธานี",
-            "value": "เมืองสุราษฎร์ธานี",
+            "text": "เมืองสุราษฎร์ธานี   ",
+            "value": "Mueang Surat Thani",
             "provinceid": 67
         },
         {
             "key": 902,
-            "text": "วิภาวดี",
-            "value": "วิภาวดี",
+            "text": "วิภาวดี   ",
+            "value": "Vibhavadi",
             "provinceid": 67
         },
         {
             "key": 898,
-            "text": "เวียงสระ",
-            "value": "เวียงสระ",
+            "text": "เวียงสระ   ",
+            "value": "Wiang Sa",
             "provinceid": 67
         }
     ],
     [
         {
             "key": 908,
-            "text": "กระบุรี",
-            "value": "กระบุรี",
+            "text": "กระบุรี   ",
+            "value": "Kra Buri",
             "provinceid": 68
         },
         {
             "key": 907,
-            "text": "กะเปอร์",
-            "value": "กะเปอร์",
+            "text": "กะเปอร์   ",
+            "value": "Kapoe",
             "provinceid": 68
         },
         {
             "key": 905,
-            "text": "เมืองระนอง",
-            "value": "เมืองระนอง",
+            "text": "เมืองระนอง   ",
+            "value": "Mueang Ranong",
             "provinceid": 68
         },
         {
             "key": 906,
-            "text": "ละอุ่น",
-            "value": "ละอุ่น",
+            "text": "ละอุ่น   ",
+            "value": "La-un",
             "provinceid": 68
         },
         {
             "key": 909,
-            "text": "สุขสำราญ",
-            "value": "สุขสำราญ",
+            "text": "สุขสำราญ   ",
+            "value": "Suk Samran",
             "provinceid": 68
         }
     ],
     [
         {
             "key": 911,
-            "text": "ท่าแซะ",
-            "value": "ท่าแซะ",
+            "text": "ท่าแซะ   ",
+            "value": "Tha Sae",
             "provinceid": 69
         },
         {
             "key": 917,
-            "text": "ทุ่งตะโก",
-            "value": "ทุ่งตะโก",
+            "text": "ทุ่งตะโก   ",
+            "value": "Thung Tako",
             "provinceid": 69
         },
         {
             "key": 912,
-            "text": "ปะทิว",
-            "value": "ปะทิว",
+            "text": "ปะทิว   ",
+            "value": "Pathio",
             "provinceid": 69
         },
         {
             "key": 915,
-            "text": "พะโต๊ะ",
-            "value": "พะโต๊ะ",
+            "text": "พะโต๊ะ   ",
+            "value": "Phato",
             "provinceid": 69
         },
         {
             "key": 910,
-            "text": "เมืองชุมพร",
-            "value": "เมืองชุมพร",
+            "text": "เมืองชุมพร   ",
+            "value": "Mueang Chumphon",
             "provinceid": 69
         },
         {
             "key": 914,
-            "text": "ละแม",
-            "value": "ละแม",
+            "text": "ละแม   ",
+            "value": "Lamae",
             "provinceid": 69
         },
         {
             "key": 916,
-            "text": "สวี",
-            "value": "สวี",
+            "text": "สวี   ",
+            "value": "Sawi",
             "provinceid": 69
         },
         {
             "key": 913,
-            "text": "หลังสวน",
-            "value": "หลังสวน",
+            "text": "หลังสวน   ",
+            "value": "Lang Suan",
             "provinceid": 69
         }
     ],
     [
         {
             "key": 925,
-            "text": "กระแสสินธุ์",
-            "value": "กระแสสินธุ์",
+            "text": "กระแสสินธุ์   ",
+            "value": "Krasae Sin",
             "provinceid": 70
         },
         {
             "key": 933,
-            "text": "คลองหอยโข่ง",
-            "value": "คลองหอยโข่ง",
+            "text": "คลองหอยโข่ง   ",
+            "value": "Khlong Hoi Khong",
             "provinceid": 70
         },
         {
             "key": 930,
-            "text": "ควนเนียง",
-            "value": "ควนเนียง",
+            "text": "ควนเนียง   ",
+            "value": "Khuan Niang",
             "provinceid": 70
         },
         {
             "key": 920,
-            "text": "จะนะ",
-            "value": "จะนะ",
+            "text": "จะนะ   ",
+            "value": "Chana",
             "provinceid": 70
         },
         {
             "key": 934,
-            "text": "ท้องถิ่นเทศบาลตำบลสำนักขาม",
-            "value": "ท้องถิ่นเทศบาลตำบลสำนักขาม",
+            "text": "ท้องถิ่นเทศบาลตำบลสำนักขาม   ",
+            "value": "Sum Nung Kam",
             "provinceid": 70
         },
         {
             "key": 922,
-            "text": "เทพา",
-            "value": "เทพา",
+            "text": "เทพา   ",
+            "value": "Thepha",
             "provinceid": 70
         },
         {
             "key": 935,
             "text": "เทศบาลตำบลบ้านพรุ",
-            "value": "เทศบาลตำบลบ้านพรุ",
+            "value": "Ban Pru",
             "provinceid": 70
         },
         {
             "key": 921,
-            "text": "นาทวี",
-            "value": "นาทวี",
+            "text": "นาทวี   ",
+            "value": "Na Thawi",
             "provinceid": 70
         },
         {
             "key": 929,
-            "text": "นาหม่อม",
-            "value": "นาหม่อม",
+            "text": "นาหม่อม   ",
+            "value": "Na Mom",
             "provinceid": 70
         },
         {
             "key": 931,
-            "text": "บางกล่ำ",
-            "value": "บางกล่ำ",
+            "text": "บางกล่ำ   ",
+            "value": "Bang Klam",
             "provinceid": 70
         },
         {
             "key": 918,
-            "text": "เมืองสงขลา",
-            "value": "เมืองสงขลา",
+            "text": "เมืองสงขลา   ",
+            "value": "Mueang Songkhla",
             "provinceid": 70
         },
         {
             "key": 924,
-            "text": "ระโนด",
-            "value": "ระโนด",
+            "text": "ระโนด   ",
+            "value": "Ranot",
             "provinceid": 70
         },
         {
             "key": 926,
-            "text": "รัตภูมิ",
-            "value": "รัตภูมิ",
+            "text": "รัตภูมิ   ",
+            "value": "Rattaphum",
             "provinceid": 70
         },
         {
             "key": 919,
-            "text": "สทิงพระ",
-            "value": "สทิงพระ",
+            "text": "สทิงพระ   ",
+            "value": "Sathing Phra",
             "provinceid": 70
         },
         {
             "key": 927,
-            "text": "สะเดา",
-            "value": "สะเดา",
+            "text": "สะเดา   ",
+            "value": "Sadao",
             "provinceid": 70
         },
         {
             "key": 923,
-            "text": "สะบ้าย้อย",
-            "value": "สะบ้าย้อย",
+            "text": "สะบ้าย้อย   ",
+            "value": "Saba Yoi",
             "provinceid": 70
         },
         {
             "key": 932,
-            "text": "สิงหนคร",
-            "value": "สิงหนคร",
+            "text": "สิงหนคร   ",
+            "value": "Singhanakhon",
             "provinceid": 70
         },
         {
             "key": 928,
-            "text": "หาดใหญ่",
-            "value": "หาดใหญ่",
+            "text": "หาดใหญ่   ",
+            "value": "Hat Yai",
             "provinceid": 70
         }
     ],
     [
         {
             "key": 938,
-            "text": "ควนกาหลง",
-            "value": "ควนกาหลง",
+            "text": "ควนกาหลง   ",
+            "value": "Khuan Kalong",
             "provinceid": 71
         },
         {
             "key": 937,
-            "text": "ควนโดน",
-            "value": "ควนโดน",
+            "text": "ควนโดน   ",
+            "value": "Khuan Don",
             "provinceid": 71
         },
         {
             "key": 939,
-            "text": "ท่าแพ",
-            "value": "ท่าแพ",
+            "text": "ท่าแพ   ",
+            "value": "Tha Phae",
             "provinceid": 71
         },
         {
             "key": 941,
-            "text": "ทุ่งหว้า",
-            "value": "ทุ่งหว้า",
+            "text": "ทุ่งหว้า   ",
+            "value": "Thung Wa",
             "provinceid": 71
         },
         {
             "key": 942,
-            "text": "มะนัง",
-            "value": "มะนัง",
+            "text": "มะนัง   ",
+            "value": "Manang",
             "provinceid": 71
         },
         {
             "key": 936,
-            "text": "เมืองสตูล",
-            "value": "เมืองสตูล",
+            "text": "เมืองสตูล   ",
+            "value": "Mueang Satun",
             "provinceid": 71
         },
         {
             "key": 940,
-            "text": "ละงู",
-            "value": "ละงู",
+            "text": "ละงู   ",
+            "value": "La-ngu",
             "provinceid": 71
         }
     ],
     [
         {
             "key": 944,
-            "text": "กันตัง",
-            "value": "กันตัง",
+            "text": "กันตัง   ",
+            "value": "Kantang",
             "provinceid": 72
         },
         {
             "key": 950,
-            "text": "นาโยง",
-            "value": "นาโยง",
+            "text": "นาโยง   ",
+            "value": "Na Yong",
             "provinceid": 72
         },
         {
             "key": 946,
-            "text": "ปะเหลียน",
-            "value": "ปะเหลียน",
+            "text": "ปะเหลียน   ",
+            "value": "Palian",
             "provinceid": 72
         },
         {
             "key": 943,
-            "text": "เมืองตรัง",
-            "value": "เมืองตรัง",
-            "provinceid": 72
-        },
-        {
-            "key": 945,
-            "text": "ย่านตาขาว",
-            "value": "ย่านตาขาว",
-            "provinceid": 72
-        },
-        {
-            "key": 951,
-            "text": "รัษฎา",
-            "value": "รัษฎา",
-            "provinceid": 72
-        },
-        {
-            "key": 949,
-            "text": "วังวิเศษ",
-            "value": "วังวิเศษ",
-            "provinceid": 72
-        },
-        {
-            "key": 947,
-            "text": "สิเกา",
-            "value": "สิเกา",
-            "provinceid": 72
-        },
-        {
-            "key": 948,
-            "text": "ห้วยยอด",
-            "value": "ห้วยยอด",
-            "provinceid": 72
-        },
-        {
-            "key": 952,
-            "text": "หาดสำราญ",
-            "value": "หาดสำราญ",
+            "text": "เมืองตรัง   ",
+            "value": "Mueang Trang",
             "provinceid": 72
         },
         {
             "key": 953,
-            "text": "อำเภอเมืองตรัง(สาขาคลองเต็ง)",
-            "value": "อำเภอเมืองตรัง(สาขาคลองเต็ง)",
+            "text": "เมืองตรัง(สาขาคลองเต็ง)",
+            "value": "Mueang Trang(Krong Teng)",
+            "provinceid": 72
+        },
+        {
+            "key": 945,
+            "text": "ย่านตาขาว   ",
+            "value": "Yan Ta Khao",
+            "provinceid": 72
+        },
+        {
+            "key": 951,
+            "text": "รัษฎา   ",
+            "value": "Ratsada",
+            "provinceid": 72
+        },
+        {
+            "key": 949,
+            "text": "วังวิเศษ   ",
+            "value": "Wang Wiset",
+            "provinceid": 72
+        },
+        {
+            "key": 947,
+            "text": "สิเกา   ",
+            "value": "Sikao",
+            "provinceid": 72
+        },
+        {
+            "key": 948,
+            "text": "ห้วยยอด   ",
+            "value": "Huai Yot",
+            "provinceid": 72
+        },
+        {
+            "key": 952,
+            "text": "หาดสำราญ   ",
+            "value": "Hat Samran",
             "provinceid": 72
         }
     ],
     [
         {
             "key": 955,
-            "text": "กงหรา",
-            "value": "กงหรา",
+            "text": "กงหรา   ",
+            "value": "Kong Ra",
             "provinceid": 73
         },
         {
             "key": 956,
-            "text": "เขาชัยสน",
-            "value": "เขาชัยสน",
+            "text": "เขาชัยสน   ",
+            "value": "Khao Chaison",
             "provinceid": 73
         },
         {
             "key": 958,
-            "text": "ควนขนุน",
-            "value": "ควนขนุน",
+            "text": "ควนขนุน   ",
+            "value": "Khuan Khanun",
             "provinceid": 73
         },
         {
             "key": 957,
-            "text": "ตะโหมด",
-            "value": "ตะโหมด",
+            "text": "ตะโหมด   ",
+            "value": "Tamot",
             "provinceid": 73
         },
         {
             "key": 962,
-            "text": "บางแก้ว",
-            "value": "บางแก้ว",
+            "text": "บางแก้ว   ",
+            "value": "Bang Kaeo",
             "provinceid": 73
         },
         {
             "key": 959,
-            "text": "ปากพะยูน",
-            "value": "ปากพะยูน",
+            "text": "ปากพะยูน   ",
+            "value": "Pak Phayun",
             "provinceid": 73
         },
         {
             "key": 961,
-            "text": "ป่าบอน",
-            "value": "ป่าบอน",
+            "text": "ป่าบอน   ",
+            "value": "Pa Bon",
             "provinceid": 73
         },
         {
             "key": 963,
-            "text": "ป่าพะยอม",
-            "value": "ป่าพะยอม",
+            "text": "ป่าพะยอม   ",
+            "value": "Pa Phayom",
             "provinceid": 73
         },
         {
             "key": 954,
-            "text": "เมืองพัทลุง",
-            "value": "เมืองพัทลุง",
+            "text": "เมืองพัทลุง   ",
+            "value": "Mueang Phatthalung",
             "provinceid": 73
         },
         {
             "key": 964,
-            "text": "ศรีนครินทร์",
-            "value": "ศรีนครินทร์",
+            "text": "ศรีนครินทร์   ",
+            "value": "Srinagarindra",
             "provinceid": 73
         },
         {
             "key": 960,
-            "text": "ศรีบรรพต",
-            "value": "ศรีบรรพต",
+            "text": "ศรีบรรพต   ",
+            "value": "Si Banphot",
             "provinceid": 73
         }
     ],
     [
         {
             "key": 975,
-            "text": "กะพ้อ",
-            "value": "กะพ้อ",
+            "text": "กะพ้อ   ",
+            "value": "Kapho",
             "provinceid": 74
         },
         {
             "key": 966,
-            "text": "โคกโพธิ์",
-            "value": "โคกโพธิ์",
+            "text": "โคกโพธิ์   ",
+            "value": "Khok Pho",
             "provinceid": 74
         },
         {
             "key": 970,
-            "text": "ทุ่งยางแดง",
-            "value": "ทุ่งยางแดง",
+            "text": "ทุ่งยางแดง   ",
+            "value": "Thung Yang Daeng",
             "provinceid": 74
         },
         {
             "key": 968,
-            "text": "ปะนาเระ",
-            "value": "ปะนาเระ",
+            "text": "ปะนาเระ   ",
+            "value": "Panare",
             "provinceid": 74
         },
         {
             "key": 969,
-            "text": "มายอ",
-            "value": "มายอ",
+            "text": "มายอ   ",
+            "value": "Mayo",
             "provinceid": 74
         },
         {
             "key": 965,
-            "text": "เมืองปัตตานี",
-            "value": "เมืองปัตตานี",
+            "text": "เมืองปัตตานี   ",
+            "value": "Mueang Pattani",
             "provinceid": 74
         },
         {
             "key": 976,
-            "text": "แม่ลาน",
-            "value": "แม่ลาน",
+            "text": "แม่ลาน   ",
+            "value": "Mae Lan",
             "provinceid": 74
         },
         {
             "key": 972,
-            "text": "ไม้แก่น",
-            "value": "ไม้แก่น",
+            "text": "ไม้แก่น   ",
+            "value": "Mai Kaen",
             "provinceid": 74
         },
         {
             "key": 974,
-            "text": "ยะรัง",
-            "value": "ยะรัง",
+            "text": "ยะรัง   ",
+            "value": "Yarang",
             "provinceid": 74
         },
         {
             "key": 973,
-            "text": "ยะหริ่ง",
-            "value": "ยะหริ่ง",
+            "text": "ยะหริ่ง   ",
+            "value": "Yaring",
             "provinceid": 74
         },
         {
             "key": 971,
-            "text": "สายบุรี",
-            "value": "สายบุรี",
+            "text": "สายบุรี   ",
+            "value": "Sai Buri",
             "provinceid": 74
         },
         {
             "key": 967,
-            "text": "หนองจิก",
-            "value": "หนองจิก",
+            "text": "หนองจิก   ",
+            "value": "Nong Chik",
             "provinceid": 74
         }
     ],
     [
         {
             "key": 984,
-            "text": "กรงปินัง",
-            "value": "กรงปินัง",
+            "text": "กรงปินัง   ",
+            "value": "Krong Pinang",
             "provinceid": 75
         },
         {
             "key": 983,
-            "text": "กาบัง",
-            "value": "กาบัง",
+            "text": "กาบัง   ",
+            "value": "Kabang",
             "provinceid": 75
         },
         {
             "key": 980,
-            "text": "ธารโต",
-            "value": "ธารโต",
+            "text": "ธารโต   ",
+            "value": "Than To",
             "provinceid": 75
         },
         {
             "key": 979,
-            "text": "บันนังสตา",
-            "value": "บันนังสตา",
+            "text": "บันนังสตา   ",
+            "value": "Bannang Sata",
             "provinceid": 75
         },
         {
             "key": 978,
-            "text": "เบตง",
-            "value": "เบตง",
+            "text": "เบตง   ",
+            "value": "Betong",
             "provinceid": 75
         },
         {
             "key": 977,
-            "text": "เมืองยะลา",
-            "value": "เมืองยะลา",
+            "text": "เมืองยะลา   ",
+            "value": "Mueang Yala",
             "provinceid": 75
         },
         {
             "key": 981,
-            "text": "ยะหา",
-            "value": "ยะหา",
+            "text": "ยะหา   ",
+            "value": "Yaha",
             "provinceid": 75
         },
         {
             "key": 982,
-            "text": "รามัน",
-            "value": "รามัน",
+            "text": "รามัน   ",
+            "value": "Raman",
             "provinceid": 75
         }
     ],
     [
         {
             "key": 996,
-            "text": "จะแนะ",
-            "value": "จะแนะ",
+            "text": "จะแนะ   ",
+            "value": "Chanae",
             "provinceid": 76
         },
         {
             "key": 997,
-            "text": "เจาะไอร้อง",
-            "value": "เจาะไอร้อง",
+            "text": "เจาะไอร้อง   ",
+            "value": "Cho-airong",
             "provinceid": 76
         },
         {
             "key": 986,
-            "text": "ตากใบ",
-            "value": "ตากใบ",
+            "text": "ตากใบ   ",
+            "value": "Tak Bai",
             "provinceid": 76
         },
         {
             "key": 998,
             "text": "บางนรา",
-            "value": "บางนรา",
+            "value": "Bang Nra",
             "provinceid": 76
         },
         {
             "key": 987,
-            "text": "บาเจาะ",
-            "value": "บาเจาะ",
+            "text": "บาเจาะ   ",
+            "value": "Bacho",
             "provinceid": 76
         },
         {
             "key": 985,
-            "text": "เมืองนราธิวาส",
-            "value": "เมืองนราธิวาส",
+            "text": "เมืองนราธิวาส   ",
+            "value": "Mueang Narathiwat",
             "provinceid": 76
         },
         {
             "key": 988,
-            "text": "ยี่งอ",
-            "value": "ยี่งอ",
+            "text": "ยี่งอ   ",
+            "value": "Yi-ngo",
             "provinceid": 76
         },
         {
             "key": 989,
-            "text": "ระแงะ",
-            "value": "ระแงะ",
+            "text": "ระแงะ   ",
+            "value": "Ra-ngae",
             "provinceid": 76
         },
         {
             "key": 990,
-            "text": "รือเสาะ",
-            "value": "รือเสาะ",
+            "text": "รือเสาะ   ",
+            "value": "Rueso",
             "provinceid": 76
         },
         {
             "key": 992,
-            "text": "แว้ง",
-            "value": "แว้ง",
+            "text": "แว้ง   ",
+            "value": "Waeng",
             "provinceid": 76
         },
         {
             "key": 991,
-            "text": "ศรีสาคร",
-            "value": "ศรีสาคร",
+            "text": "ศรีสาคร   ",
+            "value": "Si Sakhon",
             "provinceid": 76
         },
         {
             "key": 993,
-            "text": "สุคิริน",
-            "value": "สุคิริน",
+            "text": "สุคิริน   ",
+            "value": "Sukhirin",
             "provinceid": 76
         },
         {
             "key": 994,
-            "text": "สุไหงโก-ลก",
-            "value": "สุไหงโก-ลก",
+            "text": "สุไหงโก-ลก   ",
+            "value": "Su-ngai Kolok",
             "provinceid": 76
         },
         {
             "key": 995,
-            "text": "สุไหงปาดี",
-            "value": "สุไหงปาดี",
+            "text": "สุไหงปาดี   ",
+            "value": "Su-ngai Padi",
             "provinceid": 76
         }
     ],
@@ -6096,53 +6096,52 @@ const Amphurs = [
         {
             "key": 1000,
             "text": "เซกา",
-            "value": "เซกา",
+            "value": "Seka",
             "provinceid": 77
         },
         {
             "key": 1001,
             "text": "โซ่พิสัย",
-            "value": "โซ่พิสัย",
+            "value": "So Phisai",
             "provinceid": 77
         },
         {
             "key": 1004,
             "text": "บึงโขงหลง",
-            "value": "บึงโขงหลง",
+            "value": "Bueng Khong Long",
             "provinceid": 77
         },
         {
             "key": 1006,
             "text": "บุ่งคล้า",
-            "value": "บุ่งคล้า",
+            "value": "Bung Khla",
             "provinceid": 77
         },
         {
             "key": 1005,
             "text": "ปากคาด",
-            "value": "ปากคาด",
+            "value": "Pak Khat",
             "provinceid": 77
         },
         {
             "key": 1002,
             "text": "พรเจริญ",
-            "value": "พรเจริญ",
+            "value": "Phon Charoen",
             "provinceid": 77
         },
         {
             "key": 999,
             "text": "เมืองบึงกาฬ",
-            "value": "เมืองบึงกาฬ",
+            "value": "Mueang Bueng Kan",
             "provinceid": 77
         },
         {
             "key": 1003,
             "text": "ศรีวิไล",
-            "value": "ศรีวิไล",
+            "value": "Si Wilai",
             "provinceid": 77
         }
     ]
 ]
-
 
 export default Amphurs;
