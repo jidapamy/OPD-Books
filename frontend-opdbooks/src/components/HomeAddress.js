@@ -88,10 +88,17 @@ export default class HomeAddress extends Component {
             this.props.setFieldEmerAddress(field, value)
         }
     }
+
     render() {
+        const typeofHouse = this.props.patient.typeofHouse === '' ? this.state.typeofHouse : this.props.patient.typeofHouse
+        const address = this.props.patient.address === '' ? this.state.address : this.props.patient.address
+        const province = this.props.patient.province === '' ? this.state.province : this.props.patient.province
+        const district = this.props.patient.district === '' ? this.state.district : this.props.patient.district
+        const subDistrict = this.props.patient.subDistrict === '' ? this.state.subDistrict : this.props.patient.subDistrict
+        const zipcode = this.props.patient.zipcode === '' ? this.state.zipcode : this.props.patient.zipcode
+        
         return (
             <div>
-                
                 <Form.Group >
                     <Form.Field
                         control={Dropdown}
@@ -109,7 +116,7 @@ export default class HomeAddress extends Component {
                             this.setField(this.props.field === 'home' ? 'typeofHouse' : 'emerTypeofHouse', value)
                         }}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerTypeofHouse != undefined ? this.props.emerTypeofHouse : this.state.typeofHouse}
+                        value={this.props.emerTypeofHouse != undefined ? this.props.emerTypeofHouse : typeofHouse}
                         error={this.props.field === 'home' ? this.props.errorField.typeofHouse : this.props.errorField.emerTypeofHouse}
                     />
                     <Form.Input
@@ -121,7 +128,7 @@ export default class HomeAddress extends Component {
                             this.setField(this.props.field === 'home' ? 'address' : 'emerAddress', e.target.value)
                         }}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerAddress != undefined ? this.props.emerAddress : this.state.address}
+                        value={this.props.emerAddress != undefined ? this.props.emerAddress : address}
                         error={this.props.field === 'home' ? this.props.errorField.address : this.props.errorField.emerAddress}
                     />
                     <Form.Field
@@ -134,8 +141,8 @@ export default class HomeAddress extends Component {
                         width={6}
                         onChange={(e, value) => this.changeProvince(value)}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerProvince != undefined ? this.props.emerProvince : this.state.province}
-                        text={this.props.emerProvince != undefined ? this.props.emerProvince : this.state.province}
+                        value={this.props.emerProvince != undefined ? this.props.emerProvince : province}
+                        text={this.props.emerProvince != undefined ? this.props.emerProvince : province}
                         error={this.props.field === 'home' ? this.props.errorField.province : this.props.errorField.emerProvince}
                     />
                 </Form.Group>
@@ -150,8 +157,8 @@ export default class HomeAddress extends Component {
                         width={6}
                         onChange={(e, value) => this.changeAmphur(value)}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerDistrict != undefined ? this.props.emerDistrict : this.state.district}
-                        text={this.props.emerDistrict != undefined ? this.props.emerDistrict : this.state.district}
+                        value={this.props.emerDistrict != undefined ? this.props.emerDistrict : district}
+                        text={this.props.emerDistrict != undefined ? this.props.emerDistrict : district}
                         error={this.props.field === 'home' ? this.props.errorField.district : this.props.errorField.emerDistrict}
                     />
                     <Form.Field
@@ -164,8 +171,8 @@ export default class HomeAddress extends Component {
                         width={6}
                         onChange={(e, value) => this.changeDistrict(value)}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerSubDistrict != undefined ? this.props.emerSubDistrict : this.state.subDistrict}
-                        text={this.props.emerSubDistrict != undefined ? this.props.emerSubDistrict : this.state.subDistrict}
+                        value={this.props.emerSubDistrict != undefined ? this.props.emerSubDistrict : subDistrict}
+                        text={this.props.emerSubDistrict != undefined ? this.props.emerSubDistrict : subDistrict}
                         error={this.props.field === 'home' ? this.props.errorField.subDistrict : this.props.errorField.emerSubDistrict}
                     />
                     <Form.Input
@@ -177,7 +184,7 @@ export default class HomeAddress extends Component {
                             this.setState({ zipcode: e.target.value })
                         }}
                         required={this.props.field === 'home' || this.props.required}
-                        value={this.props.emerZipcode != undefined ? this.props.emerZipcode : this.state.zipcode}
+                        value={this.props.emerZipcode != undefined ? this.props.emerZipcode : zipcode}
                         error={this.props.field === 'home' ? this.props.errorField.zipcode : this.props.errorField.emerZipcode}
                     />
                 </Form.Group>

@@ -210,6 +210,7 @@ export default class EmergencyContact extends Component {
                             errorField={this.props.errorField}
                             field='emer'
                             required={this.props.requiredAllEmerField}
+                            patient={this.props.patient}
                         />
                     </Form.Group>
                     < HomeAddress
@@ -225,6 +226,7 @@ export default class EmergencyContact extends Component {
                         emerZipcode={this.state.emerZipcode}
                         errorField={this.props.errorField}
                         setFieldAndValidate={this.props.setFieldAndValidate}
+                        patient={this.props.patient}
                     />
                 </Segment>
                 <br></br>

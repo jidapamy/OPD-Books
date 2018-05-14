@@ -57,6 +57,7 @@ export default class PhoneNumber extends Component {
     }
 
     render() {
+        console.log(this.props.patient.mobileNumber)
         return this.phoneText.map((text, index) => {
             const errorName = this.props.field !== 'emer' ? this.props.errorField[text.attribute] : this.props.errorField[text.attributeEmer]
             let required = false
@@ -71,6 +72,7 @@ export default class PhoneNumber extends Component {
                     required={required}
                     onBlur={e => this.validateSyntaxPhoneNumber(this.props.field !== 'emer' ? text.attribute : text.attributeEmer, e.target.value)}
                     error={errorName}
+                    value={this.props.field !== 'emer' ? this.props.patient[text.attribute]:this.props.patient[text.attributeEmer]}
                 />
             )
         }

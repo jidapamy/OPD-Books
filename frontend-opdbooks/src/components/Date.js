@@ -5,6 +5,7 @@ import moment from 'moment';
 const SelectDate = ({
     setDateOfBirth, dob
 }) => {
+    
     if( dob !== null || dob != undefined){
         return <DatePicker
             placeholderText="ex. 01/01/1990"

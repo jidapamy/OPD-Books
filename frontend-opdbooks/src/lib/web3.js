@@ -774,7 +774,9 @@ const PatientRecordContract = web3.eth.contract(
 );
 
 
-export const contract = PatientRecordContract.at('0x54f068e9f7da442dd58f6d29096651b0827c6181');
+// export const contract = PatientRecordContract.at('0x54f068e9f7da442dd58f6d29096651b0827c6181');
+
+export const contract = PatientRecordContract.at('0x30b42b8c7c293f8fe389684e5322004e5e03d7bd');
 // console.log('contract', contract)
 // console.log('citizen', web3.fromAscii('1231231231231'))
 // var AddressPatient = contract.getAddressPatient(web3.fromAscii('1231231231231'), defaultAccount);

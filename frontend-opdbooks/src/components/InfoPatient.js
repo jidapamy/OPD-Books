@@ -153,6 +153,7 @@ export default class InfoPateint extends Component {
                                 required
                                 type='email'
                                 error={this.props.errorField.email}
+                                value={this.props.patient.email}
                             />
                             <Password
                                 cardType={this.props.cardType}
@@ -161,6 +162,7 @@ export default class InfoPateint extends Component {
                                 setField={this.props.setField}
                                 setFieldAndValidate={this.props.setFieldAndValidate}
                                 errorField={this.props.errorField}
+                                patient={this.props.patient}
                             />
                         </Form.Group>
 
@@ -185,6 +187,7 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('nameTitle', value)}
                                 required
                                 error={this.props.errorField.nameTitle}
+                                value={this.props.patient.nameTitle}
                             />
                             <Form.Input
                                 label='ชื่อจริง (Firstname)'
@@ -193,6 +196,7 @@ export default class InfoPateint extends Component {
                                 onChange={e => this.props.setFieldAndValidate('firstname', e.target.value)}
                                 required
                                 error={this.props.errorField.firstname}
+                                value={this.props.patient.firstname}
                             />
                             <Form.Input
                                 label='นามสกุล (Lastname)'
@@ -201,6 +205,7 @@ export default class InfoPateint extends Component {
                                 onChange={e => this.props.setFieldAndValidate('lastname', e.target.value)}
                                 required
                                 error={this.props.errorField.lastname}
+                                value={this.props.patient.lastname}
                             />
                         </Form.Group>
 
@@ -212,6 +217,7 @@ export default class InfoPateint extends Component {
                                 required
                                 error={this.props.errorField.congenitalDisease}
                                 onChange={e => this.props.setFieldAndValidate('congenitalDisease', e.target.value)}
+                                value={this.props.patient.congenitalDisease}
                             />
                             <Form.Field
                                 control={Select}
@@ -222,6 +228,7 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('gender', value)}
                                 required
                                 error={this.props.errorField.gender}
+                                value={this.props.patient.gender}
                             />
                             <Form.Field
                                 control={Select}
@@ -232,6 +239,7 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('bloodgroup', value)}
                                 required
                                 error={this.props.errorField.bloodgroup}
+                                value={this.props.patient.bloodgroup}
                             />
                         </Form.Group>
                         <Form.Group>
@@ -249,6 +257,7 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('religion', value)}
                                 required
                                 error={this.props.errorField.religion}
+                                value={this.props.patient.religion}
                             />
                             <Form.Field
                                 control={Dropdown}
@@ -265,6 +274,7 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('nationality', value)}
                                 required
                                 error={this.props.errorField.nationality}
+                                value={this.props.patient.nationality}
                             />
                             {this.showCountry()}
                         </Form.Group>
@@ -278,12 +288,14 @@ export default class InfoPateint extends Component {
                                 onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
                                 required
                                 error={this.props.errorField.status}
+                                value={this.props.patient.status}
                             />
                             <Form.Input
                                 label='อาชีพ (occupartion)'
                                 placeholder='อาชีพทำงาน'
                                 width={4}
                                 onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
+                                value={this.props.patient.occupartion}
                             />
                             < PhoneNumber
                                 setPatientDetail={this.props.setPatientDetail}
@@ -293,6 +305,7 @@ export default class InfoPateint extends Component {
                                 cardType={this.props.cardType}
                                 field='info'
                                 setFieldAndValidate={this.props.setFieldAndValidate}
+                                patient={this.props.patient}
                             />
                         </Form.Group>
                     </Segment>

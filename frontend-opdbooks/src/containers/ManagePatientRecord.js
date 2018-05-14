@@ -142,6 +142,51 @@ export default class ManagePatientRecord extends Component {
     { field: 'motherLastname', key: 'parent' }
   ]
 
+  makeData = {
+    citizenId: '1234567890123',
+    hospitalNumber: 'HN123',
+    nameTitle: 'Miss.',
+    firstname: 'Christopher',
+    lastname: 'Horton',
+    email: 'Christopher@hotmail.com',
+    password: '1234567890!',
+    gender: 'M',
+    dob: '02/04/1995',
+    bloodgroup: 'B',
+    nationality: 'Thai',
+    religion: 'Buddhism',
+    status: 'Single',
+    occupartion: '',
+    country: 'Thai',
+    congenitalDisease: 'no have',
+    homePhonenumber: '',
+    mobileNumber: '0829938849',
+    typeofHouse: 'Apartment',
+    address: '123',
+    province: 'Kanchanaburi',
+    district: 'Tha Muang',
+    subDistrict: 'Tha Takhro',
+    zipcode: '71130',
+    emerTitle: '',
+    emerFirstname: '',
+    emerLastname: '',
+    emerRelationship: '',
+    emerHomePhonenumber: '',
+    emerMobileNumber: '',
+    emerTypeofHouse: '',
+    emerAddress: '',
+    emerProvince: '',
+    emerDistrict: '',
+    emerSubDistrict: '',
+    emerZipcode: '',
+    fatherFirstname: '',
+    fatherLastname: '',
+    motherFirstname: '',
+    motherLastname: '',
+    allergy: 'not have',
+    privilege: 'รัฐวิสาหิจ'
+  }
+
 
   setField = (field, value) => {
     this.setState({ [field]: value })
@@ -304,7 +349,7 @@ export default class ManagePatientRecord extends Component {
 
     }).then((result) => {
       if (result.value) {
-        if (this.insertPatient()) {
+        this.insertPatient();
           swal(
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
@@ -313,7 +358,6 @@ export default class ManagePatientRecord extends Component {
             console.log(result)
             this.props.history.push('/signin')
           })
-        }
       }
     })
   }
@@ -323,25 +367,20 @@ export default class ManagePatientRecord extends Component {
     this.state.errorField[field] = false
     this.setState({ reState: '' })
   }
+
   setValue = () => {
-    this.setState({ 
-      patient: Patient,
-      errorField: ErrorField,
-      currentDate: moment().format('LLLL'),
-      cardType: 'idcard',
-      age: '',
-      requiredAllParentField: false,
-      requiredAllEmerField: false,
-      errorInfo: [],
-      errorAddr: [],
-      errorEmer: [],
-      errorParent: [],
-      errorAllergy: [],
-      agreement: false,
-      reState: ''
-    })
+    console.log('setValue', this.makeData)
+    // this.setState({ 
+    //   patient: makeData
+    // })
   }
-  
+  makeFieldData = () => {
+    console.log('value', this.makeData)
+    this.setState({
+      patient: this.makeData
+    })
+    
+  }
 
 
   render() {
@@ -356,11 +395,21 @@ export default class ManagePatientRecord extends Component {
           <Segment style={{ borderRadius: '20px' }} >
 
             <Button.Group widths='4' >
-              <Button color='instagram' onClick={() => this.setValue()} style={{ fontFamily: 'kanit' }} content='กรอกข้อมูลสำเร็จ(ไม่ติ๊กที่อยู่เดียวกัน)'/>
+              <Button color='instagram' 
+                onClick={() => this.makeFieldData()} 
+                style={{ fontFamily: 'kanit' }} 
+                content='กรอกข้อมูลสำเร็จ(ไม่ติ๊กที่อยู่เดียวกัน)'
+                />
               <Button.Or />
-              <Button color='instagram' style={{ fontFamily: 'kanit' }} content='กรอกข้อมูลสำเร็จ(ติ๊กที่อยู่เดียวกัน)'/>>
+              <Button color='instagram' 
+                  onClick={() => this.makeFieldData()} 
+                  style={{ fontFamily: 'kanit' }} 
+                  content='กรอกข้อมูลสำเร็จ(ติ๊กที่อยู่เดียวกัน)'/>>
               <Button.Or />
-              <Button color='instagram' style={{ fontFamily: 'kanit' }} content='เช็คข้อมูลซ้ำ'/>>
+              <Button color='instagram' 
+                onClick={() => this.makeFieldData()} 
+                style={{ fontFamily: 'kanit' }} 
+                content='เช็คข้อมูลซ้ำ'/>>
             </Button.Group>
             
           </Segment>
@@ -390,6 +439,7 @@ export default class ManagePatientRecord extends Component {
                 setPatientDetail={this.setPatientDetail}
                 errorField={this.state.errorField}
                 setFieldAndValidate={this.setFieldAndValidate}
+                patient={this.state.patient}
               />
             </Segment>
             <br></br>
