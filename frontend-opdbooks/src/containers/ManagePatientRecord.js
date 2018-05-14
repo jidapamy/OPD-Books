@@ -271,7 +271,7 @@ export default class ManagePatientRecord extends Component {
 
     const result = contract.getInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId));
     result.map(res => {
-      console.log(web3.toAscii(res))
+      console.log('getInfoPatientPart1',web3.toAscii(res))
     })
     contract.setAddressPatient(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), this.state.patient.address, web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
 
@@ -304,8 +304,7 @@ export default class ManagePatientRecord extends Component {
 
     }).then((result) => {
       if (result.value) {
-        // if (this.insertPatient()) {
-        if (true) {
+        if (this.insertPatient()) {
           swal(
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
@@ -354,7 +353,7 @@ export default class ManagePatientRecord extends Component {
         <ContanierTop>
           <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
 
-          <Segment >
+          <Segment style={{ borderRadius: '20px' }} >
 
             <Button.Group widths='4' >
               <Button color='instagram' onClick={() => this.setValue()} style={{ fontFamily: 'kanit' }} content='กรอกข้อมูลสำเร็จ(ไม่ติ๊กที่อยู่เดียวกัน)'/>
