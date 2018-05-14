@@ -139,6 +139,10 @@ export default class PatientProfile extends Component {
     //Connect API
     componentWillMount() {
         console.log(contract)
+        console.log('citizenId',this.props.location.state.citizenId)
+        if (this.props.location.state.citizenId === undefined){
+            this.props.history.push('/signin')
+        }else{
         const InfoPatientPart1 = contract.getInfoPatientPart1(this.props.location.state.citizenId, defaultAccount);
         
         const InfoPatientPart2 = contract.getInfoPatientPart2(this.props.location.state.citizenId, defaultAccount);
@@ -222,6 +226,7 @@ export default class PatientProfile extends Component {
             
             
         })
+        }
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })

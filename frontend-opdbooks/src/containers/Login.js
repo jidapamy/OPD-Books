@@ -3,13 +3,25 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 // import './login.css'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
+//static
+import BackgroundImage from './../static/img/BG.png'
 import { defaultAccount, contract, web3 } from './../lib/web3';
+import styled from 'styled-components'
+
+//css
+const Wrapper = styled.div`
+  background: url(${BackgroundImage}) no-repeat center fixed;
+  background-size: 100% 100%;
+`
 
 export default class PatientRecord extends Component {
     state={
         citizenId:'',
-        password:''
+        password:'',
+        checklogin:''
     }
+
+    
 
     login = () => {
         console.log(this.state)
@@ -22,13 +34,14 @@ export default class PatientRecord extends Component {
                 state: { citizenId: web3.fromAscii(this.state.citizenId) }
             })
         }else{
-            swal({
-                type: 'error',
-                title: 'Sorry',
-                text: 'Incorrect Password',
-                showConfirmButton: false,
-                timer: 2000
-            })
+            this.setState({ checklogin:'Sorry!! Incorrect citizenId or Password'});
+            // swal({
+            //     type: 'error',
+            //     title: 'Sorry',
+            //     text: 'Incorrect Password',
+            //     showConfirmButton: false,
+            //     timer: 2000
+            // })
         }
     }
 
@@ -36,7 +49,7 @@ export default class PatientRecord extends Component {
         // console.log(this.state)
         
         return (
-            <div className='login-form'>
+            <Wrapper className='login-form'>
                 <style>{`
                     body > div,
                     body > div > div,
@@ -50,23 +63,26 @@ export default class PatientRecord extends Component {
                     verticalAlign='middle'
                 >
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center'></Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input class="setfeild" style={{ width: '90%' }}
+                        <Header style={{ fontSize: '5em' }} color='teal' textAlign='center'>OPD BOOKS</Header>
+                        <Form size='large' >
+                            <Segment  style={{ borderRadius: '2rem',padding:'5%' }}>
+                                <p style={{ color: 'red' }}>{this.state.checklogin}</p>
+                                <Form.Input class="setfeild" style={{ width: '100%' }}
                                     fluid
                                     icon='user'
                                     iconPosition='left'
-                                    placeholder='บัตรประจำตัวประชาชน'
+                                    placeholder='citizenId'
                                     onChange={e=>this.setState({citizenId: e.target.value})}
+                                    onFocus={()=>this.setState({ checklogin:''})}
                                 />
-                                <Form.Input class="setfeild" style={{ width: '90%' }}
+                                <Form.Input class="setfeild" style={{ width: '100%' }}
                                     fluid
                                     icon='lock'
                                     iconPosition='left'
-                                    placeholder='วัน/เดือน/ปีเกิด (16072540)'
+                                    placeholder='Password'
                                     type='password'
                                     onChange={e=> this.setState({ password: e.target.value })}
+                                    onFocus={() => this.setState({ checklogin: '' })}
                                 />
                                 <Button 
                                     color='teal' 
@@ -77,12 +93,12 @@ export default class PatientRecord extends Component {
                                 </Button>
                             </Segment>
                         </Form>
-                        <Message>
+                        <Message style={{ borderRadius: '2rem' }}>
                             New to us?  <Link to='/signup'><a href='#'>Sign Up</a></Link>
                         </Message>
                     </Grid.Column>
                 </Grid>
-            </div>
+            </Wrapper>
         )
     }
 }

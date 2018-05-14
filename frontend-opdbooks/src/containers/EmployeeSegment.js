@@ -202,7 +202,7 @@ class SidebarBottomOverlay extends Component {
             
             //AddressPatient
             typeofHouse: web3.toAscii(AddressPatient[0]),
-            patientaddress: web3.toAscii(AddressPatient[1]),
+            patientaddress: AddressPatient[1],
             province: web3.toAscii(AddressPatient[2]),
             district: web3.toAscii(AddressPatient[3]),
             subDistrict: web3.toAscii(AddressPatient[4]),
@@ -218,7 +218,7 @@ class SidebarBottomOverlay extends Component {
 
             //EmergencyContact Part2
             emerTypeofHouse: web3.toAscii(EmergencyContactPart2[0]),
-            emerAddress: web3.toAscii(EmergencyContactPart2[1]),
+            emerAddress: EmergencyContactPart2[1],
             emerProvince: web3.toAscii(EmergencyContactPart2[2]),
             emerDistrict: web3.toAscii(EmergencyContactPart2[3]),
             emerSubDistrict: web3.toAscii(EmergencyContactPart2[4]),
@@ -301,7 +301,7 @@ class SidebarBottomOverlay extends Component {
     const { open, size } = this.state
     const { activeItem } = this.state
     return (
-      <div style={{ backgroundColor: '#00b5ad1a' }}>
+      <div >
         <Navbar
             role='emp'
              show={this.show}
@@ -317,7 +317,7 @@ class SidebarBottomOverlay extends Component {
             </Header.Subheader>
           </Header>
 
-          <Segment>
+          <Segment >
             <Header as='h1' color='teal' content='Profile'/>
             <Divider></Divider>
             <Grid columns={4} relaxed>

@@ -773,6 +773,6 @@ const PatientRecordContract = web3.eth.contract(
 );
 
     
-export const contract = PatientRecordContract.at('0x38b1b588a6cebbb3afee0b28226f6f3a71d2322c');
+export const contract = PatientRecordContract.at('0xbc0b7b61bb020a2156c0f990db5d35e0f6b8070f');
 
 export const defaultAccount = { from: web3.eth.accounts[0], gas: 4000000 }
