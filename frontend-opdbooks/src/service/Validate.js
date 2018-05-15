@@ -19,7 +19,6 @@ export function setErrorMsg(key, value, arr) {
 
 
 export function setErrorMsgSplice(key, arr) {
-    console.log(key, 'setErrorMsgSplice')
     let indexSplice = -1;
     if (arr.length !== 0) {
         for (let i = 0; i <= arr.length - 1; i++) {

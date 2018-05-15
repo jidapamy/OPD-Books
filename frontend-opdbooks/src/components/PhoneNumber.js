@@ -60,7 +60,6 @@ export default class PhoneNumber extends Component {
     }
 
     render() {
-        console.log(this.props.patient.mobileNumber)
         return this.phoneText.map((text, index) => {
             const errorName = this.props.field !== 'emer' ? this.props.errorField[text.attribute] : this.props.errorField[text.attributeEmer]
             let required = false

@@ -156,7 +156,6 @@ class SidebarBottomOverlay extends Component {
   }
 
   getPatient = (qrCode) => {
-        console.log(contract)
         const InfoPatientPart1 = contract.getInfoPatientPart1(qrCode, defaultAccount);
         
         const InfoPatientPart2 = contract.getInfoPatientPart2(qrCode, defaultAccount);

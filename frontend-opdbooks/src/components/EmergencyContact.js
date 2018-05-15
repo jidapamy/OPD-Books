@@ -46,7 +46,6 @@ export default class EmergencyContact extends Component {
     }
 
     changeStatusSameAddress = () => {
-        console.log('Detail Patient', this.props.patient)
         const status = !this.state.statusSameAddress;
         const addressHome = {
             emerAddress: this.props.patient.address,
@@ -77,7 +76,6 @@ export default class EmergencyContact extends Component {
                 statusSameAddress: status,
             })
             this.setState(this.emerOldAddress)
-            console.log('ไม่เลือก', this.emerOldAddress)
         }
         this.fieldEmerContract.map(field => {
             this.props.setPatientDetail(field, status ? addressHome[field] : this.emerOldAddress[field]);

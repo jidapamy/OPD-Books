@@ -13,9 +13,7 @@ export default class CitizenIdField extends Component {
         if (this.validateSyntaxIdcard()) {
             // const patient = await axios.get(`/checkIDCard/${this.state.citizenId}`)
             const patient = contract.checkDuplicateCitizenId(web3.fromAscii(this.state.citizenId))
-            console.log(patient)
             if (patient) {
-                console.log('ใช้แล้ว')
                 let error = '';
                 if (this.props.cardType === 'idcard') {
                     error = 'เลขบัตรประชาชนนี้มีใช้แล้ว'

@@ -138,8 +138,6 @@ export default class PatientProfile extends Component {
 
     //Connect API
     componentWillMount() {
-        console.log(contract)
-        console.log('citizenId',this.props.location.state.citizenId)
         if (this.props.location.state.citizenId === undefined){
             this.props.history.push('/signin')
         }else{
@@ -150,14 +148,12 @@ export default class PatientProfile extends Component {
         const InfoPatientPart4 = contract.getInfoPatientPart4(this.props.location.state.citizenId, defaultAccount)
 
         const AddressPatient = contract.getAddressPatient(this.props.location.state.citizenId, defaultAccount);
-        console.log(web3.toAscii(AddressPatient[1]))
         const PatientAllergy = contract.getPatientAllergy(this.props.location.state.citizenId, defaultAccount);
 
         const EmergencyContactPart1 = contract.getEmergencyContactPart1(this.props.location.state.citizenId, defaultAccount)
         const EmergencyContactPart2 = contract.getEmergencyContactPart2(this.props.location.state.citizenId, defaultAccount)
 
         const PatientParent = contract.getPatientParent(this.props.location.state.citizenId, defaultAccount)
-        console.log('PatientParent', PatientParent)
 
         this.setState({
             //InfoPatient Part1
@@ -234,12 +230,9 @@ export default class PatientProfile extends Component {
         const { activeItem } = this.state
 
         const currentDate = moment().format('ll')
-        console.log('currentDate: ' + currentDate)
         // Encrypt //
         var ciphertext = CryptoJS.AES.encrypt('OPDBooks@' + currentDate+'@'+`${this.state.citizenId}`, 'OPDQR');
-        console.log('ciphertext: ' + ciphertext)
         var QRCodes = ''+ciphertext
-        console.log('QRCodes: ' + QRCodes)
         
         return (
 

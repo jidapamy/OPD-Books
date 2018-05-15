@@ -304,7 +304,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   insertPatient = () => {
-    console.log('insertPatient')
     // const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     // const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = 'HP2312';
@@ -316,7 +315,6 @@ export default class ManagePatientRecord extends Component {
 
     const result = contract.getInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId));
     result.map(res => {
-      console.log('getInfoPatientPart1',web3.toAscii(res))
     })
     contract.setAddressPatient(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), this.state.patient.address, web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
 
@@ -328,10 +326,6 @@ export default class ManagePatientRecord extends Component {
     }
 
     if ((this.state.patient.fatherFirstname !== '' && this.state.patient.fatherLastname != '') || (this.state.patient.motherFirstname !== '' && this.state.patient.motherLastname != '') ) {
-      console.log("SAVE PATIENT!!!")
-      console.log("father :" + this.state.patient.fatherFirstname + ' ' + this.state.patient.fatherLastname)
-      console.log("mother :" + this.state.patient.motherFirstname + ' ' + this.state.patient.motherLastname)
-      
       contract.setPatientParent(this.state.patient.citizenId, web3.fromAscii(this.state.patient.fatherFirstname === '' ? '-' : this.state.patient.fatherFirstname), web3.fromAscii(this.state.patient.fatherLastname === '' ? ' ' : this.state.patient.fatherLastname ), web3.fromAscii(this.state.patient.motherFirstname === '' ? '-' : this.state.patient.fatherLastname), web3.fromAscii(this.state.patient.motherLastname === '' ? ' ' : this.state.patient.fatherLastname), defaultAccount)
     }
   }
@@ -355,7 +349,6 @@ export default class ManagePatientRecord extends Component {
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
             'success',
           ).then((result) => {
-            console.log(result)
             this.props.history.push('/signin')
           })
       }
@@ -369,13 +362,11 @@ export default class ManagePatientRecord extends Component {
   }
 
   setValue = () => {
-    console.log('setValue', this.makeData)
     // this.setState({ 
     //   patient: makeData
     // })
   }
   makeFieldData = () => {
-    console.log('value', this.makeData)
     this.setState({
       patient: this.makeData
     })
@@ -384,9 +375,6 @@ export default class ManagePatientRecord extends Component {
 
 
   render() {
-    console.log(this.state)
-    // console.log('idcard', web3.fromAscii('1231231231231'))
-    // const errorList = this.state.errorText.map(msg => (msg.value))
     return (
       <Wrapper>
         <ContanierTop>

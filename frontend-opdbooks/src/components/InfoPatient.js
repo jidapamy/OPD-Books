@@ -66,9 +66,7 @@ export default class InfoPateint extends Component {
         if (this.validateEmail(value)){
             // syntax pass
             const email = contract.checkDuplicateEmail(web3.fromAscii(value))
-            console.log('email', email)
             if (email) {
-                console.log('email ใช้แล้ว')
                 let error = ''
                 if (this.props.cardType === 'idcard') {
                     error = 'E-mail นี้มีอยู่ในระบบแล้ว'

@@ -24,10 +24,7 @@ export default class PatientRecord extends Component {
     
 
     login = () => {
-        console.log(this.state)
         const result = contract.Login(web3.fromAscii(this.state.citizenId), web3.fromAscii(this.state.password))
-        console.log(result)
-        console.log(contract.Login("1670433847213", "12321AS"))
         if (result){
             this.props.history.push({
                 pathname: '/profile',
@@ -35,19 +32,10 @@ export default class PatientRecord extends Component {
             })
         }else{
             this.setState({ checklogin:'Sorry!! Incorrect citizenId or Password'});
-            // swal({
-            //     type: 'error',
-            //     title: 'Sorry',
-            //     text: 'Incorrect Password',
-            //     showConfirmButton: false,
-            //     timer: 2000
-            // })
         }
     }
 
     render() {
-        // console.log(this.state)
-        
         return (
             <Wrapper className='login-form'>
                 <style>{`

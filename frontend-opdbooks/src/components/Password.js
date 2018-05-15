@@ -29,8 +29,6 @@ export default class Password extends Component {
     checkPassword = () => {
         this.props.setPatientDetail('password', '')
         const error = { status: false, message: '' }
-        console.log('password', this.state.password)
-        console.log('confirmpassword', this.state.confirmpassword)
         if (this.state.password !== null && this.state.confirmpassword !== null) {
             if (!this.state.password.match(/^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,}.+$/)) { 
                 error.status = true;
@@ -44,7 +42,6 @@ export default class Password extends Component {
                 }
             }
 
-            console.log('this.props.errorText', this.props.errorText)
             var result;
             if (error.status){
                 this.props.errorField.password = true
