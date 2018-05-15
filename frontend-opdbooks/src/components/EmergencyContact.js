@@ -210,6 +210,7 @@ export default class EmergencyContact extends Component {
                             errorField={this.props.errorField}
                             field='emer'
                             required={this.props.requiredAllEmerField}
+                            setFieldAndValidate={this.props.setFieldAndValidate}
                             patient={this.props.patient}
                         />
                     </Form.Group>

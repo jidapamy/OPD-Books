@@ -47,11 +47,14 @@ export default class PhoneNumber extends Component {
         var result = null;
         if(!error.status){
             this.props.errorField[field] = false
+            // this.props.setFieldAndValidate(field, value)
             result = setErrorMsgSplice(field, this.props.errorText)
-            this.props.setPatientDetail(field,value)
+            this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
+            // this.props.setPatientDetail(field,value)
         }else{
             this.props.errorField[field] = true
             result = setErrorMsg(field, error.message, this.props.errorText)
+            this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
         }
         this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
     }
@@ -71,8 +74,9 @@ export default class PhoneNumber extends Component {
                     width={this.props.field !== 'emer' ? 4 : 6}
                     required={required}
                     onBlur={e => this.validateSyntaxPhoneNumber(this.props.field !== 'emer' ? text.attribute : text.attributeEmer, e.target.value)}
+                    onChange={e => this.props.setFieldAndValidate(this.props.field !== 'emer' ? text.attribute : text.attributeEmer, e.target.value)}
                     error={errorName}
-                    value={this.props.field !== 'emer' ? this.props.patient[text.attribute]:this.props.patient[text.attributeEmer]}
+                    value={this.props.field !== 'emer' ? this.props.patient[text.attribute] : this.props.patient[text.attributeEmer]}
                 />
             )
         }
@@ -80,3 +84,5 @@ export default class PhoneNumber extends Component {
 
     }
 }
+
+// value={this.props.field !== 'emer' ? this.props.patient[text.attribute]:this.props.patient[text.attributeEmer]}

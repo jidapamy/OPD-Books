@@ -323,7 +323,7 @@ export default class ManagePatientRecord extends Component {
     contract.setPatientAllergy(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.allergy), web3.fromAscii(this.state.patient.privilege), defaultAccount);
 
     if (this.state.patient.emerTitle != '' || this.state.patient.emerFirstname != '' || this.state.patient.emerLastname != '') {
-      contract.setEmergencyContactPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.emerTitle), web3.fromAscii(this.state.patient.emerFirstname), web3.fromAscii(this.state.patient.emerLastname), web3.fromAscii(this.state.patient.emerRelationship), web3.fromAscii(this.state.patient.emerHomePhonenumber === '' ? '-' : this.state.patient.emerHomePhonenumber ), web3.fromAscii(this.state.patient.emerMobileNumber), defaultAccount)
+      contract.setEmergencyContactPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.emerTitle), web3.fromAscii(this.state.patient.emerFirstname), web3.fromAscii(this.state.patient.emerLastname), web3.fromAscii(this.state.patient.emerRelationship), web3.fromAscii((this.state.patient.emerHomePhonenumber === '') || (this.state.patient.emerHomePhonenumber === undefined) ? '-' : this.state.patient.emerHomePhonenumber), web3.fromAscii(this.state.patient.emerMobileNumber), defaultAccount)
       contract.setEmergencyContactPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.typeofHouse), this.state.patient.address, web3.fromAscii(this.state.patient.province), web3.fromAscii(this.state.patient.district), web3.fromAscii(this.state.patient.subDistrict), web3.fromAscii(this.state.patient.zipcode), defaultAccount)
     }
 
