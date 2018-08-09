@@ -150,7 +150,7 @@ export default class ManagePatientRecord extends Component {
     lastname: 'Horton',
     email: 'Christopher@hotmail.com',
     password: '1234567890!',
-    gender: 'M',
+    gender: 'F',
     dob: '02/04/1995',
     bloodgroup: 'B',
     nationality: 'Thai',

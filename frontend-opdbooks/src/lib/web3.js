@@ -2,8 +2,8 @@ const Web3 = require('web3');
 // import abi from './abi'
 export var web3 = new Web3();
 
-web3 = new Web3(new Web3.providers.HttpProvider("http://13.250.32.62:8545"));
-
+// web3 = new Web3(new Web3.providers.HttpProvider("http://13.250.32.62:8545"));
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 web3.eth.defaultAccount = web3.eth.accounts[0];
 const PatientRecordContract = web3.eth.contract(
     [
