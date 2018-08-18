@@ -4,9 +4,12 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
 //static
-import BackgroundImage from './../static/img/BG.png'
-import { defaultAccount, contract, web3 } from './../lib/web3';
+import BackgroundImage from './../../Static/Img/BG.png'
+import { defaultAccount, contract, web3 } from './../../Lib/Web3';
 import styled from 'styled-components'
+import { login } from "./../../Service/EmpReducer";
+
+import { Employee } from "./../../Model/Employee";
 
 //css
 const Wrapper = styled.div`
@@ -14,24 +17,33 @@ const Wrapper = styled.div`
   background-size: 100% 100%;
 `
 
-export default class PatientRecord extends Component {
+export default class EmpLogin extends Component {
     state={
-        citizenId:'',
+        empId:'',
         password:'',
         checklogin:''
     }
 
-    
-
-    login = () => {
-        const result = contract.Login(web3.fromAscii(this.state.citizenId), web3.fromAscii(this.state.password))
-        if (result){
-            this.props.history.push({
-                pathname: '/profile',
-                state: { citizenId: web3.fromAscii(this.state.citizenId) }
-            })
+    login = () => { 
+        console.log("forEmp ",this.state)
+        let userLogin = Employee
+        const res = contract.LoginEmployee(web3.fromAscii(this.state.empId), web3.fromAscii(this.state.password));
+        
+        if (res){
+            console.log(res)
+        //     userLogin.clinic = res.clinic;
+        //     userLogin.empId = res.empId;
+        //     userLogin.firstname = res.firstname;
+        //     userLogin.lastname = res.lastname;
+        //     userLogin.nameTitle = res.nameTitle;
+        //     userLogin.position = res.position;
+        //     this.props.history.push({
+        //       pathname: "/profile",
+        //       state: { userLogin: userLogin }
+        //     });
+        //     login(userLogin);
         }else{
-            this.setState({ checklogin:'Sorry!! Incorrect citizenId or Password'});
+        //     this.setState({ checklogin:'Sorry!! Incorrect EmpId or Password'});
         }
     }
 
@@ -51,7 +63,10 @@ export default class PatientRecord extends Component {
                     verticalAlign='middle'
                 >
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header style={{ fontSize: '5em' }} color='teal' textAlign='center'>OPD BOOKS</Header>
+                        <Header style={{ fontSize: '5em' }} color='teal' textAlign='center'>
+                            OPD BOOKS
+                            <Header.Subheader style={{ fontSize: '20px' }} color='teal'>for Employee.</Header.Subheader>
+                        </Header>
                         <Form size='large' >
                             <Segment  style={{ borderRadius: '2rem',padding:'5%' }}>
                                 <p style={{ color: 'red' }}>{this.state.checklogin}</p>
@@ -59,8 +74,8 @@ export default class PatientRecord extends Component {
                                     fluid
                                     icon='user'
                                     iconPosition='left'
-                                    placeholder='citizenId'
-                                    onChange={e=>this.setState({citizenId: e.target.value})}
+                                    placeholder='EmpId'
+                                    onChange={e=>this.setState({empId: e.target.value})}
                                     onFocus={()=>this.setState({ checklogin:''})}
                                 />
                                 <Form.Input class="setfeild" style={{ width: '100%' }}
@@ -81,9 +96,6 @@ export default class PatientRecord extends Component {
                                 </Button>
                             </Segment>
                         </Form>
-                        <Message style={{ borderRadius: '2rem' }}>
-                            New to us?  <Link to='/signup'><a href='#'>Sign Up</a></Link>
-                        </Message>
                     </Grid.Column>
                 </Grid>
             </Wrapper>

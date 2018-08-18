@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Grid } from 'semantic-ui-react'
-import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
+import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 
 export default class PhoneNumber extends Component {
 

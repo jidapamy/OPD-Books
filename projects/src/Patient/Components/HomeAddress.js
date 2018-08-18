@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Label, Segment, Form, Select, Dropdown } from 'semantic-ui-react'
-import { typesOfHousingData } from './../static/data/FormDatas'
-const provincesData = require('./../static/data/Provinces')
-const amphursData = require('./../static/data/Amphurs')
-const districtsData = require('./../static/data/Districts')
+import { typesOfHousingData } from './../../Static/Data/FormDatas'
+const provincesData = require('./../../Static/Data/Provinces')
+const amphursData = require('./../../Static/Data/Amphurs')
+const districtsData = require('./../../Static/Data/Districts')
 
 // const setField = props.setField
 // const preparedData = props.preparedData

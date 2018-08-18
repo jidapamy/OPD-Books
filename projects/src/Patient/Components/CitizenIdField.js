@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
-import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
-import { defaultAccount, contract, web3 } from './../lib/web3';
+import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
+import { defaultAccount, contract, web3 } from './../../Lib/Web3';
 
 export default class CitizenIdField extends Component {
     state = {

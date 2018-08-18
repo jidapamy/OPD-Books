@@ -5,13 +5,13 @@ import DateField from './DateField';
 import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
-import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
-import { defaultAccount, contract, web3 } from './../lib/web3';
+import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
+import { defaultAccount, contract, web3 } from './../../Lib/Web3';
 
 import {
     titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
-} from './../static/data/FormDatas.js'
+} from './../../Static/Data/FormDatas.js'
 
 
 export default class InfoPateint extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './../components/Header';
-import Navbar from './../components/NavbarIndex';
-import Content from './../components/Container';
+import Header from './../Components/Header';
+import Navbar from './../Components/NavbarIndex';
+import Content from './../Components/Container';
 // import Content from './Container';
 // import Headers from './Header';
 // import Footer from './Footer';

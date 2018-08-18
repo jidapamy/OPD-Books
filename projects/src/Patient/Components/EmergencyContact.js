@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Label, Segment, Checkbox, Form, Select, Button, Dropdown } from 'semantic-ui-react'
-import { titleNameParentData } from './../static/data/FormDatas'
+import { titleNameParentData } from './../../Static/Data/FormDatas'
 
 import HomeAddress from './HomeAddress'
 import PhoneNumber from './PhoneNumber'

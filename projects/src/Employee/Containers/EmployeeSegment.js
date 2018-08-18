@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Modal, Container, Table, Grid, Divider,Label,Card } from 'semantic-ui-react'
 import styled from 'styled-components'
 import QrReader from 'react-qr-reader'
-import Navbar from './../components/NavbarHome';
+import Navbar from './../../Patient/Components/NavbarHome';
 import moment from 'moment';
 import swal from 'sweetalert2';
-import { defaultAccount, contract,web3 } from './../lib/web3';
+import { defaultAccount, contract,web3 } from './../../Lib/Web3';
 
 const CryptoJS = require("crypto-js");
 const PopupQRCode = styled(Modal) `

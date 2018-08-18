@@ -9,28 +9,28 @@ import ScrollUpButton from "react-scroll-up-button";
 import moment from 'moment';
 
 //Model
-import { Patient } from './../model/Patient';
-import { ErrorField } from './../model/ErrorField';
+import { Patient } from './../../Model/Patient';
+import { ErrorField } from './../../Model/ErrorField';
 
 //Component
-import InfoPatient from './../components/InfoPatient';
-import HomeAddress from './../components/HomeAddress'
-import EmergencyContact from './../components/EmergencyContact'
-import PatientParent from './../components/PatientParent'
-import Allergy from './../components/Allergy'
-import ErrorMessage from './../components/ErrorMessage'
+import InfoPatient from './../Components/InfoPatient';
+import HomeAddress from './../Components/HomeAddress'
+import EmergencyContact from './../Components/EmergencyContact'
+import PatientParent from './../Components/PatientParent'
+import Allergy from './../Components/Allergy'
+import ErrorMessage from './../Components/ErrorMessage'
 
 
 //provider
-import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
-import { defaultAccount, contract,web3 } from './../lib/web3';
+import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
+import { defaultAccount, contract,web3 } from './../../Lib/Web3';
 
 //static
-import BackgroundImage from './../static/img/BG.png'
+import BackgroundImage from './../../Static/Img/BG.png'
 
-const provincesData = require('./../static/data/Provinces')
-const amphursData = require('./../static/data/Amphurs')
-const districtsData = require('./../static/data/Districts')
+const provincesData = require('./../../Static/Data/Provinces')
+const amphursData = require('./../../Static/Data/Amphurs')
+const districtsData = require('./../../Static/Data/Districts')
 
 //css
 const Wrapper = styled.div`
@@ -41,7 +41,6 @@ const Wrapper = styled.div`
 const ContanierTop = styled(Container) `
     padding-top:4%;
 `
-
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
@@ -378,29 +377,6 @@ export default class ManagePatientRecord extends Component {
       <Wrapper>
         <ContanierTop>
           <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
-
-          <Segment style={{ borderRadius: '20px' }} >
-
-            <Button.Group widths='4' >
-              <Button color='instagram' 
-                onClick={() => this.makeFieldData()} 
-                style={{ fontFamily: 'kanit' }} 
-                content='กรอกข้อมูลสำเร็จ(ไม่ติ๊กที่อยู่เดียวกัน)'
-                />
-              <Button.Or />
-              <Button color='instagram' 
-                  onClick={() => this.makeFieldData()} 
-                  style={{ fontFamily: 'kanit' }} 
-                  content='กรอกข้อมูลสำเร็จ(ติ๊กที่อยู่เดียวกัน)'/>>
-              <Button.Or />
-              <Button color='instagram' 
-                onClick={() => this.makeFieldData()} 
-                style={{ fontFamily: 'kanit' }} 
-                content='เช็คข้อมูลซ้ำ'/>>
-            </Button.Group>
-            
-          </Segment>
-
           <Form>
             <InfoPatient style={{borderRadius:'20px'}}
               patient={this.state.patient}

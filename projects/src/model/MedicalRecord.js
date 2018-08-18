@@ -6,6 +6,7 @@ export const MedicalRecord = {
     pharmacistId: Employee,
     doctorId: Employee,
     nurseId: Employee,
+
     visitNumber: '',
     clinic: '',
     height: 0,
@@ -18,13 +19,16 @@ export const MedicalRecord = {
     BP2: '',
     BP3: '',
     chiefComplaint: '',
-    dateTimeOfNurse: '',
+    // dateTimeOfNurse: '',
+
     presentIllness: '',
     physicalExem: '',
     diagnosis: '',
     treatment: '',
     recommendation: '',
     appointment: '',
-    dateTimeOfDoctor: '',
+    // dateTimeOfDoctor: '',
+
+    dateTime:'',
     medicines: []
 }

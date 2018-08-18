@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
-import { setErrorMsg, setErrorMsgSplice } from './../service/Validate';
+import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 
 export default class Password extends Component {
 

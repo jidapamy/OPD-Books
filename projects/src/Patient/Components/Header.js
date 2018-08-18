@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Segment, Header, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
-import './../static/style/HomeCss.css';
+import './../../Static/Style/HomeCss.css';
 import { Link } from 'react-router-dom';
-import './../static/style/Navbar.css';
+import './../../Static/Style/Navbar.css';
 
 export default class HeaderComponent extends Component {
     render() {

@@ -5,22 +5,22 @@ import {
 } from 'semantic-ui-react'
 import styled from 'styled-components'
 // << IMPORT PHOTO >>
-import Contain1 from './../static/img/Contianer/Contain1.png';
-import Contain2 from './../static/img/Contianer/Contain2.png';
-import icon1 from './../static/img/Contianer/icon1.png';
-import icon2 from './../static/img/Contianer/icon2.png';
-import icon3 from './../static/img/Contianer/icon3.png';
-import icon4 from './../static/img/Contianer/icon4.png';
-import roadmap from './../static/img/Contianer/roadmap.png';
-import asia from './../static/img/Contianer/asia.jpg';
-import my from './../static/img/Contianer/my.jpg';
-import stamp from './../static/img/Contianer/stamp.jpg';
-import asiaGray from './../static/img/Contianer/asiaGray.jpg';
-import myGray from './../static/img/Contianer/myGray.jpg';
-import stampGray from './../static/img/Contianer/stampGray.jpg';
+import Contain1 from './../../Static/Img/Contianer/Contain1.png';
+import Contain2 from './../../Static/Img/Contianer/Contain2.png';
+import icon1 from './../../Static/Img/Contianer/icon1.png';
+import icon2 from './../../Static/Img/Contianer/icon2.png';
+import icon3 from './../../Static/Img/Contianer/icon3.png';
+import icon4 from './../../Static/Img/Contianer/icon4.png';
+import roadmap from './../../Static/Img/Contianer/roadmap.png';
+import asia from './../../Static/Img/Contianer/asia.jpg';
+import my from './../../Static/Img/Contianer/my.jpg';
+import stamp from './../../Static/Img/Contianer/stamp.jpg';
+import asiaGray from './../../Static/Img/Contianer/asiaGray.jpg';
+import myGray from './../../Static/Img/Contianer/myGray.jpg';
+import stampGray from './../../Static/Img/Contianer/stampGray.jpg';
 import WOW from 'wowjs';
-import iconhowto1 from './../static/img/Contianer/icon-howto-1.png'
-import iconhowto2 from './../static/img/Contianer/icon-howto-2.png'
+import iconhowto1 from './../../Static/Img/Contianer/icon-howto-1.png'
+import iconhowto2 from './../../Static/Img/Contianer/icon-howto-2.png'
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
