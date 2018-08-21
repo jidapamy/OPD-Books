@@ -10,8 +10,8 @@ class Home extends Component {
     render() {
         return (
             <div >
-                <Navbar />
-                <Header />
+                {/* <Navbar ></Navbar> */}
+                {/* <Header /> */}
                 {/* <Headers /> */}
                 <Content />
                 {/* <Footer/> */}

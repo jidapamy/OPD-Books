@@ -1,16 +1,26 @@
 .image {
-  background-color: #490D40;
-  background: url(https://static.wixstatic.com/media/de2056_3bafaae06ffa43268fdc17e2fa479574~mv2.jpg) no-repeat center center;
+  background: url(./../Img/HBG.png) no-repeat center ;
+  /* background: url(https://static.wixstatic.com/media/de2056_3bafaae06ffa43268fdc17e2fa479574~mv2.jpg) no-repeat center center; */
   background-size: cover;
-  height: 570px;
-  margin-top: -20px;
+  height: 850px;
+  margin-top: 0px;
+  margin: auto; 
+  border: 0px;
 }
 .image .heading {
   color: #00b5ad;
-  text-align: center;
-  padding-top: 200px;
+  /* text-align: center; */
+  margin-left: 8%;
+  padding-top: 180px;
   font-family: Kanit;
   font-size: 50px;
+}
+.image .detail {
+  color: #00b5ad;
+  /* text-align: center; */
+  margin-left: 8%;
+  font-family: Kanit;
+  font-size: 30px;
 }
 .image p {
   text-align: center;
@@ -22,6 +32,7 @@
   border: 1px solid #00b5ad;
   padding: 20px;
   font-size: 4.2em;
+  margin-right: 70%;
   border-radius: 6px;
 
   

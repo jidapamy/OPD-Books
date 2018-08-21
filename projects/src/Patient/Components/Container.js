@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Button, Container, Grid, Header,
-    Image, List, Segment, Card, Reveal
+    Image, List, Segment, Card, Reveal, Menu, Visibility, Icon
 } from 'semantic-ui-react'
 import styled from 'styled-components'
 // << IMPORT PHOTO >>
@@ -11,7 +11,6 @@ import icon1 from './../../Static/Img/Contianer/icon1.png';
 import icon2 from './../../Static/Img/Contianer/icon2.png';
 import icon3 from './../../Static/Img/Contianer/icon3.png';
 import icon4 from './../../Static/Img/Contianer/icon4.png';
-import roadmap from './../../Static/Img/Contianer/roadmap.png';
 import asia from './../../Static/Img/Contianer/asia.jpg';
 import my from './../../Static/Img/Contianer/my.jpg';
 import stamp from './../../Static/Img/Contianer/stamp.jpg';
@@ -19,13 +18,17 @@ import asiaGray from './../../Static/Img/Contianer/asiaGray.jpg';
 import myGray from './../../Static/Img/Contianer/myGray.jpg';
 import stampGray from './../../Static/Img/Contianer/stampGray.jpg';
 import WOW from 'wowjs';
-import iconhowto1 from './../../Static/Img/Contianer/icon-howto-1.png'
-import iconhowto2 from './../../Static/Img/Contianer/icon-howto-2.png'
+import './../../Static/Style/Navbar.css';
+import './../../Static/Style/HomeCss.css';
+import { Link } from 'react-router-dom';
 
 const GridColumn = styled(Grid.Column) `
     display: flex;
     justify-content: center;
     align-items: center;
+`
+const SegmentGray = styled(Segment) `
+    background-color:'#EDEEF1';
 `
 const HeaderCenter = styled(Header) `
     display: flex;
@@ -58,23 +61,86 @@ const ContentSizeCard = styled(Card.Content) `
      height:200px;
      padding-Button:3em;
 `
+const fixedMenuStyle = {
+    backgroundColor: 'transparent',
+  border: '1px solid #ddd',
+  boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)',
+}
 
+const menuStyle = {
+  border: 'none',
+  borderRadius: 0,
+  boxShadow: 'none',
+  marginBottom: '1em',
+  marginTop: '4em',
+  transition: 'box-shadow 0.5s ease, padding 0.5s ease',
+  backgroundColor: 'transparent'
+}
 class ContainerExampleContainer extends React.Component {
+   state = {
+    menuFixed: false,
+    overlayFixed: false,
+  }
+  
+  stickTopMenu = () => this.setState({ menuFixed: true })
+  unStickTopMenu = () => this.setState({ menuFixed: false })
+
     componentDidMount() {
         new WOW.WOW().init()
     }
 
     render() {
+        const { menuFixed } = this.state
         return (
-            <Segment.Group style={{ border: '0px' }}>
-                {/* << ส่วรบอกวิธีการทำงาน โปรเจ็ค >> */}
+            <Segment.Group >
+               
+                <div className="image" >
+                    <Visibility
+                    onBottomPassed={this.stickTopMenu}
+                    onBottomVisible={this.unStickTopMenu}
+                    once={false}
+                    >
+                    <Menu size='big' pointing={true} 
+                        secondary={!menuFixed}
+                        borderless={true} 
+                        fixed={menuFixed && 'top'}
+                        style={!menuFixed ? fixedMenuStyle : menuStyle}
+                        style={{  border: '0px', }}
+                    >
+                    <Menu.Item>
+                                <Icon color='red' size='big' name='heartbeat' /><span style={{ fontSize: '2em', color:'#00B5AD'}}>OPD BOOKS</span>
+                                {/* <Icon.Group size='big'>
+                                    <Icon loading size='big' color='teal' name='circle notch' />
+                                    <Icon color='red'  name='heartbeat' />
+                                </Icon.Group> */}
+                               
+                    </Menu.Item>
+                     
+
+                    <Menu.Menu position='right' >
+                        <Menu.Item>
+                                    <Button basic inverted={!menuFixed} >Sign In</Button>
+                        </Menu.Item>
+
+                        <Menu.Item>
+                            
+                                    <Button basic inverted={!menuFixed} >Sign Up</Button>
+                        </Menu.Item>
+                    </Menu.Menu>
+                </Menu>
+                 </Visibility>
+
+                    <h1 className="heading">Welcome Everyone </h1>
+                    <h4 className="detail">OPD Book on Blockchain </h4>
+                    <Link to='/signup'><p><button className="btn btn-large" >Sign UP</button></p></Link>
+                </div>
                 <Segment style={{ padding: '5em 0em', border: '0px' }} vertical className="wow fadeInLeft" data-wow-delay="0.2s">
                     <Grid container stackable verticalAlign='middle'>
                         <Grid.Row>
-                            <Grid.Column floated='left' width={6}>
+                            <Grid.Column floated='left' width={8}>
                                 <Image
                                     rounded
-                                    size='large'
+                                    size='huge'
                                     src={Contain1}
                                 />
                             </Grid.Column>
@@ -84,12 +150,7 @@ class ContainerExampleContainer extends React.Component {
                                     When patient comes to clinic, registrar will ask patient about his ID card 
                                     name and surname for search in the system if not found any data , they must be register by fill in new patient registration form on paper and must check for allowing their profile record will share on blockchain. After that, registrar fills patient data and push confirm button for save in the system then the system will generate unique  hospital number for the patient.<br></br>
                                     </p>
-                                    <ol type="I">
-                                    <li><b>Step1: </b>The system push data in blockchain in term of adding new patient. Block in blockchain is broadcast to every node in network and wait for every node approve the transaction is valid ,then </li><br></br>
-                                    <li><b>Step2: </b>the block can be added to chain. </li> <br></br>
-                                    <li><b>Step4: </b>After the patients finish authorization profile record on their smartphone . The patient will get cured in order. First, come to nurse, she will asks for the symptoms. Next, send them to the doctor for diagnosis and then patients wait for the medicine from the pharmacist. Finally,  the pharmacist push button treatment finished.
-                                    The system will push data on blockchain. and Blockchain will do consensus process to add a transaction in chain. [Click] : then treatment finished.</li>
-                                    </ol>
+                                    
                                 
                             </Grid.Column>
                         </Grid.Row>
@@ -108,10 +169,10 @@ class ContainerExampleContainer extends React.Component {
                                     <li><b>Step4: </b>when treatment finished the system will push data on blockchain and Blockchain will doing consensus process to add a transaction in chain.</li>
                                 </ol>
                             </Grid.Column>
-                            <Grid.Column floated='left' width={6}>
+                            <Grid.Column floated='left' width={8}>
                                 <Image
                                     rounded
-                                    size='large'
+                                    size='huge'
                                     src={Contain2}
                                 />
                             </Grid.Column>
@@ -122,46 +183,6 @@ class ContainerExampleContainer extends React.Component {
                 {/* <<<<<<<<------------------->>>>>>>>>> */}
 
 
-                {/* << ส่วน ระบบทำอะไร บอกจุดมุ่งหมายข้อดีของเรา >> */}
-
-                
-                <Segment style={{ padding: '4em 0em', border: '0px', fontFamily: 'Kanit' }} vertical className="wow zoomIn" data-wow-delay="0.2s">
-                    <Container center="true">
-                        <Header as='h3' style={{ fontSize: '3em', textAlign: 'center' }}>HOW TO</Header>
-                        <p style={{ fontSize: '1.33em',textIndent: '30px' }}>
-                            ระบบของเราจะช่วยอำนวยความสะดวกให้แก่ ผู้ป่วย จากแต่ก่อน ผู้ป่วยต้อง กรอกฟอร์ม ทะเบียนผู้ป่วยใหม่ทุกครั้งในเวลา 
-                            ที่ผู้ป่วย ได้ไปรักษาคลินิก ใหม่ๆ ระบบเราจะเป็นการรวบรวมแต่ละคลินิกเข้าด้วยกัน ดังนั้นผู้ป่วยเพียงลงเทียนผู้ป่วยใหม่ครั้งเดียวไม่ว่า 
-                            ผู้ป่วยจะไปที่ไหน ผู้ป่วยสามารถที่จะเข้ารับการรักษา คลินิกที่ได้ลงทะเบียนกับเราไว้ได้ อย่างรวดเร็วไม่ต้องไปเสียเวลาลงทะเบียนผู้ป่วยใหม่ 
-                            โดยระบบของเรา จะมีข้อมูลผู้ป่วย อยู่บน Blockchain ที่สามารถเชื่อมต่อข้อมูลผู้ป่วย กระจายไปแต่ละคลินิกในเครือของเราได้ทุกคลินิกนดยสามารถทราบข้อมูลของผู้ป่วยได้ทันที 
-                            </p><br></br>
-                        <p style={{ fontSize: '1.33em', textIndent: '30px' }}>    
-                            ระบบที่จัดการทะเบียนผู้ป่วยสำหรับคลินิกในเครือเดียวกันโดยใช้ Technology blockchian  มาใช้ในการ Share ข้อมูลผู้ป่วยร่วมกัน ทำให้ผู้ป่วย ไม่ต้องลงทะเบียนผู้ป่วยหลายๆครั้ง และข้อมูลของผู้ป่วยมีความปลอดภัยซึ่งเป็นจุดสำคัญของระบบนี้ รวมไปถึงช่วยให้บุคลากรในคลินิก ทำงานรวดเร็วขึ้นและลดการใช้เอกสารกระดาษเปลี่ยนให้เป็นการเก็บข้อมูลแบบ electronic<br></br>
-                            การสมัครทะเบียนผู้ป่วยใหม่
-                            หากเป็นผู้ป่วยใหม่ ต้องลงทะเบียนผู้ป่วยก่อนจะทำการรักษาผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ
-                            </p>
-                            {/* <Header as='h3' style={{ fontSize: '1.7em', textAlign: 'center' }}>ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ </Header> */}
-                            
-                        <Grid columns='equal' stackable width={4} style={{ paddingTop: '3em'}}>
-
-                            <Grid.Row textAlign='center'>
-                                
-                                <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em',marginLeft:'20%' }} className="wow zoomIn" data-wow-delay="0.2s">
-                                    <GridColumn>
-                                        <Image size='medium'src={iconhowto1} />
-                                        
-                                    </GridColumn>
-                                </Grid.Column>
-                                <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em', marginRight: '20%' }} className="wow zoomIn" data-wow-delay="0.2s">
-                                    <GridColumn>
-                                        <Image size='medium'src={iconhowto2} />
-                                        </GridColumn>
-                                </Grid.Column>
-
-                            </Grid.Row>
-                        </Grid>
-                    </Container>
-                </Segment>
-               
                 {/* << ส่วน ICON บอกจุดมุ่งหมายข้อดีของเรา >> */}
 
                 <Segment style={{ paddingTob: '2em', border: '0px' }} >
@@ -172,7 +193,7 @@ class ContainerExampleContainer extends React.Component {
 
                             <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
                                 <GridColumn><ImageSizeRow src={icon1} /></GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"DEVELOP"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>DEVELOP</Header>
                                 <p style={{ fontSize: '1em' }}>
                                     Develop our team potential and learn new technology.
                                 </p>
@@ -180,7 +201,7 @@ class ContainerExampleContainer extends React.Component {
 
                             <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
                                 <GridColumn><ImageSizeRow src={icon2} /></GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"PREVENT"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>PREVENT</Header>
                                 <p style={{ fontSize: '1em' }}>
                                     Prevent theft of patient data. In case the patient does not consent.
                         </p>
@@ -188,7 +209,7 @@ class ContainerExampleContainer extends React.Component {
 
                             <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
                                 <GridColumn><ImageSizeRow src={icon3} /></GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"FACILITATE"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>FACILITATE</Header>
                                 <p style={{ fontSize: '1em' }}>
                                     Facilitate about registration for patient and data management for employee.
                         </p>
@@ -196,7 +217,7 @@ class ContainerExampleContainer extends React.Component {
 
                             <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
                                 <GridColumn><ImageSizeRow src={icon4} /></GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"ONLINE"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>ONLINE</Header>
                                 <p style={{ fontSize: '1em' }}>
                                     Save on internet instead of paper document.
                         </p>
@@ -209,17 +230,27 @@ class ContainerExampleContainer extends React.Component {
                 {/* <<<<<<<<------------------->>>>>>>>>> */}
 
 
+                {/* << ส่วน ระบบทำอะไร บอกจุดมุ่งหมายข้อดีของเรา >> */}
 
-                {/* <<<<< ส่วนของ หลายละเอียดเนื้อหาอื่นๆ >>>>>>*/}
-                <Segment style={{ padding: '5em 3em', border: '0px' }} vertical className="wow zoomIn" data-wow-delay="0.2s">
-                    <HeaderCenter as='h5' style={{ fontSize: '2em' }}>Roadmap</HeaderCenter>
-                    <RoadmapCenter
-                        centered
-                        size='massive'
-                        src={roadmap}
-                    />
-                </Segment>
-                {/* <<<<<<<<------------------->>>>>>>>>> */}
+                
+                <SegmentGray style={{ padding: '4em 0em', border: '0px', fontFamily: 'Kanit', backgroundColor: '#F8F8F8' }} vertical >
+                    <Container center="true" style={{ backgroundColor: '#F8F8F8' }} className="wow fadeIn" data-wow-delay="0.2s">
+                        <Header as='h3' style={{ fontSize: '3em', textAlign: 'center' }}>HOW TO</Header>
+                        <p style={{ fontSize: '1.33em',textIndent: '30px' }}>
+                            Our patients will need to fill out a new patient registration form every time they visit a new clinic. We will collect each clinic together. So the patient just drops a new patient's candle once. Where is the patient going? Patients are able to be admitted. The clinic has registered with us. No need to waste time registering new patients. By our system. There will be patient data available on Blockchain that can connect patient data. Each clinic in our clinic can receive information on patients immediately. 
+                            </p><br></br>
+                        
+                            {/* <Header as='h3' style={{ fontSize: '1.7em', textAlign: 'center' }}>ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ </Header> */}
+                            
+                       
+                    </Container>
+                </SegmentGray>
+               
+                
+
+
+
+                
 
 
 
@@ -232,33 +263,33 @@ class ContainerExampleContainer extends React.Component {
                     <Grid columns='equal' stackable width={4}>
                         <Grid.Row textAlign='center'>
 
-                            <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
+                            <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow fadeIn" data-wow-delay="0.2s">
                                 <GridColumn>
                                     <Reveal animated='small fade'>
                                         <Reveal.Content visible>
-                                            <ImageSizeRow circular src={my} />
-                                        </Reveal.Content>
-                                        <Reveal.Content hidden>
                                             <ImageSizeRow circular src={myGray} />
                                         </Reveal.Content>
+                                        <Reveal.Content hidden>
+                                            <ImageSizeRow circular src={my} />
+                                        </Reveal.Content>
                                     </Reveal>
                                 </GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"Jidapa Sikaphan"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>Jidapa Sikaphan</Header>
                                 
                             </Grid.Column>
 
-                            <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow zoomIn" data-wow-delay="0.2s">
+                            <Grid.Column style={{ paddingBottom: '3em', paddingTop: '1em' }} className="wow fadeIn" data-wow-delay="0.2s">
                                 <GridColumn>
                                     <Reveal animated='small fade'>
                                         <Reveal.Content visible>
-                                            <ImageSizeRow circular src={stamp} />
-                                        </Reveal.Content>
-                                        <Reveal.Content hidden>
                                             <ImageSizeRow circular src={stampGray} />
                                         </Reveal.Content>
+                                        <Reveal.Content hidden>
+                                            <ImageSizeRow circular src={stamp} />
+                                        </Reveal.Content>
                                     </Reveal>
                                 </GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"Notphattri Buntham"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>Notphattri Buntham</Header>
                                 
                             </Grid.Column>
 
@@ -266,14 +297,14 @@ class ContainerExampleContainer extends React.Component {
                                 <GridColumn>
                                     <Reveal animated='small fade'>
                                         <Reveal.Content visible>
-                                            <ImageSizeRow circular src={asia} />
+                                            <ImageSizeRow circular src={asiaGray} />
                                         </Reveal.Content>
                                         <Reveal.Content hidden>
-                                            <ImageSizeRow circular src={asiaGray} />
+                                            <ImageSizeRow circular src={asia} />
                                         </Reveal.Content>
                                     </Reveal>
                                 </GridColumn>
-                                <Header as='h5' style={{ fontSize: '2em' }}>"Surakiti Sopontanapat"</Header>
+                                <Header as='h5' style={{ fontSize: '2em' }}>Surakiti Sopontanapat"</Header>
                                 
                             </Grid.Column>
 

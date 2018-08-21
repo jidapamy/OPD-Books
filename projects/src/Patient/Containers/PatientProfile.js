@@ -210,9 +210,10 @@ export default class PatientProfile extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
   render() {
     const { open, size } = this.state;
-    const { activeItem } = this.state;
+    const { activeItem } = this.state
 
     const currentDate = moment().format("ll");
     // Encrypt //
@@ -222,506 +223,184 @@ export default class PatientProfile extends Component {
     );
     var QRCodes = "" + ciphertext;
 
-    return <Segment.Group style={{ border: "0px" }}>
-        <Navbar role="patient" show={this.show} />
-        <Segment style={{ backgroundColor: "#00b5ad1a" }}>
-          <Header as="h2" icon textAlign="center">
-            <Icon name="user" circular />
-            <Header.Content>
-              {this.state.titlename}
-              {this.state.firstname} {this.state.lastname}
-            </Header.Content>
-
-            <Header.Content>
-              {/* <PopupQRCode size={'mini'} open={open} onClose={this.close}>
-                                <Modal.Content>
-                                    <QRCode
-                                        bgColor="#FFFFFF"
-                                        fgColor="#000000"
-                                        level="Q"
-                                        value={QRCodes}
-                                    />
-                                    <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-                                    <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
-                                </Modal.Content>
-                            </PopupQRCode> */}
-            </Header.Content>
-          </Header>
-          <Container>
-            <Grid columns="equal" stackable>
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="address book outline" content="Profile" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Host No.
-                                </Header.Subheader>
-                                {this.state.hospitalnumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  ID Card.
-                                </Header.Subheader>
-                                {this.state.citizenId}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Name</Header.Subheader>
-                                {this.state.titlename} {this.state.firstname} {this.state.lastname}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Date of Birth
-                                </Header.Subheader>
-                                {this.state.dob}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Gender</Header.Subheader>
-                                {this.state.gender}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Blood Group
-                                </Header.Subheader>
-                                {this.state.bloodgroup}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Congenital Disease
-                                </Header.Subheader>
-                                {this.state.congenitaldisease}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Occupation
-                                </Header.Subheader>
-                                {this.state.occupartion}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Status</Header.Subheader>
-                                {this.state.statuspatient}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Religion
-                                </Header.Subheader>
-                                {this.state.religion}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Nationality
-                                </Header.Subheader>
-                                {this.state.nationality}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Country</Header.Subheader>
-                                {this.state.country}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="first aid" content="History Or Drung Allergy" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  privilege
-                                </Header.Subheader>
-                                {this.state.privilege}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Allergy</Header.Subheader>
-                                {this.state.allergy}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="volume control phone" content="Contact" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Email</Header.Subheader>
-                                {this.state.email}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Home PhoneNumber
-                                </Header.Subheader>
-                                {this.state.homephonenumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Mobile Number
-                                </Header.Subheader>
-                                {this.state.mobilenumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="home" content="Address" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  TypeofHouse
-                                </Header.Subheader>
-                                {this.state.typeofHouse}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Address</Header.Subheader>
-                                {this.state.patientaddress}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Sub District
-                                </Header.Subheader>
-                                {this.state.subDistrict}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  District
-                                </Header.Subheader>
-                                {this.state.district}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  province
-                                </Header.Subheader>
-                                {this.state.province}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Postal Code
-                                </Header.Subheader>
-                                {this.state.zipcode}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="heartbeat" content="Contact First And Last Name In Case Of Emergency" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Name</Header.Subheader>
-                                {this.state.emerTitle}
-                                {this.state.emerFirstname} {this.state.emerLastname}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Home PhoneNumber
-                                </Header.Subheader>
-                                {this.state.emerHomePhonenumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Mobile Number
-                                </Header.Subheader>
-                                {this.state.emerMobileNumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  District
-                                </Header.Subheader>
-                                {this.state.emerDistrict}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Relationship
-                                </Header.Subheader>
-                                {this.state.emerRelationship}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Type Of House
-                                </Header.Subheader>
-                                {this.state.emerTypeofHouse}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Address</Header.Subheader>
-                                {this.state.emerAddress}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Sub District
-                                </Header.Subheader>
-                                {this.state.emerSubDistrict}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Province
-                                </Header.Subheader>
-                                {this.state.emerProvince}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Postal Code
-                                </Header.Subheader>
-                                {this.state.emerZipcode}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="child" content="In Case Under 15 Year Old" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Father Name
-                                </Header.Subheader>
-                                {this.state.fatherFirstname} {this.state.fatherLastname}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Mother Name
-                                </Header.Subheader>
-                                {this.state.motherFirstname} {this.state.motherLastname}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-        </Segment>
-        <Modal trigger={<Button>Show Modal</Button>}>open={open} onClose={this.close}
-          <Modal.Header>Select a Photo</Modal.Header>
-          <Modal.Content image>
-            <Image wrapped size="medium" src="https://react.semantic-ui.com/images/avatar/large/rachel.png" />
-            <Modal.Description>
-              <Header>Default Profile Image</Header>
-              <p>
-                We've found the following gravatar image associated with
-                your e-mail address.
-              </p>
-              <p>Is it okay to use this photo?</p>
-            </Modal.Description>
+    return (
+      <div>
+        <PopupQRCode size={'mini'} open={open} onClose={this.close}>
+          <Modal.Content>
+            <QRCode
+              bgColor="#FFFFFF"
+              fgColor="#000000"
+              level="Q"
+              value={QRCodes}
+            />
+            <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
+            <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
           </Modal.Content>
-        </Modal>
-      </Segment.Group>;
+        </PopupQRCode> */}
+
+        <Navbar role="patient" show={this.show} />
+        <br></br>
+        <Container>
+          <br />
+            <Grid>
+              
+            <Grid.Column width={2}>
+              
+              <Image src='https://react.semantic-ui.com/images/avatar/large/patrick.png' size='small' spaced='left' circular />
+                
+            </Grid.Column>
+
+            <Grid.Column width={4}>
+                
+                  <Header as='h2' floated='left'>
+                    {this.state.titlename}.
+                    {this.state.firstname} {this.state.lastname}
+                  </Header>
+                  <br/>
+                <Grid.Row>
+                      <Header.Subheader  >                    
+                  <span style={{ color: '#848788' }}>Hospital Number : </span>{this.state.hospitalnumber}
+                      </Header.Subheader>
+                  </Grid.Row>
+                  <Grid.Row>
+                      <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Citizen ID : </span>{this.state.citizenId}
+                      </Header.Subheader>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Header.Content as='h5' floated='left'>
+                    <Label as='a' color='teal'>
+                      <Icon name='phone' />
+                      {this.state.mobilenumber}
+                    </Label>
+                    <Label as='a' color='teal'>
+                    <Icon name='home' />
+                      {this.state.homephonenumber}
+                    </Label>
+                      </Header.Content>
+                  </Grid.Row>
+              </Grid.Column>
+
+            <Grid.Column width={1}>
+              <Divider vertical>Or</Divider>
+            </Grid.Column>
+
+            <Grid.Column width={3}>
+
+              <Header as='h2'>
+                Infomation
+              </Header>
+              <Grid.Row>
+                <Header.Subheader  >
+                  <span style={{ color: '#848788' }}>Birth Day :  </span>{this.state.dob}
+                </Header.Subheader>
+              </Grid.Row>
+              <Grid.Row>
+                <Header.Subheader >
+                  <span style={{ color:'#848788'}}>Gender : </span>{this.state.gender} 
+                </Header.Subheader>
+                <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Blood Group :  </span> {this.state.bloodgroup}
+                </Header.Subheader>
+                <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Status :  </span> {this.state.statuspatient}
+                </Header.Subheader>
+              </Grid.Row>
+             
+            </Grid.Column>
+
+            <Grid.Column width={3}>
+
+              <Header as='h2'>
+                <br/>
+              </Header>
+              <Grid.Row>
+                <Header.Subheader  >
+                  <span style={{ color: '#848788' }}>Nation :  </span>{this.state.nationality}
+                </Header.Subheader>
+              </Grid.Row>
+              <Grid.Row>
+                <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Country : </span>{this.state.country}
+                </Header.Subheader>
+                <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Religion :  </span> {this.state.religion}
+                </Header.Subheader>
+                <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Occupartion :  </span> {this.state.occupartion}
+                </Header.Subheader>
+              </Grid.Row>
+
+            </Grid.Column>
+
+            <Grid.Column width={3}>
+
+              <Button color='teal' 
+                      basic 
+                      floated='left' 
+                      onClick={this.show()}
+                      >
+                      <Icon name='qrcode' />
+                      {this.props.role === 'emp' ? 'Scan QRCode' : 'Show QRCode'}
+              </Button>
+
+            </Grid.Column>
+
+           </Grid>
+          
+
+        </Container>
+       <br/>
+        <Divider />
+        <Container>
+        <Grid columns={1}>
+          <Grid.Column>
+            <Segment attached='top'>Segment 1</Segment>
+            <Segment attached>Segment 2</Segment>
+            <Segment attached>Segment 3</Segment>
+            <Segment attached='bottom'>Segment 4</Segment>
+
+            <Segment.Group>
+              
+              <Segment>
+                <p>Top</p>
+              </Segment>
+              <Segment.Group>
+                <Segment>
+                  <p>Nested Top</p>
+                </Segment>
+                <Segment>
+                  <p>Nested Middle</p>
+                </Segment>
+                <Segment>
+                  <p>Nested Bottom</p>
+                </Segment>
+              </Segment.Group>
+              <Segment>
+                <p>Middle</p>
+              </Segment>
+              <Segment.Group horizontal>
+                <Segment>
+                  <p>Top</p>
+                </Segment>
+                <Segment>
+                  <p>Middle</p>
+                </Segment>
+                <Segment>
+                  <p>Bottom</p>
+                </Segment>
+              </Segment.Group>
+              <Segment>
+                <p>Bottom</p>
+              </Segment>
+            </Segment.Group>
+          </Grid.Column>
+        </Grid>
+        
+        </Container>
+
+        
+      </div>
+      )
   }
 }
