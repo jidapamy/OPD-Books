@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from './header.js'
+// import './App.css';
+// import Header from './header.js'
 import Queue from './queue.js'
 import Nurse from './nurse.js'
 import Doctor from './doctor.js'
 import Pharmacy from './pharmacy.js'
 
-class App extends Component {
+export default class Stamp extends Component {
   render() {
     return (
 
 
       <div className="App">
-        <Header/>
-        {/* <Queue/> */} // 
+        {/* <Header/> */}
+        {/* <Queue/> //  */}
         {/* <Doctor/> */}
         {/* <Nurse/> */}
         <Pharmacy/>
@@ -25,4 +25,3 @@ class App extends Component {
   }
 }
 
-export default App;

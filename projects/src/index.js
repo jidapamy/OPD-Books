@@ -9,6 +9,8 @@ import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 import PatientTreatment from "./Employee/Containers/PatientTreatment";
 import EmpLogin from "./Employee/Containers/EmpLogin";
 
+import Stamp from "./stamp/App";
+
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -25,6 +27,8 @@ ReactDOM.render(
 
       <Route path="/patientTreatment" component={PatientTreatment} />
       <Route path="/signinForEmployee" component={EmpLogin} />
+
+      <Route path="/stamp" component={Stamp} />
     </div>
   </Router>,
   document.getElementById("root")

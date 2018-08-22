@@ -1,5 +1,22 @@
 import React, { Component } from "react";
-import { Grid, Menu,  Segment,  Container,  Divider,  Header,  Icon,  Image,  Table,  Label,  List,  Button,  Modal,  Popup,  Form,  TextArea} from "semantic-ui-react";
+import {
+  Grid,
+  Menu,
+  Segment,
+  Container,
+  Divider,
+  Header,
+  Icon,
+  Image,
+  Table,
+  Label,
+  List,
+  Button,
+  Modal,
+  Popup,
+  Form,
+  TextArea
+} from "semantic-ui-react";
 import styled from "styled-components";
 import iconOpd from "./../../Static/Img/IconOPDs.png";
 import swal from "sweetalert2";
@@ -127,22 +144,48 @@ export default class PatientProfile extends Component {
 
   //Connect API
   componentWillMount() {
-    console.log(this.props.location.state.citizenId);
     if (this.props.location.state.citizenId === undefined) {
       this.props.history.push("/signin");
     } else {
-      const InfoPatientPart1 = contract.getInfoPatientPart1(this.props.location.state.citizenId,defaultAccount);
-      const InfoPatientPart2 = contract.getInfoPatientPart2(this.props.location.state.citizenId, defaultAccount);
-      const InfoPatientPart3 = contract.getInfoPatientPart3(this.props.location.state.citizenId,defaultAccount);
-      const InfoPatientPart4 = contract.getInfoPatientPart4(this.props.location.state.citizenId,defaultAccount);
+      const InfoPatientPart1 = contract.getInfoPatientPart1(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart2 = contract.getInfoPatientPart2(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart3 = contract.getInfoPatientPart3(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart4 = contract.getInfoPatientPart4(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const AddressPatient = contract.getAddressPatient(this.props.location.state.citizenId,defaultAccount);
-      const PatientAllergy = contract.getPatientAllergy(this.props.location.state.citizenId,defaultAccount);
+      const AddressPatient = contract.getAddressPatient(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const PatientAllergy = contract.getPatientAllergy(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const EmergencyContactPart1 = contract.getEmergencyContactPart1(this.props.location.state.citizenId, defaultAccount);
-      const EmergencyContactPart2 = contract.getEmergencyContactPart2(this.props.location.state.citizenId,defaultAccount);
+      const EmergencyContactPart1 = contract.getEmergencyContactPart1(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const EmergencyContactPart2 = contract.getEmergencyContactPart2(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const PatientParent = contract.getPatientParent(this.props.location.state.citizenId,defaultAccount);
+      const PatientParent = contract.getPatientParent(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
       this.setState({
         //InfoPatient Part1
@@ -214,7 +257,7 @@ export default class PatientProfile extends Component {
 
   render() {
     const { open, size } = this.state;
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     const currentDate = moment().format("ll");
     // Encrypt //
@@ -224,181 +267,9 @@ export default class PatientProfile extends Component {
     );
     var QRCodes = "" + ciphertext;
 
-<<<<<<< HEAD
-    return <Segment.Group style={{ border: "0px" }}>
-        <Navbar role="patient" show={this.show} />
-        <Segment style={{ backgroundColor: "#00b5ad1a" }}>
-          <Header as="h2" icon textAlign="center">
-            <Icon name="user" circular />
-            <Header.Content>
-              {this.state.titlename}
-              {this.state.firstname} {this.state.lastname}
-            </Header.Content>
-
-            <Header.Content>
-              <PopupQRCode size={'mini'} open={open} onClose={this.close}>
-                                <Modal.Content>
-                                    <QRCode
-                                        bgColor="#FFFFFF"
-                                        fgColor="#000000"
-                                        level="Q"
-                                        value={QRCodes}
-                                    />
-                                    <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-                                    <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
-                                </Modal.Content>
-                            </PopupQRCode>
-            </Header.Content>
-          </Header>
-          <Container>
-            <Grid columns="equal" stackable>
-              <Grid.Row textAlign="center">
-                <Grid.Column>
-                  <GridColumnleft>
-                    <Segment.Group style={{ borderRadius: "2rem" }}>
-                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
-                        <Header as="h3" textAlign="center" icon="address book outline" content="Profile" />
-                        <Divider />
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Host No.
-                                </Header.Subheader>
-                                {this.state.hospitalnumber}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  ID Card.
-                                </Header.Subheader>
-                                {this.state.citizenId}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Name</Header.Subheader>
-                                {this.state.titlename} {this.state.firstname} {this.state.lastname}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Date of Birth
-                                </Header.Subheader>
-                                {this.state.dob}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Gender</Header.Subheader>
-                                {this.state.gender}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Blood Group
-                                </Header.Subheader>
-                                {this.state.bloodgroup}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Congenital Disease
-                                </Header.Subheader>
-                                {this.state.congenitaldisease}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Occupation
-                                </Header.Subheader>
-                                {this.state.occupartion}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Status</Header.Subheader>
-                                {this.state.statuspatient}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-
-                        <Grid columns={3}>
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Religion
-                                </Header.Subheader>
-                                {this.state.religion}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>
-                                  Nationality
-                                </Header.Subheader>
-                                {this.state.nationality}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-
-                          <Grid.Column>
-                            <Segment basic>
-                              <Header as="h2" icon>
-                                <Header.Subheader>Country</Header.Subheader>
-                                {this.state.country}
-                              </Header>
-                            </Segment>
-                          </Grid.Column>
-                        </Grid>
-                      </Segment>
-                    </Segment.Group>
-                  </GridColumnleft>
-                </Grid.Column>
-              </Grid.Row>
-=======
     return (
       <div>
-        <PopupQRCode size={'mini'} open={open} onClose={this.close}>
+        <PopupQRCode size={"mini"} open={open} onClose={this.close}>
           <Modal.Content>
             <QRCode
               bgColor="#FFFFFF"
@@ -406,175 +277,224 @@ export default class PatientProfile extends Component {
               level="Q"
               value={QRCodes}
             />
-            <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-            <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
+            <Header textAlign={"center"} size="large">
+              {this.state.titlename}
+              {this.state.firstname} {this.state.lastname}
+            </Header>
+            <Button
+              size="huge"
+              basic
+              color="teal"
+              onClick={this.close}
+              style={{ marginTop: "10%" }}
+              fluid
+            >
+              {" "}
+              Close
+            </Button>
           </Modal.Content>
-        </PopupQRCode> */}
->>>>>>> b502d4f1a24901aa01daa12bfe20abc52609e8c6
+        </PopupQRCode>
 
         <Navbar role="patient" show={this.show} />
-        <br></br>
+        <br />
         <Container>
           <br />
-            <Grid>
-              
+          <Grid>
             <Grid.Column width={2}>
-              
-              <Image src='https://react.semantic-ui.com/images/avatar/large/patrick.png' size='small' spaced='left' circular />
-                
+              <Image
+                src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
+                size="small"
+                spaced="left"
+                circular
+              />
             </Grid.Column>
 
             <Grid.Column width={4}>
-                
-                  <Header as='h2' floated='left'>
-                    {this.state.titlename}.
-                    {this.state.firstname} {this.state.lastname}
-                  </Header>
-                  <br/>
-                <Grid.Row>
-                      <Header.Subheader  >                    
-                  <span style={{ color: '#848788' }}>Hospital Number : </span>{this.state.hospitalnumber}
-                      </Header.Subheader>
-                  </Grid.Row>
-                  <Grid.Row>
-                      <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Citizen ID : </span>{this.state.citizenId}
-                      </Header.Subheader>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Header.Content as='h5' floated='left'>
-                    <Label as='a' color='teal'>
-                      <Icon name='phone' />
-                      {this.state.mobilenumber}
-                    </Label>
-                    <Label as='a' color='teal'>
-                    <Icon name='home' />
-                      {this.state.homephonenumber}
-                    </Label>
-                      </Header.Content>
-                  </Grid.Row>
-              </Grid.Column>
+              <Header as="h2" floated="left">
+                {this.state.titlename}.
+                {this.state.firstname} {this.state.lastname}
+              </Header>
+              <br />
+              <Grid.Row>
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Hospital Number : </span>
+                  {this.state.hospitalnumber}
+                </Header.Subheader>
+              </Grid.Row>
+              <Grid.Row>
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Citizen ID : </span>
+                  {this.state.citizenId}
+                </Header.Subheader>
+              </Grid.Row>
+              <Grid.Row>
+                <Header.Content as="h5" floated="left">
+                  <Label as="a" color="teal">
+                    <Icon name="phone" />
+                    {this.state.mobilenumber}
+                  </Label>
+                  <Label as="a" color="teal">
+                    <Icon name="home" />
+                    {this.state.homephonenumber}
+                  </Label>
+                </Header.Content>
+              </Grid.Row>
+            </Grid.Column>
 
             <Grid.Column width={1}>
               <Divider vertical>Or</Divider>
             </Grid.Column>
 
             <Grid.Column width={3}>
-
-              <Header as='h2'>
-                Infomation
-              </Header>
+              <Header as="h2">Infomation</Header>
               <Grid.Row>
-                <Header.Subheader  >
-                  <span style={{ color: '#848788' }}>Birth Day :  </span>{this.state.dob}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Birth Day : </span>
+                  {this.state.dob}
                 </Header.Subheader>
               </Grid.Row>
               <Grid.Row>
-                <Header.Subheader >
-                  <span style={{ color:'#848788'}}>Gender : </span>{this.state.gender} 
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Gender : </span>
+                  {this.state.gender}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Blood Group :  </span> {this.state.bloodgroup}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Blood Group : </span>{" "}
+                  {this.state.bloodgroup}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Status :  </span> {this.state.statuspatient}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Status : </span>{" "}
+                  {this.state.statuspatient}
                 </Header.Subheader>
               </Grid.Row>
-             
             </Grid.Column>
 
             <Grid.Column width={3}>
-
-              <Header as='h2'>
-                <br/>
+              <Header as="h2">
+                <br />
               </Header>
               <Grid.Row>
-                <Header.Subheader  >
-                  <span style={{ color: '#848788' }}>Nation :  </span>{this.state.nationality}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Nation : </span>
+                  {this.state.nationality}
                 </Header.Subheader>
               </Grid.Row>
               <Grid.Row>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Country : </span>{this.state.country}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Country : </span>
+                  {this.state.country}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Religion :  </span> {this.state.religion}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Religion : </span>{" "}
+                  {this.state.religion}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Occupartion :  </span> {this.state.occupartion}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Occupartion : </span>{" "}
+                  {this.state.occupartion}
                 </Header.Subheader>
               </Grid.Row>
-
             </Grid.Column>
 
             <Grid.Column width={3}>
-
-              <Button color='teal' 
-                      basic 
-                      floated='left' 
-                      onClick={this.show()}
-                      >
-                      <Icon name='qrcode' />
-                      {this.props.role === 'emp' ? 'Scan QRCode' : 'Show QRCode'}
+              <Button color="teal" basic floated="left" onClick={this.show()}>
+                <Icon name="qrcode" />
+                {this.props.role === "emp" ? "Scan QRCode" : "Show QRCode"}
               </Button>
-
             </Grid.Column>
-
-           </Grid>
-          
-
+          </Grid>
         </Container>
-       <br/>
+        <br />
         <Divider />
         <Container>
-        <Grid columns={1}>
-          <Grid.Column>
-            <Segment attached='top'>Segment 1</Segment>
-            <Segment attached>Segment 2</Segment>
-            <Segment attached>Segment 3</Segment>
-            <Segment attached='bottom'>Segment 4</Segment>
-
-            <Segment.Group>
-              
-              <Segment>
-                <p>Top</p>
+          <Grid columns={2}>
+            <Grid.Column width={5}>
+              <Segment color="yellow" attached="top">
+                <Icon color="yellow" name="pills" />{" "}
+                <span style={{ color: "#FABD08" }}>อาการแพ้ :</span>{" "}
+                {this.state.allergy}
               </Segment>
+
               <Segment.Group>
-                <Segment>
-                  <p>Nested Top</p>
+                <Segment color="teal">
+                  <h4>
+                    <Icon name="home" />Address
+                  </h4>
+                  <Container>
+                    <Grid>
+                      <Grid.Column width={7}>
+                        <Header.Subheader>Type Of House</Header.Subheader>
+                        <Header.Subheader>Address</Header.Subheader>
+                        <Header.Subheader>Sub District</Header.Subheader>
+                        <Header.Subheader>District</Header.Subheader>
+                        <Header.Subheader>Province</Header.Subheader>
+                        <Header.Subheader>Zipcode</Header.Subheader>
+                      </Grid.Column>
+                      <Grid.Column width={9}>
+                        <Header.Subheader>
+                          : {this.state.typeofHouse}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.patientaddress}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.subDistrict}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.district}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.province}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.zipcode}
+                        </Header.Subheader>
+                      </Grid.Column>
+                    </Grid>
+                  </Container>
                 </Segment>
-                <Segment>
-                  <p>Nested Middle</p>
-                </Segment>
-                <Segment>
-                  <p>Nested Bottom</p>
-                </Segment>
-              </Segment.Group>
-              <Segment>
-                <p>Middle</p>
-              </Segment>
-              <Segment.Group horizontal>
-                <Segment>
-                  <p>Top</p>
-                </Segment>
-                <Segment>
-                  <p>Middle</p>
-                </Segment>
-                <Segment>
-                  <p>Bottom</p>
-                </Segment>
-              </Segment.Group>
-              <Segment>
-                <p>Bottom</p>
-              </Segment>
-            </Segment.Group>
-          </Grid.Column>
-        </Grid>
-        
-        </Container>
 
-        
+                <Segment color="teal">
+                  <h4>
+                    <Icon name="home" />Address
+                  </h4>
+                  <Container>
+                    <Grid>
+                      <Grid.Column width={7}>
+                        <Header.Subheader>Type Of House</Header.Subheader>
+                        <Header.Subheader>Address</Header.Subheader>
+                        <Header.Subheader>Sub District</Header.Subheader>
+                        <Header.Subheader>District</Header.Subheader>
+                        <Header.Subheader>Province</Header.Subheader>
+                        <Header.Subheader>Zipcode</Header.Subheader>
+                      </Grid.Column>
+                      <Grid.Column width={9}>
+                        <Header.Subheader>
+                          : {this.state.typeofHouse}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.patientaddress}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.subDistrict}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.district}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.province}
+                        </Header.Subheader>
+                        <Header.Subheader>
+                          : {this.state.zipcode}
+                        </Header.Subheader>
+                      </Grid.Column>
+                    </Grid>
+                  </Container>
+                </Segment>
+              </Segment.Group>
+            </Grid.Column>
+          </Grid>
+        </Container>
       </div>
-      )
+    );
   }
 }
