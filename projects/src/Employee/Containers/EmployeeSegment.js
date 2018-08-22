@@ -7,6 +7,8 @@ import moment from 'moment';
 import swal from 'sweetalert2';
 import { defaultAccount, contract,web3 } from './../../Lib/Web3';
 
+import { addQueue } from "./../../Service/QueueMethod"
+
 const CryptoJS = require("crypto-js");
 const PopupQRCode = styled(Modal) `
 position: fixed;
@@ -293,10 +295,82 @@ class SidebarBottomOverlay extends Component {
    
   }
 
+  addQueueForNurse = () => {
+    if(this.state.citizenId){
+      addQueue(1, this.state.hospitalnumber , this.state.citizenId, this.state.titlename, this.state.firstname, this.state.lastname, true, "-");
+      alert("Add Queue Success")
+      this.setState({
+
+    //InfoPatient Part1
+        registerDate: '',
+        hospitalnumber: '',
+        // photo: web3.toAscii(InfoPatientPart1[2]),
+        citizenId: '',
+
+        //InfoPatient Part2
+        dob: '',
+        titlename: '',
+        firstname: '',
+        lastname: '',
+        gender: '',
+
+        //InfoPatient Part3
+        congenitaldisease: '',
+        bloodgroup: '',
+        religion: '',
+        nationality: '',
+        country: '',
+
+        //InfoPatient Part4
+        statuspatient: '',
+        occupartion: '',
+        homephonenumber: '',
+        mobilenumber: '',
+        email: '',
+
+        //AddressPatient
+        typeofHouse: '',
+        patientaddress: '',
+        province: '',
+        district: '',
+        subDistrict: '',
+        zipcode: '',
+
+        //EmergencyContact Part1
+        emerTitle: '',
+        emerFirstname: '',
+        emerLastname: '',
+        emerRelationship: '',
+        emerHomePhonenumber: '',
+        emerMobileNumber: '',
+
+        //EmergencyContact Part2
+        emerTypeofHouse: '',
+        emerAddress: '',
+        emerProvince: '',
+        emerDistrict: '',
+        emerSubDistrict: '',
+        emerZipcode: '',
+
+        //PatientParent
+        fatherFirstname: '',
+        fatherLastname: '',
+        motherFirstname: '',
+        motherLastname: '',
+
+        //PatientAllergy
+        allergy: '',
+        privilege: ''
+      })
+    }else{
+      // ยังไม่มีคนไข้
+    }
+  }
+
+  // 1 ,"0x4850323331320000000000000000000000000000000000000000000000000000" ,"0x3132333435363738393031323300000000000000000000000000000000000000" ,"0x4d722e0000000000000000000000000000000000000000000000000000000000", "0x50617469656e7400000000000000000000000000000000000000000000000000" ,"0x5375726e616d6500000000000000000000000000000000000000000000000000", true ,"0x2d"
+
 
   render() {
-    
-    
     const { open, size } = this.state
     const { activeItem } = this.state
     return (
@@ -315,6 +389,16 @@ class SidebarBottomOverlay extends Component {
               <Label as='a' basic color='teal'>ID Card: {this.state.citizenId}</Label><Label as='a' basic color='teal'>E-mail: {this.state.email}</Label>
             </Header.Subheader>
           </Header>
+
+          <Button 
+            color='yellow' 
+            content='Add Q for nurse' 
+            icon='right arrow' 
+            labelPosition='right' 
+            disabled={!this.state.citizenId}
+            onClick={this.addQueueForNurse}
+            
+          />
 
           <Segment >
             <Header as='h1' color='teal' content='Profile'/>

@@ -127,6 +127,7 @@ export default class PatientProfile extends Component {
 
   //Connect API
   componentWillMount() {
+    console.log(this.props.location.state.citizenId);
     if (this.props.location.state.citizenId === undefined) {
       this.props.history.push("/signin");
     } else {
@@ -223,6 +224,178 @@ export default class PatientProfile extends Component {
     );
     var QRCodes = "" + ciphertext;
 
+<<<<<<< HEAD
+    return <Segment.Group style={{ border: "0px" }}>
+        <Navbar role="patient" show={this.show} />
+        <Segment style={{ backgroundColor: "#00b5ad1a" }}>
+          <Header as="h2" icon textAlign="center">
+            <Icon name="user" circular />
+            <Header.Content>
+              {this.state.titlename}
+              {this.state.firstname} {this.state.lastname}
+            </Header.Content>
+
+            <Header.Content>
+              <PopupQRCode size={'mini'} open={open} onClose={this.close}>
+                                <Modal.Content>
+                                    <QRCode
+                                        bgColor="#FFFFFF"
+                                        fgColor="#000000"
+                                        level="Q"
+                                        value={QRCodes}
+                                    />
+                                    <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
+                                    <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
+                                </Modal.Content>
+                            </PopupQRCode>
+            </Header.Content>
+          </Header>
+          <Container>
+            <Grid columns="equal" stackable>
+              <Grid.Row textAlign="center">
+                <Grid.Column>
+                  <GridColumnleft>
+                    <Segment.Group style={{ borderRadius: "2rem" }}>
+                      <Segment color="teal" style={{ borderRadius: "2rem" }}>
+                        <Header as="h3" textAlign="center" icon="address book outline" content="Profile" />
+                        <Divider />
+                        <Grid columns={3}>
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Host No.
+                                </Header.Subheader>
+                                {this.state.hospitalnumber}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  ID Card.
+                                </Header.Subheader>
+                                {this.state.citizenId}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>Name</Header.Subheader>
+                                {this.state.titlename} {this.state.firstname} {this.state.lastname}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+                        </Grid>
+
+                        <Grid columns={3}>
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Date of Birth
+                                </Header.Subheader>
+                                {this.state.dob}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>Gender</Header.Subheader>
+                                {this.state.gender}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Blood Group
+                                </Header.Subheader>
+                                {this.state.bloodgroup}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+                        </Grid>
+
+                        <Grid columns={3}>
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Congenital Disease
+                                </Header.Subheader>
+                                {this.state.congenitaldisease}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Occupation
+                                </Header.Subheader>
+                                {this.state.occupartion}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>Status</Header.Subheader>
+                                {this.state.statuspatient}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+                        </Grid>
+
+                        <Grid columns={3}>
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Religion
+                                </Header.Subheader>
+                                {this.state.religion}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>
+                                  Nationality
+                                </Header.Subheader>
+                                {this.state.nationality}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+
+                          <Grid.Column>
+                            <Segment basic>
+                              <Header as="h2" icon>
+                                <Header.Subheader>Country</Header.Subheader>
+                                {this.state.country}
+                              </Header>
+                            </Segment>
+                          </Grid.Column>
+                        </Grid>
+                      </Segment>
+                    </Segment.Group>
+                  </GridColumnleft>
+                </Grid.Column>
+              </Grid.Row>
+=======
     return (
       <div>
         <PopupQRCode size={'mini'} open={open} onClose={this.close}>
@@ -237,6 +410,7 @@ export default class PatientProfile extends Component {
             <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
           </Modal.Content>
         </PopupQRCode> */}
+>>>>>>> b502d4f1a24901aa01daa12bfe20abc52609e8c6
 
         <Navbar role="patient" show={this.show} />
         <br></br>

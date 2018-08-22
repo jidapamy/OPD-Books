@@ -305,7 +305,8 @@ export default class ManagePatientRecord extends Component {
     // const allergy = !this.state.allergy.disabled ? this.state.otherallergy : this.state.allergy.value
     // const privilege = !this.state.privilege.disabled ? this.state.otherprivilege : this.state.privilege.value
     const hn = 'HP2312';
-    contract.setInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.currentDate), web3.fromAscii(hn), web3.fromAscii(this.state.patient.password), defaultAccount)
+    // function setInfoPatientPart1( bytes32  _citizenId, bytes32  _registerDate, bytes32  _hospitalnumber, bytes32 _password) public {
+    contract.setInfoPatientPart1(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(moment().format("L")), web3.fromAscii(hn), web3.fromAscii(this.state.patient.password), defaultAccount);
     contract.setInfoPatientPart2(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.dob), web3.fromAscii(this.state.patient.nameTitle), web3.fromAscii(this.state.patient.firstname), web3.fromAscii(this.state.patient.lastname), web3.fromAscii(this.state.patient.gender), defaultAccount);
     contract.setInfoPatientPart3(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.congenitalDisease), web3.fromAscii(this.state.patient.bloodgroup), web3.fromAscii(this.state.patient.religion), web3.fromAscii(this.state.patient.nationality), web3.fromAscii(this.state.patient.country), defaultAccount);
     contract.setInfoPatientPart4(web3.fromAscii(this.state.patient.citizenId), web3.fromAscii(this.state.patient.status), web3.fromAscii(this.state.patient.occupartion === '' ? '-' : this.state.patient.occupartion), web3.fromAscii(this.state.patient.homePhonenumber === '' ? '-' : this.state.patient.homePhonenumber ), web3.fromAscii(this.state.patient.mobileNumber), web3.fromAscii(this.state.patient.email), defaultAccount);
