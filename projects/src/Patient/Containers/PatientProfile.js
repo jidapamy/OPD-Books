@@ -127,6 +127,7 @@ export default class PatientProfile extends Component {
 
   //Connect API
   componentWillMount() {
+    console.log(this.props.location.state.citizenId);
     if (this.props.location.state.citizenId === undefined) {
       this.props.history.push("/signin");
     } else {
@@ -233,7 +234,7 @@ export default class PatientProfile extends Component {
             </Header.Content>
 
             <Header.Content>
-              {/* <PopupQRCode size={'mini'} open={open} onClose={this.close}>
+              <PopupQRCode size={'mini'} open={open} onClose={this.close}>
                                 <Modal.Content>
                                     <QRCode
                                         bgColor="#FFFFFF"
@@ -244,7 +245,7 @@ export default class PatientProfile extends Component {
                                     <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
                                     <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
                                 </Modal.Content>
-                            </PopupQRCode> */}
+                            </PopupQRCode>
             </Header.Content>
           </Header>
           <Container>

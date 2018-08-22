@@ -31,19 +31,38 @@ export default class EmpLogin extends Component {
         
         if (res){
             console.log(res)
-        //     userLogin.clinic = res.clinic;
-        //     userLogin.empId = res.empId;
-        //     userLogin.firstname = res.firstname;
-        //     userLogin.lastname = res.lastname;
-        //     userLogin.nameTitle = res.nameTitle;
-        //     userLogin.position = res.position;
-        //     this.props.history.push({
-        //       pathname: "/profile",
-        //       state: { userLogin: userLogin }
-        //     });
-        //     login(userLogin);
+            const empLogin = contract.getInfoEmployee(web3.fromAscii(this.state.empId));
+            if (empLogin) {
+              userLogin.empId = web3.toAscii(empLogin[0]);
+              userLogin.nameTitle = web3.toAscii(empLogin[1]);
+              userLogin.firstname = web3.toAscii(empLogin[2]);
+              userLogin.lastname = web3.toAscii(empLogin[3]);
+              userLogin.position = +(empLogin[5].toString());
+              userLogin.clinic = web3.toAscii(empLogin[6]);
+              console.log(userLogin);
+              let path = "";
+              switch (userLogin.position) {
+                case 1: // เวชระเบียน
+                  path = "/employeeSegment";
+                  break;
+                case 2: // พยาบาล
+                  path = "/patientTreatment";
+                  break;
+                case 3: // หมอ
+                  path = "/patientTreatment";
+                  break;
+                case 4: // เภสัธ
+                  path = "/patientTreatment";
+                  break;
+              }
+              this.props.history.push({
+                pathname: path,
+                state: { userLogin: userLogin }
+              });
+              login(userLogin);
+            } 
         }else{
-        //     this.setState({ checklogin:'Sorry!! Incorrect EmpId or Password'});
+            this.setState({ checklogin:'Sorry!! Incorrect EmpId or Password'});
         }
     }
 
