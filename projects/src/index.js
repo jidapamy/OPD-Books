@@ -7,7 +7,11 @@ import Login from './Patient/Containers/Login';
 import ProfilePatient from './Patient/Containers/PatientProfile';
 import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 import PatientTreatment from "./Employee/Containers/PatientTreatment";
-import EmpLogin from "./Employee/Containers/EmpLogin";
+// import EmpLogin from "./Employee/Containers/EmpLogin";
+import EmpLogin from "./Employees/View/Containers/EmpLogin";
+
+
+import MedicalRecordTreatment from "./Employee/Containers/MedicalRecordTreatment";
 
 import Stamp from "./stamp/App";
 
@@ -29,6 +33,8 @@ ReactDOM.render(
       <Route path="/signinForEmployee" component={EmpLogin} />
 
       <Route path="/stamp" component={Stamp} />
+
+      <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
     </div>
   </Router>,
   document.getElementById("root")

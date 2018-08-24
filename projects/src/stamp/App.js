@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './App.css';
 // import Header from './header.js'
 import Queue from './queue.js'
 import Nurse from './nurse.js'
@@ -14,9 +14,9 @@ export default class Stamp extends Component {
       <div className="App">
         {/* <Header/> */}
         {/* <Queue/> //  */}
-        {/* <Doctor/> */}
+        <Doctor/>
         {/* <Nurse/> */}
-        <Pharmacy/>
+        {/* <Pharmacy/> */}
         
         
       </div>
