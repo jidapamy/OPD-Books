@@ -2,15 +2,16 @@ import { Employee } from "./../Model/Employee";
 
 const UserLogin = {
     accountLogin: Employee,
-    sessionKey: ''
 }
 
 export const login = (emp) => {
     UserLogin.accountLogin = emp;
+    console.log(UserLogin.accountLogin);
 }
 
 export const logout = () => {
-    UserLogin.accountLogin = Employee;
+    UserLogin.accountLogin = {};
+    console.log("logout",UserLogin.accountLogin);
 }
 
 export const getAccountLogin = () => {

@@ -4,8 +4,8 @@ import { Employee } from './Employee';
 export const MedicalRecord = {
     patient: Patient,
     pharmacistId: Employee,
-    doctorId: Employee,
-    nurseId: Employee,
+    doctor: Employee,
+    nurse: Employee,
 
     visitNumber: '',
     clinic: '',
