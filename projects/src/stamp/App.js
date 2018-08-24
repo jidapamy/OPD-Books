@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './App.css';
 // import Header from './header.js'
 import Queue from './queue.js'
 import Nurse from './nurse.js'
