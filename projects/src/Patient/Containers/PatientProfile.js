@@ -1,22 +1,23 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  Menu,
-  Segment,
-  Container,
-  Divider,
-  Header,
-  Icon,
-  Image,
-  Table,
-  Label,
-  List,
-  Button,
-  Modal,
-  Popup,
-  Form,
-  TextArea
-} from "semantic-ui-react";
+import {  Grid, 
+          Menu, 
+          Segment, 
+          Container, 
+          Divider, 
+          Header, 
+          Icon, 
+          Image, 
+          Table, 
+          Label, 
+          List, 
+          Button, 
+          Modal, 
+          Popup, 
+          Form, 
+          TextArea, 
+          Pagination
+        } from "semantic-ui-react";
+
 import styled from "styled-components";
 import iconOpd from "./../../Static/Img/IconOPDs.png";
 import swal from "sweetalert2";
@@ -24,9 +25,16 @@ import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
 import { QRCode } from "react-qr-svg";
 import Navbar from "./../Components/NavbarHome";
 import moment from "moment";
+import { Scrollbars } from 'react-custom-scrollbars';
 //static
-import BackgroundImage from "./../../Static/Img/BG.png";
+import BackgroundImage from "./../../Static/Img/BGGs.png";
+
 const CryptoJS = require("crypto-js");
+
+const BG = styled.div`
+  background: url(${BackgroundImage}) no-repeat center fixed;
+  background-size: 100% 100%;
+`
 
 const Menus = styled(Menu)`
   position: fixed;
@@ -268,8 +276,8 @@ export default class PatientProfile extends Component {
     var QRCodes = "" + ciphertext;
 
     return (
-      <div>
-        <PopupQRCode size={"mini"} open={open} onClose={this.close}>
+      <BG>
+        <PopupQRCode size={'mini'} open={open} onClose={this.close}>
           <Modal.Content>
             <QRCode
               bgColor="#FFFFFF"
@@ -293,58 +301,54 @@ export default class PatientProfile extends Component {
               Close
             </Button>
           </Modal.Content>
-        </PopupQRCode>
+        </PopupQRCode> 
 
-        <Navbar role="patient" show={this.show} />
-        <br />
+        
+        
+        <Segment>
+          <Navbar role="patient" show={this.show} />
         <Container>
           <br />
           <Grid>
             <Grid.Column width={2}>
-              <Image
-                src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
-                size="small"
-                spaced="left"
-                circular
-              />
+
+              <Image src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' size='small' spaced='left' circular />
+            
             </Grid.Column>
 
             <Grid.Column width={4}>
-              <Header as="h2" floated="left">
-                {this.state.titlename}.
-                {this.state.firstname} {this.state.lastname}
-              </Header>
-              <br />
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Hospital Number : </span>
-                  {this.state.hospitalnumber}
-                </Header.Subheader>
-              </Grid.Row>
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Citizen ID : </span>
-                  {this.state.citizenId}
-                </Header.Subheader>
-              </Grid.Row>
-              <Grid.Row>
-                <Header.Content as="h5" floated="left">
-                  <Label as="a" color="teal">
-                    <Icon name="phone" />
-                    {this.state.mobilenumber}
-                  </Label>
-                  <Label as="a" color="teal">
-                    <Icon name="home" />
-                    {this.state.homephonenumber}
-                  </Label>
-                </Header.Content>
-              </Grid.Row>
-            </Grid.Column>
+                
+                  <Header as='h2' floated='left'>
+                    {this.state.titlename}.
+                    {this.state.firstname} {this.state.lastname}
+                  </Header>
+                  <br/>
+                <Grid.Row>
+                      <Header.Subheader  >                    
+                  <span style={{ color: '#848788' }}>Hospital Number : </span>{this.state.hospitalnumber}
+                      </Header.Subheader>
+                  </Grid.Row>
+                  <Grid.Row>
+                      <Header.Subheader >
+                  <span style={{ color: '#848788' }}>Citizen ID : </span>{this.state.citizenId}
+                      </Header.Subheader>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Header.Content as='h5' floated='left'>
+                    <Label as='a' color='teal'>
+                      <Icon name='phone' />
+                      {this.state.mobilenumber}
+                    </Label>
+                    <Label as='a' color='teal'>
+                    <Icon name='home' />
+                      {this.state.homephonenumber}
+                    </Label>
+                      </Header.Content>
+                  </Grid.Row>
+              </Grid.Column>
+            
 
-            <Grid.Column width={1}>
-              <Divider vertical>Or</Divider>
-            </Grid.Column>
-
+            
             <Grid.Column width={3}>
               <Header as="h2">Infomation</Header>
               <Grid.Row>
@@ -368,7 +372,7 @@ export default class PatientProfile extends Component {
                 </Header.Subheader>
               </Grid.Row>
             </Grid.Column>
-
+            
             <Grid.Column width={3}>
               <Header as="h2">
                 <br />
@@ -403,98 +407,410 @@ export default class PatientProfile extends Component {
             </Grid.Column>
           </Grid>
         </Container>
-        <br />
-        <Divider />
+        </Segment>
+       {/* <br/>
+        <Divider /> */}
         <Container>
-          <Grid columns={2}>
-            <Grid.Column width={5}>
-              <Segment color="yellow" attached="top">
-                <Icon color="yellow" name="pills" />{" "}
-                <span style={{ color: "#FABD08" }}>อาการแพ้ :</span>{" "}
-                {this.state.allergy}
-              </Segment>
+        <Grid columns={16}>
+          
+            <Grid.Column width={6}>
+              <Segment color='yellow' attached='top'><Icon color='yellow' name='pills' /> <span style={{ color: '#FFB100' }}>Allergy :</span> {this.state.allergy}<br /><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span>{this.state.allergy}</Segment>
+              {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
 
-              <Segment.Group>
-                <Segment color="teal">
-                  <h4>
-                    <Icon name="home" />Address
-                  </h4>
+              <Segment.Group >
+                <Segment color='teal'>
+                  <h4><Icon name='child' />In Case Under15 Year Old</h4>
+                  <Divider />
                   <Container>
                     <Grid>
-                      <Grid.Column width={7}>
-                        <Header.Subheader>Type Of House</Header.Subheader>
-                        <Header.Subheader>Address</Header.Subheader>
-                        <Header.Subheader>Sub District</Header.Subheader>
-                        <Header.Subheader>District</Header.Subheader>
-                        <Header.Subheader>Province</Header.Subheader>
-                        <Header.Subheader>Zipcode</Header.Subheader>
+                      <Grid.Column width={6}>
+                        <Header.Subheader >
+                          Father Name
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Mother Name
+                    </Header.Subheader>
                       </Grid.Column>
-                      <Grid.Column width={9}>
-                        <Header.Subheader>
-                          : {this.state.typeofHouse}
+                      <Grid.Column width={10}>
+                        <Header.Subheader >
+                          : {this.state.fatherFirstname}{this.state.fatherLastname}
                         </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.patientaddress}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.subDistrict}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.district}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.province}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.zipcode}
-                        </Header.Subheader>
-                      </Grid.Column>
-                    </Grid>
-                  </Container>
-                </Segment>
-
-                <Segment color="teal">
-                  <h4>
-                    <Icon name="home" />Address
-                  </h4>
-                  <Container>
-                    <Grid>
-                      <Grid.Column width={7}>
-                        <Header.Subheader>Type Of House</Header.Subheader>
-                        <Header.Subheader>Address</Header.Subheader>
-                        <Header.Subheader>Sub District</Header.Subheader>
-                        <Header.Subheader>District</Header.Subheader>
-                        <Header.Subheader>Province</Header.Subheader>
-                        <Header.Subheader>Zipcode</Header.Subheader>
-                      </Grid.Column>
-                      <Grid.Column width={9}>
-                        <Header.Subheader>
-                          : {this.state.typeofHouse}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.patientaddress}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.subDistrict}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.district}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.province}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.zipcode}
+                        <Header.Subheader >
+                          : {this.state.motherFirstname}{this.state.motherLastname}
                         </Header.Subheader>
                       </Grid.Column>
                     </Grid>
                   </Container>
                 </Segment>
               </Segment.Group>
+
+              <Segment.Group >
+                <Segment color='teal'>
+                  <h4><Icon name='home' />Address</h4>
+                  <Divider />
+                  <Container>
+                    <Grid>
+                      <Grid.Column width={6}>
+                        <Header.Subheader >
+                          Type Of House
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Address
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Sub District
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          District
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Province
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Zipcode
+                    </Header.Subheader>
+
+                      </Grid.Column>
+                      <Grid.Column width={10}>
+                        <Header.Subheader >
+                          : {this.state.typeofHouse}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.patientaddress}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.subDistrict}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.district}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.province}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.zipcode}
+                        </Header.Subheader>
+
+                      </Grid.Column>
+                    </Grid>
+                  </Container>
+
+                </Segment>
+
+              </Segment.Group>
+
+            <Segment.Group >
+              <Segment color='teal'>
+                <h4><Icon name='home' />Emergency Address</h4>
+                <Divider/>
+                <Container>
+                  <Grid>
+                    <Grid.Column width={6}>
+                        <Header.Subheader >
+                          Name
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Relationship
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Home Number
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Phon Number
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        Type Of House
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        Address
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        Sub District
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        District
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        Province
+                    </Header.Subheader>
+                      <Header.Subheader >
+                        Zipcode
+                    </Header.Subheader>
+
+                    </Grid.Column>
+                    <Grid.Column width={10}>
+                      <Header.Subheader >
+                          : {this.state.emerTitle}{this.state.emerFirstname} {this.state.emerLastname}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerRelationship}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerHomePhonenumber}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerMobileNumber}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerTypeofHouse}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerAddress}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerSubDistrict}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerDistrict}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerProvince}
+                      </Header.Subheader>
+                      <Header.Subheader >
+                        : {this.state.emerZipcode}
+                      </Header.Subheader>
+
+                    </Grid.Column>
+                  </Grid>
+                </Container>
+
+              </Segment>
+        </Segment.Group>
+
+          </Grid.Column>
+
+
+
+            <Grid.Column width={4}>
+              <Segment.Group >
+                <Segment color='teal'>
+                  <h4><Icon name='history' />History Medical</h4>
+                  <Divider />
+                  <Container>
+                    <Grid>
+                      <Grid.Column >
+                        <Scrollbars
+                          style={{ height: 600 }}>
+                        <List divided relaxed>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI</List.Header>
+                              <List.Description as='a'>Updated 10 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Docs</List.Header>
+                              <List.Description as='a'>Updated 22 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Icon name='github' size='large' verticalAlign='middle' />
+                            <List.Content>
+                              <List.Header as='a'>Semantic-Org/Semantic-UI-Meteor</List.Header>
+                              <List.Description as='a'>Updated 34 mins ago</List.Description>
+                            </List.Content>
+                          </List.Item>
+                          
+                          
+                        </List>
+                        </Scrollbars>
+                      </Grid.Column>
+                    </Grid>
+                  </Container>
+
+                </Segment>
+              </Segment.Group>
             </Grid.Column>
-          </Grid>
+
+
+            <Grid.Column width={6}>
+              <Segment.Group >
+                <Segment color='teal'>
+                  <h4><Icon name='home' />Emergency Address</h4>
+                  <Divider />
+                  <Container>
+                    <Grid>
+                      <Grid.Column width={6}>
+                    <Header.Subheader >
+                          Name
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Relationship
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Home Number
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Phon Number
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Type Of House
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Address
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Sub District
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          District
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Province
+                    </Header.Subheader>
+                        <Header.Subheader >
+                          Zipcode
+                    </Header.Subheader>
+
+                      </Grid.Column>
+                      <Grid.Column width={10}>
+                        <Header.Subheader >
+                          : {this.state.emerTitle}{this.state.emerFirstname} {this.state.emerLastname}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerRelationship}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerHomePhonenumber}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerMobileNumber}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerTypeofHouse}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerAddress}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerSubDistrict}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerDistrict}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerProvince}
+                        </Header.Subheader>
+                        <Header.Subheader >
+                          : {this.state.emerZipcode}
+                        </Header.Subheader>
+
+                      </Grid.Column>
+                    </Grid>
+                  </Container>
+
+                </Segment>
+              </Segment.Group>
+            </Grid.Column>
+
+            
+        </Grid>
+        
         </Container>
-      </div>
-    );
+
+        
+      </BG>
+      )
   }
 }

@@ -109,11 +109,6 @@ class ContainerExampleContainer extends React.Component {
                     >
                     <Menu.Item>
                                 <Icon color='red' size='big' name='heartbeat' /><span style={{ fontSize: '2em', color:'#00B5AD'}}>OPD BOOKS</span>
-                                {/* <Icon.Group size='big'>
-                                    <Icon loading size='big' color='teal' name='circle notch' />
-                                    <Icon color='red'  name='heartbeat' />
-                                </Icon.Group> */}
-                               
                     </Menu.Item>
                      
 
