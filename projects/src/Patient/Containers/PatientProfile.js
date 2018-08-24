@@ -155,18 +155,45 @@ export default class PatientProfile extends Component {
     if (this.props.location.state.citizenId === undefined) {
       this.props.history.push("/signin");
     } else {
-      const InfoPatientPart1 = contract.getInfoPatientPart1(this.props.location.state.citizenId,defaultAccount);
-      const InfoPatientPart2 = contract.getInfoPatientPart2(this.props.location.state.citizenId, defaultAccount);
-      const InfoPatientPart3 = contract.getInfoPatientPart3(this.props.location.state.citizenId,defaultAccount);
-      const InfoPatientPart4 = contract.getInfoPatientPart4(this.props.location.state.citizenId,defaultAccount);
+      const InfoPatientPart1 = contract.getInfoPatientPart1(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart2 = contract.getInfoPatientPart2(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart3 = contract.getInfoPatientPart3(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const InfoPatientPart4 = contract.getInfoPatientPart4(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const AddressPatient = contract.getAddressPatient(this.props.location.state.citizenId,defaultAccount);
-      const PatientAllergy = contract.getPatientAllergy(this.props.location.state.citizenId,defaultAccount);
+      const AddressPatient = contract.getAddressPatient(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const PatientAllergy = contract.getPatientAllergy(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const EmergencyContactPart1 = contract.getEmergencyContactPart1(this.props.location.state.citizenId, defaultAccount);
-      const EmergencyContactPart2 = contract.getEmergencyContactPart2(this.props.location.state.citizenId,defaultAccount);
+      const EmergencyContactPart1 = contract.getEmergencyContactPart1(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
+      const EmergencyContactPart2 = contract.getEmergencyContactPart2(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
-      const PatientParent = contract.getPatientParent(this.props.location.state.citizenId,defaultAccount);
+      const PatientParent = contract.getPatientParent(
+        this.props.location.state.citizenId,
+        defaultAccount
+      );
 
       this.setState({
         //InfoPatient Part1
@@ -238,7 +265,7 @@ export default class PatientProfile extends Component {
 
   render() {
     const { open, size } = this.state;
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     const currentDate = moment().format("ll");
     // Encrypt //
@@ -258,8 +285,21 @@ export default class PatientProfile extends Component {
               level="Q"
               value={QRCodes}
             />
-            <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header>
-            <Button size='huge' basic color='teal' onClick={this.close} style={{ marginTop: '10%' }} fluid > Close</Button>
+            <Header textAlign={"center"} size="large">
+              {this.state.titlename}
+              {this.state.firstname} {this.state.lastname}
+            </Header>
+            <Button
+              size="huge"
+              basic
+              color="teal"
+              onClick={this.close}
+              style={{ marginTop: "10%" }}
+              fluid
+            >
+              {" "}
+              Close
+            </Button>
           </Modal.Content>
         </PopupQRCode> 
 
@@ -269,8 +309,7 @@ export default class PatientProfile extends Component {
           <Navbar role="patient" show={this.show} />
         <Container>
           <br />
-            <Grid>
-              
+          <Grid>
             <Grid.Column width={2}>
 
               <Image src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' size='small' spaced='left' circular />
@@ -311,69 +350,62 @@ export default class PatientProfile extends Component {
 
             
             <Grid.Column width={3}>
-
-              <Header as='h2'>
-                Infomation
-              </Header>
+              <Header as="h2">Infomation</Header>
               <Grid.Row>
-                <Header.Subheader  >
-                  <span style={{ color: '#848788' }}>Birth Day :  </span>{this.state.dob}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Birth Day : </span>
+                  {this.state.dob}
                 </Header.Subheader>
               </Grid.Row>
               <Grid.Row>
-                <Header.Subheader >
-                  <span style={{ color:'#848788'}}>Gender : </span>{this.state.gender} 
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Gender : </span>
+                  {this.state.gender}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Blood Group :  </span> {this.state.bloodgroup}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Blood Group : </span>{" "}
+                  {this.state.bloodgroup}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Status :  </span> {this.state.statuspatient}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Status : </span>{" "}
+                  {this.state.statuspatient}
                 </Header.Subheader>
               </Grid.Row>
-             
             </Grid.Column>
             
             <Grid.Column width={3}>
-
-              <Header as='h2'>
-                <br/>
+              <Header as="h2">
+                <br />
               </Header>
               <Grid.Row>
-                <Header.Subheader  >
-                  <span style={{ color: '#848788' }}>Nation :  </span>{this.state.nationality}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Nation : </span>
+                  {this.state.nationality}
                 </Header.Subheader>
               </Grid.Row>
               <Grid.Row>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Country : </span>{this.state.country}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Country : </span>
+                  {this.state.country}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Religion :  </span> {this.state.religion}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Religion : </span>{" "}
+                  {this.state.religion}
                 </Header.Subheader>
-                <Header.Subheader >
-                  <span style={{ color: '#848788' }}>Occupartion :  </span> {this.state.occupartion}
+                <Header.Subheader>
+                  <span style={{ color: "#848788" }}>Occupartion : </span>{" "}
+                  {this.state.occupartion}
                 </Header.Subheader>
               </Grid.Row>
-
             </Grid.Column>
 
             <Grid.Column width={3}>
-
-              <Button color='teal' 
-                      basic 
-                      floated='left' 
-                      onClick={this.show()}
-                      >
-                      <Icon name='qrcode' />
-                      {this.props.role === 'emp' ? 'Scan QRCode' : 'Show QRCode'}
+              <Button color="teal" basic floated="left" onClick={this.show()}>
+                <Icon name="qrcode" />
+                {this.props.role === "emp" ? "Scan QRCode" : "Show QRCode"}
               </Button>
-
             </Grid.Column>
-
-           </Grid>
-          
-
+          </Grid>
         </Container>
         </Segment>
        {/* <br/>

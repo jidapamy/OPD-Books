@@ -28,6 +28,7 @@ ReactDOM.render(
       <Route path="/patientTreatment" component={PatientTreatment} />
       <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
+
       <Route path="/stamp" component={Stamp} />
     </div>
   </Router>,
