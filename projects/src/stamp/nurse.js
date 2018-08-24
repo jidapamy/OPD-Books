@@ -38,11 +38,9 @@ class Nurse extends React.Component {
             { menuItem: 'ประวัติผู้ป่วย', render: () => <Tab.Pane><PageTab1/></Tab.Pane>}
           ]
 
-          const { active, contextRef } = this.state
+        const { active, contextRef } = this.state
         return (
-
             <div>
-                
                 <Grid columns='equal' style={style.box}>
 
                     <Grid.Column width={3}>
@@ -150,7 +148,7 @@ class Nurse extends React.Component {
                     
                     <Grid.Column width={5}>
                         <Sticky>
-                        <Tab panes={panes} />
+                         <Tab panes={panes} />
                         </Sticky>
                     </Grid.Column>
 

@@ -14,9 +14,9 @@ export default class Stamp extends Component {
       <div className="App">
         {/* <Header/> */}
         {/* <Queue/> //  */}
-        {/* <Doctor/> */}
+        <Doctor/>
         {/* <Nurse/> */}
-        <Pharmacy/>
+        {/* <Pharmacy/> */}
         
         
       </div>

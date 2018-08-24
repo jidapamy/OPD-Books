@@ -46,9 +46,6 @@ export default class PatientTreatment extends Component {
         appointment: '',
 
         dateTime:moment().format("LLLL"),
-
-
-
     }
 
      calculateAge = () => {

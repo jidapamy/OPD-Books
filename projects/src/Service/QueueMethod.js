@@ -27,7 +27,6 @@ export const addQueue = ( empPosition, hn , citizenId, title, firstname, lastnam
 };
 
 export const getQueues = (empPosition) => {
-  console.log("getQ", empPosition);
   let qAmount = 0;
   let qList = [];
   switch (empPosition) {
@@ -42,12 +41,21 @@ export const getQueues = (empPosition) => {
       break;
   }
   if(qAmount != 0){
-    console.log('qAmount', qAmount);
     for(let i=0;i<qAmount;i++){
         let tmp = contract.getQueues(i, empPosition);
         let status = contract.getStatusQueues(i, empPosition);
+        let queueId = +tmp[0].toString() + 1;
+        let qShow = ''
+        if(queueId>0 && queueId<10){
+          qShow = "00" + queueId;
+        }else if (queueId > 9 && queueId<100) {
+          qShow = "0" + queueId;
+        }else{
+          qShow = queueId;
+        }
         let objQ = {
-            queueId : tmp[0].toString(),
+            key:i,
+            queueId : qShow,
             hospitalNumber : web3.toAscii(tmp[1]),
             citizenId : web3.toAscii(tmp[2]),
             title: web3.toAscii(tmp[3]),
@@ -57,17 +65,14 @@ export const getQueues = (empPosition) => {
             status : status
         }
         if (status) {
-            console.log(objQ);
             qList.push(objQ);
         }
     }
   }
-  console.log("Q ", qList);
   return qList;
 };
 
 export const updateStatusQueue = ( empPosition, index, statusQueue ) => {
-    console.log("updateQ", empPosition , +index, statusQueue );
     contract.updateStatusQueue(empPosition, +index, statusQueue);
     return getQueues(empPosition);
 }
