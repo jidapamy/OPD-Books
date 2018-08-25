@@ -51,7 +51,8 @@ const style = {
   d1: {
     marginTop: "1em",
     marginBottom: "50px",
-    cursor: "pointer"
+    cursor: "pointer",
+    
   },
   h3: {
     marginTop: "2em",
@@ -154,7 +155,7 @@ class Registration extends Component {
               <Header.Subheader>Project on Blockchain</Header.Subheader>
             </Header.Content>
           </Header>
-          <Image style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
+          <Image centered style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
                 { open: true }
               )} />
           <Container>

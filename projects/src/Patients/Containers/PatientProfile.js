@@ -250,6 +250,7 @@ export default class PatientProfile extends Component {
                     MY QRCODE
                 </Header>
                   <Image
+                  centered
                     style={style.ImButton}
                     size='tiny'
                     src={myQR}
