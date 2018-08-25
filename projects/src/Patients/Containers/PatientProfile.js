@@ -7,7 +7,7 @@ import swal from "sweetalert2";
 import { QRCode } from "react-qr-svg";
 import moment from "moment";
 import { Scrollbars } from 'react-custom-scrollbars';
-
+import myQR from "./../../Static/Img/myQR.png";
 //static
 import BackgroundImage from "./../../Static/Img/BGGs.png";
 
@@ -20,7 +20,11 @@ const BG = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
 `
-
+const style = {
+  ImButton: {
+    cursor: 'pointer'
+  },
+}
 const Menus = styled(Menu)`
   position: fixed;
   top: 0;
@@ -36,6 +40,7 @@ const Menus = styled(Menu)`
   border: 1px solid #eee;
   background: #00cacf;
 `;
+
 const GridContainer = styled(Grid.Row)`padding: 15rem;`;
 const GridColumnleft = styled(Grid.Column)`
   padding-left: 1em;
@@ -276,10 +281,16 @@ export default class PatientProfile extends Component {
             </Grid.Column>
 
             <Grid.Column width={3}>
-              <Button color="teal" basic floated="left" onClick={this.show()}>
-                <Icon name="qrcode" />
-                {this.props.role === "emp" ? "Scan QRCode" : "Show QRCode"}
-              </Button>
+                
+                  <Header textAlign={'center'} as="h3">
+                    MY QRCODE
+                </Header>
+                  <Image
+                    style={style.ImButton}
+                    size='tiny'
+                    src={myQR}
+                    onClick={this.show()}
+                  />
             </Grid.Column>
           </Grid>
         </Container>
