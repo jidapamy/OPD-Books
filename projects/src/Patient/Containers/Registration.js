@@ -54,6 +54,9 @@ const style = {
         marginTop: '2em',
         padding: '2em 0em',
     },
+    DataBlock:{
+        color:'#AFB4B7',
+    },
     
 
 }
@@ -327,13 +330,17 @@ handleScan = (data)=> {
 
 // handleError(err) {
 //     console.error(err)
-
 // }
 
 addQueueForNurse = () => {
     if (this.state.citizenId) {
+        swal({
+            type: 'success',
+            title: 'Add Queue Success!',
+            showConfirmButton: false,
+            timer: 1500
+        })
         addQueue(1, this.state.hospitalnumber, this.state.citizenId, this.state.titlename, this.state.firstname, this.state.lastname, true, "-");
-        alert("Add Queue Success")
         this.setState({
             openModal:false,
             //InfoPatient Part1
@@ -471,62 +478,61 @@ addQueueForNurse = () => {
                             <Grid textAlign='center'>
                                 <br></br>
                                 <Header as='h3'>
-                                        <Icon name='plug' />
                                         <Header.Content >Profile</Header.Content>
                                 </Header>
                                 <Grid.Row >
                                     
-                                    <Grid.Column textAlign='center' >
-                                            <p>Name: {this.state.titlename}{this.state.firstname} {this.state.lastname}</p>
+                                    <Grid.Column textAlign='center' as='h3' >
+                                            <p>Name: <span style={style.DataBlock}>{this.state.titlename}{this.state.firstname} {this.state.lastname}</span></p>
                                     </Grid.Column>
                                     
                                     
                                 </Grid.Row>
-                                <Grid.Row >
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Hospitalnumber: {this.state.hospitalnumber}</p>
+                                <Grid.Row textAlign={'center'}>
+                                    <Grid.Column  width={5}>
+                                            <p>Hospitalnumber <br /><span style={style.DataBlock}>{this.state.hospitalnumber}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Date of Birth: {this.state.dob}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Date of Birth<br /><span style={style.DataBlock}>{this.state.dob}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Congenital Disease: {this.state.congenitaldisease}</p>
-                                    </Grid.Column>
-                                    
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Gender: {this.state.gender}</p>
-                                    </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Blood Group: {this.state.bloodgroup}</p>
-                                    </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Religion: {this.state.religion}</p>
-                                    </Grid.Column>
-                                    
-                                </Grid.Row>
-                                <Grid.Row >
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Nationality: {this.state.nationality}</p>
-                                    </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Country: {this.state.country}</p>
-                                    </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Status: {this.state.statuspatient}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Congenital Disease<br /><span style={style.DataBlock}>{this.state.congenitaldisease}</span></p>
                                     </Grid.Column>
                                     
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Occupartion: {this.state.occupartion}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Gender<br /><span style={style.DataBlock}>{this.state.gender}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Home  Number: {this.state.homephonenumber}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Blood Group<br /><span style={style.DataBlock}>{this.state.bloodgroup}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Mobile Number: {this.state.mobilenumber}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Religion<br /><span style={style.DataBlock}>{this.state.religion}</span></p>
+                                    </Grid.Column>
+                                    
+                                </Grid.Row>
+                                <Grid.Row >
+                                    <Grid.Column  width={5}>
+                                            <p>Nationality<br /><span style={style.DataBlock}>{this.state.nationality}</span></p>
+                                    </Grid.Column>
+                                    <Grid.Column  width={5}>
+                                            <p>Country<br /><span style={style.DataBlock}>{this.state.country}</span></p>
+                                    </Grid.Column>
+                                    <Grid.Column  width={5}>
+                                            <p>Status<br /><span style={style.DataBlock}>{this.state.statuspatient}</span></p>
+                                    </Grid.Column>
+                                    
+                                </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column  width={5}>
+                                            <p>Occupartion<br /><span style={style.DataBlock}>{this.state.occupartion}</span></p>
+                                    </Grid.Column>
+                                    <Grid.Column  width={5}>
+                                            <p>Home  Number<br /><span style={style.DataBlock}>{this.state.homephonenumber}</span></p>
+                                    </Grid.Column>
+                                    <Grid.Column  width={5}>
+                                            <p>Mobile Number<br /><span style={style.DataBlock}>{this.state.mobilenumber}</span></p>
                                     </Grid.Column>
                                     
                                 </Grid.Row>
@@ -537,26 +543,26 @@ addQueueForNurse = () => {
                                         <Header.Content >Address</Header.Content>
                                 </Header>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Type Of House: {this.state.typeofHouse}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Type Of House<br /><span style={style.DataBlock}>{this.state.typeofHouse}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Address: {this.state.patientaddress}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Address<br /><span style={style.DataBlock}>{this.state.patientaddress}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Sub-District: {this.state.subDistrict}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Sub-District<br /><span style={style.DataBlock}>{this.state.subDistrict}</span></p>
                                     </Grid.Column>
                                     
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>District: {this.state.district}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>District<br /><span style={style.DataBlock}>{this.state.district}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Province: {this.state.province}</p>
+                                    <Grid.Column  width={5}>
+                                                <p>Province<br /><span style={style.DataBlock}>{this.state.province}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Zipcode: {this.state.zipcode}</p>
+                                    <Grid.Column  width={5}>
+                                                    <p>Zipcode<br /><span style={style.DataBlock}>{this.state.zipcode}</span></p>
                                     </Grid.Column>
                                     
                                 </Grid.Row>
@@ -570,38 +576,38 @@ addQueueForNurse = () => {
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Relationship: {this.state.emerRelationship}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Relationship<br /><span style={style.DataBlock}>{this.state.emerRelationship}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Home Number: {this.state.emerHomePhonenumber}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Home Number<br /><span style={style.DataBlock}>{this.state.emerHomePhonenumber}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>MobileNumber: {this.state.emerMobileNumber}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>MobileNumber<br /><span style={style.DataBlock}>{this.state.emerMobileNumber}</span></p>
                                     </Grid.Column>
                                 
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Type Of House: {this.state.emerTypeofHouse}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Type Of House<br /><span style={style.DataBlock}>{this.state.emerTypeofHouse}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Address: {this.state.emerAddress}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Address<br /><span style={style.DataBlock}>{this.state.emerAddress}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Sub-District: {this.state.emerSubDistrict}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Sub-District<br /><span style={style.DataBlock}>{this.state.emerSubDistrict}</span></p>
                                     </Grid.Column>
                                     
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>District: {this.state.emerDistrict}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>District<br /><span style={style.DataBlock}>{this.state.emerDistrict}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Province: {this.state.emerProvince}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Province<br /><span style={style.DataBlock}>{this.state.emerProvince}</span></p>
                                     </Grid.Column>
-                                    <Grid.Column textAlign='left' width={5}>
-                                        <p>Zipcode: {this.state.emerZipcode}</p>
+                                    <Grid.Column  width={5}>
+                                            <p>Zipcode<br /><span style={style.DataBlock}>{this.state.emerZipcode}</span></p>
                                     </Grid.Column>
                                     
                                     
@@ -613,10 +619,10 @@ addQueueForNurse = () => {
                                 </Header>
                                 <Grid.Row>
                                     <Grid.Column   width={6}>
-                                        <p>Privilege: {this.state.privilege}</p>
+                                            <p>Privilege<br /><span style={style.DataBlock}>{this.state.privilege}</span></p>
                                     </Grid.Column>
                                     <Grid.Column  width={6}>
-                                        <p>Allergy: {this.state.allergy}</p>
+                                            <p>Allergy<br /><span style={style.DataBlock}>{this.state.allergy}</span></p>
                                     </Grid.Column>
                                 </Grid.Row>
 
@@ -626,10 +632,10 @@ addQueueForNurse = () => {
                                 </Header>
                                 <Grid.Row>
                                     <Grid.Column   width={6}>
-                                        <p>Father Name: {this.state.fatherFirstname} {this.state.fatherLastname} </p>
+                                            <p>Father Name<br /><span style={style.DataBlock}>{this.state.fatherFirstname} {this.state.fatherLastname}</span></p>
                                     </Grid.Column>
                                     <Grid.Column  width={6}>
-                                        <p>Mother Name: {this.state.motherFirstname} {this.state.motherLastname} </p>
+                                                <p>Mother Name<br /><span style={style.DataBlock}>{this.state.motherFirstname} {this.state.motherLastname}</span></p>
                                     </Grid.Column>
                                 </Grid.Row>
 
