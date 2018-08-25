@@ -2,7 +2,7 @@ import { defaultAccount, contract, web3 } from "./../Lib/Web3";
 
 export const login = (userId, password, role) => {
   let userLogin = {};
-  if(role === "emp"){
+  if(role === "Emp"){
     const res = contract.LoginEmployee(web3.fromAscii(userId), web3.fromAscii(password));
     if (res) {
       const empLogin = contract.getInfoEmployee(web3.fromAscii(userId));

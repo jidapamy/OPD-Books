@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 // import ManagePatientRecord from './Patient/Containers/ManagePatientRecord';
 // import Login from './Patient/Containers/Login';
 // import ProfilePatient from './Patient/Containers/PatientProfile';
-import Registration from './Patient/Containers/Registration';
+// import Registration from './Patient/Containers/Registration';
 import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 import PatientTreatment from "./Employee/Containers/PatientTreatment";
 // import EmpLogin from "./Employee/Containers/EmpLogin";
@@ -19,6 +19,7 @@ import Login from "./Patients/Containers/Login";
 import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
 import EmpLogin from "./Employees/Containers/EmpLogin";
+import Registration from "./Employees/Containers/Registration";
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';

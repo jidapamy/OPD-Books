@@ -47,7 +47,7 @@ export default class ListQueues extends Component {
   showQList = () => {
     let tmp;
     console.log("qList.length : ", this.state.qList.length);
-    if (this.state.qList.length != 0) {
+    if (this.state.qList.length !== 0) {
       console.log("qList", this.state.qList);
       if (this.state.qList[0].status) {
         console.log("qList[0]", this.state.qList[0].citizenId);

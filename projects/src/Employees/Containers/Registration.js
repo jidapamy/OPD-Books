@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
-import Queues from "./../Components/Queues";
+import Queues from "./../Components/QueuesForRegistrar";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
@@ -58,7 +58,7 @@ const style = {
   }
 };
 
-class Registration extends Component {
+export default class Registration extends Component {
   state = {
     open: false,
     activeItem: "home",
@@ -838,5 +838,3 @@ class Registration extends Component {
     );
   }
 }
-
-export default Registration;

@@ -25,36 +25,6 @@ const style = {
     cursor: 'pointer'
   },
 }
-const Menus = styled(Menu)`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
-  height: 100%;
-  padding: 0;
-  padding: 0;
-  z: 1000;
-  overflow: hidden;
-  overflow: auto;
-  border: 1px solid #eee;
-  background: #00cacf;
-`;
-
-const GridContainer = styled(Grid.Row)`padding: 15rem;`;
-const GridColumnleft = styled(Grid.Column)`
-  padding-left: 1em;
-  padding-right: 1em;
-`;
-const MenyItem = styled(Menu.Item)`font-size: 18px;`;
-const GridColumnright = styled(Grid.Column)`
-  padding-left: 1em;
-  padding-right: 1em;
-`;
-const ImageSizeRow = styled(Image)`
-  width: 150px;
-  height: 150px;
-`;
 
 const PopupQRCode = styled(Modal)`
   position: fixed;
@@ -64,10 +34,6 @@ const PopupQRCode = styled(Modal)`
   width: 50%;
 `;
 
-const Wrapper = styled(Grid)`
-  background: url(${BackgroundImage}) no-repeat center fixed;
-  background-size: 100% 100%;
-`;
 export default class PatientProfile extends Component {
   state = {
     activeItem: "home",
@@ -174,8 +140,7 @@ export default class PatientProfile extends Component {
               value={QRCodes}
             />
             <Header textAlign={"center"} size="large">
-              {this.state.titlename}
-              {this.state.firstname} {this.state.lastname}
+              {this.state.titlename} {this.state.firstname}  {this.state.lastname}
             </Header>
             <Button
               size="huge"
@@ -302,15 +267,9 @@ export default class PatientProfile extends Component {
             <Grid.Column width={6}>
               <Segment color='yellow' attached='top'>
                 <Icon color='yellow' name='pills' /> 
-                  <span style={{ color: '#FFB100' }}>
-                    Allergy : 
-                  </span> 
-                    {this.state.allergy} <br />
+                  <span style={{ color: '#FFB100' }}> Allergy : </span> {this.state.allergy} <br />
                   <Icon color='yellow' name='medkit' /> 
-                  <span style={{ color: '#FABD08' }}>
-                    Privilege : 
-                  </span>
-                  {this.state.privilege}
+                  <span style={{ color: '#FABD08' }}> Privilege : </span> {this.state.privilege}
               </Segment>
               {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
 
@@ -473,10 +432,7 @@ export default class PatientProfile extends Component {
 
               </Segment>
         </Segment.Group>
-
           </Grid.Column>
-
-
 
             <Grid.Column width={4}>
               <Segment.Group >
@@ -607,18 +563,14 @@ export default class PatientProfile extends Component {
                               <List.Description as='a'>Updated 34 mins ago</List.Description>
                             </List.Content>
                           </List.Item>
-                          
-                          
                         </List>
                         </Scrollbars>
                       </Grid.Column>
                     </Grid>
                   </Container>
-
                 </Segment>
               </Segment.Group>
             </Grid.Column>
-
 
             <Grid.Column width={6}>
               <Segment.Group >
@@ -691,21 +643,14 @@ export default class PatientProfile extends Component {
                         <Header.Subheader >
                           : {this.state.emerZipcode}
                         </Header.Subheader>
-
                       </Grid.Column>
                     </Grid>
                   </Container>
-
                 </Segment>
               </Segment.Group>
             </Grid.Column>
-
-            
         </Grid>
-        
         </Container>
-
-        
       </BG>
       )
   }
