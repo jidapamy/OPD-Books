@@ -43,7 +43,7 @@ export const getPatient = (citizenId) => {
 
    patient.registerDate = web3.toAscii(InfoPatientPart1[0]);
    patient.hospitalnumber= web3.toAscii(InfoPatientPart1[1]);
-   patient.citizenId= citizenId;
+   patient.citizenId= web3.toAscii(citizenId);
         //InfoPatient Part2
    patient.dob = web3.toAscii(InfoPatientPart2[0]);
    patient.titlename = web3.toAscii(InfoPatientPart2[1]);
