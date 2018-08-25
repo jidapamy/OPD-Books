@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Home from './Patient/Containers/Home';
-import ManagePatientRecord from './Patient/Containers/ManagePatientRecord';
-import Login from './Patient/Containers/Login';
-import ProfilePatient from './Patient/Containers/PatientProfile';
+// import Home from './Patient/Containers/Home';
+// import ManagePatientRecord from './Patient/Containers/ManagePatientRecord';
+// import Login from './Patient/Containers/Login';
+// import ProfilePatient from './Patient/Containers/PatientProfile';
 import Registration from './Patient/Containers/Registration';
 import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 import PatientTreatment from "./Employee/Containers/PatientTreatment";
-// import EmpLogin from "./Employee/Containers/EmpLogin";
-import EmpLogin from "./Employees/View/Containers/EmpLogin";
-
-
+import EmpLogin from "./Employee/Containers/EmpLogin";
 import MedicalRecordTreatment from "./Employee/Containers/MedicalRecordTreatment";
-
 import Stamp from "./stamp/App";
+
+
+
+import Home from "./Home";
+import Login from "./Patients/Containers/Login";
+import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
+import ProfilePatient from "./Patients/Containers/PatientProfile";
+
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -25,16 +29,18 @@ ReactDOM.render(
   <Router>
     <div>
       <Route exact path="/" component={Home} />
+      {/* patient */}
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
+
+      {/* emp */}
       <Route path="/employeeSegment" component={EmployeeSegment} />
       <Route path="/patientTreatment" component={PatientTreatment} />
       <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
 
       <Route path="/stamp" component={Stamp} />
-
       <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
     </div>
   </Router>,
