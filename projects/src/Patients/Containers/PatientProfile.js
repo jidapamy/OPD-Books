@@ -185,7 +185,6 @@ export default class PatientProfile extends Component {
               style={{ marginTop: "10%" }}
               fluid
             >
-              {" "}
               Close
             </Button>
           </Modal.Content>
@@ -301,7 +300,18 @@ export default class PatientProfile extends Component {
         <Grid columns={16}>
           
             <Grid.Column width={6}>
-              <Segment color='yellow' attached='top'><Icon color='yellow' name='pills' /> <span style={{ color: '#FFB100' }}>Allergy : </span> {this.state.allergy}<br /><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege : </span>{this.state.allergy}</Segment>
+              <Segment color='yellow' attached='top'>
+                <Icon color='yellow' name='pills' /> 
+                  <span style={{ color: '#FFB100' }}>
+                    Allergy : 
+                  </span> 
+                    {this.state.allergy} <br />
+                  <Icon color='yellow' name='medkit' /> 
+                  <span style={{ color: '#FABD08' }}>
+                    Privilege : 
+                  </span>
+                  {this.state.privilege}
+              </Segment>
               {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
 
               <Segment.Group >

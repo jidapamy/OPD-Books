@@ -310,10 +310,7 @@ handleScan = (data)=> {
                     timer: 2000
                 })
                 this.setState({ result: 'Your listing is not available in the system.', open: false })
-                
-                
             }
-
         } else {
             swal({
                 type: 'error',
@@ -328,9 +325,9 @@ handleScan = (data)=> {
     }
 }
 
-// handleError(err) {
-//     console.error(err)
-// }
+handleError(err) {
+    console.error(err)
+}
 
 addQueueForNurse = () => {
     if (this.state.citizenId) {

@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import Registration from './Patient/Containers/Registration';
 import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 import PatientTreatment from "./Employee/Containers/PatientTreatment";
-import EmpLogin from "./Employee/Containers/EmpLogin";
+// import EmpLogin from "./Employee/Containers/EmpLogin";
 import MedicalRecordTreatment from "./Employee/Containers/MedicalRecordTreatment";
 import Stamp from "./stamp/App";
 
@@ -18,7 +18,7 @@ import Home from "./Home";
 import Login from "./Patients/Containers/Login";
 import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
-
+import EmpLogin from "./Employees/Containers/EmpLogin";
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -35,9 +35,9 @@ ReactDOM.render(
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
+      <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/employeeSegment" component={EmployeeSegment} />
       <Route path="/patientTreatment" component={PatientTreatment} />
-      <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
 
       <Route path="/stamp" component={Stamp} />

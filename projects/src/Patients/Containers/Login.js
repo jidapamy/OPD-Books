@@ -6,7 +6,8 @@ import {
   Header,
   Image,
   Message,
-  Segment
+  Segment,
+  Label
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert2";
@@ -29,7 +30,6 @@ export default class PatientRecord extends Component {
   login = () => {
     const res = login(this.state.citizenId, this.state.password, "Patient");
     if (res) {
-      console.log(res);
       this.props.history.push({
         pathname: "/profile",
         state: { citizenId: res }
@@ -62,7 +62,7 @@ export default class PatientRecord extends Component {
               <Segment style={{ borderRadius: "2rem", padding: "5%" }}>
                 <p style={{ color: "red" }}>{this.state.checklogin}</p>
                 <Form.Input
-                  class="setfeild"
+                  className="setfeild"
                   style={{ width: "100%" }}
                   fluid
                   icon="user"
@@ -75,7 +75,7 @@ export default class PatientRecord extends Component {
                     })}
                 />
                 <Form.Input
-                  class="setfeild"
+                  className="setfeild"
                   style={{ width: "100%" }}
                   fluid
                   icon="lock"
@@ -101,7 +101,7 @@ export default class PatientRecord extends Component {
             <Message style={{ borderRadius: "2rem" }}>
               New to us?{" "}
               <Link to="/signup">
-                <a href="#">Sign Up</a>
+                <Label>Sign Up</Label>
               </Link>
             </Message>
           </Grid.Column>
