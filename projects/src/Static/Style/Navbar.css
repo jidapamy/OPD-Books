@@ -1,4 +1,4 @@
-.image {
+.images {
   background: url(./../Img/HBG.png) no-repeat center ;
   /* background: url(https://static.wixstatic.com/media/de2056_3bafaae06ffa43268fdc17e2fa479574~mv2.jpg) no-repeat center center; */
   background-size: cover;
@@ -7,7 +7,7 @@
   margin: auto; 
   border: 0px;
 }
-.image .heading {
+.images .heading {
   color: #00b5ad;
   /* text-align: center; */
   margin-left: 8%;
@@ -15,18 +15,18 @@
   font-family: Kanit;
   font-size: 50px;
 }
-.image .detail {
+.images .detail {
   color: #00b5ad;
   /* text-align: center; */
   margin-left: 8%;
   font-family: Kanit;
   font-size: 30px;
 }
-.image p {
+.images p {
   text-align: center;
   padding: 20px 60px;
 }
-.image p .btn {
+.images p .btn {
   background-color: transparent;
   color: #00b5ad;
   border: 1px solid #00b5ad;
@@ -38,7 +38,7 @@
   
 
 }
-.image p .btn:hover {
+.images p .btn:hover {
   color: #00b5ad;
   border-color: #00b5ad;
 }

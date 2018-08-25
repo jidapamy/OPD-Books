@@ -66,7 +66,8 @@ class Registration extends Component {
   state = {
     open: false,
     openModal: false,
-    patient: {}
+    patient: {},
+    employee : this.props.location.state.userLogin
   };
 
   getPatient = citizenId => {
@@ -137,9 +138,10 @@ class Registration extends Component {
   };
 
   render() {
+    const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname + "  " + this.state.employee.lastname;
     return (
       <div>
-        <NavbarHeader empname="Hanami Gamodona"/>
+        <NavbarHeader empName={empName}/>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -154,9 +156,9 @@ class Registration extends Component {
               )} />
           <Container>
             <Grid style={style.last} textAlign="center">
-              <Queues position="Nurse" StatusQueue="N" />
-              <Queues position="Doctor" StatusQueue="D" />
-              <Queues position="Phamacy" StatusQueue="P" />
+              <Queues role="Nurse" position={2} StatusQueue="N" />
+              <Queues role="Doctor" position={3}StatusQueue="D" />
+              <Queues role="Phamacy" position={4} StatusQueue="P" />
             </Grid>
           </Container>
         </Container>

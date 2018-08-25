@@ -20,7 +20,7 @@ export default class NavHeader extends Component {
                     <Link to='/'><Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
                     <Menu.Menu position='right'>
                         <Menu.Item>
-                            {this.props.empname}
+                            {this.props.empName}
                         </Menu.Item>
                     <Link to='/'><Menu.Item name='logout' active={activeItem === 'logout'}  /></Link>
                     </Menu.Menu>

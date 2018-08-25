@@ -33,7 +33,6 @@ export default class EmpLogin extends Component {
   };
 
   login = () => {
-    console.log("forEmp ", this.state);
     let userLogin = {};
     const res = login(this.state.empId, this.state.password, "Emp");
     if (res) {
@@ -42,7 +41,7 @@ export default class EmpLogin extends Component {
       let path = "";
       switch (empLogin.position) {
         case 1: // เวชระเบียน
-          path = "/employeeSegment";
+          path = "/Registration";
           break;
         case 2: // พยาบาล
           path = "/patientTreatment";
