@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Modal, Container, Table, Grid, Divider,Label,Card } from 'semantic-ui-react'
 import styled from 'styled-components'
 import QrReader from 'react-qr-reader'
-import Navbar from './../../Patient/Components/NavbarHome';
+// import Navbar from './../../Patient/Components/NavbarHome';
 import moment from 'moment';
 import swal from 'sweetalert2';
 import { defaultAccount, contract,web3 } from './../../Lib/Web3';
@@ -375,10 +375,10 @@ class SidebarBottomOverlay extends Component {
     const { activeItem } = this.state
     return (
       <div >
-        <Navbar
+        {/* <Navbar
             role='emp'
              show={this.show}
-        ></Navbar>
+        ></Navbar> */}
 
         <Container >
           
