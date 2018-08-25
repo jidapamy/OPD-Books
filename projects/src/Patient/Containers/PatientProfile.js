@@ -68,7 +68,7 @@ const ImageSizeRow = styled(Image)`
 
 const PopupQRCode = styled(Modal)`
   position: fixed;
-  top: 70%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;

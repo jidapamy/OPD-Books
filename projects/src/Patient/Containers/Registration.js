@@ -8,6 +8,7 @@ import QrReader from 'react-qr-reader'
 import moment from 'moment';
 import { addQueue } from "./../../Service/QueueMethod"
 import { defaultAccount, contract, web3 } from './../../Lib/Web3';
+
 import {
     Button,
     Container,
@@ -56,6 +57,8 @@ const style = {
     
 
 }
+
+
 class Registration extends Component {
 state = {
     open: false,
@@ -332,7 +335,7 @@ addQueueForNurse = () => {
         addQueue(1, this.state.hospitalnumber, this.state.citizenId, this.state.titlename, this.state.firstname, this.state.lastname, true, "-");
         alert("Add Queue Success")
         this.setState({
-
+            openModal:false,
             //InfoPatient Part1
             registerDate: '',
             hospitalnumber: '',
@@ -428,6 +431,8 @@ addQueueForNurse = () => {
                         </Grid>
                     </Container>
                 </Container>
+                
+                
                 <PopupQRCode
                     size={'mini'}
                     open={this.state.open}
@@ -642,7 +647,7 @@ addQueueForNurse = () => {
                         icon='checkmark'
                         labelPosition='right'
                         content="Yep, that's me"
-                        onClick={this.closeModal}
+                        onClick={()=>this.addQueueForNurse()}
                         />
                     </Modal.Actions>
                 </Modal>
