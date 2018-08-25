@@ -102,16 +102,16 @@ export default class Home extends React.Component {
             once={false}
           >
             <Menu
-              size="big"
+              size="large"
               pointing={true}
               secondary={!menuFixed}
               borderless={true}
-              fixed={menuFixed && "top"}
+              fixed={"top"}
               style={!menuFixed ? fixedMenuStyle : menuStyle}
               style={{ border: "0px" }}
             >
               <Menu.Item>
-                <Icon color="red" size="big" name="heartbeat" />
+                <Icon color="red" size="large" name="heartbeat" />
                 <span style={{ fontSize: "2em", color: "#00B5AD" }}>
                   OPD BOOKS
                 </span>

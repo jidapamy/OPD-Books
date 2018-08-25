@@ -1,7 +1,6 @@
 import { defaultAccount, contract, web3 } from "./../Lib/Web3";
 
 export const insertPatient = (patient,date) => {
-    console.log("insert patient")
     const hn = 'HP2312';
     contract.setInfoPatientPart1(web3.fromAscii(patient.citizenId), web3.fromAscii(date), web3.fromAscii(hn), web3.fromAscii(patient.password), defaultAccount);
     contract.setInfoPatientPart2(web3.fromAscii(patient.citizenId), web3.fromAscii(patient.dob), web3.fromAscii(patient.nameTitle), web3.fromAscii(patient.firstname), web3.fromAscii(patient.lastname), web3.fromAscii(patient.gender), defaultAccount);
@@ -22,7 +21,12 @@ export const insertPatient = (patient,date) => {
     }
 
     if ((patient.fatherFirstname !== '' && patient.fatherLastname != '') || (patient.motherFirstname !== '' && patient.motherLastname != '') ) {
-      contract.setPatientParent(patient.citizenId, web3.fromAscii(patient.fatherFirstname === '' ? '-' : patient.fatherFirstname), web3.fromAscii(patient.fatherLastname === '' ? ' ' : patient.fatherLastname ), web3.fromAscii(patient.motherFirstname === '' ? '-' : patient.fatherLastname), web3.fromAscii(patient.motherLastname === '' ? ' ' : patient.fatherLastname), defaultAccount)
+      contract.setPatientParent(
+        web3.fromAscii(patient.citizenId), 
+        web3.fromAscii(patient.fatherFirstname === "" ? "-" : patient.fatherFirstname), 
+        web3.fromAscii(patient.fatherLastname === "" ? " " : patient.fatherLastname), 
+        web3.fromAscii(patient.motherFirstname === "" ? "-" : patient.motherFirstname), 
+        web3.fromAscii(patient.motherLastname === "" ? " " : patient.motherFirstname), defaultAccount);
     }
   }
 
