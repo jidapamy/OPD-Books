@@ -18,6 +18,7 @@ import {  Grid,
           Pagination
         } from "semantic-ui-react";
 
+import myQR from "./../../Static/Img/myQR.png";
 import styled from "styled-components";
 import iconOpd from "./../../Static/Img/IconOPDs.png";
 import swal from "sweetalert2";
@@ -35,7 +36,13 @@ const BG = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
 `
-
+const style = {
+  ImButton: {
+    cursor: 'pointer'
+    
+    
+  },
+}
 const Menus = styled(Menu)`
   position: fixed;
   top: 0;
@@ -398,12 +405,18 @@ export default class PatientProfile extends Component {
                 </Header.Subheader>
               </Grid.Row>
             </Grid.Column>
-
+            
             <Grid.Column width={3}>
-              <Button color="teal" basic floated="left" onClick={this.show()}>
-                <Icon name="qrcode" />
-                {this.props.role === "emp" ? "Scan QRCode" : "Show QRCode"}
-              </Button>
+                <Header textAlign={'center'} as="h3">
+                  MY QRCODE
+                </Header>
+                <Image
+                  style={style.ImButton}
+                  size='tiny'
+                  src={myQR}
+                  onClick={this.show()}
+                />
+              
             </Grid.Column>
           </Grid>
         </Container>

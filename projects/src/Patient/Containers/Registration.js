@@ -477,7 +477,7 @@ addQueueForNurse = () => {
                                 <Grid.Row >
                                     
                                     <Grid.Column textAlign='center' >
-                                        <p>Name: {this.state.dob}</p>
+                                            <p>Name: {this.state.titlename}{this.state.firstname} {this.state.lastname}</p>
                                     </Grid.Column>
                                     
                                     
