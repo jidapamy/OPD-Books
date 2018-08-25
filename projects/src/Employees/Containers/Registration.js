@@ -59,6 +59,9 @@ const style = {
   },
   DataBlock: {
     color: "#AFB4B7"
+  }, 
+  colorHeader: {
+    color: "#00B5AD"
   }
 };
 
@@ -181,16 +184,21 @@ class Registration extends Component {
           <Modal.Content>
             <Modal.Description>
               <Header as="h2" textAlign="center">
-                Profile Image
+                Medical
               </Header>
               <Divider />
-
+              
               <Scrollbars autoHide style={{ height: 700 }}>
                 <Grid textAlign="center">
                   <br />
-                  <Header as="h3">
-                    <Header.Content>Profile</Header.Content>
-                  </Header>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <Header as="h3">
+                        <Header.Content style={style.colorHeader}>PROFILE PATIENT</Header.Content>
+                      </Header>
+                    </Grid.Column>
+                  </Grid.Row>
+                  
                   <Grid.Row>
                     <Grid.Column textAlign="center" as="h3">
                       <p>
@@ -304,13 +312,18 @@ class Registration extends Component {
                       </p>
                     </Grid.Column>
                   </Grid.Row>
-                  <Divider horizontal section inverted>
-                    Horizontal
+
+                  <Divider  section inverted>
                   </Divider>
-                  {/* <Header as="h3">
-                    <Icon name="plug" />
-                    <Header.Content>Address</Header.Content>
-                  </Header> */}
+                  
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <Header as="h3">
+                        <Header.Content style={style.colorHeader}>PATIENT ADDRESS</Header.Content>
+                      </Header>
+                    </Grid.Column>
+                  </Grid.Row>
+                  
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
@@ -363,18 +376,26 @@ class Registration extends Component {
                       </p>
                     </Grid.Column>
                   </Grid.Row>
-                  <Header as="h3">
-                    <Icon name="plug" />
-                    <Header.Content>Emergency Address</Header.Content>
-                  </Header>
+
+                  <Divider section inverted>
+                  </Divider>
+                 
                   <Grid.Row>
-                    <Grid.Column>
+                    <Grid.Column width={5}>
+                      <Header as="h3">
+                        <Header.Content style={style.colorHeader}>EMERGENCY ADDRESS</Header.Content>
+                      </Header>
+                    </Grid.Column>
+                    </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
                       <p>
-                        Name: {this.state.patient.emerTitle} {this.state.patient.emerFirstname} {this.state.patient.emerLastname}
+                        Name<br />
+                        <span style={style.DataBlock}>
+                          {this.state.patient.emerTitle} {this.state.patient.emerFirstname} {this.state.patient.emerLastname}
+                        </span>
                       </p>
                     </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         Relationship<br />
@@ -391,6 +412,8 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         MobileNumber<br />
@@ -399,8 +422,6 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         Type Of House<br />
@@ -417,6 +438,8 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         Sub-District<br />
@@ -425,8 +448,6 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         District<br />
@@ -443,6 +464,9 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
+                    
+                  </Grid.Row>
+                  <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
                         Zipcode<br />
@@ -451,14 +475,29 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
+                    <Grid.Column width={5}>
+                      
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      
+                    </Grid.Column>
+
                   </Grid.Row>
 
-                  <Header as="h3">
-                    <Icon name="plug" />
-                    <Header.Content>Allergy</Header.Content>
-                  </Header>
+                  <Divider section inverted>
+                  </Divider>
+                  
+                 
                   <Grid.Row>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={5}>
+                      <Header as="h3">
+                        <Header.Content style={style.colorHeader}>ALLERGY</Header.Content>
+                      </Header>
+                    </Grid.Column>
+                  </Grid.Row>
+
+                  <Grid.Row>
+                    <Grid.Column width={5}>
                       <p>
                         Privilege<br />
                         <span style={style.DataBlock}>
@@ -466,7 +505,7 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={5}>
                       <p>
                         Allergy<br />
                         <span style={style.DataBlock}>
@@ -474,16 +513,24 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
+                    <Grid.Column width={5}>
+
+                    </Grid.Column>
                   </Grid.Row>
 
-                  <Header as="h3">
-                    <Icon name="plug" />
-                    <Header.Content>
-                      In Case Under 15 Year Old
-                    </Header.Content>
-                  </Header>
+                  <Divider section inverted>
+                  </Divider>
+                  
                   <Grid.Row>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={5}>
+                      <Header as="h3">
+                        <Header.Content style={style.colorHeader}>IN CASE UNDER 15 YEAR OLD</Header.Content>
+                      </Header>
+                    </Grid.Column>
+                  </Grid.Row>
+
+                  <Grid.Row>
+                    <Grid.Column width={5}>
                       <p>
                         Father Name<br />
                         <span style={style.DataBlock}>
@@ -491,13 +538,16 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={5}>
                       <p>
                         Mother Name<br />
                         <span style={style.DataBlock}>
                           {this.state.patient.motherFirstname} {this.state.patient.motherLastname}
                         </span>
                       </p>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                     
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
