@@ -8,6 +8,7 @@ import QrReader from "react-qr-reader";
 import moment from "moment";
 import { addQueue } from "./../../Service/QueueMethod";
 import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
+import NavbarHeader from "./../Components/NavHeader";
 
 import { Patient } from "./../../Model/Patient";
 import { getPatient } from "./../../Service/ManagePatientMethod";
@@ -41,7 +42,7 @@ const PopupQRCode = styled(Modal)`
 const CryptoJS = require("crypto-js");
 const style = {
   h1: {
-    marginTop: "4em",
+    marginTop: "3em",
     marginBottom: "50px"
   },
   h2: {
@@ -98,6 +99,7 @@ class Registration extends Component {
             showConfirmButton: false,
             timer: 2000
           });
+          this.setState({ open: false, })
         }
       } else {
         swal({
@@ -107,6 +109,7 @@ class Registration extends Component {
           showConfirmButton: false,
           timer: 2000
         });
+        this.setState({ open: false });
       }
     }
   };
@@ -134,7 +137,9 @@ class Registration extends Component {
   };
 
   render() {
-    return <div>
+    return (
+      <div>
+        <NavbarHeader empname="Hanami Gamodona"/>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -299,11 +304,13 @@ class Registration extends Component {
                       </p>
                     </Grid.Column>
                   </Grid.Row>
-
-                  <Header as="h3">
+                  <Divider horizontal section inverted>
+                    Horizontal
+                  </Divider>
+                  {/* <Header as="h3">
                     <Icon name="plug" />
                     <Header.Content>Address</Header.Content>
-                  </Header>
+                  </Header> */}
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
@@ -504,7 +511,8 @@ class Registration extends Component {
             <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.addQueueForNurse()} />
           </Modal.Actions>
         </Modal>
-      </div>;
+      </div>
+    );
   }
 }
 
