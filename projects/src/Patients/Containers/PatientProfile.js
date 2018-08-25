@@ -110,7 +110,7 @@ export default class PatientProfile extends Component {
     if (this.props.location.state.citizenId === undefined) {
       this.props.history.push("/signin");
     } else {
-      let patient = getPatient(this.props.location.state.citizenId);
+      let patient = getPatient(this.props.location.state.citizenId,'byte');
       this.setState(patient)
     }
   }

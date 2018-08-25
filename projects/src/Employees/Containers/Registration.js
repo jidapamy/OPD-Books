@@ -9,17 +9,20 @@ import moment from "moment";
 import { addQueue } from "./../../Service/QueueMethod";
 import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
 
+import { Patient } from "./../../Model/Patient";
+import { getPatient } from "./../../Service/ManagePatientMethod";
+
 import {
   Button,
   Container,
   Grid,
-  Header,
   Icon,
   Image,
   Item,
   Label,
   Menu,
   Segment,
+  Header,
   Step,
   Table,
   List,
@@ -58,240 +61,25 @@ const style = {
   }
 };
 
-export default class Registration extends Component {
+class Registration extends Component {
   state = {
     open: false,
-    activeItem: "home",
     openModal: false,
-
-    //InfoPatient Part1
-    registerDate: "",
-    hospitalnumber: "",
-    // photo: web3.toAscii(InfoPatientPart1[2]),
-    citizenId: "",
-
-    //InfoPatient Part2
-    dob: "",
-    titlename: "",
-    firstname: "",
-    lastname: "",
-    gender: "",
-
-    //InfoPatient Part3
-    congenitaldisease: "",
-    bloodgroup: "",
-    religion: "",
-    nationality: "",
-    country: "",
-
-    //InfoPatient Part4
-    statuspatient: "",
-    occupartion: "",
-    homephonenumber: "",
-    mobilenumber: "",
-    email: "",
-
-    //AddressPatient
-    typeofHouse: "",
-    patientaddress: "",
-    province: "",
-    district: "",
-    subDistrict: "",
-    zipcode: "",
-
-    //EmergencyContact Part1
-    emerTitle: "",
-    emerFirstname: "",
-    emerLastname: "",
-    emerRelationship: "",
-    emerHomePhonenumber: "",
-    emerMobileNumber: "",
-
-    //EmergencyContact Part2
-    emerTypeofHouse: "",
-    emerAddress: "",
-    emerProvince: "",
-    emerDistrict: "",
-    emerSubDistrict: "",
-    emerZipcode: "",
-
-    //PatientParent
-    fatherFirstname: "",
-    fatherLastname: "",
-    motherFirstname: "",
-    motherLastname: "",
-
-    //PatientAllergy
-    allergy: "",
-    privilege: ""
-  };
-  emptyField = {
-    //InfoPatient Part1
-    registerDate: "",
-    hospitalnumber: "",
-    // photo: web3.toAscii(InfoPatientPart1[2]),
-    citizenId: "",
-
-    //InfoPatient Part2
-    dob: "",
-    titlename: "",
-    firstname: "",
-    lastname: "",
-    gender: "",
-
-    //InfoPatient Part3
-    congenitaldisease: "",
-    bloodgroup: "",
-    religion: "",
-    nationality: "",
-    country: "",
-
-    //InfoPatient Part4
-    statuspatient: "",
-    occupartion: "",
-    homephonenumber: "",
-    mobilenumber: "",
-    email: "",
-
-    //AddressPatient
-    typeofHouse: "",
-    patientaddress: "",
-    province: "",
-    district: "",
-    subDistrict: "",
-    zipcode: "",
-
-    //EmergencyContact Part1
-    emerTitle: "",
-    emerFirstname: "",
-    emerLastname: "",
-    emerRelationship: "",
-    emerHomePhonenumber: "",
-    emerMobileNumber: "",
-
-    //EmergencyContact Part2
-    emerTypeofHouse: "",
-    emerAddress: "",
-    emerProvince: "",
-    emerDistrict: "",
-    emerSubDistrict: "",
-    emerZipcode: "",
-
-    //PatientParent
-    fatherFirstname: "",
-    fatherLastname: "",
-    motherFirstname: "",
-    motherLastname: "",
-
-    //PatientAllergy
-    allergy: "",
-    privilege: ""
+    patient: {}
   };
 
-  getPatient = qrCode => {
-    const InfoPatientPart1 = contract.getInfoPatientPart1(
-      qrCode,
-      defaultAccount
-    );
-
-    const InfoPatientPart2 = contract.getInfoPatientPart2(
-      qrCode,
-      defaultAccount
-    );
-    const InfoPatientPart3 = contract.getInfoPatientPart3(
-      qrCode,
-      defaultAccount
-    );
-    const InfoPatientPart4 = contract.getInfoPatientPart4(
-      qrCode,
-      defaultAccount
-    );
-
-    const AddressPatient = contract.getAddressPatient(qrCode, defaultAccount);
-    const PatientAllergy = contract.getPatientAllergy(qrCode, defaultAccount);
-
-    const EmergencyContactPart1 = contract.getEmergencyContactPart1(
-      qrCode,
-      defaultAccount
-    );
-    const EmergencyContactPart2 = contract.getEmergencyContactPart2(
-      qrCode,
-      defaultAccount
-    );
-
-    const PatientParent = contract.getPatientParent(qrCode, defaultAccount);
-
+  getPatient = citizenId => {
+    let patient = getPatient(citizenId, "string");
     this.setState({
-      //InfoPatient Part1
-      registerDate: web3.toAscii(InfoPatientPart1[0]),
-      hospitalnumber: web3.toAscii(InfoPatientPart1[1]),
-      // photo: web3.toAscii(InfoPatientPart1[2]),
-      citizenId: web3.toAscii(InfoPatientPart1[2]),
-
-      //InfoPatient Part2
-      dob: web3.toAscii(InfoPatientPart2[0]),
-      titlename: web3.toAscii(InfoPatientPart2[1]),
-      firstname: web3.toAscii(InfoPatientPart2[2]),
-      lastname: web3.toAscii(InfoPatientPart2[3]),
-      gender: web3.toAscii(InfoPatientPart2[4]),
-
-      //InfoPatient Part3
-      congenitaldisease: web3.toAscii(InfoPatientPart3[0]),
-      bloodgroup: web3.toAscii(InfoPatientPart3[1]),
-      religion: web3.toAscii(InfoPatientPart3[2]),
-      nationality: web3.toAscii(InfoPatientPart3[3]),
-      country: web3.toAscii(InfoPatientPart3[4]),
-
-      //InfoPatient Part4
-      statuspatient: web3.toAscii(InfoPatientPart4[0]),
-      occupartion: web3.toAscii(InfoPatientPart4[1]),
-      homephonenumber: web3.toAscii(InfoPatientPart4[2]),
-      mobilenumber: web3.toAscii(InfoPatientPart4[3]),
-      email: web3.toAscii(InfoPatientPart4[4]),
-
-      //AddressPatient
-      typeofHouse: web3.toAscii(AddressPatient[0]),
-      patientaddress: AddressPatient[1],
-      province: web3.toAscii(AddressPatient[2]),
-      district: web3.toAscii(AddressPatient[3]),
-      subDistrict: web3.toAscii(AddressPatient[4]),
-      zipcode: web3.toAscii(AddressPatient[5]),
-
-      //EmergencyContact Part1
-      emerTitle: web3.toAscii(EmergencyContactPart1[0]),
-      emerFirstname: web3.toAscii(EmergencyContactPart1[1]),
-      emerLastname: web3.toAscii(EmergencyContactPart1[2]),
-      emerRelationship: web3.toAscii(EmergencyContactPart1[3]),
-      emerHomePhonenumber: web3.toAscii(EmergencyContactPart1[4]),
-      emerMobileNumber: web3.toAscii(EmergencyContactPart1[5]),
-
-      //EmergencyContact Part2
-      emerTypeofHouse: web3.toAscii(EmergencyContactPart2[0]),
-      emerAddress: EmergencyContactPart2[1],
-      emerProvince: web3.toAscii(EmergencyContactPart2[2]),
-      emerDistrict: web3.toAscii(EmergencyContactPart2[3]),
-      emerSubDistrict: web3.toAscii(EmergencyContactPart2[4]),
-      emerZipcode: web3.toAscii(EmergencyContactPart2[5]),
-
-      //PatientParent
-      fatherFirstname: web3.toAscii(PatientParent[0]),
-      fatherLastname: web3.toAscii(PatientParent[1]),
-      motherFirstname: web3.toAscii(PatientParent[2]),
-      motherLastname: web3.toAscii(PatientParent[3]),
-
-      //PatientAllergy
-      allergy: web3.toAscii(PatientAllergy[0]),
-      privilege: web3.toAscii(PatientAllergy[1])
+      patient: patient,
+      open: false,
+      openModal: true
     });
   };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-  showModal = dimmer => () =>
-    this.setState({ dimmer: "blurring", openModal: true });
   closeModal = () => this.setState({ openModal: false });
 
-  handleScan = data => {
+  scanQRCode = data => {
     // Decrypt
     if (data) {
       const currentDate = moment().format("ll");
@@ -301,17 +89,6 @@ export default class Registration extends Component {
       // เช็คว่าตรงตามเงื่อนไขหรือไม่ เป็นQR ของClinicหรือไม่
       if (res[0] == "OPDBooks") {
         if (res[1] == "" + currentDate) {
-          // swal({
-          //     type: 'success',
-          //     title: 'Your work has been saved',
-          //     html:
-          //     '<p>Hash: ' + bytes + '</p>',
-
-          //     showConfirmButton: false,
-          //     timer: 3000
-          // })
-          this.setState({ result: res[2], open: false });
-          this.setState(this.emptyField, this.showModal());
           this.getPatient(res[2]);
         } else {
           swal({
@@ -320,10 +97,6 @@ export default class Registration extends Component {
             text: "Something went wrong!",
             showConfirmButton: false,
             timer: 2000
-          });
-          this.setState({
-            result: "Your listing is not available in the system.",
-            open: false
           });
         }
       } else {
@@ -334,109 +107,34 @@ export default class Registration extends Component {
           showConfirmButton: false,
           timer: 2000
         });
-        this.setState({
-          result: "Your listing is not available in the system.",
-          open: false
-        });
-        this.setState(this.emptyField);
       }
     }
   };
 
-  handleError(err) {
-    console.error(err);
-  }
-
   addQueueForNurse = () => {
-    if (this.state.citizenId) {
+    if (this.state.patient.citizenId) {
+      addQueue( 1, this.state.patient.hospitalnumber, this.state.patient.citizenId, this.state.patient.titlename,this.state.patient.firstname,this.state.patient.lastname,true,"-");
       swal({
         type: "success",
         title: "Add Queue Success!",
         showConfirmButton: false,
         timer: 1500
       });
-      addQueue(
-        1,
-        this.state.hospitalnumber,
-        this.state.citizenId,
-        this.state.titlename,
-        this.state.firstname,
-        this.state.lastname,
-        true,
-        "-"
-      );
       this.setState({
-        openModal: false,
-        //InfoPatient Part1
-        registerDate: "",
-        hospitalnumber: "",
-        // photo: web3.toAscii(InfoPatientPart1[2]),
-        citizenId: "",
-
-        //InfoPatient Part2
-        dob: "",
-        titlename: "",
-        firstname: "",
-        lastname: "",
-        gender: "",
-
-        //InfoPatient Part3
-        congenitaldisease: "",
-        bloodgroup: "",
-        religion: "",
-        nationality: "",
-        country: "",
-
-        //InfoPatient Part4
-        statuspatient: "",
-        occupartion: "",
-        homephonenumber: "",
-        mobilenumber: "",
-        email: "",
-
-        //AddressPatient
-        typeofHouse: "",
-        patientaddress: "",
-        province: "",
-        district: "",
-        subDistrict: "",
-        zipcode: "",
-
-        //EmergencyContact Part1
-        emerTitle: "",
-        emerFirstname: "",
-        emerLastname: "",
-        emerRelationship: "",
-        emerHomePhonenumber: "",
-        emerMobileNumber: "",
-
-        //EmergencyContact Part2
-        emerTypeofHouse: "",
-        emerAddress: "",
-        emerProvince: "",
-        emerDistrict: "",
-        emerSubDistrict: "",
-        emerZipcode: "",
-
-        //PatientParent
-        fatherFirstname: "",
-        fatherLastname: "",
-        motherFirstname: "",
-        motherLastname: "",
-
-        //PatientAllergy
-        allergy: "",
-        privilege: ""
+        patient: {},
+        openModal: false
       });
     } else {
       // ยังไม่มีคนไข้
     }
   };
 
+  handleError = err => {
+    console.log(err);
+  };
+
   render() {
-    const { openModal, dimmer } = this.state;
-    return (
-      <div>
+    return <div>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -446,13 +144,9 @@ export default class Registration extends Component {
               <Header.Subheader>Project on Blockchain</Header.Subheader>
             </Header.Content>
           </Header>
-          <Image
-            style={style.d1}
-            rounded
-            size="medium"
-            src={ScanButton}
-            onClick={() => this.setState({ open: true })}
-          />
+          <Image style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
+                { open: true }
+              )} />
           <Container>
             <Grid style={style.last} textAlign="center">
               <Queues position="Nurse" StatusQueue="N" />
@@ -462,41 +156,23 @@ export default class Registration extends Component {
           </Container>
         </Container>
 
-        <PopupQRCode
-          size={"mini"}
-          open={this.state.open}
-          onClose={() => {
-            this.setState({ open: !this.state.open, result: "" });
-          }}
-        >
+        <PopupQRCode size={"mini"} open={this.state.open} onClose={() => {
+            this.setState({ open: !this.state.open });
+          }}>
           <Header textAlign={"center"} size="large">
             Scan QRCode
           </Header>
           <Modal.Content>
-            <QrReader
-              delay={this.state.delay}
-              onError={this.handleError}
-              onScan={this.handleScan}
-              style={{ width: "100%" }}
-            />
-            {/* <Header textAlign={'center'} size='large'>{this.state.titlename}{this.state.firstname} {this.state.lastname}</Header> */}
-            {/* <Container textAlign={'center'} size='medium'>Hash: {this.state.result}</Container> */}
-            <Button
-              floated="left"
-              size="huge"
-              basic
-              color="teal"
-              onClick={() => this.setState({ open: false })}
-              style={{ marginTop: "5%", marginBottom: "5%" }}
-              fluid
-            >
-              {" "}
+            <QrReader delay={this.state.delay} onError={this.handleError} onScan={this.scanQRCode} style={{ width: "100%" }} />
+            <Button floated="left" size="huge" basic color="teal" onClick={() => this.setState(
+                  { open: false }
+                )} style={{ marginTop: "5%", marginBottom: "5%" }} fluid>
               Close
             </Button>
           </Modal.Content>
         </PopupQRCode>
 
-        <Modal dimmer={dimmer} open={openModal} onClose={this.closeModal}>
+        <Modal open={this.state.openModal} onClose={this.closeModal}>
           <Modal.Content>
             <Modal.Description>
               <Header as="h2" textAlign="center">
@@ -513,10 +189,8 @@ export default class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column textAlign="center" as="h3">
                       <p>
-                        Name:{" "}
-                        <span style={style.DataBlock}>
-                          {this.state.titlename}
-                          {this.state.firstname} {this.state.lastname}
+                        Name: <span style={style.DataBlock}>
+                          {this.state.patient.titlename} {this.state.patient.firstname} {this.state.patient.lastname}
                         </span>
                       </p>
                     </Grid.Column>
@@ -526,21 +200,23 @@ export default class Registration extends Component {
                       <p>
                         Hospitalnumber <br />
                         <span style={style.DataBlock}>
-                          {this.state.hospitalnumber}
+                          {this.state.patient.hospitalnumber}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
                         Date of Birth<br />
-                        <span style={style.DataBlock}>{this.state.dob}</span>
+                        <span style={style.DataBlock}>
+                          {this.state.patient.dob}
+                        </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
                         Congenital Disease<br />
                         <span style={style.DataBlock}>
-                          {this.state.congenitaldisease}
+                          {this.state.patient.congenitaldisease}
                         </span>
                       </p>
                     </Grid.Column>
@@ -549,14 +225,16 @@ export default class Registration extends Component {
                     <Grid.Column width={5}>
                       <p>
                         Gender<br />
-                        <span style={style.DataBlock}>{this.state.gender}</span>
+                        <span style={style.DataBlock}>
+                          {this.state.patient.gender}
+                        </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
                         Blood Group<br />
                         <span style={style.DataBlock}>
-                          {this.state.bloodgroup}
+                          {this.state.patient.bloodgroup}
                         </span>
                       </p>
                     </Grid.Column>
@@ -564,7 +242,7 @@ export default class Registration extends Component {
                       <p>
                         Religion<br />
                         <span style={style.DataBlock}>
-                          {this.state.religion}
+                          {this.state.patient.religion}
                         </span>
                       </p>
                     </Grid.Column>
@@ -574,7 +252,7 @@ export default class Registration extends Component {
                       <p>
                         Nationality<br />
                         <span style={style.DataBlock}>
-                          {this.state.nationality}
+                          {this.state.patient.nationality}
                         </span>
                       </p>
                     </Grid.Column>
@@ -582,7 +260,7 @@ export default class Registration extends Component {
                       <p>
                         Country<br />
                         <span style={style.DataBlock}>
-                          {this.state.country}
+                          {this.state.patient.country}
                         </span>
                       </p>
                     </Grid.Column>
@@ -590,7 +268,7 @@ export default class Registration extends Component {
                       <p>
                         Status<br />
                         <span style={style.DataBlock}>
-                          {this.state.statuspatient}
+                          {this.state.patient.statuspatient}
                         </span>
                       </p>
                     </Grid.Column>
@@ -600,7 +278,7 @@ export default class Registration extends Component {
                       <p>
                         Occupartion<br />
                         <span style={style.DataBlock}>
-                          {this.state.occupartion}
+                          {this.state.patient.occupartion}
                         </span>
                       </p>
                     </Grid.Column>
@@ -608,7 +286,7 @@ export default class Registration extends Component {
                       <p>
                         Home Number<br />
                         <span style={style.DataBlock}>
-                          {this.state.homephonenumber}
+                          {this.state.patient.homephonenumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -616,7 +294,7 @@ export default class Registration extends Component {
                       <p>
                         Mobile Number<br />
                         <span style={style.DataBlock}>
-                          {this.state.mobilenumber}
+                          {this.state.patient.mobilenumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -631,7 +309,7 @@ export default class Registration extends Component {
                       <p>
                         Type Of House<br />
                         <span style={style.DataBlock}>
-                          {this.state.typeofHouse}
+                          {this.state.patient.typeofHouse}
                         </span>
                       </p>
                     </Grid.Column>
@@ -639,7 +317,7 @@ export default class Registration extends Component {
                       <p>
                         Address<br />
                         <span style={style.DataBlock}>
-                          {this.state.patientaddress}
+                          {this.state.patient.patientaddress}
                         </span>
                       </p>
                     </Grid.Column>
@@ -647,7 +325,7 @@ export default class Registration extends Component {
                       <p>
                         Sub-District<br />
                         <span style={style.DataBlock}>
-                          {this.state.subDistrict}
+                          {this.state.patient.subDistrict}
                         </span>
                       </p>
                     </Grid.Column>
@@ -657,7 +335,7 @@ export default class Registration extends Component {
                       <p>
                         District<br />
                         <span style={style.DataBlock}>
-                          {this.state.district}
+                          {this.state.patient.district}
                         </span>
                       </p>
                     </Grid.Column>
@@ -665,7 +343,7 @@ export default class Registration extends Component {
                       <p>
                         Province<br />
                         <span style={style.DataBlock}>
-                          {this.state.province}
+                          {this.state.patient.province}
                         </span>
                       </p>
                     </Grid.Column>
@@ -673,7 +351,7 @@ export default class Registration extends Component {
                       <p>
                         Zipcode<br />
                         <span style={style.DataBlock}>
-                          {this.state.zipcode}
+                          {this.state.patient.zipcode}
                         </span>
                       </p>
                     </Grid.Column>
@@ -685,8 +363,7 @@ export default class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column>
                       <p>
-                        Name: {this.state.emerTitle}
-                        {this.state.emerFirstname} {this.state.emerLastname}
+                        Name: {this.state.patient.emerTitle} {this.state.patient.emerFirstname} {this.state.patient.emerLastname}
                       </p>
                     </Grid.Column>
                   </Grid.Row>
@@ -695,7 +372,7 @@ export default class Registration extends Component {
                       <p>
                         Relationship<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerRelationship}
+                          {this.state.patient.emerRelationship}
                         </span>
                       </p>
                     </Grid.Column>
@@ -703,7 +380,7 @@ export default class Registration extends Component {
                       <p>
                         Home Number<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerHomePhonenumber}
+                          {this.state.patient.emerHomePhonenumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -711,7 +388,7 @@ export default class Registration extends Component {
                       <p>
                         MobileNumber<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerMobileNumber}
+                          {this.state.patient.emerMobileNumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -721,7 +398,7 @@ export default class Registration extends Component {
                       <p>
                         Type Of House<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerTypeofHouse}
+                          {this.state.patient.emerTypeofHouse}
                         </span>
                       </p>
                     </Grid.Column>
@@ -729,7 +406,7 @@ export default class Registration extends Component {
                       <p>
                         Address<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerAddress}
+                          {this.state.patient.emerAddress}
                         </span>
                       </p>
                     </Grid.Column>
@@ -737,7 +414,7 @@ export default class Registration extends Component {
                       <p>
                         Sub-District<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerSubDistrict}
+                          {this.state.patient.emerSubDistrict}
                         </span>
                       </p>
                     </Grid.Column>
@@ -747,7 +424,7 @@ export default class Registration extends Component {
                       <p>
                         District<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerDistrict}
+                          {this.state.patient.emerDistrict}
                         </span>
                       </p>
                     </Grid.Column>
@@ -755,7 +432,7 @@ export default class Registration extends Component {
                       <p>
                         Province<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerProvince}
+                          {this.state.patient.emerProvince}
                         </span>
                       </p>
                     </Grid.Column>
@@ -763,7 +440,7 @@ export default class Registration extends Component {
                       <p>
                         Zipcode<br />
                         <span style={style.DataBlock}>
-                          {this.state.emerZipcode}
+                          {this.state.patient.emerZipcode}
                         </span>
                       </p>
                     </Grid.Column>
@@ -778,7 +455,7 @@ export default class Registration extends Component {
                       <p>
                         Privilege<br />
                         <span style={style.DataBlock}>
-                          {this.state.privilege}
+                          {this.state.patient.privilege}
                         </span>
                       </p>
                     </Grid.Column>
@@ -786,7 +463,7 @@ export default class Registration extends Component {
                       <p>
                         Allergy<br />
                         <span style={style.DataBlock}>
-                          {this.state.allergy}
+                          {this.state.patient.allergy}
                         </span>
                       </p>
                     </Grid.Column>
@@ -794,15 +471,16 @@ export default class Registration extends Component {
 
                   <Header as="h3">
                     <Icon name="plug" />
-                    <Header.Content>In Case Under 15 Year Old</Header.Content>
+                    <Header.Content>
+                      In Case Under 15 Year Old
+                    </Header.Content>
                   </Header>
                   <Grid.Row>
                     <Grid.Column width={6}>
                       <p>
                         Father Name<br />
                         <span style={style.DataBlock}>
-                          {this.state.fatherFirstname}{" "}
-                          {this.state.fatherLastname}
+                          {this.state.patient.fatherFirstname} {this.state.patient.fatherLastname}
                         </span>
                       </p>
                     </Grid.Column>
@@ -810,8 +488,7 @@ export default class Registration extends Component {
                       <p>
                         Mother Name<br />
                         <span style={style.DataBlock}>
-                          {this.state.motherFirstname}{" "}
-                          {this.state.motherLastname}
+                          {this.state.patient.motherFirstname} {this.state.patient.motherLastname}
                         </span>
                       </p>
                     </Grid.Column>
@@ -824,17 +501,11 @@ export default class Registration extends Component {
             <Button basic color="black" onClick={this.closeModal}>
               Nope
             </Button>
-            <Button
-              basic
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Yep, that's me"
-              onClick={() => this.addQueueForNurse()}
-            />
+            <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.addQueueForNurse()} />
           </Modal.Actions>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
+
+export default Registration;
