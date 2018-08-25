@@ -8,6 +8,7 @@ import QrReader from "react-qr-reader";
 import moment from "moment";
 import { addQueue } from "./../../Service/QueueMethod";
 import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
+import NavbarHeader from "./../Components/NavHeader";
 
 import {
   Button,
@@ -38,7 +39,7 @@ const PopupQRCode = styled(Modal)`
 const CryptoJS = require("crypto-js");
 const style = {
   h1: {
-    marginTop: "4em",
+    marginTop: "3em",
     marginBottom: "50px"
   },
   h2: {
@@ -437,6 +438,7 @@ export default class Registration extends Component {
     const { openModal, dimmer } = this.state;
     return (
       <div>
+        <NavbarHeader empname="Hanami Gamodona"/>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -621,11 +623,13 @@ export default class Registration extends Component {
                       </p>
                     </Grid.Column>
                   </Grid.Row>
-
-                  <Header as="h3">
+                  <Divider horizontal section inverted>
+                    Horizontal
+                  </Divider>
+                  {/* <Header as="h3">
                     <Icon name="plug" />
                     <Header.Content>Address</Header.Content>
-                  </Header>
+                  </Header> */}
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
