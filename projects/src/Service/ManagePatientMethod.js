@@ -1,4 +1,5 @@
 import { defaultAccount, contract, web3 } from "./../Lib/Web3";
+import moment from "moment";
 
 export const insertPatient = (patient,date) => {
     const hn = 'HP2312';
@@ -47,29 +48,29 @@ export const getPatient = (citizenId,type) => {
    const PatientParent = contract.getPatientParent(citizenId, defaultAccount);
 
    patient.registerDate = web3.toAscii(InfoPatientPart1[0]);
-   patient.hospitalnumber= web3.toAscii(InfoPatientPart1[1]);
+   patient.hospitalNumber= web3.toAscii(InfoPatientPart1[1]);
    patient.citizenId= web3.toAscii(citizenId);
         //InfoPatient Part2
    patient.dob = web3.toAscii(InfoPatientPart2[0]);
-   patient.titlename = web3.toAscii(InfoPatientPart2[1]);
+   patient.nameTitle = web3.toAscii(InfoPatientPart2[1]);
    patient.firstname = web3.toAscii(InfoPatientPart2[2]);
    patient.lastname = web3.toAscii(InfoPatientPart2[3]);
    patient.gender = web3.toAscii(InfoPatientPart2[4]);
         //InfoPatient Part3
-   patient.congenitaldisease = web3.toAscii(InfoPatientPart3[0]);
+   patient.congenitalDisease = web3.toAscii(InfoPatientPart3[0]);
    patient.bloodgroup = web3.toAscii(InfoPatientPart3[1]);
    patient.religion = web3.toAscii(InfoPatientPart3[2]);
    patient.nationality = web3.toAscii(InfoPatientPart3[3]);
    patient.country = web3.toAscii(InfoPatientPart3[4]);
         //InfoPatient Part4
-   patient.statuspatient = web3.toAscii(InfoPatientPart4[0]);
+   patient.status = web3.toAscii(InfoPatientPart4[0]);
    patient.occupartion = web3.toAscii(InfoPatientPart4[1]);
-   patient.homephonenumber = web3.toAscii(InfoPatientPart4[2]);
-   patient.mobilenumber = web3.toAscii(InfoPatientPart4[3]);
+   patient.homePhonenumber = web3.toAscii(InfoPatientPart4[2]);
+   patient.mobileNumber = web3.toAscii(InfoPatientPart4[3]);
    patient.email = web3.toAscii(InfoPatientPart4[4]);
         //AddressPatient
    patient.typeofHouse = web3.toAscii(AddressPatient[0]);
-   patient.patientaddress = AddressPatient[1];
+   patient.address = AddressPatient[1];
    patient.province = web3.toAscii(AddressPatient[2]);
    patient.district = web3.toAscii(AddressPatient[3]);
    patient.subDistrict = web3.toAscii(AddressPatient[4]);
@@ -97,6 +98,20 @@ export const getPatient = (citizenId,type) => {
    patient.allergy = web3.toAscii(PatientAllergy[0]);
    patient.privilege = web3.toAscii(PatientAllergy[1])
 
+   patient.age = calculateAge(web3.toAscii(InfoPatientPart2[0]));;
+
   return patient;
 
 }
+
+const calculateAge = birthday => {
+  let dob = "" + birthday;
+  let year = +moment().format("YYYY") - +dob.substring(6, 10);
+  let month = +moment().format("MM") - +dob.substring(3, 5);
+  let tmp = year + " ปี";
+  if (year === 0) {
+    month = month;
+    tmp = year + " ปี " + month + " เดือน";
+  }
+  return tmp;
+};

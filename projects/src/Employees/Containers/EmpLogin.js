@@ -44,13 +44,13 @@ export default class EmpLogin extends Component {
           path = "/Registration";
           break;
         case 2: // พยาบาล
-          path = "/patientTreatment";
+          path = "/MedicalRecordTreatment";;
           break;
         case 3: // หมอ
-          path = "/patientTreatment";
+          path = "/MedicalRecordTreatment";;
           break;
         case 4: // เภสัธ
-          path = "/patientTreatment";
+          path = "/MedicalRecordTreatment";;
           break;
       }
       this.props.history.push({

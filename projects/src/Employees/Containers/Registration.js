@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
-import Queues from "./../Components/QueuesForRegistrar";
+import Queues from "./../Components/ListQueues";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
@@ -121,7 +121,7 @@ class Registration extends Component {
 
   addQueueForNurse = () => {
     if (this.state.patient.citizenId) {
-      addQueue( 1, this.state.patient.hospitalnumber, this.state.patient.citizenId, this.state.patient.titlename,this.state.patient.firstname,this.state.patient.lastname,true,"-");
+      addQueue( 1, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle,this.state.patient.firstname,this.state.patient.lastname,true,"-");
       swal({
         type: "success",
         title: "Add Queue Success!",
@@ -160,9 +160,15 @@ class Registration extends Component {
               )} />
           <Container>
             <Grid style={style.last} textAlign="center">
-              <Queues role="Nurse" position={2} StatusQueue="N" />
-              <Queues role="Doctor" position={3}StatusQueue="D" />
-              <Queues role="Phamacy" position={4} StatusQueue="P" />
+              <Grid.Column width={5}>
+                <Queues role="Nurse" position={2} StatusQueue="N" page="Registration"/>
+              </Grid.Column>
+              <Grid.Column width={5}>
+                <Queues role="Doctor" position={3}StatusQueue="D" page="Registration"/>
+              </Grid.Column>
+              <Grid.Column width={5}>
+                <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration"/>
+              </Grid.Column>
             </Grid>
           </Container>
         </Container>
@@ -206,7 +212,7 @@ class Registration extends Component {
                     <Grid.Column textAlign="center" as="h3">
                       <p>
                         Name: <span style={style.DataBlock}>
-                          {this.state.patient.titlename} {this.state.patient.firstname} {this.state.patient.lastname}
+                          {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
                         </span>
                       </p>
                     </Grid.Column>
@@ -214,9 +220,9 @@ class Registration extends Component {
                   <Grid.Row textAlign={"center"}>
                     <Grid.Column width={5}>
                       <p>
-                        Hospitalnumber <br />
+                        Hospital Number <br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.hospitalnumber}
+                          {this.state.patient.hospitalNumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -232,7 +238,7 @@ class Registration extends Component {
                       <p>
                         Congenital Disease<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.congenitaldisease}
+                          {this.state.patient.congenitalDisease}
                         </span>
                       </p>
                     </Grid.Column>
