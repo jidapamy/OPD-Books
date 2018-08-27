@@ -1,11 +1,11 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { Button, Segment, Input, Grid, List, Label, Form, TextArea, Message, Tab, Card ,Visibility ,Sticky } from 'semantic-ui-react';
+import { Button, Segment, Input, Grid, List, Label, Form, TextArea, Message, Tab, Card ,Header } from 'semantic-ui-react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { style } from './queueCss'
 import PageTab1 from './pageTab1'
-import PageTab2 from './pageTab2'
+import swal from 'sweetalert2'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 class Pharmacy extends React.Component {
 
@@ -27,8 +27,30 @@ class Pharmacy extends React.Component {
     state = {}
 
     handleContextRef = contextRef => this.setState({ contextRef })
+    handleToggle = () => this.setState({ active: !this.state.active })
 
-  handleToggle = () => this.setState({ active: !this.state.active })
+  showPopupConfirm = async () => {
+    swal({
+      title: 'ยืนยันการบันทึกข้อมูล?',
+      text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#1FCB4A',
+      confirmButtonText: 'Confirm',
+      cancelButtonText: 'Cancel',
+
+    }).then((result) => {
+      if (result.value) {
+          swal(
+            'บันทึกข้อมูลสำเร็จ!',
+            'xxxxxxxxxxxxxxxx',
+            'success',
+          )
+      }
+    })
+  }
+
 
 
 
@@ -41,16 +63,15 @@ class Pharmacy extends React.Component {
           const { active, contextRef } = this.state
         return (
 
-            <div>
+            <div style={style.centerr}>
                 
+                               
                 <Grid columns='equal' style={style.box}>
 
                     <Grid.Column width={3}>
-                    <Sticky context={contextRef}>
-            
                         <Segment>
                             <p style={style.head}><b>Queue</b></p>
-
+                            <Scrollbars style={{ width: 185, height: 400 }}>
                             <List divided relaxed>
                                 <List.Item style={style.edit}>
                                     <Grid>
@@ -126,19 +147,212 @@ class Pharmacy extends React.Component {
                                     </Grid>
                                 </List.Item>
 
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            006
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                            <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            001
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            002
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            003
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            004
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            005
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            006
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            001
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            002
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            003
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            004
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            005
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
+                                <List.Item style={style.edit}>
+                                    <Grid>
+
+                                        <Grid.Column width={4} style={style.queueNo}>
+                                            006
+                                </Grid.Column>
+                                        <Grid.Column width={12}>
+                                            <List.Content>
+                                                <List.Header as='a' style={style.hnNo}>HN 0000/00</List.Header>
+                                                <List.Description as='a'>Notphattri Buntam</List.Description>
+                                            </List.Content>
+                                        </Grid.Column>
+                                    </Grid>
+                                </List.Item>
+
                                 
-
                             </List>
-
+                            </Scrollbars>
                         </Segment>
-                    </Sticky>
+             
 
                     </Grid.Column>
                     
                     <Grid.Column width={5}>
-                        <Sticky>
+                        
                         <Tab panes={panes} />
-                        </Sticky>
+                      
                     </Grid.Column>
 
                     
@@ -146,9 +360,34 @@ class Pharmacy extends React.Component {
 
                         <Grid.Column>
                             <Segment width={8}>
-                                <Label as='a' color='teal' ribbon style={style.ribbonDoc}>
-                                    Please Fill Out This Section ( Form Doctor )
-                            </Label> <br /><br />
+                            <Header style={style.headForm} as='h5' block inverted color='grey'>
+                                   
+                                   <List divided relaxed>
+                                   <List.Item >
+                                       <Grid columns='three' style={style.headText}>
+                                           <Grid.Row>
+                                               <Grid.Column>
+                                               Date: &nbsp;&nbsp;Sun, 26 Aug 2018
+                                               </Grid.Column>
+                                               <Grid.Column>
+                                               Time: &nbsp;&nbsp;02:56 AM.
+                                               </Grid.Column>
+                                               <Grid.Column>
+                                               VN: &nbsp;&nbsp;1067/3
+                                               </Grid.Column>
+                                           </Grid.Row>
+                                           <Grid.Row style={style.headMargin}>
+                                               <Grid.Column width={5}>
+                                               Privilege: &nbsp;&nbsp;-
+                                               </Grid.Column>
+                                               <Grid.Column width={11}>
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clinic: &nbsp;&nbsp;คลินิกศูนย์แพทย์พัฒนา
+                                               </Grid.Column>
+                                           </Grid.Row>
+                                       </Grid>
+                                   </List.Item>
+                                   </List>     
+                               </Header>
                                 <Form>
                                     <p style={style.topicDoc} ><b>Treatment</b></p>
                                     <Form.Field
@@ -181,7 +420,14 @@ class Pharmacy extends React.Component {
                                             
                                         </Grid.Column>
                                         <Grid.Column>
-                                            <Button color='teal' content='Send To Payment' icon='send' style={style.ButtonDoctor} />
+                                            <Button 
+                                                color='teal' 
+                                                content='Send To Payment' 
+                                                icon='send' 
+                                                style={style.ButtonDoctor} 
+                                                onClick =  { ()=>this.showPopupConfirm()}
+                                                
+                                            />
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>

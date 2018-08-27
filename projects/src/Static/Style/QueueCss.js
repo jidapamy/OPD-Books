@@ -1,4 +1,23 @@
 export const style = {
+
+
+    centerr: {
+        textAlign: 'center',
+      },
+    contentPosition: {
+        // textAlign: 'center',
+        width: '95%',
+        borderRadius: '7px',
+        paddingTop: '4%',
+        paddingBottom: '4%',
+        color: '#707070',
+        marginTop: '5%',
+        marginLeft: '1%',
+        marginBottom: '5%',
+        
+
+      },
+      
     buttonQueue :  {
         color: 'white',
         fontSize: '19px',
@@ -56,7 +75,8 @@ export const style = {
     queueNo: {
         color: '#00b5ad',
         fontSize: '25px',
- 
+        marginTop: '3%'
+
         
     },
 
@@ -247,8 +267,10 @@ export const style = {
     },
 
     history:{
+        // fontSize: '14px',
+        // padding: '5%',
         fontSize: '14px',
-        padding: '5%',
+        padding: '0%',
     },
     topicNameNurse:{
         fontSize: '14px',
@@ -273,6 +295,156 @@ export const style = {
         marginLeft: '-39%',
         marginBottom: '5%'
     },
+
+    textCard:{
+        fontSize: '14px',
+        textAlign: 'left',
+        marginLeft: '-6%',
+        
+    },
+    iconCard:{
+        fontSize: '22px',
+        textAlign: 'right',
+        
+    
+    },
+    rowScaleTop:{
+        paddingTop: '3%',
+        marginBottom: '-4%',
+
+    },
+    rowScaleBottom:{
+        paddingBottom: '3%',
+        marginTop: '-4%'
+    },
+    cardCenter:{
+        paddingLeft: '4%',
+        // marginTop: '1%'
+    },
+
+    visitNumber:{
+        width:'25%',
+        height: '1%',
+        marginLeft: '-2%',
+        paddingTop: '2%',
+        marginTop: '0%',
+        paddingTop: '1.5%',
+        paddingBottom: '1.5%'
+    },
+    visitNumberPosition:{
+        marginLeft: '69.5%',
+        marginRight: '-60%',
+        marginTop: '-5%'
+    },
+
+    scroll:{
+        overflow:'auto' ,
+        whiteSpace: 'nowrap',
+        overflowY:'auto' ,
+        overflow: 'scroll',
+        
+    },
+
+
+    showTopic1:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        // textAlign:'left',
+        marginLeft: '17%'
+    },
+
+    showTopic2:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        // textAlign:'left',
+        marginLeft: '12%'
+    },
+    showTopic3:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        // textAlign:'left',
+        marginLeft: '2%'
+    },
+
+    showInput1: {
+        width: '55%',
+        marginLeft: '15%'
+    }
+    ,
+
+    showInput2:{
+        width: '55%',
+        marginLeft: '10%'
+    },
+
+    showInput3:{
+        width: '55%',
+        // marginLeft: '-60%'
+
+    },
+    Row:{
+        marginTop: '-2.5%'
+    },
+
+    showTopicChief:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        textAlign:'left',
+        marginLeft: '5.5%'
+    },
+    showInputField:{
+        width: '89%',
+        marginLeft: '5%'
+    },
+    showTopicNameDoc:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        textAlign:'left',
+        marginLeft: '38%'
+    },
+    showColumnDoc: {
+        width: '50%',
+        height: '50%',
+        marginLeft: '37%',
+        paddingTop: '1%',
+        marginTop: '0%',
+    },
+
+    showTopicDoc:{
+        fontSize: '14px',
+        color: '#000000',
+        textAlign:'left',
+        marginLeft: '5%'
+    },
+    showInputFieldDoc:{
+        width: '89%',
+        marginLeft: '5%'
+  
+    },
+    
+    headForm:{
+        width: '105.2%',
+        textAlign:'left',
+        marginLeft: '-2.5%',
+        marginTop: '-2.6%',
+        paddingLeft: '5%'
+    },
+    headText: {
+        color:' #ffffff',
+    },
+    headMargin:{
+        marginBottom: '0%',
+        marginTop: '-3.5%'
+    }
+    
+
+
+
 
     
 

@@ -73,18 +73,18 @@ export default class PatientProfile extends Component {
     activeItem: "home",
     //InfoPatient Part1
     registerDate: "",
-    hospitalnumber: "",
+    hospitalNumber: "",
     citizenId: "",
 
     //InfoPatient Part2
     dob: "",
-    titlename: "",
+    nameTitle: "",
     firstname: "",
     lastname: "",
     gender: "",
 
     //InfoPatient Part3
-    congenitaldisease: "",
+    congenitalDisease: "",
     bloodgroup: "",
     religion: "",
     nationality: "",
@@ -174,7 +174,7 @@ export default class PatientProfile extends Component {
               value={QRCodes}
             />
             <Header textAlign={"center"} size="large">
-              {this.state.titlename} {this.state.firstname}  {this.state.lastname}
+              {this.state.nameTitle} {this.state.firstname}  {this.state.lastname}
             </Header>
             <Button
               size="huge"
@@ -200,11 +200,11 @@ export default class PatientProfile extends Component {
               <Image src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' size='small' spaced='left' circular />
             </Grid.Column>
             <Grid.Column width={4}>
-              <Header as="h2">{this.state.titlename} {this.state.firstname} {this.state.lastname}</Header>
+              <Header as="h2">{this.state.nameTitle} {this.state.firstname} {this.state.lastname}</Header>
               <Grid.Row>
                 <Header.Subheader>
                   <span style={{ color: "#848788" }}>Hospital Number : </span>
-                  {this.state.hospitalnumber}
+                  {this.state.hospitalNumber}
                 </Header.Subheader>
               </Grid.Row>
               <Grid.Row>
