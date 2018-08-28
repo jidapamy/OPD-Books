@@ -46,7 +46,6 @@ export default class MedicalRecordTreatment extends Component {
 
   componentWillMount = () => {
     console.log("----------- will mount Treatment");
-    this.state.employee.position = 2;
     if (this.state.employee.position === 2) {
       // Nurse
       this.state.medicalRecord.visitNumber = "1067/3";

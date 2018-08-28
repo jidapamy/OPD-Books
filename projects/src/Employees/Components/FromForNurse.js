@@ -13,7 +13,8 @@ import {
   Card,
   Visibility,
   Sticky,
-  Header
+  Header,
+  Divider
 } from "semantic-ui-react";
 import { Scrollbars } from "react-custom-scrollbars";
 
@@ -173,14 +174,20 @@ export default class FromForNurse extends Component {
         <br />
 
         <Grid columns="two">
-          <Grid.Row columns={2}>
+          <Grid.Row columns={2} style={style.ButtonNurse2}>
             <Grid.Column>
-              <p style={style.topicNameNurse}>
+
+            </Grid.Column>
+            <Grid.Column>
+              <p style={style.topicNameDoc}>
                 <b>ลงชื่อ</b>
               </p>
-              <Message style={style.ColumnNurse} visible>
-                นางสาวพยาบาล จริงๆนะจ้ะ
-              </Message>
+              <p style={style.ColumnDoc}>นางสาวพยาบาล จริงๆนะจ้ะ</p>
+              <p style={style.dividerDeco}><Divider /></p>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={2}>
+            <Grid.Column>
             </Grid.Column>
             <Grid.Column>
               <Button

@@ -11,11 +11,9 @@ import {
   Message,
   Tab,
   Card,
-  Visibility,
-  Sticky,
-  Header
+  Header,
+  Divider
 } from "semantic-ui-react";
-import { Scrollbars } from "react-custom-scrollbars";
 
 import { style } from "./../../Static/Style/QueueCss";
 
@@ -101,7 +99,7 @@ export default class FromForNurse extends Component {
           </Form>
 
           <Grid columns="two">
-            <Grid.Row columns={2}>
+            <Grid.Row columns={2} style={style.ButtonNurse2}>
               <Grid.Column>
                 <p style={style.topicTime}>
                   <b>F/U Date</b>
@@ -114,9 +112,8 @@ export default class FromForNurse extends Component {
                 <p style={style.topicNameDoc}>
                   <b>ลงชื่อแพทย์ผู้รักษา</b>
                 </p>
-                <Message style={style.ColumnDoc} visible>
-                  นพ. ประสม ประสงค์สุขสันต์
-                </Message>
+                  <p style={style.ColumnDoc}>นพ. ประสม ประสงค์สุขสันต์ </p>
+                  <p style={style.dividerDeco}><Divider /></p>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>

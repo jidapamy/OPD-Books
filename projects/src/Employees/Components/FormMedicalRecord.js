@@ -11,8 +11,6 @@ import {
   Message,
   Tab,
   Card,
-  Visibility,
-  Sticky,
   Header
 } from "semantic-ui-react";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -96,10 +94,7 @@ export default class FormMedicalRecord extends Component {
   };
 
   render() {
-    const disabledNurseField =
-      this.props.patient.citizenId == null ||
-      this.props.empLogin.position !== 2;
-    return <Segment width={8}>
+    return <Segment width={8} raised>
         <Header style={style.headForm} as="h5" block inverted color="grey">
           <List divided relaxed>
             <List.Item>
@@ -125,7 +120,7 @@ export default class FormMedicalRecord extends Component {
           </List>
         </Header>
 
-        <Scrollbars style={{ width: 590, height: 600 }}>
+        <Scrollbars autoHide style={{height: 600 }}>
           <br />
           <FromForNurse />
           <br />

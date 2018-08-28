@@ -84,7 +84,7 @@ export default class Queues extends Component {
                 <Table.Cell>
                   <List.Content>
                     <List.Header as="a">HN {q.hospitalNumber}</List.Header>
-                    <List.Description as="a">
+                    <List.Description as="a" style={style.textQueue}>
                       {q.title} {q.firstname} {q.lastname}
                     </List.Description>
                   </List.Content>
@@ -107,7 +107,7 @@ export default class Queues extends Component {
                         <List.Header as="a" style={style.hnNo}>
                           HN {q.hospitalNumber}
                         </List.Header>
-                        <List.Description as="a">
+                        <List.Description as="a" style={style.textQueue}>
                          {q.title} {q.firstname} {q.lastname}
                         </List.Description>
                       </List.Content>
