@@ -507,7 +507,7 @@ export default class PatientProfile extends Component {
                   <Container>
                     <Grid>
                       <Grid.Column >
-                        <Scrollbars autoHide style={{ height: 600 }}>
+                        <Scrollbars autoHide style={{ height: 614 }}>
                         <List divided relaxed>
                           <List.Item>
                               <List.Content> 
@@ -666,8 +666,10 @@ export default class PatientProfile extends Component {
                 <Segment color='teal'>
                   <h4><Icon name='clipboard outline' />Medical Record</h4>
                   <Divider />
+                  <Scrollbars autoHide style={{ height: 614 }}>
                   <Container>
-                    <Grid textAlign='center'>
+                    <Grid >
+                     
                       
                         <Grid.Column  width={1}>
                           <Grid.Row >
@@ -695,9 +697,9 @@ export default class PatientProfile extends Component {
                               34
                           </Header.Subheader>
                           </Grid.Row>
-
+                          
                         </Grid.Column>
-                        <Grid.Column width={2}>
+                        <Grid.Column  width={1}>
                           <Grid.Row>
                             <Header.Subheader >
                               cm.
@@ -711,8 +713,23 @@ export default class PatientProfile extends Component {
                           </Grid.Row>
 
                         </Grid.Column>
+                        {/* ====== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row >
 
-                        
+                          </Grid.Row>
+
+                        </Grid.Column>
+                        {/* ======= */}
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row >
+
+                          </Grid.Row>
+
+
+                        </Grid.Column>
+                        {/* ===== */}
                         <Grid.Column width={1}>
                           <Grid.Row>
                             <Header.Subheader >
@@ -741,7 +758,7 @@ export default class PatientProfile extends Component {
                           </Grid.Row>
 
                         </Grid.Column>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={1}>
                           <Grid.Row>
                             <Header.Subheader >
                               cm.
@@ -756,7 +773,24 @@ export default class PatientProfile extends Component {
 
                         </Grid.Column>
 
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row >
 
+                          </Grid.Row>
+                          
+
+                        </Grid.Column>
+                        {/* ===== */}
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row >
+
+                          </Grid.Row>
+
+
+                        </Grid.Column>
+                        {/* ===== */}
 
                         <Grid.Column width={1}>
                           <Grid.Row>
@@ -786,7 +820,7 @@ export default class PatientProfile extends Component {
                           </Grid.Row>
 
                         </Grid.Column>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={1}>
                           <Grid.Row>
                             <Header.Subheader >
                               cm.
@@ -800,13 +834,59 @@ export default class PatientProfile extends Component {
                           </Grid.Row>
 
                         </Grid.Column>
-
-                      
-                    
-
-
+                        
                     </Grid>
+                    <br />
+                    
+                    <Form>
+                      <Form.TextArea label='Chief Plaint' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br/>
+                    
+                        <p style={{textAlign:'right'}} >Miss.Sunisaya Maremnakron</p>
+                      
+                     
+                        <Divider />
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Present Illness' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Physical Exam' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Investigation' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Dianosis / impression' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Treatment' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Form>
+                      <Form.TextArea label='Recommendation and Plan ' placeholder='Tell us more about you...' />
+                    </Form>
+                    <br />
+                    <Grid width={16}>
+                      <Grid.Column width={8}>
+                          <Icon name='calendar alternate outline' />F/D Date
+                          <p>Aug 8 , 2018</p>
+                      </Grid.Column>
+                      
+                      <Grid.Column width={8}>
+                          <Icon  name='user md' />Docter Name
+                        <p>Dr Montgomery Delarosa</p>
+                      </Grid.Column>
+
+                    </Grid >
+                    
                   </Container>
+                  </Scrollbars>
                 </Segment>
               </Segment.Group>
             </Grid.Column>
