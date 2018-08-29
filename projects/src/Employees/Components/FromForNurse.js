@@ -13,7 +13,8 @@ import {
   Card,
   Visibility,
   Sticky,
-  Header
+  Header,
+  Divider
 } from "semantic-ui-react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { style } from "./../../Static/Style/QueueCss";
@@ -83,12 +84,12 @@ export default class FromForNurse extends Component {
     if (this.props.empLogin.position === 2) {
       return (
         <Button
-          color="teal"
-          content="Send To Doctor"
-          icon="send"
-          style={style.ButtonNurse}
-          onClick={() => this.props.showPopupConfirm()}
-          disabled={this.props.patient.citizenId == null}
+            color="teal"
+            content="Send To Doctor"
+            icon="send"
+            style={style.ButtonNurse}
+            onClick={() => this.props.showPopupConfirm()}
+            disabled={this.props.patient.citizenId == null}
         />
       );
     }
@@ -296,17 +297,25 @@ export default class FromForNurse extends Component {
         </Form>
         <br />
 
-        <Grid columns="two">
-          <Grid.Row columns={2}>
+         <Grid columns="two">
+          <Grid.Row columns={2} style={style.ButtonNurse2}>
             <Grid.Column>
-              <p style={style.topicNameNurse}>
+
+            </Grid.Column>
+            <Grid.Column>
+              <p style={style.topicNameDoc}>
                 <b>Sign</b>
               </p>
-              <Message style={style.ColumnNurse} visible>
-                {this.props.medicalRecord.nurseName}
-              </Message>
+              <p style={style.ColumnDoc}>{this.props.medicalRecord.nurseName}</p>
+              <p style={style.dividerDeco}><Divider /></p>
             </Grid.Column>
-            <Grid.Column>{this.buttonForNurse()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+            </Grid.Column>
+            <Grid.Column>
+              {this.buttonForNurse()}
+            </Grid.Column> 
           </Grid.Row>
         </Grid>
       </div>

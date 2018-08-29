@@ -1,14 +1,43 @@
 import React from "react";
-import { Button, Segment, Input, Grid, List, Label, Form, TextArea, Message, Tab, Card, Icon, Popup, Modal } from 'semantic-ui-react';
+import {
+  Button,
+  Segment,
+  Input,
+  Grid,
+  List,
+  Label,
+  Form,
+  TextArea,
+  Message,
+  Tab,
+  Card,
+  Icon,
+  Popup,
+  Modal,
+  Header,
+  Divider,
+  Container
+} from "semantic-ui-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { Scrollbars } from "react-custom-scrollbars";
 import { style } from "./../../Static/Style/QueueCss";
+import TreatmentHistory from "./TreatmentHistory";
 
 export default class Tab2History extends React.Component {
   render() {
     return (
+      // <Container textAlign="center" style={{ padding: "2% 4%" }}>
+      //   <Scrollbars autoHide style={{ height: this.props.height }}>
+      //     <List divided relaxed style={{ textAlign: "left" }}>
+      //       <TreatmentHistory/>
+      //     </List>
+      //   </Scrollbars>
+      // </Container>
+
       <div style={style.cardCenter}>
-        <Scrollbars style={{ width: 320, height: 407 }}>
+
+        TEST!!! 
+        {/* <Scrollbars autoHide style={{ width: 320, height: 407 }}>
           <Card style={style.contentPosition}>
             <Modal
               trigger={
@@ -52,7 +81,33 @@ export default class Tab2History extends React.Component {
               <Modal.Header>Medical Records</Modal.Header>
               <Modal.Content image>
                 <Modal.Description>
-                  <Scrollbars style={{ width: 870, height: 500 }}>
+
+                  <Header style={style.headFormShow} as="h5" block inverted color="grey">
+                    <List divided relaxed>
+                      <List.Item>
+                        <Grid columns="three" style={style.headText}>
+                          <Grid.Row>
+                            <Grid.Column>
+                              Date: &nbsp;&nbsp;Sun, 26 Aug 2018
+                  </Grid.Column>
+                            <Grid.Column>Time: &nbsp;&nbsp;02:56 AM.</Grid.Column>
+                            <Grid.Column>VN: &nbsp;&nbsp;1067/3</Grid.Column>
+                          </Grid.Row>
+                          <Grid.Row style={style.headMarginShow}>
+                            <Grid.Column width={5}>
+                              Privilege: &nbsp;&nbsp;-
+                  </Grid.Column>
+                            <Grid.Column width={11}>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clinic:
+                              &nbsp;&nbsp;คลินิกศูนย์แพทย์พัฒนา
+                  </Grid.Column>
+                          </Grid.Row>
+                        </Grid>
+                      </List.Item>
+                    </List>
+                  </Header>
+
+                  <Scrollbars autoHide style={{ width: 870, height: 500 }}>
                     <List divided relaxed>
                       <List.Item>
                         <Grid columns="three">
@@ -97,40 +152,6 @@ export default class Tab2History extends React.Component {
                             </Grid.Column>
                           </Grid.Row>
                           <br />
-                          {/* <Grid.Row>
-                                                    <Grid.Column>
-                                                        <p style={style.showTopic1}><b>HT:</b></p>
-                                                        <Input
-                                                            label={{ basic: true, content: 'cm.' }}
-                                                            labelPosition='right'
-                                                            placeholder='HT ...'
-                                                            style={style.showInput1}
-                                                            disabled
-                                                        />
-                                                    </Grid.Column>
-
-                                                    <Grid.Column>
-                                                        <p style={style.showTopic2}><b>T:</b></p>
-                                                        <Input
-                                                            label={{ basic: true, content: 'C' }}
-                                                            labelPosition='right'
-                                                            placeholder='Temperature ...'
-                                                            style={style.showInput2}
-                                                            disabled
-                                                        />
-                                                    </Grid.Column>
-
-                                                    <Grid.Column>
-                                                        <p style={style.showTopic3}><b>BP1:</b></p>
-                                                        <Input
-                                                            label={{ basic: true, content: 'mm/Hg' }}
-                                                            labelPosition='right'
-                                                            placeholder='BP1 ...'
-                                                            style={style.showInput3}
-                                                            disabled
-                                                        />
-                                                    </Grid.Column>
-                                                </Grid.Row><br/> */}
 
                           <Grid.Row>
                             <Grid.Column>
@@ -232,12 +253,11 @@ export default class Tab2History extends React.Component {
                         <Grid.Row columns={2}>
                           <Grid.Column />
                           <Grid.Column>
-                            <p style={style.showTopicNameDoc}>
+                            <p style={style.topicNameDoc}>
                               <b>ลงชื่อ</b>
                             </p>
-                            <Message style={style.showColumnDoc} visible>
-                              นางสาวพยาบาล จริงๆนะจ้ะ
-                            </Message>
+                            <p style={style.ColumnDoc}>นางสาวพยาบาล จริงๆนะจ้ะ</p>
+                            <p style={style.dividerDeco2}><Divider /></p>
                           </Grid.Column>
                         </Grid.Row>
                       </Grid>
@@ -324,9 +344,8 @@ export default class Tab2History extends React.Component {
                             <p style={style.topicNameDoc}>
                               <b>ลงชื่อแพทย์ผู้รักษา</b>
                             </p>
-                            <Message style={style.ColumnDoc} visible>
-                              นพ. ประสม ประสงค์สุขสันต์
-                            </Message>
+                            <p style={style.ColumnDoc}>นพ. ประสม ประสงค์สุขสันต์ </p>
+                            <p style={style.dividerDeco2}><Divider /></p>
                           </Grid.Column>
                         </Grid.Row>
                         <br />
@@ -342,7 +361,7 @@ export default class Tab2History extends React.Component {
               </Modal.Actions>
             </Modal>
           </Card>
-        </Scrollbars>
+        </Scrollbars> */}
       </div>
     );
   }

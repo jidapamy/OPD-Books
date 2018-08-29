@@ -121,7 +121,7 @@ class Registration extends Component {
 
   addQueueForNurse = () => {
     if (this.state.patient.citizenId) {
-      addQueue( 1, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle,this.state.patient.firstname,this.state.patient.lastname,true,"-");
+      addQueue(1, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, true, "-");
       swal({
         type: "success",
         title: "Add Queue Success!",
@@ -148,9 +148,8 @@ class Registration extends Component {
 
   render() {
     const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname + "  " + this.state.employee.lastname;
-    return (
-      <div>
-        <NavbarHeader empName={empName}/>
+    return <div>
+        <NavbarHeader empName={empName} />
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -160,24 +159,22 @@ class Registration extends Component {
               <Header.Subheader>Project on Blockchain</Header.Subheader>
             </Header.Content>
           </Header>
-           <Button
-              color="red"
-              content="Remove Q"
-              onClick={() => this.removeQ()}
-            />
+
+          <Button color="red" content="Remove All Q" onClick={() => this.removeQ()} />
+
           <Image centered style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
                 { open: true }
               )} />
           <Container>
             <Grid style={style.last} textAlign="center">
               <Grid.Column width={5}>
-                <Queues role="Nurse" position={2} StatusQueue="N" page="Registration"/>
+                <Queues role="Nurse" position={2} StatusQueue="N" page="Registration" />
               </Grid.Column>
               <Grid.Column width={5}>
-                <Queues role="Doctor" position={3}StatusQueue="D" page="Registration"/>
+                <Queues role="Doctor" position={3} StatusQueue="D" page="Registration" />
               </Grid.Column>
               <Grid.Column width={5}>
-                <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration"/>
+                <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration" />
               </Grid.Column>
             </Grid>
           </Container>
@@ -206,18 +203,20 @@ class Registration extends Component {
                 Medical
               </Header>
               <Divider />
-              
+
               <Scrollbars autoHide style={{ height: 700 }}>
                 <Grid textAlign="center">
                   <br />
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>PROFILE PATIENT</Header.Content>
+                        <Header.Content style={style.colorHeader}>
+                          PROFILE PATIENT
+                        </Header.Content>
                       </Header>
                     </Grid.Column>
                   </Grid.Row>
-                  
+
                   <Grid.Row>
                     <Grid.Column textAlign="center" as="h3">
                       <p>
@@ -332,17 +331,18 @@ class Registration extends Component {
                     </Grid.Column>
                   </Grid.Row>
 
-                  <Divider  section inverted>
-                  </Divider>
-                  
+                  <Divider section inverted />
+
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>PATIENT ADDRESS</Header.Content>
+                        <Header.Content style={style.colorHeader}>
+                          PATIENT ADDRESS
+                        </Header.Content>
                       </Header>
                     </Grid.Column>
                   </Grid.Row>
-                  
+
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
@@ -396,16 +396,17 @@ class Registration extends Component {
                     </Grid.Column>
                   </Grid.Row>
 
-                  <Divider section inverted>
-                  </Divider>
-                 
+                  <Divider section inverted />
+
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>EMERGENCY ADDRESS</Header.Content>
+                        <Header.Content style={style.colorHeader}>
+                          EMERGENCY ADDRESS
+                        </Header.Content>
                       </Header>
                     </Grid.Column>
-                    </Grid.Row>
+                  </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
@@ -483,7 +484,6 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    
                   </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={5}>
@@ -494,23 +494,18 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    <Grid.Column width={5}>
-                      
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      
-                    </Grid.Column>
-
+                    <Grid.Column width={5} />
+                    <Grid.Column width={5} />
                   </Grid.Row>
 
-                  <Divider section inverted>
-                  </Divider>
-                  
-                 
+                  <Divider section inverted />
+
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>ALLERGY</Header.Content>
+                        <Header.Content style={style.colorHeader}>
+                          ALLERGY
+                        </Header.Content>
                       </Header>
                     </Grid.Column>
                   </Grid.Row>
@@ -532,18 +527,17 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    <Grid.Column width={5}>
-
-                    </Grid.Column>
+                    <Grid.Column width={5} />
                   </Grid.Row>
 
-                  <Divider section inverted>
-                  </Divider>
-                  
+                  <Divider section inverted />
+
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>IN CASE UNDER 15 YEAR OLD</Header.Content>
+                        <Header.Content style={style.colorHeader}>
+                          IN CASE UNDER 15 YEAR OLD
+                        </Header.Content>
                       </Header>
                     </Grid.Column>
                   </Grid.Row>
@@ -565,9 +559,7 @@ class Registration extends Component {
                         </span>
                       </p>
                     </Grid.Column>
-                    <Grid.Column width={5}>
-                     
-                    </Grid.Column>
+                    <Grid.Column width={5} />
                   </Grid.Row>
                 </Grid>
               </Scrollbars>
@@ -580,8 +572,7 @@ class Registration extends Component {
             <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.addQueueForNurse()} />
           </Modal.Actions>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 

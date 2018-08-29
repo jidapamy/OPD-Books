@@ -192,11 +192,14 @@ export const style = {
 
     },
     ColumnDoc: {
-        width: '95%',
-        height: '50%',
+        width: '93%',
+        // height: '50%',
         marginLeft: '-2%',
         paddingTop: '2%',
-        marginTop: '0%'
+        marginTop: '0%',
+        textAlign: 'center',
+        color: '#666666'
+
     },
 
     ColumnNameDoc:{
@@ -222,7 +225,7 @@ export const style = {
 
     toppicPatient:{
         fontSize: '15px',
-        color: '#000000',
+        color: '#4183C4',
         textAlign: 'left',
         marginLeft: '10%'
 
@@ -235,8 +238,6 @@ export const style = {
     
     showData:{
         width: '80%',
-        paddingTop: '2%',
-        paddingBottom: '2%',
         textAlign: 'left',
         positon: 'center'
 
@@ -253,7 +254,7 @@ export const style = {
 
     paddingPatient:{
         paddingBottom: '2%',
-        paddingTop: '0%'
+        paddingTop: '2%'
     },
 
     fixContent:{
@@ -288,11 +289,14 @@ export const style = {
         marginTop: '0%'
     },
     ButtonNurse:{
-        marginTop: '5%',
-        marginLeft: '-25%'
+        marginLeft: '29%'
+    },
+    ButtonNurse2:{
+        // margintop: '-15%'
+        marginBottom: '-5%'
     },
     ButtonDoctor:{
-        marginLeft: '-39%',
+        marginLeft: '23%',
         marginBottom: '5%'
     },
 
@@ -432,7 +436,9 @@ export const style = {
         textAlign:'left',
         marginLeft: '-2.5%',
         marginTop: '-2.6%',
-        paddingLeft: '5%'
+        paddingLeft: '5%',
+        borderColor: '#525252',
+    
     },
     headText: {
         color:' #ffffff',
@@ -440,8 +446,48 @@ export const style = {
     headMargin:{
         marginBottom: '0%',
         marginTop: '-3.5%'
+    },
+    textQueue:{
+        textAlign:'left',
+        marginLeft: '6%'
+
+    },
+    headMarginShow:{
+        marginBottom: '0%',
+        marginTop: '-3.5%'
+    },
+    headFormShow:{
+        width: '103.5%',
+        textAlign:'left',
+        marginLeft: '-2.5%',
+        marginTop: '-2.6%',
+        paddingLeft: '5%',
+        borderColor: '#525252',
+        borderRadius: '0px'
+    },
+    headMarginShow:{
+        marginBottom: '0%',
+        marginTop: '-2%'
+
+    },
+
+    dividerDeco:{
+        width: '93%',
+        marginLeft: '-2%',
+        marginTop: '-5%',
+        textAlign: 'left',
+        borderColor: '#000000',
+        borderWidth:'thick'
+    },
+    dividerDeco2:{
+        width: '90%',
+        marginLeft: '-2%',
+        marginTop: '-3%',
+        textAlign: 'left',
+        borderColor: '#000000',
+        borderWidth:'thick'
     }
-    
+
 
 
 

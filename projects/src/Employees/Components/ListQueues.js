@@ -106,7 +106,7 @@ export default class Queues extends Component {
                         <List.Header as="a" style={style.hnNo}>
                           {this.props.position == 2 ? 'HN '+ q.hospitalNumber: 'VN '+q.visitNumber}
                         </List.Header>
-                        <List.Description as="a">
+                        <List.Description as="a" style={style.textQueue}>
                          {q.title} {q.firstname} {q.lastname}
                         </List.Description>
                       </List.Content>

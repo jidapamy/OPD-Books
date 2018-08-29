@@ -11,11 +11,9 @@ import {
   Message,
   Tab,
   Card,
-  Visibility,
-  Sticky,
-  Header
+  Header,
+  Divider
 } from "semantic-ui-react";
-import { Scrollbars } from "react-custom-scrollbars";
 
 import { style } from "./../../Static/Style/QueueCss";
 
@@ -68,7 +66,7 @@ export default class FromForDoctor extends Component {
   };
 
 
-  showfield = () => {
+  showfield = (disabledDoctorField) => {
     if(this.props.empLogin.position === 3){
       return <span>
       <p style={style.topicDoc}>
@@ -80,6 +78,7 @@ export default class FromForDoctor extends Component {
               style={style.inputFieldDoc}
               onChange={e => this.setField("presentIllness", e.target.value)}
               value={this.state.presentIllness}
+              disabled={disabledDoctorField}
             />
             <p style={style.topicDoc}>
               <b>Physical Exam</b>
@@ -90,6 +89,7 @@ export default class FromForDoctor extends Component {
               style={style.inputFieldDoc}
               onChange={e => this.setField("physicalExem", e.target.value)}
               value={this.state.physicalExem}
+              disabled={disabledDoctorField}
             />
           
             <p style={style.topicDoc}>
@@ -101,6 +101,7 @@ export default class FromForDoctor extends Component {
               style={style.inputFieldDoc}
               onChange={e => this.setField("diagnosis", e.target.value)}
               value={this.state.diagnosis}
+              disabled={disabledDoctorField}
             />
             </span>
     }
@@ -115,7 +116,7 @@ export default class FromForDoctor extends Component {
     
     return <div>
         <Form>
-          {this.showfield()}
+          {this.showfield(disabledDoctorField)}
           <p style={style.topicDoc}>
             <b>Treatment</b>
           </p>
@@ -140,7 +141,7 @@ export default class FromForDoctor extends Component {
         </Form>
 
         <Grid columns="two">
-          <Grid.Row columns={2}>
+          <Grid.Row columns={2} style={style.ButtonNurse2}>
             <Grid.Column>
               <p style={style.topicTime}>
                 <b>F/U Date</b>
@@ -153,9 +154,8 @@ export default class FromForDoctor extends Component {
               <p style={style.topicNameDoc}>
                 <b>Sign</b>
               </p>
-              <Message style={style.ColumnDoc} visible>
-                {this.props.medicalRecord.doctorName}
-              </Message>
+              <p style={style.ColumnDoc}>{this.props.medicalRecord.doctorName}</p>
+              <p style={style.dividerDeco}><Divider /></p>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={2}>
@@ -165,6 +165,6 @@ export default class FromForDoctor extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </div>;
+      </div>
   }
 }

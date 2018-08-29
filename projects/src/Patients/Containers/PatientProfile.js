@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, 
+import {
+  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Dropdown, Item,
           Button, Modal, Popup, Form, TextArea, Pagination } from "semantic-ui-react";
 import styled from "styled-components";
 import iconOpd from "./../../Static/Img/IconOPDs.png";
@@ -13,6 +14,7 @@ import BackgroundImage from "./../../Static/Img/BGGs.png";
 
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
+import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
 
 const CryptoJS = require("crypto-js");
 
@@ -24,7 +26,40 @@ const style = {
   ImButton: {
     cursor: 'pointer'
   },
+  colorsort: {
+    color: "#00B5AD"
+  },
+  colorHis: {
+    color: "#AFB4B7",
+    fontSize: '12px',
+  },
+  colorDes: {
+    color: "#808B96  ",
+  },
 }
+
+const Years = [
+  { key: 2012, text: '2012', value: 2012 },
+  { key: 2013, text: '2012', value: 2013 },
+  { key: 2014, text: '2012', value: 2014 },
+  { key: 2015, text: '2012', value: 2015 },
+  { key: 2012, text: '2012', value: 2012 },
+  { key: 2013, text: '2012', value: 2013 },
+  { key: 2014, text: '2012', value: 2014 },
+  { key: 2015, text: '2012', value: 2015 },
+  { key: 2012, text: '2012', value: 2012 },
+  { key: 2013, text: '2012', value: 2013 },
+  { key: 2014, text: '2012', value: 2014 },
+  { key: 2015, text: '2012', value: 2015 },
+  { key: 2012, text: '2012', value: 2012 },
+  { key: 2013, text: '2012', value: 2013 },
+  { key: 2014, text: '2012', value: 2014 },
+  { key: 2015, text: '2012', value: 2015 },
+  { key: 2012, text: '2012', value: 2012 },
+  { key: 2013, text: '2012', value: 2013 },
+  { key: 2014, text: '2012', value: 2014 },
+  { key: 2015, text: '2012', value: 2015 },
+]
 
 const PopupQRCode = styled(Modal)`
   position: fixed;
@@ -204,7 +239,7 @@ export default class PatientProfile extends Component {
               {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
 
               <Segment.Group>
-                <Segment color="teal">
+                <Segment>
                   <h4>
                     <Icon name="child" />In Case Under15 Year Old
                   </h4>
@@ -331,203 +366,172 @@ export default class PatientProfile extends Component {
             <Grid.Column width={4}>
               <Segment.Group>
                 <Segment color="teal">
-                  <h4>
-                    <Icon name="history" />History Medical
-                  </h4>
+                  <List divided relaxed>
+                    <List.Item>
+                      <List.Content floated="right">
+                        <List.Description as="a">
+                          <span style={style.colorsort}>
+                            <Icon name="calendar alternate outline" size="small" />
+                          </span> <Dropdown scrolling compact searchInput={{ type: "number" }} options={Years} placeholder="Years" />
+                        </List.Description>
+                      </List.Content>
+                      <p>
+                        <Icon name="history" />Medical History
+                      </p>
+                    </List.Item>
+                  </List>
+
                   <Divider />
                   <Container>
                     <Grid>
                       <Grid.Column>
-                        <Scrollbars autoHide style={{ height: 600 }}>
-                          <List divided relaxed>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 10 mins ago
+                        <Scrollbars autoHide style={{ height: 614 }}>
+                          <TreatmentHistory />
+                          {/* <List divided relaxed>
+                          <List.Item>
+                              <List.Content> 
+                                  <List.Content floated='right'>
+                                      <List.Description as='a' >
+                                    <Icon name='calendar alternate outline' size='small' />
+                                      <span style={style.colorHis}>11/07/2013</span>
+                                      </List.Description>
+                                  </List.Content>
+                                <List.Header as='a'>Treatment</List.Header>
+                                <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                                <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Docs
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 22 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                          <List.Item>
+                            <List.Content>
+                              <List.Content floated='right'>
+                                <List.Description as='a' >
+                                  <Icon name='calendar alternate outline' size='small' />
+                                  <span style={style.colorHis}>11/07/2013</span>
                                 </List.Description>
                               </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                            <List.Item>
-                              <List.Icon name="github" size="large" verticalAlign="middle" />
-                              <List.Content>
-                                <List.Header as="a">
-                                  Semantic-Org/Semantic-UI-Meteor
-                                </List.Header>
-                                <List.Description as="a">
-                                  Updated 34 mins ago
-                                </List.Description>
-                              </List.Content>
-                            </List.Item>
-                          </List>
+                              <List.Header as='a'>Treatment</List.Header>
+                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
+                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
+                            </List.Content>
+                          </List.Item>
+                        </List>*/}
                         </Scrollbars>
                       </Grid.Column>
                     </Grid>
@@ -540,58 +544,148 @@ export default class PatientProfile extends Component {
               <Segment.Group>
                 <Segment color="teal">
                   <h4>
-                    <Icon name="home" />Emergency Address
+                    <Icon name="clipboard outline" />Medical Record
                   </h4>
                   <Divider />
-                  <Container>
-                    <Grid>
-                      <Grid.Column width={6}>
-                        <Header.Subheader>Name</Header.Subheader>
-                        <Header.Subheader>Relationship</Header.Subheader>
-                        <Header.Subheader>Home Number</Header.Subheader>
-                        <Header.Subheader>Phon Number</Header.Subheader>
-                        <Header.Subheader>Type Of House</Header.Subheader>
-                        <Header.Subheader>Address</Header.Subheader>
-                        <Header.Subheader>Sub District</Header.Subheader>
-                        <Header.Subheader>District</Header.Subheader>
-                        <Header.Subheader>Province</Header.Subheader>
-                        <Header.Subheader>Zipcode</Header.Subheader>
-                      </Grid.Column>
-                      <Grid.Column width={10}>
-                        <Header.Subheader>
-                          : {this.state.emerTitle}
-                          {this.state.emerFirstname} {this.state.emerLastname}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerRelationship}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerHomePhonenumber}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerMobileNumber}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerTypeofHouse}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerAddress}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerSubDistrict}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerDistrict}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerProvince}
-                        </Header.Subheader>
-                        <Header.Subheader>
-                          : {this.state.emerZipcode}
-                        </Header.Subheader>
-                      </Grid.Column>
-                    </Grid>
-                  </Container>
+                  <Scrollbars autoHide style={{ height: 614 }}>
+                    <Container>
+                      <Grid>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>HT</Header.Subheader>
+                            <Header.Subheader>BW</Header.Subheader>
+                            <Header.Subheader>BMI</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>100</Header.Subheader>
+                            <Header.Subheader>134</Header.Subheader>
+                            <Header.Subheader>34</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>cm.</Header.Subheader>
+                            <Header.Subheader>kg.</Header.Subheader>
+                            <Header.Subheader />
+                          </Grid.Row>
+                        </Grid.Column>
+                        {/* ====== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row />
+                        </Grid.Column>
+                        {/* ======= */}
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row />
+                        </Grid.Column>
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>HT</Header.Subheader>
+                            <Header.Subheader>BW</Header.Subheader>
+                            <Header.Subheader>BMI</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>100</Header.Subheader>
+                            <Header.Subheader>134</Header.Subheader>
+                            <Header.Subheader>34</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>cm.</Header.Subheader>
+                            <Header.Subheader>kg.</Header.Subheader>
+                            <Header.Subheader />
+                          </Grid.Row>
+                        </Grid.Column>
+
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row />
+                        </Grid.Column>
+                        {/* ===== */}
+                        {/* ===== */}
+                        <Grid.Column width={1}>
+                          <Grid.Row />
+                        </Grid.Column>
+                        {/* ===== */}
+
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>HT</Header.Subheader>
+                            <Header.Subheader>BW</Header.Subheader>
+                            <Header.Subheader>BMI</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>100</Header.Subheader>
+                            <Header.Subheader>134</Header.Subheader>
+                            <Header.Subheader>34</Header.Subheader>
+                          </Grid.Row>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                          <Grid.Row>
+                            <Header.Subheader>cm.</Header.Subheader>
+                            <Header.Subheader>kg.</Header.Subheader>
+                            <Header.Subheader />
+                          </Grid.Row>
+                        </Grid.Column>
+                      </Grid>
+                      <br />
+
+                      <Form>
+                        <Form.TextArea label="Chief Plaint" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+
+                      <p style={{ textAlign: "right" }}>
+                        Miss.Sunisaya Maremnakron
+                      </p>
+
+                      <Divider />
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Present Illness" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Physical Exam" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Investigation" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Dianosis / impression" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Treatment" placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Form>
+                        <Form.TextArea label="Recommendation and Plan " placeholder="Tell us more about you..." />
+                      </Form>
+                      <br />
+                      <Grid width={16}>
+                        <Grid.Column width={8}>
+                          <Icon name="calendar alternate outline" />F/D Date
+                          <p>Aug 8 , 2018</p>
+                        </Grid.Column>
+
+                        <Grid.Column width={8}>
+                          <Icon name="user md" />Docter Name
+                          <p>Dr Montgomery Delarosa</p>
+                        </Grid.Column>
+                      </Grid>
+                    </Container>
+                  </Scrollbars>
                 </Segment>
               </Segment.Group>
             </Grid.Column>
