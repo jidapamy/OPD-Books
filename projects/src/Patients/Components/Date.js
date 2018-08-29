@@ -3,14 +3,14 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 const SelectDate = ({
-    setDateOfBirth, dob
+    setDate, dob
 }) => {
     
     if( dob !== null || dob != undefined){
         return <DatePicker
             placeholderText="ex. 01/01/1990"
             selected={moment(dob, 'DD/MM/YYYY')}
-            onChange={e => setDateOfBirth(e)}
+            onChange={e => setDate(e)}
             dateFormatCalendar={"MMM YYYY"}
             minDate={moment().subtract(145, "year")}
             maxDate={moment().add(0, "year")}
@@ -21,7 +21,7 @@ const SelectDate = ({
     return <DatePicker
         placeholderText="ex. 01/01/1990"
         selected={dob}
-        onChange={e => setDateOfBirth(e)}
+        onChange={e => setDate(e)}
         dateFormatCalendar={"MMM YYYY"}
         minDate={moment().subtract(145, "year")}
         maxDate={moment().add(0, "year")}

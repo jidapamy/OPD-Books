@@ -2,6 +2,7 @@ import { defaultAccount, contract, web3 } from "./../Lib/Web3";
 import moment from "moment";
 
 export const insertPatient = (patient,date) => {
+  console.log('patient!!!',patient)
     const hn = 'HP2312';
     contract.setInfoPatientPart1(web3.fromAscii(patient.citizenId), web3.fromAscii(date), web3.fromAscii(hn), web3.fromAscii(patient.password), defaultAccount);
     contract.setInfoPatientPart2(web3.fromAscii(patient.citizenId), web3.fromAscii(patient.dob), web3.fromAscii(patient.nameTitle), web3.fromAscii(patient.firstname), web3.fromAscii(patient.lastname), web3.fromAscii(patient.gender), defaultAccount);
@@ -100,6 +101,7 @@ export const getPatient = (citizenId,type) => {
 
    patient.age = calculateAge(web3.toAscii(InfoPatientPart2[0]));;
 
+   console.log('get PATIENT!!',patient)
   return patient;
 
 }

@@ -21,7 +21,6 @@ export default class Tab1InfoPatient extends React.Component {
     age: ""
   };
   render() {
-    console.log("Patient : " ,this.props.patient);
     return <Grid.Column width={5}>
         <List divided relaxed>
           <List.Item style={style.edit}>

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import moment from "moment";
-import { addQueue } from "./../../Service/QueueMethod";
+import { addQueue, removeQueues } from "./../../Service/QueueMethod";
 import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
 import NavbarHeader from "./../Components/NavHeader";
 
@@ -141,6 +141,11 @@ class Registration extends Component {
     console.log(err);
   };
 
+  removeQ = () => {
+    removeQueues();
+    alert("remove Q")
+  }
+
   render() {
     const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname + "  " + this.state.employee.lastname;
     return (
@@ -155,6 +160,11 @@ class Registration extends Component {
               <Header.Subheader>Project on Blockchain</Header.Subheader>
             </Header.Content>
           </Header>
+           <Button
+              color="red"
+              content="Remove Q"
+              onClick={() => this.removeQ()}
+            />
           <Image centered style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
                 { open: true }
               )} />
@@ -290,7 +300,7 @@ class Registration extends Component {
                       <p>
                         Status<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.statuspatient}
+                          {this.state.patient.status}
                         </span>
                       </p>
                     </Grid.Column>
@@ -308,7 +318,7 @@ class Registration extends Component {
                       <p>
                         Home Number<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.homephonenumber}
+                          {this.state.patient.homePhonenumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -316,7 +326,7 @@ class Registration extends Component {
                       <p>
                         Mobile Number<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.mobilenumber}
+                          {this.state.patient.mobileNumber}
                         </span>
                       </p>
                     </Grid.Column>
@@ -346,7 +356,7 @@ class Registration extends Component {
                       <p>
                         Address<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.patientaddress}
+                          {this.state.patient.address}
                         </span>
                       </p>
                     </Grid.Column>

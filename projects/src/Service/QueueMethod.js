@@ -69,11 +69,22 @@ export const getQueues = (empPosition) => {
         }
     }
   }
+  console.log('getQ',qList)
   return qList;
 };
 
 export const updateStatusQueue = ( empPosition, index, statusQueue ) => {
-    contract.updateStatusQueue(empPosition, +index, statusQueue);
-    return getQueues(empPosition);
+    console.log("UPDATE !!!! index", empPosition, +index, statusQueue);
+    console.log(getQueues(empPosition));
+    contract.updateStatusQueue(empPosition, +index, statusQueue, defaultAccount);
+    return true;
 }
-// function updateStatusQueue( uint _empPosition , uint _index ,bool _statusQueue ) public {
+
+export const removeQueues = () => {
+    contract.removeQueues(defaultAccount);
+}
+
+export const doctorQLength = () => {
+  let length = contract.countQueuesForDocters().toString();
+  return +length;
+}
