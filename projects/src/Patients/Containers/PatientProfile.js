@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Dropdown, Item,
+  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Dropdown, Item, Responsive, Sidebar, Visibility, Statistic,
           Button, Modal, Popup, Form, TextArea, Pagination } from "semantic-ui-react";
 import styled from "styled-components";
 import iconOpd from "./../../Static/Img/IconOPDs.png";
@@ -8,6 +8,9 @@ import swal from "sweetalert2";
 import { QRCode } from "react-qr-svg";
 import moment from "moment";
 import { Scrollbars } from 'react-custom-scrollbars';
+import FromAddressPatient from './../Components/FromAddressPatient';
+import FromHisProfilePatient from './../Components/FromHisProfilePatient';
+import MedicalPatient from './../Components/medicalPatient';
 import myQR from "./../../Static/Img/myQR.png";
 //static
 import BackgroundImage from "./../../Static/Img/BGGs.png";
@@ -35,30 +38,15 @@ const style = {
   colorDes: {
     color: "#808B96  ",
   },
+  colorNavMobile:{
+      color:"#62E6C5",
+  },
+  colorFontMobile: {
+    color: "##FFFFFF"
+  },
 }
 
-const Years = [
-  { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
-  { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
-  { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
-  { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
-  { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
-]
+
 
 const PopupQRCode = styled(Modal)`
   position: fixed;
@@ -68,76 +56,67 @@ const PopupQRCode = styled(Modal)`
   width: 50%;
 `;
 
+const SegmentMobile = styled(Segment)`
+  backgroundColor: "#62E6C5";
+`;
+
+const fixedMenuStyle = {
+  backgroundColor: "#62E6C5",
+  border: "1px solid #ddd",
+  boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)"
+};
+
+const menuStyle = {
+  border: "none",
+  borderRadius: 0,
+  boxShadow: "none",
+  marginBottom: "1em",
+  marginTop: "4em",
+  transition: "box-shadow 0.5s ease, padding 0.5s ease",
+  backgroundColor: "#62E6C5"
+};
+
+
+
+
+
+
+
+
+
 export default class PatientProfile extends Component {
+
+  
+
   state = {
     activeItem: "home",
-    //InfoPatient Part1
-    registerDate: "",
-    hospitalNumber: "",
-    citizenId: "",
-
-    //InfoPatient Part2
-    dob: "",
-    nameTitle: "",
-    firstname: "",
-    lastname: "",
-    gender: "",
-
-    //InfoPatient Part3
-    congenitalDisease: "",
-    bloodgroup: "",
-    religion: "",
-    nationality: "",
-    country: "",
-
-    //InfoPatient Part4
-    statuspatient: "",
-    occupartion: "",
-    homephonenumber: "",
-    mobilenumber: "",
-    email: "",
-
-    //AddressPatient
-    typeofHouse: "",
-    patientaddress: "",
-    province: "",
-    district: "",
-    subDistrict: "",
-    zipcode: "",
-
-    //EmergencyContact Part1
-    emerTitle: "",
-    emerFirstname: "",
-    emerLastname: "",
-    emerRelationship: "",
-    emerHomePhonenumber: "",
-    emerMobileNumber: "",
-
-    //EmergencyContact Part2
-    emerTypeofHouse: "",
-    emerAddress: "",
-    emerProvince: "",
-    emerDistrict: "",
-    emerSubDistrict: "",
-    emerZipcode: "",
-
-    //PatientParent
-    fatherFirstname: "",
-    fatherLastname: "",
-    motherFirstname: "",
-    motherLastname: "",
-
-    //PatientAllergy
-    allergy: "",
-    privilege: "",
+    activeItemMenu: "home",
+    menuFixed: false,
+    overlayFixed: false,
 
     open: false,
 
     QRCode: ""
   };
 
+  stickTopMenu = () => this.setState({ menuFixed: true });
+  unStickTopMenu = () => this.setState({ menuFixed: false });
+
+  
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });
+
+  handlePusherClick = () => {
+    const { sidebarOpened } = this.state
+
+    if (sidebarOpened) this.setState({ sidebarOpened: false })
+  }
+
+  handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
+  hideFixedMenu = () => this.setState({ fixed: false })
+  showFixedMenu = () => this.setState({ fixed: true })
+
+
 
   //Connect API
   componentWillMount() {
@@ -154,6 +133,8 @@ export default class PatientProfile extends Component {
   render() {
     const { open, size } = this.state;
     const { activeItem } = this.state;
+    const { sidebarOpened } = this.state;
+    const { fixed } = this.state;
 
     const currentDate = moment().format("ll");
     // Encrypt //
@@ -162,8 +143,16 @@ export default class PatientProfile extends Component {
       "OPDQR"
     );
     var QRCodes = "" + ciphertext;
+    
+    
+
+    
 
     return (
+      
+      <div>
+        <Responsive {...Responsive.onlyComputer}>
+      
       <BG>
         <PopupQRCode size={'mini'} open={open} onClose={this.close}>
           <Modal.Content>
@@ -189,15 +178,17 @@ export default class PatientProfile extends Component {
           </Modal.Content>
         </PopupQRCode> 
 
-        
+       {/* ____ ___  ___  ____  __  __/ /_  ____ ______
+          / __ `__ \/ _ \/ __ \/ / / / __ \/ __ `/ ___/
+         / / / / / /  __/ / / / /_/ / /_/ / /_/ / /    
+        /_/ /_/ /_/\___/_/ /_/\__,_/_.___/\__,_/_/      */}
         
         <Segment>
-          {/* <Navbar role="patient" show={this.show} /> */}
         <Container>
           <br />
           <Grid>
             <Grid.Column width={2}>
-              <Image src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' size='small' spaced='left' circular />
+                <Image src='https://react.semantic-ui.com/images/avatar/large/patrick.png' size='small' spaced='left' circular />
             </Grid.Column>
             <Grid.Column width={4}>
               <Header as="h2">{this.state.nameTitle} {this.state.firstname} {this.state.lastname}</Header>
@@ -292,607 +283,197 @@ export default class PatientProfile extends Component {
                   />
             </Grid.Column>
           </Grid>
+          <Menu pointing secondary style={{marginBottom:'-16px'}}>
+            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+            <Menu.Item
+              name='messages'
+              active={activeItem === 'messages'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              name='friends'
+              active={activeItem === 'friends'}
+              onClick={this.handleItemClick}
+            />
+          </Menu>
         </Container>
+       
         </Segment>
-       {/* <br/>
-        <Divider /> */}
+
+
+        {/* /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  */}
+                                                               
+        
+        
+        
+        
         <Container>
-        <Grid columns={16}>
+          <Grid columns={16}>
+
+
+                <FromAddressPatient patient={this.state}/>
           
-            <Grid.Column width={6}>
-              <Segment color='yellow' attached='top'>
-                <Icon color='yellow' name='pills' /> 
-                  <span style={{ color: '#FFB100' }}> Allergy : </span> {this.state.allergy} <br />
-                  <Icon color='yellow' name='medkit' /> 
-                  <span style={{ color: '#FABD08' }}> Privilege : </span> {this.state.privilege}
-              </Segment>
-              {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
-
-              <Segment.Group >
-                <Segment >
-                  <h4><Icon name='child' />In Case Under15 Year Old</h4>
-                  <Divider />
-                  <Container>
-                    <Grid>
-                      <Grid.Column width={6}>
-                        <Header.Subheader >
-                          Father Name
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Mother Name
-                    </Header.Subheader>
-                      </Grid.Column>
-                      <Grid.Column width={10}>
-                        <Header.Subheader >
-                          : {this.state.fatherFirstname} {this.state.fatherLastname}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.motherFirstname} {this.state.motherLastname}
-                        </Header.Subheader>
-                      </Grid.Column>
-                    </Grid>
-                  </Container>
-                </Segment>
-              </Segment.Group>
-
-              <Segment.Group >
-                <Segment color='teal'>
-                  <h4><Icon name='home' />Address</h4>
-                  <Divider />
-                  <Container>
-                    <Grid>
-                      <Grid.Column width={6}>
-                        <Header.Subheader >
-                          Type Of House
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Address
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Sub District
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          District
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Province
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Zipcode
-                    </Header.Subheader>
-
-                      </Grid.Column>
-                      <Grid.Column width={10}>
-                        <Header.Subheader >
-                          : {this.state.typeofHouse}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.patientaddress}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.subDistrict}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.district}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.province}
-                        </Header.Subheader>
-                        <Header.Subheader >
-                          : {this.state.zipcode}
-                        </Header.Subheader>
-
-                      </Grid.Column>
-                    </Grid>
-                  </Container>
-
-                </Segment>
-
-              </Segment.Group>
-
-            <Segment.Group >
-              <Segment color='teal'>
-                <h4><Icon name='home' />Emergency Address</h4>
-                <Divider/>
-                <Container>
-                  <Grid>
-                    <Grid.Column width={6}>
-                        <Header.Subheader >
-                          Name
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Relationship
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Home Number
-                    </Header.Subheader>
-                        <Header.Subheader >
-                          Phon Number
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        Type Of House
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        Address
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        Sub District
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        District
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        Province
-                    </Header.Subheader>
-                      <Header.Subheader >
-                        Zipcode
-                    </Header.Subheader>
-
-                    </Grid.Column>
-                    <Grid.Column width={10}>
-                      <Header.Subheader >
-                          : {this.state.emerTitle}{this.state.emerFirstname} {this.state.emerLastname}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerRelationship}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerHomePhonenumber}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerMobileNumber}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerTypeofHouse}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerAddress}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerSubDistrict}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerDistrict}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerProvince}
-                      </Header.Subheader>
-                      <Header.Subheader >
-                        : {this.state.emerZipcode}
-                      </Header.Subheader>
-
-                    </Grid.Column>
-                  </Grid>
-                </Container>
-
-              </Segment>
-        </Segment.Group>
-          </Grid.Column>
-
-            <Grid.Column width={4}>
-              <Segment.Group >
-                <Segment color='teal'>
-                  <List divided relaxed>
-                    <List.Item>
-          
-                  <List.Content floated='right'>
-                    <List.Description as='a' >
-                      <span style={style.colorsort}>
-                        <Icon name='calendar alternate outline' size='small' />
-                      </span> <Dropdown
-                        scrolling
-                        compact
-                        searchInput={{ type: 'number' }}
-                        options={Years}
-                        placeholder='Years'
-                      />
-                    </List.Description>
-                  </List.Content>
-                  <p><Icon name='history' />Medical History</p>
-                  </List.Item> 
-                  </List>
-                    
-
-                  {/* <h5><Icon name='history' />Medical History  &#160; &#160; &#160; &#160;&#160;&#160;&#160;&#160;&#160; <span style={style.colorsort}>
-                    <Icon name='calendar alternate outline' size='small' />
-                    </span> <Dropdown
-                    scrolling
-                    compact
-                    searchInput={{ type: 'number' }}
-                    options={Years}
-                    placeholder='Years'
-                  /></h5>
-                       */}
-                      <Divider />
-                  <Container>
-                    <Grid>
-                      <Grid.Column >
-                        <Scrollbars autoHide style={{ height: 614 }}>
-                        <List divided relaxed>
-                          <List.Item>
-                              <List.Content> 
-                                  <List.Content floated='right'>
-                                      <List.Description as='a' >
-                                    <Icon name='calendar alternate outline' size='small' />
-                                      <span style={style.colorHis}>11/07/2013</span>
-                                      </List.Description>
-                                  </List.Content>
-                                <List.Header as='a'>Treatment</List.Header>
-                                <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Content>
-                              <List.Content floated='right'>
-                                <List.Description as='a' >
-                                  <Icon name='calendar alternate outline' size='small' />
-                                  <span style={style.colorHis}>11/07/2013</span>
-                                </List.Description>
-                              </List.Content>
-                              <List.Header as='a'>Treatment</List.Header>
-                              <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                              <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                            </List.Content>
-                          </List.Item>
-                        </List>
-                        </Scrollbars>
-                      </Grid.Column>
-                    </Grid>
-                  </Container>
-                </Segment>
-              </Segment.Group>
-            </Grid.Column>
-
-            <Grid.Column width={6}>
-              <Segment.Group >
-                <Segment color='teal'>
-                  <h4><Icon name='clipboard outline' />Medical Record</h4>
-                  <Divider />
-                  <Scrollbars autoHide style={{ height: 614 }}>
-                  <Container>
-                    <Grid >
-                     
-                      
-                        <Grid.Column  width={1}>
-                          <Grid.Row >
-                          <Header.Subheader >
-                            HT
-                          </Header.Subheader>
-                          <Header.Subheader >
-                            BW
-                          </Header.Subheader>
-                          <Header.Subheader >
-                            BMI
-                          </Header.Subheader> 
-                          </Grid.Row>
-                          
-                        </Grid.Column>
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              100
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              134
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              34
-                          </Header.Subheader>
-                          </Grid.Row>
-                          
-                        </Grid.Column>
-                        <Grid.Column  width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              cm.
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              kg.
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              
-                          </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        {/* ====== */}
-                        <Grid.Column width={1}>
-                          <Grid.Row >
-
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        {/* ======= */}
-                        {/* ===== */}
-                        <Grid.Column width={1}>
-                          <Grid.Row >
-
-                          </Grid.Row>
+                <FromHisProfilePatient patient={this.state} />
+                <MedicalPatient patient={this.state} />
 
 
-                        </Grid.Column>
-                        {/* ===== */}
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              HT
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              BW
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              BMI
-                          </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              100
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              134
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              34
-                          </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              cm.
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              kg.
-                          </Header.Subheader>
-                            <Header.Subheader >
-
-                            </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-
-                        {/* ===== */}
-                        <Grid.Column width={1}>
-                          <Grid.Row >
-
-                          </Grid.Row>
-                          
-
-                        </Grid.Column>
-                        {/* ===== */}
-                        {/* ===== */}
-                        <Grid.Column width={1}>
-                          <Grid.Row >
-
-                          </Grid.Row>
-
-
-                        </Grid.Column>
-                        {/* ===== */}
-
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                          <Header.Subheader >
-                            HT
-                          </Header.Subheader>
-                          <Header.Subheader >
-                            BW
-                          </Header.Subheader>
-                          <Header.Subheader >
-                            BMI
-                          </Header.Subheader> 
-                          </Grid.Row>
-                          
-                        </Grid.Column>
-                        <Grid.Column  width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              100
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              134
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              34
-                          </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        <Grid.Column width={1}>
-                          <Grid.Row>
-                            <Header.Subheader >
-                              cm.
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              kg.
-                          </Header.Subheader>
-                            <Header.Subheader >
-                              
-                          </Header.Subheader>
-                          </Grid.Row>
-
-                        </Grid.Column>
-                        
-                    </Grid>
-                    <br />
-                    
-                    <Form>
-                      <Form.TextArea label='Chief Plaint' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br/>
-                    
-                        <p style={{textAlign:'right'}} >Miss.Sunisaya Maremnakron</p>
-                      
-                     
-                        <Divider />
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Present Illness' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Physical Exam' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Investigation' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Dianosis / impression' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Treatment' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Form>
-                      <Form.TextArea label='Recommendation and Plan ' placeholder='Tell us more about you...' />
-                    </Form>
-                    <br />
-                    <Grid width={16}>
-                      <Grid.Column width={8}>
-                          <Icon name='calendar alternate outline' />F/D Date
-                          <p>Aug 8 , 2018</p>
-                      </Grid.Column>
-                      
-                      <Grid.Column width={8}>
-                          <Icon  name='user md' />Docter Name
-                        <p>Dr Montgomery Delarosa</p>
-                      </Grid.Column>
-
-                    </Grid >
-                    
-                  </Container>
-                  </Scrollbars>
-                </Segment>
-              </Segment.Group>
-            </Grid.Column>
-        </Grid>
+          </Grid>
         </Container>
       </BG>
+      </Responsive>
+
+
+
+   {/*
+
+
+ /$$$$$$$                                                              /$$                            /$$      /$$           /$$       /$$ /$$
+| $$__  $$                                                            |__/                           | $$$    /$$$          | $$      |__/| $$
+| $$  \ $$  /$$$$$$   /$$$$$$$  /$$$$$$   /$$$$$$  /$$$$$$$   /$$$$$$$ /$$ /$$    /$$  /$$$$$$       | $$$$  /$$$$  /$$$$$$ | $$$$$$$  /$$| $$  /$$$$$$
+| $$$$$$$/ /$$__  $$ /$$_____/ /$$__  $$ /$$__  $$| $$__  $$ /$$_____/| $$|  $$  /$$/ /$$__  $$      | $$ $$/$$ $$ /$$__  $$| $$__  $$| $$| $$ /$$__  $$
+| $$__  $$| $$$$$$$$|  $$$$$$ | $$  \ $$| $$  \ $$| $$  \ $$|  $$$$$$ | $$ \  $$/$$/ | $$$$$$$$      | $$  $$$| $$| $$  \ $$| $$  \ $$| $$| $$| $$$$$$$$
+| $$  \ $$| $$_____/ \____  $$| $$  | $$| $$  | $$| $$  | $$ \____  $$| $$  \  $$$/  | $$_____/      | $$\  $ | $$| $$  | $$| $$  | $$| $$| $$| $$_____/
+| $$  | $$|  $$$$$$$ /$$$$$$$/| $$$$$$$/|  $$$$$$/| $$  | $$ /$$$$$$$/| $$   \  $/   |  $$$$$$$      | $$ \/  | $$|  $$$$$$/| $$$$$$$/| $$| $$|  $$$$$$$
+|__/  |__/ \_______/|_______/ | $$____/  \______/ |__/  |__/|_______/ |__/    \_/     \_______/      |__/     |__/ \______/ |_______/ |__/|__/ \_______/
+                              | $$
+                              | $$
+                              |__/                                                                                                                      
+
+
+ */}
+                                                       
+        <Responsive {...Responsive.onlyMobile}>
+          
+          <Visibility
+            onBottomPassed={this.stickTopMenu}
+            onBottomVisible={this.unStickTopMenu}
+            once={false}
+          >
+            
+            <Menu
+                    color='teal'
+                    fixed={fixed ? 'top' : null}
+                    inverted={!fixed}
+                    pointing={!fixed}
+                    secondary={!fixed}
+                    size='large'
+                    secondary={!this.state.menuFixed}
+                    fixed={this.state.menuFixed && "top"}
+            >
+            
+                <Menu  style={style.colorNavMobile} pointing secondary size='small' >
+                  <Menu.Item  onClick={() => this.handleToggle()}>
+                    <Icon size="big" name='sidebar' />
+                  </Menu.Item>
+                  <Menu.Item  position='right'>
+                    <Icon size="big" name="heartbeat" />
+                    <span style={{ fontSize: "2em" }}>
+                      OPD BOOKS
+                          </span>
+                  </Menu.Item>
+                </Menu>
+            </Menu>
+            
+
+            
+          </Visibility>
+
+          <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
+            <Sidebar as={Menu} color='teal' animation='uncover' inverted vertical visible={sidebarOpened}>
+              <Menu.Item as='a' active icon>
+                <Icon name='file alternate outline' /> Profile
+              </Menu.Item>
+              <Menu.Item as='a'><Icon name='qrcode' /> QR code</Menu.Item>
+              <Menu.Item as='a'><Icon name='history' /> History</Menu.Item>
+
+              <Menu.Item as='a'><Icon name='log out' /> Logout</Menu.Item>
+            </Sidebar>
+          
+
+            <Sidebar.Pusher
+              dimmed={sidebarOpened}
+              onClick={this.handlePusherClick}
+              style={{ minHeight: '100vh' }}
+            >
+             
+              <SegmentMobile
+              inverted
+              style={{ backgroundColor: '#99FFFF' }}
+              textAlign='center'
+              style={{ minHeight: 250, padding: '1em' }}
+              vertical
+            >
+                <br />
+                <Image bordered={true} src='https://react.semantic-ui.com/images/avatar/large/patrick.png' size='small' circular centered />
+                <Statistic color='teal' inverted size='mini'>
+                  <Statistic.Value >{this.state.nameTitle} {this.state.firstname} {this.state.lastname}</Statistic.Value>
+                  <Statistic.Label>HN 123423</Statistic.Label>
+                </Statistic>
+                
+              </SegmentMobile>     
+              <br />
+                <Container >
+                
+                  <Grid divided='vertically' >
+                    <Grid.Row columns={2}>
+                
+                      
+                      <Grid.Column>
+                        <h5>Hospital No.</h5>
+                        <p></p>
+                      </Grid.Column>
+                      <Grid.Column>
+                      <h4>Citizen ID</h4>
+                      <p></p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Birthday</h4>
+                        <p></p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Gender</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Blood Group</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Status</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Nation</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Country</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Religion</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <h4>Occupartion</h4>
+                        <p>sdasdasdasdasdsadas</p>
+                      </Grid.Column>
+                     
+                    </Grid.Row>
+                  </Grid>
+                 
+                    
+              </Container >
+
+              
+
+
+              
+               </Sidebar.Pusher>
+          </Sidebar.Pushable>
+
+        </Responsive>
+      </div>
       )
   }
 }

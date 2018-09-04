@@ -21,6 +21,7 @@ import ProfilePatient from "./Patients/Containers/PatientProfile";
 import EmpLogin from "./Employees/Containers/EmpLogin";
 import Registration from "./Employees/Containers/Registration";
 import PatientTreatment from "./Employees/Containers/PatientTreatment";
+import EmpTest from "./Employees/Containers/EmpTest";
 import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
 
 
@@ -39,6 +40,8 @@ ReactDOM.render(
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
+      <Route path="/empTest" component={EmpTest} />
+
       <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
       <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} />

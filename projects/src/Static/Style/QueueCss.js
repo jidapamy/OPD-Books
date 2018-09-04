@@ -75,7 +75,9 @@ export const style = {
     queueNo: {
         color: '#00b5ad',
         fontSize: '25px',
-        marginTop: '3%'
+        marginTop: '7%',
+        textAlign: 'right',
+  
 
         
     },
@@ -86,7 +88,8 @@ export const style = {
 
     edit:{
         paddingBottom: '8%',
-        paddingTop: '8%'
+        paddingTop: '8%',
+        width:'91%'
     },
 
 
@@ -180,23 +183,26 @@ export const style = {
         color: '#000000',
         marginBottom: '0%',
         textAlign:'left',
-        marginLeft: '7%'
+        marginLeft: '9%'
     },
 
     ColumnDate: {
-        width: '90%',
+        width: '100%',
         height: '50%',
-        marginLeft: '7%',
+        marginLeft: '-9.5%',
         paddingTop: '2%',
         marginTop: '0%'
 
     },
     ColumnDoc: {
-        width: '95%',
-        height: '50%',
+        width: '93%',
+        // height: '50%',
         marginLeft: '-2%',
         paddingTop: '2%',
-        marginTop: '0%'
+        marginTop: '0%',
+        textAlign: 'center',
+        color: '#666666'
+
     },
 
     ColumnNameDoc:{
@@ -213,6 +219,13 @@ export const style = {
         textAlign:'left',
         marginLeft: '-2%'
     },
+    topicDate:{
+        fontSize: '14px',
+        color: '#000000',
+        marginBottom: '0%',
+        textAlign:'left',
+        marginLeft: '11%'
+    },
 
     headSeg2:{
         color: '#00b5ad',
@@ -222,7 +235,7 @@ export const style = {
 
     toppicPatient:{
         fontSize: '15px',
-        color: '#000000',
+        color: '#4183C4',
         textAlign: 'left',
         marginLeft: '10%'
 
@@ -235,8 +248,6 @@ export const style = {
     
     showData:{
         width: '80%',
-        paddingTop: '2%',
-        paddingBottom: '2%',
         textAlign: 'left',
         positon: 'center'
 
@@ -252,8 +263,8 @@ export const style = {
     ,
 
     paddingPatient:{
-        paddingBottom: '2%',
-        paddingTop: '0%'
+        paddingBottom: '5%',
+        paddingTop: '1%'
     },
 
     fixContent:{
@@ -288,11 +299,14 @@ export const style = {
         marginTop: '0%'
     },
     ButtonNurse:{
-        marginTop: '5%',
-        marginLeft: '-25%'
+        marginLeft: '29%'
+    },
+    ButtonNurse2:{
+        // margintop: '-15%'
+        marginBottom: '-5%'
     },
     ButtonDoctor:{
-        marginLeft: '-39%',
+        marginLeft: '23%',
         marginBottom: '5%'
     },
 
@@ -432,7 +446,9 @@ export const style = {
         textAlign:'left',
         marginLeft: '-2.5%',
         marginTop: '-2.6%',
-        paddingLeft: '5%'
+        paddingLeft: '5%',
+        borderColor: '#525252',
+    
     },
     headText: {
         color:' #ffffff',
@@ -440,8 +456,123 @@ export const style = {
     headMargin:{
         marginBottom: '0%',
         marginTop: '-3.5%'
-    }
+    },
+    textQueue:{
+        textAlign:'left',
+        marginLeft: '-11%'
+
+    },
+    headMarginShow:{
+        marginBottom: '0%',
+        marginTop: '-3.5%'
+    },
+    headFormShow:{
+        width: '103.5%',
+        textAlign:'left',
+        marginLeft: '-2.5%',
+        marginTop: '-2.6%',
+        paddingLeft: '5%',
+        borderColor: '#525252',
+        borderRadius: '0px'
+    },
+    headMarginShow:{
+        marginBottom: '0%',
+        marginTop: '-2%'
+
+    },
+
+    dividerDeco:{
+        width: '93%',
+        marginLeft: '-2%',
+        marginTop: '-5%',
+        textAlign: 'left',
+        borderColor: '#000000',
+        borderWidth:'thick'
+    },
+    dividerDeco2:{
+        width: '90%',
+        marginLeft: '-2%',
+        marginTop: '-3%',
+        textAlign: 'left',
+        borderColor: '#000000',
+        borderWidth:'thick'
+    },
+    dividerShowDate:{
+        width: '80%',
+        marginLeft: '11%',
+        marginTop: '-3%',
+        textAlign: 'left',
+        borderColor: '#000000',
+        borderWidth:'thick'
+    },
+    tab1Height:{
+        height:'550px'
+    },
+
+    navbarDeco:{
+        fontSize:'36px',
+        borderRadius: '0px',
+        color: '#3EBDB2',
+        textAlign: 'center',
+        paddingTop: '15%'
+
+
+    },
+    naveText:{
+        fontSize:'16px',
+        color:'#3EBDB2',
+    },
+
+    hnNoNav: {
+        marginLeft: '-11%',
+        color: '#ffffff',
+    },
+    textQueueNav:{
+        textAlign:'left',
+        marginLeft: '-11%',
+        color: '#ffffff',
+
+    },
+    queueNoNav: {
+        color: '#00b5ad',
+        fontSize: '25px',
+        marginTop: '5%',
+        textAlign: 'right',
+  
+    },
+    widthNav:{
+        // marginTop:'-5%',
+        // marginBottom: '-5%'
+    },
+    visiteNav:{
+        visitedColor: '#2C7E79',
+    },
+
+    queueNoNav2: {
+        color: '#ffffff',
+        fontSize: '25px',
+        marginTop: '5%',
+        textAlign: 'right',
+  
+    },
+    hnNoNav2: {
+        marginLeft: '-11%',
+        color: '#083E3B',
+    },
+    textQueueNav2:{
+        textAlign:'left',
+        marginLeft: '-11%',
+        color: '#ffffff',
+    },
+    widthNav2:{
+       
+        background:'#2C7E79',
+        borderColor: '#2C7E79',
+    },
     
+    
+
+
 
 
 
