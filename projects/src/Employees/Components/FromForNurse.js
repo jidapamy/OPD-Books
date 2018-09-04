@@ -11,8 +11,6 @@ import {
   Message,
   Tab,
   Card,
-  Visibility,
-  Sticky,
   Header,
   Divider
 } from "semantic-ui-react";
@@ -52,7 +50,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "cm." }}
                     labelPosition="right"
-                    placeholder="HT ..."
                     style={style.input1}
                   />
                 </Grid.Column>
@@ -64,7 +61,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "C" }}
                     labelPosition="right"
-                    placeholder="Temperature ..."
                     style={style.input2}
                   />
                 </Grid.Column>
@@ -76,7 +72,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-                    placeholder="BP1 ..."
                     style={style.input3}
                   />
                 </Grid.Column>
@@ -90,7 +85,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "Kg." }}
                     labelPosition="right"
-                    placeholder="BodyWeigh ..."
                     style={style.input1}
                   />
                 </Grid.Column>
@@ -102,7 +96,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "/min" }}
                     labelPosition="right"
-                    placeholder="PulseRate ..."
                     style={style.input2}
                   />
                 </Grid.Column>
@@ -114,7 +107,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-                    placeholder="BP2 ..."
                     style={style.input3}
                   />
                 </Grid.Column>
@@ -128,7 +120,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "-" }}
                     labelPosition="right"
-                    placeholder="BMI ..."
                     style={style.input1}
                   />
                 </Grid.Column>
@@ -140,7 +131,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "/min" }}
                     labelPosition="right"
-                    placeholder="PR ..."
                     style={style.input2}
                   />
                 </Grid.Column>
@@ -152,7 +142,6 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-                    placeholder="BP3 ..."
                     style={style.input3}
                   />
                 </Grid.Column>
@@ -169,7 +158,15 @@ export default class FromForNurse extends Component {
             control={TextArea}
             placeholder="Enter Patient Symptoms ..."
             style={style.inputField}
+            autoHide
           />
+          
+          {/* <Form.Field style={style.inputField}>
+            
+            <input placeholder='Enter Patient Symptoms ...' />
+          </Form.Field> */}
+
+
         </Form>
         <br />
 

@@ -120,7 +120,7 @@ export default class FormMedicalRecord extends Component {
           </List>
         </Header>
 
-        <Scrollbars autoHide style={{height: 600 }}>
+        <Scrollbars autoHide style={{height: 526 }}>
           <br />
           <FromForNurse />
           <br />

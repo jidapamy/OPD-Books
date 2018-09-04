@@ -22,7 +22,7 @@ export default class Tab1InfoPatient extends React.Component {
   };
   render() {
     console.log("Patient : " ,this.props.patient);
-    return <Grid.Column width={5}>
+    return <Grid.Column width={5} style={style.tab1Height} raised>
         <List divided relaxed>
           <List.Item style={style.edit}>
             <Grid columns="two">
@@ -38,7 +38,7 @@ export default class Tab1InfoPatient extends React.Component {
                     {this.props.patient.hospitalNumber}
                   </List.Description>
                 </Grid.Column>
-              </Grid.Row>
+              </Grid.Row> 
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>

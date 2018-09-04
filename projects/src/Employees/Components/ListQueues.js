@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
+import WebFont from 'webfontloader';
 import {
   Button,
   Container,
@@ -26,24 +27,13 @@ import {
   updateStatusQueue
 } from "./../../Service/QueueMethod";
 
-// const styles = {
-//   h1: {
-//     marginTop: "4em",
-//     marginBottom: "50px"
-//   },
-//   h2: {
-//     margin: "4em 0em 2em"
-//   },
-//   d1: {
-//     marginTop: "1em",
-//     marginBottom: "50px"
-//   },
-//   h3: {
-//     marginTop: "2em",
-//     padding: "2em 0em"
-//   },
-//   last: {}
-// };
+WebFont.load({
+  google: {
+    families: ['Titillium Web:300,400,700', 'sans-serif']
+   
+
+  }
+});
 
 export default class Queues extends Component {
   state = {
@@ -98,11 +88,11 @@ export default class Queues extends Component {
                 style={style.edit} 
                 key={q.key}
                 onClick={() => this.props.getInfoPatient(q.citizenId, q.queueId)}>
-                  <Grid>
-                    <Grid.Column width={4} style={style.queueNo}>
+                  <Grid> 
+                    <Grid.Column width={7} style={style.queueNo}>
                       {this.props.StatusQueue} {q.queueId}
                     </Grid.Column>
-                    <Grid.Column width={12}>
+                    <Grid.Column width={9}>
                       <List.Content>
                         <List.Header as="a" style={style.hnNo}>
                           HN {q.hospitalNumber}
@@ -122,7 +112,8 @@ export default class Queues extends Component {
     }
     return (
       <List.Item style={{ textAlign: "center" }}>
-        ไม่มีคิวผู้ป่วยเข้ารับการรักษา
+      <br/>
+         - ไม่มีคิวผู้ป่วยเข้ารับการรักษา -
       </List.Item>
     );
   };
@@ -157,11 +148,11 @@ export default class Queues extends Component {
     } else {
       console.log("Medical")
       return (
-          <Segment>
+          <Segment raised>
             <p style={style.head}>
               <b>Queues</b>
             </p>
-            <Scrollbars style={{ width: 185, height: 400 }}>
+            <Scrollbars style={{ width: 185, height: 530 }}>
               <List divided relaxed>
                 {this.showQList()}
               </List>
@@ -171,8 +162,11 @@ export default class Queues extends Component {
     }
   };
 
+
   render() {
     console.log("List Q")
-    return this.showComponent();
+    return 
+    this.showComponent();
+
   }
 }
