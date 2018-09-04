@@ -86,15 +86,9 @@ export default class Queues extends Component {
               <List.Item 
                 style={style.edit} 
                 key={q.key}
-<<<<<<< HEAD
-                onClick={() => this.props.getInfoPatient(q.citizenId, q.queueId)}>
-                  <Grid> 
-                    <Grid.Column width={7} style={style.queueNo}>
-=======
                 onClick={() => this.props.getInfoPatient(q.citizenId, q.key , q.visitNumber)}>
                   <Grid>
                     <Grid.Column width={4} style={style.queueNo}>
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                       {this.props.StatusQueue} {q.queueId}
                     </Grid.Column>
                     <Grid.Column width={9}>
@@ -168,13 +162,6 @@ export default class Queues extends Component {
 
 
   render() {
-<<<<<<< HEAD
-    console.log("List Q")
-    return 
-    this.showComponent();
-
-=======
     return this.showComponent();
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
   }
 }

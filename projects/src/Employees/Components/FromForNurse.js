@@ -35,12 +35,13 @@ export default class FromForNurse extends Component {
   };
 
   componentWillMount = () => {
+    console.log("STAMP",this.props)
     let emp = this.props.empLogin;
     if (emp.position === 2) {
       //Nurse
-      // this.setState({
-      //   nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
-      // });
+      this.setState({
+        nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
+      });
     } else if (emp.position === 3) {
       this.setState(this.props.medicalRecord);
       // Doctor
@@ -108,7 +109,9 @@ export default class FromForNurse extends Component {
     });
   };
 
+
   render() {
+    console.log("STAMP",this.props)
     const disabledNurseField =
       this.props.patient.citizenId == null ||
       this.props.empLogin.position !== 2;
@@ -126,10 +129,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "cm." }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input1}
                     onChange={e => this.setField("height", e.target.value)}
                     onBlur={() => this.calculateBMI()}
@@ -147,10 +147,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "C" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input2}
                     onChange={e => this.setField("temperature", e.target.value)}
                     disabled={disabledNurseField}
@@ -167,10 +164,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input3}
                     onChange={e => this.setField("BP1", e.target.value)}
                     disabled={disabledNurseField}
@@ -187,10 +181,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "Kg." }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input1}
                     onChange={e => this.setField("bodyWeight", e.target.value)}
                     onBlur={() => this.calculateBMI()}
@@ -208,10 +199,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "/min" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input2}
                     onChange={e => this.setField("pulseRate", e.target.value)}
                     disabled={disabledNurseField}
@@ -228,10 +216,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input3}
                     onChange={e => this.setField("BP2", e.target.value)}
                     disabled={disabledNurseField}
@@ -248,10 +233,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "-" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input1}
                     value={this.state.bmi}
                     disabled={disabledNurseField}
@@ -267,10 +249,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "/min" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input2}
                     onChange={e =>
                       this.setField("respiratoryRate", e.target.value)}
@@ -288,10 +267,7 @@ export default class FromForNurse extends Component {
                   <Input
                     label={{ basic: true, content: "mm/Hg" }}
                     labelPosition="right"
-<<<<<<< HEAD
-=======
                     placeholder=""
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     style={style.input3}
                     onChange={e => this.setField("BP3", e.target.value)}
                     disabled={disabledNurseField}
@@ -311,13 +287,9 @@ export default class FromForNurse extends Component {
             control={TextArea}
             placeholder="Enter Patient Symptoms ..."
             style={style.inputField}
-<<<<<<< HEAD
-            autoHide
-=======
             onChange={e => this.setField("chiefComplaint", e.target.value)}
             disabled={disabledNurseField}
             value={this.state.chiefComplaint}
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
           />
           
           {/* <Form.Field style={style.inputField}>
