@@ -10,7 +10,7 @@ export default class DateField extends Component {
         age: ''
     }
 
-    setDateOfBirth = async (value) => {
+    setDate = async (value) => {
         await this.setState({ dob: value.format('DD/MM/YYYY') })
         this.calculateAge();
         this.props.setFieldAndValidate('dob', value.format('DD/MM/YYYY'))
@@ -36,7 +36,7 @@ export default class DateField extends Component {
     render() {
         return (
             <Form.Field
-                control={() => Date({ setDateOfBirth: this.setDateOfBirth, dob: this.state.dob })}
+                control={() => Date({ setDate: this.setDate, dob: this.state.dob })}
                 label='วัน/เดือน/ปีเกิด (Dob)'
                 width={3}
                 required

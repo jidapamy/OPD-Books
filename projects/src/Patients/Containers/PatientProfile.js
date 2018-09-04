@@ -17,6 +17,10 @@ import BackgroundImage from "./../../Static/Img/BGGs.png";
 
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
+import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
+import {
+  getHistoryVisitNumberPatient
+} from "./../../Service/MedicalRecordMethod";
 
 const CryptoJS = require("crypto-js");
 
@@ -95,8 +99,9 @@ export default class PatientProfile extends Component {
     overlayFixed: false,
 
     open: false,
-
-    QRCode: ""
+    QRCode: "",
+    patient:{},
+    historyTreatment : []
   };
 
   stickTopMenu = () => this.setState({ menuFixed: true });
@@ -124,7 +129,10 @@ export default class PatientProfile extends Component {
       this.props.history.push("/signin");
     } else {
       let patient = getPatient(this.props.location.state.citizenId,'byte');
-      this.setState(patient)
+      this.setState({
+        patient: patient,
+        historyTreatment: getHistoryVisitNumberPatient(patient.citizenId)
+      });
     }
   }
 
@@ -139,7 +147,7 @@ export default class PatientProfile extends Component {
     const currentDate = moment().format("ll");
     // Encrypt //
     var ciphertext = CryptoJS.AES.encrypt(
-      "OPDBooks@" + currentDate + "@" + `${this.state.citizenId}`,
+      "OPDBooks@" + currentDate + "@" + `${this.state.patient.citizenId}`,
       "OPDQR"
     );
     var QRCodes = "" + ciphertext;
@@ -156,27 +164,15 @@ export default class PatientProfile extends Component {
       <BG>
         <PopupQRCode size={'mini'} open={open} onClose={this.close}>
           <Modal.Content>
-            <QRCode
-              bgColor="#FFFFFF"
-              fgColor="#000000"
-              level="Q"
-              value={QRCodes}
-            />
+            <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={QRCodes} />
             <Header textAlign={"center"} size="large">
-              {this.state.nameTitle} {this.state.firstname}  {this.state.lastname}
+              {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
             </Header>
-            <Button
-              size="huge"
-              basic
-              color="teal"
-              onClick={this.close}
-              style={{ marginTop: "10%" }}
-              fluid
-            >
+            <Button size="huge" basic color="teal" onClick={this.close} style={{ marginTop: "10%" }} fluid>
               Close
             </Button>
           </Modal.Content>
-        </PopupQRCode> 
+        </PopupQRCode>
 
        {/* ____ ___  ___  ____  __  __/ /_  ____ ______
           / __ `__ \/ _ \/ __ \/ / / / __ \/ __ `/ ___/
@@ -210,69 +206,43 @@ export default class PatientProfile extends Component {
                       <Icon name='phone' />
                       {this.state.mobilenumber}
                     </Label>
-                    <Label as='a' color='teal'>
-                    <Icon name='home' />
-                      {this.state.homephonenumber}
+                    <Label as="a" color="teal">
+                      <Icon name="home" />
+                      {this.state.patient.homePhoneNumber}
                     </Label>
                   </Header.Content>
-              </Grid.Row>
-            </Grid.Column>
+                </Grid.Row>
+              </Grid.Column>
 
-            
-            <Grid.Column width={3}>
-              <Header as="h2">Infomation</Header>
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Birth Day : </span>
-                  {this.state.dob}
-                </Header.Subheader>
-              </Grid.Row>
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Gender : </span>
-                  {this.state.gender}
-                </Header.Subheader>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Blood Group : </span>{" "}
-                  {this.state.bloodgroup}
-                </Header.Subheader>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Status : </span>{" "}
-                  {this.state.statuspatient}
-                </Header.Subheader>
-              </Grid.Row>
-            </Grid.Column>
-            
-            <Grid.Column width={3}>
-              <Header as="h2">
-                <br />
-              </Header>
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Nation : </span>
-                  {this.state.nationality}
-                </Header.Subheader>
-              </Grid.Row>
-              <Grid.Row>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Country : </span>
-                  {this.state.country}
-                </Header.Subheader>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Religion : </span>{" "}
-                  {this.state.religion}
-                </Header.Subheader>
-                <Header.Subheader>
-                  <span style={{ color: "#848788" }}>Occupartion : </span>{" "}
-                  {this.state.occupartion}
-                </Header.Subheader>
-              </Grid.Row>
-            </Grid.Column>
+              <Grid.Column width={3}>
+                <Header as="h2">Infomation</Header>
+                <Grid.Row>
+                  <Header.Subheader>
+                    <span style={{ color: "#848788" }}>Birth Day : </span>
+                    {this.state.patient.dob}
+                  </Header.Subheader>
+                </Grid.Row>
+                <Grid.Row>
+                  <Header.Subheader>
+                    <span style={{ color: "#848788" }}>Gender : </span>
+                    {this.state.patient.gender}
+                  </Header.Subheader>
+                  <Header.Subheader>
+                    <span style={{ color: "#848788" }}>
+                      Blood Group :{" "}
+                    </span> {this.state.patient.bloodgroup}
+                  </Header.Subheader>
+                  <Header.Subheader>
+                    <span style={{ color: "#848788" }}>
+                      Status :{" "}
+                    </span> {this.state.patient.status}
+                  </Header.Subheader>
+                </Grid.Row>
+              </Grid.Column>
 
-            <Grid.Column width={3}>
-                
-                  <Header textAlign={'center'} as="h3">
-                    MY QRCODE
+              <Grid.Column width={3}>
+                <Header as="h2">
+                  <br />
                 </Header>
                   <Image
                   centered

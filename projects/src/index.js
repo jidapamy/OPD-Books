@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 // import Login from './Patient/Containers/Login';
 // import ProfilePatient from './Patient/Containers/PatientProfile';
 // import Registration from './Patient/Containers/Registration';
-import EmployeeSegment from './Employee/Containers/EmployeeSegment';
+// import EmployeeSegment from './Employee/Containers/EmployeeSegment';
 // import PatientTreatment from "./Employee/Containers/PatientTreatment";
 // import EmpLogin from "./Employee/Containers/EmpLogin";
 // import MedicalRecordTreatment from "./Employee/Containers/MedicalRecordTreatment";

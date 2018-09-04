@@ -440,8 +440,12 @@ export const style = {
     headMargin:{
         marginBottom: '0%',
         marginTop: '-3.5%'
+    },
+    textQueue:{
+        textAlign:'left',
+        marginLeft: '5%'
+
     }
-    
 
 
 

@@ -21,20 +21,19 @@ export default class Tab1InfoPatient extends React.Component {
     age: ""
   };
   render() {
-    console.log("Patient : " ,this.props.patient);
     return <Grid.Column width={5}>
         <List divided relaxed>
           <List.Item style={style.edit}>
             <Grid columns="two">
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header  style={style.toppicPatient}>
                     Hospital Number
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.hospitalNumber}
                   </List.Description>
                 </Grid.Column>
@@ -42,13 +41,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Name
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.firstname}
                   </List.Description>
                 </Grid.Column>
@@ -56,13 +55,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header  style={style.toppicPatient}>
                     Surname
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description  style={style.showData}>
                     {this.props.patient.lastname}
                   </List.Description>
                 </Grid.Column>
@@ -70,13 +69,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header  style={style.toppicPatient}>
                     ID Card
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.citizenId}
                   </List.Description>
                 </Grid.Column>
@@ -84,13 +83,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Gender
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.gender}
                   </List.Description>
                 </Grid.Column>
@@ -98,13 +97,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Age
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.age}
                   </List.Description>
                 </Grid.Column>
@@ -112,13 +111,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Nationality
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.nationality}
                   </List.Description>
                 </Grid.Column>
@@ -126,13 +125,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Blood Type
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description  style={style.showData}>
                     {this.props.patient.bloodgroup}
                   </List.Description>
                 </Grid.Column>
@@ -140,13 +139,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Congenital Disease
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description style={style.showData}>
                     {this.props.patient.congenitalDisease}
                   </List.Description>
                 </Grid.Column>
@@ -154,13 +153,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Allergy
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description  style={style.showData}>
                     {this.props.patient.allergy}
                   </List.Description>
                 </Grid.Column>
@@ -168,13 +167,13 @@ export default class Tab1InfoPatient extends React.Component {
 
               <Grid.Row style={style.paddingPatient}>
                 <Grid.Column width={7}>
-                  <List.Header as="a" style={style.toppicPatient}>
+                  <List.Header style={style.toppicPatient}>
                     Privilege
                   </List.Header>
                 </Grid.Column>
 
                 <Grid.Column width={9}>
-                  <List.Description as="a" style={style.showData}>
+                  <List.Description  style={style.showData}>
                     {this.props.patient.privilege}
                   </List.Description>
                 </Grid.Column>
