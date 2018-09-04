@@ -1,18 +1,6 @@
 import {defaultAccount, contract, web3 } from "./../Lib/Web3";
 
 export const addQueue = ( empPosition, hn , citizenId, title, firstname, lastname, statusQueue, visitNumber ) => {
-  console.log("addQ", empPosition);
-  console.log(empPosition,hn, citizenId, title, firstname, lastname, statusQueue, visitNumber);
-  console.log(
-      empPosition, 
-      web3.fromAscii(hn), 
-      web3.fromAscii(citizenId), 
-      web3.fromAscii(title), 
-      web3.fromAscii(firstname), 
-      web3.fromAscii(lastname),
-      statusQueue, 
-      web3.fromAscii(visitNumber)
-    );
   contract.addQueue(
     empPosition,
     web3.fromAscii(hn), 
@@ -69,13 +57,10 @@ export const getQueues = (empPosition) => {
         }
     }
   }
-  console.log('getQ',qList)
   return qList;
 };
 
 export const updateStatusQueue = ( empPosition, index, statusQueue ) => {
-    console.log("UPDATE !!!! index", empPosition, +index, statusQueue);
-    console.log(getQueues(empPosition));
     contract.updateStatusQueue(empPosition, +index, statusQueue, defaultAccount);
     return true;
 }

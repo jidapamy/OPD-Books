@@ -111,7 +111,7 @@ export default class FromForDoctor extends Component {
   render() {
     let disabledDoctorField = false;
     disabledDoctorField = this.props.patient.citizenId == null || this.props.empLogin.position !== 3;
-    console.log("DOCTOR FORM PROPS:!!",this.props.medicalRecord)
+    console.log("DOCTOR FORM PROPS:!!",this.props)
     console.log("DOCTOR FORM STATE:!!", this.state);
     
     return <div>

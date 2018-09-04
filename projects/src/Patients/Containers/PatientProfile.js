@@ -15,6 +15,9 @@ import BackgroundImage from "./../../Static/Img/BGGs.png";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
 import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
+import {
+  getHistoryVisitNumberPatient
+} from "./../../Service/MedicalRecordMethod";
 
 const CryptoJS = require("crypto-js");
 
@@ -73,7 +76,9 @@ export default class PatientProfile extends Component {
   state = {
     activeItem: "home",
     open: false,
-    QRCode: ""
+    QRCode: "",
+    patient:{},
+    historyTreatment : []
   };
 
   show = dimmer => () => this.setState({ dimmer, open: true });
@@ -85,7 +90,10 @@ export default class PatientProfile extends Component {
       this.props.history.push("/signin");
     } else {
       let patient = getPatient(this.props.location.state.citizenId,'byte');
-      this.setState(patient)
+      this.setState({
+        patient: patient,
+        historyTreatment: getHistoryVisitNumberPatient(patient.citizenId)
+      });
     }
   }
 
@@ -98,7 +106,7 @@ export default class PatientProfile extends Component {
     const currentDate = moment().format("ll");
     // Encrypt //
     var ciphertext = CryptoJS.AES.encrypt(
-      "OPDBooks@" + currentDate + "@" + `${this.state.citizenId}`,
+      "OPDBooks@" + currentDate + "@" + `${this.state.patient.citizenId}`,
       "OPDQR"
     );
     var QRCodes = "" + ciphertext;
@@ -108,7 +116,7 @@ export default class PatientProfile extends Component {
           <Modal.Content>
             <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={QRCodes} />
             <Header textAlign={"center"} size="large">
-              {this.state.nameTitle} {this.state.firstname} {this.state.lastname}
+              {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
             </Header>
             <Button size="huge" basic color="teal" onClick={this.close} style={{ marginTop: "10%" }} fluid>
               Close
@@ -126,31 +134,31 @@ export default class PatientProfile extends Component {
               </Grid.Column>
               <Grid.Column width={4}>
                 <Header as="h2">
-                  {this.state.nameTitle} {this.state.firstname} {this.state.lastname}
+                  {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
                 </Header>
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>
                       Hospital Number :{" "}
                     </span>
-                    {this.state.hospitalNumber}
+                    {this.state.patient.hospitalNumber}
                   </Header.Subheader>
                 </Grid.Row>
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>Citizen ID : </span>
-                    {this.state.citizenId}
+                    {this.state.patient.citizenId}
                   </Header.Subheader>
                 </Grid.Row>
                 <Grid.Row style={{ paddingTop: "4%" }}>
                   <Header.Content as="h5" floated="left">
                     <Label as="a" color="teal">
                       <Icon name="phone" />
-                      {this.state.mobileNumber}
+                      {this.state.patient.mobileNumber}
                     </Label>
                     <Label as="a" color="teal">
                       <Icon name="home" />
-                      {this.state.homePhoneNumber}
+                      {this.state.patient.homePhoneNumber}
                     </Label>
                   </Header.Content>
                 </Grid.Row>
@@ -161,23 +169,23 @@ export default class PatientProfile extends Component {
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>Birth Day : </span>
-                    {this.state.dob}
+                    {this.state.patient.dob}
                   </Header.Subheader>
                 </Grid.Row>
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>Gender : </span>
-                    {this.state.gender}
+                    {this.state.patient.gender}
                   </Header.Subheader>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>
                       Blood Group :{" "}
-                    </span> {this.state.bloodgroup}
+                    </span> {this.state.patient.bloodgroup}
                   </Header.Subheader>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>
                       Status :{" "}
-                    </span> {this.state.status}
+                    </span> {this.state.patient.status}
                   </Header.Subheader>
                 </Grid.Row>
               </Grid.Column>
@@ -189,23 +197,23 @@ export default class PatientProfile extends Component {
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>Nation : </span>
-                    {this.state.nationality}
+                    {this.state.patient.nationality}
                   </Header.Subheader>
                 </Grid.Row>
                 <Grid.Row>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>Country : </span>
-                    {this.state.country}
+                    {this.state.patient.country}
                   </Header.Subheader>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>
                       Religion :{" "}
-                    </span> {this.state.religion}
+                    </span> {this.state.patient.religion}
                   </Header.Subheader>
                   <Header.Subheader>
                     <span style={{ color: "#848788" }}>
                       Occupartion :{" "}
-                    </span> {this.state.occupartion}
+                    </span> {this.state.patient.occupartion}
                   </Header.Subheader>
                 </Grid.Row>
               </Grid.Column>
@@ -229,12 +237,12 @@ export default class PatientProfile extends Component {
                 <span style={{ color: "#FFB100" }}>
                   {" "}
                   Allergy :{" "}
-                </span> {this.state.allergy} <br />
+                </span> {this.state.patient.allergy} <br />
                 <Icon color="yellow" name="medkit" />
                 <span style={{ color: "#FABD08" }}>
                   {" "}
                   Privilege :{" "}
-                </span> {this.state.privilege}
+                </span> {this.state.patient.privilege}
               </Segment>
               {/* <Segment color='yellow' attached='top'><Icon color='yellow' name='medkit' /> <span style={{ color: '#FABD08' }}>Privilege :</span> {this.state.allergy}</Segment> */}
 
@@ -252,10 +260,10 @@ export default class PatientProfile extends Component {
                       </Grid.Column>
                       <Grid.Column width={10}>
                         <Header.Subheader>
-                          : {this.state.fatherFirstname} {this.state.fatherLastname}
+                          : {this.state.patient.fatherFirstname} {this.state.patient.fatherLastname}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.motherFirstname} {this.state.motherLastname}
+                          : {this.state.patient.motherFirstname} {this.state.patient.motherLastname}
                         </Header.Subheader>
                       </Grid.Column>
                     </Grid>
@@ -281,22 +289,22 @@ export default class PatientProfile extends Component {
                       </Grid.Column>
                       <Grid.Column width={10}>
                         <Header.Subheader>
-                          : {this.state.typeofHouse}
+                          : {this.state.patient.typeofHouse}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.address}
+                          : {this.state.patient.address}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.subDistrict}
+                          : {this.state.patient.subDistrict}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.district}
+                          : {this.state.patient.district}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.province}
+                          : {this.state.patient.province}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.zipcode}
+                          : {this.state.patient.zipcode}
                         </Header.Subheader>
                       </Grid.Column>
                     </Grid>
@@ -326,35 +334,35 @@ export default class PatientProfile extends Component {
                       </Grid.Column>
                       <Grid.Column width={10}>
                         <Header.Subheader>
-                          : {this.state.emerTitle}
-                          {this.state.emerFirstname} {this.state.emerLastname}
+                          : {this.state.patient.emerTitle}
+                          {this.state.patient.emerFirstname} {this.state.patient.emerLastname}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerRelationship}
+                          : {this.state.patient.emerRelationship}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerHomePhonenumber}
+                          : {this.state.patient.emerHomePhonenumber}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerMobileNumber}
+                          : {this.state.patient.emerMobileNumber}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerTypeofHouse}
+                          : {this.state.patient.emerTypeofHouse}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerAddress}
+                          : {this.state.patient.emerAddress}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerSubDistrict}
+                          : {this.state.patient.emerSubDistrict}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerDistrict}
+                          : {this.state.patient.emerDistrict}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerProvince}
+                          : {this.state.patient.emerProvince}
                         </Header.Subheader>
                         <Header.Subheader>
-                          : {this.state.emerZipcode}
+                          : {this.state.patient.emerZipcode}
                         </Header.Subheader>
                       </Grid.Column>
                     </Grid>
@@ -386,7 +394,7 @@ export default class PatientProfile extends Component {
                     <Grid>
                       <Grid.Column>
                         <Scrollbars autoHide style={{ height: 614 }}>
-                          <TreatmentHistory />
+                          <TreatmentHistory historyTreatment={this.state.historyTreatment} />
                           {/* <List divided relaxed>
                           <List.Item>
                               <List.Content> 

@@ -33,7 +33,9 @@ import {
   setMedicalRecordForNurse,
   getMedicalRecordForNurse,
   setMedicalRecordForDocter,
-  getMedicalRecordForDocter
+  getMedicalRecordForDocter,
+  addHistoryVisitNumber,
+  getHistoryVisitNumberPatient
 } from "./../../Service/MedicalRecordMethod";
 
 export default class MedicalRecordTreatment extends Component {
@@ -44,15 +46,17 @@ export default class MedicalRecordTreatment extends Component {
     queueIdSelected : undefined,
     nurseName: this.props.location.state.userLogin.position === 2 ? this.props.location.state.userLogin.nameTitle + " " + this.props.location.state.userLogin.firstname + " " + this.props.location.state.userLogin.lastname : '',
     doctorName: this.props.location.state.userLogin.position === 3 ? this.props.location.state.userLogin.nameTitle + " " + this.props.location.state.userLogin.firstname + " " + this.props.location.state.userLogin.lastname : '',
+    historyTreatment : []
   };
 
   getInfoPatient = (id, qId,vn) => {
+    debugger
     let medicalRecord ={};
-    console.log(id, qId, vn);
     this.setState({
       patient: getPatient(id, "String"),
       queueIdSelected: qId,
-      medicalRecord : this.prepareMedicalRecord(vn)
+      medicalRecord : this.prepareMedicalRecord(vn),
+      historyTreatment : getHistoryVisitNumberPatient(id)
     });
   };
 
@@ -65,7 +69,7 @@ export default class MedicalRecordTreatment extends Component {
   };
 
   sendToDoctor = async() => {
-    console.log("queueIdSelected", this.state.queueIdSelected);
+    console.log("send", this.state.medicalRecord);
       if (this.state.queueIdSelected !== undefined) {
         addQueue(this.state.employee.position, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, true, this.state.medicalRecord.visitNumber);
         updateStatusQueue(this.state.employee.position, this.state.queueIdSelected, false);
@@ -81,7 +85,7 @@ export default class MedicalRecordTreatment extends Component {
     }
 
   sendToPharmacy = async() => {
-    console.log("queueIdSelected",this.state.queueIdSelected)
+    console.log("send", this.state.medicalRecord);
       if (this.state.queueIdSelected !== undefined) {
         addQueue(this.state.employee.position, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, true, this.state.medicalRecord.visitNumber);
         updateStatusQueue(this.state.employee.position, this.state.queueIdSelected, false);
@@ -99,6 +103,7 @@ export default class MedicalRecordTreatment extends Component {
   sendToPayment = async() => {
     if (this.state.queueIdSelected !== undefined) {
       updateStatusQueue(this.state.employee.position, this.state.queueIdSelected, false);
+      addHistoryVisitNumber(this.state.medicalRecord.doctorId,this.state.patient.citizenId,this.state.medicalRecord.visitNumber);
       this.setState({
         queueIdSelected: null,
         patient: {},
@@ -121,6 +126,7 @@ export default class MedicalRecordTreatment extends Component {
   VISITNUMBER = 1071;
 
   prepareMedicalRecord = (vn) =>{
+    debugger
     let medicalRecord = {};
     if (this.state.employee.position === 2) {
       medicalRecord.nurseId = this.state.employee.empId;
@@ -135,16 +141,15 @@ export default class MedicalRecordTreatment extends Component {
       medicalRecord.doctorName = this.state.doctorName;
       medicalRecord.appointment = moment().format("ll");
     }else{
-      console.log("PHARMACY!!!")
       let nurseForm = getMedicalRecordForNurse(vn);
       let doctorForm = getMedicalRecordForDocter(vn);
       medicalRecord = {...nurseForm,...doctorForm}
     }
-    console.log('prepare',medicalRecord)
     return medicalRecord;
   }
 
   render() {
+    console.log("STAtE", this.state);
     const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname +"  " +this.state.employee.lastname;
     return (
       <div style={style.centerr}>
@@ -162,6 +167,7 @@ export default class MedicalRecordTreatment extends Component {
             <TabDescription
               patient={this.state.patient}
               empLogin={this.state.employee}
+              historyTreatment={this.state.historyTreatment}
             />
           </Grid.Column>
           <Grid.Column>

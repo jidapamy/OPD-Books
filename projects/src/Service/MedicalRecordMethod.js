@@ -1,11 +1,11 @@
 import { defaultAccount, contract, web3 } from "./../Lib/Web3";
-import { MedicalRecord, NurseForm, DoctorForm } from "./../Model/MedicalRecord";
+// import { MedicalRecord, NurseForm, DoctorForm } from "./../Model/MedicalRecord";
 import { getEmployee } from './ManageEmployeeMethod.js';
 
 export const setMedicalRecordForNurse = (medicalRecord) => {
-    console.log(medicalRecord)
-    console.log(web3.fromAscii(medicalRecord.visitNumber), medicalRecord.clinic, web3.fromAscii(medicalRecord.height), web3.fromAscii(medicalRecord.bodyWeight), web3.fromAscii(medicalRecord.bmi), web3.fromAscii(medicalRecord.temperature), web3.fromAscii(medicalRecord.date), web3.fromAscii(medicalRecord.time));
-    console.log(web3.fromAscii(medicalRecord.visitNumber), web3.fromAscii(medicalRecord.pulseRate), web3.fromAscii(medicalRecord.respiratoryRate), web3.fromAscii(medicalRecord.BP1), web3.fromAscii(medicalRecord.BP2), web3.fromAscii(medicalRecord.BP3), medicalRecord.chiefComplaint, web3.fromAscii(medicalRecord.nurseId));
+    debugger
+    // console.log(web3.fromAscii(medicalRecord.visitNumber), medicalRecord.clinic, web3.fromAscii(medicalRecord.height), web3.fromAscii(medicalRecord.bodyWeight), web3.fromAscii(medicalRecord.bmi), web3.fromAscii(medicalRecord.temperature), web3.fromAscii(medicalRecord.date), web3.fromAscii(medicalRecord.time));
+    // console.log(web3.fromAscii(medicalRecord.visitNumber), web3.fromAscii(medicalRecord.pulseRate), web3.fromAscii(medicalRecord.respiratoryRate), web3.fromAscii(medicalRecord.BP1), web3.fromAscii(medicalRecord.BP2), web3.fromAscii(medicalRecord.BP3), medicalRecord.chiefComplaint, web3.fromAscii(medicalRecord.nurseId));
     contract.setMedicalRecordForNursePart1(
        web3.fromAscii(medicalRecord.visitNumber), 
        medicalRecord.clinic, 
@@ -18,7 +18,6 @@ export const setMedicalRecordForNurse = (medicalRecord) => {
        defaultAccount
     );  
 
-    console.log("NURSEID : ", medicalRecord.nurseId);
     contract.setMedicalRecordForNursePart2(
        web3.fromAscii(medicalRecord.visitNumber), 
        web3.fromAscii(medicalRecord.pulseRate), 
@@ -33,7 +32,7 @@ export const setMedicalRecordForNurse = (medicalRecord) => {
 } 
 
 export const setMedicalRecordForDocter = (medicalRecord) => {
-   console.log("DOCTOR! medicalRecord", medicalRecord);
+    debugger;
    contract.setMedicalRecordForDocter(
        web3.fromAscii(medicalRecord.visitNumber), 
        medicalRecord.presentIllness, 
@@ -48,8 +47,7 @@ export const setMedicalRecordForDocter = (medicalRecord) => {
 } 
 
 export const getMedicalRecordForNurse = (visitNumber) => {
-    console.log(visitNumber,web3.fromAscii(visitNumber));
-    let medicalRecord = NurseForm;
+    let medicalRecord = {};
     const nurse1 = contract.getMedicalRecordForNursePart1(web3.fromAscii(visitNumber));
     const nurse2 = contract.getMedicalRecordForNursePart2(web3.fromAscii(visitNumber));
 
@@ -72,13 +70,11 @@ export const getMedicalRecordForNurse = (visitNumber) => {
     let nurse = getEmployee(web3.toAscii(nurse2[6]));
     medicalRecord.nurseName = nurse.nameTitle + " " + nurse.firstname + " " + nurse.lastname;
 
-    console.log('medical record for nurse',medicalRecord)
     return medicalRecord;
 };
 
 export const getMedicalRecordForDocter = (visitNumber) => {
-    console.log(visitNumber,web3.fromAscii(visitNumber));
-    let medicalRecord = DoctorForm;
+    let medicalRecord = {};
     const doctor = contract.getMedicalRecordForDocter(web3.fromAscii(visitNumber));
     medicalRecord.presentIllness = doctor[0];
     medicalRecord.physicalExem = doctor[1];
@@ -90,6 +86,27 @@ export const getMedicalRecordForDocter = (visitNumber) => {
     let doctorEmp = getEmployee(web3.toAscii(doctor[6]));
     medicalRecord.doctorName = doctorEmp.nameTitle + " " + doctorEmp.firstname + " " + doctorEmp.lastname;
 
-    console.log('medical record for doctor',medicalRecord)
     return medicalRecord;
 };
+
+export const addHistoryVisitNumber = ( doctorId, citizenId, visitNumber) => {
+    contract.addHistoryVisitNumber(web3.fromAscii(doctorId), web3.fromAscii(citizenId), web3.fromAscii(visitNumber), defaultAccount);
+}
+
+export const getHistoryVisitNumberPatient = (citizentId) => {
+    debugger
+    const lengthHistory = +contract.countHistoryVisitNumberForPatient(web3.fromAscii(citizentId)).toString();
+    let medicalRecord = [];
+    if(lengthHistory !== 0){
+         for (let i = 0; i < lengthHistory; i++) {
+             let visitNumber = contract.getHistoryVisitNumberPatient(web3.fromAscii(citizentId),i);
+             let nurseForm = getMedicalRecordForNurse(web3.toAscii(visitNumber));
+             let doctorForm = getMedicalRecordForDocter(web3.toAscii(visitNumber));
+             let key = {key : i };
+             let obj = {...key,...nurseForm,...doctorForm};
+             medicalRecord.push(obj)
+         }
+    }
+    return medicalRecord;
+};
+

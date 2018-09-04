@@ -38,14 +38,12 @@ export default class FromForNurse extends Component {
 
   componentWillMount = () => {
     let emp = this.props.empLogin;
-    console.log('emp',emp)
     if (emp.position === 2) {
       //Nurse
       // this.setState({
       //   nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
       // });
     } else if (emp.position === 3) {
-      console.log('DOCTOR!!!')
       this.setState(this.props.medicalRecord);
       // Doctor
     } else {
@@ -57,7 +55,6 @@ export default class FromForNurse extends Component {
     this.cleanField();
     let emp = this.props.empLogin;
     if (emp.position === 3) {
-      console.log("DOCTOR!!!");
       this.setState(nextProps.medicalRecord);
       // Doctor
     } 
@@ -114,7 +111,6 @@ export default class FromForNurse extends Component {
   };
 
   render() {
-    console.log("Nurse", this.state);
     const disabledNurseField =
       this.props.patient.citizenId == null ||
       this.props.empLogin.position !== 2;

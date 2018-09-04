@@ -1,9 +1,7 @@
 const Web3 = require('web3');
-// import abi from './abi'
-export var web3 = new Web3();
+var web3 = new Web3();
 
 // web3 = new Web3(new Web3.providers.HttpProvider("http://13.250.32.62:8545"));
-// debugger;
 web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
 web3.eth.defaultAccount = web3.eth.accounts[0];
 const PatientRecordContract = web3.eth.contract(
@@ -39,7 +37,210 @@ const PatientRecordContract = web3.eth.contract(
 				"type": "bytes32"
 			}
 		],
-		"name": "getAddressPatient",
+		"name": "getInfoPatientPart1",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "patientAccounts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "medicalRecordList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "bytes32"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getHistoryMedicalRecordPatient",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "haveMedicalRecords",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_patientCitizenId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "haveHistoryOfPatient",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_email",
+				"type": "bytes32"
+			}
+		],
+		"name": "haveEmail",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "haveCitizenId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getPatientParent",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getEmergencyContactPart2",
 		"outputs": [
 			{
 				"name": "",
@@ -48,6 +249,99 @@ const PatientRecordContract = web3.eth.contract(
 			{
 				"name": "",
 				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getPatientIdFormMDR",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getEmergencyContactPart1",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getInfoPatientPart2",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
 			},
 			{
 				"name": "",
@@ -117,256 +411,7 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getEmergencyContactPart1",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getEmergencyContactPart2",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "countQueuesForPharmacys",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "patientAccounts",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			},
-			{
-				"name": "_empPosition",
-				"type": "uint256"
-			}
-		],
-		"name": "getStatusQueues",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_index",
-				"type": "uint256"
-			},
-			{
-				"name": "_empPosition",
-				"type": "uint256"
-			}
-		],
-		"name": "getQueues",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getPatientParent",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getPatientAllergy",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "countQueuesForNurses",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_visitNumber",
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			}
 		],
@@ -407,12 +452,37 @@ const PatientRecordContract = web3.eth.contract(
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "countQueuesForDocters",
+		"inputs": [
+			{
+				"name": "_citizenId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getAddressPatient",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
 			}
 		],
 		"payable": false,
@@ -423,7 +493,7 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_visitNumber",
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			}
 		],
@@ -466,11 +536,11 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_citizenId",
+				"name": "_patientCitizenId",
 				"type": "bytes32"
 			}
 		],
-		"name": "countHistoryVisitNumberForPatient",
+		"name": "countHistoryMedicalRecordForPatient",
 		"outputs": [
 			{
 				"name": "",
@@ -485,19 +555,109 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "id",
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "getMedicalRecordForDocter",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "checkTxCompleteForNurse",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getLengthPatientAccounts",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			},
 			{
-				"name": "index",
-				"type": "uint256"
+				"name": "_doctorName",
+				"type": "bytes32"
 			}
 		],
-		"name": "getHistoryVisitNumberPatient",
+		"name": "checkTxCompleteForDoctor",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getLengthMedicalRecords",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -508,15 +668,15 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_EmployeeId",
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			}
 		],
-		"name": "countHistoryVisitNumberForDocter",
+		"name": "alreadyDataInMedicalRecordsId",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -562,11 +722,15 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_email",
+				"name": "_citizenId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_password",
 				"type": "bytes32"
 			}
 		],
-		"name": "checkDuplicateEmail",
+		"name": "Login",
 		"outputs": [
 			{
 				"name": "",
@@ -616,11 +780,15 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": true,
 		"inputs": [
 			{
-				"name": "_citizenId",
+				"name": "_patientCitizenId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			}
 		],
-		"name": "checkDuplicateCitizenId",
+		"name": "haveMedicalRecordsOfPatient",
 		"outputs": [
 			{
 				"name": "",
@@ -639,209 +807,11 @@ const PatientRecordContract = web3.eth.contract(
 				"type": "bytes32"
 			}
 		],
-		"name": "getInfoPatientPart2",
+		"name": "getPatientAllergy",
 		"outputs": [
 			{
 				"name": "",
 				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_empId",
-				"type": "bytes32"
-			},
-			{
-				"name": "_password",
-				"type": "bytes32"
-			}
-		],
-		"name": "LoginEmployee",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getInfoPatientPart1",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			},
-			{
-				"name": "_password",
-				"type": "bytes32"
-			}
-		],
-		"name": "Login",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_empId",
-				"type": "bytes32"
-			}
-		],
-		"name": "getInfoEmployee",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "id",
-				"type": "bytes32"
-			},
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "getHistoryVisitNumberEmployee",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_visitNumber",
-				"type": "bytes32"
-			}
-		],
-		"name": "getMedicalRecordForDocter",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
 			},
 			{
 				"name": "",
@@ -890,19 +860,27 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_empPosition",
-				"type": "uint256"
+				"name": "_citizenId",
+				"type": "bytes32"
 			},
 			{
-				"name": "_index",
-				"type": "uint256"
+				"name": "_fatherFirstname",
+				"type": "bytes32"
 			},
 			{
-				"name": "_statusQueue",
-				"type": "bool"
+				"name": "_fatherLastname",
+				"type": "bytes32"
+			},
+			{
+				"name": "_motherFirstname",
+				"type": "bytes32"
+			},
+			{
+				"name": "_motherLastname",
+				"type": "bytes32"
 			}
 		],
-		"name": "updateStatusQueue",
+		"name": "setPatientParent",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -950,23 +928,15 @@ const PatientRecordContract = web3.eth.contract(
 				"type": "bytes32"
 			},
 			{
-				"name": "_fatherFirstname",
+				"name": "_allergy",
 				"type": "bytes32"
 			},
 			{
-				"name": "_fatherLastname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_motherFirstname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_motherLastname",
+				"name": "_privilege",
 				"type": "bytes32"
 			}
 		],
-		"name": "setPatientParent",
+		"name": "setPatientAllergy",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -976,39 +946,11 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_visitNumber",
-				"type": "bytes32"
-			},
-			{
-				"name": "_presentIllness",
-				"type": "string"
-			},
-			{
-				"name": "_physicalExem",
-				"type": "string"
-			},
-			{
-				"name": "_diagnosis",
-				"type": "string"
-			},
-			{
-				"name": "_treatment",
-				"type": "string"
-			},
-			{
-				"name": "_recommendation",
-				"type": "string"
-			},
-			{
-				"name": "_appointment",
-				"type": "string"
-			},
-			{
-				"name": "_doctorId",
+				"name": "_emails",
 				"type": "bytes32"
 			}
 		],
-		"name": "setMedicalRecordForDocter",
+		"name": "setEmail",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -1018,35 +960,39 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_citizenId",
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			},
 			{
-				"name": "_typeofHouse",
+				"name": "_pulseRate",
 				"type": "bytes32"
 			},
 			{
-				"name": "_patienaddress",
+				"name": "_respiratoryRate",
+				"type": "bytes32"
+			},
+			{
+				"name": "_BP1",
+				"type": "bytes32"
+			},
+			{
+				"name": "_BP2",
+				"type": "bytes32"
+			},
+			{
+				"name": "_BP3",
+				"type": "bytes32"
+			},
+			{
+				"name": "_chiefComplaint",
 				"type": "string"
 			},
 			{
-				"name": "_province",
-				"type": "bytes32"
-			},
-			{
-				"name": "_district",
-				"type": "bytes32"
-			},
-			{
-				"name": "_subDistrict",
-				"type": "bytes32"
-			},
-			{
-				"name": "_zipcode",
+				"name": "_nurseName",
 				"type": "bytes32"
 			}
 		],
-		"name": "setAddressPatient",
+		"name": "setMedicalRecordForNursePart2",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -1056,7 +1002,29 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_visitNumber",
+				"name": "_patientCitizenId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			}
+		],
+		"name": "addHistoryMedicalRecord",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_patientCitizenId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_medicalRecordId",
 				"type": "bytes32"
 			},
 			{
@@ -1089,6 +1057,48 @@ const PatientRecordContract = web3.eth.contract(
 			}
 		],
 		"name": "setMedicalRecordForNursePart1",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_medicalRecordId",
+				"type": "bytes32"
+			},
+			{
+				"name": "_presentIllness",
+				"type": "string"
+			},
+			{
+				"name": "_physicalExem",
+				"type": "string"
+			},
+			{
+				"name": "_diagnosis",
+				"type": "string"
+			},
+			{
+				"name": "_treatment",
+				"type": "string"
+			},
+			{
+				"name": "_recommendation",
+				"type": "string"
+			},
+			{
+				"name": "_appointment",
+				"type": "string"
+			},
+			{
+				"name": "_doctorName",
+				"type": "bytes32"
+			}
+		],
+		"name": "setMedicalRecordForDocter",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -1136,99 +1146,35 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_empId",
-				"type": "bytes32"
-			},
-			{
-				"name": "_nameTitle",
-				"type": "bytes32"
-			},
-			{
-				"name": "_firstname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_lastname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_password",
-				"type": "bytes32"
-			},
-			{
-				"name": "_position",
-				"type": "uint256"
-			},
-			{
-				"name": "_clinicEmp",
-				"type": "bytes32"
-			}
-		],
-		"name": "setInfoEmployee",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
 				"name": "_citizenId",
 				"type": "bytes32"
 			},
 			{
-				"name": "_allergy",
+				"name": "_typeofHouse",
 				"type": "bytes32"
 			},
 			{
-				"name": "_privilege",
-				"type": "bytes32"
-			}
-		],
-		"name": "setPatientAllergy",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_visitNumber",
-				"type": "bytes32"
-			},
-			{
-				"name": "_pulseRate",
-				"type": "bytes32"
-			},
-			{
-				"name": "_respiratoryRate",
-				"type": "bytes32"
-			},
-			{
-				"name": "_BP1",
-				"type": "bytes32"
-			},
-			{
-				"name": "_BP2",
-				"type": "bytes32"
-			},
-			{
-				"name": "_BP3",
-				"type": "bytes32"
-			},
-			{
-				"name": "_chiefComplaint",
+				"name": "_patienaddress",
 				"type": "string"
 			},
 			{
-				"name": "_nurseId",
+				"name": "_province",
+				"type": "bytes32"
+			},
+			{
+				"name": "_district",
+				"type": "bytes32"
+			},
+			{
+				"name": "_subDistrict",
+				"type": "bytes32"
+			},
+			{
+				"name": "_zipcode",
 				"type": "bytes32"
 			}
 		],
-		"name": "setMedicalRecordForNursePart2",
+		"name": "setAddressPatient",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -1238,41 +1184,15 @@ const PatientRecordContract = web3.eth.contract(
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_EmployeeId",
-				"type": "bytes32"
-			},
-			{
 				"name": "_citizenId",
 				"type": "bytes32"
 			},
 			{
-				"name": "_visitNumber",
-				"type": "bytes32"
-			}
-		],
-		"name": "addHistoryVisitNumber",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_empPosition",
-				"type": "uint256"
-			},
-			{
-				"name": "_hospitalnumber",
+				"name": "_dob",
 				"type": "bytes32"
 			},
 			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			},
-			{
-				"name": "_title",
+				"name": "_titlename",
 				"type": "bytes32"
 			},
 			{
@@ -1284,15 +1204,11 @@ const PatientRecordContract = web3.eth.contract(
 				"type": "bytes32"
 			},
 			{
-				"name": "_statusQueue",
-				"type": "bool"
-			},
-			{
-				"name": "_visitNumber",
+				"name": "_gender",
 				"type": "bytes32"
 			}
 		],
-		"name": "addQueue",
+		"name": "setInfoPatientPart2",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -1361,68 +1277,17 @@ const PatientRecordContract = web3.eth.contract(
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_emails",
-				"type": "bytes32"
-			}
-		],
-		"name": "setEmail",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "removeQueues",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_citizenId",
-				"type": "bytes32"
-			},
-			{
-				"name": "_dob",
-				"type": "bytes32"
-			},
-			{
-				"name": "_titlename",
-				"type": "bytes32"
-			},
-			{
-				"name": "_firstname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_lastname",
-				"type": "bytes32"
-			},
-			{
-				"name": "_gender",
-				"type": "bytes32"
-			}
-		],
-		"name": "setInfoPatientPart2",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
 	}
 ]
 );
 
 
-export const contract = PatientRecordContract.at("0x0a0721ae06ce47bc94ba77846b29cd8edd110807");
+const contract = PatientRecordContract.at("0x5480bc3cb9ac1a8acf4036044e0951a510cd0e46");
 
-export const defaultAccount = { from: web3.eth.accounts[0], gas: 6000000 }
+const defaultAccount = { from: web3.eth.accounts[0], gas: 6000000 }
+
+module.exports = {
+  web3: web3,
+  contract: contract,
+  defaultAccount:defaultAccount
+};
