@@ -41,12 +41,12 @@ export default class Queues extends Component {
   };
 
   componentWillMount = () => {
-    console.log("----------- will mount listQ");
+    // console.log("----------- will mount listQ");
     this.prepareQueue();
   };
 
   componentWillReceiveProps = () => {
-    console.log("----------- WillReceive listQ");
+    // console.log("----------- WillReceive listQ");
     this.prepareQueue();
   };
 
@@ -74,7 +74,7 @@ export default class Queues extends Component {
                 <Table.Cell>
                   <List.Content>
                     <List.Header as="a">HN {q.hospitalNumber}</List.Header>
-                    <List.Description as="a" style={style.textQueue}>
+                    <List.Description as="a">
                       {q.title} {q.firstname} {q.lastname}
                     </List.Description>
                   </List.Content>
@@ -82,20 +82,25 @@ export default class Queues extends Component {
               </Table.Row>
             );
           } else {
-            console.log("List Q Medical");
             return (
               <List.Item 
                 style={style.edit} 
                 key={q.key}
+<<<<<<< HEAD
                 onClick={() => this.props.getInfoPatient(q.citizenId, q.queueId)}>
                   <Grid> 
                     <Grid.Column width={7} style={style.queueNo}>
+=======
+                onClick={() => this.props.getInfoPatient(q.citizenId, q.key , q.visitNumber)}>
+                  <Grid>
+                    <Grid.Column width={4} style={style.queueNo}>
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                       {this.props.StatusQueue} {q.queueId}
                     </Grid.Column>
                     <Grid.Column width={9}>
                       <List.Content>
                         <List.Header as="a" style={style.hnNo}>
-                          HN {q.hospitalNumber}
+                          {this.props.position == 2 ? 'HN '+ q.hospitalNumber: 'VN '+q.visitNumber}
                         </List.Header>
                         <List.Description as="a" style={style.textQueue}>
                          {q.title} {q.firstname} {q.lastname}
@@ -146,7 +151,6 @@ export default class Queues extends Component {
           </Segment.Group>
       );
     } else {
-      console.log("Medical")
       return (
           <Segment raised>
             <p style={style.head}>
@@ -164,9 +168,13 @@ export default class Queues extends Component {
 
 
   render() {
+<<<<<<< HEAD
     console.log("List Q")
     return 
     this.showComponent();
 
+=======
+    return this.showComponent();
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
   }
 }

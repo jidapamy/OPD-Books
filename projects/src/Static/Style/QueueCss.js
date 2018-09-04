@@ -569,10 +569,13 @@ export const style = {
         background:'#2C7E79',
         borderColor: '#2C7E79',
     },
+<<<<<<< HEAD
     bgDoc:{
     background:'#F7F4F4',
     }
     ,
+=======
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
     
     
 

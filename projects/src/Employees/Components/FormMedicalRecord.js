@@ -16,103 +16,118 @@ import {
 import { Scrollbars } from "react-custom-scrollbars";
 
 import { style } from "./../../Static/Style/QueueCss";
-import FromForNurse from './FromForNurse'
+import FromForNurse from "./FromForNurse";
 import FromForDoctor from "./FromForDoctor";
-
+import swal from "sweetalert2";
 
 export default class FormMedicalRecord extends Component {
-  state = {
-    visitNumber: "",
-    clinic: "",
-    height: 0,
-    bodyWeight: 0,
-    bmi: 0,
-    temperature: 0,
-    pulseRate: 0,
-    respiratoryRate: 0,
-    BP1: "",
-    BP2: "",
-    BP3: "",
-    chiefComplaint: ""
-  };
-
-  calculateBMI = () => {
-    if (
-      this.props.medicalRecord.height &&
-      this.props.medicalRecord.bodyWeight
-    ) {
-      let height = this.props.medicalRecord.height / 100;
-      let bmi = this.props.medicalRecord.bodyWeight / (height * height);
-      this.props.medicalRecord.bmi = bmi.toFixed(2);
-      this.setState({ bmi: bmi.toFixed(2) });
-    }
-  };
-
-  setField = (field, value) => {
-    this.props.setMedicalRecordDetail(field, value);
-    this.setState({ [field]: value });
-  };
-
-  buttonForNurse = () => {
-    if (this.props.empLogin.position === 2) {
+  showForm = () => {
+    if (this.props.empLogin.position === 3) {
       return (
-        <Button
-          color="teal"
-          content="Send To Doctor"
-          icon="send"
-          style={style.ButtonNurse}
-          onClick={() => this.props.sendToDoctor()}
-          disabled={this.props.patient.citizenId == null}
+        <Scrollbars style={{ width: 590, height: 600 }}>
+          <FromForNurse
+            patient={this.props.patient}
+            empLogin={this.props.empLogin}
+            medicalRecord={this.props.medicalRecord}
+            setMedicalRecordDetail={this.props.setMedicalRecordDetail}
+            reState={this.props.reState}
+            showPopupConfirm={this.showPopupConfirm}
+          />
+          <br />
+          <FromForDoctor
+            patient={this.props.patient}
+            empLogin={this.props.empLogin}
+            medicalRecord={this.props.medicalRecord}
+            setMedicalRecordDetail={this.props.setMedicalRecordDetail}
+            reState={this.props.reState}
+            showPopupConfirm={this.showPopupConfirm}
+          />
+        </Scrollbars>
+      );
+    } else if (this.props.empLogin.position === 4) {
+      return (
+        <FromForDoctor
+          patient={this.props.patient}
+          empLogin={this.props.empLogin}
+          medicalRecord={this.props.medicalRecord}
+          setMedicalRecordDetail={this.props.setMedicalRecordDetail}
+          reState={this.props.reState}
+          showPopupConfirm={this.showPopupConfirm}
         />
       );
     }
-    return "";
+    return (
+      <FromForNurse
+        patient={this.props.patient}
+        empLogin={this.props.empLogin}
+        medicalRecord={this.props.medicalRecord}
+        setMedicalRecordDetail={this.props.setMedicalRecordDetail}
+        reState={this.props.reState}
+        showPopupConfirm={this.showPopupConfirm}
+      />
+    );
   };
 
-  cleanField = () => {
-    this.setState({
-      visitNumber: "",
-      clinic: "",
-      height: 0,
-      bodyWeight: 0,
-      bmi: 0,
-      temperature: 0,
-      pulseRate: 0,
-      respiratoryRate: 0,
-      BP1: "",
-      BP2: "",
-      BP3: "",
-      chiefComplaint: "",
-
-      presentIllness: "",
-      physicalExem: "",
-      diagnosis: "",
-      treatment: "",
-      recommendation: "",
-      appointment: ""
+  showPopupConfirm = async () => {
+    swal({
+      title: "ยืนยันการบันทึกข้อมูล?",
+      text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
+      type: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      confirmButtonColor: "#1FCB4A",
+      confirmButtonText: "Confirm",
+      cancelButtonText: "Cancel"
+    }).then(result => {
+      if (result.value) {
+        if (this.props.empLogin.position === 2) {
+          this.props.sendToDoctor();
+        } else if (this.props.empLogin.position === 3) {
+          this.props.sendToPharmacy();
+        } else {
+          this.props.sendToPayment();
+        }
+        swal({
+          type: "success",
+          title: "บันทึกข้อมูลสำเร็จ",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.props.reState();
+      }
     });
   };
 
   render() {
-    return <Segment width={8} raised>
+    console.log("FORM!!!!",this.props.medicalRecord);
+    return (
+      <Segment width={8} raised>
         <Header style={style.headForm} as="h5" block inverted color="grey">
           <List divided relaxed>
             <List.Item>
               <Grid columns="three" style={style.headText}>
                 <Grid.Row>
                   <Grid.Column>
-                    Date: &nbsp;&nbsp;Sun, 26 Aug 2018
+                    Date: &nbsp;&nbsp;{this.props.medicalRecord.date}
                   </Grid.Column>
-                  <Grid.Column>Time: &nbsp;&nbsp;02:56 AM.</Grid.Column>
-                  <Grid.Column>VN: &nbsp;&nbsp;1067/3</Grid.Column>
+                  <Grid.Column>
+                    Time: &nbsp;&nbsp;{this.props.medicalRecord.time}
+                  </Grid.Column>
+                  <Grid.Column>
+                    VN: &nbsp;&nbsp;{this.props.medicalRecord.visitNumber}
+                  </Grid.Column>
                 </Grid.Row>
                 <Grid.Row style={style.headMargin}>
                   <Grid.Column width={5}>
-                    Privilege: &nbsp;&nbsp;-
+                    Privilege: &nbsp;&nbsp; {this.props.patient.privilege}
                   </Grid.Column>
+                  {/* <Grid.Column width={11}>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Clinic: &nbsp;&nbsp;{this.props.empLogin.position === 2 ? this.props.empLogin.clinic : this.props.medicalRecord.clinic}
+                  </Grid.Column> */}
                   <Grid.Column width={11}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clinic:
-                    &nbsp;&nbsp;คลินิกศูนย์แพทย์พัฒนา
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Clinic: &nbsp;&nbsp;{this.props.medicalRecord.clinic}
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -120,6 +135,7 @@ export default class FormMedicalRecord extends Component {
           </List>
         </Header>
 
+<<<<<<< HEAD
         <Scrollbars autoHide style={{height: 526 }}>
           <br />
           <FromForNurse />
@@ -127,5 +143,10 @@ export default class FormMedicalRecord extends Component {
           <FromForDoctor />
         </Scrollbars>
       </Segment>;
+=======
+        {this.showForm()}
+      </Segment>
+    );
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
   }
 }

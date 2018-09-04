@@ -1,18 +1,6 @@
 import {defaultAccount, contract, web3 } from "./../Lib/Web3";
 
 export const addQueue = ( empPosition, hn , citizenId, title, firstname, lastname, statusQueue, visitNumber ) => {
-  console.log("addQ", empPosition);
-  console.log(empPosition,hn, citizenId, title, firstname, lastname, statusQueue, visitNumber);
-  console.log(
-      empPosition, 
-      web3.fromAscii(hn), 
-      web3.fromAscii(citizenId), 
-      web3.fromAscii(title), 
-      web3.fromAscii(firstname), 
-      web3.fromAscii(lastname),
-      statusQueue, 
-      web3.fromAscii(visitNumber)
-    );
   contract.addQueue(
     empPosition,
     web3.fromAscii(hn), 
@@ -73,7 +61,15 @@ export const getQueues = (empPosition) => {
 };
 
 export const updateStatusQueue = ( empPosition, index, statusQueue ) => {
-    contract.updateStatusQueue(empPosition, +index, statusQueue);
-    return getQueues(empPosition);
+    contract.updateStatusQueue(empPosition, +index, statusQueue, defaultAccount);
+    return true;
 }
-// function updateStatusQueue( uint _empPosition , uint _index ,bool _statusQueue ) public {
+
+export const removeQueues = () => {
+    contract.removeQueues(defaultAccount);
+}
+
+export const doctorQLength = () => {
+  let length = contract.countQueuesForDocters().toString();
+  return +length;
+}

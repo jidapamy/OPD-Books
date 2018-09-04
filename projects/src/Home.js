@@ -237,7 +237,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow src={icon1} />
+                    <ImageSizeRow size='medium' src={icon1} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     DEVELOP
@@ -253,7 +253,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow src={icon2} />
+                    <ImageSizeRow size='medium' src={icon2} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     PREVENT
@@ -270,7 +270,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow src={icon3} />
+                    <ImageSizeRow size='medium' src={icon3} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     FACILITATE
@@ -281,13 +281,13 @@ export default class Home extends React.Component {
                   </p>
                 </Grid.Column>
 
-                <Grid.Column
+                {/* <Grid.Column
                   style={{ paddingBottom: "3em", paddingTop: "1em" }}
                   className="wow zoomIn"
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow src={icon4} />
+                    <ImageSizeRow size='medium' src={icon4} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     ONLINE
@@ -295,7 +295,7 @@ export default class Home extends React.Component {
                   <p style={{ fontSize: "1em" }}>
                     Save on internet instead of paper document.
                   </p>
-                </Grid.Column>
+                </Grid.Column> */}
               </Grid.Row>
             </Grid>
           </Segment>

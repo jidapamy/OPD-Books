@@ -1,9 +1,31 @@
 import React from "react";
-import { Button, Segment, Input, Grid, List, Label, Form, TextArea, Message, Tab, Card, Icon, Popup, Modal, Header, Divider } from 'semantic-ui-react';
+import {
+  Button,
+  Segment,
+  Input,
+  Grid,
+  List,
+  Label,
+  Form,
+  TextArea,
+  Message,
+  Tab,
+  Card,
+  Icon,
+  Popup,
+  Modal,
+  Header,
+  Divider,
+  Container
+} from "semantic-ui-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { Scrollbars } from "react-custom-scrollbars";
 import { style } from "./../../Static/Style/QueueCss";
+<<<<<<< HEAD
 import { WSAEHOSTUNREACH } from "constants";
+=======
+import TreatmentHistory from "./TreatmentHistory";
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
 
 export default class Tab2History extends React.Component {
   state = {
@@ -11,7 +33,16 @@ export default class Tab2History extends React.Component {
   }
   render() {
     return (
+      // <Container textAlign="center" style={{ padding: "2% 4%" }}>
+      //   <Scrollbars autoHide style={{ height: this.props.height }}>
+      //     <List divided relaxed style={{ textAlign: "left" }}>
+      //       <TreatmentHistory/>
+      //     </List>
+      //   </Scrollbars>
+      // </Container>
+
       <div style={style.cardCenter}>
+<<<<<<< HEAD
         <Scrollbars autoHide style={{ width: 320, height: 550 }} >
           <Card style={style.contentPosition} raised onClick={() => this.setState({ openmodal: true })}>
             <Grid columns="two">
@@ -24,6 +55,32 @@ export default class Tab2History extends React.Component {
                 </Grid.Column>
                 <Grid.Column style={style.textCard} width={12}>
                   25 มกราคม 2561
+=======
+
+        TEST!!! 
+        {/* <Scrollbars autoHide style={{ width: 320, height: 407 }}>
+          <Card style={style.contentPosition}>
+            <Modal
+              trigger={
+                <Grid columns="two">
+                  <Grid.Row style={style.rowScaleTop}>
+                    <Grid.Column style={style.iconCard} width={4}>
+                      <Popup
+                        trigger={<Icon name="calendar alternate outline" />}
+                        content="วันที่เข้ารับการรักษา"
+                      />
+                    </Grid.Column>
+                    <Grid.Column style={style.textCard} width={12}>
+                      25 มกราคม 2561
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row style={style.rowScale}>
+                    <Grid.Column style={style.iconCard} width={4}>
+                      <Popup
+                        trigger={<Icon name="hospital outline" />}
+                        content="คลินิกที่เข้ารับการรักษา"
+                      />
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                     </Grid.Column>
               </Grid.Row>
               <Grid.Row style={style.rowScale}>
@@ -334,6 +391,41 @@ export default class Tab2History extends React.Component {
           </Modal.Actions>
         </Modal>
 
+<<<<<<< HEAD
+=======
+                      <Grid columns="two">
+                        <Grid.Row columns={2}>
+                          <Grid.Column>
+                            <p style={style.topicTime}>
+                              <b>F/U Date</b>
+                            </p>
+                            <Message style={style.ColumnDate} visible>
+                              เสาร์, 18 สิงหาคม 2561
+                            </Message>
+                          </Grid.Column>
+                          <Grid.Column>
+                            <p style={style.topicNameDoc}>
+                              <b>ลงชื่อแพทย์ผู้รักษา</b>
+                            </p>
+                            <p style={style.ColumnDoc}>นพ. ประสม ประสงค์สุขสันต์ </p>
+                            <p style={style.dividerDeco2}><Divider /></p>
+                          </Grid.Column>
+                        </Grid.Row>
+                        <br />
+                      </Grid>
+                    </List>
+                  </Scrollbars>
+                </Modal.Description>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color="red">
+                  Close &nbsp;&nbsp;<Icon name="cancel" />
+                </Button>
+              </Modal.Actions>
+            </Modal>
+          </Card>
+        </Scrollbars> */}
+>>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
       </div>
     );
   }
