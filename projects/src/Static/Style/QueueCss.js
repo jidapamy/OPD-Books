@@ -75,9 +75,7 @@ export const style = {
     queueNo: {
         color: '#00b5ad',
         fontSize: '25px',
-        marginTop: '7%',
-        textAlign: 'right',
-  
+        marginTop: '3%'
 
         
     },
@@ -88,8 +86,7 @@ export const style = {
 
     edit:{
         paddingBottom: '8%',
-        paddingTop: '8%',
-        width:'91%'
+        paddingTop: '8%'
     },
 
 
@@ -183,13 +180,13 @@ export const style = {
         color: '#000000',
         marginBottom: '0%',
         textAlign:'left',
-        marginLeft: '9%'
+        marginLeft: '7%'
     },
 
     ColumnDate: {
-        width: '100%',
+        width: '90%',
         height: '50%',
-        marginLeft: '-9.5%',
+        marginLeft: '7%',
         paddingTop: '2%',
         marginTop: '0%'
 
@@ -218,13 +215,6 @@ export const style = {
         marginBottom: '0%',
         textAlign:'left',
         marginLeft: '-2%'
-    },
-    topicDate:{
-        fontSize: '14px',
-        color: '#000000',
-        marginBottom: '0%',
-        textAlign:'left',
-        marginLeft: '11%'
     },
 
     headSeg2:{
@@ -263,8 +253,8 @@ export const style = {
     ,
 
     paddingPatient:{
-        paddingBottom: '5%',
-        paddingTop: '1%'
+        paddingBottom: '2%',
+        paddingTop: '2%'
     },
 
     fixContent:{
@@ -459,7 +449,7 @@ export const style = {
     },
     textQueue:{
         textAlign:'left',
-        marginLeft: '-11%'
+        marginLeft: '6%'
 
     },
     headMarginShow:{
@@ -496,82 +486,7 @@ export const style = {
         textAlign: 'left',
         borderColor: '#000000',
         borderWidth:'thick'
-    },
-    dividerShowDate:{
-        width: '80%',
-        marginLeft: '11%',
-        marginTop: '-3%',
-        textAlign: 'left',
-        borderColor: '#000000',
-        borderWidth:'thick'
-    },
-    tab1Height:{
-        height:'550px'
-    },
-
-    navbarDeco:{
-        fontSize:'36px',
-        borderRadius: '0px',
-        color: '#3EBDB2',
-        textAlign: 'center',
-        paddingTop: '15%'
-
-
-    },
-    naveText:{
-        fontSize:'16px',
-        color:'#3EBDB2',
-    },
-
-    hnNoNav: {
-        marginLeft: '-11%',
-        color: '#ffffff',
-    },
-    textQueueNav:{
-        textAlign:'left',
-        marginLeft: '-11%',
-        color: '#ffffff',
-
-    },
-    queueNoNav: {
-        color: '#00b5ad',
-        fontSize: '25px',
-        marginTop: '5%',
-        textAlign: 'right',
-  
-    },
-    widthNav:{
-        // marginTop:'-5%',
-        // marginBottom: '-5%'
-    },
-    visiteNav:{
-        visitedColor: '#2C7E79',
-    },
-
-    queueNoNav2: {
-        color: '#ffffff',
-        fontSize: '25px',
-        marginTop: '5%',
-        textAlign: 'right',
-  
-    },
-    hnNoNav2: {
-        marginLeft: '-11%',
-        color: '#083E3B',
-    },
-    textQueueNav2:{
-        textAlign:'left',
-        marginLeft: '-11%',
-        color: '#ffffff',
-    },
-    widthNav2:{
-       
-        background:'#2C7E79',
-        borderColor: '#2C7E79',
-    },
-    
-    
-
+    }
 
 
 

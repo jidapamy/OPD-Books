@@ -152,7 +152,7 @@ const getMedicalRecord = async medicalRecordId => {
       medicalRecord = { ...nurse.data, ...doctor.data };
       return { status: true, message: "SUCCESS", data: medicalRecord };
     }
-    return { status: false, message: "ERROR : Doctor has not assign this medical record yet." };
+    return { status: false, message: "ERROR : Doctor has not assign this medical record yet.",data: medicalRecord  };
   }
   return { status: false, message: "ERROR : This medical record ID is not in the system.", data: medicalRecord };
 };

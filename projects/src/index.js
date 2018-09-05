@@ -21,15 +21,11 @@ import ProfilePatient from "./Patients/Containers/PatientProfile";
 import EmpLogin from "./Employees/Containers/EmpLogin";
 import Registration from "./Employees/Containers/Registration";
 import PatientTreatment from "./Employees/Containers/PatientTreatment";
-import EmpTest from "./Employees/Containers/EmpTest";
 import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
-import NavbarQueses from "./Employees/Components/NavbarQueses"
-import apiDocument from "./Employees/Components/apiDoc"
 
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -43,8 +39,6 @@ ReactDOM.render(
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
-      <Route path="/empTest" component={EmpTest} />
-
       <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
       <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} />
@@ -53,8 +47,6 @@ ReactDOM.render(
 
       <Route path="/stamp" component={Stamp} />
       <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
-      <Route path="/test" component={NavbarQueses} />
-      <Route path="/apiDoc" component={apiDocument} />
     </div>
   </Router>,
   document.getElementById("root")

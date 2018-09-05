@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 export default class EmpLogin extends Component {
-    state = {
+  state = {
     empId: "",
     password: "",
     checklogin: ""

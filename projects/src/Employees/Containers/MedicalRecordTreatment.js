@@ -163,7 +163,7 @@ export default class MedicalRecordTreatment extends Component {
               page="MedicalRecord"
             />
           </Grid.Column>
-          <Grid.Column width={5} >
+          <Grid.Column width={5}>
             <TabDescription
               patient={this.state.patient}
               empLogin={this.state.employee}

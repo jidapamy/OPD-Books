@@ -11,6 +11,8 @@ import {
   Message,
   Tab,
   Card,
+  Visibility,
+  Sticky,
   Header,
   Divider
 } from "semantic-ui-react";
@@ -35,13 +37,12 @@ export default class FromForNurse extends Component {
   };
 
   componentWillMount = () => {
-    console.log("STAMP",this.props)
     let emp = this.props.empLogin;
     if (emp.position === 2) {
       //Nurse
-      this.setState({
-        nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
-      });
+      // this.setState({
+      //   nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
+      // });
     } else if (emp.position === 3) {
       this.setState(this.props.medicalRecord);
       // Doctor
@@ -109,9 +110,7 @@ export default class FromForNurse extends Component {
     });
   };
 
-
   render() {
-    console.log("STAMP",this.props)
     const disabledNurseField =
       this.props.patient.citizenId == null ||
       this.props.empLogin.position !== 2;
@@ -291,13 +290,6 @@ export default class FromForNurse extends Component {
             disabled={disabledNurseField}
             value={this.state.chiefComplaint}
           />
-          
-          {/* <Form.Field style={style.inputField}>
-            
-            <input placeholder='Enter Patient Symptoms ...' />
-          </Form.Field> */}
-
-
         </Form>
         <br />
 
