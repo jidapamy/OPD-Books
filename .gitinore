@@ -2,3 +2,5 @@ projects/config.env
 project/node_modules/
 
 api-service/node_modules/
+
+api-server/
