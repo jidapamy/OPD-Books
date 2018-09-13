@@ -205,7 +205,7 @@ export default class PatientProfile extends Component {
                      </Label>
                      <Label as="a" color="teal">
                        <Icon name="home" />
-                       {this.state.patient.homePhoneNumber}
+                       {this.state.patient.homePhonenumber}
                      </Label>
                    </Header.Content>
                  </Grid.Row>
