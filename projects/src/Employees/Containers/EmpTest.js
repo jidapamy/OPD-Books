@@ -67,7 +67,7 @@ export default class Emptest extends React.Component {
     state = { 
                 activeItem: 'home',
                 tab:0,
-                empPosition:4
+                empPosition:2
              }
 
     showtab = (empPosition) => {
