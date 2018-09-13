@@ -135,18 +135,8 @@ export default class FormMedicalRecord extends Component {
           </List>
         </Header>
 
-<<<<<<< HEAD
-        <Scrollbars autoHide style={{height: 526 }}>
-          <br />
-          <FromForNurse />
-          <br />
-          <FromForDoctor />
-        </Scrollbars>
-      </Segment>;
-=======
         {this.showForm()}
       </Segment>
-    );
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
+      );
   }
 }

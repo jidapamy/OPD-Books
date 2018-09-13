@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
-import WebFont from 'webfontloader';
+// import WebFont from 'webfontloader';
 import {
   Button,
   Container,
@@ -27,13 +27,13 @@ import {
   updateStatusQueue
 } from "./../../Service/QueueMethod";
 
-WebFont.load({
-  google: {
-    families: ['Titillium Web:300,400,700', 'sans-serif']
+// WebFont.load({
+//   google: {
+//     families: ['Titillium Web:300,400,700', 'sans-serif']
    
 
-  }
-});
+//   }
+// });
 
 export default class Queues extends Component {
   state = {
@@ -86,18 +86,12 @@ export default class Queues extends Component {
               <List.Item 
                 style={style.edit} 
                 key={q.key}
-<<<<<<< HEAD
-                onClick={() => this.props.getInfoPatient(q.citizenId, q.queueId)}>
-                  <Grid> 
-                    <Grid.Column width={7} style={style.queueNo}>
-=======
                 onClick={() => this.props.getInfoPatient(q.citizenId, q.key , q.visitNumber)}>
                   <Grid>
                     <Grid.Column width={4} style={style.queueNo}>
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
                       {this.props.StatusQueue} {q.queueId}
                     </Grid.Column>
-                    <Grid.Column width={9}>
+                    <Grid.Column width={12}>
                       <List.Content>
                         <List.Header as="a" style={style.hnNo}>
                           {this.props.position == 2 ? 'HN '+ q.hospitalNumber: 'VN '+q.visitNumber}
@@ -117,8 +111,7 @@ export default class Queues extends Component {
     }
     return (
       <List.Item style={{ textAlign: "center" }}>
-      <br/>
-         - ไม่มีคิวผู้ป่วยเข้ารับการรักษา -
+        ไม่มีคิวผู้ป่วยเข้ารับการรักษา
       </List.Item>
     );
   };
@@ -152,11 +145,11 @@ export default class Queues extends Component {
       );
     } else {
       return (
-          <Segment raised>
+          <Segment>
             <p style={style.head}>
               <b>Queues</b>
             </p>
-            <Scrollbars style={{ width: 185, height: 530 }}>
+            <Scrollbars style={{ width: 185, height: 400 }}>
               <List divided relaxed>
                 {this.showQList()}
               </List>
@@ -166,15 +159,7 @@ export default class Queues extends Component {
     }
   };
 
-
   render() {
-<<<<<<< HEAD
-    console.log("List Q")
-    return 
-    this.showComponent();
-
-=======
     return this.showComponent();
->>>>>>> 1c72c534c6d697cb7993a88e64167d42d9136ca0
   }
 }

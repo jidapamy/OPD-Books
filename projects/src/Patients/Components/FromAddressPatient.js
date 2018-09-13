@@ -105,7 +105,7 @@ export default class FromAddressPatient extends React.Component {
                                         : {this.props.patient.typeofHouse}
                                     </Header.Subheader>
                                     <Header.Subheader >
-                                        : {this.props.patient.patientaddress}
+                                        : {this.props.patient.address}
                                     </Header.Subheader>
                                     <Header.Subheader >
                                         : {this.props.patient.subDistrict}

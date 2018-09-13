@@ -47,7 +47,11 @@ export const setMedicalRecordForDocter = (medicalRecord) => {
 } 
 
 export const getMedicalRecordForNurse = (visitNumber) => {
+    debugger
     let medicalRecord = {};
+    console.log(visitNumber,web3.fromAscii(visitNumber))
+    console.log(nurse1)
+    console.log(nurse2)
     const nurse1 = contract.getMedicalRecordForNursePart1(web3.fromAscii(visitNumber));
     const nurse2 = contract.getMedicalRecordForNursePart2(web3.fromAscii(visitNumber));
 
