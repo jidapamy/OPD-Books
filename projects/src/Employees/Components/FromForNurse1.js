@@ -44,7 +44,7 @@ cleanField = () => {
     this.setState({
       visitNumber: "",
       clinic: "",
-      height: 0,
+      bodyHeight: 0,
       bodyWeight: 0,
       bmi: 0,
       temperature: 0,
@@ -85,17 +85,17 @@ handleChangeDate=(date)=> {
     return (
       <div>
           <Header as='h2'color='grey'>MedicalRecord Treatment</Header>
-          <Segment style={{backgroundColor:'#313334',color:'#FFFFFF',border:0,borderRadiun:'0 0 0 10'}}>
+          <Segment style={{ backgroundColor:'#00B5AD',color:'#FFFFFF',border:0,borderRadiun:'0 0 0 10'}}>
             <Grid >
                   <Grid.Column width={5}>
                   <Icon name='calendar alternate outline' />
                       DATE: Mon 13 Augus 2018 
                   </Grid.Column>
-                  <Grid.Column width={5}>
+                  <Grid.Column width={4}>
                      <Icon name='clock outline'/>
                      Time: 18:00 PM
                   </Grid.Column>
-                  <Grid.Column width={5}>
+                  <Grid.Column width={3}>
                     <Icon name='file alternate outline'/>
                      VN: 1233/3
                   </Grid.Column>
@@ -125,13 +125,13 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  floated='left' as='h4'>Body Height</Header>
+                        <Header  floated='left' as='h4'>Body Height (HT)</Header>
                             <Input
-                            label={{ basic: true, content: "/min" }}
+                            label={{ color: 'teal', basic: false, content: "cm" }}
                             labelPosition="right"
                             placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
+                            onChange={e => this.setField("bodyHeight", e.target.value)}
+                            value={this.state.bodyHeight}
                             type="number"
                             min="0"
                         />
@@ -141,13 +141,13 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Weight</Header>
+                        <Header  as='h4'>Temperature (T)</Header>
                             <Input
-                            label={{ basic: true, content: "/Kg" }}
+                            label={{ color: 'teal', basic: false, content: "°C " }}
                             labelPosition="right"
                             placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
+                            onChange={e => this.setField("temperature", e.target.value)}
+                            value={this.state.temperature}
                             type="number"
                             min="0"
                         />
@@ -157,13 +157,13 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Height</Header>
+                        <Header  as='h4'>Blood Pressure (BP1)</Header>
                             <Input
-                            label={{ basic: true, content: "/min" }}
+                            label={{ color: 'teal', basic: false, content: "mmHg" }}
                             labelPosition="right"
                             placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
+                            onChange={e => this.setField("BP1", e.target.value)}
+                            value={this.state.BP1}
                             type="number"
                             min="0"
                         />
@@ -176,9 +176,9 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  floated='left' as='h4'>Body Weight</Header>
+                        <Header  floated='left' as='h4'>Body Weight (BW)</Header>
                              <Input
-                    label={{ basic: true, content: "/Kg." }}
+                    label={{ color: 'teal', basic: false, content: "Kg" }}
                     labelPosition="right"
                     placeholder=""
                     onChange={e => this.setField("bodyWeight", e.target.value)}
@@ -193,9 +193,9 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Height</Header>
+                                <Header as='h4'>PulseRate (PR 1)</Header>
                             <Input
-                            label={{ basic: true, content: "/min" }}
+                            label={{ color: 'teal', basic: false, content: "min" }}
                             labelPosition="right"
                             placeholder=""
                             onChange={e => this.setField("pulseRate", e.target.value)}
@@ -209,13 +209,13 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Height (HT)</Header>
+                            <Header as='h4'>Blood Pressure (BP2)</Header>
                             <Input
-                            label={{ basic: true, content: "/min" }}
+                            label={{ color: 'teal', basic: false, content: "mmHg" }}
                             labelPosition="right"
                             placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
+                            onChange={e => this.setField("BP2", e.target.value)}
+                            value={this.state.BP2}
                             type="number"
                             min="0"
                         />
@@ -230,9 +230,8 @@ handleChangeDate=(date)=> {
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <Header  floated='left' as='h4'>Body Mass Index (BMI)</Header>
-
-                            <Input
-                    label={{ basic: true, content: "/--" }}
+                    <Input
+                    label={{ color: 'teal', basic: false, content: "--" }}
                     labelPosition="right"
                     placeholder=""
                     value={this.state.bmi}
@@ -245,32 +244,32 @@ handleChangeDate=(date)=> {
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Height</Header>
-                            <Input
-                            label={{ basic: true, content: "/min" }}
-                            labelPosition="right"
-                            placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
-                            type="number"
-                            min="0"
-                        />
+                                <Header as='h4'>Respiratory Rate (RR)</Header>
+                                <Input
+                                    label={{ color: 'teal', basic: false, content: "min" }}
+                                    labelPosition="right"
+                                    placeholder=""
+                                    onChange={e => this.setField("respiratoryRate", e.target.value)}
+                                    value={this.state.respiratoryRate}
+                                    type="number"
+                                    min="0"
+                                />
                         
                     </Grid.Column>
                     <Grid.Column width={1}>
                         
                     </Grid.Column>
                     <Grid.Column width={4}>
-                        <Header  as='h4'>Body Height</Header>
-                            <Input
-                            label={{ basic: true, content: "/min" }}
-                            labelPosition="right"
-                            placeholder=""
-                            onChange={e => this.setField("pulseRate", e.target.value)}
-                            value={this.state.pulseRate}
-                            type="number"
-                            min="0"
-                            />
+                                <Header as='h4'>Blood Pressure (BP3)</Header>
+                                <Input
+                                    label={{ color: 'teal', basic: false, content: "mmHg" }}
+                                    labelPosition="right"
+                                    placeholder=""
+                                    onChange={e => this.setField("BP2", e.target.value)}
+                                    value={this.state.BP3}
+                                    type="number"
+                                    min="0"
+                                />
                         
                     </Grid.Column>
                     <br/>
@@ -331,7 +330,7 @@ handleChangeDate=(date)=> {
                     </Grid.Column>
                     <Grid.Column width={5}>
                         <Button
-                            color="teal"
+                            color="yellow"
                             content="Send To Doctor"
                             icon="send"
                             style={style.ButtonNurse}

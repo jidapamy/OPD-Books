@@ -13,27 +13,27 @@ import moment from 'moment';
 import { style } from "./../../Static/Style/QueueCss";
 
 
-// const style = {
-//   ImButton: {
-//     cursor: 'pointer'
-//   },
-//   colorsort: {
-//     color: "#00B5AD"
-//   },
-//   colorHis: {
-//     color: "#AFB4B7",
-//     fontSize: '12px',
-//   },
-//   colorDes: {
-//     color: "#808B96  ",
-//   },
-//   colorNavMobile: {
-//     color: "#62E6C5",
-//   },
-//   colorFontMobile: {
-//     color: "##FFFFFF"
-//   },
-// }
+const styles = {
+  ImButton: {
+    cursor: 'pointer'
+  },
+  colorsort: {
+    color: "#00B5AD"
+  },
+  colorHis: {
+    color: "#AFB4B7",
+    fontSize: '12px',
+  },
+  colorDes: {
+    color: "#808B96  ",
+  },
+  colorNavMobile: {
+    color: "#62E6C5",
+  },
+  colorFontMobile: {
+    color: "##FFFFFF"
+  },
+}
 const Years = [
   { key: 2012, text: '2012', value: 2012 },
   { key: 2013, text: '2012', value: 2013 },
@@ -75,13 +75,23 @@ handleChangeDate=(date)=> {
       <div>
        
 <Header as='h2'color='grey'>Medical History</Header>
+
 <Scrollbars autoHide style={{ height: 580 }}>
        <Table  striped>
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>status</Table.HeaderCell>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell >Date</Table.HeaderCell>
+        <Table.HeaderCell textAlign='center'>No. <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
+        <Table.HeaderCell>status <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
+        {/* <Table.HeaderCell>Name <Icon name="sort" style={styles.ImButton}/></Table.HeaderCell> */}
+        <Table.HeaderCell >Date /&nbsp;  
+          <Dropdown
+                    scrolling
+                    compact
+                    searchInput={{ type: 'number' }}
+                    options={Years}
+                    placeholder='Years'
+                  />
+        </Table.HeaderCell>
         <Table.HeaderCell >Dr.Name</Table.HeaderCell>
         <Table.HeaderCell >Clinic</Table.HeaderCell>
         <Table.HeaderCell >More..</Table.HeaderCell>
@@ -91,102 +101,124 @@ handleChangeDate=(date)=> {
     <Table.Body>
     
       <Table.Row>
-          
+        <Table.Cell textAlign='center'>1</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
         <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
         
       </Table.Row>
-       <Table.Row>
+      <Table.Row>
+        <Table.Cell textAlign='center'>2</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>3</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>4</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>5</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>6</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>7</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>8</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>9</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>10</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>11</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
       <Table.Row>
+        <Table.Cell textAlign='center'>12</Table.Cell>
         <Table.Cell>Treatment</Table.Cell>
-        <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell>
+        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
         <Table.Cell >14/08/2018</Table.Cell>
         <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
         <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+
       </Table.Row>
      
      </Table.Body>

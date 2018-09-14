@@ -27,6 +27,7 @@ import stamp from "./Static/Img/Contianer/stamp.jpg";
 import asiaGray from "./Static/Img/Contianer/asiaGray.jpg";
 import myGray from "./Static/Img/Contianer/myGray.jpg";
 import stampGray from "./Static/Img/Contianer/stampGray.jpg";
+import Patient from "./Static/Img/Patient.png";
 import WOW from "wowjs";
 import "./Static/Style/Navbar.css";
 import "./Static/Style/HomeCss.css";
@@ -48,6 +49,7 @@ const RoadmapCenter = styled(Image)`
   justify-content: center;
   align-items: center;
 `;
+
 
 const Containerbgcolor = styled(Segment)`background-color: red;`;
 const ImageSizeRow = styled(Image)`
@@ -139,7 +141,7 @@ export default class Home extends React.Component {
                 </Menu.Menu>
               </Menu>
             </Visibility>
-
+            
             <h1 className="heading">Welcome Everyone </h1>
             <h4 className="detail">OPD Book on Blockchain </h4>
             <Link to="/signup">
@@ -148,6 +150,8 @@ export default class Home extends React.Component {
               </p>
             </Link>
           </div>
+         
+          
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
             vertical

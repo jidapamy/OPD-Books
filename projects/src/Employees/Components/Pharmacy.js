@@ -17,10 +17,50 @@ export default class Pharmacy extends Component {
 
     return (
       <div>
+        <Header as='h2' color='grey'>MedicalRecord Treatment</Header>
+          <Segment>
+          <Form>
+            <Header as='h4' >Present Illness</Header>
+            <Form.TextArea 
+              placeholder='Tell us more about you...' 
+              disabled
+              />
+          </Form>
+          <br />
+          <Form>
+            <Header as='h4' >Physical Exam</Header>
+            <Form.TextArea
+              placeholder='Tell us more about you...'
+              disabled
+            />
+          </Form>
+          <br/>
+          <Grid>
+
+            <Grid.Row style={{ marginTop: -5 }}>
+              <Grid.Column width={3}>
+              </Grid.Column>
+              <Grid.Column width={4}>
+              </Grid.Column>
+              <Grid.Column width={1}>
+              </Grid.Column>
+              <Grid.Column width={4}>
+              </Grid.Column>
+              <Grid.Column width={1}>
+              </Grid.Column>
+              <Grid.Column width={3}>
+                <Button 
+                  floated='right'
+                  color="yellow"
+                  content="Success"
+                  icon="send"
+                  onClick={() => ""}
+                />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
           
-              <h1>Hellow Word!!</h1>
-          
-        
       </div>
     )
   }
