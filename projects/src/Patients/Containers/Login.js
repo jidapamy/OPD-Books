@@ -101,7 +101,7 @@ export default class PatientRecord extends Component {
             <Message style={{ borderRadius: "2rem" }}>
               New to us?{" "}
               <Link to="/signup">
-                <Label>Sign Up</Label>
+                <a>Sign Up</a>
               </Link>
             </Message>
           </Grid.Column>

@@ -17,10 +17,8 @@ import moment from "moment";
 
 import { style } from "./../../Static/Style/QueueCss";
 import Queues from "./../Components/ListQueues";
-import TabDescription from "./../Components/TabDescription";
 import NavbarHeader from "./../Components/NavHeader";
 import FormMedicalRecord from "./../Components/FormMedicalRecord";
-
 import { getPatient } from "./../../Service/ManagePatientMethod";
 import { MedicalRecord } from "./../../Model/MedicalRecord";
 import {
@@ -136,14 +134,18 @@ export default class MedicalRecordTreatment extends Component {
       medicalRecord.date=moment().format("LL"),
       medicalRecord.time=moment().format("LT")
     } else if(this.state.employee.position === 3){
-      medicalRecord = getMedicalRecordForNurse(vn);
-      medicalRecord.doctorId = this.state.employee.empId;
-      medicalRecord.doctorName = this.state.doctorName;
-      medicalRecord.appointment = moment().format("ll");
+      // if(vn){
+        medicalRecord = getMedicalRecordForNurse(vn);
+        medicalRecord.doctorId = this.state.employee.empId;
+        medicalRecord.doctorName = this.state.doctorName;
+        medicalRecord.appointment = moment().format("ll");
+      // }
     }else{
-      let nurseForm = getMedicalRecordForNurse(vn);
-      let doctorForm = getMedicalRecordForDocter(vn);
-      medicalRecord = {...nurseForm,...doctorForm}
+      if(vn){
+        let nurseForm = getMedicalRecordForNurse(vn);
+        let doctorForm = getMedicalRecordForDocter(vn);
+        medicalRecord = {...nurseForm,...doctorForm}
+      }
     }
     return medicalRecord;
   }
@@ -164,11 +166,7 @@ export default class MedicalRecordTreatment extends Component {
             />
           </Grid.Column>
           <Grid.Column width={5}>
-            <TabDescription
-              patient={this.state.patient}
-              empLogin={this.state.employee}
-              historyTreatment={this.state.historyTreatment}
-            />
+            
           </Grid.Column>
           <Grid.Column>
             <FormMedicalRecord

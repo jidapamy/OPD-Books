@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
+// import WebFont from 'webfontloader';
 import {
   Button,
   Container,
@@ -26,24 +27,13 @@ import {
   updateStatusQueue
 } from "./../../Service/QueueMethod";
 
-// const styles = {
-//   h1: {
-//     marginTop: "4em",
-//     marginBottom: "50px"
-//   },
-//   h2: {
-//     margin: "4em 0em 2em"
-//   },
-//   d1: {
-//     marginTop: "1em",
-//     marginBottom: "50px"
-//   },
-//   h3: {
-//     marginTop: "2em",
-//     padding: "2em 0em"
-//   },
-//   last: {}
-// };
+// WebFont.load({
+//   google: {
+//     families: ['Titillium Web:300,400,700', 'sans-serif']
+   
+
+//   }
+// });
 
 export default class Queues extends Component {
   state = {
