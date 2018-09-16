@@ -4,3 +4,4 @@ project/node_modules/
 api-service/node_modules/
 
 api-server/
+.DS_Store
