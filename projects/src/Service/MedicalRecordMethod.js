@@ -3,7 +3,6 @@ import { defaultAccount, contract, web3 } from "./../Lib/Web3";
 import { getEmployee } from './ManageEmployeeMethod.js';
 
 export const setMedicalRecordForNurse = (medicalRecord) => {
-    debugger
     // console.log(web3.fromAscii(medicalRecord.visitNumber), medicalRecord.clinic, web3.fromAscii(medicalRecord.height), web3.fromAscii(medicalRecord.bodyWeight), web3.fromAscii(medicalRecord.bmi), web3.fromAscii(medicalRecord.temperature), web3.fromAscii(medicalRecord.date), web3.fromAscii(medicalRecord.time));
     // console.log(web3.fromAscii(medicalRecord.visitNumber), web3.fromAscii(medicalRecord.pulseRate), web3.fromAscii(medicalRecord.respiratoryRate), web3.fromAscii(medicalRecord.BP1), web3.fromAscii(medicalRecord.BP2), web3.fromAscii(medicalRecord.BP3), medicalRecord.chiefComplaint, web3.fromAscii(medicalRecord.nurseId));
     contract.setMedicalRecordForNursePart1(
@@ -32,7 +31,6 @@ export const setMedicalRecordForNurse = (medicalRecord) => {
 } 
 
 export const setMedicalRecordForDocter = (medicalRecord) => {
-    debugger;
    contract.setMedicalRecordForDocter(
        web3.fromAscii(medicalRecord.visitNumber), 
        medicalRecord.presentIllness, 
@@ -47,7 +45,6 @@ export const setMedicalRecordForDocter = (medicalRecord) => {
 } 
 
 export const getMedicalRecordForNurse = (visitNumber) => {
-    debugger
     let medicalRecord = {};
     console.log(visitNumber,web3.fromAscii(visitNumber))
     console.log(nurse1)
@@ -98,7 +95,6 @@ export const addHistoryVisitNumber = ( doctorId, citizenId, visitNumber) => {
 }
 
 export const getHistoryVisitNumberPatient = (citizentId) => {
-    debugger
     const lengthHistory = +contract.countHistoryVisitNumberForPatient(web3.fromAscii(citizentId)).toString();
     let medicalRecord = [];
     if(lengthHistory !== 0){

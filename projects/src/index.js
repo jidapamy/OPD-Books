@@ -17,6 +17,8 @@ import Stamp from "./stamp/App";
 import Home from "./Home";
 import Login from "./Patients/Containers/Login";
 import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
+import ErrorNotFound from "./Error/ErrorNotFound";
+import ErrorTimeOut from "./Error/ErrorTimeOut";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
 import EmpLogin from "./Employees/Containers/EmpLogin";
 import EmpTest from "./Employees/Containers/EmpTest";
@@ -49,6 +51,9 @@ ReactDOM.render(
 
       <Route path="/stamp" component={Stamp} />
       <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
+      {/* Error */}
+      <Route path="/ErrorNotFound" component={ErrorNotFound} />
+      <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
     </div>
   </Router>,
   document.getElementById("root")

@@ -17,8 +17,8 @@ import DocTreatment1 from "./../Components/FromForDoctor1"
 import HistoryPatient from "./../Components/HistoryPatient"
 import Pharmacy from "./../Components/Pharmacy"
 const Body = styled.div`
-    margin-left: 205px;
-    min-width: 550px;
+    margin-left: 25vh;
+    min-width: 80vh;
     height:900px;
     
 `;
@@ -67,7 +67,7 @@ export default class Emptest extends React.Component {
     state = { 
                 activeItem: 'home',
                 tab:0,
-                empPosition:4
+                empPosition:3
              }
 
     showtab = (empPosition) => {

@@ -20,7 +20,7 @@ export default class Pharmacy extends Component {
         <Header as='h2' color='grey'>MedicalRecord Treatment</Header>
           <Segment>
           <Form>
-            <Header as='h4' >Present Illness</Header>
+            <Header as='h4' >Treatment</Header>
             <Form.TextArea 
               placeholder='Tell us more about you...' 
               disabled
@@ -28,7 +28,7 @@ export default class Pharmacy extends Component {
           </Form>
           <br />
           <Form>
-            <Header as='h4' >Physical Exam</Header>
+            <Header as='h4' >Recommendation and Plan</Header>
             <Form.TextArea
               placeholder='Tell us more about you...'
               disabled

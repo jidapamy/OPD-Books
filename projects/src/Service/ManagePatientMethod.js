@@ -33,7 +33,7 @@ export const insertPatient = (patient,date) => {
   }
 
 export const getPatient = (citizenId,type) => {
-  debugger
+ 
   citizenId = type === 'byte' ? citizenId : web3.fromAscii(citizenId) ;
   let patient = {};
    const InfoPatientPart1 = contract.getInfoPatientPart1(citizenId, defaultAccount);
