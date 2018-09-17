@@ -21,7 +21,7 @@ import MedicalPatient from './../Components/medicalPatient';
 import myQR from "./../../Static/Img/myQR.png";
 //static
 import BackgroundImage from "./../../Static/Img/BGGs.png";
-
+import { Link } from "react-router-dom";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
 import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
@@ -142,9 +142,7 @@ export default class PatientProfile extends Component {
         return <FormMedicalPatientMobile setField={this.setField}/>
       }
      
-    } else if (this.state.menuTab == 2) {
-      return ""
-    }
+    } 
   }
   setField=(field,value)=>{
     this.setState({ [field]:value });
@@ -432,7 +430,7 @@ export default class PatientProfile extends Component {
 
               <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true}) }}><Icon name='history' /> History</Menu.Item>
 
-              <Menu.Item as='a'  onClick={() => { this.setState({ menuTab: 2, sidebarOpened: false}) }}><Icon name='log out'  /> Logout</Menu.Item>
+              <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
             </Sidebar>
 
             <Sidebar.Pusher
