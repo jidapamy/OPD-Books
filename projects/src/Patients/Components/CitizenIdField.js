@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
-import { defaultAccount, contract, web3 } from './../../Lib/Web3';
+import axios from "./../../Lib/axois"
 
 export default class CitizenIdField extends Component {
     state = {
@@ -10,8 +10,8 @@ export default class CitizenIdField extends Component {
 
     checkIdcard = async () => {
         if (this.validateSyntaxIdcard()) {
-            const patient = contract.checkDuplicateCitizenId(web3.fromAscii(this.state.citizenId))
-            if (patient) {
+            const patient = await axios.get(`/patients/isCitizenId/${this.state.citizenId}`)
+            if (patient.data) {
                 let error = '';
                 if (this.props.cardType === 'idcard') {
                     error = 'เลขบัตรประชาชนนี้มีใช้แล้ว'

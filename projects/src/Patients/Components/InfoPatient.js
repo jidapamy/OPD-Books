@@ -6,7 +6,7 @@ import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
-import { defaultAccount, contract, web3 } from './../../Lib/Web3';
+import axios from "./../../Lib/axois"
 
 import {
     titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
@@ -62,11 +62,11 @@ export default class InfoPateint extends Component {
         }
     }
 
-    checkEmailDuplicate = (value) =>{
+    checkEmailDuplicate = async (value) =>{
         if (this.validateEmail(value)){
             // syntax pass
-            const email = contract.checkDuplicateEmail(web3.fromAscii(value))
-            if (email) {
+            const email = await axios.get(`/patients/isEmail/${value}`)
+            if (email.data) {
                 let error = ''
                 if (this.props.cardType === 'idcard') {
                     error = 'E-mail นี้มีอยู่ในระบบแล้ว'

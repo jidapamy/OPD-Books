@@ -4,13 +4,10 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Segment,
-  Label
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import swal from "sweetalert2";
 import BackgroundImage from "./../../Static/Img/BG.png";
 import styled from "styled-components";
 import { login } from "./../../Service/AuthenticationMethod";
@@ -28,15 +25,20 @@ export default class PatientRecord extends Component {
   };
 
   login = () => {
-    const res = login(this.state.citizenId, this.state.password, "Patient");
-    if (res) {
-      this.props.history.push({
-        pathname: "/profile",
-        state: { citizenId: res }
-      });
-    } else {
-      this.setState({ checklogin: "Sorry!! Incorrect Citizen Id or Password" });
+    let data = {
+      citizenId: this.state.citizenId, 
+      password: this.state.password
     }
+    login(data).then(res => {
+      if (res.status) {
+        this.props.history.push({
+          pathname: "/profile",
+          state: { citizenId: this.state.citizenId }
+        });
+      } else {
+        this.setState({ checklogin: res.message });
+      }
+    })
   };
 
   render() {
@@ -101,7 +103,7 @@ export default class PatientRecord extends Component {
             <Message style={{ borderRadius: "2rem" }}>
               New to us?{" "}
               <Link to="/signup">
-                <a>Sign Up</a>
+                Sign Up
               </Link>
             </Message>
           </Grid.Column>

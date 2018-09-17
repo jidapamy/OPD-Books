@@ -24,6 +24,7 @@ import ErrorMessage from './../Components/ErrorMessage'
 //provider
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 import { insertPatient } from "./../../Service/ManagePatientMethod";
+import axios from "./../../Lib/axois"
 // import { defaultAccount, contract,web3 } from './../../Lib/Web3';
 
 //static
@@ -141,51 +142,50 @@ export default class ManagePatientRecord extends Component {
     { field: 'motherLastname', key: 'parent' }
   ]
 
-  makeData = {
-    citizenId: '1234567890123',
-    hospitalNumber: 'HN123',
-    nameTitle: 'Miss.',
-    firstname: 'Christopher',
-    lastname: 'Horton',
-    email: 'Christopher@hotmail.com',
-    password: '1234567890!',
-    gender: 'F',
-    dob: '02/04/1995',
-    bloodgroup: 'B',
-    nationality: 'Thai',
-    religion: 'Buddhism',
-    status: 'Single',
-    occupartion: '',
-    country: 'Thai',
-    congenitalDisease: 'no have',
-    homePhonenumber: '',
-    mobileNumber: '0829938849',
-    typeofHouse: 'Apartment',
-    address: '123',
-    province: 'Kanchanaburi',
-    district: 'Tha Muang',
-    subDistrict: 'Tha Takhro',
-    zipcode: '71130',
-    emerTitle: '',
-    emerFirstname: '',
-    emerLastname: '',
-    emerRelationship: '',
-    emerHomePhonenumber: '',
-    emerMobileNumber: '',
-    emerTypeofHouse: '',
-    emerAddress: '',
-    emerProvince: '',
-    emerDistrict: '',
-    emerSubDistrict: '',
-    emerZipcode: '',
-    fatherFirstname: '',
-    fatherLastname: '',
-    motherFirstname: '',
-    motherLastname: '',
-    allergy: 'not have',
-    privilege: 'รัฐวิสาหิจ'
-  }
-
+  // makeData = {
+  //   citizenId: '1234567890123',
+  //   hospitalNumber: 'HN123',
+  //   nameTitle: 'Miss.',
+  //   firstname: 'Christopher',
+  //   lastname: 'Horton',
+  //   email: 'Christopher@hotmail.com',
+  //   password: '1234567890!',
+  //   gender: 'F',
+  //   dob: '02/04/1995',
+  //   bloodgroup: 'B',
+  //   nationality: 'Thai',
+  //   religion: 'Buddhism',
+  //   status: 'Single',
+  //   occupartion: '',
+  //   country: 'Thai',
+  //   congenitalDisease: 'no have',
+  //   homePhonenumber: '',
+  //   mobileNumber: '0829938849',
+  //   typeofHouse: 'Apartment',
+  //   address: '123',
+  //   province: 'Kanchanaburi',
+  //   district: 'Tha Muang',
+  //   subDistrict: 'Tha Takhro',
+  //   zipcode: '71130',
+  //   emerTitle: '',
+  //   emerFirstname: '',
+  //   emerLastname: '',
+  //   emerRelationship: '',
+  //   emerHomePhonenumber: '',
+  //   emerMobileNumber: '',
+  //   emerTypeofHouse: '',
+  //   emerAddress: '',
+  //   emerProvince: '',
+  //   emerDistrict: '',
+  //   emerSubDistrict: '',
+  //   emerZipcode: '',
+  //   fatherFirstname: '',
+  //   fatherLastname: '',
+  //   motherFirstname: '',
+  //   motherLastname: '',
+  //   allergy: 'not have',
+  //   privilege: 'รัฐวิสาหิจ'
+  // }
 
   setField = (field, value) => {
     this.setState({ [field]: value })
@@ -313,9 +313,10 @@ export default class ManagePatientRecord extends Component {
       confirmButtonText: 'Confirm',
       cancelButtonText: 'Cancel',
 
-    }).then((result) => {
+    }).then( async (result) => {
       if (result.value) {
-        insertPatient(this.state.patient, moment().format("L"));
+        // insertPatient(this.state.patient, moment().format("L"));
+          let res = await axios.post("/patients/insert", this.state.patient)
           swal(
             'สมัครเสร็จสิ้น!',
             'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',

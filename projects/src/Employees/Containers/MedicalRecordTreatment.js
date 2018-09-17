@@ -30,9 +30,9 @@ import {
 import {
   setMedicalRecordForNurse,
   getMedicalRecordForNurse,
-  setMedicalRecordForDocter,
-  getMedicalRecordForDocter,
-  addHistoryVisitNumber,
+  setMedicalRecordForDoctor,
+  getMedicalRecordForDoctor,
+  // addHistoryVisitNumber,
   getHistoryVisitNumberPatient
 } from "./../../Service/MedicalRecordMethod";
 
@@ -87,7 +87,7 @@ export default class MedicalRecordTreatment extends Component {
       if (this.state.queueIdSelected !== undefined) {
         addQueue(this.state.employee.position, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, true, this.state.medicalRecord.visitNumber);
         updateStatusQueue(this.state.employee.position, this.state.queueIdSelected, false);
-        setMedicalRecordForDocter(this.state.medicalRecord);
+        setMedicalRecordForDoctor(this.state.medicalRecord);
         this.setState({
           queueIdSelected : null,
           patient : {},
@@ -101,7 +101,7 @@ export default class MedicalRecordTreatment extends Component {
   sendToPayment = async() => {
     if (this.state.queueIdSelected !== undefined) {
       updateStatusQueue(this.state.employee.position, this.state.queueIdSelected, false);
-      addHistoryVisitNumber(this.state.medicalRecord.doctorId,this.state.patient.citizenId,this.state.medicalRecord.visitNumber);
+      // addHistoryVisitNumber(this.state.medicalRecord.doctorId,this.state.patient.citizenId,this.state.medicalRecord.visitNumber);
       this.setState({
         queueIdSelected: null,
         patient: {},
@@ -143,7 +143,7 @@ export default class MedicalRecordTreatment extends Component {
     }else{
       if(vn){
         let nurseForm = getMedicalRecordForNurse(vn);
-        let doctorForm = getMedicalRecordForDocter(vn);
+        let doctorForm = getMedicalRecordForDoctor(vn);
         medicalRecord = {...nurseForm,...doctorForm}
       }
     }

@@ -10,7 +10,7 @@ import { getAccountLogin, logout } from "./../../Service/EmpReducer";
 import { addQueue , getQueues , updateStatusQueue } from "./../../Service/QueueMethod"
 import { Employee } from "./../../Model/Employee";
 
-import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
+// import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
 
 
 export default class PatientTreatment extends Component {

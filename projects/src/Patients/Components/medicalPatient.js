@@ -55,13 +55,10 @@ const style = {
     },
 }
 export default class FromHisProfilePatient extends React.Component {
-
-
-
     render() {
+        const data = this.props.chooseMedicalRecord;
+        console.log("data",data)
         return (
-
-
             <Grid.Column width={6}>
                 <Segment.Group >
                     <Segment color='teal'>
@@ -70,33 +67,30 @@ export default class FromHisProfilePatient extends React.Component {
                         <Scrollbars autoHide style={{ height: 614 }}>
                             <Container>
                                 <Grid >
-
-
                                     <Grid.Column width={1}>
                                         <Grid.Row >
                                             <Header.Subheader >
                                                 HT
-                          </Header.Subheader>
+                                            </Header.Subheader>
                                             <Header.Subheader >
                                                 BW
-                          </Header.Subheader>
+                                             </Header.Subheader>
                                             <Header.Subheader >
                                                 BMI
-                          </Header.Subheader>
+                                            </Header.Subheader>
                                         </Grid.Row>
-
                                     </Grid.Column>
                                     <Grid.Column width={1}>
                                         <Grid.Row>
                                             <Header.Subheader >
-                                                100
-                          </Header.Subheader>
+                                                {data.height}
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                134
-                          </Header.Subheader>
+                                                {data.bodyWeight}
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                34
-                          </Header.Subheader>
+                                                {data.bmi}
+                                            </Header.Subheader>
                                         </Grid.Row>
 
                                     </Grid.Column>
@@ -104,188 +98,143 @@ export default class FromHisProfilePatient extends React.Component {
                                         <Grid.Row>
                                             <Header.Subheader >
                                                 cm.
-                          </Header.Subheader>
+                                            </Header.Subheader>
                                             <Header.Subheader >
                                                 kg.
-                          </Header.Subheader>
+                                            </Header.Subheader>
                                             <Header.Subheader >
 
                                             </Header.Subheader>
                                         </Grid.Row>
 
                                     </Grid.Column>
-                                    {/* ====== */}
                                     <Grid.Column width={1}>
                                         <Grid.Row >
-
                                         </Grid.Row>
-
                                     </Grid.Column>
-                                    {/* ======= */}
-                                    {/* ===== */}
                                     <Grid.Column width={1}>
                                         <Grid.Row >
-
                                         </Grid.Row>
-
-
-                                    </Grid.Column>
-                                    {/* ===== */}
-                                    <Grid.Column width={1}>
-                                        <Grid.Row>
-                                            <Header.Subheader >
-                                                HT
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                BW
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                BMI
-                          </Header.Subheader>
-                                        </Grid.Row>
-
                                     </Grid.Column>
                                     <Grid.Column width={1}>
                                         <Grid.Row>
                                             <Header.Subheader >
-                                                100
-                          </Header.Subheader>
+                                                T
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                134
-                          </Header.Subheader>
+                                                PR
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                34
-                          </Header.Subheader>
-                                        </Grid.Row>
-
-                                    </Grid.Column>
-                                    <Grid.Column width={1}>
-                                        <Grid.Row>
-                                            <Header.Subheader >
-                                                cm.
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                kg.
-                          </Header.Subheader>
-                                            <Header.Subheader >
-
+                                                RR
                                             </Header.Subheader>
                                         </Grid.Row>
-
-                                    </Grid.Column>
-
-                                    {/* ===== */}
-                                    <Grid.Column width={1}>
-                                        <Grid.Row >
-
-                                        </Grid.Row>
-
-
-                                    </Grid.Column>
-                                    {/* ===== */}
-                                    {/* ===== */}
-                                    <Grid.Column width={1}>
-                                        <Grid.Row >
-
-                                        </Grid.Row>
-
-
-                                    </Grid.Column>
-                                    {/* ===== */}
-
-                                    <Grid.Column width={1}>
-                                        <Grid.Row>
-                                            <Header.Subheader >
-                                                HT
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                BW
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                BMI
-                          </Header.Subheader>
-                                        </Grid.Row>
-
                                     </Grid.Column>
                                     <Grid.Column width={1}>
                                         <Grid.Row>
                                             <Header.Subheader >
-                                                100
-                          </Header.Subheader>
+                                                {data.temperature}
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                134
-                          </Header.Subheader>
+                                                {data.pulseRate}
+                                            </Header.Subheader>
                                             <Header.Subheader >
-                                                34
-                          </Header.Subheader>
-                                        </Grid.Row>
-
-                                    </Grid.Column>
-                                    <Grid.Column width={1}>
-                                        <Grid.Row>
-                                            <Header.Subheader >
-                                                cm.
-                          </Header.Subheader>
-                                            <Header.Subheader >
-                                                kg.
-                          </Header.Subheader>
-                                            <Header.Subheader >
-
+                                                {data.respiratoryRate}
                                             </Header.Subheader>
                                         </Grid.Row>
-
                                     </Grid.Column>
-
+                                    <Grid.Column width={1}>
+                                        <Grid.Row>
+                                            <Header.Subheader >
+                                                C
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                /min.
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                /min.
+                                            </Header.Subheader>
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                    <Grid.Column width={1}>
+                                        <Grid.Row >
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                    <Grid.Column width={1}>
+                                        <Grid.Row >
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                    <Grid.Column width={1}>
+                                        <Grid.Row>
+                                            <Header.Subheader >
+                                                BP1
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                BP2
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                BP3
+                                            </Header.Subheader>
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                    <Grid.Column width={1}>
+                                        <Grid.Row>
+                                            <Header.Subheader >
+                                                {data.BP1}
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                {data.BP2}
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                {data.BP3}
+                                            </Header.Subheader>
+                                        </Grid.Row>
+                                    </Grid.Column>
+                                    <Grid.Column width={1}>
+                                        <Grid.Row>
+                                            <Header.Subheader >
+                                                mmHg
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                mmHg
+                                            </Header.Subheader>
+                                            <Header.Subheader >
+                                                mmHg
+                                            </Header.Subheader>
+                                        </Grid.Row>
+                                    </Grid.Column>
                                 </Grid>
                                 <br />
-
                                 <Form>
-                                    <Form.TextArea label='Chief Plaint' placeholder='Tell us more about you...' />
+                                    <Form.TextArea label='Chief Plaint' value={data.chiefComplaint}/>
                                 </Form>
                                 <br />
-
-                                <p style={{ textAlign: 'right' }} >Miss.Sunisaya Maremnakron</p>
-
+                                <div style={{ textAlign: 'right' }}>
+                                    <Icon name='user md' />Nurse Name
+                                    <p>{data.nurseName}</p>
+                                </div>
+                                {/* <p style={{ textAlign: 'right' }} >{data.nurseName}</p> */}
 
                                 <Divider />
                                 <br />
                                 <Form>
-                                    <Form.TextArea label='Present Illness' placeholder='Tell us more about you...' />
-                                </Form>
-                                <br />
-                                <Form>
-                                    <Form.TextArea label='Physical Exam' placeholder='Tell us more about you...' />
-                                </Form>
-                                <br />
-                                <Form>
-                                    <Form.TextArea label='Investigation' placeholder='Tell us more about you...' />
-                                </Form>
-                                <br />
-                                <Form>
-                                    <Form.TextArea label='Dianosis / impression' placeholder='Tell us more about you...' />
-                                </Form>
-                                <br />
-                                <Form>
-                                    <Form.TextArea label='Treatment' placeholder='Tell us more about you...' />
-                                </Form>
-                                <br />
-                                <Form>
-                                    <Form.TextArea label='Recommendation and Plan ' placeholder='Tell us more about you...' />
+                                    <Form.TextArea label='Present Illness' value={data.presentIllness}/>
+                                    <Form.TextArea label='Physical Exam' value={data.physicalExem}/>
+                                    {/* <Form.TextArea label='Investigation' value={data.chiefComplaint} /> */}
+                                    <Form.TextArea label='Dianosis / impression' value={data.diagnosis}/>
+                                    <Form.TextArea label='Treatment' value={data.treatment}/>
+                                    <Form.TextArea label='Recommendation and Plan ' value={data.recommendation}/>
                                 </Form>
                                 <br />
                                 <Grid width={16}>
                                     <Grid.Column width={8}>
                                         <Icon name='calendar alternate outline' />F/D Date
-                          <p>Aug 8 , 2018</p>
+                                        <p>{data.appointment}</p>
                                     </Grid.Column>
-
                                     <Grid.Column width={8}>
-                                        <Icon name='user md' />Docter Name
-                        <p>Dr Montgomery Delarosa</p>
+                                        <Icon name='user md' />Doctor Name
+                                        <p>{data.doctorName}</p>
                                     </Grid.Column>
-
                                 </Grid >
-
                             </Container>
                         </Scrollbars>
                     </Segment>

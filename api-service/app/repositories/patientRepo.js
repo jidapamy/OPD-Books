@@ -1,9 +1,9 @@
 const { contract, defaultAccount } = require('../lib/web3')
 const { convertString, bindData } = require('../services/utils')
 const { patientScheme } = require("./../models/patientModel")
+const moment = require("moment");
 
 const login = async (citizenId, password) => {
-    console.log("LOGIN")
     const res = await contract.Login(convertString(citizenId), convertString(password));
     if (res) { return { status: true, message: "SUCCESS" } }
     return { status: false, message: "ERROR : Incorrect citizen Id or password" };
@@ -11,41 +11,32 @@ const login = async (citizenId, password) => {
 
 const get = citizenId => {
     const byteCitizenId = convertString(citizenId)
-    console.time('info')
     const info1 = contract.getInfoPatientPart1(byteCitizenId, defaultAccount)
     const info2 = contract.getInfoPatientPart2(byteCitizenId, defaultAccount)
     const info3 = contract.getInfoPatientPart3(byteCitizenId, defaultAccount)
     const info4 = contract.getInfoPatientPart4(byteCitizenId, defaultAccount)
     const combindedInfoData = bindData(patientScheme, [info1, info2, info3, info4], 'info')
-    console.timeEnd('info')
 
-    console.time('address')
     const addressPatient = contract.getAddressPatient(byteCitizenId, defaultAccount)
     const combindedAddressData = bindData(patientScheme, [addressPatient], 'address')
-    console.timeEnd('address')
 
-    console.time('allergy')
     const allergyPatient = contract.getPatientAllergy(byteCitizenId, defaultAccount);
     const combindedAllergyData = bindData(patientScheme, [allergyPatient], 'allery')
-    console.timeEnd('allergy')
 
-    console.time('emer')
     const emer1 = contract.getEmergencyContactPart1(byteCitizenId, defaultAccount);
     const emer2 = contract.getEmergencyContactPart2(byteCitizenId, defaultAccount);
     const combindedEmerData = bindData(patientScheme, [emer1, emer2], 'emerContact')
-    console.timeEnd('emer')
 
-    console.time('parent')
     const patientParent = contract.getPatientParent(citizenId, defaultAccount);
     const combindedParentData = bindData(patientScheme, [patientParent], 'parent')
-    console.timeEnd('parent')
 
     let patient = { ...combindedInfoData, ...combindedAddressData, ...combindedAllergyData, ...combindedEmerData, ...combindedParentData }
     return { status: true, message: "SUCCESS", data: patient }
 }
 
 const insert = async (patient) => {
-    contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(patient.registerDate), convertString(patient.password), defaultAccount);
+    console.log("insert")
+    contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
     contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nametitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
     contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount);
     contract.setInfoPatientPart4(convertString(patient.citizenId), convertString(patient.status), convertString(patient.occupartion === "" ? "-" : patient.occupartion), convertString(patient.homePhonenumber === "" ? "-" : patient.homePhonenumber), convertString(patient.mobileNumber), convertString(patient.email), defaultAccount);
@@ -72,11 +63,13 @@ const insert = async (patient) => {
 }
 
 const isPatient = citizenId => {
+    console.log("isPatient")
     const byteCitizenId = convertString(citizenId)
     return contract.haveCitizenId(byteCitizenId);
 }
 
 const isEmail = citizenId => {
+    console.log("EMAIL")
     const byteCitizenId = convertString(citizenId)
     return contract.haveEmail(byteCitizenId)
 }

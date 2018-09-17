@@ -38,7 +38,6 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
 }
 
 const setMedicalRecordForDoctor = async medicalRecord => {
-    console.log("เข้า Doctor 11 " + convertString(medicalRecord.medicalRecordId))
     contract.setMedicalRecordForDocter(
         convertString(medicalRecord.medicalRecordId),
         medicalRecord.presentIllness,
@@ -72,18 +71,14 @@ const setMedicalRecordForDoctor = async medicalRecord => {
 };
 
 const getMedicalRecordForNurse = async (medicalRecordId) => {
-    console.log("เข้า")
     const byteMedicalRecordId = convertString(medicalRecordId)
     const nurse1 = await contract.getMedicalRecordForNursePart1(byteMedicalRecordId);
     const nurse2 = await contract.getMedicalRecordForNursePart2(byteMedicalRecordId);
     const patientCitizenId = await contract.getPatientIdFormMDR(byteMedicalRecordId);
-    console.log("after")
     const combindedNurseData = bindData(medicalRecordScheme, [nurse1, nurse2], 'nurse')
-    console.log("bind")
     let medicalRecord = combindedNurseData
     medicalRecord.medicalRecordId = medicalRecordId;
     medicalRecord.patientCitizenId = convertToAscii(patientCitizenId);
-    console.log(medicalRecord)
 
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };

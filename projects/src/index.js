@@ -10,21 +10,21 @@ import ReactDOM from 'react-dom';
 // import PatientTreatment from "./Employee/Containers/PatientTreatment";
 // import EmpLogin from "./Employee/Containers/EmpLogin";
 // import MedicalRecordTreatment from "./Employee/Containers/MedicalRecordTreatment";
-import Stamp from "./stamp/App";
+// import Stamp from "./stamp/App";
 
 
 
 import Home from "./Home";
 import Login from "./Patients/Containers/Login";
-import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
-import ErrorNotFound from "./Error/ErrorNotFound";
-import ErrorTimeOut from "./Error/ErrorTimeOut";
+// import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
+// import ErrorNotFound from "./Error/ErrorNotFound";
+// import ErrorTimeOut from "./Error/ErrorTimeOut";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
-import EmpLogin from "./Employees/Containers/EmpLogin";
-import EmpTest from "./Employees/Containers/EmpTest";
-import Registration from "./Employees/Containers/Registration";
-import PatientTreatment from "./Employees/Containers/PatientTreatment";
-import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
+// import EmpLogin from "./Employees/Containers/EmpLogin";
+// import EmpTest from "./Employees/Containers/EmpTest";
+// import Registration from "./Employees/Containers/Registration";
+// import PatientTreatment from "./Employees/Containers/PatientTreatment";
+// import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
 
 
 import 'semantic-ui-css/semantic.min.css';
@@ -38,22 +38,22 @@ ReactDOM.render(
       <Route exact path="/" component={Home} />
       {/* patient */}
       <Route path="/signin" component={Login} />
-      <Route path="/signup" component={ManagePatientRecord} />
+      {/* <Route path="/signup" component={ManagePatientRecord} /> */}
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
-      <Route path="/EmpTest" component={EmpTest} />
+      {/* <Route path="/EmpTest" component={EmpTest} />
       <Route path="/signinForEmployee" component={EmpLogin} />
       <Route path="/Registration" component={Registration} />
-      <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} />
+      <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} /> */}
       {/* <Route path="/employeeSegment" component={EmployeeSegment} /> */}
-      <Route path="/patientTreatment" component={PatientTreatment} />
+      {/* <Route path="/patientTreatment" component={PatientTreatment} /> */}
 
-      <Route path="/stamp" component={Stamp} />
-      <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
+      {/* <Route path="/stamp" component={Stamp} />
+      <Route path="/testMedicalRecord" component={MedicalRecordTreatment} /> */}
       {/* Error */}
-      <Route path="/ErrorNotFound" component={ErrorNotFound} />
-      <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
+      {/* <Route path="/ErrorNotFound" component={ErrorNotFound} />
+      <Route path="/ErrorTimeOut" component={ErrorTimeOut} /> */}
     </div>
   </Router>,
   document.getElementById("root")

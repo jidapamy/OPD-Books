@@ -13,8 +13,6 @@ import FromAddressPatient from './../Components/FromAddressPatient';
 
 export default class InfoPatientMobile extends React.Component {
 
-
-
     render() {
         return (
             <div>

@@ -84,7 +84,7 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
             res.send(result)
             return
         }
-        res.send(msg.getMsgError(msg.msgVariable.nothaveHistoryMDR))
+        res.send(msg.getMsgSuccess(msg.msgVariable.nothaveHistoryMDR))
         return
     }
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));

@@ -56,18 +56,38 @@ const style = {
 }
 export default class FromHisProfilePatient extends React.Component {
 
-    
-   
+    showTreatmentHistory = () => {
+        if (this.props.historyTreatment){
+            let tmp = this.props.historyTreatment.map((history,i) => {
+                return <List.Item key={i} onClick={()=>this.props.setField('chooseMedicalRecord', history)}>
+                    <List.Content>
+                        <List.Content floated='right'>
+                            <List.Description as='a' >
+                                <Icon name='calendar alternate outline' size='small' />
+                                <span style={style.colorHis}>{history.date}</span>
+                            </List.Description>
+                        </List.Content>
+                        <List.Header as='a'>Treatment</List.Header>
+                        <List.Description><span style={style.colorDes}>{history.doctorName}</span></List.Description>
+                        <List.Description><span style={style.colorDes}>{history.clinic}</span></List.Description>
+                    </List.Content>
+                </List.Item>
+            })
+            return tmp
+        }else{
+            return <List.Item style={{ textAlign: "center" }}>
+                {this.props.historyMsg}
+                </List.Item>
+        }
+    }
     render() {
+        console.log(this.props)
         return (
-            
-                
                 <Grid.Column width={5}>
                 <Segment.Group >
                     <Segment color='teal'>
                         <List divided relaxed>
                             <List.Item>
-
                                 <List.Content floated='right'>
                                     <List.Description as='a' >
                                         <span style={style.colorsort}>
@@ -91,149 +111,7 @@ export default class FromHisProfilePatient extends React.Component {
                                 <Grid.Column >
                                     <Scrollbars autoHide style={{ height: 614 }}>
                                         <List divided relaxed>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item>
-                                                <List.Content>
-                                                    <List.Content floated='right'>
-                                                        <List.Description as='a' >
-                                                            <Icon name='calendar alternate outline' size='small' />
-                                                            <span style={style.colorHis}>11/07/2013</span>
-                                                        </List.Description>
-                                                    </List.Content>
-                                                    <List.Header as='a'>Treatment</List.Header>
-                                                    <List.Description><span style={style.colorDes}>Dr.Sandra Cookkie</span></List.Description>
-                                                    <List.Description><span style={style.colorDes}>Smallresh Clinic</span></List.Description>
-                                                </List.Content>
-                                            </List.Item>
+                                            {this.showTreatmentHistory()}
                                         </List>
                                     </Scrollbars>
                                 </Grid.Column>
