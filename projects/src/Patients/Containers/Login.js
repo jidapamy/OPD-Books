@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import BackgroundImage from "./../../Static/Img/BG.png";
 import styled from "styled-components";
 import { login } from "./../../Service/AuthenticationMethod";
+import swal from 'sweetalert2';
+
 
 const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
@@ -25,21 +27,31 @@ export default class PatientRecord extends Component {
   };
 
   login = () => {
-    let data = {
-      citizenId: this.state.citizenId, 
-      password: this.state.password
-    }
-    login(data).then(res => {
-      if (res.status) {
-        this.props.history.push({
-          pathname: "/profile",
-          state: { citizenId: this.state.citizenId }
-        });
-      } else {
-        this.setState({ checklogin: res.message });
+    swal({
+      title: 'กรุณารอสักครู่',
+      html: 'กรุณาอย่ากดออกหรือปิดป๊อปอัพนี้',
+      onOpen: () => {
+        swal.showLoading()
+        let data = {
+          citizenId: this.state.citizenId,
+          password: this.state.password
+        }
+        login(data).then(res => {
+          if (res) {
+            swal.disableLoading()
+            if (res.status) {
+              this.props.history.push({
+                pathname: "/profile",
+                state: { citizenId: this.state.citizenId }
+              });
+            } else {
+              this.setState({ checklogin: res.message });
+            }
+          }
+        })
       }
     })
-  };
+  }
 
   render() {
     return (

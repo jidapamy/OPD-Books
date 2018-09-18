@@ -183,43 +183,15 @@ export default class PatientProfile extends Component {
     let citizenId = this.props.location.state.citizenId;
     let patient = await getPatient(citizenId);
     let historyTreatment = await getTreatmentHistoryOfPatient(citizenId);
-    console.log("patient", patient)
-    console.log("historyTreatment", historyTreatment)
     this.setState({
         patient: patient.data,
         historyTreatment: historyTreatment.data,
         historyMsg : historyTreatment.message
     });
-    // let citizenId = this.props.location.state.citizenId;
-    // if (citizenId === undefined) {
-    //   this.props.history.push("/signin");
-    // } else {
-    //   let patient = getPatient(citizenId);
-    //   let historyTreatment = getTreatmentHistoryOfPatient(citizenId);
-    //   if(patient.status){
-    //     if (historyTreatment.status){
-    //       this.setState({
-    //         patient: patient.data,
-    //         historyTreatment: historyTreatment.data
-    //       });
-    //     }else{
-    //       alert(historyTreatment.message)
-    //     }
-    //   }else{
-    //     alert(patient.message)
-    //   }
-    // }
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   showModal =() =>{
-    // const currentDate = moment().format("ll");
-    // // Encrypt //
-    // var ciphertext = CryptoJS.AES.encrypt(
-    //   "OPDBooks@" + currentDate + "@" + `${this.state.patient.citizenId}`,
-    //   "OPDQR"
-    // );
-    // var QRCodes = "" + ciphertext;
     return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
       <Modal.Content>
         <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
@@ -237,6 +209,7 @@ export default class PatientProfile extends Component {
     const { activeItem } = this.state;
     const { sidebarOpened } = this.state;
 
+    console.log("PATIENT ",this.state.patient)
     return (
       <div>
         <Responsive {...Responsive.onlyComputer}>

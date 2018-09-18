@@ -27,7 +27,7 @@ const get = citizenId => {
     const emer2 = contract.getEmergencyContactPart2(byteCitizenId, defaultAccount);
     const combindedEmerData = bindData(patientScheme, [emer1, emer2], 'emerContact')
 
-    const patientParent = contract.getPatientParent(citizenId, defaultAccount);
+    const patientParent = contract.getPatientParent(byteCitizenId, defaultAccount);
     const combindedParentData = bindData(patientScheme, [patientParent], 'parent')
 
     let patient = { ...combindedInfoData, ...combindedAddressData, ...combindedAllergyData, ...combindedEmerData, ...combindedParentData }
@@ -35,9 +35,8 @@ const get = citizenId => {
 }
 
 const insert = async (patient) => {
-    console.log("insert")
     contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
-    contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nametitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
+    contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nameTitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
     contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount);
     contract.setInfoPatientPart4(convertString(patient.citizenId), convertString(patient.status), convertString(patient.occupartion === "" ? "-" : patient.occupartion), convertString(patient.homePhonenumber === "" ? "-" : patient.homePhonenumber), convertString(patient.mobileNumber), convertString(patient.email), defaultAccount);
     contract.setEmail(convertString(patient.email), defaultAccount);
@@ -50,7 +49,12 @@ const insert = async (patient) => {
     }
 
     if ((patient.fatherFirstname !== '' && patient.fatherLastname != '') || (patient.motherFirstname !== '' && patient.motherLastname != '')) {
-        contract.setPatientParent(convertString(patient.citizenId), convertString(patient.fatherFirstname === "" ? "-" : patient.fatherFirstname), convertString(patient.fatherLastname === "" ? " " : patient.fatherLastname), convertString(patient.motherFirstname === "" ? "-" : patient.motherFirstname), convertString(patient.motherLastname === "" ? " " : patient.motherFirstname), defaultAccount);
+        contract.setPatientParent(
+            convertString(patient.citizenId), 
+            convertString(patient.fatherFirstname === "" ? "-" : patient.fatherFirstname), 
+            convertString(patient.fatherLastname === "" ? "-" : patient.fatherLastname), 
+            convertString(patient.motherFirstname === "" ? "-" : patient.motherFirstname), 
+            convertString(patient.motherLastname === "" ? "-" : patient.motherLastname), defaultAccount);
     }
 
     let check = false
@@ -63,13 +67,11 @@ const insert = async (patient) => {
 }
 
 const isPatient = citizenId => {
-    console.log("isPatient")
     const byteCitizenId = convertString(citizenId)
     return contract.haveCitizenId(byteCitizenId);
 }
 
 const isEmail = citizenId => {
-    console.log("EMAIL")
     const byteCitizenId = convertString(citizenId)
     return contract.haveEmail(byteCitizenId)
 }

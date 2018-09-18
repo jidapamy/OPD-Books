@@ -6,13 +6,13 @@ import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
-import axios from "./../../Lib/axois"
 
 import {
     titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
 } from './../../Static/Data/FormDatas.js'
 
+import { checkEmail } from "./../../Service/ManagePatientMethod";
 
 export default class InfoPateint extends Component {
 
@@ -65,20 +65,21 @@ export default class InfoPateint extends Component {
     checkEmailDuplicate = async (value) =>{
         if (this.validateEmail(value)){
             // syntax pass
-            const email = await axios.get(`/patients/isEmail/${value}`)
-            if (email.data) {
-                let error = ''
-                if (this.props.cardType === 'idcard') {
-                    error = 'E-mail นี้มีอยู่ในระบบแล้ว'
+            checkEmail(value).then(res => {
+                if (res) {
+                    let error = ''
+                    if (this.props.cardType === 'idcard') {
+                        error = 'E-mail นี้มีอยู่ในระบบแล้ว'
+                    } else {
+                        error = 'This E-mail is already exists in the system'
+                    }
+                    this.props.errorField.email = true;
+                    const result = setErrorMsg('email', error, this.props.errorText)
+                    this.props.setField('errorInfo', result)
                 } else {
-                    error = 'This E-mail is already exists in the system'
+                    this.props.setFieldAndValidate('email', value)
                 }
-                this.props.errorField.email = true;
-                const result = setErrorMsg('email', error, this.props.errorText)
-                this.props.setField('errorInfo', result)
-            } else {
-                this.props.setFieldAndValidate('email', value)
-            }
+            })
         }
     }
 

@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
-import axios from "./../../Lib/axois"
+import { checkIdcard } from "./../../Service/ManagePatientMethod";
 
 export default class CitizenIdField extends Component {
     state = {
         citizenId: '',
     }
 
-    checkIdcard = async () => {
+    checkIdcard = () => {
         if (this.validateSyntaxIdcard()) {
-            const patient = await axios.get(`/patients/isCitizenId/${this.state.citizenId}`)
-            if (patient.data) {
-                let error = '';
-                if (this.props.cardType === 'idcard') {
-                    error = 'เลขบัตรประชาชนนี้มีใช้แล้ว'
+            checkIdcard(this.state.citizenId).then(res => {
+                if(res){
+                    let error = '';
+                    if (this.props.cardType === 'idcard') {
+                        error = 'เลขบัตรประชาชนนี้มีใช้แล้ว'
+                    } else {
+                        error = 'The passport number is duplicated'
+                    }
+                    this.props.errorField.citizenId = true;
+                    const result = setErrorMsg('citizenId', error, this.props.errorText)
+                    this.props.setField('errorInfo', result)
                 } else {
-                    error = 'The passport number is duplicated'
+                    this.props.setFieldAndValidate('citizenId', this.state.citizenId)
                 }
-                this.props.errorField.citizenId = true; 
-                const result = setErrorMsg('citizenId', error, this.props.errorText)
-                this.props.setField('errorInfo', result)
-            }else{
-                this.props.setFieldAndValidate('citizenId',this.state.citizenId)
-            }
+            })
         }
     }
 

@@ -16,7 +16,7 @@ import ReactDOM from 'react-dom';
 
 import Home from "./Home";
 import Login from "./Patients/Containers/Login";
-// import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
+import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 // import ErrorNotFound from "./Error/ErrorNotFound";
 // import ErrorTimeOut from "./Error/ErrorTimeOut";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
@@ -38,14 +38,14 @@ ReactDOM.render(
       <Route exact path="/" component={Home} />
       {/* patient */}
       <Route path="/signin" component={Login} />
-      {/* <Route path="/signup" component={ManagePatientRecord} /> */}
+      <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
       {/* <Route path="/EmpTest" component={EmpTest} />
       <Route path="/signinForEmployee" component={EmpLogin} />
-      <Route path="/Registration" component={Registration} />
-      <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} /> */}
+      <Route path="/Registration" component={Registration} />*/}
+      {/* <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} />  */}
       {/* <Route path="/employeeSegment" component={EmployeeSegment} /> */}
       {/* <Route path="/patientTreatment" component={PatientTreatment} /> */}
 
