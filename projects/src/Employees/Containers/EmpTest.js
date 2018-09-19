@@ -63,58 +63,56 @@ const styles = {
     },
 }
 export default class Emptest extends React.Component {
-
-    state = { 
-                activeItem: 'home',
-                tab:0,
-                empPosition:3
-             }
-
+    state = {
+        activeItem: 'home',
+        tab: 0,
+        empPosition: 3
+    }
     showtab = (empPosition) => {
-    if(empPosition==2){
-        return <FromNurse />
-       
-    }else if(empPosition==3){
-        if (this.state.tab==0){
-            return <NurseTreatment />
-        } else if (this.state.tab == 1) {
-            return <DocTreatment1 />
-        } else if (this.state.tab == 2) {
-            return <HistoryPatient />
+        if (empPosition == 2) {
+            return <FromNurse />
+
+        } else if (empPosition == 3) {
+            if (this.state.tab == 0) {
+                return <NurseTreatment />
+            } else if (this.state.tab == 1) {
+                return <DocTreatment1 />
+            } else if (this.state.tab == 2) {
+                return <HistoryPatient />
+            }
         }
-    }
-    else if(empPosition==4){
-         return <Pharmacy />
-    }
-    return ""
+        else if (empPosition == 4) {
+            return <Pharmacy />
+        }
+        return ""
     }
 
 
-    
+
     showTabMenu = (empPosition) => {
-    if(empPosition === 2){
+        if (empPosition === 2) {
+            return ""
+        } else if (empPosition === 3) {
+            return <Menu pointing secondary style={{ marginBottom: '-16px' }}>
+                <Menu.Item name='Treatment of nurse'
+                    active={this.state.tab == 0}
+                    onClick={() => { this.setState({ tab: 0 }) }}
+                />
+                <Menu.Item
+                    name='Treatment of doctor'
+                    active={this.state.tab == 1}
+                    onClick={() => { this.setState({ tab: 1 }) }}
+                />
+                <Menu.Item
+                    name='History medical records'
+                    active={this.state.tab == 2}
+                    onClick={() => { this.setState({ tab: 2 }) }}
+                />
+            </Menu>
+        } else if (empPosition === 4) {
+            return ""
+        }
         return ""
-    }else if(empPosition === 3){
-        return <Menu pointing secondary style={{ marginBottom: '-16px' }}>
-                                <Menu.Item name='Treatment of nurse'
-                                    active={this.state.tab == 0}
-                                    onClick={() => { this.setState({ tab: 0 }) }}
-                                 />
-                                <Menu.Item
-                                    name='Treatment of doctor'
-                                    active={this.state.tab == 1}
-                                    onClick={()=>{this.setState({tab:1})}}
-                                />
-                                <Menu.Item
-                                    name='History medical records'
-                                    active={this.state.tab == 2}
-                                    onClick={() => { this.setState({ tab: 2 }) }}
-                                />
-                            </Menu>
-    }else if(empPosition === 4){
-        return ""
-    }
-    return ""
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -123,9 +121,6 @@ export default class Emptest extends React.Component {
         const { activeItem } = this.state
         return (
             <BGs>
-
-
-
                 <Menu vertical inverted fixed='left' position='fixed'>
                     <Menu.Item color='teal'>
                         <Header style={style.navbarDeco} >Queues</Header>
@@ -470,7 +465,7 @@ export default class Emptest extends React.Component {
                                         </Header.Subheader>
                                     </Grid.Row>
                                 </Grid.Column>
-                               
+
 
 
                             </Grid>
@@ -484,7 +479,7 @@ export default class Emptest extends React.Component {
                     <Container>
                         <br />
                         {this.showtab(this.state.empPosition)}
-                        
+
                     </Container>
 
 

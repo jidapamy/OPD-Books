@@ -431,8 +431,15 @@ export default class Home extends React.Component {
                   <Grid.Column width={3}>
                     <Header inverted as="h4" content="OPD Page" />
                     <List link inverted>
-                      <List.Item as="a">SignUp</List.Item>
-                      <List.Item as="a">SignIn</List.Item>
+                      <List.Item as="signup">
+                        <Link to="/signup">SignUp</Link>
+                      </List.Item>
+                      <List.Item as="signin">
+                        <Link to="/signin">SignIn </Link>
+                      </List.Item>
+                      <List.Item as="api"> 
+                        <Link to="/api">API Services</Link>
+                      </List.Item>
                     </List>
                   </Grid.Column>
                   <Grid.Column width={3}>
