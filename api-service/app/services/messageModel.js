@@ -18,9 +18,9 @@ const getMsgNotFound = (field, data = null) => {
     return { status: status, message: message };
 };
 
-const getMsgSuccess = (data = null) => {
+const getMsgSuccess = (msg=null,data = null) => {
     status = true;
-    message = "SUCCESS";
+    message = msg ? msg : "SUCCESS";
     if (data) {
         data = data;
         return { status: status, message: message, data: data };

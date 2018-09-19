@@ -19,9 +19,10 @@ import BackgroundImage from "./../../Static/Img/BGGs.png";
 import { Link } from "react-router-dom";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
-import { getHistoryVisitNumberPatient } from "./../../Service/MedicalRecordMethod";
+// import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
+import { getTreatmentHistoryOfPatient } from "./../../Service/MedicalRecordMethod";
 
-const CryptoJS = require("crypto-js");
+import CryptoJS from "crypto-js"
 
 const BG = styled.div`
   background: url('${BackgroundImage}') no-repeat center fixed;
@@ -96,8 +97,6 @@ const menuStyle = {
 
 export default class PatientProfile extends Component {
 
-
-
   state = {
     statusShowHistory: true,
     avtiveMenuTab: false,
@@ -113,7 +112,9 @@ export default class PatientProfile extends Component {
     open: false,
     QRCode: "",
     patient: {},
-    historyTreatment: []
+    historyTreatment: [],
+    historyMsg: "",
+    chooseMedicalRecord:{}
   };
 
 
@@ -167,35 +168,28 @@ export default class PatientProfile extends Component {
   }
 
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
-  hideFixedMenu = () => this.setState({ fixed: false })
-  showFixedMenu = () => this.setState({ fixed: true })
-
 
   //Connect API
-  componentWillMount() {
-    if (this.props.location.state.citizenId === undefined) {
-      this.props.history.push("/signin");
-    } else {
-      let patient = getPatient(this.props.location.state.citizenId, 'byte');
-      this.setState({
-        patient: patient,
-        historyTreatment: getHistoryVisitNumberPatient(patient.citizenId)
-      });
+  componentWillMount = async () =>{
+    if (!this.props.location.state) {
+       this.props.history.push("/signin");
+       return
     }
+    let citizenId = this.props.location.state.citizenId;
+    let patient = await getPatient(citizenId);
+    let historyTreatment = await getTreatmentHistoryOfPatient(citizenId);
+    this.setState({
+        patient: patient.data,
+        historyTreatment: historyTreatment.data,
+        historyMsg : historyTreatment.message
+    });
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  showModal = () => {
-    const currentDate = moment().format("ll");
-    // Encrypt //
-    var ciphertext = CryptoJS.AES.encrypt(
-      "OPDBooks@" + currentDate + "@" + `${this.state.patient.citizenId}`,
-      "OPDQR"
-    );
-    var QRCodes = "" + ciphertext;
+  showModal =() =>{
     return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
       <Modal.Content>
-        <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={QRCodes} />
+        <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
         <Header textAlign={"center"} size="large">
           {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
         </Header>
@@ -209,25 +203,11 @@ export default class PatientProfile extends Component {
     const { open, size } = this.state;
     const { activeItem } = this.state;
     const { sidebarOpened } = this.state;
-    const { fixed } = this.state;
 
-    // const currentDate = moment().format("ll");
-    // // Encrypt //
-    // var ciphertext = CryptoJS.AES.encrypt(
-    //   "OPDBooks@" + currentDate + "@" + `${this.state.patient.citizenId}`,
-    //   "OPDQR"
-    // );
-    // var QRCodes = "" + ciphertext;
-
-
-
-
-
+    console.log("PATIENT ",this.state.patient)
     return (
-
       <div>
         <Responsive {...Responsive.onlyComputer}>
-
           <BG>
             {this.showModal()}
 
@@ -276,7 +256,7 @@ export default class PatientProfile extends Component {
                   </Grid.Column>
 
                   <Grid.Column width={3}>
-                    <Header as="h2">Infomation</Header>
+                    <Header as="h2">Information</Header>
                     <Grid.Row>
                       <Header.Subheader>
                         <span style={{ color: "#848788" }}>Birth Day : </span>
@@ -344,8 +324,15 @@ export default class PatientProfile extends Component {
             <Container>
               <Grid columns={16}>
                 <FromAddressPatient patient={this.state.patient} />
-                <FromHisProfilePatient patient={this.state.patient} />
-                <MedicalPatient patient={this.state.patient} />
+                <FromHisProfilePatient 
+                  patient={this.state.patient} 
+                  historyTreatment={this.state.historyTreatment}
+                  historyMsg={this.state.historyMsg} 
+                  setField={this.setField}/>
+                <MedicalPatient 
+                  patient={this.state.patient} 
+                  chooseMedicalRecord={this.state.chooseMedicalRecord}
+                />
               </Grid>
             </Container>
           </BG>
@@ -377,15 +364,12 @@ export default class PatientProfile extends Component {
 
             {/* rgba(0,181,173,10) */}
             <Menu
-              style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
-
-              fixed={fixed ? 'top' : null}
-
-              pointing={!fixed}
-              secondary={!fixed}
+              style={{ borderColor: 'rgba(255,255,255,10)',paddingTop:2 }}
+              fixed="top"
+              pointing
+              secondary
               size='large'
               secondary={!this.state.menuFixed}
-              fixed={this.state.menuFixed && "top"}
             >
 
               <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >

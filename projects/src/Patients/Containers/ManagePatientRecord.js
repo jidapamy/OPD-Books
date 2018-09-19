@@ -24,7 +24,6 @@ import ErrorMessage from './../Components/ErrorMessage'
 //provider
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 import { insertPatient } from "./../../Service/ManagePatientMethod";
-// import { defaultAccount, contract,web3 } from './../../Lib/Web3';
 
 //static
 import BackgroundImage from './../../Static/Img/BG.png'
@@ -140,52 +139,6 @@ export default class ManagePatientRecord extends Component {
     { field: 'motherFirstname', key: 'parent' },
     { field: 'motherLastname', key: 'parent' }
   ]
-
-  makeData = {
-    citizenId: '1234567890123',
-    hospitalNumber: 'HN123',
-    nameTitle: 'Miss.',
-    firstname: 'Christopher',
-    lastname: 'Horton',
-    email: 'Christopher@hotmail.com',
-    password: '1234567890!',
-    gender: 'F',
-    dob: '02/04/1995',
-    bloodgroup: 'B',
-    nationality: 'Thai',
-    religion: 'Buddhism',
-    status: 'Single',
-    occupartion: '',
-    country: 'Thai',
-    congenitalDisease: 'no have',
-    homePhonenumber: '',
-    mobileNumber: '0829938849',
-    typeofHouse: 'Apartment',
-    address: '123',
-    province: 'Kanchanaburi',
-    district: 'Tha Muang',
-    subDistrict: 'Tha Takhro',
-    zipcode: '71130',
-    emerTitle: '',
-    emerFirstname: '',
-    emerLastname: '',
-    emerRelationship: '',
-    emerHomePhonenumber: '',
-    emerMobileNumber: '',
-    emerTypeofHouse: '',
-    emerAddress: '',
-    emerProvince: '',
-    emerDistrict: '',
-    emerSubDistrict: '',
-    emerZipcode: '',
-    fatherFirstname: '',
-    fatherLastname: '',
-    motherFirstname: '',
-    motherLastname: '',
-    allergy: 'not have',
-    privilege: 'รัฐวิสาหิจ'
-  }
-
 
   setField = (field, value) => {
     this.setState({ [field]: value })
@@ -312,17 +265,29 @@ export default class ManagePatientRecord extends Component {
       confirmButtonColor: '#1FCB4A',
       confirmButtonText: 'Confirm',
       cancelButtonText: 'Cancel',
-
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.value) {
-        insertPatient(this.state.patient, moment().format("L"));
-          swal(
-            'สมัครเสร็จสิ้น!',
-            'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
-            'success',
-          ).then((result) => {
-            this.props.history.push('/signin')
-          })
+        swal({
+          title: 'ระบบกำลังบันทึกข้อมูล!',
+          html: 'กรุณาอย่ากดออกหรือปิดป๊อปอัพนี้',
+          onOpen: () => {
+            swal.showLoading()
+            insertPatient(this.state.patient).then(res => {
+              if (res) {
+                swal.disableLoading()
+                if (res.status) {
+                  swal(
+                    'สมัครเสร็จสิ้น!',
+                    'การสมัครเสร็จสิ้นท่านสามารถล็อคอินเข้าสู่ระบบเพื่อเริ่มใช้ได้.',
+                    'success',
+                  ).then((result) => {
+                    this.props.history.push('/signin')
+                  })
+                }
+              }
+            })
+          }
+        })
       }
     })
   }
@@ -339,7 +304,7 @@ export default class ManagePatientRecord extends Component {
         <ContanierTop>
           <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
           <Form>
-            <InfoPatient style={{borderRadius:'20px'}}
+            <InfoPatient style={{ borderRadius: '20px' }}
               patient={this.state.patient}
               currentDate={this.state.currentDate}
               setPatientDetail={this.setPatientDetail}

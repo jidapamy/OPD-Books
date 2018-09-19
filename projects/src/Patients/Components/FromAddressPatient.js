@@ -32,12 +32,9 @@ const style = {
 }
 
 export default class FromAddressPatient extends React.Component {
-   
-    
+
     render() {
-        
         return (
-        
             <Grid.Column width={5}>
                 <Segment color='yellow' attached='top'>
                     <Icon color='yellow' name='pills' />
@@ -45,7 +42,6 @@ export default class FromAddressPatient extends React.Component {
                     <Icon color='yellow' name='medkit' />
                     <span style={{ color: '#FABD08' }}> Privilege : </span> {this.props.patient.privilege}
                 </Segment>
-
                 <Segment.Group >
                     <Segment >
                         <h4><Icon name='child' />In Case Under15 Year Old</h4>
@@ -207,7 +203,7 @@ export default class FromAddressPatient extends React.Component {
                     </Segment>
                 </Segment.Group>
             </Grid.Column>
-            
+
 
         );
     }
