@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Dropdown, Item, Responsive, Sidebar, Visibility, Statistic,
-  Button, Modal, Popup, Form, TextArea, Pagination
+  Grid, Menu, Segment, Container, Header, Icon, Image, Label, Responsive, Sidebar, Visibility, Button, Modal
 } from "semantic-ui-react";
 import styled from "styled-components";
-import iconOpd from "./../../Static/Img/IconOPDs.png";
-import BGMobile from "./../../Static/Img/BGMobile.png";
-import swal from "sweetalert2";
 import { QRCode } from "react-qr-svg";
 import moment from "moment";
-import { Scrollbars } from 'react-custom-scrollbars';
 import FromAddressPatient from './../Components/FromAddressPatient';
 import InfoPatientMobile from './../Components/InfoPatientMobile';
 import ProfilePatientMobile from './../Components/ProfilePatientMobile';
-import FromHistoryPatientMobile from './../Components/FromHistoryPatientMobile'; 
+import FromHistoryPatientMobile from './../Components/FromHistoryPatientMobile';
 import FromAddressPatientMobile from './../Components/FromAddressPatientMobile';
 import FormMedicalPatientMobile from './../Components/FormMedicalPatientMobile';
 import FromHisProfilePatient from './../Components/FromHisProfilePatient';
@@ -24,8 +19,7 @@ import BackgroundImage from "./../../Static/Img/BGGs.png";
 import { Link } from "react-router-dom";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
-import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
-import {getHistoryVisitNumberPatient} from "./../../Service/MedicalRecordMethod";
+import { getHistoryVisitNumberPatient } from "./../../Service/MedicalRecordMethod";
 
 const CryptoJS = require("crypto-js");
 
@@ -60,17 +54,17 @@ const style = {
 //   background: url('${BGMobile}') !important;
 //   background-size: 100% 100%;
 // `
-const BGMobiles = styled(Segment) `
+const BGMobiles = styled(Segment)`
   background: url('https://i.pinimg.com/236x/d9/0d/cf/d90dcf52b2d215d82fdbd54d0f5754b5.jpg') !important;
   background-size: 100% 100%;
 `
-const Information = styled(Segment) `
+const Information = styled(Segment)`
   border:0 !important;
   border-color:'#FFFFFF' !important;
   -webkit-box-shadow:0 1px 2px 0 rgba(255, 255, 255, 10)!important ;
 `
 
-const PopupQRCode = styled(Modal) `
+const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -79,7 +73,7 @@ const PopupQRCode = styled(Modal) `
 `;
 
 
-const Boderhide = styled(Menu) `
+const Boderhide = styled(Menu)`
   border:0;
 `;
 
@@ -105,11 +99,11 @@ export default class PatientProfile extends Component {
 
 
   state = {
-    statusShowHistory:true,
-    avtiveMenuTab:false,
-    sidebarOpened:false,
-    menuTab:0,
-    statusTab:false,
+    statusShowHistory: true,
+    avtiveMenuTab: false,
+    sidebarOpened: false,
+    menuTab: 0,
+    statusTab: false,
     tab: 0,
     activeItem: "home",
     activeItemMenu: "home",
@@ -122,7 +116,7 @@ export default class PatientProfile extends Component {
     historyTreatment: []
   };
 
-  
+
   menuTab = () => {
     if (this.state.menuTab == 0) {
       return <ProfilePatientMobile
@@ -135,22 +129,22 @@ export default class PatientProfile extends Component {
         setField={this.setField}
       />
     } else if (this.state.menuTab == 1) {
-      
-      if (this.state.statusShowHistory == true){
-        return <FromHistoryPatientMobile setField={this.setField}/>
-      } else if (this.state.statusShowHistory == false){
-        return <FormMedicalPatientMobile setField={this.setField}/>
+
+      if (this.state.statusShowHistory == true) {
+        return <FromHistoryPatientMobile setField={this.setField} />
+      } else if (this.state.statusShowHistory == false) {
+        return <FormMedicalPatientMobile setField={this.setField} />
       }
-     
-    } 
+
+    }
   }
-  setField=(field,value)=>{
-    this.setState({ [field]:value });
+  setField = (field, value) => {
+    this.setState({ [field]: value });
   }
-  
+
   showtab = (tab) => {
     if (tab == 0) {
-      return <InfoPatientMobile patient={this.state.patient}  />
+      return <InfoPatientMobile patient={this.state.patient} />
 
     } else if (tab == 1) {
       return <FromAddressPatientMobile patient={this.state.patient} />
@@ -191,7 +185,7 @@ export default class PatientProfile extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  showModal =() =>{
+  showModal = () => {
     const currentDate = moment().format("ll");
     // Encrypt //
     var ciphertext = CryptoJS.AES.encrypt(
@@ -236,17 +230,6 @@ export default class PatientProfile extends Component {
 
           <BG>
             {this.showModal()}
-            {/* <PopupQRCode size={'mini'} open={open} onClose={this.close}>
-              <Modal.Content>
-                <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={QRCodes} />
-                <Header textAlign={"center"} size="large">
-                  {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
-                </Header>
-                <Button size="huge" basic color="teal" onClick={this.close} style={{ marginTop: "10%" }} fluid>
-                  Close
-            </Button>
-              </Modal.Content>
-            </PopupQRCode> */}
 
             {/* ____ ___  ___  ____  __  __/ /_  ____ ______
           / __ `__ \/ _ \/ __ \/ / / / __ \/ __ `/ ___/
@@ -254,7 +237,6 @@ export default class PatientProfile extends Component {
         /_/ /_/ /_/\___/_/ /_/\__,_/_.___/\__,_/_/      */}
 
             <Segment>
-              {/* <Navbar role="patient" show={this.show} /> */}
               <Container>
                 <br />
                 <Grid>
@@ -386,16 +368,16 @@ export default class PatientProfile extends Component {
  */}
 
         <Responsive {...Responsive.onlyMobile}>
-          
+
           <Visibility
             onBottomPassed={this.stickTopMenu}
             onBottomVisible={this.unStickTopMenu}
             once={false}
           >
-            
+
             {/* rgba(0,181,173,10) */}
             <Menu
-              style={{ borderColor: 'rgba(255,255,255,10)',paddingTop:2 }}
+              style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
 
               fixed={fixed ? 'top' : null}
 
@@ -405,9 +387,9 @@ export default class PatientProfile extends Component {
               secondary={!this.state.menuFixed}
               fixed={this.state.menuFixed && "top"}
             >
-             
+
               <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
-                
+
                 <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
                   <Icon size="big" name='bars' style={{ color: 'black' }} />
                 </Menu.Item>
@@ -419,29 +401,24 @@ export default class PatientProfile extends Component {
                 </Menu.Item>
               </Boderhide>
             </Menu>
-
-
-
           </Visibility>
-
           <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
-            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
-              <Menu.Item color='teal' as='a'  icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened:false}) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
 
-              <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true}) }}><Icon name='history' /> History</Menu.Item>
+            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
+              <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
+
+              <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
 
               <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
             </Sidebar>
-
             <Sidebar.Pusher
               dimmed={sidebarOpened}
               onClick={this.handlePusherClick}
               style={{ minHeight: '550px' }}
             >
-
               {this.menuTab()}
-
             </Sidebar.Pusher>
+
           </Sidebar.Pushable>
 
         </Responsive>

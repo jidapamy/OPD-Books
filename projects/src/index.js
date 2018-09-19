@@ -20,6 +20,7 @@ import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 import ErrorNotFound from "./Error/ErrorNotFound";
 import ErrorTimeOut from "./Error/ErrorTimeOut";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
+import EditProfile from "./Patients/Components/EditProfile";
 import EmpLogin from "./Employees/Containers/EmpLogin";
 import EmpTest from "./Employees/Containers/EmpTest";
 import Registration from "./Employees/Containers/Registration";
@@ -40,6 +41,7 @@ ReactDOM.render(
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
+      <Route path="/editProfile" component={EditProfile} />
 
       {/* emp */}
       <Route path="/EmpTest" component={EmpTest} />
