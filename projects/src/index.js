@@ -21,10 +21,12 @@ import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 // import ErrorTimeOut from "./Error/ErrorTimeOut";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
 // import EmpLogin from "./Employees/Containers/EmpLogin";
-// import EmpTest from "./Employees/Containers/EmpTest";
+import EmpTest from "./Employees/Containers/EmpTest";
 // import Registration from "./Employees/Containers/Registration";
 // import PatientTreatment from "./Employees/Containers/PatientTreatment";
 // import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
+
+import APIHome from "./APIdata/Containers/APIHome"
 
 
 import 'semantic-ui-css/semantic.min.css';
@@ -42,9 +44,11 @@ ReactDOM.render(
       <Route path="/profile" component={ProfilePatient} />
 
       {/* emp */}
-      {/* <Route path="/EmpTest" component={EmpTest} />
-      <Route path="/signinForEmployee" component={EmpLogin} />
-      <Route path="/Registration" component={Registration} />*/}
+      <Route path="/empTest" component={EmpTest} />
+      <Route path="/api" component={APIHome} />
+      
+      {/* <Route path="/signinForEmployee" component={EmpLogin} /> */}
+      {/* <Route path="/Registration" component={Registration} />*/} 
       {/* <Route path="/MedicalRecordTreatment" component={MedicalRecordTreatment} />  */}
       {/* <Route path="/employeeSegment" component={EmployeeSegment} /> */}
       {/* <Route path="/patientTreatment" component={PatientTreatment} /> */}
