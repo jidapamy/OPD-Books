@@ -36,53 +36,10 @@ export default class NavbarQueses extends Component {
     const { activeItem } = this.state
 
     return (
-
-      //   <Menu vertical>
-      //     <Menu.Item
-      //       name='promotions'
-      //       active={activeItem === 'promotions'}
-      //       onClick={this.handleItemClick}
-      //     >
-      //       <Header as='h4'>Queues</Header>
-      //       <p>Check out our new promotions</p>
-      //     </Menu.Item>
-
-      //     <Menu.Item name='coupons' active={activeItem === 'coupons'} onClick={this.handleItemClick}>
-      //       <Header as='h4'>Coupons</Header>
-      //       <p>Check out our collection of coupons</p>
-      //     </Menu.Item>
-
-      //     <Menu.Item name='rebates' active={activeItem === 'rebates'} onClick={this.handleItemClick}>
-      //       <Header as='h4'>Rebates</Header>
-      //       <p>Visit our rebate forum for information on claiming rebates</p>
-      //     </Menu.Item>
-      //   </Menu>
-
-
-
-
-
-
       <Menu vertical inverted fixed='left' position='fixed'>
         <Menu.Item color='teal'>
           <Header style={style.navbarDeco} >Queues</Header>
         </Menu.Item>
-        {/* <Menu.Item name='inbox' active={activeItem === 'inbox'} onClick={this.handleItemClick} style={style.naveText}>
-          <Label color='teal'>1</Label>
-          Inbox
-        </Menu.Item>
-
-        <Menu.Item name='spam' active={activeItem === 'spam'} onClick={this.handleItemClick}>
-          <Label>51</Label>
-          Spam
-        </Menu.Item>
-
-        <Menu.Item name='updates' active={activeItem === 'updates'} onClick={this.handleItemClick}>
-          <Label>1</Label>
-          Updates
-        </Menu.Item> */}
-
-
         <Menu.Item name='001' active={activeItem === '001'} onClick={this.handleItemClick} onVisit={() => this.handleVisit()}>
           <List>
             <Grid style={ activeItem === '001' ? style.widthNav2 :style.widthNav }>
@@ -102,8 +59,6 @@ export default class NavbarQueses extends Component {
             </Grid>
           </List>
         </Menu.Item>
-
-
         <Menu.Item name='002' active={activeItem === '002'} onClick={this.handleItemClick} onVisit={() => this.handleVisit()}>
           <List>
             <Grid style={ activeItem === '002' ? style.widthNav2 :style.widthNav }>
@@ -123,9 +78,6 @@ export default class NavbarQueses extends Component {
             </Grid>
           </List>
         </Menu.Item>
-
-
-
         <Menu.Item name='003' active={activeItem === '003'} onClick={this.handleItemClick} onVisit={() => this.handleVisit()}>
           <List>
             <Grid style={ activeItem === '003' ? style.widthNav2 :style.widthNav }>
@@ -145,42 +97,7 @@ export default class NavbarQueses extends Component {
             </Grid>
           </List>
         </Menu.Item>
-
-
-
-
-
-
-
       </Menu>
-
-
-
-
-
-
-
-
-
-      // <Menu vertical>
-      //   <Menu.Item>
-      //     <b>Queues</b>
-      //   </Menu.Item>
-      //   <Menu.Item name='inbox' active={activeItem === 'inbox'} onClick={this.handleItemClick}>
-      //     <Label color='teal'>1</Label>
-      //     Inbox
-      // </Menu.Item>
-
-      //   <Menu.Item name='spam' active={activeItem === 'spam'} onClick={this.handleItemClick}>
-      //     <Label>51</Label>
-      //     Spam
-      // </Menu.Item>
-
-      //   <Menu.Item name='updates' active={activeItem === 'updates'} onClick={this.handleItemClick}>
-      //     <Label>1</Label>
-      //     Updates
-      // </Menu.Item>
-      // </Menu>
     )
   }
 }

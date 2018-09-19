@@ -25,6 +25,7 @@ import EmpTest from "./Employees/Containers/EmpTest";
 import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
 import NavbarQueses from "./Employees/Components/NavbarQueses"
 import apiDocument from "./Employees/Components/apiDoc"
+import Testt from "./Employees/Components/Test"
 
 
 import 'semantic-ui-css/semantic.min.css';
@@ -55,6 +56,7 @@ ReactDOM.render(
       <Route path="/testMedicalRecord" component={MedicalRecordTreatment} />
       <Route path="/test" component={NavbarQueses} />
       <Route path="/apiDoc" component={apiDocument} />
+      <Route path="/test2" component={Testt} />
     </div>
   </Router>,
   document.getElementById("root")

@@ -13,8 +13,8 @@ import styled from "styled-components";
 import { style } from "./../../Static/Style/QueueCss";
 import Nurse from "./../Components/ShowFormNurse"
 const Body = styled.div `
-    margin-left: 205px;
-    min-width: 550px;
+    margin-left: 20vh;
+    min-width: 100vh;
 `;
 
 const src = 'http://react.semantic-ui.com/images/wireframe/image.png'
