@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Header, Icon, Image, Label, Responsive, Sidebar, Visibility, Button, Modal
+  Grid, Menu, Segment, Container, Header, Icon, Image, Label, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader
 } from "semantic-ui-react";
 import styled from "styled-components";
 import { QRCode } from "react-qr-svg";
@@ -114,7 +114,8 @@ export default class PatientProfile extends Component {
     patient: {},
     historyTreatment: [],
     historyMsg: "",
-    chooseMedicalRecord:{}
+    chooseMedicalRecord:{},
+    loader:true
   };
 
 
@@ -176,13 +177,16 @@ export default class PatientProfile extends Component {
        return
     }
     let citizenId = this.props.location.state.citizenId;
-    let patient = await getPatient(citizenId);
-    let historyTreatment = await getTreatmentHistoryOfPatient(citizenId);
-    this.setState({
-        patient: patient.data,
-        historyTreatment: historyTreatment.data,
-        historyMsg : historyTreatment.message
-    });
+    getPatient(citizenId).then(patient => {
+      getTreatmentHistoryOfPatient(citizenId).then(history => {
+        this.setState({
+          patient: patient.data,
+          historyTreatment: history.data,
+          historyMsg: history.message,
+          loader: false
+        });
+      })
+    })
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -203,10 +207,17 @@ export default class PatientProfile extends Component {
     const { open, size } = this.state;
     const { activeItem } = this.state;
     const { sidebarOpened } = this.state;
+    const { fixed } = this.state;
 
     console.log("PATIENT ",this.state.patient)
     return (
       <div>
+        <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+          <Dimmer page indeterminate  active={this.state.loader}>
+            <Loader size='massive'>Loading</Loader>
+          </Dimmer>
+        
+
         <Responsive {...Responsive.onlyComputer}>
           <BG>
             {this.showModal()}
@@ -354,58 +365,65 @@ export default class PatientProfile extends Component {
                               |__/                                                                                                                      
  */}
 
-        <Responsive {...Responsive.onlyMobile}>
+          <Responsive {...Responsive.onlyMobile}>
 
-          <Visibility
-            onBottomPassed={this.stickTopMenu}
-            onBottomVisible={this.unStickTopMenu}
-            once={false}
-          >
-
-            {/* rgba(0,181,173,10) */}
-            <Menu
-              style={{ borderColor: 'rgba(255,255,255,10)',paddingTop:2 }}
-              fixed="top"
-              pointing
-              secondary
-              size='large'
-              secondary={!this.state.menuFixed}
+            <Visibility
+              onBottomPassed={this.stickTopMenu}
+              onBottomVisible={this.unStickTopMenu}
+              once={false}
             >
 
-              <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
+              {/* rgba(0,181,173,10) */}
+              <Menu
+                style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
+                fixed={fixed ? 'top' : null}
+                pointing={!fixed}
+                secondary={!fixed}
+                size='large'
+                secondary={!this.state.menuFixed}
+                fixed={this.state.menuFixed && "top"}
+              >
 
-                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
-                  <Icon size="big" name='bars' style={{ color: 'black' }} />
-                </Menu.Item>
-                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                  <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
-                  <span style={{ fontSize: "2em", color: 'black' }}>
-                    OPD BOOKS
+                <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
+
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
+                    <Icon size="big" name='bars' style={{ color: 'black' }} />
+                  </Menu.Item>
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
+                    <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
+                    <span style={{ fontSize: "2em", color: 'black' }}>
+                      OPD BOOKS
                           </span>
-                </Menu.Item>
-              </Boderhide>
-            </Menu>
-          </Visibility>
-          <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
+                  </Menu.Item>
+                </Boderhide>
+              </Menu>
 
-            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
-              <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
 
-              <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
 
-              <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
-            </Sidebar>
-            <Sidebar.Pusher
-              dimmed={sidebarOpened}
-              onClick={this.handlePusherClick}
-              style={{ minHeight: '550px' }}
-            >
-              {this.menuTab()}
-            </Sidebar.Pusher>
+            </Visibility>
 
-          </Sidebar.Pushable>
+            <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
+              <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
+                <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
 
-        </Responsive>
+                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
+
+                <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
+              </Sidebar>
+
+              <Sidebar.Pusher
+                dimmed={sidebarOpened}
+                onClick={this.handlePusherClick}
+                style={{ minHeight: '550px' }}
+              >
+
+                {this.menuTab()}
+
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
+
+          </Responsive>
+        </Dimmer.Dimmable> 
       </div>
     )
   }
