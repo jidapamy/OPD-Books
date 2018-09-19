@@ -568,13 +568,108 @@ export const style = {
         borderColor: '#2C7E79',
     },
     bgDoc:{
+<<<<<<< HEAD
+        background:'#F7F4F4',
+    },
+
+    bgApi:{
+        // background:'#EAE8E8',
+        background:'#F7F4F4',
+        height:'',
+    },
+    HeaderColor:{
+        color: '#4D8B87',
+        fontSize:'20px'
+    },
+    HeaderColor2:{
+        color: '#4D8B87',
+        textAlign: 'center',
+    },    
+    headTable:{
+        background:'#444040',
+        color: '#ffffff',
+        borderRadius: '0px',
+        padding:'5px',
+        fontSize:'15px',
+        textAlign: 'left'
+    },
+    tableWidth:{
+        width: '100%', 
+    },
+    tableBody:{
+        textAlign: 'left',
+        fontSize:'15px',
+    },
+
+// Test
+
+    apiDescription:{
+        background:'#F7F4F4',
+        padding: '0px',
+        color: '#444040',
+        fontSize: '14.5px',
+        marginBottom:'4%',
+        
+    },
+    apiMethod:{
+        fontSize: '14px',
+        fontWeight: '100',
+        color: '#000000',
+        marginBottom:'4%',
+    },
+    apiMethodName:{
+        fontSize: '15px',
+        marginBottom:'1%',
+    },
+
+    textDes:{
+        fontSize:'15px'
+    },
+
+    tableHead:{
+        background:'#444040',
+        color: '#ffffff',
+        borderRadius: '0px',
+        padding:'5px',
+        fontSize:'15px',
+        textAlign: 'left',
+        width:'100%',
+        textAlign: 'Left',
+        height: '4.5%',
+        marginBottom: '-6%'
+    },
+
+    //api Document Css
+    menuAPI:{
+        fontWeight:'bold'
+    },
+=======
     background:'#F7F4F4',
     }
     ,
     
     
+>>>>>>> 18555362a35bcd4ce19ea502dbe7b768b12245aa
+
+    beforeClick:{
+        color:'#4D8B87',
+        textAlign:'center',
+
+    },
+
+    afterClick:{
+        textAlign:'center',
+        color:'#4D8B87',
+        background:'#E8E8E8',
+        fontWeight:'bold'
 
 
+    },
+
+
+
+
+    
 
 
 
