@@ -27,6 +27,7 @@ import stamp from "./Static/Img/Contianer/stamp.jpg";
 import asiaGray from "./Static/Img/Contianer/asiaGray.jpg";
 import myGray from "./Static/Img/Contianer/myGray.jpg";
 import stampGray from "./Static/Img/Contianer/stampGray.jpg";
+import Patient from "./Static/Img/Patient.png";
 import WOW from "wowjs";
 import "./Static/Style/Navbar.css";
 import "./Static/Style/HomeCss.css";
@@ -48,6 +49,7 @@ const RoadmapCenter = styled(Image)`
   justify-content: center;
   align-items: center;
 `;
+
 
 const Containerbgcolor = styled(Segment)`background-color: red;`;
 const ImageSizeRow = styled(Image)`
@@ -139,7 +141,7 @@ export default class Home extends React.Component {
                 </Menu.Menu>
               </Menu>
             </Visibility>
-
+            
             <h1 className="heading">Welcome Everyone </h1>
             <h4 className="detail">OPD Book on Blockchain </h4>
             <Link to="/signup">
@@ -148,6 +150,8 @@ export default class Home extends React.Component {
               </p>
             </Link>
           </div>
+         
+          
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
             vertical
@@ -237,7 +241,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow size='medium' src={icon1} />
+                    <ImageSizeRow src={icon1} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     DEVELOP
@@ -253,7 +257,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow size='medium' src={icon2} />
+                    <ImageSizeRow src={icon2} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     PREVENT
@@ -270,7 +274,7 @@ export default class Home extends React.Component {
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow size='medium' src={icon3} />
+                    <ImageSizeRow src={icon3} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     FACILITATE
@@ -281,13 +285,13 @@ export default class Home extends React.Component {
                   </p>
                 </Grid.Column>
 
-                {/* <Grid.Column
+                <Grid.Column
                   style={{ paddingBottom: "3em", paddingTop: "1em" }}
                   className="wow zoomIn"
                   data-wow-delay="0.2s"
                 >
                   <GridColumn>
-                    <ImageSizeRow size='medium' src={icon4} />
+                    <ImageSizeRow src={icon4} />
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
                     ONLINE
@@ -295,7 +299,7 @@ export default class Home extends React.Component {
                   <p style={{ fontSize: "1em" }}>
                     Save on internet instead of paper document.
                   </p>
-                </Grid.Column> */}
+                </Grid.Column>
               </Grid.Row>
             </Grid>
           </Segment>
@@ -405,7 +409,7 @@ export default class Home extends React.Component {
                     </Reveal>
                   </GridColumn>
                   <Header as="h5" style={{ fontSize: "2em" }}>
-                    Surakiti Sopontanapat"
+                    Surakiti Sopontanapat
                   </Header>
                 </Grid.Column>
               </Grid.Row>

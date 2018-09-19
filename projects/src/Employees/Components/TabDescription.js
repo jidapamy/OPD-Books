@@ -21,7 +21,7 @@ import TreatmentHistory from './TreatmentHistory';
 
 export default class TabDescription extends React.Component {
     showTab = () => {
-        let tab = [ { menuItem: 'ประวัติผู้ป่วย', render: () => <Tab.Pane><PageTab1 patient={this.props.patient} /></Tab.Pane>} ]
+        let tab = [ { menuItem: 'ประวัติผู้ป่วย', render: () => <Tab.Pane><PageTab1 patient={this.props.patient}/></Tab.Pane>} ]
         if(this.props.empLogin.position === 3) { // หมอ
             tab.push({ menuItem: 'ประวัติการรักษา', render: () => <Tab.Pane><TreatmentHistory historyTreatment={this.props.historyTreatment}/></Tab.Pane> })
         }
@@ -29,7 +29,7 @@ export default class TabDescription extends React.Component {
     }
     render() {
         return (
-            <Tab panes={this.showTab()}/>
+            <Tab panes={this.showTab()} />
         );
     }
 }

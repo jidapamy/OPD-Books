@@ -137,6 +137,6 @@ export default class FormMedicalRecord extends Component {
 
         {this.showForm()}
       </Segment>
-    );
+      );
   }
 }
