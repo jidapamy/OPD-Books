@@ -7,5 +7,4 @@ api-server/
 .DS_Store
 projects/src/index.js
 .DS_Store
-*.js
-projects/src/Employees/codemir/
+
