@@ -19,12 +19,14 @@ import FormMedicalPatientMobile from './../Components/FormMedicalPatientMobile';
 import FromHisProfilePatient from './../Components/FromHisProfilePatient';
 import MedicalPatient from './../Components/medicalPatient';
 import myQR from "./../../Static/Img/myQR.png";
+
+//components
+import HeaderPatient from "../Components/HeaderPatient"
 //static
 import BackgroundImage from "./../../Static/Img/BGGs.png";
 import { Link } from "react-router-dom";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod'
-// import TreatmentHistory from './../../Employees/Components/TreatmentHistory';
 import { getTreatmentHistoryOfPatient } from "./../../Service/MedicalRecordMethod";
 
 import CryptoJS from "crypto-js"
@@ -163,7 +165,9 @@ export default class PatientProfile extends Component {
   unStickTopMenu = () => this.setState({ menuFixed: false });
 
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = () => {
+    this.setState({ open: true })
+  }
   close = () => this.setState({ open: false });
 
   handlePusherClick = () => {
@@ -192,24 +196,25 @@ export default class PatientProfile extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   showModal =() =>{
-    return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
-      <Modal.Content>
-        <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
-        <Header textAlign={"center"} size="large">
-          {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
-        </Header>
-        <Button size="huge" basic color="teal" onClick={this.close} style={{ marginTop: "10%" }} fluid>
-          Close
+    if (this.state.patient.citizenId){
+      return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
+        <Modal.Content>
+          <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
+          <Header textAlign={"center"} size="large">
+            {this.state.patient.nametitle} {this.state.patient.firstname} {this.state.patient.lastname}
+          </Header>
+          <Button size="huge" basic color="teal" onClick={this.close} style={{ marginTop: "10%" }} fluid>
+            Close
             </Button>
-      </Modal.Content>
-    </PopupQRCode>
+        </Modal.Content>
+      </PopupQRCode>
+    }
   }
   render() {
     const { open, size } = this.state;
     const { activeItem } = this.state;
     const { sidebarOpened } = this.state;
 
-    console.log("PATIENT ",this.state.patient)
     return (
       <div>
         <Responsive {...Responsive.onlyComputer}>
@@ -221,7 +226,11 @@ export default class PatientProfile extends Component {
          / / / / / /  __/ / / / /_/ / /_/ / /_/ / /    
         /_/ /_/ /_/\___/_/ /_/\__,_/_.___/\__,_/_/      */}
 
-            <Segment>
+            <HeaderPatient 
+              page="patient" 
+              patient={this.state.patient} 
+              show={this.show}/>
+            {/* <Segment>
               <Container>
                 <br />
                 <Grid>
@@ -322,7 +331,7 @@ export default class PatientProfile extends Component {
                   </Grid.Column>
                 </Grid>
               </Container>
-            </Segment>
+            </Segment> */}
 
             {/* /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  /_____/  */}
 

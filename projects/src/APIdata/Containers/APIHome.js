@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 export default class APIHome extends Component {
-    
+    state = {
+        citizenId: "",
+        password: "",
+        checklogin: ""
+    };
+
     render() {
         return (
            <div>

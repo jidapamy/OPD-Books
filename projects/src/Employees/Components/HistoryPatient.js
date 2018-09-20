@@ -69,8 +69,6 @@ handleChangeDate=(date)=> {
   }
 
   render() {
-
-
     return (
       <div>
        

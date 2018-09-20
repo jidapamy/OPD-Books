@@ -438,7 +438,7 @@ export default class Home extends React.Component {
                         <Link to="/signin">SignIn </Link>
                       </List.Item>
                       <List.Item as="api"> 
-                        <Link to="/api">API Services</Link>
+                        <Link to="/apiDoc">API Services</Link>
                       </List.Item>
                     </List>
                   </Grid.Column>

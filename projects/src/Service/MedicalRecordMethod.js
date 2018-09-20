@@ -27,7 +27,6 @@ export const getMedicalRecord = async (medicalRecordId) => {
 
 export const getTreatmentHistoryOfPatient = async (citizentId) => {
     let res = await axios.get(`/medicalRecords/getHistoryMedicalRecord/${citizentId}`)
-    console.log("res.data", res.data)
     return res.data
 };
 

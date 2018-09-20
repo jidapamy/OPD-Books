@@ -57,7 +57,6 @@ const style = {
 export default class FromHisProfilePatient extends React.Component {
     render() {
         const data = this.props.chooseMedicalRecord;
-        console.log("data",data)
         return (
             <Grid.Column width={6}>
                 <Segment.Group >

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
-import { Scrollbars } from "react-custom-scrollbars";
-import Queues from "./../Components/ListQueues";
+// import { Scrollbars } from "react-custom-scrollbars";
+// import Queues from "./../Components/ListQueues";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import moment from "moment";
 import { addQueue, removeQueues } from "./../../Service/QueueMethod";
-import { defaultAccount, contract, web3 } from "./../../Lib/Web3";
 import NavbarHeader from "./../Components/NavHeader";
+import { Dimmer, Loader } from "semantic-ui-react";
+import { patientField } from "../../Static/Data/Field"
 
-import { Patient } from "./../../Model/Patient";
-import { getPatient } from "./../../Service/ManagePatientMethod";
+import { getPatient, checkIdcard } from "./../../Service/ManagePatientMethod";
 
 import {
   Button,
@@ -28,7 +28,9 @@ import {
   Table,
   List,
   Divider,
-  Modal
+  Modal,
+  Form,
+  Checkbox
 } from "semantic-ui-react";
 
 const PopupQRCode = styled(Modal)`
@@ -52,7 +54,7 @@ const style = {
     marginTop: "1em",
     marginBottom: "50px",
     cursor: "pointer",
-    
+    width: "290px"
   },
   h3: {
     marginTop: "2em",
@@ -60,7 +62,7 @@ const style = {
   },
   DataBlock: {
     color: "#AFB4B7"
-  }, 
+  },
   colorHeader: {
     color: "#00B5AD"
   }
@@ -68,56 +70,57 @@ const style = {
 
 class Registration extends Component {
   state = {
-    open: false,
-    openModal: false,
+    openScan: false,
+    openDetail: false,
     patient: {},
-    employee : this.props.location.state.userLogin
+    employee: {},
+    citizenIdSearch: '',
+    loader: false
   };
 
   getPatient = citizenId => {
-    let patient = getPatient(citizenId, "string");
+    let patient = getPatient(citizenId);
     this.setState({
       patient: patient,
-      open: false,
-      openModal: true
+      openScan: false,
+      openDetail: true
     });
   };
 
-  closeModal = () => this.setState({ openModal: false });
+  closeModal = () => this.setState({ openDetail: false });
 
-  scanQRCode = data => {
+  scanQRCode = citizenId => {
     // Decrypt
-    if (data) {
-      const currentDate = moment().format("ll");
-      var bytes = CryptoJS.AES.decrypt(data.toString(), "OPDQR");
-      var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-      let res = ([] = plaintext.split("@"));
-      // เช็คว่าตรงตามเงื่อนไขหรือไม่ เป็นQR ของClinicหรือไม่
-      if (res[0] == "OPDBooks") {
-        if (res[1] == "" + currentDate) {
-          this.getPatient(res[2]);
+    console.log(citizenId)
+    if (citizenId) {
+      this.setState({
+        loader: true,
+        openScan: false,
+      })
+      getPatient(citizenId).then(res => {
+        if (res.status) {
+          this.setState({
+            patient: res.data,
+            loader: false,
+            openDetail: true
+          });
         } else {
+          this.setState({ loader: false, })
           swal({
             type: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
+            // title: "Oops...",
+            text: res.message,
             showConfirmButton: false,
             timer: 2000
           });
-          this.setState({ open: false, })
         }
-      } else {
-        swal({
-          type: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          showConfirmButton: false,
-          timer: 2000
-        });
-        this.setState({ open: false });
-      }
+      })
     }
-  };
+  }
+
+  searchPatient = () => {
+    this.scanQRCode(this.state.citizenIdSearch)
+  }
 
   addQueueForNurse = () => {
     if (this.state.patient.citizenId) {
@@ -130,7 +133,7 @@ class Registration extends Component {
       });
       this.setState({
         patient: {},
-        openModal: false
+        openDetail: false
       });
     } else {
       // ยังไม่มีคนไข้
@@ -148,7 +151,11 @@ class Registration extends Component {
 
   render() {
     const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname + "  " + this.state.employee.lastname;
-    return <div>
+    return <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+      <Dimmer page active={this.state.loader}>
+        <Loader size='massive' indeterminate>Loading</Loader>
+      </Dimmer>
+      <div>
         <NavbarHeader empName={empName} />
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
@@ -160,51 +167,55 @@ class Registration extends Component {
             </Header.Content>
           </Header>
 
-          <Button color="red" content="Remove All Q" onClick={() => this.removeQ()} />
-
-          <Image centered style={style.d1} rounded size="medium" src={ScanButton} onClick={() => this.setState(
-                { open: true }
-              )} />
-          <Container>
-            <Grid style={style.last} textAlign="center">
-              <Grid.Column width={5}>
-                <Queues role="Nurse" position={2} StatusQueue="N" page="Registration" />
-              </Grid.Column>
-              <Grid.Column width={5}>
-                <Queues role="Doctor" position={3} StatusQueue="D" page="Registration" />
-              </Grid.Column>
-              <Grid.Column width={5}>
-                <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration" />
-              </Grid.Column>
-            </Grid>
-          </Container>
+          <Image centered style={style.d1} rounded src={ScanButton}
+            onClick={() => this.setState({ openScan: true })} />
+          <Form onSubmit={() => this.searchPatient()}>
+            <Form.Field>
+              <label>Citizen Id</label>
+              <input placeholder='Patient citizen Id' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })} />
+            </Form.Field>
+            <Button floated='right' type='submit'>Search</Button>
+          </Form>
+          {/* <Container>
+          <Grid style={style.last} textAlign="center">
+            <Grid.Column width={5}>
+              <Queues role="Nurse" position={2} StatusQueue="N" page="Registration" />
+            </Grid.Column>
+            <Grid.Column width={5}>
+              <Queues role="Doctor" position={3} StatusQueue="D" page="Registration" />
+            </Grid.Column>
+            <Grid.Column width={5}>
+              <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration" />
+            </Grid.Column>
+          </Grid>
+        </Container>*/}
         </Container>
 
-        <PopupQRCode size={"mini"} open={this.state.open} onClose={() => {
-            this.setState({ open: !this.state.open });
-          }}>
-          <Header textAlign={"center"} size="large">
-            Scan QRCode
-          </Header>
+        <PopupQRCode
+          size={"mini"}
+          open={this.state.openScan}
+          onClose={() => { this.setState({ openScan: !this.state.openScan }) }}>
+          <Header textAlign="center" size="large">Scan QR Code</Header>
           <Modal.Content>
             <QrReader delay={this.state.delay} onError={this.handleError} onScan={this.scanQRCode} style={{ width: "100%" }} />
-            <Button floated="left" size="huge" basic color="teal" onClick={() => this.setState(
-                  { open: false }
-                )} style={{ marginTop: "5%", marginBottom: "5%" }} fluid>
+            <Button
+              floated="left" size="huge"
+              basic color="teal"
+              onClick={() => this.setState({ openScan: false })}
+              style={{ marginTop: "5%", marginBottom: "5%" }} fluid>
               Close
-            </Button>
+          </Button>
           </Modal.Content>
         </PopupQRCode>
 
-        <Modal open={this.state.openModal} onClose={this.closeModal}>
+        <Modal open={this.state.openDetail} onClose={this.closeModal}>
           <Modal.Content>
             <Modal.Description>
               <Header as="h2" textAlign="center">
-                Medical
-              </Header>
+                Patient Information
+            </Header>
               <Divider />
-
-              <Scrollbars autoHide style={{ height: 700 }}>
+              {/* <Scrollbars autoHide style={{ height: 700 }}> */}
                 <Grid textAlign="center">
                   <br />
                   <Grid.Row>
@@ -219,9 +230,8 @@ class Registration extends Component {
 
                   <Grid.Row>
                     <Grid.Column textAlign="center" as="h3">
-                      <p>
-                        Name: <span style={style.DataBlock}>
-                          {this.state.patient.nameTitle} {this.state.patient.firstname} {this.state.patient.lastname}
+                      <p> Name: <span style={style.DataBlock}> 
+                      {this.state.patient[patientField.nametitle.variable]}{" "}{this.state.patient[patientField.firstname.variable]}{"  "}{this.state.patient[patientField.lastname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -229,51 +239,25 @@ class Registration extends Component {
                   <Grid.Row textAlign={"center"}>
                     <Grid.Column width={5}>
                       <p>
-                        Hospital Number <br />
+                        {patientField.citizenId.label} <br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.hospitalNumber}
+                          {this.state.patient[patientField.citizenId.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Date of Birth<br />
+                      {patientField.dob.label} <br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.dob}
+                          {this.state.patient[patientField.dob.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Congenital Disease<br />
+                        {patientField.congenitalDisease.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.congenitalDisease}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={5}>
-                      <p>
-                        Gender<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.gender}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <p>
-                        Blood Group<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.bloodgroup}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <p>
-                        Religion<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.religion}
+                        {this.state.patient[patientField.congenitalDisease.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -281,25 +265,25 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Nationality<br />
+                        {patientField.gender.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.nationality}
+                        {this.state.patient[patientField.gender.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Country<br />
+                      {patientField.bloodgroup.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.country}
+                        {this.state.patient[patientField.bloodgroup.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Status<br />
+                        {patientField.religion.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.status}
+                        {this.state.patient[patientField.religion.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -307,25 +291,51 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Occupartion<br />
+                        {patientField.nationality.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.occupartion}
+                        {this.state.patient[patientField.nationality.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Home Number<br />
+                        {patientField.country.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.homePhonenumber}
+                        {this.state.patient[patientField.country.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Mobile Number<br />
+                        {patientField.status.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.mobileNumber}
+                        {this.state.patient[patientField.status.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.occupartion.label}<br />
+                        <span style={style.DataBlock}>
+                        {this.state.patient[patientField.occupartion.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.homePhonenumber.label}<br />
+                        <span style={style.DataBlock}>
+                        {this.state.patient[patientField.homePhonenumber.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.mobileNumber.label}<br />
+                        <span style={style.DataBlock}>
+                        {this.state.patient[patientField.mobileNumber.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -346,25 +356,25 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Type Of House<br />
+                        {patientField.typeofHouse.label} <br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.typeofHouse}
+                        {this.state.patient[patientField.typeofHouse.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Address<br />
+                        {patientField.address.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.address}
+                        {this.state.patient[patientField.address.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Sub-District<br />
+                        {patientField.subDistrict.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.subDistrict}
+                        {this.state.patient[patientField.subDistrict.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -372,25 +382,25 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        District<br />
+                        {patientField.district.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.district}
+                        {this.state.patient[patientField.district.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Province<br />
+                        {patientField.province.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.province}
+                        {this.state.patient[patientField.province.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Zipcode<br />
+                      {patientField.zipcode.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.zipcode}
+                        {this.state.patient[patientField.zipcode.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -402,59 +412,32 @@ class Registration extends Component {
                     <Grid.Column width={5}>
                       <Header as="h3">
                         <Header.Content style={style.colorHeader}>
-                          EMERGENCY ADDRESS
+                          EMERGENCY CONTACT
                         </Header.Content>
                       </Header>
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={5}>
-                      <p>
-                        Name<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.emerTitle} {this.state.patient.emerFirstname} {this.state.patient.emerLastname}
+                      <p> Name: <br/>
+                        <span style={style.DataBlock}> 
+                        {this.state.patient[patientField.emerTitle.variable]} {this.state.patient[patientField.emerFirstname.variable]} {this.state.patient[patientField.emerLastname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Relationship<br />
+                      {patientField.emerRelationship.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerRelationship}
+                        {this.state.patient[patientField.emerRelationship.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Home Number<br />
+                        {patientField.emerHomePhonenumber.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerHomePhonenumber}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={5}>
-                      <p>
-                        MobileNumber<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.emerMobileNumber}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <p>
-                        Type Of House<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.emerTypeofHouse}
-                        </span>
-                      </p>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <p>
-                        Address<br />
-                        <span style={style.DataBlock}>
-                          {this.state.patient.emerAddress}
+                          {this.state.patient[patientField.emerHomePhonenumber.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -462,25 +445,25 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Sub-District<br />
+                        {patientField.emerMobileNumber.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerSubDistrict}
+                          {this.state.patient[patientField.emerMobileNumber.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        District<br />
+                        {patientField.emerTypeofHouse.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerDistrict}
+                          {this.state.patient[patientField.emerTypeofHouse.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Province<br />
+                      {patientField.emerAddress.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerProvince}
+                          {this.state.patient[patientField.emerAddress.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -488,9 +471,35 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Zipcode<br />
+                        {patientField.emerSubDistrict.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.emerZipcode}
+                        {this.state.patient[patientField.emerSubDistrict.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.emerDistrict.label}<br />
+                        <span style={style.DataBlock}>
+                        {this.state.patient[patientField.emerDistrict.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.emerProvince.label}<br />
+                        <span style={style.DataBlock}>
+                        {this.state.patient[patientField.emerProvince.variable]}
+                        </span>
+                      </p>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <p>
+                        {patientField.emerZipcode.label}<br />
+                        <span style={style.DataBlock}>
+                          {this.state.patient[patientField.emerZipcode.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -504,7 +513,7 @@ class Registration extends Component {
                     <Grid.Column width={5}>
                       <Header as="h3">
                         <Header.Content style={style.colorHeader}>
-                          ALLERGY
+                          ALLERGY / PRIVILEGE
                         </Header.Content>
                       </Header>
                     </Grid.Column>
@@ -513,17 +522,17 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Privilege<br />
+                        {patientField.privilege.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.privilege}
+                          {this.state.patient[patientField.privilege.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Allergy<br />
+                      {patientField.allergy.label}<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.allergy}
+                          {this.state.patient[patientField.allergy.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -545,24 +554,24 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <p>
-                        Father Name<br />
+                        Father's Name<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.fatherFirstname} {this.state.patient.fatherLastname}
+                        {this.state.patient[patientField.fatherFirstname.variable]} {this.state.patient[patientField.fatherLastname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                        Mother Name<br />
+                        Mother's Name<br />
                         <span style={style.DataBlock}>
-                          {this.state.patient.motherFirstname} {this.state.patient.motherLastname}
+                        {this.state.patient[patientField.motherFirstname.variable]} {this.state.patient[patientField.motherFirstname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5} />
                   </Grid.Row>
                 </Grid>
-              </Scrollbars>
+              {/* </Scrollbars> */}
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
@@ -572,7 +581,8 @@ class Registration extends Component {
             <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.addQueueForNurse()} />
           </Modal.Actions>
         </Modal>
-      </div>;
+    </div>
+    </Dimmer.Dimmable>
   }
 }
 

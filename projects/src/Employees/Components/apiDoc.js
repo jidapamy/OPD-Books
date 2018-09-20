@@ -8,12 +8,7 @@ import {
   Dropdown,
   Table,
   Segment
-
 } from "semantic-ui-react";
-
-
-
-// import { Table } from 'reactstrap';
 import { style } from "./../../Static/Style/QueueCss";
 import { Scrollbars } from "react-custom-scrollbars";
 import styled from "styled-components";
@@ -34,14 +29,12 @@ export default class apiDocument extends Component {
       activeItem: name ,
       chooseMethod : apiData[i].method[j]
     })
-
-
   }
 
   showMethod = (index) => {
     let tmp = ""
     tmp = apiData[index].method.map((method,j)=>{
-      return<Menu.Item name={method.title}
+      return<Menu.Item name={method.title} key={index+"/"+j}
               active={this.state.activeItem === method.title}
               onClick={(e, { name })=>this.choose(name,index,j)} 
               style={ this.state.activeItem === method.title ? style.afterClick :style.beforeClick} />
@@ -51,7 +44,7 @@ export default class apiDocument extends Component {
   showData = () => {
     let tmp = ''
     tmp = apiData.map((data,i)=>{
-        return <div>
+        return <div key={i}>
         <Menu.Item name={data.system}
             onClick={() => { this.setState({ open: data.system}) }} 
             style={style.menuAPI}/>
@@ -74,8 +67,8 @@ export default class apiDocument extends Component {
       //res
       arrAttr = this.state.chooseMethod.attrRes
     }
-    tmp = arrAttr.map(attr => {
-      return  <Table.Row style={style.textDes}>
+    tmp = arrAttr.map((attr,i) => {
+      return  <Table.Row key={i} style={style.textDes}>
     <Table.Cell>
       <Header as='h4'>
         {attr.name}
@@ -86,6 +79,15 @@ export default class apiDocument extends Component {
   </Table.Row>
     })
     return tmp
+  }
+
+  showExample = (position) => {
+    if(position){
+      this.props.history.push({
+        pathname: "/empTest",
+        state: { position: position }
+      });
+    }
   }
 
   render() {
@@ -107,6 +109,14 @@ export default class apiDocument extends Component {
           <br />
           <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
           {this.showData()}
+          {/* MY!!!!!!!!!!!!!!!!!!!!!!! */}
+          <div>
+            <button onClick={()=>this.showExample(1)} >Example for Registrar</button>
+            <button onClick={() => this.showExample(2)}>Example for Nurse</button>
+            <button onClick={() => this.showExample(3)}>Example for Doctor</button>
+            <button onClick={() => this.showExample(4)}>Example for Pharmacy</button>
+          </div>
+          {/* MY!!!!!!!!!!!!!!!!!!!!!!! */}
         </Menu>
 
         <Body>
@@ -148,7 +158,7 @@ export default class apiDocument extends Component {
               </div>
               <br /><br />
               <Scrollbars autoHide style={{ width: 495, height: 400 }} >
-                <Table basic='very' collapsing solid style={style.tableWidth}>
+                <Table basic='very' collapsing style={style.tableWidth}>
                   <Table.Body style={style.tableBody}>
                   {this.showAttribute()}
                     {/* <Table.Row style={style.textDes}>
