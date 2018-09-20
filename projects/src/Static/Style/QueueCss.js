@@ -568,7 +568,6 @@ export const style = {
         borderColor: '#2C7E79',
     },
     bgDoc:{
-<<<<<<< HEAD
         background:'#F7F4F4',
     },
 
@@ -641,30 +640,68 @@ export const style = {
 
     //api Document Css
     menuAPI:{
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize: '15px'
     },
-=======
-    background:'#F7F4F4',
-    }
-    ,
-    
-    
->>>>>>> 18555362a35bcd4ce19ea502dbe7b768b12245aa
 
     beforeClick:{
         color:'#4D8B87',
-        textAlign:'center',
+        textAlign:'left',
 
     },
 
     afterClick:{
-        textAlign:'center',
+        textAlign:'left',
         color:'#4D8B87',
         background:'#E8E8E8',
         fontWeight:'bold'
 
 
     },
+
+     // Code Mirror CSS
+    bgCodeMirror:{
+        backgroundColor:'#32404D',
+        width:'95%',
+        height:'600px',
+        margin:'3%',
+        marginTop: '13%'
+    },
+
+    HeadCodeMirror:{
+        color:'#ffffff',
+        fontSize:'16px',
+        margin:'2%',
+        paddingTop:'1.5%',
+
+    },
+    topicCodeMirror:{
+        color:'#ffffff',
+        fontSize:'15px',
+        fontWeight:'lighter',
+        
+    },
+
+    textCodeMirror:{
+        color:'#EDD16F',
+        fontSize:'15px',
+        
+    },
+    HeaderTextCodeMirror:{
+        color:'#ADA18F',
+        fontSize:'15px',
+        marginLeft:'10%',
+        fontWeight:'bold',
+    },
+    HeaderTextCodeMirror2:{
+        color:'#ADA18F',
+        fontSize:'15px',
+        marginLeft:'17%',
+    },
+    AreaCodeMirror:{
+        marginLeft:'5%',
+    },
+
 
 
 
