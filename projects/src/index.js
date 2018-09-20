@@ -38,9 +38,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+const scrollToTop = () => {
+  window.scrollTo(0,0)
+  return null
+}
+
 ReactDOM.render(
   <Router>
     <div>
+      <Route component={scrollToTop} />
       <Route exact path="/" component={Home} />
       {/* patient */}
       <Route path="/signin" component={Login} />
