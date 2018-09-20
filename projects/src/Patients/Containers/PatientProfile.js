@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Divider, Header, Icon, Image, Table, Label, List, Dropdown, Item, Responsive, Sidebar, Visibility, Statistic,
-  Button, Modal, Popup, Form, TextArea, Pagination
+  Grid, Menu, Segment, Container, Header, Icon, Image, Label, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader
 } from "semantic-ui-react";
 import styled from "styled-components";
-import iconOpd from "./../../Static/Img/IconOPDs.png";
-import BGMobile from "./../../Static/Img/BGMobile.png";
-import swal from "sweetalert2";
 import { QRCode } from "react-qr-svg";
 import moment from "moment";
-import { Scrollbars } from 'react-custom-scrollbars';
 import FromAddressPatient from './../Components/FromAddressPatient';
 import InfoPatientMobile from './../Components/InfoPatientMobile';
 import ProfilePatientMobile from './../Components/ProfilePatientMobile';
-import FromHistoryPatientMobile from './../Components/FromHistoryPatientMobile'; 
+import FromHistoryPatientMobile from './../Components/FromHistoryPatientMobile';
 import FromAddressPatientMobile from './../Components/FromAddressPatientMobile';
 import FormMedicalPatientMobile from './../Components/FormMedicalPatientMobile';
 import FromHisProfilePatient from './../Components/FromHisProfilePatient';
@@ -62,17 +57,17 @@ const style = {
 //   background: url('${BGMobile}') !important;
 //   background-size: 100% 100%;
 // `
-const BGMobiles = styled(Segment) `
+const BGMobiles = styled(Segment)`
   background: url('https://i.pinimg.com/236x/d9/0d/cf/d90dcf52b2d215d82fdbd54d0f5754b5.jpg') !important;
   background-size: 100% 100%;
 `
-const Information = styled(Segment) `
+const Information = styled(Segment)`
   border:0 !important;
   border-color:'#FFFFFF' !important;
   -webkit-box-shadow:0 1px 2px 0 rgba(255, 255, 255, 10)!important ;
 `
 
-const PopupQRCode = styled(Modal) `
+const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -81,7 +76,7 @@ const PopupQRCode = styled(Modal) `
 `;
 
 
-const Boderhide = styled(Menu) `
+const Boderhide = styled(Menu)`
   border:0;
 `;
 
@@ -105,11 +100,11 @@ const menuStyle = {
 export default class PatientProfile extends Component {
 
   state = {
-    statusShowHistory:true,
-    avtiveMenuTab:false,
-    sidebarOpened:false,
-    menuTab:0,
-    statusTab:false,
+    statusShowHistory: true,
+    avtiveMenuTab: false,
+    sidebarOpened: false,
+    menuTab: 0,
+    statusTab: false,
     tab: 0,
     activeItem: "home",
     activeItemMenu: "home",
@@ -121,10 +116,11 @@ export default class PatientProfile extends Component {
     patient: {},
     historyTreatment: [],
     historyMsg: "",
-    chooseMedicalRecord:{}
+    chooseMedicalRecord:{},
+    loader:true
   };
 
-  
+
   menuTab = () => {
     if (this.state.menuTab == 0) {
       return <ProfilePatientMobile
@@ -137,22 +133,22 @@ export default class PatientProfile extends Component {
         setField={this.setField}
       />
     } else if (this.state.menuTab == 1) {
-      
-      if (this.state.statusShowHistory == true){
-        return <FromHistoryPatientMobile setField={this.setField}/>
-      } else if (this.state.statusShowHistory == false){
-        return <FormMedicalPatientMobile setField={this.setField}/>
+
+      if (this.state.statusShowHistory == true) {
+        return <FromHistoryPatientMobile setField={this.setField} />
+      } else if (this.state.statusShowHistory == false) {
+        return <FormMedicalPatientMobile setField={this.setField} />
       }
-     
-    } 
+
+    }
   }
-  setField=(field,value)=>{
-    this.setState({ [field]:value });
+  setField = (field, value) => {
+    this.setState({ [field]: value });
   }
-  
+
   showtab = (tab) => {
     if (tab == 0) {
-      return <InfoPatientMobile patient={this.state.patient}  />
+      return <InfoPatientMobile patient={this.state.patient} />
 
     } else if (tab == 1) {
       return <FromAddressPatientMobile patient={this.state.patient} />
@@ -185,13 +181,16 @@ export default class PatientProfile extends Component {
        return
     }
     let citizenId = this.props.location.state.citizenId;
-    let patient = await getPatient(citizenId);
-    let historyTreatment = await getTreatmentHistoryOfPatient(citizenId);
-    this.setState({
-        patient: patient.data,
-        historyTreatment: historyTreatment.data,
-        historyMsg : historyTreatment.message
-    });
+    getPatient(citizenId).then(patient => {
+      getTreatmentHistoryOfPatient(citizenId).then(history => {
+        this.setState({
+          patient: patient.data,
+          historyTreatment: history.data,
+          historyMsg: history.message,
+          loader: false
+        });
+      })
+    })
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -214,9 +213,16 @@ export default class PatientProfile extends Component {
     const { open, size } = this.state;
     const { activeItem } = this.state;
     const { sidebarOpened } = this.state;
+    const { fixed } = this.state;
 
     return (
       <div>
+        <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+          <Dimmer page active={this.state.loader}>
+            <Loader indeterminate size='massive'>Loading</Loader>
+          </Dimmer>
+        
+
         <Responsive {...Responsive.onlyComputer}>
           <BG>
             {this.showModal()}
@@ -368,63 +374,65 @@ export default class PatientProfile extends Component {
                               |__/                                                                                                                      
  */}
 
-        <Responsive {...Responsive.onlyMobile}>
-          
-          <Visibility
-            onBottomPassed={this.stickTopMenu}
-            onBottomVisible={this.unStickTopMenu}
-            once={false}
-          >
-            
-            {/* rgba(0,181,173,10) */}
-            <Menu
-              style={{ borderColor: 'rgba(255,255,255,10)',paddingTop:2 }}
-              fixed="top"
-              pointing
-              secondary
-              size='large'
-              secondary={!this.state.menuFixed}
+          <Responsive {...Responsive.onlyMobile}>
+
+            <Visibility
+              onBottomPassed={this.stickTopMenu}
+              onBottomVisible={this.unStickTopMenu}
+              once={false}
             >
-             
-              <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
-                
-                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
-                  <Icon size="big" name='bars' style={{ color: 'black' }} />
-                </Menu.Item>
-                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                  <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
-                  <span style={{ fontSize: "2em", color: 'black' }}>
-                    OPD BOOKS
+
+              {/* rgba(0,181,173,10) */}
+              <Menu
+                style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
+                fixed={fixed ? 'top' : null}
+                pointing={!fixed}
+                secondary={!fixed}
+                size='large'
+                secondary={!this.state.menuFixed}
+                fixed={this.state.menuFixed && "top"}
+              >
+
+                <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
+
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
+                    <Icon size="big" name='bars' style={{ color: 'black' }} />
+                  </Menu.Item>
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
+                    <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
+                    <span style={{ fontSize: "2em", color: 'black' }}>
+                      OPD BOOKS
                           </span>
-                </Menu.Item>
-              </Boderhide>
-            </Menu>
+                  </Menu.Item>
+                </Boderhide>
+              </Menu>
 
 
 
-          </Visibility>
+            </Visibility>
 
-          <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
-            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
-              <Menu.Item color='teal' as='a'  icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened:false}) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
+            <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
+              <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
+                <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
 
-              <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true}) }}><Icon name='history' /> History</Menu.Item>
+                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
 
-              <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
-            </Sidebar>
+                <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
+              </Sidebar>
 
-            <Sidebar.Pusher
-              dimmed={sidebarOpened}
-              onClick={this.handlePusherClick}
-              style={{ minHeight: '550px' }}
-            >
+              <Sidebar.Pusher
+                dimmed={sidebarOpened}
+                onClick={this.handlePusherClick}
+                style={{ minHeight: '550px' }}
+              >
 
-              {this.menuTab()}
+                {this.menuTab()}
 
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
 
-        </Responsive>
+          </Responsive>
+        </Dimmer.Dimmable> 
       </div>
     )
   }

@@ -46,6 +46,7 @@ ReactDOM.render(
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
+      {/* <Route path="/editProfile" component={EditProfile} /> */}
 
       {/* emp */}
       <Route path="/empTest" component={EmpTest} />

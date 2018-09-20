@@ -3,10 +3,11 @@ export const apiData = [
         system: "Manage Patient Profile",
         method: [
             {
-                // system: "Manage Patient Profile",
+
+                //1
                 method: "POST",
                 path: "/patients/insert",
-                title: "Insert Patient Method",
+                title: "Insert Patient",
                 titleDes: "ใช้สมัครสมาชิกสำหรับผู้ป่วย",
                 attrReq: [
                     { name: "address", type: "String", des: "ที่อยู่ของผู้ป่วย" },
@@ -59,10 +60,10 @@ export const apiData = [
                 ],
             },
             {
-                // system: "Manage Patient Profile",
+                //3
                 method: "GET",
                 path: "/patients/get/:citizenId",
-                title: "Retrieves Patient Information",
+                title: "Fetch Patient Information",
                 titleDes: "ดึงข้อมูลของผู้ป่วย",
                 attrReq: [
                     { name: "citizenId", type: "String", des: "เลขบัตรประจำตัวประชาชนของผู้ป่วย" },
@@ -122,10 +123,10 @@ export const apiData = [
         system: "Authentication",
         method: [
             {
-                // system: "Authentication",
+                //2
                 method: "POST",
                 path: "/auth/login",
-                title: "Patient Login Method",
+                title: "Patient Login",
                 titleDes: "การเข้าสู่ระบบสำหรับผู้ป่วย",
                 attrReq: [
                     { name: "citizenId", type: "String", des: "เลขบัตรประจำตัวประชาชนของผู้ป่วย" },
@@ -143,10 +144,10 @@ export const apiData = [
         system: "Manage OPD Cards",
         method: [
             {
-                // system: "Manage OPD Cards",
+                //4
                 method: "POST",
                 path: "/medicalRecords/setMedicalRecordForNurse",
-                title: "Medical Record For Nurse Method",
+                title: "Nurse Record OPD Cards",
                 titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับพยาบาล)",
                 attrReq: [
                     { name: "BP1", type: "String", des: "ความดันโลหิต" },
@@ -174,10 +175,10 @@ export const apiData = [
             },
 
             {
-                // system: "Manage OPD Cards",
+                //5
                 method: "POST",
                 path: "/medicalRecords/setMedicalRecordForDoctor",
-                title: "Medical Record For Doctor Method",
+                title: "Doctor Record OPD Cards",
                 titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับแพทย์)",
                 attrReq: [
                     { name: "appointment", type: "String", des: "วันนัดพบแพทย์" },
@@ -197,11 +198,11 @@ export const apiData = [
             },
 
             {
-                // system: "Manage OPD Cards",
+                //6
                 method: "GET",
                 path: "/medicalRecords/getMedicalRecordForNurse/:medicalRecordId",
-                title: "Medical Record For Nurse Method",
-                titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับพยาบาล)",
+                title: "Nurse Fetch OPD Cards",
+                titleDes: "ดึงใบการรักษาผู้ป่วย (สำหรับพยาบาล)",
                 attrReq: [
                     { name: "medicalRecordId", type: "String", des: "รหัสใบการรักษา" },
                 ],
@@ -229,11 +230,11 @@ export const apiData = [
             },
 
             {
-                // system: "Manage OPD Cards",
+                //7
                 method: "GET",
                 path: "/medicalRecords/getMedicalRecordForDoctor/:medicalRecordId",
-                title: "Medical Record For Doctor Method",
-                titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับแพทย์)",
+                title: "Doctor Fetch OPD Cards",
+                titleDes: "ดึงใบการรักษาผู้ป่วย  (สำหรับแพทย์)",
                 attrReq: [
                     { name: "medicalRecordId", type: "String", des: "รหัสใบการรักษา" },
                 ],
@@ -255,11 +256,11 @@ export const apiData = [
             },
 
             {
-                // system: "Manage OPD Cards",
+                //8
                 method: "GET",
                 path: "/medicalRecords/getMedicalRecord/:medicalRecordId",
-                title: "Medical Record ForNurse Method",
-                titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับพยาบาล)",
+                title: "Fetch OPD Cards",
+                titleDes: "ดึงใบการรักษาผู้ป่วย (โดยไม่แยกพยาบาลและหมอ)",
                 attrReq: [
                     { name: "medicalRecordId", type: "String", des: "รหัสใบการรักษา" },
                 ],
@@ -294,11 +295,11 @@ export const apiData = [
             },
 
             {
-                // system: "Manage OPD Cards",
+                //10
                 method: "POST",
                 path: "/medicalRecords/getHistoryMedicalRecord/:patientCitizenId",
-                title: "Medical Record ForNurse Method",
-                titleDes: "บันทึกข้อมูลใบการรักษาผู้ป่วย (สำหรับพยาบาล)",
+                title: "Fetch OPD Cards History",
+                titleDes: "ดึงประวัติการรักษาของผู้ป่วยคนนั้นๆ",
                 attrReq: [
                     { name: "patientCitizenId", type: "String", des: "เลขบัตรประจำตัวประชาชนของผู้ป่วย" },
                 ],
