@@ -7,7 +7,6 @@ import {
   Menu,
   Dropdown,
   Table,
-  Segment
 } from "semantic-ui-react";
 import { style } from "./../../Static/Style/QueueCss";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -18,16 +17,16 @@ import { MySlidedown } from "./slide"
 export default class apiDocument extends Component {
 
   state = {
-    open:"Manage Patient Profile",
-    activeItem:"Insert Patient Method",
-    chooseMethod : apiData[0].method[0],
-    statusJson : 1
+    open: "Manage Patient Profile",
+    activeItem: "Insert Patient Method",
+    chooseMethod: apiData[0].method[0],
+    statusJson: 1
   }
 
-  choose = (name,i,j) => {
-    this.setState({ 
-      activeItem: name ,
-      chooseMethod : apiData[i].method[j]
+  choose = (name, i, j) => {
+    this.setState({
+      activeItem: name,
+      chooseMethod: apiData[i].method[j]
     })
   }
 
@@ -46,24 +45,24 @@ export default class apiDocument extends Component {
     tmp = apiData.map((data,i)=>{
         return <div key={i}>
         <Menu.Item name={data.system}
-            onClick={() => { this.setState({ open: data.system}) }} 
-            style={style.menuAPI}/>
+          onClick={() => { this.setState({ open: data.system }) }}
+          style={style.menuAPI} />
 
-          <MySlidedown open={this.state.open === data.system ? true : false}>
-            {this.showMethod(i)}
-          </MySlidedown>
+        <MySlidedown open={this.state.open === data.system ? true : false}>
+          {this.showMethod(i)}
+        </MySlidedown>
       </div>
-      })
+    })
     return tmp
   }
 
   showAttribute = () => {
     let arrAttr = []
     let tmp = "";
-    if(this.state.statusJson === 1) {
+    if (this.state.statusJson === 1) {
       // request 
       arrAttr = this.state.chooseMethod.attrReq
-    }else{
+    } else {
       //res
       arrAttr = this.state.chooseMethod.attrRes
     }
@@ -122,22 +121,21 @@ export default class apiDocument extends Component {
         <Body>
           <Grid columns={2}>
             <Grid.Column width={8}>
-              <Header size='large' style={style.HeaderColor}>{this.state.chooseMethod.title}</Header>
+              <Header size='large' style={style.HeaderColor}>{this.state.chooseMethod.title}&nbsp;Method</Header>
               <p style={style.apiDescription} >{this.state.chooseMethod.titleDes}</p>
-              <p style={style.apiMethodName}>HTTP REQUEST</p>
+              <p style={style.apiMethodName}><b>HTTP REQUEST</b></p>
               <Label style={style.apiMethod}><i>
-                  POST /patients/insert
-                  {this.state.chooseMethod.titleDes}{this.state.chooseMethod.titleDes}      
+                {this.state.chooseMethod.method}&nbsp;&nbsp;{this.state.chooseMethod.path}
               </i></Label>
               <Menu pointing secondary>
-                <Menu.Item 
-                  name='Request' 
-                  active={this.state.statusJson === 1} 
-                  onClick={()=> this.setState({ statusJson : 1 })} />
+                <Menu.Item
+                  name='Request'
+                  active={this.state.statusJson === 1}
+                  onClick={() => this.setState({ statusJson: 1 })} />
                 <Menu.Item
                   name='Response'
                   active={this.state.statusJson === 2}
-                  onClick={()=> this.setState({ statusJson : 2 })}
+                  onClick={() => this.setState({ statusJson: 2 })}
                 />
               </Menu>
 
@@ -147,11 +145,11 @@ export default class apiDocument extends Component {
                     <Grid.Column width={6}>
                       Field
                     </Grid.Column>
-                    <Grid.Column width={2}>
+                    <Grid.Column width={3}>
                       Type
                     </Grid.Column>
                     <Grid.Column width={3}>
-                      &nbsp;&nbsp;Description
+                      Description
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
@@ -160,410 +158,724 @@ export default class apiDocument extends Component {
               <Scrollbars autoHide style={{ width: 495, height: 400 }} >
                 <Table basic='very' collapsing style={style.tableWidth}>
                   <Table.Body style={style.tableBody}>
-                  {this.showAttribute()}
-                    {/* <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4'>
-                          address
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ที่อยู่ของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' >
-                          allergy
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>อาการ/สิ่งที่ผู้ป่วยแพ้</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          bloodgroup
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>กรุ๊ปเลือดของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          citizenId
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เลขบัตรประจำตัวประชาชนของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          congenitalDisease
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>โรคประจำตัวของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          country
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ประเทศที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          district
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>อำเภอที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          dob
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>วันเกิดของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          email
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>E-mail ของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerAddress
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>บ้านเลขที่ของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerDistrict
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>อำเภอของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerFirstname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ชื่อของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerHomePhonenumber
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เบอร์โทรศัพท์บ้าน (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerLastname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>นามสกุลของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerMobileNumber
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เบอร์โทรศัพท์มือถือ (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerProvince
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>จังหวัด (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerRelationship
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ความเกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerSubDistrict
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ตำบลของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerTitle
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>คำนำหน้าของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerTypeofHouse
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ประเภทที่อยู่อาศัย (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          emerZipcode
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>รหัสไปรษณีย์ที่อยู่ (กรณีติดต่อฉุกเฉิน)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          fatherFirstname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ชื่อบิดา (กรณีผู้ป่วยอายุน้อยกว่า 15 ปี)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          fatherLastname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>นามสกุลบิดา (กรณีผู้ป่วยอายุน้อยกว่า 15 ปี)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          firstname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ชื่อของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          gender
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เพศของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          homePhonenumber
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เบอร์โทรศัพท์บ้านของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          hospitalNumber
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>หมายเลขบัตรประจำตัวผู้ป่วย (ของโรงพยาบาล)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          lastname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>นามสกุลของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          mobileNumber
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>เบอร์โทรศัพท์มือถือของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          motherFirstname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ชื่อมารดา (กรณีผู้ป่วยอายุน้อยกว่า 15 ปี)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          motherLastname
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>นามสกุลมารดา (กรณีผู้ป่วยอายุน้อยกว่า 15 ปี)</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          nameTitle
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>คำนำหน้าของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          nationality
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>สัญชาติของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          occupartion
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>อาชีพของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          password
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>พลาสเวิร์สสำหรับเข้าระบบ</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          privilege
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>สิทธิการรักษาของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          province
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>จังหวัดที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          religion
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ศาสนาของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          status
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>Boolean</Table.Cell>
-                      <Table.Cell>สถานะภาพของผู้ป่วย</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          subDistrict
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ตำบลที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          typeofHouse
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>ประเทศที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          zipcode
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>รหัสไปรษณีย์ที่อยู่ที่ผู้ป่วยอาศัยอยู่</Table.Cell>
-                    </Table.Row>
-                    <Table.Row style={style.textDes}>
-                      <Table.Cell>
-                        <Header as='h4' image>
-                          date
-                      </Header>
-                      </Table.Cell>
-                      <Table.Cell>String</Table.Cell>
-                      <Table.Cell>วันที่ทำการสมัคร</Table.Cell>
-                    </Table.Row> */}
-
-
+                    {this.showAttribute()}
                   </Table.Body>
                 </Table>
               </Scrollbars>
             </Grid.Column>
 
-
-
-
-
-
-
             <Grid.Column width={8}>
-              ckgvhjbknlm,lkjhgfgcgvbn
-          </Grid.Column>
+              <div style={style.bgCodeMirror}>
+                <p style={style.HeadCodeMirror}><b>Request</b></p>
+                <hr />
+                <Scrollbars autoHide style={{ width: 460, height: 550 }} >
+                  <div style={style.AreaCodeMirror}>
+                    <br /><br /><br />
+                    <div style={style.topicCodeMirror}>
+                      Example Request
+                    </div>
+                    <br /><br />
+                    <div style={style.topicCodeMirror}>
+                      {'{'}
+                    </div>
+ 
+                    <span style={style.HeaderTextCodeMirror}>
+                      "status"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>:</b>
+                    </span>
+                    &nbsp;&nbsp;
+                    <span style={style.textCodeMirror}>
+                      true
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror}>
+                    "message"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>:</b>
+                    </span>
+                    &nbsp;&nbsp;
+                    <span style={style.textCodeMirror}>
+                    "SUCCESS"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror}>
+                    "data"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: {'{'}</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "registerDate"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "09/02/2018"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "hospitalNumber"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "01/61"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "citizenId"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "1234567890101"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "dob"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "31/08/2000"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "nameTitle"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Miss."
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "firstname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Aleeza"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "lastname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Sharp"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "gender"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "F"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "congenitalDisease"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "-"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "bloodgroup"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "AB"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "religion"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Buddhism"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "nationality"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Thai"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "country"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Thai"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "status"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Broke up with bf/gf"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "occupartion"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "-"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "homePhonenumber"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "029293939"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "mobileNumber"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "0829392939"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "email"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "test01@gmail.com"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "typeofHouse"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Townhouse"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "address"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "23"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "province"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Kanchanaburi"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "district"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Sai Yok"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "subDistrict"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "Wang Krachae"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "zipcode"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "71150"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerTitle"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerFirstname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerLastname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerRelationship"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerHomePhonenumber"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerMobileNumber"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerTypeofHouse"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerAddress"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerProvince"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerDistrict"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerSubDistrict"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "emerZipcode"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "fatherFirstname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "fatherLastname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "motherFirstname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "motherLastname"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "allergy"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "not have"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "privilege"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    ""
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>,</b>
+                    </span>
+                    <br/>
+
+                    <span style={style.HeaderTextCodeMirror2}>
+                     "age"
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                      &nbsp;<b>: </b>
+                    </span>
+                    &nbsp;
+                    <span style={style.textCodeMirror}>
+                    "18 Years old"
+                    </span>
+                    <br/>
+                    <span style={style.HeaderTextCodeMirror}>
+                    
+                    </span>
+                    <span style={style.topicCodeMirror}>
+                    <b>{'}'}</b>
+                    </span>
+                    <br/>
+                    <div style={style.topicCodeMirror}>
+                      {'}'}
+                    </div>
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    
+
+                  </div>
+                </Scrollbars>
+              </div>
+            </Grid.Column>
+
           </Grid>
         </Body>
 

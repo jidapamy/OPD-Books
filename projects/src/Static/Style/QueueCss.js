@@ -639,22 +639,82 @@ export const style = {
     },
 
     //api Document Css
-    menuAPI: {
-        fontWeight: 'bold'
+    menuAPI:{
+        fontWeight:'bold',
+        fontSize: '15px'
     },
 
-    beforeClick: {
-        color: '#4D8B87',
-        textAlign: 'center',
+    beforeClick:{
+        color:'#4D8B87',
+        textAlign:'left',
 
     },
 
-    afterClick: {
-        textAlign: 'center',
-        color: '#4D8B87',
-        background: '#E8E8E8',
-        fontWeight: 'bold'
+    afterClick:{
+        textAlign:'left',
+        color:'#4D8B87',
+        background:'#E8E8E8',
+        fontWeight:'bold'
 
 
     },
+
+     // Code Mirror CSS
+    bgCodeMirror:{
+        backgroundColor:'#32404D',
+        width:'95%',
+        height:'600px',
+        margin:'3%',
+        marginTop: '13%'
+    },
+
+    HeadCodeMirror:{
+        color:'#ffffff',
+        fontSize:'16px',
+        margin:'2%',
+        paddingTop:'1.5%',
+
+    },
+    topicCodeMirror:{
+        color:'#ffffff',
+        fontSize:'15px',
+        fontWeight:'lighter',
+        
+    },
+
+    textCodeMirror:{
+        color:'#EDD16F',
+        fontSize:'15px',
+        
+    },
+    HeaderTextCodeMirror:{
+        color:'#ADA18F',
+        fontSize:'15px',
+        marginLeft:'10%',
+        fontWeight:'bold',
+    },
+    HeaderTextCodeMirror2:{
+        color:'#ADA18F',
+        fontSize:'15px',
+        marginLeft:'17%',
+    },
+    AreaCodeMirror:{
+        marginLeft:'5%',
+    },
+
+
+
+
+
+    
+
+
+
+
+    
+
+
+
+
+
 }
