@@ -114,7 +114,7 @@ export default class Emptest extends React.Component {
         const { activeItem } = this.state
         return (
             // <Container>
-            <div>
+            <div style={{ background: "#ddd" , height:"100vh"}}>
                 <Menu vertical inverted fixed='left'>
                     <Menu.Item color='teal'>
                         <Header style={style.navbarDeco} >Queues</Header>
@@ -147,20 +147,28 @@ export default class Emptest extends React.Component {
                     </Scrollbars>
                 </Menu>
                 <div style={{ marginLeft: "210px", minWidth: "550px" }}>
-                    <div style={{ padding: "1em", paddingLeft: "2%" }} >
+                    <div style={{ padding: "1em", paddingLeft: "2%" ,background: "#fff" }} >
                         <HeaderPatient page="example" />
                     </div>
+                    <div style={{ paddingBottom: "0px", paddingLeft: "14px", background: "#fff" }}>
+                        {this.showTabMenu(this.state.empPosition)}
+                    </div>
+                    <div style={{ padding: "2% 6%", background: "#ddd" }}>
+                        <Container>
+                            {this.showtab(this.state.empPosition)}
+                        </Container>
+                    </div>
 
-                    <Grid>
-                        <Grid.Row style={{ paddingBottom: "0px", paddingLeft: "14px" }}>
+                    {/* <Grid>
+                        <Grid.Row style={{ paddingBottom: "0px", paddingLeft: "14px", background: "#fff"}}>
                             {this.showTabMenu(this.state.empPosition)}
                         </Grid.Row>
-                        <Grid.Row stretched style={{ padding: "2% 6%", background: "#ddd" ,height: "70%"}}>
+                        <Grid.Row stretched style={{ padding: "2% 6%", background: "#ddd"}}>
                             <Container>
                                 {this.showtab(this.state.empPosition)}
                             </Container>
                         </Grid.Row>
-                    </Grid>
+                    </Grid> */}
                 </div>
             {/* <Grid>
                 <Grid.Row >
