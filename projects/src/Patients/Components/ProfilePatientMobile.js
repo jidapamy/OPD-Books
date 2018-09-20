@@ -8,7 +8,6 @@ import {
 import styled from "styled-components";
 //service
 import { getPatient } from './../../Service/ManagePatientMethod';
-import BGPMobile from './../../Static/Img/BGPMobile.png'
 
 const Boderhide = styled(Menu) `
   border:0;

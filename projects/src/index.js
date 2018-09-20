@@ -27,6 +27,8 @@ import EmpTest from "./Employees/Containers/EmpTest";
 // import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
 
 import APIHome from "./APIdata/Containers/APIHome"
+import apiDoc from "./Employees/Components/apiDoc"
+
 
 
 import 'semantic-ui-css/semantic.min.css';
@@ -46,7 +48,7 @@ ReactDOM.render(
 
       {/* emp */}
       <Route path="/empTest" component={EmpTest} />
-      <Route path="/api" component={APIHome} />
+      <Route path="/apiDoc" component={apiDoc} />
       
       {/* <Route path="/signinForEmployee" component={EmpLogin} /> */}
       {/* <Route path="/Registration" component={Registration} /> */}

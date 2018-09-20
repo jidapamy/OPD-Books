@@ -341,34 +341,97 @@ export default class EditProfile extends React.Component {
                                 {allergy &&
                                     <Segment style={{ borderRadius: '2rem', marginTop: -15 }}>
                                         <Form>
-                                            <Form.Group widths='equal'>
-                                                <Form.Field
-                                                    id='form-input-control-first-name'
-                                                    control={Input}
-                                                    label='ชื่อจริงบิดา (Father Firstname)'
-                                                    placeholder='First name'
-                                                />
-                                                <Form.Field
-                                                    id='form-input-control-last-name'
-                                                    control={Input}
-                                                    label='นามสกุลบิดา (Father Lastname)'
-                                                    placeholder='Last name'
-                                                />
-                                            </Form.Group>
-                                            <Form.Group widths='equal'>
-                                                <Form.Field
-                                                    id='form-input-control-first-name'
-                                                    control={Input}
-                                                    label='ชื่อจริงบิดา (Mother Firstname)'
-                                                    placeholder='First name'
-                                                />
-                                                <Form.Field
-                                                    id='form-input-control-last-name'
-                                                    control={Input}
-                                                    label='นามสกุลมารดา (Mother Lastname)'
-                                                    placeholder='Last name'
-                                                />
-                                            </Form.Group>
+                                        <h3 >Do you have a history of allergies<span style={{ color: 'red' }}> * </span></h3 >
+                                        
+
+                                        <Form.Group inline>
+                                            <Form.Radio
+                                                label=' No '
+                                                value='not have'
+                                                checked={'this.props.patient.allergy' === 'not have'}
+                                                onChange={(e, { value }) => this.chooseChoice('allergy', value)}
+                                            />
+                                            <Form.Radio
+                                                label='Yes, Please specify'
+                                                value='other'
+                                                checked={'!this.state.disabledOtherallergy'}
+                                                onChange={(e, { value }) => this.chooseChoice('allergy', value)}
+                                            />
+                                            <Form.Input
+                                                label=''
+                                                placeholder='Please specify'
+                                                width={4}
+                                                disabled={'this.state.disabledOtherallergy'}
+                                                onChange={(e, { value }) => {
+                                                    this.chooseChoice('allergy', value)
+                                                    this.setState({ otherallergy: value })
+                                                }}
+                                                required={'!this.state.disabledOtherallergy'}
+                                                value={'this.state.otherallergy'}
+                                            />
+                                            <br></br>
+                                        </Form.Group>
+
+
+
+                                        <h3>สิทธิในการรักษา<span style={{ color: 'red' }}>*</span></h3>
+                                        <Form.Group inline>
+                                            <Form.Radio
+                                                value='government officer'
+                                                label='government officer'
+                                                checked={'this.props.patient.privilege' === 'government officer'}
+                                                width={4}
+                                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                                            />
+                                            <Form.Radio
+                                                value='family of government officials'
+                                                label='family of government officials'
+                                                checked={'this.props.patient.privilege' === 'family of government officials'}
+                                                width={4}
+                                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                                            />
+                                            <Form.Radio
+                                                value='state enterprise officer '
+                                                label='state enterprise officer '
+                                                checked={'this.props.patient.privilege' === 'state enterprise officer '}
+                                                width={4}
+                                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group inline>
+                                            <Form.Radio
+                                                value='family of state enterprise officer '
+                                                label='family of state enterprise officer '
+                                                width={4}
+                                                checked={'this.props.patient.privilege' === 'family of state enterprise officer'}
+                                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                                            />
+                                            <Form.Radio
+                                                value='normal person '
+                                                label='normal person '
+                                                width={4}
+                                                checked={'this.props.patient.privilege' === 'normal person '}
+                                            />
+                                            <Form.Radio
+                                                label='other'
+                                                value='other'
+                                                checked={'!this.state.disabledOtherprivilege'}
+                                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                                            />
+                                            <Form.Input
+                                                label=''
+                                                placeholder='Please specify other'
+                                                width={4}
+                                                disabled={'this.state.disabledOtherprivilege'}
+                                                required={'!this.state.disabledOtherprivilege'}
+                                                onChange={e => {
+                                                    this.chooseChoice('privilege', e.target.value)
+                                                    this.setState({ otherprivilege: e.target.value })
+                                                }}
+                                                value={'this.state.otherprivilege'}
+                                            />
+                                        </Form.Group>
                                         </Form>
                                     </Segment >}
                             </Transition.Group>

@@ -213,8 +213,8 @@ export default class PatientProfile extends Component {
     return (
       <div>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-          <Dimmer page indeterminate  active={this.state.loader}>
-            <Loader size='massive'>Loading</Loader>
+          <Dimmer page active={this.state.loader}>
+            <Loader indeterminate size='massive'>Loading</Loader>
           </Dimmer>
         
 
