@@ -11,23 +11,25 @@ import {
   Reveal,
   Menu,
   Visibility,
-  Icon
+  Icon,
+  Responsive
 } from "semantic-ui-react";
 import styled from "styled-components";
 // << IMPORT PHOTO >>
-import Contain1 from "./Static/Img/Contianer/Contain1.png";
-import Contain2 from "./Static/Img/Contianer/Contain2.png";
+import BGMobile from "./../src/Static/Img/Contianer/BGMobile.svg";
+import Contain1 from "./Static/Img/Contianer/Contain1.svg";
+import Contain2 from "./Static/Img/Contianer/Contain2.svg";
 import icon1 from "./Static/Img/Contianer/icon1.png";
 import icon2 from "./Static/Img/Contianer/icon2.png";
 import icon3 from "./Static/Img/Contianer/icon3.png";
 import icon4 from "./Static/Img/Contianer/icon4.png";
 import asia from "./Static/Img/Contianer/asia.jpg";
 import my from "./Static/Img/Contianer/my.jpg";
+import HomeOnMobile from "./HomeOnMobile";
 import stamp from "./Static/Img/Contianer/stamp.jpg";
 import asiaGray from "./Static/Img/Contianer/asiaGray.jpg";
 import myGray from "./Static/Img/Contianer/myGray.jpg";
 import stampGray from "./Static/Img/Contianer/stampGray.jpg";
-import Patient from "./Static/Img/Patient.png";
 import WOW from "wowjs";
 import "./Static/Style/Navbar.css";
 import "./Static/Style/HomeCss.css";
@@ -44,27 +46,14 @@ const HeaderCenter = styled(Header)`
   justify-content: center;
   align-items: center;
 `;
-const RoadmapCenter = styled(Image)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 
-const Containerbgcolor = styled(Segment)`background-color: red;`;
+
 const ImageSizeRow = styled(Image)`
   width: 150px;
   height: 150px;
 `;
-const GridCenter = styled(Grid)`
-  width: 200px;
-  height: 200px;
-`;
-const ContentSizeCard = styled(Card.Content)`
-  width: 200px;
-  height: 200px;
-  padding-button: 3em;
-`;
+
 const fixedMenuStyle = {
   backgroundColor: "transparent",
   border: "1px solid #ddd",
@@ -80,6 +69,7 @@ const menuStyle = {
   transition: "box-shadow 0.5s ease, padding 0.5s ease",
   backgroundColor: "transparent"
 };
+
 export default class Home extends React.Component {
   state = {
     menuFixed: false,
@@ -103,6 +93,7 @@ export default class Home extends React.Component {
     const { menuFixed } = this.state;
     return (
       <div>
+        <Responsive {...Responsive.onlyComputer}>
         <Segment.Group>
           <div className="images">
             <Visibility
@@ -228,9 +219,6 @@ export default class Home extends React.Component {
             </Grid>
           </Segment>
 
-          {/* <<<<<<<<------------------->>>>>>>>>> */}
-
-          {/* << ส่วน ICON บอกจุดมุ่งหมายข้อดีของเรา >> */}
 
           <Segment style={{ paddingTob: "2em", border: "0px" }}>
             <Grid columns="equal" stackable width={4}>
@@ -304,9 +292,6 @@ export default class Home extends React.Component {
             </Grid>
           </Segment>
 
-          {/* <<<<<<<<------------------->>>>>>>>>> */}
-
-          {/* << ส่วน ระบบทำอะไร บอกจุดมุ่งหมายข้อดีของเรา >> */}
 
           <SegmentGray
             style={{
@@ -339,10 +324,8 @@ export default class Home extends React.Component {
               </p>
               <br />
 
-              {/* <Header as='h3' style={{ fontSize: '1.7em', textAlign: 'center' }}>ผู้ป่วยสามารถเลือกลงทะเบียนผู้ป่วยใหม่ ได้ 2 ช่องทาง คือ </Header> */}
             </Container>
           </SegmentGray>
-          {/* <<<<< ส่วนของ บอกรายชื่อ สมาชิก >>>>>>*/}
           <Segment style={{ paddingTop: "5em", border: "0px" }}>
             <HeaderCenter
               as="h5"
@@ -438,7 +421,7 @@ export default class Home extends React.Component {
                         <Link to="/signin">SignIn </Link>
                       </List.Item>
                       <List.Item as="api"> 
-                        <Link to="/api">API Services</Link>
+                        <Link to="/apiDoc">API Services</Link>
                       </List.Item>
                     </List>
                   </Grid.Column>
@@ -466,6 +449,17 @@ export default class Home extends React.Component {
           </Segment>
           {/* <<<<<<<<------------------->>>>>>>>>> */}
         </Segment.Group>
+        </Responsive>
+
+
+
+        <Responsive {...Responsive.onlyMobile}>
+          
+          <HomeOnMobile 
+            goToPage={this.goToPage}
+          />
+
+        </Responsive>
       </div>
     );
   }

@@ -81,7 +81,6 @@ export default class FromHisProfilePatient extends React.Component {
         }
     }
     render() {
-        console.log(this.props)
         return (
                 <Grid.Column width={5}>
                 <Segment.Group >

@@ -9,10 +9,6 @@ import {
   Message
 
 } from "semantic-ui-react";
-
-
-
-// import { Table } from 'reactstrap';
 import { style } from "./../../Static/Style/QueueCss";
 import { Scrollbars } from "react-custom-scrollbars";
 import styled from "styled-components";
@@ -35,24 +31,22 @@ export default class apiDocument extends Component {
       activeItem: name,
       chooseMethod: apiData[i].method[j], statusJson: 1
     })
-
-
   }
 
   showMethod = (index) => {
     let tmp = ""
-    tmp = apiData[index].method.map((method, j) => {
-      return <Menu.Item name={method.title}
-        active={this.state.activeItem === method.title}
-        onClick={(e, { name }) => this.choose(name, index, j)}
-        style={this.state.activeItem === method.title ? style.afterClick : style.beforeClick} />
+    tmp = apiData[index].method.map((method,j)=>{
+      return<Menu.Item name={method.title} key={index+"/"+j}
+              active={this.state.activeItem === method.title}
+              onClick={(e, { name })=>this.choose(name,index,j)} 
+              style={ this.state.activeItem === method.title ? style.afterClick :style.beforeClick} />
     })
     return tmp
   }
   showData = () => {
     let tmp = ''
-    tmp = apiData.map((data, i) => {
-      return <div>
+    tmp = apiData.map((data,i)=>{
+        return <div key={i}>
         <Menu.Item name={data.system}
           onClick={() => { this.setState({ open: data.system }) }}
           style={style.menuAPI} />
@@ -75,18 +69,27 @@ export default class apiDocument extends Component {
       //res
       arrAttr = this.state.chooseMethod.attrRes
     }
-    tmp = arrAttr.map(attr => {
-      return <Table.Row style={style.textDes}>
-        <Table.Cell width="6">
-          <Header as='h4'>
-            {attr.name}
-          </Header>
-        </Table.Cell>
-        <Table.Cell width="3"> {attr.type}</Table.Cell>
-        <Table.Cell width="7">{attr.des}</Table.Cell>
-      </Table.Row>
+    tmp = arrAttr.map((attr,i) => {
+      return  <Table.Row key={i} style={style.textDes}>
+    <Table.Cell>
+      <Header as='h4'>
+        {attr.name}
+    </Header>
+    </Table.Cell>
+    <Table.Cell> {attr.type}</Table.Cell>
+    <Table.Cell> {attr.des}</Table.Cell>
+  </Table.Row>
     })
     return tmp
+  }
+
+  showExample = (position) => {
+    if(position){
+      this.props.history.push({
+        pathname: "/empTest",
+        state: { position: position }
+      });
+    }
   }
 
   render() {
@@ -111,10 +114,10 @@ export default class apiDocument extends Component {
             {this.showData()}<br />
             <Dropdown text='Demo' floating  button className='icon' color='black' style={style.demoButPosition}>
               <Dropdown.Menu style={style.demoDropdown}>
-                <Dropdown.Item icon='file alternate outline' text='Registrar' />
-                <Dropdown.Item icon='stethoscope' text='Nurse' />
-                <Dropdown.Item icon='user md' text='Doctor' />
-                <Dropdown.Item icon='medkit' text='Pharmacy' />
+                <Dropdown.Item icon='file alternate outline' text='Registrar' onClick={()=>this.showExample(1)} />
+                <Dropdown.Item icon='stethoscope' text='Nurse' onClick={() => this.showExample(2)} />
+                <Dropdown.Item icon='user md' text='Doctor' onClick={() => this.showExample(3)} />
+                <Dropdown.Item icon='medkit' text='Pharmacy' onClick={() => this.showExample(4)} />
               </Dropdown.Menu>
             </Dropdown>
           </Menu>
@@ -159,7 +162,7 @@ export default class apiDocument extends Component {
               </div>
               <br /><br />
               <Scrollbars autoHide style={{ width: 495, height: 400 }} >
-                <Table basic='very' collapsing solid style={style.tableWidth}>
+                <Table basic='very' collapsing style={style.tableWidth}>
                   <Table.Body style={style.tableBody}>
                     {this.showAttribute()}
                   </Table.Body>
