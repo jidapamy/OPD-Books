@@ -3,7 +3,7 @@ export const style = {
 
     centerr: {
         textAlign: 'center',
-      },
+    },
     contentPosition: {
         // textAlign: 'center',
         width: '95%',
@@ -14,14 +14,14 @@ export const style = {
         marginTop: '5%',
         marginLeft: '1%',
         marginBottom: '5%',
-        
 
-      },
-      
-    buttonQueue :  {
+
+    },
+
+    buttonQueue: {
         color: 'white',
         fontSize: '19px',
-        backgroundColor:'#00b5ad',
+        backgroundColor: '#00b5ad',
         borderRadius: '4px',
         border: '1px solid #00b5ad',
         paddingTop: '4%',
@@ -30,25 +30,25 @@ export const style = {
         marginTop: '4%'
     },
 
-    box :{
+    box: {
         width: 'auto',
         marginTop: '1.5%',
         marginLeft: '0.1%',
         marginRight: '0.1%'
     },
 
-    segmentTwo:{
-        backgroundColor:'#00b5ad',
+    segmentTwo: {
+        backgroundColor: '#00b5ad',
     }
     ,
 
-    queueZone : {
+    queueZone: {
         marginTop: '2%',
         backgroundColor: '#00b5ad'
 
     },
 
-    queue1 : {
+    queue1: {
         marginTop: '2%',
         backgroundColor: '#0023ad'
 
@@ -63,7 +63,7 @@ export const style = {
         paddingTop: '4%',
         paddingBottom: '4%',
         width: '85%'
-        
+
     },
 
     head: {
@@ -77,39 +77,39 @@ export const style = {
         fontSize: '25px',
         marginTop: '3%'
 
-        
+
     },
 
     hnNo: {
         marginLeft: '-30%'
     },
 
-    edit:{
+    edit: {
         paddingBottom: '8%',
         paddingTop: '8%'
     },
 
 
-    topic1:{
+    topic1: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '13%'
     },
 
-    topic2:{
+    topic2: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '0%'
     },
-    topic3:{
+    topic3: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '-7%'
     },
 
@@ -119,67 +119,67 @@ export const style = {
     }
     ,
 
-    Row:{
+    Row: {
         marginTop: '-2.5%'
     },
 
-    input2:{
+    input2: {
         width: '55%',
         marginLeft: '-45%'
     },
 
-    input3:{
+    input3: {
         width: '55%',
         marginLeft: '-60%'
 
     },
 
-    ribbonNur:{
+    ribbonNur: {
 
         textAlign: 'left',
         fontSize: '14px',
         width: '55%',
         marginLeft: '-48%',
-        paddingBottom:  '-30%'
+        paddingBottom: '-30%'
     },
-    ribbonDoc:{
+    ribbonDoc: {
         textAlign: 'left',
         fontSize: '14px',
         width: '55%',
         marginLeft: '-47.5%',
-        paddingBottom:  '-30%'
+        paddingBottom: '-30%'
     },
 
-    inputField:{
+    inputField: {
         width: '93%'
     },
 
-    topicChief:{
+    topicChief: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '4%'
     },
 
-    inputFieldDoc:{
+    inputFieldDoc: {
         width: '93%',
         marginBottom: '4%'
 
     },
 
-    topicDoc:{
+    topicDoc: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         paddingLeft: '4%'
     },
-    topicTime:{
+    topicTime: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '7%'
     },
 
@@ -210,41 +210,41 @@ export const style = {
 
     },
 
-    ColumnNameDoc:{
+    ColumnNameDoc: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         paddingLeft: '%'
     },
-    topicNameDoc:{
+    topicNameDoc: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '-2%'
     },
 
-    headSeg2:{
+    headSeg2: {
         color: '#00b5ad',
         fontSize: '30px',
         marginBottom: ' -5%'
     },
 
-    toppicPatient:{
+    toppicPatient: {
         fontSize: '15px',
         color: '#4183C4',
         textAlign: 'left',
         marginLeft: '10%'
 
     },
-    
-    Column2:{
+
+    Column2: {
         textAlign: 'left'
     }
     ,
-    
-    showData:{
+
+    showData: {
         width: '80%',
         textAlign: 'left',
         positon: 'center'
@@ -252,40 +252,40 @@ export const style = {
     }
     ,
 
-    space1:{
-        marginLeft:'3%'
+    space1: {
+        marginLeft: '3%'
     },
-    space2:{
-        marginLeft:'-3%'
+    space2: {
+        marginLeft: '-3%'
     }
     ,
 
-    paddingPatient:{
+    paddingPatient: {
         paddingBottom: '2%',
         paddingTop: '2%'
     },
 
-    fixContent:{
-        positon: 'fixed !important' 
+    fixContent: {
+        positon: 'fixed !important'
     },
 
-    cardInfo:{
+    cardInfo: {
         textAlign: 'center',
         marginTop: '5%',
         align: 'center'
     },
 
-    history:{
+    history: {
         // fontSize: '14px',
         // padding: '5%',
         fontSize: '14px',
         padding: '0%',
     },
-    topicNameNurse:{
+    topicNameNurse: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '8%'
     },
 
@@ -296,46 +296,46 @@ export const style = {
         paddingTop: '2%',
         marginTop: '0%'
     },
-    ButtonNurse:{
+    ButtonNurse: {
         marginLeft: '29%'
     },
-    ButtonNurse2:{
+    ButtonNurse2: {
         // margintop: '-15%'
         marginBottom: '-5%'
     },
-    ButtonDoctor:{
+    ButtonDoctor: {
         marginLeft: '23%',
         marginBottom: '5%'
     },
 
-    textCard:{
+    textCard: {
         fontSize: '14px',
         textAlign: 'left',
         marginLeft: '-6%',
-        
+
     },
-    iconCard:{
+    iconCard: {
         fontSize: '22px',
         textAlign: 'right',
-        
-    
+
+
     },
-    rowScaleTop:{
+    rowScaleTop: {
         paddingTop: '3%',
         marginBottom: '-4%',
 
     },
-    rowScaleBottom:{
+    rowScaleBottom: {
         paddingBottom: '3%',
         marginTop: '-4%'
     },
-    cardCenter:{
+    cardCenter: {
         paddingLeft: '4%',
         // marginTop: '1%'
     },
 
-    visitNumber:{
-        width:'25%',
+    visitNumber: {
+        width: '25%',
         height: '1%',
         marginLeft: '-2%',
         paddingTop: '2%',
@@ -343,22 +343,22 @@ export const style = {
         paddingTop: '1.5%',
         paddingBottom: '1.5%'
     },
-    visitNumberPosition:{
+    visitNumberPosition: {
         marginLeft: '69.5%',
         marginRight: '-60%',
         marginTop: '-5%'
     },
 
-    scroll:{
-        overflow:'auto' ,
+    scroll: {
+        overflow: 'auto',
         whiteSpace: 'nowrap',
-        overflowY:'auto' ,
+        overflowY: 'auto',
         overflow: 'scroll',
-        
+
     },
 
 
-    showTopic1:{
+    showTopic1: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
@@ -366,14 +366,14 @@ export const style = {
         marginLeft: '17%'
     },
 
-    showTopic2:{
+    showTopic2: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
         // textAlign:'left',
         marginLeft: '12%'
     },
-    showTopic3:{
+    showTopic3: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
@@ -387,36 +387,36 @@ export const style = {
     }
     ,
 
-    showInput2:{
+    showInput2: {
         width: '55%',
         marginLeft: '10%'
     },
 
-    showInput3:{
+    showInput3: {
         width: '55%',
         // marginLeft: '-60%'
 
     },
-    Row:{
+    Row: {
         marginTop: '-2.5%'
     },
 
-    showTopicChief:{
+    showTopicChief: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '5.5%'
     },
-    showInputField:{
+    showInputField: {
         width: '89%',
         marginLeft: '5%'
     },
-    showTopicNameDoc:{
+    showTopicNameDoc: {
         fontSize: '14px',
         color: '#000000',
         marginBottom: '0%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '38%'
     },
     showColumnDoc: {
@@ -427,88 +427,88 @@ export const style = {
         marginTop: '0%',
     },
 
-    showTopicDoc:{
+    showTopicDoc: {
         fontSize: '14px',
         color: '#000000',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '5%'
     },
-    showInputFieldDoc:{
+    showInputFieldDoc: {
         width: '89%',
         marginLeft: '5%'
-  
+
     },
-    
-    headForm:{
+
+    headForm: {
         width: '105.2%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '-2.5%',
         marginTop: '-2.6%',
         paddingLeft: '5%',
         borderColor: '#525252',
-    
+
     },
     headText: {
-        color:' #ffffff',
+        color: ' #ffffff',
     },
-    headMargin:{
+    headMargin: {
         marginBottom: '0%',
         marginTop: '-3.5%'
     },
-    textQueue:{
-        textAlign:'left',
+    textQueue: {
+        textAlign: 'left',
         marginLeft: '6%'
 
     },
-    headMarginShow:{
+    headMarginShow: {
         marginBottom: '0%',
         marginTop: '-3.5%'
     },
-    headFormShow:{
+    headFormShow: {
         width: '103.5%',
-        textAlign:'left',
+        textAlign: 'left',
         marginLeft: '-2.5%',
         marginTop: '-2.6%',
         paddingLeft: '5%',
         borderColor: '#525252',
         borderRadius: '0px'
     },
-    headMarginShow:{
+    headMarginShow: {
         marginBottom: '0%',
         marginTop: '-2%'
 
     },
 
-    dividerDeco:{
+    dividerDeco: {
         width: '93%',
         marginLeft: '-2%',
         marginTop: '-5%',
         textAlign: 'left',
         borderColor: '#000000',
-        borderWidth:'thick'
+        borderWidth: 'thick'
     },
-    dividerDeco2:{
+    dividerDeco2: {
         width: '90%',
         marginLeft: '-2%',
         marginTop: '-3%',
         textAlign: 'left',
         borderColor: '#000000',
-        borderWidth:'thick'
+        borderWidth: 'thick'
     },
-    dividerShowDate:{
+    dividerShowDate: {
         width: '80%',
         marginLeft: '11%',
         marginTop: '-3%',
         textAlign: 'left',
         borderColor: '#000000',
-        borderWidth:'thick'
+        borderWidth: 'thick'
     },
-    tab1Height:{
-        height:'550px'
+    tab1Height: {
+        height: '550px'
     },
 
-    navbarDeco:{
-        fontSize:'36px',
+    navbarDeco: {
+        fontSize: '36px',
         borderRadius: '0px',
         color: '#3EBDB2',
         textAlign: 'center',
@@ -516,17 +516,17 @@ export const style = {
 
 
     },
-    naveText:{
-        fontSize:'16px',
-        color:'#3EBDB2',
+    naveText: {
+        fontSize: '16px',
+        color: '#3EBDB2',
     },
 
     hnNoNav: {
         marginLeft: '-11%',
         color: '#ffffff',
     },
-    textQueueNav:{
-        textAlign:'left',
+    textQueueNav: {
+        textAlign: 'left',
         marginLeft: '-11%',
         color: '#ffffff',
 
@@ -536,13 +536,13 @@ export const style = {
         fontSize: '25px',
         marginTop: '5%',
         textAlign: 'right',
-  
+
     },
-    widthNav:{
+    widthNav: {
         // marginTop:'-5%',
         // marginBottom: '-5%'
     },
-    visiteNav:{
+    visiteNav: {
         visitedColor: '#2C7E79',
     },
 
@@ -551,167 +551,204 @@ export const style = {
         fontSize: '25px',
         marginTop: '5%',
         textAlign: 'right',
-  
+
     },
     hnNoNav2: {
         marginLeft: '-11%',
         color: '#083E3B',
     },
-    textQueueNav2:{
-        textAlign:'left',
+    textQueueNav2: {
+        textAlign: 'left',
         marginLeft: '-11%',
         color: '#ffffff',
     },
-    widthNav2:{
-       
-        background:'#2C7E79',
+    widthNav2: {
+
+        background: '#2C7E79',
         borderColor: '#2C7E79',
     },
-    bgDoc:{
-        background:'#F7F4F4',
+    bgDoc: {
+        background: '#F7F4F4',
     },
 
-    bgApi:{
+    bgApi: {
         // background:'#EAE8E8',
-        background:'#F7F4F4',
-        height:'',
+        background: '#F7F4F4',
+        height: '',
     },
-    HeaderColor:{
+    HeaderColor: {
         color: '#4D8B87',
-        fontSize:'20px'
+        fontSize: '20px'
     },
-    HeaderColor2:{
+    HeaderColor2: {
         color: '#4D8B87',
         textAlign: 'center',
-    },    
-    headTable:{
-        background:'#444040',
+    },
+    headTable: {
+        background: '#444040',
         color: '#ffffff',
         borderRadius: '0px',
-        padding:'5px',
-        fontSize:'15px',
+        padding: '5px',
+        fontSize: '15px',
         textAlign: 'left'
     },
-    tableWidth:{
-        width: '100%', 
+    tableWidth: {
+        width: '100%',
     },
-    tableBody:{
+    tableBody: {
         textAlign: 'left',
-        fontSize:'15px',
+        fontSize: '15px',
     },
 
-// Test
+    // Test
 
-    apiDescription:{
-        background:'#F7F4F4',
+    apiDescription: {
+        background: '#F7F4F4',
         padding: '0px',
         color: '#444040',
         fontSize: '14.5px',
-        marginBottom:'4%',
-        
+        marginBottom: '4%',
+
     },
-    apiMethod:{
+    apiMethod: {
         fontSize: '14px',
         fontWeight: '100',
         color: '#000000',
-        marginBottom:'4%',
+        marginBottom: '4%',
     },
-    apiMethodName:{
+    apiMethodName: {
         fontSize: '15px',
-        marginBottom:'1%',
+        marginBottom: '1%',
     },
 
-    textDes:{
-        fontSize:'15px'
+    textDes: {
+        fontSize: '15px'
     },
 
-    tableHead:{
-        background:'#444040',
+    tableHead: {
+        background: '#444040',
         color: '#ffffff',
         borderRadius: '0px',
-        padding:'5px',
-        fontSize:'15px',
+        padding: '5px',
+        fontSize: '15px',
         textAlign: 'left',
-        width:'100%',
+        width: '100%',
         textAlign: 'Left',
         height: '4.5%',
         marginBottom: '-6%'
     },
 
     //api Document Css
-    menuAPI:{
-        fontWeight:'bold',
+    menuAPI: {
+        fontWeight: 'bold',
         fontSize: '15px'
     },
 
-    beforeClick:{
-        color:'#4D8B87',
-        textAlign:'left',
+    beforeClick: {
+        color: '#4D8B87',
+        textAlign: 'left',
 
     },
 
-    afterClick:{
-        textAlign:'left',
-        color:'#4D8B87',
-        background:'#E8E8E8',
-        fontWeight:'bold'
+    afterClick: {
+        textAlign: 'left',
+        color: '#4D8B87',
+        background: '#E8E8E8',
+        fontWeight: 'bold'
 
 
     },
 
-     // Code Mirror CSS
-    bgCodeMirror:{
-        backgroundColor:'#32404D',
-        width:'95%',
-        height:'600px',
-        margin:'3%',
+    // Code Mirror CSS
+    bgCodeMirror: {
+        backgroundColor: '#2B2B2B',
+        width: '100%',
+        height: '600px',
+        margin: '3%',
         marginTop: '13%'
     },
 
-    HeadCodeMirror:{
+    HeadCodeMirror: {
+        color: '#4D8B87',
+        fontSize: '16px',
+        margin: '2%',
+        paddingTop: '1.5%',
+
+    },
+    HeadCodeMirror2: {
+        color: '#00cc99',
+         fontSize: '17px',
+        width:'100%',
+        padding: '3%',
+        paddingLeft:'5%',
+
+    },
+    HeadCodeMirror3: {
+        color: '#cc3300',
+        fontSize: '17px',
+        width:'100%',
+        padding: '3%',
+        paddingLeft:'5%',
+
+    },
+    topicCodeMirror: {
+        color: '#4D8B87',
+        fontSize: '15px',
+        fontWeight: 'lighter',
+
+    },
+
+    textCodeMirror: {
+        color: '#EDD16F',
+        fontSize: '15px',
+
+    },
+    HeaderTextCodeMirror: {
+        color: '#ADA18F',
+        fontSize: '15px',
+        marginLeft: '10%',
+        fontWeight: 'bold',
+    },
+    HeaderTextCodeMirror2: {
+        color: '#ADA18F',
+        fontSize: '15px',
+        marginLeft: '17%',
+    },
+    AreaCodeMirror: {
+        marginLeft: '7%',
+    },
+    HeaderTextCodeMirror3: {
+        color: '#4D8B87',
+        fontSize: '25px',
+        marginLeft: '10%',
+        fontWeight: 'bold',
+    },
+
+    // Demo Button
+
+    demoButPosition: {
+        position: 'absolute',
+        bottom: '2%',
+        marginLeft: '15%',
+        width:'70%',
+        textAlign: 'center',
+        background: '#4D8B87',
         color:'#ffffff',
-        fontSize:'16px',
-        margin:'2%',
-        paddingTop:'1.5%',
-
-    },
-    topicCodeMirror:{
-        color:'#ffffff',
-        fontSize:'15px',
-        fontWeight:'lighter',
-        
     },
 
-    textCodeMirror:{
-        color:'#EDD16F',
-        fontSize:'15px',
-        
-    },
-    HeaderTextCodeMirror:{
-        color:'#ADA18F',
-        fontSize:'15px',
-        marginLeft:'10%',
-        fontWeight:'bold',
-    },
-    HeaderTextCodeMirror2:{
-        color:'#ADA18F',
-        fontSize:'15px',
-        marginLeft:'17%',
-    },
-    AreaCodeMirror:{
-        marginLeft:'5%',
+    demoDropdown:{
+        background: '#f2f2f2',
     },
 
 
 
 
 
-    
 
 
 
 
-    
+
 
 
 
