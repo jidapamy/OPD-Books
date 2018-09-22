@@ -29,7 +29,7 @@ export default class InfoPatientMobile extends React.Component {
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column >
-                            <Header as='h5'><Icon name='plus' />Privilege : {this.props.patient.privilege}</Header>
+                            <Header as='h5'><Icon name='star outline' />Privilege : {this.props.patient.privilege}</Header>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

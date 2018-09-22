@@ -6,6 +6,7 @@ import {
     Modal, Popup, Form, TextArea, Pagination
 } from "semantic-ui-react";
 import styled from "styled-components";
+import EditProfile from './EditProfile';
 //service
 import { getPatient } from './../../Service/ManagePatientMethod';
 
@@ -20,13 +21,11 @@ const BGMobiles = styled(Segment) `
 
 export default class ProfilePatientMobile extends React.Component {
 
-
-    render() {
-
-        return (
-            <span>
-            
-            <BGMobiles
+    showPage = () => {
+        if(this.props.showEditPage){
+            return <EditProfile />
+        }else{
+            return<div> <BGMobiles
                 inverted
                 textAlign='center'
                 style={{ minHeight: 250, padding: '1em' }}
@@ -34,10 +33,10 @@ export default class ProfilePatientMobile extends React.Component {
             >
                 <Grid>
                     <Grid.Column textAlign='left' width={8}>
-                        <Icon name='qrcode' size='large' onClick={this.props.show()} />
+                        <Icon name='qrcode' size='large' onClick={()=>this.props.show()} />
                     </Grid.Column>
                     <Grid.Column textAlign='right' width={8}>
-                        <Icon name='setting' size='large' />
+                            <Icon name='setting' onClick={() => this.props.setField("showEditPage" ,true)}></Icon>
                     </Grid.Column>
                 </Grid>
                 <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://cache.gmo2.sistacafe.com/images/uploads/content_image/image/477174/1509615009-22278120_118945132110096_1884173990654640128_n.jpg' size='small' circular centered />
@@ -53,14 +52,21 @@ export default class ProfilePatientMobile extends React.Component {
 
             </Menu>
             <Container>
-
                 {this.props.showModal()}
-
                 {this.props.showtab(this.props.tab)}
-
-                <bt /><bt />
+                
+                <br /><br /> 
             </Container >
-</span>
+            </div>
+        }
+    }
+
+    render() {
+
+        return (
+            <div>
+                {this.showPage()}
+            </div>
         );
     }
 }
