@@ -1,14 +1,8 @@
 import React from "react";
 import {
-    Grid, Menu, Segment, Container, Divider, Header,
-    Icon, List,
-    Button,
-    Form, Dimmer, Loader
+    Menu, Container, Header, Form, Dimmer, Loader
 } from "semantic-ui-react";
-import { Scrollbars } from 'react-custom-scrollbars';
-import BackgroundImage from "./../../Static/Img/BackgroundImage.png";
 import swal from "sweetalert2";
-import styled from "styled-components";
 
 //service
 import { style } from "./../../Static/Style/QueueCss";
@@ -32,35 +26,13 @@ import {
     getBasicDataTreatmentHistory
 } from "./../../Service/MedicalRecordMethod";
 
-import { getQueue, addQueue, removeQueue } from "./../../Service/QueueMethod";
+import { getQueue, addQueue } from "./../../Service/QueueMethod";
 import { getInfoPatient } from './../../Service/ManagePatientMethod'
 
 
 import moment from "moment";
 
-const Body = styled.div`
-    margin-left: 25vh;
-    min-width: 80vh;
-    height:900px;
-    
-`;
-const BGs = styled.div`
-  background: url(${BackgroundImage}) no-repeat center fixed;
-  background-size: 100% 100%;
-`
 
-const src = 'http://react.semantic-ui.com/images/wireframe/image.png'
-
-const styles = {
-    
-    blockTab: {
-        padding: "3%",
-        background: "rgb(248, 248, 248)",
-        marginTop: "2%",
-        borderTop: "2px solid rgba(181, 181, 181, 0.11)",
-        paddingRight: " 4.1%"
-    }
-}
 export default class Emptest extends React.Component {
     state = {
         activeItem: 0,
@@ -269,7 +241,6 @@ export default class Emptest extends React.Component {
                 </div>
                 <div style={{ padding: "2% 6%", background: "#ddd" }}>
                     <Container>
-                        {/* tab = 2 is history */}
                         {this.state.tab !== 2 ? this.showHeaderMrd() : ''}
                         {this.showtab(this.state.empPosition)}
                     </Container>
@@ -347,7 +318,6 @@ export default class Emptest extends React.Component {
                         } else {
                             swal({
                                 type: "error",
-                                // title: "Oops...",
                                 text: dataPatient.message,
                                 showConfirmButton: false,
                                 timer: 2000
