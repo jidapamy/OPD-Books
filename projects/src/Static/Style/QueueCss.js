@@ -639,79 +639,116 @@ export const style = {
     },
 
     //api Document Css
-    menuAPI:{
-        fontWeight:'bold',
+    menuAPI: {
+        fontWeight: 'bold',
         fontSize: '15px'
     },
 
-    beforeClick:{
-        color:'#4D8B87',
-        textAlign:'left',
+    beforeClick: {
+        color: '#4D8B87',
+        textAlign: 'left',
 
     },
 
-    afterClick:{
-        textAlign:'left',
-        color:'#4D8B87',
-        background:'#E8E8E8',
-        fontWeight:'bold'
+    afterClick: {
+        textAlign: 'left',
+        color: '#4D8B87',
+        background: '#E8E8E8',
+        fontWeight: 'bold'
 
 
     },
 
-     // Code Mirror CSS
-    bgCodeMirror:{
-        backgroundColor:'#32404D',
-        width:'95%',
-        height:'600px',
-        margin:'3%',
+    // Code Mirror CSS
+    bgCodeMirror: {
+        backgroundColor: '#2B2B2B',
+        width: '100%',
+        height: '600px',
+        margin: '3%',
         marginTop: '13%'
     },
 
-    HeadCodeMirror:{
+    HeadCodeMirror: {
+        color: '#4D8B87',
+        fontSize: '16px',
+        margin: '2%',
+        paddingTop: '1.5%',
+
+    },
+    HeadCodeMirror2: {
+        color: '#00cc99',
+         fontSize: '17px',
+        width:'100%',
+        padding: '3%',
+        paddingLeft:'5%',
+
+    },
+    HeadCodeMirror3: {
+        color: '#cc3300',
+        fontSize: '17px',
+        width:'100%',
+        padding: '3%',
+        paddingLeft:'5%',
+
+    },
+    topicCodeMirror: {
+        color: '#4D8B87',
+        fontSize: '15px',
+        fontWeight: 'lighter',
+
+    },
+
+    textCodeMirror: {
+        color: '#EDD16F',
+        fontSize: '15px',
+
+    },
+    HeaderTextCodeMirror: {
+        color: '#ADA18F',
+        fontSize: '15px',
+        marginLeft: '10%',
+        fontWeight: 'bold',
+    },
+    HeaderTextCodeMirror2: {
+        color: '#ADA18F',
+        fontSize: '15px',
+        marginLeft: '17%',
+    },
+    AreaCodeMirror: {
+        marginLeft: '7%',
+    },
+    HeaderTextCodeMirror3: {
+        color: '#4D8B87',
+        fontSize: '25px',
+        marginLeft: '10%',
+        fontWeight: 'bold',
+    },
+
+    // Demo Button
+
+    demoButPosition: {
+        position: 'absolute',
+        bottom: '2%',
+        marginLeft: '15%',
+        width:'70%',
+        textAlign: 'center',
+        background: '#4D8B87',
         color:'#ffffff',
-        fontSize:'16px',
-        margin:'2%',
-        paddingTop:'1.5%',
-
-    },
-    topicCodeMirror:{
-        color:'#ffffff',
-        fontSize:'15px',
-        fontWeight:'lighter',
-        
     },
 
-    textCodeMirror:{
-        color:'#EDD16F',
-        fontSize:'15px',
-        
-    },
-    HeaderTextCodeMirror:{
-        color:'#ADA18F',
-        fontSize:'15px',
-        marginLeft:'10%',
-        fontWeight:'bold',
-    },
-    HeaderTextCodeMirror2:{
-        color:'#ADA18F',
-        fontSize:'15px',
-        marginLeft:'17%',
-    },
-    AreaCodeMirror:{
-        marginLeft:'5%',
+    demoDropdown:{
+        background: '#f2f2f2',
     },
 
 
 
 
 
-    
 
 
 
 
-    
+
 
 
 

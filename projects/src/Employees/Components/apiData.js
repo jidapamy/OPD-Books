@@ -58,6 +58,60 @@ export const apiData = [
                     { name: "status", type: "Boolean", des: "สถานะของการตอบสนองของข้อมูล" },
                     { name: "message", type: "String", des: "ข้อความ" },
                 ],
+
+                reqJson:
+                {
+                    address: "23",
+                    allergy: "not have",
+                    bloodgroup: "AB",
+                    citizenId: "1234567890101",
+                    congenitalDisease: "-",
+                    country: "Thai",
+                    district: "Sai Yok",
+                    dob: "31/08/2000",
+                    email: "test01@gmail.com",
+                    emerAddress: "",
+                    emerDistrict: "",
+                    emerFirstname: "",
+                    emerHomePhonenumber: "",
+                    emerLastname: "",
+                    emerMobileNumber: "",
+                    emerProvince: "",
+                    emerRelationship: "",
+                    emerSubDistrict: "",
+                    emerTitle: "",
+                    emerTypeofHouse: "",
+                    emerZipcode: "",
+                    fatherFirstname: "",
+                    fatherLastname: "",
+                    firstname: "Aleeza",
+                    gender: "F",
+                    homePhonenumber: "029293939",
+                    hospitalNumber: "",
+                    lastname: "Sharp",
+                    mobileNumber: "0829392939",
+                    motherFirstname: "",
+                    motherLastname: "",
+                    nameTitle: "Miss.",
+                    nationality: "Thai",
+                    occupartion: "-",
+                    password: "12345678!!",
+                    privilege: "-",
+                    province: "Kanchanaburi",
+                    religion: "Buddhism",
+                    status: "Broke up with bf/gf",
+                    subDistrict: "Wang Krachae",
+                    typeofHouse: "Townhouse",
+                    zipcode: "71150",
+                    date: "09/02/2018"
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS"
+                }
+
             },
             {
                 //3
@@ -116,6 +170,61 @@ export const apiData = [
                     { name: "privilege", type: "String", des: "สิทธิการรักษาของผู้ป่วย" },
                     { name: "age", type: "String", des: "อายุของผู้ป่วย" },
                 ],
+                reqJson: {
+
+
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: {
+                        registerDate: "09/02/2018",
+                        hospitalNumber: "01/61",
+                        citizenId: "1234567890101",
+                        dob: "31/08/2000",
+                        nameTitle: "Miss.",
+                        firstname: "Aleeza",
+                        lastname: "Sharp",
+                        gender: "F",
+                        congenitalDisease: "-",
+                        bloodgroup: "AB",
+                        religion: "Buddhism",
+                        nationality: "Thai",
+                        country: "Thai",
+                        status: "Broke up with bf/gf",
+                        occupartion: "-",
+                        homePhonenumber: "029293939",
+                        mobileNumber: "0829392939",
+                        email: "test01@gmail.com",
+                        typeofHouse: "Townhouse",
+                        address: "23",
+                        province: "Kanchanaburi",
+                        district: "Sai Yok",
+                        subDistrict: "Wang Krachae",
+                        zipcode: "71150",
+                        emerTitle: "",
+                        emerFirstname: "",
+                        emerLastname: "",
+                        emerRelationship: "",
+                        emerHomePhonenumber: "",
+                        emerMobileNumber: "",
+                        emerTypeofHouse: "",
+                        emerAddress: "",
+                        emerProvince: "",
+                        emerDistrict: "",
+                        emerSubDistrict: "",
+                        emerZipcode: "",
+                        fatherFirstname: "",
+                        fatherLastname: "",
+                        motherFirstname: "",
+                        motherLastname: "",
+                        allergy: "not have",
+                        privilege: "-",
+                        age: "18 Years old"
+                    }
+                }
             }
         ]
     },
@@ -136,6 +245,17 @@ export const apiData = [
                     { name: "status", type: "Boolean", des: "สถานะของการตอบกลับ" },
                     { name: "message", type: "String", des: "ข้อความ" },
                 ],
+                reqJson: {
+                    citizenId: "1234567890101",
+                    password: "12345678!!"
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS"
+                }
+
             }
         ]
     },
@@ -172,6 +292,32 @@ export const apiData = [
                     { name: "data", type: "String", des: "ข้อมูลที่เรียกออกมา" },
                     { name: "medicalRecordId", type: "String", des: "รหัสใบการรักษา" },
                 ],
+                reqJson: {
+                    BP1: "123/76",
+                    BP2: "-/-",
+                    BP3: "-/-",
+                    bmi: "22.10",
+                    bodyWeight: "58.0",
+                    chiefComplaint: "Sore throat, cough with yellow sputum. Pain in the body is 5 days.",
+                    clinic: "Medical Development Clinic",
+                    date: "September 2, 2018",
+                    height: "162.0",
+                    nurseName: "Miss Lilith Beltran",
+                    patientCitizenId: "1234567890101",
+                    pulseRate: "104",
+                    respiratoryRate: "18",
+                    temperature: "37.8",
+                    time: "9:14 PM"
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: {
+                        medicalRecordId: "1"
+                    }
+                }
             },
 
             {
@@ -195,6 +341,23 @@ export const apiData = [
                     { name: "status", type: "Boolean", des: "สถานะของการตอบกลับ" },
                     { name: "message", type: "String", des: "ข้อความ" },
                 ],
+                reqJson: {
+                    appointment: "Sep 2, 2018",
+                    diagnosis: "Common cold",
+                    doctorName: "Dr. Kirstin Hibbert",
+                    physicalExem: "The patient has a stuffy nose. Runny nose Yellow mucus, sneezing, sore throat, hoarseness, low fever and slight headache.",
+                    patientCitizenId: "1234567890101",
+                    presentIllness: "Nasal congestion, runny nose, sputum, dizziness.",
+                    recommendation: "Drink plenty of water, Avoid sneezing or severe nasal irritation.",
+                    treatment: "Brompheniramine 1, Ambroxol 1,Paracetamol 1,Pseudoephedrine 1",
+                    medicalRecordId: "1"
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS"
+                }
             },
 
             {
@@ -227,6 +390,33 @@ export const apiData = [
                     { name: "nurseId", type: "String", des: "รหัสประจำตัวพยาบาล" },
                     { name: "patientCitizenId", type: "String", des: "เลขบัตรประจำตัวประชาชนของผู้ป่วย" },
                 ],
+                reqJson: {
+
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: {
+                        clinic: "Medical Development Clinic",
+                        height: 162,
+                        bodyWeight: 58,
+                        bmi: 22.1,
+                        temperature: 37.8,
+                        date: "September 2, 2018",
+                        time: "9:14 PM",
+                        medicalRecordId: "5",
+                        pulseRate: 104,
+                        respiratoryRate: 18,
+                        BP1: "123/76",
+                        BP2: "-/-",
+                        BP3: "-/-",
+                        chiefComplaint: "Sore throat, cough with yellow sputum. Pain in the body is 5 days.",
+                        nurseId: "Miss Lilith Beltran",
+                        patientCitizenId: "1234567890103"
+                    }
+                }
             },
 
             {
@@ -253,6 +443,27 @@ export const apiData = [
                     { name: "patientCitizenId", type: "String", des: "เลขบัตรประจำตัวประชาชนของผู้ป่วย" },
 
                 ],
+                reqJson: {
+
+
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: {
+                        presentIllness: "Nasal congestion, runny nose, sputum, dizziness.",
+                        physicalExem: "The patient has a stuffy nose. Runny nose Yellow mucus, sneezing, sore throat, hoarseness, low fever and slight headache.",
+                        diagnosis: "Common cold",
+                        treatment: "Brompheniramine 1, Ambroxol 1,Paracetamol 1,Pseudoephedrine 1",
+                        recommendation: "Drink plenty of water, Avoid sneezing or severe nasal irritation.",
+                        appointment: "Sep 2, 2018",
+                        medicalRecordId: "1",
+                        doctorName: "Dr. Kirstin Hibbert",
+                        patientCitizenId: "1234567890101"
+                    }
+                }
             },
 
             {
@@ -292,6 +503,40 @@ export const apiData = [
                     { name: "appointment", type: "String", des: "วันนัดพบแพทย์" },
                     { name: "doctorName", type: "String", des: "ชื่อแพทย์ที่ทำการรักษาผู้ป่วย" },
                 ],
+                reqJson: {
+
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: {
+                        clinic: "Medical Development Clinic",
+                        height: 162,
+                        bodyWeight: 58,
+                        bmi: 22.1,
+                        temperature: 37.8,
+                        date: "September 2, 2018",
+                        time: "9:14 PM",
+                        medicalRecordId: "1",
+                        pulseRate: 104,
+                        respiratoryRate: 18,
+                        BP1: "123/76",
+                        BP2: "-/-",
+                        BP3: "-/-",
+                        chiefComplaint: "Sore throat, cough with yellow sputum. Pain in the body is 5 days.",
+                        nurseId: "Miss Lilith Beltran",
+                        patientCitizenId: "1234567890101",
+                        presentIllness: "Nasal congestion, runny nose, sputum, dizziness.",
+                        physicalExem: "The patient has a stuffy nose. Runny nose Yellow mucus, sneezing, sore throat, hoarseness, low fever and slight headache.",
+                        diagnosis: "Common cold",
+                        treatment: "Brompheniramine 1, Ambroxol 1,Paracetamol 1,Pseudoephedrine 1",
+                        recommendation: "Drink plenty of water, Avoid sneezing or severe nasal irritation.",
+                        appointment: "Sep 2, 2018",
+                        doctorName: "Dr. Kirstin Hibbert"
+                    }
+                }
             },
 
             {
@@ -331,6 +576,42 @@ export const apiData = [
                     { name: "appointment", type: "String", des: "วันนัดพบแพทย์" },
                     { name: "doctorName", type: "String", des: "ชื่อแพทย์ที่ทำการรักษาผู้ป่วย" },
                 ],
+                reqJson: {
+
+                },
+
+                resJson:
+                {
+                    status: true,
+                    message: "SUCCESS",
+                    data: [
+                        {
+                            medicalRecordId: "1",
+                            clinic: "Medical Development Clinic",
+                            height: 162,
+                            bodyWeight: 58,
+                            bmi: 22.1,
+                            temperature: 37.8,
+                            date: "September 2, 2018",
+                            time: "9:14 PM",
+                            pulseRate: 104,
+                            respiratoryRate: 18,
+                            BP1: "123/76",
+                            BP2: "-/-",
+                            BP3: "-/-",
+                            chiefComplaint: "Sore throat, cough with yellow sputum. Pain in the body is 5 days.",
+                            nurseId: "Miss Lilith Beltran",
+                            patientCitizenId: "1234567890101",
+                            presentIllness: "Nasal congestion, runny nose, sputum, dizziness.",
+                            physicalExem: "The patient has a stuffy nose. Runny nose Yellow mucus, sneezing, sore throat, hoarseness, low fever and slight headache.",
+                            diagnosis: "Common cold",
+                            treatment: "Brompheniramine 1, Ambroxol 1,Paracetamol 1,Pseudoephedrine 1",
+                            recommendation: "Drink plenty of water, Avoid sneezing or severe nasal irritation.",
+                            appointment: "Sep 2, 2018",
+                            doctorName: "Dr. Kirstin Hibbert"
+                        }
+                    ]
+                }
             }
         ]
 

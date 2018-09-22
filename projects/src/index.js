@@ -24,6 +24,9 @@ import EmpTest from "./Employees/Containers/EmpTest";
 import Registration from "./Employees/Containers/Registration";
 // import PatientTreatment from "./Employees/Containers/PatientTreatment";
 // import MedicalRecordTreatment from "./Employees/Containers/MedicalRecordTreatment";
+import apiDoc from "./Employees/Components/apiDoc"
+
+import APIHome from "./APIdata/Containers/APIHome"
 // import NavbarQueses from "./Employees/Components/NavbarQueses"
 import apiDocument from "./Employees/Components/apiDoc"
 // import Testt from "./Employees/Components/Test"
@@ -45,7 +48,7 @@ ReactDOM.render(
       <Route component={scrollToTop} />
       <Route exact path="/" component={Home} />
       {/* patient */}
-      <Route path="/signin" component={Login} />
+      {/* <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
       {/* <Route path="/editProfile" component={EditProfile} /> */}
