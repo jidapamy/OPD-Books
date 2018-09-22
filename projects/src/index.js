@@ -6,7 +6,7 @@ import Login from "./Patients/Containers/Login";
 import ManagePatientRecord from "./Patients/Containers/ManagePatientRecord";
 import ProfilePatient from "./Patients/Containers/PatientProfile";
 import apiDocument from "./Employees/Components/apiDoc"
-import EmpTest from "./Employees/Containers/EmpTest";
+import DemoExample from "./Employees/Containers/DemoExample";
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -29,7 +29,7 @@ ReactDOM.render(
       <Route path="/profile" component={ProfilePatient} />
 
       {/* vender */}
-      <Route path="/empTest" component={EmpTest} />
+      <Route path="/demoExample" component={DemoExample} />
       <Route path="/apiDoc" component={apiDocument} />
     </div>
   </Router>,

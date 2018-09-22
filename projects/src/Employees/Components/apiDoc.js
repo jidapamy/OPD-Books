@@ -86,7 +86,7 @@ export default class apiDocument extends Component {
   showExample = (position) => {
     if(position){
       this.props.history.push({
-        pathname: "/empTest",
+        pathname: "/demoExample",
         state: { position: position }
       });
     }

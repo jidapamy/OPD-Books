@@ -8,14 +8,16 @@ export default class FromAddressPatient extends React.Component {
     render() {
         return (
             <Grid.Column width={5}>
-                <Segment color='yellow' attached='top'>
-                    <Icon color='yellow' name='pills' />
-                    <span style={{ color: '#FFB100' }}> Allergy : </span> {this.props.patient.allergy} <br />
-                    <Icon color='yellow' name='medkit' />
-                    <span style={{ color: '#FABD08' }}> Privilege : </span> {this.props.patient.privilege}
-                </Segment>
                 <Segment.Group >
-                    <Segment >
+                    <Segment color='yellow' attached='top'>
+                        <Icon color='yellow' name='pills' />
+                        <span style={{ color: '#FFB100' }}> Allergy : </span> {this.props.patient.allergy} <br />
+                        <Icon color='yellow' name='medkit' />
+                        <span style={{ color: '#FABD08' }}> Privilege : </span> {this.props.patient.privilege}
+                    </Segment>
+                </Segment.Group >
+                <Segment.Group >
+                    <Segment color='teal'>
                         <h4><Icon name='child' />In Case Under15 Year Old</h4>
                         <Divider />
                         <Container>

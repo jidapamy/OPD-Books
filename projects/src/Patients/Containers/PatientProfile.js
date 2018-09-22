@@ -7,7 +7,6 @@ import { QRCode } from "react-qr-svg";
 import FromAddressPatient from './../Components/FromAddressPatient';
 import InfoPatientMobile from './../Components/InfoPatientMobile';
 import ProfilePatientMobile from './../Components/ProfilePatientMobile';
-import FromAddressPatientMobile from './../Components/FromAddressPatientMobile';
 import FromHisProfilePatient from './../Components/FromHisProfilePatient';
 import MedicalPatient from './../Components/medicalPatient';
 //components
@@ -117,7 +116,7 @@ export default class PatientProfile extends Component {
       return <InfoPatientMobile patient={this.state.patient} />
 
     } else if (tab == 1) {
-      return <FromAddressPatientMobile patient={this.state.patient} />
+      return <FromAddressPatient patient={this.state.patient} />
     }
       return <InfoPatientMobile patient={this.state.patient} />
   }
@@ -195,7 +194,8 @@ export default class PatientProfile extends Component {
                       </Segment>
                       <Container>
                         <Grid columns={16}>
-                          <FromAddressPatient patient={this.state.patient} />
+                          <FromAddressPatient 
+                            patient={this.state.patient} />
                           <FromHisProfilePatient 
                             patient={this.state.patient} 
                             historyTreatment={this.state.historyTreatment}

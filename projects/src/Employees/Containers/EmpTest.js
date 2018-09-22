@@ -33,7 +33,7 @@ import { getInfoPatient } from './../../Service/ManagePatientMethod'
 import moment from "moment";
 
 
-export default class Emptest extends React.Component {
+export default class DemoExample extends React.Component {
     state = {
         activeItem: 0,
         tab: 0,

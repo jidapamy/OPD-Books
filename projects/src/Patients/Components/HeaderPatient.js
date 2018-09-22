@@ -36,7 +36,7 @@ export default class HeaderPatient extends React.Component {
             <Container style={{ paddingTop: "1em" }} >
                     <Grid>
                         <Grid.Column width={2}>
-                            <Image src="https:react.semantic-ui.com/images/avatar/small/lindsay.png" size="small" spaced="left" circular />
+                        <Image src="https://react.semantic-ui.com/images/avatar/small/matthew.png" size="small" spaced="left" circular />
                         </Grid.Column>
                         <Grid.Column width={4}>
                             <Header as="h2">

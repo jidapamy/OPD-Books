@@ -29,7 +29,7 @@ export default class ProfilePatientMobile extends React.Component {
                             <Icon name='setting' onClick={() => this.props.setField("showEditPage" ,true)}></Icon>
                     </Grid.Column>
                 </Grid>
-                    <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://cache.gmo2.sistacafe.com/images/uploads/content_image/image/477174/1509615009-22278120_118945132110096_1884173990654640128_n.jpg' size='small' circular centered />
+                <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://react.semantic-ui.com/images/avatar/small/matthew.png' size='small' circular centered />
                 <Statistic inverted size='mini'>
                     <Statistic.Label style={{ fontSize: '1.1em' }} inverted>{this.props.patient.nameTitle} {this.props.patient.firstname} {this.props.patient.lastname}</Statistic.Label>
                     <Statistic style={{ fontSize: '1.1em' }} > Citizen: {this.props.patient.citizenId}</Statistic>
