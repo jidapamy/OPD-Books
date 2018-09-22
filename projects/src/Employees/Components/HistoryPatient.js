@@ -3,14 +3,23 @@ import {
   Grid, Menu, Segment, Container, Divider, Header,
   Icon, Image, Table, Label, List, Dropdown, Item,
   Responsive, Sidebar, Visibility, Statistic, Button,
-  Modal, Popup, Form, TextArea, Pagination,Input
-}from 'semantic-ui-react'
+  Modal, Popup, Form, TextArea, Pagination, Input
+} from 'semantic-ui-react'
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { style } from "./../../Static/Style/QueueCss";
+
+// component
+import ShowHeaderMdr from "./ShowHeaderMdr"
+import DocTreatment1 from "./FromForDoctor1"
+import NurseTreatment from "./ShowFormNurse"
+
+// service
+import { patientField, mdrField } from "./../../Static/Data/Field"
+import { getMedicalRecord } from "./../../Service/MedicalRecordMethod";
 
 
 const styles = {
@@ -58,454 +67,110 @@ const Years = [
 ]
 
 export default class ShowFormNurse extends Component {
-state = {
-    openmodal: false
+  state = {
+    openmodal: false,
+    medicalRecord: {},
+    privilege:this.props.privilege,
+    allergy: this.props.allergy
   }
-handleChangeDate=(date)=> {
-  console.log(date)
-    this.setState({
-      startDate: date
-    });
+
+  chooseViewHistory = (mdrId) => {
+    this.props.setLoader(true)
+    getMedicalRecord(mdrId).then(data => {
+      console.log("MDR : ", data)
+      if (data.status) {
+        this.props.setLoader(false)
+        this.setState({
+          medicalRecord: data.data,
+          openmodal: true
+        })
+      }
+    })
+  }
+
+  showHistory = () => {
+    const historyTreatment = this.props.historyTreatment;
+    let tmp = ""
+    if (historyTreatment) {
+      if (historyTreatment.length > 0) {
+        tmp = historyTreatment.map((history, i) => {
+          return <Table.Row key={i} onClick={() => this.chooseViewHistory(history.medicalRecordId)}>
+            <Table.Cell textAlign='center'>{i + 1}</Table.Cell>
+            <Table.Cell>Treatment</Table.Cell>
+            <Table.Cell >{history.date}</Table.Cell>
+            <Table.Cell >{history.doctorName}</Table.Cell>
+            <Table.Cell >{history.clinic}</Table.Cell>
+            <Table.Cell ><Button circular color='teal' icon='ellipsis horizontal' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+          </Table.Row>
+        })
+      } else {
+        // ไม่มีผู้ป่วย
+        tmp = <Table.Cell textAlign='center' colSpan='6'>Please fill patient's citizen Id</Table.Cell>
+      }
+    } else {
+      // ไม่มีประวัติการรักษา
+      tmp = <Table.Cell textAlign='center' colSpan='6'>{this.props.historyMsg}</Table.Cell>
+    }
+
+    return tmp
   }
 
   render() {
+    const empPosition = this.props.empPosition
     return (
       <div>
-       
-<Header as='h2'color='grey'>Medical History</Header>
-
-<Scrollbars autoHide style={{ height: 580 }}>
-       <Table  striped>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell textAlign='center'>No. <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
-        <Table.HeaderCell>status <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
-        {/* <Table.HeaderCell>Name <Icon name="sort" style={styles.ImButton}/></Table.HeaderCell> */}
-        <Table.HeaderCell >Date /&nbsp;  
-          <Dropdown
+        <Header as='h2' color='grey'>Medical History</Header>
+        <Scrollbars autoHide style={{ height: 580 }}>
+          <Table striped>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell textAlign='center'>No. <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
+                <Table.HeaderCell>Status <Icon name="sort" style={styles.ImButton} /></Table.HeaderCell>
+                {/* <Table.HeaderCell>Name <Icon name="sort" style={styles.ImButton}/></Table.HeaderCell> */}
+                <Table.HeaderCell >Date /&nbsp;
+                <Dropdown
                     scrolling
                     compact
                     searchInput={{ type: 'number' }}
                     options={Years}
                     placeholder='Years'
                   />
-        </Table.HeaderCell>
-        <Table.HeaderCell >Dr.Name</Table.HeaderCell>
-        <Table.HeaderCell >Clinic</Table.HeaderCell>
-        <Table.HeaderCell >More..</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
-   
-    <Table.Body>
-    
-      <Table.Row>
-        <Table.Cell textAlign='center'>1</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add'onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>2</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+                </Table.HeaderCell>
+                <Table.HeaderCell >Dortor</Table.HeaderCell>
+                <Table.HeaderCell >Clinic</Table.HeaderCell>
+                <Table.HeaderCell >More..</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>3</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+            <Table.Body>
+              {this.showHistory()}
+            </Table.Body>
+          </Table>
+        </Scrollbars>
 
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>4</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>5</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>6</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>7</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>8</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>9</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>10</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>11</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>12</Table.Cell>
-        <Table.Cell>Treatment</Table.Cell>
-        {/* <Table.Cell>Mr.surakiti Sopontanapt</Table.Cell> */}
-        <Table.Cell >14/08/2018</Table.Cell>
-        <Table.Cell >Dr.Sunisa Saponnakor</Table.Cell>
-        <Table.Cell >Kukgument Clinic</Table.Cell>
-        <Table.Cell ><Button circular textAlign='right' color='teal' icon='add' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
-
-      </Table.Row>
-     
-     </Table.Body>
-    
-  </Table>
-</Scrollbars>
-
-  <Modal
+        <Modal
           open={this.state.openmodal}
-          onClose={() => this.setState({ openmodal: false })}
+          onClose={() => this.setState({ openmodal: false, medicalRecord: {} })}
         >
-        <Modal.Header textAlign='center'>Medical Records</Modal.Header>
-        <Segment style={{backgroundColor:'#313334',color:'#FFFFFF',border:0,marginTop:-10,borderRadius:0}}>
-            <Grid >
-                  <Grid.Column width={5}>
-                  <Icon name='calendar alternate outline' />
-                      DATE: Mon 13 Augus 2018 
-                  </Grid.Column>
-                  <Grid.Column width={5}>
-                     <Icon name='clock outline'/>
-                     Time: 18:00 PM
-                  </Grid.Column>
-                  <Grid.Column width={5}>
-                    <Icon name='file alternate outline'/>
-                     VN: 1233/3
-                  </Grid.Column>
-
-                  <Grid.Row style={{marginTop:-20}}>
-                  <Grid.Column width={5}>
-                    <Icon name='star outline'/>
-                        Pilivage:father Big
-                  </Grid.Column>
-                  <Grid.Column width={5}>
-                    <Icon name='hospital outline'/>
-                        Clinic: Kanonyabun Clinic
-                  </Grid.Column>
-              
-            </Grid.Row>
-
-            </Grid>
-        </Segment>
-          
-          <Modal.Content style={{backgroundColor:'#FFFFFF',color:'#FFFFFF',border:0,marginTop:-15}}>
-              <Scrollbars autoHide style={{ width: 850, height: 500 }}>
-                <List divided relaxed>
-                  <List.Item>
-                    <Grid columns="three">
-                      <Grid.Row>
-                        <Grid.Column>
-                          <p style={style.showTopic1}>
-                            <b>HT:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "cm." }}
-                            labelPosition="right"
-                            placeholder="HT ..."
-                            style={style.showInput1}
-                            disabled
-                          />
-                        </Grid.Column>
-
-                          <Grid.Column>
-                          <p style={style.showTopic2}>
-                            <b>T:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "C" }}
-                            labelPosition="right"
-                            placeholder="Temperature ..."
-                            style={style.showInput2}
-                            disabled
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <p style={style.showTopic3}>
-                            <b>BP1:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "mm/Hg" }}
-                            labelPosition="right"
-                            placeholder="BP1 ..."
-                            style={style.showInput3}
-                            disabled
-                          />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <br />
-                      <Grid.Row>
-                        <Grid.Column>
-                          <p style={style.showTopic1}>
-                            <b>BW:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "Kg." }}
-                            labelPosition="right"
-                            placeholder="BodyWeigh ..."
-                            style={style.showInput1}
-                            disabled
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <p style={style.showTopic2}>
-                            <b>PR:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "/min" }}
-                            labelPosition="right"
-                            placeholder="PulseRate ..."
-                            style={style.showInput2}
-                            disabled
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <p style={style.showTopic3}>
-                            <b>BP2:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "mm/Hg" }}
-                            labelPosition="right"
-                            placeholder="BP2 ..."
-                            style={style.showInput3}
-                            disabled
-                          />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          <p style={style.showTopic1}>
-                            <b>BMI:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "-" }}
-                            labelPosition="right"
-                            placeholder="BMI ..."
-                            style={style.showInput1}
-                            disabled
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <p style={style.showTopic2}>
-                            <b>RR:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "/min" }}
-                            labelPosition="right"
-                            placeholder="PR ..."
-                            style={style.showInput2}
-                            disabled
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <p style={style.showTopic3}>
-                            <b>BP3:</b>
-                          </p>
-                          <Input
-                            label={{ basic: true, content: "mm/Hg" }}
-                            labelPosition="right"
-                            placeholder="BP3 ..."
-                            style={style.showInput3}
-                            disabled
-                          />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row />
-                    </Grid>
-                  </List.Item>
-                  <Form>
-                    <p style={style.showTopicChief}>
-                      <b>Chief Plaint</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Patient Symptoms ..."
-                      style={style.showInputField}
-                      disabled
-                    />
-                  </Form>
-                  <br />
-                  <Grid columns="three">
-                    <Grid.Row columns={2}>
-                      <Grid.Column />
-                      <Grid.Column>
-                        <p style={style.topicNameDoc}>
-                          <b>ลงชื่อ</b>
-                        </p>
-                        <p style={style.ColumnDoc}>นางสาวพยาบาล จริงๆนะจ้ะ</p>
-                        <p style={style.dividerDeco2}><Divider /></p>
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Grid>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Present Illness</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Present Illness ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Physical Exam</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Physical Exam ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Investigation</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Investigation ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Diagnosis / Impression</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Diagnosis / Impression ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Treatment</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Treatment ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <Form>
-                    <p style={style.showTopicDoc}>
-                      <b>Recommendation and Plan</b>
-                    </p>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="Enter Recommendation and Plan ..."
-                      style={style.showInputFieldDoc}
-                      disabled
-                    />
-                  </Form>
-                  <br />
-
-                  <Grid columns="two">
-                    <Grid.Row columns={2}>
-                      <Grid.Column>
-                        <p style={style.topicDate}>
-                          <b>F/U Date</b>
-                        </p>
-                        <p style={style.ColumnDoc}>เสาร์, 18 สิงหาคม 2561</p>
-                        <p style={style.dividerShowDate}><Divider /></p>
-                      </Grid.Column>
-                      <Grid.Column>
-                        <p style={style.topicNameDoc}>
-                          <b>ลงชื่อแพทย์ผู้รักษา</b>
-                        </p>
-                        <p style={style.ColumnDoc}>นพ. ประสม ประสงค์สุขสันต์</p>
-                        <p style={style.dividerDeco2}><Divider /></p>
-                      </Grid.Column>
-
-
-                    </Grid.Row>
-                    <br />
-                  </Grid>
-                </List>
-              </Scrollbars>
-           
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color="red" onClick={() => this.setState({ openmodal: false })}>
-              Close &nbsp;&nbsp;<Icon name="cancel" />
-            </Button>
-          </Modal.Actions>
+          <Modal.Header textAlign='center'>Medical Records Id : {this.state.medicalRecord[mdrField.medicalRecordId.variable]}</Modal.Header>
+          <ShowHeaderMdr
+            date={this.state.medicalRecord[mdrField.date.variable]}
+            time={this.state.medicalRecord[mdrField.time.variable]}
+            clinic={this.state.medicalRecord[mdrField.clinic.variable]}
+            privilege={this.state[patientField.privilege.variable]}
+            allergy={this.state[patientField.allergy.variable]}
+          />
+          <NurseTreatment
+            empPosition={empPosition}
+            medicalRecord={this.state.medicalRecord}
+          />
+          <DocTreatment1
+            empPosition={empPosition}
+            showPopupConfirm={this.showPopupConfirm}
+            tab={this.props.tab}
+            medicalRecord={this.state.medicalRecord} />
         </Modal>
+
       </div>
     )
   }

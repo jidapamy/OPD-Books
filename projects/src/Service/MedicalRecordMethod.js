@@ -1,11 +1,13 @@
 import axios from "./../Lib/axois"
 
 export const setMedicalRecordForNurse = async (data) => {
+    console.log("set",data)
     let res = await axios.post('/medicalRecords/setMedicalRecordForNurse', data)
     return res.data
 } 
 
 export const setMedicalRecordForDoctor = async (data) => {
+    console.log("set", data)
     let res = await axios.post('/medicalRecords/setMedicalRecordForDoctor', data)
     return res.data
 } 
@@ -20,6 +22,12 @@ export const getMedicalRecordForDoctor = async (medicalRecordId) => {
     return res.data
 };
 
+export const getMedicalRecordForPharmacy = async (medicalRecordId) => {
+    let res = await axios.get(`/medicalRecords/getMedicalRecordForPharmacy/${medicalRecordId}`)
+    return res.data
+};
+
+
 export const getMedicalRecord = async (medicalRecordId) => {
     let res = await axios.get(`/medicalRecords/getMedicalRecord/${medicalRecordId}`)
     return res.data
@@ -27,6 +35,11 @@ export const getMedicalRecord = async (medicalRecordId) => {
 
 export const getTreatmentHistoryOfPatient = async (citizentId) => {
     let res = await axios.get(`/medicalRecords/getHistoryMedicalRecord/${citizentId}`)
+    return res.data
+};
+
+export const getBasicDataTreatmentHistory = async (citizentId) => {
+    let res = await axios.get(`/medicalRecords/getBasicDataHistoryMedicalRecord/${citizentId}`)
     return res.data
 };
 

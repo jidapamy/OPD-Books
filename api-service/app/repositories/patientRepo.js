@@ -34,6 +34,21 @@ const get = citizenId => {
     return { status: true, message: "SUCCESS", data: patient }
 }
 
+const getBasicData = citizenId => {
+    const byteCitizenId = convertString(citizenId)
+    const info1 = contract.getInfoPatientPart1(byteCitizenId, defaultAccount)
+    const info2 = contract.getInfoPatientPart2(byteCitizenId, defaultAccount)
+    const info3 = contract.getInfoPatientPart3(byteCitizenId, defaultAccount)
+    const info4 = contract.getInfoPatientPart4(byteCitizenId, defaultAccount)
+    const combindedInfoData = bindData(patientScheme, [info1, info2, info3, info4], 'info')
+
+    const allergyPatient = contract.getPatientAllergy(byteCitizenId, defaultAccount);
+    const combindedAllergyData = bindData(patientScheme, [allergyPatient], 'allery')
+
+    let patient = { ...combindedInfoData, ...combindedAllergyData }
+    return { status: true, message: "SUCCESS", data: patient }
+}
+
 const insert = async (patient) => {
     contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
     contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nameTitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
@@ -81,5 +96,6 @@ module.exports = {
     login,
     isEmail,
     get,
-    insert
+    insert,
+    getBasicData
 };

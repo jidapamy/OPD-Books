@@ -35,6 +35,22 @@ const medicalRecordScheme = {
             appointment: 'string',
             doctorName: 'byte',
         }
+    ],
+    pharmacy: [
+        {
+            treatment: 'string',
+            recommendation: 'string',
+            appointment: 'string',
+            doctorName: 'byte',
+            patientCitizenId: 'byte',
+        }
+    ],
+    history: [
+        {
+            date: 'byte',
+            doctorName: 'byte',
+            clinic: 'string',
+        }
     ]
 }
 

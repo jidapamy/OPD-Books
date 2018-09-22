@@ -8,7 +8,17 @@ export const insertPatient = async (data) => {
 
 export const getPatient = async (citizenId) => {
   let res = await axios.get(`/patients/get/${citizenId}`)
-  res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
+  if (res.data.status){
+    res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
+  }
+  return res.data
+}
+
+export const getInfoPatient = async (citizenId) => {
+  let res = await axios.get(`/patients/getBasicData/${citizenId}`)
+  if (res.data.status) {
+    res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
+  }
   return res.data
 }
 

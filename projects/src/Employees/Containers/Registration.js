@@ -1,37 +1,15 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.png";
-// import { Scrollbars } from "react-custom-scrollbars";
-// import Queues from "./../Components/ListQueues";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
-import moment from "moment";
 import { addQueue, removeQueues } from "./../../Service/QueueMethod";
-import NavbarHeader from "./../Components/NavHeader";
 import { Dimmer, Loader } from "semantic-ui-react";
 import { patientField } from "../../Static/Data/Field"
 
-import { getPatient, checkIdcard } from "./../../Service/ManagePatientMethod";
+import { getPatient } from "./../../Service/ManagePatientMethod";
 
-import {
-  Button,
-  Container,
-  Grid,
-  Icon,
-  Image,
-  Item,
-  Label,
-  Menu,
-  Segment,
-  Header,
-  Step,
-  Table,
-  List,
-  Divider,
-  Modal,
-  Form,
-  Checkbox
-} from "semantic-ui-react";
+import { Button, Container, Grid, Image, Header,Divider,Modal,Form } from "semantic-ui-react";
 
 const PopupQRCode = styled(Modal)`
   position: fixed;
@@ -41,7 +19,6 @@ const PopupQRCode = styled(Modal)`
   width: 50%;
 `;
 
-const CryptoJS = require("crypto-js");
 const style = {
   h1: {
     marginTop: "3em",
@@ -93,19 +70,18 @@ class Registration extends Component {
     // Decrypt
     console.log(citizenId)
     if (citizenId) {
+      this.props.setField("loader",true)
       this.setState({
-        loader: true,
         openScan: false,
       })
       getPatient(citizenId).then(res => {
+        this.props.setField("loader", false)
         if (res.status) {
           this.setState({
             patient: res.data,
-            loader: false,
             openDetail: true
           });
         } else {
-          this.setState({ loader: false, })
           swal({
             type: "error",
             // title: "Oops...",
@@ -122,41 +98,19 @@ class Registration extends Component {
     this.scanQRCode(this.state.citizenIdSearch)
   }
 
-  addQueueForNurse = () => {
-    if (this.state.patient.citizenId) {
-      addQueue(1, this.state.patient.hospitalNumber, this.state.patient.citizenId, this.state.patient.nameTitle, this.state.patient.firstname, this.state.patient.lastname, true, "-");
-      swal({
-        type: "success",
-        title: "Add Queue Success!",
-        showConfirmButton: false,
-        timer: 1500
-      });
-      this.setState({
-        patient: {},
-        openDetail: false
-      });
-    } else {
-      // ยังไม่มีคนไข้
-    }
-  };
-
+  confirm = () => {
+    this.setState({ 
+      openDetail: false,
+      
+     })
+    this.props.sendToNurse(this.state.patient)
+  }
   handleError = err => {
     console.log(err);
   };
 
-  removeQ = () => {
-    removeQueues();
-    alert("remove Q")
-  }
-
   render() {
-    const empName = this.state.employee.nameTitle + " " + this.state.employee.firstname + "  " + this.state.employee.lastname;
-    return <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-      <Dimmer page active={this.state.loader}>
-        <Loader size='massive' indeterminate>Loading</Loader>
-      </Dimmer>
-      <div>
-        <NavbarHeader empName={empName} />
+    return  <div>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -169,26 +123,9 @@ class Registration extends Component {
 
           <Image centered style={style.d1} rounded src={ScanButton}
             onClick={() => this.setState({ openScan: true })} />
-          <Form onSubmit={() => this.searchPatient()}>
-            <Form.Field>
-              <label>Citizen Id</label>
-              <input placeholder='Patient citizen Id' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })} />
-            </Form.Field>
-            <Button floated='right' type='submit'>Search</Button>
+          <Form onSubmit={() => this.searchPatient()} style={{ margin:" 0% 15% "}}>
+            <Form.Input label='Citizen Id' type='text' action={{ icon: 'search' }} placeholder='Search...' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}/>
           </Form>
-          {/* <Container>
-          <Grid style={style.last} textAlign="center">
-            <Grid.Column width={5}>
-              <Queues role="Nurse" position={2} StatusQueue="N" page="Registration" />
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Queues role="Doctor" position={3} StatusQueue="D" page="Registration" />
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Queues role="Phamacy" position={4} StatusQueue="P" page="Registration" />
-            </Grid.Column>
-          </Grid>
-        </Container>*/}
         </Container>
 
         <PopupQRCode
@@ -215,7 +152,6 @@ class Registration extends Component {
                 Patient Information
             </Header>
               <Divider />
-              {/* <Scrollbars autoHide style={{ height: 700 }}> */}
                 <Grid textAlign="center">
                   <br />
                   <Grid.Row>
@@ -571,18 +507,16 @@ class Registration extends Component {
                     <Grid.Column width={5} />
                   </Grid.Row>
                 </Grid>
-              {/* </Scrollbars> */}
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
             <Button basic color="black" onClick={this.closeModal}>
               Nope
             </Button>
-            <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.addQueueForNurse()} />
+            <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.confirm()} />
           </Modal.Actions>
         </Modal>
     </div>
-    </Dimmer.Dimmable>
   }
 }
 

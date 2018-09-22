@@ -522,19 +522,19 @@ export const style = {
     },
 
     hnNoNav: {
-        marginLeft: '-11%',
+        // marginLeft: '-11%',
         color: '#ffffff',
     },
     textQueueNav: {
         textAlign: 'left',
-        marginLeft: '-11%',
+        // marginLeft: '-11%',
         color: '#ffffff',
 
     },
     queueNoNav: {
         color: '#00b5ad',
         fontSize: '25px',
-        marginTop: '5%',
+        // marginTop: '5%',
         textAlign: 'right',
 
     },
@@ -549,17 +549,17 @@ export const style = {
     queueNoNav2: {
         color: '#ffffff',
         fontSize: '25px',
-        marginTop: '5%',
+        // marginTop: '5%',
         textAlign: 'right',
 
     },
     hnNoNav2: {
-        marginLeft: '-11%',
+        // marginLeft: '-11%',
         color: '#083E3B',
     },
     textQueueNav2: {
         textAlign: 'left',
-        marginLeft: '-11%',
+        // marginLeft: '-11%',
         color: '#ffffff',
     },
     widthNav2: {

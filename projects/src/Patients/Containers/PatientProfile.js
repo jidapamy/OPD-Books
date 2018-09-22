@@ -182,6 +182,10 @@ export default class PatientProfile extends Component {
     }
     let citizenId = this.props.location.state.citizenId;
     getPatient(citizenId).then(patient => {
+      if (!patient.status){
+        this.props.history.push("/signin");
+        return 
+      }
       getTreatmentHistoryOfPatient(citizenId).then(history => {
         this.setState({
           patient: patient.data,
@@ -231,11 +235,12 @@ export default class PatientProfile extends Component {
           / __ `__ \/ _ \/ __ \/ / / / __ \/ __ `/ ___/
          / / / / / /  __/ / / / /_/ / /_/ / /_/ / /    
         /_/ /_/ /_/\___/_/ /_/\__,_/_.___/\__,_/_/      */}
-
+              <Segment>
             <HeaderPatient 
               page="patient" 
               patient={this.state.patient} 
               show={this.show}/>
+                </Segment>
             {/* <Segment>
               <Container>
                 <br />

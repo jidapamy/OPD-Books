@@ -62,10 +62,10 @@ export const mdrField = {
     medicalRecordId: { label: "Medical Record Id", variable: "medicalRecordId" },
     patientCitizenId: { label: "Citizen Id", variable: "patientCitizenId" },
     presentIllness: { label: "Present Illness", variable: "presentIllness" },
-    physicalExem: { label: "physical Exem", variable: "physicalExem" },
+    physicalExem: { label: "Physical Exem", variable: "physicalExem" },
     diagnosis: { label: "Diagnosis", variable: "diagnosis" },
     treatment: { label: "Treatment", variable: "treatment" },
     recommendation: { label: "Recommendation", variable: "recommendation" },
-    appointment: { label: "Appointment", variable: "appointment" },
+    appointment: { label: "F/D Date", variable: "appointment" },
     doctorName: { label: "Doctor Name", variable: "doctorName" },
 }

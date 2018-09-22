@@ -3,6 +3,13 @@ const { convertString, convertToAscii, bindData } = require('../services/utils')
 const moment = require("moment");
 const { medicalRecordScheme } = require("../models/medicalRecordModel")
 
+const notRequiredField = (value) => {
+    if (value) {
+        return value;
+    }
+    return "-"
+}
+
 const setMedicalRecordForNurse = async (medicalRecord) => {
     let medicalRecordId = (+contract.getLengthMedicalRecords() + 1) + "";
     contract.setMedicalRecordForNursePart1(
@@ -21,13 +28,13 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
         convertString(medicalRecordId),
         convertString(medicalRecord.pulseRate),
         convertString(medicalRecord.respiratoryRate),
-        convertString(medicalRecord.BP1),
-        convertString(medicalRecord.BP2),
-        convertString(medicalRecord.BP3),
-        medicalRecord.chiefComplaint,
-        convertString(medicalRecord.nurseName),
+        convertString(notRequiredField(medicalRecord.BP1)),
+        convertString(notRequiredField(medicalRecord.BP2)),
+        convertString(notRequiredField(medicalRecord.BP3)),
+        notRequiredField(medicalRecord.chiefComplaint),
+        convertString(notRequiredField(medicalRecord.nurseName)),
         defaultAccount
-    );
+        );
     let check = false
     while (check === false) {
         check = isMedicalRecord(medicalRecordId);
@@ -38,6 +45,7 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
 }
 
 const setMedicalRecordForDoctor = async medicalRecord => {
+    console.log("setMedicalRecordForDoctor")
     contract.setMedicalRecordForDocter(
         convertString(medicalRecord.medicalRecordId),
         medicalRecord.presentIllness,
@@ -45,7 +53,7 @@ const setMedicalRecordForDoctor = async medicalRecord => {
         medicalRecord.diagnosis,
         medicalRecord.treatment,
         medicalRecord.recommendation,
-        medicalRecord.appointment,
+        notRequiredField(medicalRecord.appointment),
         convertString(medicalRecord.doctorName),
         defaultAccount
     );
@@ -96,10 +104,35 @@ const getMedicalRecordForDoctor = async (medicalRecordId) => {
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };
 
+const getMedicalRecordForPharmacy= async (medicalRecordId) => {
+    console.log(medicalRecordId)
+    const byteMedicalRecordId = convertString(medicalRecordId)
+    const pharmacy = await contract.getMedicalRecordForPharmacy(byteMedicalRecordId);
+    const combindedPharmacyData = bindData(medicalRecordScheme, [pharmacy], 'pharmacy')
+    let medicalRecord = combindedPharmacyData
+
+    return { status: true, message: "SUCCESS", data: medicalRecord };
+};
+
 const getMedicalRecord = async medicalRecordId => {
     let nurse = await getMedicalRecordForNurse(medicalRecordId);
     let doctor = await getMedicalRecordForDoctor(medicalRecordId);
     return { status: true, message: "SUCCESS", data: { ...nurse.data, ...doctor.data } };
+}
+
+const getMedicalRecordForShowHistory = async (citizenId, length) => {
+    const byteCitizenId = convertString(citizenId)
+    let medicalRecord = []
+    for (let i = 0; i < length; i++) {
+        let byteMedicalRecordId = await contract.getHistoryMedicalRecordPatient(byteCitizenId, i);
+        let stringMedicalRecordId = convertToAscii(byteMedicalRecordId)
+        const data = await contract.getMedicalRecordForShowHistory(byteMedicalRecordId)
+        const combindedHistoryData = bindData(medicalRecordScheme, [data], 'history')
+        combindedHistoryData.medicalRecordId = stringMedicalRecordId;
+        medicalRecord.push(combindedHistoryData)
+    }
+    return { status: true, message: "SUCCESS", data: medicalRecord };
+
 }
 
 const getHistoryMedicalRecord = async (citizenId, length) => {
@@ -152,5 +185,7 @@ module.exports = {
     haveMDRinPatientHistory,
     getMedicalRecord,
     getHistoryMedicalRecord,
-    lengthPatientHistory
+    lengthPatientHistory,
+    getMedicalRecordForPharmacy,
+    getMedicalRecordForShowHistory
 };

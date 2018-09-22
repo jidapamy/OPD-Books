@@ -1,4 +1,4 @@
-const { isPatient, isEmail, insert, get } = require("./../repositories/patientRepo")
+const { isPatient, isEmail, insert, get, getBasicData } = require("./../repositories/patientRepo")
 const msg = require("./../services/messageModel")
 
 const insertCtr = async (req, res) => {
@@ -23,6 +23,15 @@ const getCtr = (req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
+const getBasicDataCtr = (req, res) => {
+    if (isPatient(req.params.citizenId)) {
+        const result = getBasicData(req.params.citizenId)
+        res.send(result)
+        return;
+    }
+    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+}
+
 const isCitizenIdCtr = (req, res) => {
     res.send(isPatient(req.params.citizenId))
 }
@@ -35,5 +44,6 @@ module.exports = {
     insertCtr,
     getCtr,
     isCitizenIdCtr,
-    isEmailCtr
+    isEmailCtr,
+    getBasicDataCtr
 };
