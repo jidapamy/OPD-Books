@@ -29,12 +29,8 @@ import apiDocument from "./Employees/Components/apiDoc"
 // import Testt from "./Employees/Components/Test"
 // import DemoExample from "./containers/demoExample"
 
-
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
-
-
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
