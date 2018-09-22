@@ -1,10 +1,7 @@
 projects/config.env
 project/node_modules/
-
-api-service/node_modules/
-
-api-server/
+ApiService/node_modules/
+projects/src
 .DS_Store
-projects/src/index.js
-.DS_Store
+
 
