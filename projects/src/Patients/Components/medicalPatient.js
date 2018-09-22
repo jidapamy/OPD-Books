@@ -8,7 +8,7 @@ export default class FromHisProfilePatient extends React.Component {
         return (
             <Grid.Column width={6}>
                 <Segment.Group >
-                    <Segment color='teal'>
+                    <Segment>
                         <h4><Icon name='clipboard outline' />Medical Record</h4>
                         <Divider />
                         <Scrollbars autoHide style={{ height: 614 }}>
@@ -55,10 +55,7 @@ export default class FromHisProfilePatient extends React.Component {
                                         </Grid.Row>
 
                                     </Grid.Column>
-                                    <Grid.Column width={1}>
-                                        <Grid.Row >
-                                        </Grid.Row>
-                                    </Grid.Column>
+                                    
                                     <Grid.Column width={1}>
                                         <Grid.Row >
                                         </Grid.Row>

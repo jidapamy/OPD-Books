@@ -255,7 +255,6 @@ export default class Emptest extends React.Component {
     }
 
     setLoader = (boolean) => {
-        console.log("Loader", boolean)
         this.setState({ loader:boolean })
     }
 

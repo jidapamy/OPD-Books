@@ -187,10 +187,12 @@ export default class PatientProfile extends Component {
                   <Responsive {...Responsive.onlyComputer}>
                     <BG>
                       {this.showModal()}
+                      <Segment>
                       <HeaderPatient 
                         page="patient" 
                         patient={this.state.patient} 
                         show={this.show}/>
+                      </Segment>
                       <Container>
                         <Grid columns={16}>
                           <FromAddressPatient patient={this.state.patient} />
