@@ -1,10 +1,8 @@
 import React from "react";
 import {
-    Grid, Segment, Container, Header, Icon, Image, Label,
+    Grid,Container, Header, Icon, Image, Label,
 } from "semantic-ui-react";
-import styled from "styled-components";
 import myQR from "../../Static/Img/myQR.png";
-
 import { patientField } from "../../Static/Data/Field"
 import { color } from "../../Static/Data/ColorPattern"
 
@@ -117,7 +115,6 @@ export default class HeaderPatient extends React.Component {
                                 </Header.Subheader>
                             </Grid.Row>
                         </Grid.Column>
-
                         {this.showQRCode()}
                     </Grid>
                 </Container>

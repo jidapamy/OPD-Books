@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Segment, Form, Select, Dropdown } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import moment from 'moment';
 import Date from './Date';
-import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 
 export default class DateField extends Component {
     state = {

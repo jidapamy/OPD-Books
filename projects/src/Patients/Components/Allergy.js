@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Segment, Form, Radio } from 'semantic-ui-react'
+import { Label, Segment, Form } from 'semantic-ui-react'
 import ErrorMessage from './ErrorMessage'
 
 export default class Allergy extends Component {

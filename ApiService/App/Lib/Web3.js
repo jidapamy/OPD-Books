@@ -1290,11 +1290,7 @@ const PatientRecordContract = web3.eth.contract(
 );
 
 
-<<<<<<< HEAD:api-service/app/lib/web3.js
-const contract = PatientRecordContract.at("0x823680293a140075f8005b7aa8f7205422fb9276");
-=======
-const contract = PatientRecordContract.at("0xaedeb6a2ced9db32e6c207e1ed9d5fd7202c5edb");
->>>>>>> 1eacbe27d37ccbe913fb4c0c9025790b8ab5b1f0:ApiService/App/Lib/Web3.js
+const contract = PatientRecordContract.at("0xedea92fb83753fca06567bdf98b630e7c97e46dd");
 
 const defaultAccount = { from: web3.eth.accounts[0], gas: 10000000 }
 

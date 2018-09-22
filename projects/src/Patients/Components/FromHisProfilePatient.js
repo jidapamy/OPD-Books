@@ -1,14 +1,6 @@
 import React from "react";
-import {
-    Grid, Menu, Segment, Container, Divider, Header,
-    Icon, Image, Table, Label, List, Dropdown, Item,
-    Responsive, Sidebar, Visibility, Statistic, Button,
-    Modal, Popup, Form, TextArea, Pagination
-} from "semantic-ui-react";
+import { Grid, Segment, Container, Divider, Icon, List, Dropdown } from "semantic-ui-react";
 import { Scrollbars } from 'react-custom-scrollbars';
-//service
-import { getPatient } from './../../Service/ManagePatientMethod';
-import FromAddressPatient from './../Components/FromAddressPatient';
 
 const Years = [
     { key: 2012, text: '2012', value: 2012 },
@@ -56,10 +48,15 @@ const style = {
 }
 export default class FromHisProfilePatient extends React.Component {
 
+    chooseMdr = (history) => {
+        this.props.setField('chooseMedicalRecord', history)
+        this.props.setField("statusShowHistory", false)
+    }
+
     showTreatmentHistory = () => {
         if (this.props.historyTreatment){
             let tmp = this.props.historyTreatment.map((history,i) => {
-                return <List.Item key={i} onClick={()=>this.props.setField('chooseMedicalRecord', history)}>
+                return <List.Item key={i} onClick={() => this.chooseMdr(history)}>
                     <List.Content>
                         <List.Content floated='right'>
                             <List.Description as='a' >

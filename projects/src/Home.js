@@ -7,7 +7,6 @@ import {
   Image,
   List,
   Segment,
-  Card,
   Reveal,
   Menu,
   Visibility,
@@ -116,14 +115,12 @@ export default class Home extends React.Component {
                     OPD BOOKS
                   </span>
                 </Menu.Item>
-
                 <Menu.Menu position="right">
                   <Menu.Item>
                     <Button basic inverted={!menuFixed} onClick={()=>this.goToPage('/signin')}>
                       Sign In
                     </Button>
                   </Menu.Item>
-
                   <Menu.Item>
                     <Button basic inverted={!menuFixed} onClick={()=>this.goToPage('/signup')}>
                       Sign Up
@@ -132,7 +129,6 @@ export default class Home extends React.Component {
                 </Menu.Menu>
               </Menu>
             </Visibility>
-            
             <h1 className="heading">Welcome Everyone </h1>
             <h4 className="detail">OPD Book on Blockchain </h4>
             <Link to="/signup">
@@ -141,8 +137,6 @@ export default class Home extends React.Component {
               </p>
             </Link>
           </div>
-         
-          
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
             vertical
@@ -218,8 +212,6 @@ export default class Home extends React.Component {
               </Grid.Row>
             </Grid>
           </Segment>
-
-
           <Segment style={{ paddingTob: "2em", border: "0px" }}>
             <Grid columns="equal" stackable width={4}>
               <Grid.Row textAlign="center">
@@ -255,7 +247,6 @@ export default class Home extends React.Component {
                     consent.
                   </p>
                 </Grid.Column>
-
                 <Grid.Column
                   style={{ paddingBottom: "3em", paddingTop: "1em" }}
                   className="wow zoomIn"
@@ -272,7 +263,6 @@ export default class Home extends React.Component {
                     management for employee.
                   </p>
                 </Grid.Column>
-
                 <Grid.Column
                   style={{ paddingBottom: "3em", paddingTop: "1em" }}
                   className="wow zoomIn"
@@ -291,8 +281,6 @@ export default class Home extends React.Component {
               </Grid.Row>
             </Grid>
           </Segment>
-
-
           <SegmentGray
             style={{
               padding: "4em 0em",
@@ -398,9 +386,6 @@ export default class Home extends React.Component {
               </Grid.Row>
             </Grid>
           </Segment>
-          {/* <<<<<<<<------------------->>>>>>>>>> */}
-          {/* <<<<< ส่วนของ Footer >>>>>>*/}
-
           <Segment
             inverted
             color="teal"
@@ -447,18 +432,13 @@ export default class Home extends React.Component {
               </Grid>
             </Container>
           </Segment>
-          {/* <<<<<<<<------------------->>>>>>>>>> */}
         </Segment.Group>
         </Responsive>
 
-
-
         <Responsive {...Responsive.onlyMobile}>
-          
           <HomeOnMobile 
             goToPage={this.goToPage}
           />
-
         </Responsive>
       </div>
     );

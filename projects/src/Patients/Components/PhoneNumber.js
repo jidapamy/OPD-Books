@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Grid } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
 
 export default class PhoneNumber extends Component {
@@ -47,10 +47,8 @@ export default class PhoneNumber extends Component {
         var result = null;
         if(!error.status){
             this.props.errorField[field] = false
-            // this.props.setFieldAndValidate(field, value)
             result = setErrorMsgSplice(field, this.props.errorText)
             this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
-            // this.props.setPatientDetail(field,value)
         }else{
             this.props.errorField[field] = true
             result = setErrorMsg(field, error.message, this.props.errorText)
@@ -83,5 +81,3 @@ export default class PhoneNumber extends Component {
 
     }
 }
-
-// value={this.props.field !== 'emer' ? this.props.patient[text.attribute]:this.props.patient[text.attributeEmer]}

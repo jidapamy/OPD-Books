@@ -1,35 +1,7 @@
 import React from "react";
 import {
-    Grid, Menu, Segment, Container, Divider, Header,
-    Icon, Image, Table, Label, List, Dropdown, Item,
-    Responsive, Sidebar, Visibility, Statistic, Button,
-    Modal, Popup, Form, TextArea, Pagination
+    Grid,Segment, Container, Divider, Header,Icon,
 } from "semantic-ui-react";
-//service
-import { getPatient } from './../../Service/ManagePatientMethod';
-
-
-const style = {
-    ImButton: {
-        cursor: 'pointer'
-    },
-    colorsort: {
-        color: "#00B5AD"
-    },
-    colorHis: {
-        color: "#AFB4B7",
-        fontSize: '12px',
-    },
-    colorDes: {
-        color: "#808B96  ",
-    },
-    colorNavMobile: {
-        color: "#62E6C5",
-    },
-    colorFontMobile: {
-        color: "##FFFFFF"
-    },
-}
 
 export default class FromAddressPatientMobile extends React.Component {
 
@@ -37,14 +9,11 @@ export default class FromAddressPatientMobile extends React.Component {
     render() {
 
         return (
-
             <Grid.Column width={5}>
-                
-
                 <Segment.Group style={{ borderRadius: '1.3rem' }}>
                     <Segment style={{ borderRadius: '1.3rem' }}>
                         <h4><Icon name='child' />In Case Under15 Year Old</h4>
-                        <Divider />
+                            <Divider />
                         <Container>
                             <Grid>
                                 <Grid.Column width={6}>

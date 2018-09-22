@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Segment, Checkbox, Form, Select, Button, Dropdown } from 'semantic-ui-react'
+import { Label, Segment, Checkbox, Form, Dropdown } from 'semantic-ui-react'
 import { titleNameParentData } from './../../Static/Data/FormDatas'
 
 import HomeAddress from './HomeAddress'
@@ -10,7 +10,6 @@ import ErrorMessage from './ErrorMessage'
 export default class EmergencyContact extends Component {
     state = {
         statusSameAddress: false,
-        // requiredAllfield: false,
         emerTitle: '',
         emerFirstname: '',
         emerLastname: '',
@@ -56,7 +55,6 @@ export default class EmergencyContact extends Component {
             emerZipcode: this.props.patient.zipcode,
         }
         if (status) {
-            // เลือกให้ฉุกเฉินเหมือนที่อยู่ปัจจุบัน
             this.emerOldAddress = {
                 emerAddress: this.state.emerAddress,
                 emerDistrict: this.state.emerDistrict,

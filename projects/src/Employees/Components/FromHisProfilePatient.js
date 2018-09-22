@@ -1,14 +1,8 @@
 import React from "react";
 import {
-    Grid, Menu, Segment, Container, Divider, Header,
-    Icon, Image, Table, Label, List, Dropdown, Item,
-    Responsive, Sidebar, Visibility, Statistic, Button,
-    Modal, Popup, Form, TextArea, Pagination
+    Grid,  Segment, Container, Divider, Icon, List, Dropdown, 
 } from "semantic-ui-react";
 import { Scrollbars } from 'react-custom-scrollbars';
-//service
-import { getPatient } from './../../Service/ManagePatientMethod';
-import FromAddressPatient from './../Components/FromAddressPatient';
 
 const Years = [
     { key: 2012, text: '2012', value: 2012 },
@@ -55,13 +49,9 @@ const style = {
     },
 }
 export default class FromHisProfilePatient extends React.Component {
-
-    
    
     render() {
         return (
-            
-                
                 <Grid.Column width={5}>
                 <Segment.Group >
                     <Segment color='teal'>

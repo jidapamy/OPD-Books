@@ -1,13 +1,10 @@
 import React from "react";
 import {
-    Segment, Container, Icon, Button, Modal, Form, Input, Transition, Header, Dropdown, Responsive
+     Container, Icon, Button, Modal, Header,  Responsive
 } from "semantic-ui-react";
-import swal from 'sweetalert2';
 import FormEditProfile from './FormEditProfile'
 import ProfilePatientMobile from './ProfilePatientMobile'
 const provincesData = require('./../../Static/Data/Provinces')
-const amphursData = require('./../../Static/Data/Amphurs')
-const districtsData = require('./../../Static/Data/Districts')
 
 
 export default class EditProfile extends React.Component {

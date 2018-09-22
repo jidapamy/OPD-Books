@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
-import {
-  Grid, Menu, Segment, Container, Divider, Header,
-  Icon, Image, Table, Label, List, Dropdown, Item,
-  Responsive, Sidebar, Visibility, Statistic, Button,
-  Modal, Popup, Form, TextArea, Pagination, Input
-} from 'semantic-ui-react'
+import { Header, Icon, Table, Dropdown, Button, Modal, } from 'semantic-ui-react'
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Link } from 'react-router-dom';
-import styled from "styled-components";
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import { style } from "./../../Static/Style/QueueCss";
 
 // component
 import ShowHeaderMdr from "./ShowHeaderMdr"
-import DocTreatment1 from "./FromForDoctor1"
+import DocTreatment from "./FromForDoctor"
 import NurseTreatment from "./ShowFormNurse"
 
 // service
 import { patientField, mdrField } from "./../../Static/Data/Field"
 import { getMedicalRecord } from "./../../Service/MedicalRecordMethod";
-
 
 const styles = {
   ImButton: {
@@ -45,9 +34,9 @@ const styles = {
 }
 const Years = [
   { key: 2012, text: '2012', value: 2012 },
-  { key: 2013, text: '2012', value: 2013 },
-  { key: 2014, text: '2012', value: 2014 },
-  { key: 2015, text: '2012', value: 2015 },
+  { key: 2013, text: '2013', value: 2013 },
+  { key: 2014, text: '2014', value: 2014 },
+  { key: 2015, text: '2015', value: 2015 },
   { key: 2016, text: '2016', value: 2016 },
   { key: 2017, text: '2017', value: 2017 },
   { key: 2018, text: '2018', value: 2018 },
@@ -104,11 +93,9 @@ export default class ShowFormNurse extends Component {
           </Table.Row>
         })
       } else {
-        // ไม่มีผู้ป่วย
         tmp = <Table.Cell textAlign='center' colSpan='6'>Please fill patient's citizen Id</Table.Cell>
       }
     } else {
-      // ไม่มีประวัติการรักษา
       tmp = <Table.Cell textAlign='center' colSpan='6'>{this.props.historyMsg}</Table.Cell>
     }
 
@@ -164,7 +151,7 @@ export default class ShowFormNurse extends Component {
             empPosition={empPosition}
             medicalRecord={this.state.medicalRecord}
           />
-          <DocTreatment1
+          <DocTreatment
             empPosition={empPosition}
             showPopupConfirm={this.showPopupConfirm}
             tab={this.props.tab}

@@ -229,8 +229,6 @@ export default class HomeOnMobile extends React.Component {
                             </Grid.Row>
                         </Grid>
                     </Segment>
-
-
                     <Segment style={{ paddingTob: "2em", border: "0px" }}>
                         <Grid columns="equal" stackable width={4}>
                             <Grid.Row textAlign="center">
@@ -249,7 +247,6 @@ export default class HomeOnMobile extends React.Component {
                                         Develop our team potential and learn new technology.
                                     </p>
                                 </Grid.Column>
-
                                 <Grid.Column
                                     style={{ paddingBottom: "3em", paddingTop: "1em" }}
                                     className="wow zoomIn"
@@ -266,7 +263,6 @@ export default class HomeOnMobile extends React.Component {
                                         consent.
                                     </p>
                                 </Grid.Column>
-
                                 <Grid.Column
                                     style={{ paddingBottom: "3em", paddingTop: "1em" }}
                                     className="wow zoomIn"

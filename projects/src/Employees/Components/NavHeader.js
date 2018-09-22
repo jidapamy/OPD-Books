@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Menu, Button, Icon } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import "./../../Static/Style/Navbar.css";
 
 
 export default class NavHeader extends Component {
-
     state = { activeItem: 'home' }
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
+    
     render() {
-
         const { activeItem } = this.state
-
         return (
             <div>
                 <Menu pointing secondary color={'teal'} size='medium'>
@@ -24,7 +21,6 @@ export default class NavHeader extends Component {
                     <Link to='/'><Menu.Item name='logout' active={activeItem === 'logout'}  /></Link>
                     </Menu.Menu>
                 </Menu>
-
             </div>
         )
     }

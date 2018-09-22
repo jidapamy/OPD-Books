@@ -1,324 +1,290 @@
-// import React, { Component } from "react";
-// import {
-//   Button,
-//   Segment,
-//   Input,
-//   Grid,
-//   List,
-//   Label,
-//   Form,
-//   TextArea,
-//   Message,
-//   Tab,
-//   Card,
-//   Visibility,
-//   Sticky,
-//   Header,
-//   Divider
-// } from "semantic-ui-react";
-// import { Scrollbars } from "react-custom-scrollbars";
-// import { style } from "./../../Static/Style/QueueCss";
+import React, { Component } from 'react';
+import { Grid, Segment, Container, Divider, Header, Icon,  Button, Form, TextArea,  Input } from 'semantic-ui-react'
+import { style } from "./../../Static/Style/QueueCss";
 
-// export default class FromForNurse extends Component {
-//   state = {
-//     visitNumber: "",
-//     clinic: "",
-//     height: 0,
-//     bodyWeight: 0,
-//     bmi: 0,
-//     temperature: 0,
-//     pulseRate: 0,
-//     respiratoryRate: 0,
-//     BP1: "",
-//     BP2: "",
-//     BP3: "",
-//     chiefComplaint: "",
-//     nurseName: ""
-//   };
+export default class ShowFormNurse extends Component {
+    state = {
+        openmodal: false
+    }
+    cleanField = () => {
+        this.setState({
+            visitNumber: "",
+            clinic: "",
+            bodyHeight: 0,
+            bodyWeight: 0,
+            bmi: 0,
+            temperature: 0,
+            pulseRate: 0,
+            respiratoryRate: 0,
+            BP1: "",
+            BP2: "",
+            BP3: "",
+            chiefComplaint: ""
+        });
+    };
 
-//   componentWillMount = () => {
-//     console.log("STAMP",this.props)
-//     let emp = this.props.empLogin;
-//     if (emp.position === 2) {
-//       //Nurse
-//       this.setState({
-//         nurseName: emp.nameTitle + " " + emp.firstname + "  " + emp.lastname
-//       });
-//     } else if (emp.position === 3) {
-//       this.setState(this.props.medicalRecord);
-//       // Doctor
-//     } else {
-//       // Pharmacy
-//     }
-//   };
+    handleChangeDate = (date) => {
+        console.log(date)
+        this.setState({
+            startDate: date
+        });
+    }
 
-//   componentWillReceiveProps = (nextProps) => {
-//     this.cleanField();
-//     let emp = this.props.empLogin;
-//     if (emp.position === 3) {
-//       this.setState(nextProps.medicalRecord);
-//       // Doctor
-//     } 
-//   };
+    render() {
+        return (
+            <div>
+                <Header as='h2' color='grey'>MedicalRecord Treatment</Header>
+                <Segment style={{ backgroundColor: '#00B5AD', color: '#FFFFFF', border: 0, borderRadiun: '0 0 0 10' }}>
+                    <Grid >
+                        <Grid.Column width={5}>
+                            <Icon name='calendar alternate outline' />
+                            DATE: Mon 13 Augus 2018
+                        </Grid.Column>
+                        <Grid.Column width={4}>
+                            <Icon name='clock outline' />
+                            Time: 18:00 PM
+                        </Grid.Column>
+                        <Grid.Column width={3}>
+                            <Icon name='file alternate outline' />
+                            VN: 1233/3
+                        </Grid.Column>
+                        <Grid.Row style={{ marginTop: -20 }}>
+                            <Grid.Column width={5}>
+                                <Icon name='star outline' />
+                                Pilivage:father Big
+                            </Grid.Column>
+                            <Grid.Column width={5}>
+                                <Icon name='hospital outline' />
+                                Clinic: Kanonyabun Clinic
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+                <Segment style={{ marginTop: -20 }}>
+                    <Container>
+                        <br />
+                        <Grid >
+                            <Grid.Column width={1}>
+                            </Grid.Column>
+                            <Grid.Column width={4}>
+                                <Header floated='left' as='h4'>Body Height (HT)</Header>
+                                <Input
+                                    label={{ color: 'teal', basic: false, content: "cm" }}
+                                    labelPosition="right"
+                                    placeholder=""
+                                    onChange={e => this.setField("bodyHeight", e.target.value)}
+                                    value={this.state.bodyHeight}
+                                    type="number"
+                                    min="0"
+                                />
 
-//   setField = (field, value) => {
-//     this.props.setMedicalRecordDetail(field, value);
-//     this.setState({ [field]: value });
-//   };
+                            </Grid.Column>
+                            <Grid.Column width={1}>
 
-//   calculateBMI = () => {
-//     if (
-//       this.props.medicalRecord.height &&
-//       this.props.medicalRecord.bodyWeight
-//     ) {
-//       let height = this.props.medicalRecord.height / 100;
-//       let bmi = this.props.medicalRecord.bodyWeight / (height * height);
-//       this.props.medicalRecord.bmi = bmi.toFixed(2);
-//       this.setState({ bmi: bmi.toFixed(2) });
-//     }
-//   };
+                            </Grid.Column>
+                            <Grid.Column width={2}>
+                                <Header as='h4'>Temperature (T)</Header>
+                                <Input
+                                    label={{ color: 'teal', basic: false, content: "°C " }}
+                                    labelPosition="right"
+                                    placeholder=""
+                                    onChange={e => this.setField("temperature", e.target.value)}
+                                    value={this.state.temperature}
+                                    type="number"
+                                    min="0"
+                                />
 
-//   buttonForNurse = () => {
-//     if (this.props.empLogin.position === 2) {
-//       return (
-//         <Button
-//             color="teal"
-//             content="Send To Doctor"
-//             icon="send"
-//             style={style.ButtonNurse}
-//             onClick={() => this.props.showPopupConfirm()}
-//             disabled={this.props.patient.citizenId == null}
-//         />
-//       );
-//     }
-//     return "";
-//   };
+                            </Grid.Column>
+                            <Grid.Column width={1}>
 
-//   cleanField = () => {
-//     this.setState({
-//       visitNumber: "",
-//       clinic: "",
-//       height: 0,
-//       bodyWeight: 0,
-//       bmi: 0,
-//       temperature: 0,
-//       pulseRate: 0,
-//       respiratoryRate: 0,
-//       BP1: "",
-//       BP2: "",
-//       BP3: "",
-//       chiefComplaint: ""
-//     });
-//   };
+                            </Grid.Column>
+                            <Grid.Column width={4}>
+                                <Header as='h4'>Blood Pressure (BP1)</Header>
+                                <Input
+                                    label={{ color: 'teal', basic: false, content: "mmHg" }}
+                                    labelPosition="right"
+                                    placeholder=""
+                                    onChange={e => this.setField("BP1", e.target.value)}
+                                    value={this.state.BP1}
+                                    type="number"
+                                    min="0"
+                                />
+
+                            </Grid.Column>
 
 
-//   render() {
-//     console.log("STAMP",this.props)
-//     const disabledNurseField =
-//       this.props.patient.citizenId == null ||
-//       this.props.empLogin.position !== 2;
-//     return (
-//       <div>
-//         <List divided relaxed>
-//           <List.Item>
-//             <br />
-//             <Grid columns="three">
-//               <Grid.Row>
-//                 <Grid.Column>
-//                   <p style={style.topic1}>
-//                     <b>HT:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "cm." }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input1}
-//                     onChange={e => this.setField("height", e.target.value)}
-//                     onBlur={() => this.calculateBMI()}
-//                     disabled={disabledNurseField}
-//                     value={this.state.height}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
+                            <Grid.Row>
+                                <Grid.Column width={1}>
 
-//                 <Grid.Column>
-//                   <p style={style.topic2}>
-//                     <b>T:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "C" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input2}
-//                     onChange={e => this.setField("temperature", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.temperature}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header floated='left' as='h4'>Body Weight (BW)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "Kg" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        onChange={e => this.setField("bodyWeight", e.target.value)}
+                                        onBlur={() => this.calculateBMI()}
+                                        value={this.state.bodyWeight}
+                                        type="number"
+                                        min="0"
+                                    />
 
-//                 <Grid.Column>
-//                   <p style={style.topic3}>
-//                     <b>BP1:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "mm/Hg" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input3}
-//                     onChange={e => this.setField("BP1", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.BP1}
-//                   />
-//                 </Grid.Column>
-//               </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
 
-//               <Grid.Row style={style.Row}>
-//                 <Grid.Column>
-//                   <p style={style.topic1}>
-//                     <b>BW:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "Kg." }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input1}
-//                     onChange={e => this.setField("bodyWeight", e.target.value)}
-//                     onBlur={() => this.calculateBMI()}
-//                     disabled={disabledNurseField}
-//                     value={this.state.bodyWeight}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header as='h4'>PulseRate (PR 1)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "min" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        onChange={e => this.setField("pulseRate", e.target.value)}
+                                        value={this.state.pulseRate}
+                                        type="number"
+                                        min="0"
+                                    />
 
-//                 <Grid.Column>
-//                   <p style={style.topic2}>
-//                     <b>PR:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "/min" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input2}
-//                     onChange={e => this.setField("pulseRate", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.pulseRate}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
 
-//                 <Grid.Column>
-//                   <p style={style.topic3}>
-//                     <b>BP2:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "mm/Hg" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input3}
-//                     onChange={e => this.setField("BP2", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.BP2}
-//                   />
-//                 </Grid.Column>
-//               </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header as='h4'>Blood Pressure (BP2)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "mmHg" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        onChange={e => this.setField("BP2", e.target.value)}
+                                        value={this.state.BP2}
+                                        type="number"
+                                        min="0"
+                                    />
 
-//               <Grid.Row style={style.Row}>
-//                 <Grid.Column>
-//                   <p style={style.topic1}>
-//                     <b>BMI:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "-" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input1}
-//                     value={this.state.bmi}
-//                     disabled={disabledNurseField}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
+                                </Grid.Column>
+                            </Grid.Row>
 
-//                 <Grid.Column>
-//                   <p style={style.topic2}>
-//                     <b>RR:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "/min" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input2}
-//                     onChange={e =>
-//                       this.setField("respiratoryRate", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.respiratoryRate}
-//                     type="number"
-//                     min="0"
-//                   />
-//                 </Grid.Column>
 
-//                 <Grid.Column>
-//                   <p style={style.topic3}>
-//                     <b>BP3:</b>
-//                   </p>
-//                   <Input
-//                     label={{ basic: true, content: "mm/Hg" }}
-//                     labelPosition="right"
-//                     placeholder=""
-//                     style={style.input3}
-//                     onChange={e => this.setField("BP3", e.target.value)}
-//                     disabled={disabledNurseField}
-//                     value={this.state.BP3}
-//                   />
-//                 </Grid.Column>
-//               </Grid.Row>
-//             </Grid>
-//           </List.Item>
-//         </List>
+                            <Grid.Row>
+                                <Grid.Column width={1}>
 
-//         <Form>
-//           <p style={style.topicChief}>
-//             <b>Chief Plaint</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Patient Symptoms ..."
-//             style={style.inputField}
-//             onChange={e => this.setField("chiefComplaint", e.target.value)}
-//             disabled={disabledNurseField}
-//             value={this.state.chiefComplaint}
-//           />
-//         </Form>
-//         <br />
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header floated='left' as='h4'>Body Mass Index (BMI)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "--" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        value={this.state.bmi}
+                                        type="number"
+                                        min="0"
+                                    />
 
-//          <Grid columns="two">
-//           <Grid.Row columns={2} style={style.ButtonNurse2}>
-//             <Grid.Column>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
 
-//             </Grid.Column>
-//             <Grid.Column>
-//               <p style={style.topicNameDoc}>
-//                 <b>Sign</b>
-//               </p>
-//               <p style={style.ColumnDoc}>{this.props.medicalRecord.nurseName}</p>
-//               <p style={style.dividerDeco}><Divider /></p>
-//             </Grid.Column>
-//           </Grid.Row>
-//           <Grid.Row columns={2}>
-//             <Grid.Column>
-//             </Grid.Column>
-//             <Grid.Column>
-//               {this.buttonForNurse()}
-//             </Grid.Column> 
-//           </Grid.Row>
-//         </Grid>
-//       </div>
-//     );
-//   }
-// }
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header as='h4'>Respiratory Rate (RR)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "min" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        onChange={e => this.setField("respiratoryRate", e.target.value)}
+                                        value={this.state.respiratoryRate}
+                                        type="number"
+                                        min="0"
+                                    />
 
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header as='h4'>Blood Pressure (BP3)</Header>
+                                    <Input
+                                        label={{ color: 'teal', basic: false, content: "mmHg" }}
+                                        labelPosition="right"
+                                        placeholder=""
+                                        onChange={e => this.setField("BP2", e.target.value)}
+                                        value={this.state.BP3}
+                                        type="number"
+                                        min="0"
+                                    />
+
+                                </Grid.Column>
+                                <br />
+                            </Grid.Row>
+
+                            <Grid.Column width={1}>
+
+                            </Grid.Column>
+                            <Grid.Column width={15}>
+                                <Header as='h3'>Body Height</Header>
+                                <Form>
+
+                                    <Form.Field
+                                        control={TextArea}
+                                        placeholder="Enter Patient Symptoms ..."
+                                        style={style.inputField}
+                                        onChange={e => this.setField("chiefComplaint", e.target.value)}
+                                        value={this.state.chiefComplaint}
+                                    />
+
+
+                                </Form>
+                            </Grid.Column>
+
+                        </Grid>
+                        <br />
+
+                        <Grid>
+                            <Grid.Row>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Header as='h4'>Sign</Header>
+                                    <Header style={{ marginTop: -5 }} as='h4'>Dr.Nempoo Solamakmeesuk</Header>
+                                    <Divider style={{ marginTop: -10 }} />
+
+
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row style={{ marginTop: -25 }}>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+                                </Grid.Column>
+                                <Grid.Column width={5}>
+                                    <Button
+                                        color="yellow"
+                                        content="Send To Doctor"
+                                        icon="send"
+                                        style={style.ButtonNurse}
+                                        onClick={() => this.props.showPopupConfirm()}
+                                    />
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+
+                    </Container>
+                </Segment>
+            </div>
+        )
+    }
+}

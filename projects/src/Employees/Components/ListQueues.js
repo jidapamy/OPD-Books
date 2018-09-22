@@ -1,39 +1,8 @@
 import React, { Component } from "react";
-import ScanButton from "./../../Static/Img/ScanButton.png";
 import { Scrollbars } from "react-custom-scrollbars";
-// import WebFont from 'webfontloader';
-import {
-  Button,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Item,
-  Label,
-  Menu,
-  Segment,
-  Step,
-  Table,
-  List,
-  Divider
-} from "semantic-ui-react";
-
+import { Container, Grid, Header, Icon, Segment, Table, List, Divider } from "semantic-ui-react";
 import { style } from "./../../Static/Style/QueueCss";
-
-import {
-  addQueue,
-  getQueues,
-  updateStatusQueue
-} from "./../../Service/QueueMethod";
-
-// WebFont.load({
-//   google: {
-//     families: ['Titillium Web:300,400,700', 'sans-serif']
-   
-
-//   }
-// });
+import { getQueues } from "./../../Service/QueueMethod";
 
 export default class Queues extends Component {
   state = {
@@ -41,12 +10,10 @@ export default class Queues extends Component {
   };
 
   componentWillMount = () => {
-    // console.log("----------- will mount listQ");
     this.prepareQueue();
   };
 
   componentWillReceiveProps = () => {
-    // console.log("----------- WillReceive listQ");
     this.prepareQueue();
   };
 

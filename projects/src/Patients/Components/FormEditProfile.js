@@ -1,11 +1,9 @@
 import React from "react";
 import {
-    Segment, Container, Icon, Button, Modal, Form, Input, Transition, Header, Dropdown
+    Segment,  Icon, Form, Input, Transition, Dropdown
 } from "semantic-ui-react";
 import swal from 'sweetalert2';
 const provincesData = require('./../../Static/Data/Provinces')
-const amphursData = require('./../../Static/Data/Amphurs')
-const districtsData = require('./../../Static/Data/Districts')
 
 
 export default class EditProfile extends React.Component {

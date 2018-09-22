@@ -1,153 +1,161 @@
-// import React, { Component } from "react";
-// import {
-//   Button,
-//   Segment,
-//   Input,
-//   Grid,
-//   List,
-//   Label,
-//   Form,
-//   TextArea,
-//   Message,
-//   Tab,
-//   Card,
-//   Header,
-//   Divider
-// } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Grid, Segment, Container, Divider, Button, Form } from 'semantic-ui-react'
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import {  mdrField } from "./../../Static/Data/Field"
 
-// import { style } from "./../../Static/Style/QueueCss";
+export default class ShowFormNurse extends Component {
+  state = {
+    presentIllness: '',
+    physicalExem: '',
+    diagnosis: '',
+    treatment: '',
+    recommendation: '',
+    appointment: null,
+    doctorName: "Dr. Carmen Fulton"
+  };
 
-// export default class FromForDoctor extends Component {
-//   state = {
-//     visitNumber: "",
-//     presentIllness: '',
-//     physicalExem: '',
-//     diagnosis: '',
-//     treatment: '',
-//     recommendation: '',
-//     appointment: this.props.medicalRecord.appointment,
-//   };
+  defaultState = () => {
+    this.setState({
+      presentIllness: '',
+      physicalExem: '',
+      diagnosis: '',
+      treatment: '',
+      recommendation: '',
+      appointment: null,
+    })
+  }
 
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       startDate: moment()
-//     };
-//     this.handleChange = this.handleChange.bind(this);
-//   }
+  showPopupConfirm = () => {
+    console.log(this.state)
+    this.props.showPopupConfirm(this.state);
+  }
 
-//   handleChange(date) {
-//     this.setState({
-//       startDate: date
-//     });
-//   }
+  showButtonForDoctor = () => {
+    console.log("SHOW BUTTON DOCTOR", "emp=" + this.props.empPosition, "tab=" + this.props.tab)
+    if ((this.props.empPosition === 3 && this.props.tab !== 2)) {
+      //doctor
+      return <Grid.Row columns={3} style={{ padding: 0 }}>
+        <Grid.Column></Grid.Column>
+        <Grid.Column></Grid.Column>
+        <Grid.Column>
+           <Button
+            fluid
+            color="teal"
+            content="Send To Pharmacy"
+            icon="send"
+            style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
+            onClick={() => this.showPopupConfirm()}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    }
+  }
 
-//   render() {
-//     return (
-//       <div>
+  showFieldOfDoctor = () => {
+    if(this.props.empPosition === 3 ){
+      return <div>
+      <Form.Group widths="equal">
+        <Form.TextArea
+          required
+          label={mdrField.presentIllness.label}
+          placeholder="Enter Patient Symptoms ..."
+          onChange={e => this.setState({ [mdrField.presentIllness.variable]: e.target.value })}
+          value={this.state[mdrField.presentIllness.variable]}
+        />
+      </Form.Group>
+        <Form.Group widths="equal">
+          <Form.TextArea
+            required
+            label={mdrField.physicalExem.label}
+            placeholder="Enter Patient Symptoms ..."
+            onChange={e => this.setState({ [mdrField.physicalExem.variable]: e.target.value })}
+            value={this.state[mdrField.physicalExem.variable]}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.TextArea
+            required
+            label={mdrField.diagnosis.label}
+            placeholder="Enter Patient Symptoms ..."
+            onChange={e => this.setState({ [mdrField.diagnosis.variable]: e.target.value })}
+            value={this.state[mdrField.diagnosis.variable]}
+          />
+        </Form.Group>
+      </div>
+    }
+  }
 
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Present Illness</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Present Illness ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Physical Exam</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Physical Exam ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Investigation</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Investigation ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Diagnosis / Impression</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Diagnosis / Impression ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Treatment</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Treatment ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
+  componentWillMount = () => {
+    console.log("componentWillMount", this.props.medicalRecord)
+    if (this.props.medicalRecord) {
+      this.setState(this.props.medicalRecord);
+    }
+  }
 
-//         <Form>
-//           <p style={style.topicDoc}>
-//             <b>Recommendation and Plan</b>
-//           </p>
-//           <Form.Field
-//             control={TextArea}
-//             placeholder="Enter Recommendation and Plan ..."
-//             style={style.inputFieldDoc}
-//           />
-//         </Form>
+  componentWillReceiveProps = (nextProps) => {
+    this.setState(nextProps.medicalRecord);
+  }
 
-//         <Grid columns="two">
-//           <Grid.Row columns={2} style={style.ButtonNurse2}>
-//             <Grid.Column>
-//               <p style={style.topicTime}>
-//                 <b>F/U Date</b>
-//               </p>
-//               <Form style={style.ColumnDate}>
-//                 <DatePicker
-//                   selected={this.state.startDate}
-//                   onChange={this.handleChange}
-//                   minDate={moment()}
-//                   dateFormat="DD/MM/YYYY"
-//                   showDisabledMonthNavigation
-//                   placeholderText="Select an appointment date"
-//                   value={this.state.startDate
-//                                   }                />
-//               </Form>
-//             </Grid.Column>
-//             <Grid.Column>
-//               <p style={style.topicNameDoc}>
-//                 <b>ลงชื่อแพทย์ผู้รักษา</b>
-//               </p>
-//               <p style={style.ColumnDoc}>นพ. ประสม ประสงค์สุขสันต์ </p>
-//               <p style={style.dividerDeco}><Divider /></p>
-//             </Grid.Column>
-//           </Grid.Row>
-//           <Grid.Row columns={2}>
-//             <Grid.Column />
-//             <Grid.Column>
-//               <Button
-//                 color="teal"
-//                 content="Send To Pharmacy"
-//                 icon="send"
-//                 style={style.ButtonDoctor}
-//                 onClick={() => this.showPopupConfirm()}
-//               />
-//             </Grid.Column>
-//           </Grid.Row>
-//         </Grid>
-//       </div>
-//     );
-//   }
-// }
+  render() {
+    const readOnly = (this.props.empPosition === 3 && this.props.tab !== 2) ? false : true
+    console.log(this.state)
+  return (
+    <div>
+      <Segment style={{ marginTop: -20 }}>
+        <Container style={{ padding: "1% 3%" }}>
+          <Form style={{ paddingBottom: "1%" }} disabled>
+            {this.showFieldOfDoctor()}
+            <Form.Group widths="equal">
+              <Form.TextArea
+                required
+                label={mdrField.treatment.label}
+                placeholder="Enter Patient Symptoms ..."
+                onChange={e => this.setState({ [mdrField.treatment.variable]: e.target.value })}
+                value={this.state[mdrField.treatment.variable]}
+                readOnly={readOnly}
+              />
+            </Form.Group>
+            <Form.Group widths="equal">
+              <Form.TextArea
+                required
+                label={mdrField.recommendation.label}
+                placeholder="Enter Patient Symptoms ..."
+                onChange={e => this.setState({ [mdrField.recommendation.variable]: e.target.value })}
+                value={this.state[mdrField.recommendation.variable]}
+                readOnly={readOnly}
+              />
+            </Form.Group>
+            <Grid>
+              <Grid.Row columns={3}>
+                <Grid.Column>
+                  <Form.Field
+                    selected={this.state.appointment ? moment(this.state.appointment, 'DD/MM/YYYY') : this.state.appointment}
+                    control={DatePicker}
+                    label={mdrField.appointment.label}
+                    minDate={moment()}
+                    required
+                    showDisabledMonthNavigation
+                    dateFormatCalendar={"MMM YYYY"}
+                    placeholderText="ex. 01/01/1990"
+                    value={this.state.appointment}
+                    onChange={(e) => this.setState({ [mdrField.appointment.variable]: e.format('DD/MM/YYYY') })}
+                    readOnly={readOnly}
+                  />
+                </Grid.Column>
+                <Grid.Column></Grid.Column>
+                <Grid.Column style={{ alignSelf: "flex-end" }}>
+                  <div>{mdrField.doctorName.label}</div>
+                  <div style={{ textAlign: "center" }}>{this.state[mdrField.doctorName.variable]}</div>
+                  <Divider style={{ margin: "0px", marginTop: "2px" }} />
+                </Grid.Column>
+              </Grid.Row>
+              {this.showButtonForDoctor()}
+            </Grid>
+          </Form>
+        </Container>
+      </Segment>
+    </div>
+  )
+}
+}

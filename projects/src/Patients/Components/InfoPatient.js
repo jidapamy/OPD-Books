@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import { Segment, Form, Select, Dropdown, Label, Message } from 'semantic-ui-react'
+import { Segment, Form, Select, Dropdown, Label } from 'semantic-ui-react'
 import CitizenIdField from './CitizenIdField';
 import DateField from './DateField';
 import PhoneNumber from './PhoneNumber'
 import Password from './Password'
 import ErrorMessage from './ErrorMessage'
 import { setErrorMsg, setErrorMsgSplice } from './../../Service/Validate';
-
 import {
     titleNameChildData,genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
 } from './../../Static/Data/FormDatas.js'
-
 import { checkEmail } from "./../../Service/ManagePatientMethod";
 
 export default class InfoPateint extends Component {
-
-    state = {
-        errorText: []
-    }
-
+    state = { errorText: [] }
     showCountry = () => {
         if (this.props.cardType !== 'idcard') {
             return <Form.Field

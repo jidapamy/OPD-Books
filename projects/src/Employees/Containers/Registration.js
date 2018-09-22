@@ -3,12 +3,8 @@ import ScanButton from "./../../Static/Img/ScanButton.png";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
-import { addQueue, removeQueues } from "./../../Service/QueueMethod";
-import { Dimmer, Loader } from "semantic-ui-react";
 import { patientField } from "../../Static/Data/Field"
-
 import { getPatient } from "./../../Service/ManagePatientMethod";
-
 import { Button, Container, Grid, Image, Header,Divider,Modal,Form } from "semantic-ui-react";
 
 const PopupQRCode = styled(Modal)`
@@ -84,7 +80,6 @@ class Registration extends Component {
         } else {
           swal({
             type: "error",
-            // title: "Oops...",
             text: res.message,
             showConfirmButton: false,
             timer: 2000

@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import {
-  Button,
   Segment,
-  Input,
   Grid,
   List,
-  Label,
-  Form,
-  TextArea,
-  Message,
-  Tab,
-  Card,
   Header
 } from "semantic-ui-react";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -121,10 +113,6 @@ export default class FormMedicalRecord extends Component {
                   <Grid.Column width={5}>
                     Privilege: &nbsp;&nbsp; {this.props.patient.privilege}
                   </Grid.Column>
-                  {/* <Grid.Column width={11}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Clinic: &nbsp;&nbsp;{this.props.empLogin.position === 2 ? this.props.empLogin.clinic : this.props.medicalRecord.clinic}
-                  </Grid.Column> */}
                   <Grid.Column width={11}>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Clinic: &nbsp;&nbsp;{this.props.medicalRecord.clinic}
@@ -134,7 +122,6 @@ export default class FormMedicalRecord extends Component {
             </List.Item>
           </List>
         </Header>
-
         {this.showForm()}
       </Segment>
       );

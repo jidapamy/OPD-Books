@@ -1,18 +1,7 @@
 import React from "react";
-import {
-    Grid, Menu, Segment, Container, Divider, Header,
-    Icon, Image, Table, Label, List, Dropdown, Item,
-    Responsive, Sidebar, Visibility, Statistic, Button,
-    Modal, Popup, Form, TextArea, Pagination
-} from "semantic-ui-react";
-import { Scrollbars } from 'react-custom-scrollbars';
-//service
-import { getPatient } from './../../Service/ManagePatientMethod';
-import FromAddressPatient from './../Components/FromAddressPatient';
-
+import { Grid, Segment, Divider, Header, Icon } from "semantic-ui-react";
 
 export default class InfoPatientMobile extends React.Component {
-
     render() {
         return (
             <div>
@@ -21,10 +10,9 @@ export default class InfoPatientMobile extends React.Component {
                     <Divider />
                     <br />
                 <Grid style={{ paddingLeft: '3em' }}>
-
                     <Grid.Row>
                         <Grid.Column >
-                                <Header as='h5'><Icon name='pills' />Allergy : {this.props.patient.allergy}</Header>
+                            <Header as='h5'><Icon name='pills' />Allergy : {this.props.patient.allergy}</Header>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
@@ -40,7 +28,6 @@ export default class InfoPatientMobile extends React.Component {
                     <Divider />
                     <br />
                     <Grid style={{ paddingLeft: '3em' }}>
-
                         <Grid.Row>
                             <Grid.Column >
                                 <Header as='h5'><Icon name='phone' />Phone No. : {this.props.patient.mobileNumber}</Header>
@@ -53,8 +40,6 @@ export default class InfoPatientMobile extends React.Component {
                         </Grid.Row>
                     </Grid>
             </Segment>
-
-
 
             <Segment style={{ borderRadius: '1.3rem' }}>
                     <h4><Icon name='file alternate outline' />Information</h4>
