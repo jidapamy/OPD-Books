@@ -64,7 +64,6 @@ class Registration extends Component {
 
   scanQRCode = citizenId => {
     // Decrypt
-    console.log(citizenId)
     if (citizenId) {
       this.props.setField("loader",true)
       this.setState({
@@ -101,7 +100,6 @@ class Registration extends Component {
     this.props.sendToNurse(this.state.patient)
   }
   handleError = err => {
-    console.log(err);
   };
 
   render() {

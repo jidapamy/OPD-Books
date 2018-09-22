@@ -27,12 +27,10 @@ export default class ShowFormNurse extends Component {
   }
 
   showPopupConfirm = () => {
-    console.log(this.state)
     this.props.showPopupConfirm(this.state);
   }
 
   showButtonForDoctor = () => {
-    console.log("SHOW BUTTON DOCTOR", "emp=" + this.props.empPosition, "tab=" + this.props.tab)
     if ((this.props.empPosition === 3 && this.props.tab !== 2)) {
       //doctor
       return <Grid.Row columns={3} style={{ padding: 0 }}>
@@ -87,7 +85,6 @@ export default class ShowFormNurse extends Component {
   }
 
   componentWillMount = () => {
-    console.log("componentWillMount", this.props.medicalRecord)
     if (this.props.medicalRecord) {
       this.setState(this.props.medicalRecord);
     }
@@ -99,7 +96,6 @@ export default class ShowFormNurse extends Component {
 
   render() {
     const readOnly = (this.props.empPosition === 3 && this.props.tab !== 2) ? false : true
-    console.log(this.state)
   return (
     <div>
       <Segment style={{ marginTop: -20 }}>

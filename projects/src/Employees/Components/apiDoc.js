@@ -93,7 +93,6 @@ export default class apiDocument extends Component {
   }
 
   render() {
-    console.log(this.state.chooseMethod)
     const { activeItem } = this.state
     const Body = styled.div`
     margin-left: 205px;

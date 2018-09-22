@@ -66,7 +66,6 @@ export default class ShowFormNurse extends Component {
   chooseViewHistory = (mdrId) => {
     this.props.setLoader(true)
     getMedicalRecord(mdrId).then(data => {
-      console.log("MDR : ", data)
       if (data.status) {
         this.props.setLoader(false)
         this.setState({
@@ -89,7 +88,7 @@ export default class ShowFormNurse extends Component {
             <Table.Cell >{history.date}</Table.Cell>
             <Table.Cell >{history.doctorName}</Table.Cell>
             <Table.Cell >{history.clinic}</Table.Cell>
-            <Table.Cell ><Button circular color='teal' icon='ellipsis horizontal' onClick={() => this.setState({ openmodal: true })} /></Table.Cell>
+            <Table.Cell ><Button circular color='teal' icon='ellipsis horizontal'/></Table.Cell>
           </Table.Row>
         })
       } else {

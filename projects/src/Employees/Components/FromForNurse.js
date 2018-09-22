@@ -24,7 +24,6 @@ export default class ShowFormNurse extends Component {
     };
 
     handleChangeDate = (date) => {
-        console.log(date)
         this.setState({
             startDate: date
         });

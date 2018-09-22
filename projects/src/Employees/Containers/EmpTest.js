@@ -59,9 +59,7 @@ export default class Emptest extends React.Component {
     };
 
     showPopupConfirm = (obj) => {
-        console.log(obj)
         let mdr = { ...this.state.medicalRecord, ...obj, ...{ patientCitizenId: this.state.patient.citizenId } }
-        console.log("mdr", mdr)
         swal({
             title: "ยืนยันการบันทึกข้อมูล?",
             text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
@@ -93,17 +91,14 @@ export default class Emptest extends React.Component {
                 showConfirmButton: false,
                 timer: 1500
             });
-            console.log("getQueue", getQueue())
             this.setState({ queues: getQueue() })
             this.resetState()
         }
     };
 
     sendToDoctor = (mdr) => {
-        console.log(mdr, "sendDoctor")
         this.setLoader(true)
         setMedicalRecordForNurse(mdr).then(res => {
-            console.log(res)
         this.setLoader(false)
             this.resetState()
             if (res.status) {
@@ -124,10 +119,8 @@ export default class Emptest extends React.Component {
     }
 
     sendToPharmacy = (mdr) => {
-        console.log("sendToPharmacy", mdr)
         this.setLoader(true)
         setMedicalRecordForDoctor(mdr).then(res => {
-            console.log(res)
             this.setLoader(false)
             this.resetState()
             if (res.status) {
@@ -262,6 +255,7 @@ export default class Emptest extends React.Component {
     }
 
     setLoader = (boolean) => {
+        console.log("Loader", boolean)
         this.setState({ loader:boolean })
     }
 
@@ -282,7 +276,6 @@ export default class Emptest extends React.Component {
         this.setLoader(true)
         if (empPosition === 1 || empPosition === 2) { // พยาบาล
             getInfoPatient(id).then(data => {
-                console.log(data)
                 if (data.status) {
                     this.setState({
                         patient: data.data,
@@ -300,13 +293,10 @@ export default class Emptest extends React.Component {
             })
         } else if (empPosition === 3) { // หมอ
             getMedicalRecordForNurse(id).then(data => {
-                console.log("data",data)
                 if (data.status) {
                     getInfoPatient(data.data.patientCitizenId).then(dataPatient => {
-                        console.log("dataPatient", dataPatient)
                         if (dataPatient.status) {
                             getBasicDataTreatmentHistory(data.data.patientCitizenId).then(history => {
-                                console.log("history", history)
                                 this.setState({
                                     historyTreatment: history.data,
                                     historyMsg: history.message,
@@ -338,7 +328,6 @@ export default class Emptest extends React.Component {
             })
         } else if (empPosition === 4) {
             getMedicalRecordForPharmacy(id).then(data => {
-                console.log("getMedicalRecordForPharmacy",data)
                 if (data.status) {
                     getInfoPatient(data.data.patientCitizenId).then(dataPatient => {
                         if (dataPatient.status) {
@@ -379,12 +368,10 @@ export default class Emptest extends React.Component {
     }
 
     goBack = () => {
-        console.log(this.props.history)
         this.props.history.goBack();
     }
 
     render() {
-        console.log(this.state)
         return (
             <div style={{ background: "#ddd", height: "100vh" }}>
                 <Dimmer.Dimmable blurring dimmed={this.state.loader}>

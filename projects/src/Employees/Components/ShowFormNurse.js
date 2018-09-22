@@ -19,7 +19,6 @@ export default class ShowFormNurse extends Component {
     }
  
     componentWillMount = () => {
-        console.log("componentWillMount",this.props.medicalRecord)
         if (this.props.medicalRecord){
             this.setState(this.props.medicalRecord);
         }
@@ -66,12 +65,10 @@ export default class ShowFormNurse extends Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        console.log("componentWillReceiveProps", nextProps)
         this.setState(nextProps.medicalRecord);
     }
 
     render() {
-        console.log("Nurse",this.state)
         const readOnly = this.props.empPosition != 2 ? true : false
         return <Segment style={{ marginTop: -20 }}>
             <Container style={{ padding: "1% 3%" }}>

@@ -91,7 +91,6 @@ export default class FormMedicalRecord extends Component {
   };
 
   render() {
-    console.log("FORM!!!!",this.props.medicalRecord);
     return (
       <Segment width={8} raised>
         <Header style={style.headForm} as="h5" block inverted color="grey">
