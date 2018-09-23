@@ -11,10 +11,8 @@ import { style } from "./../../Static/Style/QueueCss";
 import HeaderPatient from "../../Patients/Components/HeaderPatient"
 import Registration from "../Containers/Registration"
 import NurseTreatment from "./../Components/ShowFormNurse"
-import FromNurse from "./../Components/FromForNurse"
 import DocTreatment from "./../Components/FromForDoctor"
 import HistoryPatient from "./../Components/HistoryPatient"
-import Pharmacy from "./../Components/Pharmacy"
 import ShowHeaderMdr from "./../Components/ShowHeaderMdr"
 
 import { patientField, mdrField } from "./../../Static/Data/Field"
@@ -26,7 +24,6 @@ import {
     getBasicDataTreatmentHistory
 } from "./../../Service/MedicalRecordMethod";
 
-import { getQueue, addQueue } from "./../../Service/QueueMethod";
 import { getInfoPatient } from './../../Service/ManagePatientMethod'
 
 
@@ -46,7 +43,6 @@ export default class DemoExample extends React.Component {
             clinic: "SIT KMUTT Clinic",
         },
         loader: false,
-        queues: [],
         choosePatient: null,
         type: "",
         historyTreatment: [],
@@ -84,14 +80,12 @@ export default class DemoExample extends React.Component {
     sendToNurse = (patient) => {
         if (patient[patientField.citizenId.variable]) {
             let name = patient[patientField.nametitle.variable] + " " + patient[patientField.firstname.variable] + "  " + patient[patientField.lastname.variable]
-            addQueue(patient[patientField.citizenId.variable], name);
             swal({
                 type: "success",
                 title: "Add Queue Success!",
                 showConfirmButton: false,
                 timer: 1500
             });
-            this.setState({ queues: getQueue() })
             this.resetState()
         }
     };
@@ -227,7 +221,7 @@ export default class DemoExample extends React.Component {
         if (this.state.empPosition !== 1) {
             return <div style={{ marginLeft: "238px", minWidth: "550px" }}>
                 <div style={{ padding: "1em", paddingLeft: "2%", background: "#fff" }} >
-                    <HeaderPatient page="example" patient={this.state.patient} />
+                    <HeaderPatient  patient={this.state.patient} />
                 </div>
                 <div style={{ paddingBottom: "0px", background: "#fff" }}>
                     {this.showTabMenu(this.state.empPosition)}

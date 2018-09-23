@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Container, Grid, Header, Icon, Segment, Table, List, Divider } from "semantic-ui-react";
 import { style } from "./../../Static/Style/QueueCss";
-import { getQueues } from "./../../Service/QueueMethod";
 
 export default class Queues extends Component {
   state = {
@@ -17,12 +16,7 @@ export default class Queues extends Component {
     this.prepareQueue();
   };
 
-  prepareQueue = async () => {
-    let qList = await getQueues(this.props.position);
-    if (qList) {
-      this.setState({ qList: qList });
-    }
-  };
+
 
   showQList = () => {
     let tmp;

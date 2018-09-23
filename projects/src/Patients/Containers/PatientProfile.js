@@ -101,7 +101,6 @@ export default class PatientProfile extends Component {
                 setField={this.setField} />
             } else if (this.state.statusShowHistory == false) {
               return <span><Icon name='arrow left' size='big' onClick={this.setStateHistory}/><MedicalPatient
-                patient={this.state.patient}
                 chooseMedicalRecord={this.state.chooseMedicalRecord}
               /></span>
             }
@@ -188,7 +187,6 @@ export default class PatientProfile extends Component {
                       {this.showModal()}
                       <Segment>
                       <HeaderPatient 
-                        page="patient" 
                         patient={this.state.patient} 
                         show={this.show}/>
                       </Segment>
@@ -202,7 +200,6 @@ export default class PatientProfile extends Component {
                             historyMsg={this.state.historyMsg} 
                             setField={this.setField}/>
                           <MedicalPatient 
-                            patient={this.state.patient} 
                             chooseMedicalRecord={this.state.chooseMedicalRecord}
                           />
                         </Grid>

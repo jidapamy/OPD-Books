@@ -18,7 +18,7 @@ export default class HeaderPatient extends React.Component {
     }
 
     showQRCode = () => {
-        if (this.props.page === "patient") {
+        if (this.props.show) {
             return <Grid.Column width={3}>
                 <Header textAlign={"center"} as="h3"> MY QRCODE </Header>
                 <Image centered style={this.style.ImButton} size="tiny" src={myQR} onClick={()=>this.props.show()}/>
@@ -62,7 +62,7 @@ export default class HeaderPatient extends React.Component {
                             </Grid.Row>
                         </Grid.Column>
 
-                        <Grid.Column width={this.props.page === "patient" ? 3 : 4}>
+                        <Grid.Column width={this.props.show ? 3 : 4}>
                             <Header as="h2">Information</Header>
                             <Grid.Row>
                                 <Header.Subheader>
@@ -88,7 +88,7 @@ export default class HeaderPatient extends React.Component {
                             </Grid.Row>
                         </Grid.Column>
 
-                        <Grid.Column width={this.props.page === "patient" ? 3 : 4}>
+                        <Grid.Column width={this.props.show ? 3 : 4}>
                             <Header as="h2">
                                 <br />
                             </Header>
