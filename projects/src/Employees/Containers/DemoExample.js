@@ -17,6 +17,8 @@ import HistoryPatient from "./../Components/HistoryPatient"
 import Pharmacy from "./../Components/Pharmacy"
 import ShowHeaderMdr from "./../Components/ShowHeaderMdr"
 
+import FooterDemo from '../Components/FooterDemo'
+
 import { patientField, mdrField } from "./../../Static/Data/Field"
 import {
     setMedicalRecordForNurse,
@@ -95,7 +97,7 @@ export default class DemoExample extends React.Component {
     sendToDoctor = (mdr) => {
         this.setLoader(true)
         setMedicalRecordForNurse(mdr).then(res => {
-        this.setLoader(false)
+            this.setLoader(false)
             this.resetState()
             if (res.status) {
                 swal({
@@ -126,7 +128,7 @@ export default class DemoExample extends React.Component {
                     showConfirmButton: false,
                     timer: 2000
                 });
-            }else{
+            } else {
                 swal({
                     type: "error",
                     text: res.message,
@@ -156,20 +158,20 @@ export default class DemoExample extends React.Component {
                 return <DocTreatment
                     empPosition={empPosition}
                     showPopupConfirm={this.showPopupConfirm}
-                    tab={this.state.tab} 
+                    tab={this.state.tab}
                     resetState={this.resetState}
-                    />
+                />
             } else if (this.state.tab == 2) {
                 return <HistoryPatient
                     historyTreatment={this.state.historyTreatment}
-                    historyMsg={this.state.historyMsg} 
+                    historyMsg={this.state.historyMsg}
                     empPosition={empPosition}
                     tab={this.state.tab}
                     setLoader={this.setLoader}
                     privilege={this.state.patient.privilege}
                     allergy={this.state.patient.allergy}
 
-                    />
+                />
             }
         }
         else if (empPosition == 4) {
@@ -223,7 +225,7 @@ export default class DemoExample extends React.Component {
         if (this.state.empPosition !== 1) {
             return <div style={{ marginLeft: "238px", minWidth: "550px" }}>
                 <div style={{ padding: "1em", paddingLeft: "2%", background: "#fff" }} >
-                    <HeaderPatient  patient={this.state.patient} />
+                    <HeaderPatient patient={this.state.patient} />
                 </div>
                 <div style={{ paddingBottom: "0px", background: "#fff" }}>
                     {this.showTabMenu(this.state.empPosition)}
@@ -251,15 +253,15 @@ export default class DemoExample extends React.Component {
     }
 
     setLoader = (boolean) => {
-        this.setState({ loader:boolean })
+        this.setState({ loader: boolean })
     }
 
-    resetState= () => {
-        this.setState({ 
+    resetState = () => {
+        this.setState({
             resetState: "",
             patient: {},
             id: '',
-            medicalRecord:{
+            medicalRecord: {
                 date: moment().format("LL"),
                 time: moment().format("LT"),
                 clinic: "SIT KMUTT Clinic",
@@ -366,6 +368,27 @@ export default class DemoExample extends React.Component {
         this.props.history.goBack();
     }
 
+
+    // goToPage = (page, position = null) => {
+    //     console.log("POSITION",position)
+    //     if (position) {
+    //        this.setState({ empPosition : position })
+    //     } else {
+    //         if (page === "home") {
+    //             this.props.history.push({
+    //                 pathname: "/"
+                    
+    //             });
+    //         } else if (page === "api") {
+    //             this.props.history.push({
+    //                 pathname: "/apiDoc"
+    //             });
+
+    //         }
+    //     }
+    // }
+
+
     render() {
         return (
             <div style={{ background: "#ddd", height: "100vh" }}>
@@ -386,10 +409,14 @@ export default class DemoExample extends React.Component {
                                 value={this.state.id} />
                         </Form>
                         <br />
-                  
+
                     </Menu>
                     {this.showDependOnPosition()}
                 </Dimmer.Dimmable>
+                <FooterDemo
+                    history={this.props.history}
+                    tab={this.state.empPosition+""}
+                />
             </div>
         );
     }

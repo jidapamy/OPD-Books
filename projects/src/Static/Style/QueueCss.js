@@ -663,7 +663,7 @@ export const style = {
     bgCodeMirror: {
         backgroundColor: '#2B2B2B',
         width: '100%',
-        height: '600px',
+        height: '550px',
         margin: '3%',
         marginTop: '13%'
     },
@@ -740,7 +740,32 @@ export const style = {
         background: '#f2f2f2',
     },
 
+    // footer
 
+    footerChoosing:{
+        border:"0px", 
+        borderRadius:"0px",
+        position: 'fixed',
+        bottom: '0%',
+        width:'100%',
+        textAlign: 'right',
+        background: '#4D8B87',
+        color:'#262626',
+        height:'auto',
+    },
+
+    footerBeforClick:{
+       color:'#ffffff',
+       fontSize:'13.5px',
+       fontWeight:'bold',
+    },
+    footerAfterClick:{
+        color:'#ffffff',
+        fontWeight:'bold',
+        fontSize:'13.5px',
+        backgroundColor:'#262626',
+        borderRadius:'0px'
+     },
 
 
 

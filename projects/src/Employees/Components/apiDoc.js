@@ -6,7 +6,10 @@ import {
   Menu,
   Dropdown,
   Table,
-  Message
+  Message,
+  Step,
+  Icon,
+  Container
 
 } from "semantic-ui-react";
 import { style } from "./../../Static/Style/QueueCss";
@@ -16,14 +19,20 @@ import { apiData } from "./apiData"
 import { MySlidedown } from "./slide"
 import { JSONViewer } from 'react-json-editor-viewer';
 import ReactJson from 'react-json-view'
+import FooterDemo from '../Components/FooterDemo'
+
+
 
 export default class apiDocument extends Component {
 
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   state = {
     open: "Manage Patient Profile",
     activeItem: "Insert Patient Method",
     chooseMethod: apiData[0].method[0],
-    statusJson: 1
+    statusJson: 1,
+    activePage: '1'
   }
 
   choose = (name, i, j) => {
@@ -35,18 +44,18 @@ export default class apiDocument extends Component {
 
   showMethod = (index) => {
     let tmp = ""
-    tmp = apiData[index].method.map((method,j)=>{
-      return<Menu.Item name={method.title} key={index+"/"+j}
-              active={this.state.activeItem === method.title}
-              onClick={(e, { name })=>this.choose(name,index,j)} 
-              style={ this.state.activeItem === method.title ? style.afterClick :style.beforeClick} />
+    tmp = apiData[index].method.map((method, j) => {
+      return <Menu.Item name={method.title} key={index + "/" + j}
+        active={this.state.activeItem === method.title}
+        onClick={(e, { name }) => this.choose(name, index, j)}
+        style={this.state.activeItem === method.title ? style.afterClick : style.beforeClick} />
     })
     return tmp
   }
   showData = () => {
     let tmp = ''
-    tmp = apiData.map((data,i)=>{
-        return <div key={i}>
+    tmp = apiData.map((data, i) => {
+      return <div key={i}>
         <Menu.Item name={data.system}
           onClick={() => { this.setState({ open: data.system }) }}
           style={style.menuAPI} />
@@ -69,27 +78,18 @@ export default class apiDocument extends Component {
       //res
       arrAttr = this.state.chooseMethod.attrRes
     }
-    tmp = arrAttr.map((attr,i) => {
-      return  <Table.Row key={i} style={style.textDes}>
-    <Table.Cell>
-      <Header as='h4'>
-        {attr.name}
-    </Header>
-    </Table.Cell>
-    <Table.Cell> {attr.type}</Table.Cell>
-    <Table.Cell> {attr.des}</Table.Cell>
-  </Table.Row>
+    tmp = arrAttr.map((attr, i) => {
+      return <Table.Row style={style.textDes}>
+        <Table.Cell width="6">
+          <Header as='h4'>
+            {attr.name}
+          </Header>
+        </Table.Cell>
+        <Table.Cell width="3"> {attr.type}</Table.Cell>
+        <Table.Cell width="7">{attr.des}</Table.Cell>
+      </Table.Row>
     })
     return tmp
-  }
-
-  showExample = (position) => {
-    if(position){
-      this.props.history.push({
-        pathname: "/demoExample",
-        state: { position: position }
-      });
-    }
   }
 
   render() {
@@ -102,7 +102,6 @@ export default class apiDocument extends Component {
     padding: 2%;
     `;
 
-
     return (
 
       <div>
@@ -111,18 +110,8 @@ export default class apiDocument extends Component {
             <br />
             <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
             {this.showData()}<br />
-            <Dropdown text='Demo' floating  button className='icon' color='black' style={style.demoButPosition}>
-              <Dropdown.Menu style={style.demoDropdown}>
-                <Dropdown.Item icon='file alternate outline' text='Registrar' onClick={()=>this.showExample(1)} />
-                <Dropdown.Item icon='stethoscope' text='Nurse' onClick={() => this.showExample(2)} />
-                <Dropdown.Item icon='user md' text='Doctor' onClick={() => this.showExample(3)} />
-                <Dropdown.Item icon='medkit' text='Pharmacy' onClick={() => this.showExample(4)} />
-              </Dropdown.Menu>
-            </Dropdown>
           </Menu>
-
         </div>
-
         <Body>
           <Grid columns={2}>
             <Grid.Column width={8}>
@@ -143,7 +132,6 @@ export default class apiDocument extends Component {
                   onClick={() => this.setState({ statusJson: 2 })}
                 />
               </Menu>
-
               <div style={style.tableHead}>
                 <Grid divided='vertically'>
                   <Grid.Row>
@@ -160,7 +148,7 @@ export default class apiDocument extends Component {
                 </Grid>
               </div>
               <br /><br />
-              <Scrollbars autoHide style={{ width: 495, height: 400 }} >
+              <Scrollbars autoHide style={{ width: 495, height: 350 }} >
                 <Table basic='very' collapsing style={style.tableWidth}>
                   <Table.Body style={style.tableBody}>
                     {this.showAttribute()}
@@ -168,25 +156,18 @@ export default class apiDocument extends Component {
                 </Table>
               </Scrollbars>
             </Grid.Column>
-
             <Grid.Column width={8}>
               <div style={style.bgCodeMirror}>
-                {/* <p style={style.HeadCodeMirror}>Request</p> */}
-                {/* <Grid style={ activeItem === '001' ? style.widthNav2 :style.widthNav }></Grid> */}
-                <Message floating style={ this.state.statusJson === 1 ? style.HeadCodeMirror2:style.HeadCodeMirror3 } color='black'>{this.state.statusJson === 1 ? "Request !":"Response !" }</Message>
-                {/* <hr /> */}
-                <Scrollbars autoHide style={{ width: 475, height: 505 }} >
+                <Message floating style={this.state.statusJson === 1 ? style.HeadCodeMirror2 : style.HeadCodeMirror3} color='black'>{this.state.statusJson === 1 ? "Request !" : "Response !"}</Message>
+                <Scrollbars autoHide style={{ width: 475, height: 455 }} >
                   <div style={style.AreaCodeMirror}>
                     <br />
                     <ReactJson
-                      
-                      // src={this.state.chooseMethod.reqJson} 
-                      src={this.state.statusJson === 1 ? this.state.chooseMethod.reqJson : this.state.chooseMethod.resJson} 
+                      src={this.state.statusJson === 1 ? this.state.chooseMethod.reqJson : this.state.chooseMethod.resJson}
                       theme="railscasts"
                       displayDataTypes={false}
                       displayObjectSize={false}
                       name={false}
-
                     />
                     <br /><br />
                   </div>
@@ -196,10 +177,10 @@ export default class apiDocument extends Component {
 
           </Grid>
         </Body>
-
-
-
-
+        <FooterDemo 
+          history={this.props.history}
+          tab={"api"}
+        />
       </div>
 
 
