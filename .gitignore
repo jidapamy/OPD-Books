@@ -1,7 +1,6 @@
 projects/config.env
 project/node_modules/
 ApiService/node_modules/
-projects/src
 .DS_Store
 
 
