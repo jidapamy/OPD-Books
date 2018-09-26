@@ -50,26 +50,50 @@ const getBasicData = citizenId => {
 }
 
 const insert = async (patient) => {
+    console.log(patient)
     contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
     contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nameTitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
     contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount);
-    contract.setInfoPatientPart4(convertString(patient.citizenId), convertString(patient.status), convertString(patient.occupartion === "" ? "-" : patient.occupartion), convertString(patient.homePhonenumber === "" ? "-" : patient.homePhonenumber), convertString(patient.mobileNumber), convertString(patient.email), defaultAccount);
+    contract.setInfoPatientPart4(
+        convertString(patient.citizenId), 
+        convertString(patient.status), 
+        convertString(!patient.occupartion ? "-" : patient.occupartion), 
+        convertString(!patient.homePhonenumber ? "-" : patient.homePhonenumber), 
+        convertString(patient.mobileNumber), 
+        convertString(patient.email), 
+        defaultAccount);
     contract.setEmail(convertString(patient.email), defaultAccount);
     contract.setAddressPatient(convertString(patient.citizenId), convertString(patient.typeofHouse), patient.address, convertString(patient.province), convertString(patient.district), convertString(patient.subDistrict), convertString(patient.zipcode), defaultAccount);
     contract.setPatientAllergy(convertString(patient.citizenId), convertString(patient.allergy), convertString(patient.privilege), defaultAccount);
 
-    if (patient.emerTitle != '' || patient.emerFirstname != '' || patient.emerLastname != '') {
-        contract.setEmergencyContactPart1(convertString(patient.citizenId), convertString(patient.emerTitle), convertString(patient.emerFirstname), convertString(patient.emerLastname), convertString(patient.emerRelationship), convertString(patient.emerHomePhonenumber === "" || patient.emerHomePhonenumber === undefined ? "-" : patient.emerHomePhonenumber), convertString(patient.emerMobileNumber), defaultAccount);
-        contract.setEmergencyContactPart2(convertString(patient.citizenId), convertString(patient.typeofHouse), patient.address, convertString(patient.province), convertString(patient.district), convertString(patient.subDistrict), convertString(patient.zipcode), defaultAccount);
+    if (patient.emerTitle || patient.emerFirstname || patient.emerLastname ) {
+        contract.setEmergencyContactPart1(
+            convertString(patient.citizenId), 
+            convertString(patient.emerTitle), 
+            convertString(patient.emerFirstname), 
+            convertString(patient.emerLastname), 
+            convertString(patient.emerRelationship), 
+            convertString(!patient.emerHomePhonenumber ? "-" : patient.emerHomePhonenumber), 
+            convertString(patient.emerMobileNumber), 
+            defaultAccount);
+        contract.setEmergencyContactPart2(
+            convertString(patient.citizenId), 
+            convertString(patient.typeofHouse), 
+            patient.address, 
+            convertString(patient.province), 
+            convertString(patient.district), 
+            convertString(patient.subDistrict), 
+            convertString(patient.zipcode), 
+            defaultAccount);
     }
 
-    if ((patient.fatherFirstname !== '' && patient.fatherLastname != '') || (patient.motherFirstname !== '' && patient.motherLastname != '')) {
+    if ((patient.fatherFirstname && patient.fatherLastname) || (patient.motherFirstname  && patient.motherLastname )) {
         contract.setPatientParent(
             convertString(patient.citizenId), 
-            convertString(patient.fatherFirstname === "" ? "-" : patient.fatherFirstname), 
-            convertString(patient.fatherLastname === "" ? "-" : patient.fatherLastname), 
-            convertString(patient.motherFirstname === "" ? "-" : patient.motherFirstname), 
-            convertString(patient.motherLastname === "" ? "-" : patient.motherLastname), defaultAccount);
+            convertString(!patient.fatherFirstname ? "-" : patient.fatherFirstname), 
+            convertString(!patient.fatherLastname ? "-" : patient.fatherLastname), 
+            convertString(!patient.motherFirstname ? "-" : patient.motherFirstname), 
+            convertString(!patient.motherLastname ? "-" : patient.motherLastname), defaultAccount);
     }
 
     let check = false
