@@ -2,7 +2,7 @@ const Web3 = require('web3');
 let web3 = new Web3();
 
 // web3 = new Web3(new Web3.providers.HttpProvider("http://13.250.32.62:8545"));
-web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+web3 = new Web3(new Web3.providers.HttpProvider("http://52.221.200.29:8545"));
 web3.eth.defaultAccount = web3.eth.accounts[0];
 const PatientRecordContract = web3.eth.contract(
 [
@@ -1290,7 +1290,7 @@ const PatientRecordContract = web3.eth.contract(
 );
 
 
-const contract = PatientRecordContract.at("0x4941e040c5087f1dd27bc85a67124f5fa088dfe3");
+const contract = PatientRecordContract.at("0xe1ca99db250e407c6547996d9315e422fe70e6bd");
 
 const defaultAccount = { from: web3.eth.accounts[0], gas: 10000000 }
 

@@ -1,5 +1,5 @@
 const { contract, defaultAccount } = require('../Lib/Web3')
-const { convertString, bindData } = require('../Services/Utils')
+const { convertString, bindData, unlockAccount } = require('../Services/Utils')
 const { patientScheme } = require("../Models/PatientModel")
 const moment = require("moment");
 
@@ -50,6 +50,7 @@ const getBasicData = citizenId => {
 }
 
 const insert = async (patient) => {
+    if (unlockAccount()){
     console.log(patient)
     contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
     contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nameTitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
@@ -102,6 +103,9 @@ const insert = async (patient) => {
         if (check) {
             return { status: true, message: "SUCCESS" };
         }
+    }
+    }else{
+        return { status: false, message: "ERROR" };
     }
 }
 

@@ -38,9 +38,15 @@ const convertValue = (data, type) => {
     if (type === 'byte') data = convertToAscii(data)
     return data ? data : '-'
 }
-
+const unlockAccount = async () => {
+    debugger
+    let tmp = await web3.personal.unlockAccount(web3.eth.defaultAccount, '1234')
+    console.log("unlockAccount", tmp)
+    return tmp
+}
 module.exports = {
     convertString,
     convertToAscii,
-    bindData
+    bindData,
+    unlockAccount
 }
