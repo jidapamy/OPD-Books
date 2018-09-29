@@ -1,5 +1,5 @@
 const { contract, defaultAccount } = require('../Lib/Web3')
-const { convertString, bindData, unlockAccount } = require('../Services/Utils')
+const { convertString, bindData, unlockAccount, lockAccount } = require('../Services/Utils')
 const { patientScheme } = require("../Models/PatientModel")
 const moment = require("moment");
 
@@ -68,6 +68,7 @@ const insert = async (patient) => {
     contract.setPatientAllergy(convertString(patient.citizenId), convertString(patient.allergy), convertString(patient.privilege), defaultAccount);
 
     if (patient.emerTitle || patient.emerFirstname || patient.emerLastname ) {
+        console.log("มี emer")
         contract.setEmergencyContactPart1(
             convertString(patient.citizenId), 
             convertString(patient.emerTitle), 
@@ -80,7 +81,7 @@ const insert = async (patient) => {
         contract.setEmergencyContactPart2(
             convertString(patient.citizenId), 
             convertString(patient.typeofHouse), 
-            patient.address, 
+            convertString(patient.address), 
             convertString(patient.province), 
             convertString(patient.district), 
             convertString(patient.subDistrict), 
@@ -89,6 +90,7 @@ const insert = async (patient) => {
     }
 
     if ((patient.fatherFirstname && patient.fatherLastname) || (patient.motherFirstname  && patient.motherLastname )) {
+        console.log("มี พ่อแม่")
         contract.setPatientParent(
             convertString(patient.citizenId), 
             convertString(!patient.fatherFirstname ? "-" : patient.fatherFirstname), 
@@ -96,6 +98,8 @@ const insert = async (patient) => {
             convertString(!patient.motherFirstname ? "-" : patient.motherFirstname), 
             convertString(!patient.motherLastname ? "-" : patient.motherLastname), defaultAccount);
     }
+    console.log("Success")
+    lockAccount()
 
     let check = false
     while (check === false) {

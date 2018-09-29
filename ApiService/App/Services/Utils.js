@@ -44,9 +44,16 @@ const unlockAccount = async () => {
     console.log("unlockAccount", tmp)
     return tmp
 }
+const lockAccount = async () => {
+    debugger
+    let tmp = await web3.personal.lockAccount(web3.eth.defaultAccount, '1234')
+    console.log("lockAccount", tmp)
+    return tmp
+}
 module.exports = {
     convertString,
     convertToAscii,
     bindData,
-    unlockAccount
+    unlockAccount,
+    lockAccount
 }

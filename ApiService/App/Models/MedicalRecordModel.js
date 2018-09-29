@@ -6,7 +6,7 @@ const medicalRecordScheme = {
     ],
     nurse: [
         {
-            clinic: 'string',
+            clinic: 'byte',
             height: 'byte',
             bodyWeight: 'byte',
             bmi: 'byte',
@@ -21,26 +21,26 @@ const medicalRecordScheme = {
             BP1: 'byte',
             BP2: 'byte',
             BP3: 'byte',
-            chiefComplaint: 'string',
+            chiefComplaint: 'byte',
             nurseName: 'byte',
         },
     ],
     doctor: [
         {
-            presentIllness: 'string',
-            physicalExem: 'string',
-            diagnosis: 'string',
-            treatment: 'string',
-            recommendation: 'string',
-            appointment: 'string',
+            presentIllness: 'byte',
+            physicalExem: 'byte',
+            diagnosis: 'byte',
+            treatment: 'byte',
+            recommendation: 'byte',
+            appointment: 'byte',
             doctorName: 'byte',
         }
     ],
     pharmacy: [
         {
-            treatment: 'string',
-            recommendation: 'string',
-            appointment: 'string',
+            treatment: 'byte',
+            recommendation: 'byte',
+            appointment: 'byte',
             doctorName: 'byte',
             patientCitizenId: 'byte',
         }
@@ -49,7 +49,7 @@ const medicalRecordScheme = {
         {
             date: 'byte',
             doctorName: 'byte',
-            clinic: 'string',
+            clinic: 'byte',
         }
     ]
 }

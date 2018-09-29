@@ -31,7 +31,7 @@ const patientScheme = {
     address: [
         {
             typeofHouse: 'byte',
-            address: 'string',
+            address: 'byte',
             province: 'byte',
             district: 'byte',
             subDistrict: 'byte',
@@ -49,7 +49,7 @@ const patientScheme = {
         },
         {
             emerTypeofHouse: 'byte',
-            emerAddress: 'string',
+            emerAddress: 'byte',
             emerProvince: 'byte',
             emerDistrict: 'byte',
             emerSubDistrict: 'byte',
