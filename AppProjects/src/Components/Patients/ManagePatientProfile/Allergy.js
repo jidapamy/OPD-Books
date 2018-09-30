@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Segment, Form } from 'semantic-ui-react'
+import { Label, Segment, Form, Divider, Header } from 'semantic-ui-react'
 import ErrorMessage from './ErrorMessage'
 
 export default class Allergy extends Component {
@@ -26,8 +26,8 @@ export default class Allergy extends Component {
         return (
             <div>
                 <Segment style={{ borderRadius: '2rem' }}>
-                    <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติการแพ้ยา อาหาร และสารอื่นๆ (History of Food Or Drug Allergy)</h4></Label>
-                    <br/><br/>
+                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>History of Food Or Drug Allergy</h2></Header>
+                    <Divider/>
                     <ErrorMessage
                         errorText={this.props.errorText}
                         cardType={this.props.cardType}

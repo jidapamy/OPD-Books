@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label } from 'semantic-ui-react'
+import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label, Divider } from 'semantic-ui-react'
 
 import swal from 'sweetalert2';
 import WOW from 'wowjs';
@@ -289,8 +289,8 @@ export default class ManagePatientRecord extends Component {
               requiredAllParentField={this.state.requiredAllParentField}
             />
             <Segment style={{ borderRadius: '2rem' }}>
-              <Label as='a' color='teal' ribbon ><h4 style={{ fontFamily: 'Kanit' }}>ที่อยู่ปัจจุบัน (โปรดระบุอย่างละเอียด) (Home Address)</h4></Label>
-              <br /><br />
+              <Header as='a' color='teal' ribbon ><h2 style={{ fontFamily: 'Kanit' }}>Home Address</h2></Header>
+              <Divider/>
               <ErrorMessage
                 errorText={this.state.errorAddr}
                 cardType={this.state.cardType}

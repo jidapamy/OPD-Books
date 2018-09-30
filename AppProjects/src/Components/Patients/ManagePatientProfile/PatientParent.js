@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { Label,Segment, Form } from 'semantic-ui-react'
+import { Label,Segment, Form, Header, Divider } from 'semantic-ui-react'
 import ErrorMessage from './ErrorMessage'
 
 export default class PatientParent extends Component { 
@@ -7,8 +7,9 @@ export default class PatientParent extends Component {
         return (
             <div>
                 <Segment style={{ borderRadius: '2rem' }}>
-                    <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีผู้เยาว์ในความปกครอง (อายุไม่ถึง 15 ปี บริบูรณ์) กรุณากรอกข้อมูล (In case under 15 years old) <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h4></Label>
-                    <br/><br/>
+                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>In case under 15 years old <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
+                    <Divider/>
+                    
                     <ErrorMessage
                         errorText={this.props.errorText}
                         cardType={this.props.cardType}

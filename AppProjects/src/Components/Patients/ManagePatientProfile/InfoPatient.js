@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Form, Select, Dropdown, Label } from 'semantic-ui-react'
+import { Segment, Form, Select, Dropdown, Header, Divider } from 'semantic-ui-react'
 import CitizenIdField from './CitizenIdField';
 import DateField from './DateField';
 import PhoneNumber from './PhoneNumber'
@@ -82,8 +82,8 @@ export default class InfoPateint extends Component {
             <div>
                 <Segment.Group style={{  borderRadius:'2rem'}}>
                     <Segment style={{  borderRadius: '2rem' }} >
-                        <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>ประวัติส่วนตัว (Personal Information)</h4></Label>
-                        <br /><br />
+                        <Header as='h2' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>Personal Information</h2></Header>
+                        <Divider/>
                         <ErrorMessage
                             errorText={this.props.errorText}
                             cardType={this.props.cardType}

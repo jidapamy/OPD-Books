@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Segment, Checkbox, Form, Dropdown } from 'semantic-ui-react'
+import { Label, Segment, Checkbox, Form, Dropdown, Divider, Header } from 'semantic-ui-react'
 import { titleNameParentData } from '../../../Static/Data/FormData'
 
 import HomeAddress from './HomeAddress'
@@ -123,8 +123,8 @@ export default class EmergencyContact extends Component {
         return (
             <div>
                 <Segment style={{ borderRadius: '2rem' }}>
-                    <Label as='a' color='teal' ribbon><h4 style={{ fontFamily: 'Kanit' }}>กรณีฉุกเฉินติดต่อ (Contact First And Last Name In Case Of Emergency)</h4></Label>
-                    <br /><br />
+                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>Contact First And Last Name In Case Of Emergency</h2></Header>
+                    <Divider/>
                     <ErrorMessage
                         errorText={this.props.errorText}
                         cardType={this.props.cardType}
