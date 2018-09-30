@@ -3,14 +3,20 @@ const { setMedicalRecordForNurse, setMedicalRecordForDoctor, getMedicalRecordFor
     getMedicalRecord, getHistoryMedicalRecord, lengthPatientHistory, haveMDRinPatientHistory,
     getMedicalRecordForPharmacy, getMedicalRecordForShowHistory } = require("../Repositories/MedicalRecordRepo")
 const { isPatient, isEmail } = require("../Repositories/PatientRepo")
+const { lockAccount } = require('../Services/Utils')
 
 const msg = require("../Services/Message")
 
 const setMRForNurseCtr = async (req, res) => {
     if (isPatient(req.body.patientCitizenId)) {
+        console.log("ispatient")
         setMedicalRecordForNurse(req.body)
             .then(result => { res.send(result); })
-            .catch(err => { res.send(msg.getMsgError(err.text)) })
+            .catch(err => {
+                console.log(err)
+                res.send(msg.getMsgError(err.text))
+                lockAccount()
+            })
     } else {
         res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
     }
