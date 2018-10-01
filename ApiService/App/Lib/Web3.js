@@ -1297,7 +1297,7 @@ const PatientRecordContract = web3.eth.contract(
 	]
 );
 
-const contract = PatientRecordContract.at("0x36456287b39c7821039f6369dcea2768ebb3cda1");
+const contract = PatientRecordContract.at("0x906026d8a96b93cbf9c9cc5073434603061d2c3a");
 
 const defaultAccount = { to: web3.eth.accounts[0], gas: 100000000 }
 
