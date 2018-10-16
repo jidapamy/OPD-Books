@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Header, Icon,  Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader
+  Grid, Menu, Segment, Container, Header, Icon, Dropdown, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader
 } from "semantic-ui-react";
 import styled from "styled-components";
 import { QRCode } from "react-qr-svg";
@@ -9,6 +9,9 @@ import InfoPatientMobile from '../Components/Patients/ManagePatientProfile/Respo
 import ProfilePatientMobile from '../Components/Patients/Profile/Responsive/ProfilePatientMobile';
 import FromHisProfilePatient from '../Components/Patients/Profile/FromHisProfilePatient';
 import MedicalPatient from '../Components/Patients/Profile/MedicalPatient';
+import EditProfile from './EditProfile';
+import FormEditProfile from '../Components/Patients/ManagePatientProfile/FormEditProfile'
+
 //components
 import HeaderPatient from "../Components/Patients/Profile/HeaderPatient"
 //static
@@ -75,41 +78,48 @@ export default class PatientProfile extends Component {
     patient: {},
     historyTreatment: [],
     historyMsg: "",
-    chooseMedicalRecord:{},
-    loader:true,
-    showEditPage:false
+    chooseMedicalRecord: {},
+    loader: true,
+    showEditPage: false,
+    showEditProfile: false,
+    // my
+    openEditPrfile: false
   };
 
   menuTab = () => {
-      if (this.state.menuTab == 0) {
-        return <ProfilePatientMobile
-          show={this.show}
-          showModal={this.showModal}
-          open={this.state.open}
+    if (this.state.menuTab == 0) {
+      return <ProfilePatientMobile
+        show={this.show}
+        showModal={this.showModal}
+        open={this.state.open}
+        patient={this.state.patient}
+        tab={this.state.tab}
+        showtab={this.showtab}
+        setField={this.setField}
+        showEditPage={this.state.showEditPage}
+      />
+    } else if (this.state.menuTab == 1) {
+      if (this.state.statusShowHistory == true) {
+        return <FromHisProfilePatient
           patient={this.state.patient}
-          tab={this.state.tab}
-          showtab={this.showtab}
-          setField={this.setField}
-          showEditPage={this.state.showEditPage}
-          />
-      } else if (this.state.menuTab == 1) {
-            if (this.state.statusShowHistory == true) {
-              return <FromHisProfilePatient
-                patient={this.state.patient}
-                historyTreatment={this.state.historyTreatment}
-                historyMsg={this.state.historyMsg}
-                setField={this.setField} />
-            } else if (this.state.statusShowHistory == false) {
-              return <span><Icon name='arrow left' size='big' onClick={this.setStateHistory}/><MedicalPatient
-                chooseMedicalRecord={this.state.chooseMedicalRecord}
-              /></span>
-            }
+          historyTreatment={this.state.historyTreatment}
+          historyMsg={this.state.historyMsg}
+          setField={this.setField} />
+      } else if (this.state.statusShowHistory == false) {
+        return <span><Icon name='arrow left' size='big' onClick={this.setStateHistory} /><MedicalPatient
+          chooseMedicalRecord={this.state.chooseMedicalRecord}
+        /></span>
       }
+    }
   }
   setField = (field, value) => {
     this.setState({ [field]: value });
   }
-
+  goToPage = (path) => {
+    this.props.history.push({
+      pathname: path,
+    });
+  }
   showtab = (tab) => {
     if (tab == 0) {
       return <InfoPatientMobile patient={this.state.patient} />
@@ -117,11 +127,17 @@ export default class PatientProfile extends Component {
     } else if (tab == 1) {
       return <FromAddressPatient patient={this.state.patient} />
     }
-      return <InfoPatientMobile patient={this.state.patient} />
+    return <InfoPatientMobile patient={this.state.patient} />
   }
   setStateHistory = () => this.setState({ statusShowHistory: true });
   stickTopMenu = () => this.setState({ menuFixed: true });
   unStickTopMenu = () => this.setState({ menuFixed: false });
+
+  // showPage = () => {
+  //   if (this.props.showEditProfile) {
+  //     return <EditProfile/>
+  //   }
+  // }
 
   show = () => {
     this.setState({ open: true })
@@ -137,10 +153,10 @@ export default class PatientProfile extends Component {
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
 
   //Connect API
-  componentWillMount = async () =>{
+  componentWillMount = async () => {
     if (!this.props.location.state) {
-       this.props.history.push("/signin");
-       return
+      this.props.history.push("/signin");
+      return
     }
     let citizenId = this.props.location.state.citizenId;
     getPatient(citizenId).then(patient => {
@@ -156,8 +172,8 @@ export default class PatientProfile extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  showModal =() =>{
-    if (this.state.patient.citizenId){
+  showModal = () => {
+    if (this.state.patient.citizenId) {
       return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
         <Modal.Content>
           <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
@@ -177,80 +193,118 @@ export default class PatientProfile extends Component {
 
     return (
       <div>
-          <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-                  <Dimmer page active={this.state.loader}>
-                    <Loader indeterminate size='massive'>Loading</Loader>
-                  </Dimmer>
-         
-                  <Responsive {...Responsive.onlyComputer}>
-                    <BG>
-                      {this.showModal()}
-                      <Segment>
-                      <HeaderPatient 
-                        patient={this.state.patient} 
-                        show={this.show}/>
-                      </Segment>
-                      <Container>
-                        <Grid columns={16}>
-                          <FromAddressPatient 
-                            patient={this.state.patient} />
-                          <FromHisProfilePatient 
-                            patient={this.state.patient} 
-                            historyTreatment={this.state.historyTreatment}
-                            historyMsg={this.state.historyMsg} 
-                            setField={this.setField}/>
-                          <MedicalPatient 
-                            chooseMedicalRecord={this.state.chooseMedicalRecord}
-                          />
-                        </Grid>
-                      </Container>
-                    </BG>
-                  </Responsive>
+        <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+          <Dimmer page active={this.state.loader}>
+            <Loader indeterminate size='massive'>Loading</Loader>
+          </Dimmer>
 
-                  <Responsive {...Responsive.onlyMobile}>
-                    <Visibility
-                      onBottomPassed={this.stickTopMenu}
-                      onBottomVisible={this.unStickTopMenu}
-                      once={false}
-                    >
-                        <Menu
-                          style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
-                          fixed={fixed ? 'top' : null}
-                          pointing={!fixed}
-                          secondary={!fixed}
-                          size='large'
-                          secondary={!this.state.menuFixed}
-                          fixed={this.state.menuFixed && "top"}
-                        >
-                            <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
-                                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
-                                  <Icon size="big" name='bars' style={{ color: 'black' }} />
-                                </Menu.Item>
-                                <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                                  <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
-                                  <span style={{ fontSize: "2em", color: 'black' }}>
-                                    OPD BOOKS
+          <Responsive {...Responsive.onlyComputer}>
+
+            <BG>
+              {/* <EditProfile /> */}
+              <Segment>
+                <Menu borderless={true} size='large'>
+                  <Menu.Item onClick={() => this.goToPage('/')}>
+                    <Icon color="red" size="big" name="heartbeat" />
+                    <span style={{ fontSize: "1.2em", color: "#00B5AD" }}>
+                      OPD BOOKS
+                            </span>
+                  </Menu.Item>
+                  <Menu.Menu position='right'>
+                    <Dropdown item text={this.state.patient.firstname} >
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => this.setState({ showEditProfile : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Menu.Item>
+                      <Button onClick={() => this.goToPage('/')} color='google plus'>Logout</Button>
+                    </Menu.Item>
+                  </Menu.Menu>
+                </Menu>
+                <HeaderPatient
+                  patient={this.state.patient}
+                  show={this.show} />
+              </Segment>
+              <Container>
+                <Grid columns={16}>
+                  {/* <Modal >
+                    {this.showPage()}
+                  </Modal> */}
+                  <FromAddressPatient
+                    patient={this.state.patient} />
+                  <FromHisProfilePatient
+                    patient={this.state.patient}
+                    historyTreatment={this.state.historyTreatment}
+                    historyMsg={this.state.historyMsg}
+                    setField={this.setField} />
+                  <MedicalPatient
+                    chooseMedicalRecord={this.state.chooseMedicalRecord}
+                  />
+                </Grid>
+              </Container>
+            </BG>
+            <Modal style={{ borderRadius: '2rem' }} open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
+              {/* <EditProfile /> */}
+              <Modal.Content >
+                <Header as='h1'>Edit Profile</Header>
+                <FormEditProfile />
+
+              </Modal.Content>
+              <Modal.Actions style={{ border: 0 }} >
+                <Button size='hug' onClick={this.close} style={{ borderRadius: '2rem' }} color='red'>
+                  Cancel
+                            </Button>
+                <Button size='hug' style={{ borderRadius: '2rem' }} color='green'>
+                  Success
+                            </Button>
+              </Modal.Actions>
+            </Modal>
+          </Responsive>
+
+          <Responsive {...Responsive.onlyMobile}>
+            <Visibility
+              onBottomPassed={this.stickTopMenu}
+              onBottomVisible={this.unStickTopMenu}
+              once={false}
+            >
+              <Menu
+                style={{ borderColor: 'rgba(255,255,255,10)', paddingTop: 2 }}
+                fixed={fixed ? 'top' : null}
+                pointing={!fixed}
+                secondary={!fixed}
+                size='large'
+                secondary={!this.state.menuFixed}
+                fixed={this.state.menuFixed && "top"}
+              >
+                <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
+                    <Icon size="big" name='bars' style={{ color: 'black' }} />
+                  </Menu.Item>
+                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
+                    <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
+                    <span style={{ fontSize: "2em", color: 'black' }}>
+                      OPD BOOKS
                                         </span>
-                                </Menu.Item>
-                            </Boderhide>
-                        </Menu>
-                    </Visibility>
-                          <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
-                            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
-                              <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false , showEditPage : false  }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
-                              <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
-                              <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
-                            </Sidebar>
-                            <Sidebar.Pusher
-                              dimmed={sidebarOpened}
-                              onClick={this.handlePusherClick}
-                              style={{ minHeight: '550px' }}
-                            >
-                              {this.menuTab()}
-                            </Sidebar.Pusher>
-                          </Sidebar.Pushable>
-                    </Responsive>
-            </Dimmer.Dimmable> 
+                  </Menu.Item>
+                </Boderhide>
+              </Menu>
+            </Visibility>
+            <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
+              <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
+                <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false, showEditPage: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
+                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
+                <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
+              </Sidebar>
+              <Sidebar.Pusher
+                dimmed={sidebarOpened}
+                onClick={this.handlePusherClick}
+                style={{ minHeight: '550px' }}
+              >
+                {this.menuTab()}
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
+          </Responsive>
+        </Dimmer.Dimmable>
       </div>
     )
   }

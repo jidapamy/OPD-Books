@@ -32,19 +32,19 @@ export default class EditProfile extends React.Component {
     }
     render() {
         const { open,infoPatient} = this.state
-        
+        console.log("EDIT")
 
         return (
             <div>
                 <Responsive {...Responsive.onlyComputer}>
                 <Container>
-                    <Icon name='setting' onClick={this.closeConfigShow(true, false)}></Icon>
+                    {/* <Icon name='setting' onClick={this.closeConfigShow(true, false)}></Icon> */}
                     
-                    <Modal 
+                    {/* <Modal 
                         style={{ borderRadius: '2rem' }}
-                        open={open}
+                        open={true}
                         onClose={this.close} 
-                        >
+                        > */}
                         <Modal.Content >
                              <Header as='h1'>Edit Profile</Header>
                             <FormEditProfile/>
@@ -58,7 +58,7 @@ export default class EditProfile extends React.Component {
                                 Success 
                             </Button>
                         </Modal.Actions>
-                    </Modal>
+                    {/* </Modal> */}
                     
                 </Container>
                 </Responsive>

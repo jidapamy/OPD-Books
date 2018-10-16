@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Menu, Segment, Container, Icon, Image,Statistic } from "semantic-ui-react";
 import styled from "styled-components";
 import EditProfile from '../../../../Containers/EditProfile';
+import FormEditProfile from '../../ManagePatientProfile/FormEditProfile'
 
 const BGMobiles = styled(Segment) `
   background: url('https://i.pinimg.com/564x/f1/48/0b/f1480ba048e8dc86bd8bbd6d979b92fb.jpg') !important;
@@ -11,7 +12,8 @@ const BGMobiles = styled(Segment) `
 export default class ProfilePatientMobile extends React.Component {
     showPage = () => {
         if(this.props.showEditPage){
-            return <EditProfile />
+            return <div><h2><Icon name='arrow left' onClick={() => this.setState({ infoPatient: true })} /> Edit Profile</h2>
+                <FormEditProfile /></div>
         }else{
             return<div> <BGMobiles
                 inverted
