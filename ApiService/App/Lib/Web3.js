@@ -2,13 +2,13 @@ const Web3 = require('web3');
 let web3 = new Web3();
 
 // try {
-	web3 = new Web3(new Web3.providers.HttpProvider("http://54.169.9.198:8545"));
-	web3.eth.defaultAccount = web3.eth.accounts[0];
-	console.log("------- have server -------")
+	// web3 = new Web3(new Web3.providers.HttpProvider("http://54.169.9.198:8545"));
+	// web3.eth.defaultAccount = web3.eth.accounts[0];
+	// console.log("------- have server -------")
 // } catch (err) {
-// 	web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-// 	web3.eth.defaultAccount = web3.eth.accounts[0];
-// 	console.log("------- don't have server -------")
+	web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+	web3.eth.defaultAccount = web3.eth.accounts[0];
+	console.log("------- don't have server -------")
 // }
 console.log(web3.eth.defaultAccount)
 
@@ -1297,9 +1297,9 @@ const PatientRecordContract = web3.eth.contract(
 	]
 );
 
-const contract = PatientRecordContract.at("0x906026d8a96b93cbf9c9cc5073434603061d2c3a");
+const contract = PatientRecordContract.at("0x43c507d5fb24ae35a4cf4c3c3e16eb835ea87655");
 
-const defaultAccount = { to: web3.eth.accounts[0], gas: 100000000 }
+const defaultAccount = { to: web3.eth.accounts[0], gas: 10000000 }
 
 module.exports = {
 	web3,

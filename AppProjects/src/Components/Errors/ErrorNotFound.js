@@ -3,7 +3,7 @@ import {
     Grid, Menu, Container, Icon, Image, Button,
 } from "semantic-ui-react";
 import styled from "styled-components";
-import notfound from '../Static/Img/Error/404.gif'
+import notfound from './../../Static/Img/Error/404.gif'
 import { Link } from "react-router-dom";
 
 export default class ErrorNotFound extends React.Component {
