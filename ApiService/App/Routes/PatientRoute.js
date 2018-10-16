@@ -1,11 +1,13 @@
 const router = require("express").Router();
 
-const { insertCtr, getCtr, isCitizenIdCtr, isEmailCtr, getBasicDataCtr } = require("../Controllers/PatientController")
+const { insertCtr, getCtr, isCitizenIdCtr, isEmailCtr, getBasicDataCtr, editCtr} = require("../Controllers/PatientController")
 
 router.post("/insert", insertCtr);
-router.get("/get/:citizenId", getCtr);
-router.get("/getBasicData/:citizenId", getBasicDataCtr);
-router.get("/isCitizenId/:citizenId", isCitizenIdCtr);
-router.get("/isEmail/:email", isEmailCtr);
+router.post("/get", getCtr);
+router.post("/getBasicData", getBasicDataCtr);
+router.post("/isCitizenId", isCitizenIdCtr);
+router.post("/isEmail", isEmailCtr);
+router.post("/edit", editCtr);
+
 
 module.exports = router;

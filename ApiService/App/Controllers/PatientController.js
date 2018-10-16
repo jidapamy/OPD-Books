@@ -1,4 +1,4 @@
-const { isPatient, isEmail, insert, get, getBasicData } = require("../Repositories/PatientRepo")
+const { isPatient, isEmail, insert, get, getBasicData, edit } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -15,8 +15,8 @@ const insertCtr = async (req, res) => {
 }
 
 const getCtr = (req, res) => {
-    if (isPatient(req.params.citizenId)) {
-        const result = get(req.params.citizenId)
+    if (isPatient(req.body.citizenId)) {
+        const result = get(req.body.citizenId)
         res.send(result)
         return;
     }
@@ -24,8 +24,8 @@ const getCtr = (req, res) => {
 }
 
 const getBasicDataCtr = (req, res) => {
-    if (isPatient(req.params.citizenId)) {
-        const result = getBasicData(req.params.citizenId)
+    if (isPatient(req.body.citizenId)) {
+        const result = getBasicData(req.body.citizenId)
         res.send(result)
         return;
     }
@@ -33,11 +33,20 @@ const getBasicDataCtr = (req, res) => {
 }
 
 const isCitizenIdCtr = (req, res) => {
-    res.send(isPatient(req.params.citizenId))
+    res.send(isPatient(req.body.citizenId))
 }
 
 const isEmailCtr = (req, res) => {
-    res.send(isEmail(req.params.email))
+    res.send(isEmail(req.body.email))
+}
+
+const editCtr = async(req, res) => {
+    if (!isPatient(req.body.citizenId)) {
+        const result = await edit(req.body)
+        res.send(result)
+        return;
+    }
+    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
 module.exports = {
@@ -45,5 +54,6 @@ module.exports = {
     getCtr,
     isCitizenIdCtr,
     isEmailCtr,
-    getBasicDataCtr
+    getBasicDataCtr,
+    editCtr
 };
