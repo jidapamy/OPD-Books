@@ -17,6 +17,7 @@ import styled from "styled-components";
 // << IMPORT PHOTO >>
 import Contain1 from "../Static/Img/Contianer/Contain1.svg";
 import Contain2 from "../Static/Img/Contianer/Contain2.svg";
+import LogoWebpage from "../Static/Img/logoWebpage.png";
 import icon1 from "../Static/Img/Contianer/icon1.png";
 import icon2 from "../Static/Img/Contianer/icon2.png";
 import icon3 from "../Static/Img/Contianer/icon3.png";
@@ -108,10 +109,11 @@ export default class Home extends React.Component {
                 style={{ border: "0px" }}
               >
                 <Menu.Item>
-                  <Icon color="red" size="big" name="heartbeat" />
-                  <span style={{ fontSize: "2em", color: "#00B5AD" }}>
+                    <Image src={LogoWebpage}></Image>
+                  {/* <Icon color="red" size="big" name="heartbeat" /> */}
+                  {/* <span style={{ fontSize: "2em", color: "#00B5AD" }}>
                     OPD BOOKS
-                  </span>
+                  </span> */}
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>

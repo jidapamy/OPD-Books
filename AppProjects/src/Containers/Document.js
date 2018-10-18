@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import {
-  Dimmer, Loader
+  Dimmer, Loader, Menu, Button
 } from "semantic-ui-react";
 import FooterDemo from '../Components/ApiDocuments/FooterDemo'
 import ApiDocument from "./ApiDocument";
 import DemoExample from "./DemoExample"
+import Registration from "../Components/DemoExamples/Registration"
+
 export default class Document extends Component {
   state = {
     activeTab: "api",
@@ -24,6 +26,8 @@ export default class Document extends Component {
   showPage = () => {
       if(this.state.activeTab === "api"){
         return  <ApiDocument/>
+      } else if (this.state.activeTab === "1"){
+        return <Registration />
       }else{
           return <DemoExample 
             empPosition={+(this.state.activeTab)} 
@@ -41,6 +45,7 @@ export default class Document extends Component {
     return (
       <div>
         {/* <Dimmer.Dimmable blurring dimmed={this.state.loader}> */}
+       
         <Dimmer page active={this.state.loader}>
             <Loader size='massive' indeterminate>Loading</Loader>
           </Dimmer>
