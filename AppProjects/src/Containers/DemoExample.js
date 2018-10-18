@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Menu, Container, Header, Form, Dimmer, Loader
+    Menu, Container, Header, Form, Dimmer, Loader, Image
 } from "semantic-ui-react";
 import swal from "sweetalert2";
 
@@ -16,7 +16,7 @@ import HistoryPatient from "../Components/DemoExamples/HistoryPatient"
 import ShowHeaderMdr from "../Components/DemoExamples/ShowHeaderMdr"
 
 import FooterDemo from '../Components/ApiDocuments/FooterDemo'
-
+import logoapp from "../../src/Static/Img/logoapp.svg"
 import { patientField, mdrField } from "../Static/Data/Field"
 import {
     setMedicalRecordForNurse,
@@ -228,22 +228,24 @@ export default class DemoExample extends React.Component {
                 <div style={{ paddingBottom: "0px", background: "#fff" }}>
                     {this.showTabMenu(this.state.empPosition)}
                 </div>
-                <div style={{ padding: "2% 6%", paddingBottom: "6%", background: "#ddd" }}>
+                <div style={{ padding: "2% 6%", paddingBottom: "6%", background: "rgb(234, 234, 234)" }}>
                     <Container>
+                        
                         {this.state.tab !== 2 ? this.showHeaderMrd() : ''}
                         {this.showtab(this.state.empPosition)}
                     </Container>
                 </div>
             </div>
-        } else {
-            return <div style={{ marginLeft: "238px", minWidth: "550px" }}>
-                <div style={{ padding: "1em", paddingLeft: "2%", background: "#fff", height: "100vh" }} >
-                    <Registration
-                        sendToNurse={this.sendToNurse}
-                        setField={this.setField} />
-                </div>
-            </div>
-        }
+        } 
+        // else {
+        //     return <div style={{ marginLeft: "238px", minWidth: "550px" }}>
+        //         <div style={{ padding: "1em", paddingLeft: "2%", background: "#fff", height: "100vh" }} >
+        //             <Registration
+        //                 sendToNurse={this.sendToNurse}
+        //                 setField={this.setField} />
+        //         </div>
+        //     </div>
+        // }
     }
 
     setField = (field, value) => {
@@ -377,13 +379,14 @@ export default class DemoExample extends React.Component {
     showSearch = () => {
         if(this.state.empPosition !== 1 ){
             return <div>
-                <Menu.Item color='teal'>
+                <Menu.Item >
+                    <Image src={logoapp} size='large' style={{ height: 120, width: 120 ,marginLeft:'20%'}} />
                     <Header style={style.navbarDeco} >{this.state.empPosition === 2 ? "Citizen Id" : "Medical Record Id" }</Header>
                 </Menu.Item>
                 <Form onSubmit={() => this.search(this.state.empPosition, this.state.id)} style={{ margin: " 3% " }}>
                     <Form.Input
                         type='text'
-                        action={{ icon: 'search' }}
+                        action={{ icon: 'search',color: 'teal' }}
                         placeholder='Search Id ...'
                         onChange={(e) => this.setState({ id: e.target.value })}
                         value={this.state.id} />
@@ -400,7 +403,8 @@ export default class DemoExample extends React.Component {
                     <Dimmer page active={this.state.loader}>
                         <Loader size='massive' indeterminate>Loading</Loader>
                     </Dimmer>
-                    <Menu vertical inverted fixed='left' style={{ width: "17rem" }}>
+                    <Menu vertical  fixed='left' style={{ width: "17rem" }}>
+                        
                         {/* <Menu.Item color='teal'>
                             <Header style={style.navbarDeco} >Queues</Header>
                         </Menu.Item>
@@ -416,6 +420,7 @@ export default class DemoExample extends React.Component {
                         {this.showSearch()}
 
                     </Menu>
+                    
                     {this.showDependOnPosition()}
                 </Dimmer.Dimmable>
                 {/* <FooterDemo

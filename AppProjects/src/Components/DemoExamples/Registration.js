@@ -5,6 +5,7 @@ import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
 import { getPatient } from "../../Services/ManagePatientMethod";
+import BGRegistra from "./../../Static/Img/BGRegistra.png";
 import { Button, Container, Grid, Image, Header,Divider,Modal,Form } from "semantic-ui-react";
 
 const PopupQRCode = styled(Modal)`
@@ -14,7 +15,11 @@ const PopupQRCode = styled(Modal)`
   transform: translate(-50%, -50%);
   width: 50%;
 `;
-
+const Wrapper = styled.div`
+  background: url(${BGRegistra}) no-repeat center fixed;
+  background-size: 100% 100%;
+  height:100vh;
+`;
 const style = {
   h1: {
     marginTop: "3em",
@@ -95,29 +100,49 @@ class Registration extends Component {
   confirm = () => {
     this.setState({ 
       openDetail: false,
-      
      })
-    this.props.sendToNurse(this.state.patient)
+    swal({
+      type: "success",
+      title: "Add Queue Success!",
+      showConfirmButton: false,
+      timer: 1500
+    });
+    // this.props.sendToNurse(this.state.patient)
+
   }
-  handleError = err => {
-  };
+  // handleError = err => {
+  // };
+
+  // sendToNurse = (patient) => {
+  //   if (patient[patientField.citizenId.variable]) {
+  //     let name = patient[patientField.nametitle.variable] + " " + patient[patientField.firstname.variable] + "  " + patient[patientField.lastname.variable]
+  //     swal({
+  //       type: "success",
+  //       title: "Add Queue Success!",
+  //       showConfirmButton: false,
+  //       timer: 1500
+  //     });
+  //     this.resetState()
+  //   }
+  // };
+
 
   render() {
-    return  <div>
+    return  <Wrapper>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
               <span style={{ fontSize: "2em", color: "#00B5AD" }}>
                 OPD BOOKS
               </span>
-              <Header.Subheader>Project on Blockchain</Header.Subheader>
+              <Header.Subheader>Medical Record on Blockchain</Header.Subheader>
             </Header.Content>
           </Header>
 
-          <Image centered style={style.d1} rounded src={ScanButton}
+        <Image centered style={style.d1} rounded src={ScanButton} 
             onClick={() => this.setState({ openScan: true })} />
-          <Form onSubmit={() => this.searchPatient()} style={{ margin:" 0% 15% "}}>
-            <Form.Input label='Citizen Id' type='text' action={{ icon: 'search' }} placeholder='Search...' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}/>
+        <Form onSubmit={() => this.searchPatient()} style={{ margin: " 0% 15% ", borderRadius: '10px'}}>
+          <Form.Input size='large' label='Citizen Id'  type='text' action={{ color: 'teal', icon: 'search', content: 'Search' }} placeholder='1-2345-67890-12-3' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}/>
           </Form>
         </Container>
 
@@ -509,7 +534,7 @@ class Registration extends Component {
             <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.confirm()} />
           </Modal.Actions>
         </Modal>
-    </div>
+    </Wrapper>
   }
 }
 

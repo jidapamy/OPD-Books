@@ -4,7 +4,7 @@ import { Segment, Icon, Form } from "semantic-ui-react";
 export default class ShowHeaderMdr extends React.Component {
     render(){
         return (
-            <Segment style={{ backgroundColor: '#313334', color: '#FFFFFF', border: 0 }}>
+            <Segment style={{ backgroundColor: '#00B5AD', color: '#FFFFFF', border: 0 }}>
                 <Form>
                     <Form.Group widths="equal">
                         <Form.Field>
