@@ -1,36 +1,38 @@
 import React from 'react'
 import { Container, Header, Button, Segment, Image, Form, Grid, Dimmer, Loader } from 'semantic-ui-react'
 import ReactCountdownClock from 'react-countdown-clock'
-import onetimepass from './../Static/Img/2fa.svg'
+import onetimepass from './../../Static/Img/2fa.svg'
 
 export default class OTPfactor extends React.Component {
     state = {
-        otpValue: "",
+        pin: "",
         value: "",
         loader: false
     }
 
     onChange = (event) => {
-        this.setState({ otpValue: this.state.otpValue + event.target.value })
+        let otp = this.state.pin + event.target.value
+        this.setState({ pin: otp })
         if (event.target.value.length === event.target.maxLength) {
             if (event.target.id < 4) {
                 this.refs[parseInt(event.target.id) + 1].focus();
             } else if (event.target.id == 4) {
-                this.setState({ loader: true })
-                setTimeout(() => {
-                    this.setState({ loader: false })
-                }, 1500);
+                this.props.validateOTP(otp)
             }
         }
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        this.setState({ pin : ""})
+        this.refs[1].focus();
+    }
+
     render() {
-        console.log(this.state)
         return (
-            <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-                <Dimmer page active={this.state.loader}>
-                    <Loader indeterminate size='massive'>Loading</Loader>
-                </Dimmer>
+            // <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+            //     <Dimmer page active={this.state.loader}>
+            //         <Loader indeterminate size='massive'>Loading</Loader>
+            //     </Dimmer>
                 <Container >
                     <br /><br />
                     <br /><br />
@@ -39,8 +41,15 @@ export default class OTPfactor extends React.Component {
                         <Header as='h3' icon textAlign='center'>
                             <Image centered src={onetimepass} size='massive' />
                             <br /><br />
-                            Please Enter OTP
-                <Header.Subheader>We have sent you one time password to your mobile</Header.Subheader>
+                            Confirm OTP Password
+                            <Header.Subheader>
+                                The system has sent OTP Password to your mobile phone : {this.props.mobileNumber} <br /> 
+                                Reference Code : {this.props.requestId}
+                            </Header.Subheader>
+                        {/* <Header.Subheader>
+                            The system has sent OTP Password to your mobile phone : 08******87 <br />
+                            Reference Code : d522fc01d2c543fba1ce761852ebe2f9
+                        </Header.Subheader> */}
                         </Header>
                         <br /> <br />
                         <Grid textAlign='center' width>
@@ -57,7 +66,9 @@ export default class OTPfactor extends React.Component {
                                                 ref="1"
                                                 type="text"
                                                 onChange={(e) => this.onChange(e)}
-                                                autoFocus />
+                                                autoFocus 
+                                                value={this.state.pin.charAt(0)}
+                                            />
                                         </Form.Field>
                                     </Grid.Column>
                                     <Grid.Column>
@@ -71,6 +82,7 @@ export default class OTPfactor extends React.Component {
                                                 ref="2"
                                                 type="text"
                                                 onChange={(e) => this.onChange(e)}
+                                                value={this.state.pin.charAt(1)}
                                             />
                                         </Form.Field>
                                     </Grid.Column>
@@ -85,6 +97,7 @@ export default class OTPfactor extends React.Component {
                                                 ref="3"
                                                 type="text"
                                                 onChange={(e) => this.onChange(e)}
+                                                value={this.state.pin.charAt(2)}
                                             />
                                         </Form.Field>
                                     </Grid.Column>
@@ -99,6 +112,7 @@ export default class OTPfactor extends React.Component {
                                                 ref="4"
                                                 type="text"
                                                 onChange={(e) => this.onChange(e)}
+                                                value={this.state.pin.charAt(3)}
                                             />
                                         </Form.Field>
                                     </Grid.Column>
@@ -107,18 +121,17 @@ export default class OTPfactor extends React.Component {
                         </Grid>
 
                         <Grid textAlign='center'>
-                            <Grid.Column >
-                                <p>Don't receiveOTP? <a>Resend OTP</a></p>
-                            </Grid.Column>
-
+                            <Grid.Row >
+                                <a onClick={() => this.props.requestOTP(this.props.requestId)}>Request for OTP Password again </a>
+                        </Grid.Row>
+                        <Grid.Row >
+                                <a onClick={() => this.props.cancelRequestOTP(this.props.requestId)}>Cancel </a>
+                        </Grid.Row>
                         </Grid>
-
-
-
                         <br />
                     </Segment>
                 </Container>
-                </Dimmer.Dimmable>
+                // </Dimmer.Dimmable>
         )
 
     }

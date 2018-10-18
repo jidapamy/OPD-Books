@@ -11,33 +11,33 @@ export const setMedicalRecordForDoctor = async (data) => {
 } 
 
 export const getMedicalRecordForNurse = async (medicalRecordId) => {
-    let res = await axios.get(`/medicalRecords/getMedicalRecordForNurse/${medicalRecordId}`)
+    let res = await axios.post(`/medicalRecords/getMedicalRecordForNurse`, { medicalRecordId: medicalRecordId})
     return res.data
 };
 
 export const getMedicalRecordForDoctor = async (medicalRecordId) => {
-    let res = await axios.get(`/medicalRecords/getMedicalRecordForDoctor/${medicalRecordId}`)
+    let res = await axios.post(`/medicalRecords/getMedicalRecordForDoctor`, { medicalRecordId: medicalRecordId })
     return res.data
 };
 
 export const getMedicalRecordForPharmacy = async (medicalRecordId) => {
-    let res = await axios.get(`/medicalRecords/getMedicalRecordForPharmacy/${medicalRecordId}`)
+    let res = await axios.post(`/medicalRecords/getMedicalRecordForPharmacy`, { medicalRecordId: medicalRecordId })
     return res.data
 };
 
 
 export const getMedicalRecord = async (medicalRecordId) => {
-    let res = await axios.get(`/medicalRecords/getMedicalRecord/${medicalRecordId}`)
+    let res = await axios.post(`/medicalRecords/getMedicalRecord`, { medicalRecordId: medicalRecordId })
     return res.data
 };
 
 export const getTreatmentHistoryOfPatient = async (citizentId) => {
-    let res = await axios.get(`/medicalRecords/getHistoryMedicalRecord/${citizentId}`)
+    let res = await axios.post(`/medicalRecords/getHistoryMedicalRecord`, { patientCitizenId: citizentId })
     return res.data
 };
 
 export const getBasicDataTreatmentHistory = async (citizentId) => {
-    let res = await axios.get(`/medicalRecords/getBasicDataHistoryMedicalRecord/${citizentId}`)
+    let res = await axios.post(`/medicalRecords/getBasicDataHistoryMedicalRecord`, { patientCitizenId: citizentId })
     return res.data
 };
 

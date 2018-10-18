@@ -1,4 +1,4 @@
-const { isPatient, isEmail, insert, get, getBasicData, edit } = require("../Repositories/PatientRepo")
+const { isPatient, isEmail, insert, get, getBasicData, edit, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -40,7 +40,7 @@ const isEmailCtr = (req, res) => {
     res.send(isEmail(req.body.email))
 }
 
-const editCtr = async(req, res) => {
+const editCtr = async (req, res) => {
     if (!isPatient(req.body.citizenId)) {
         const result = await edit(req.body)
         res.send(result)
@@ -49,11 +49,67 @@ const editCtr = async(req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
+// const requestOTPCtr = async(req, res) => {
+//     console.log(req.body)
+//     if (req.body.phoneNumber){
+//         requestOTP(req.body.phoneNumber,res)
+//         return
+//     }
+//     res.send(msg.getMsgError("undefined"))
+// }
+
+// const validateOTPCtr = async (req, res) => {
+//     console.log(req.body)
+//     if (req.body.pin && req.body.requestId) {
+//         const result = await validateOTP(req.body, res)
+//         console.log("res",result)
+//         // console.log(await validateOTP(req.body, res))
+//         //  res.send("success")
+//         return
+//     }
+//     res.send(msg.getMsgError("undefined"))
+// }
+
+const requestOTPCtr = async (req, res) => {
+    if (isPatient(req.body.citizenId)) {
+        if (req.body.requestId){
+            const statusCancel = await cancelRequestOTP(req.body.requestId)
+            if (!statusCancel.status){
+                res.send(statusCancel)
+                return
+            }
+        }
+        const result = await verifiedByCitizenId(req.body.citizenId)
+        res.send(result)
+        return;
+    }
+    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+}
+
+const getPatientWithOTPCtr = async (req, res) => {
+    if (isPatient(req.body.citizenId)) {
+        const result = await getPatientWithOTP(req.body)
+        res.send(result)
+        return;
+    }
+    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+}
+
+const cancelRequestOTPCtr = async (req, res) => {
+    const result = await cancelRequestOTP(req.body.requestId)
+    res.send(result)
+}
+
 module.exports = {
     insertCtr,
     getCtr,
     isCitizenIdCtr,
     isEmailCtr,
     getBasicDataCtr,
-    editCtr
+    editCtr,
+    // requestOTPCtr,
+    // validateOTPCtr,
+    getPatientWithOTPCtr,
+    requestOTPCtr,
+    cancelRequestOTPCtr
 };

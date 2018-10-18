@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Home from "./Containers/Home";
 import Login from "./Containers/Login";
-import OTPfactor from "./Containers/OTPfactor";
+// import OTPfactor from "./Containers/OTPfactor";
 import ManagePatientRecord from "./Containers/Register";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
@@ -34,7 +34,7 @@ ReactDOM.render(
       {/* vender */}
       {/* <Route path="/demoExample" component={DemoExample} /> */}
       <Route path="/apiDocument" component={apiDocument} />
-      <Route path="/OTPfactor" component={OTPfactor} />
+      {/* <Route path="/OTPfactor" component={OTPfactor} /> */}
       <Route path="/ErrorNotFound" component={ErrorNotFound} />
       <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
     </div>

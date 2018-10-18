@@ -1,9 +1,16 @@
 import React from "react";
 import {
-    Segment, Icon, Form, Input, Transition, Dropdown
+    Segment, Icon, Form, Input, Transition, Dropdown, Select
 } from "semantic-ui-react";
 import swal from 'sweetalert2';
+import {
+    titleNameChildData, genderData, cardTypeData, titleNameParentData, bloodgroupData,
+    nationalityData, religionData, statusData, countryData
+} from '../../../Static/Data/FormData'
+import { patientField, mdrField } from "../../../Static/Data/Field"
+
 const provincesData = require('../../../Static/Data/Provinces')
+
 
 
 export default class EditProfile extends React.Component {
@@ -49,88 +56,178 @@ export default class EditProfile extends React.Component {
     handleEditEmp = () => this.setState({ editEmp: !this.state.editEmp })
     handleUnderAge = () => this.setState({ underAge: !this.state.underAge })
     handleAllergy = () => this.setState({ allergy: !this.state.allergy })
+
+
     render() {
         const { editprofile, editAdress, editEmp, underAge, allergy, open } = this.state
-
-
         return (
             <div>
-
-
                 <Segment color='teal' style={{ borderRadius: '2rem' }} onClick={this.handleEditprofile}> <h3><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'caret down' : 'caret right'} /></h3></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {editprofile && <Segment style={{ borderRadius: '2rem', marginTop: -15 }} >
+                    {editAdress &&<Segment style={{ borderRadius: '2rem', marginTop: -15 }} >
                         <Form>
-                            <Form.Group widths='equal'>
-                                <Form.Field
-                                    id='form-input-control-first-name'
-                                    control={Input}
-                                    label='First name'
-                                    placeholder='First name'
+                            <Form.Group widths='equal' >
+                                <Form.Input fluid
+                                    style={{ border: '0 px' }}
+                                    label={patientField.registerDate.label}
+                                    placeholder=''
+                                    readOnly
+                                    value={this.props.patient.registerDate}
                                 />
-                                <Form.Field
-                                    id='form-input-control-last-name'
-                                    control={Input}
-                                    label='Last name'
-                                    placeholder='Last name'
+                            </Form.Group>
+                            <Form.Group widths='equal' >
+                                <Form.Input
+                                    loading={false}
+                                    fluid
+                                    label={patientField.citizenId.label}
+                                    readOnly
+                                    value={this.props.patient.citizenId}
+                                />
+                                <Form.Input
+                                    loading={false}
+                                    fluid
+                                    label={patientField.dob.label}
+                                    readOnly
+                                    value={this.props.patient.dob}
+                                />
+                                <Form.Input
+                                    loading={false}
+                                    fluid
+                                    label={patientField.age.label}
+                                    readOnly
+                                    value={this.props.patient.age}
                                 />
                             </Form.Group>
                             <Form.Group widths='equal'>
-                                <Form.Select
+                                <Form.Input
+                                    label={patientField.email.label}
+                                    width={6}
+                                    required
+                                    type='email'
+                                    value={this.props.patient.email}
+                                />
+                                {/* <Password
+                                    cardType={this.props.cardType}
+                                    setPatientDetail={this.props.setPatientDetail}
+                                    errorText={this.props.errorText}
+                                    setField={this.props.setField}
+                                    setFieldAndValidate={this.props.setFieldAndValidate}
+                                    errorField={this.props.errorField}
+                                    patient={this.props.patient}
+                                /> */}
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <Form.Field
                                     control={Dropdown}
-                                    search selection
-                                    label='สถานภาพ (Status)'
-                                    options={'options'}
-                                    placeholder='สถานภาพ'
+                                    search
+                                    selection
+                                    allowAdditions
+                                    onAddItem={(e, { value }) => {
+                                        this.props.requiredAllParentField ?
+                                            titleNameChildData.push({ key: value, text: value, value: value }) :
+                                            titleNameParentData.push({ key: value, text: value, value: value })
+                                    }}
+                                    additionLabel='other : '
+                                    label={patientField.nametitle.label}
+                                    options={
+                                        this.props.requiredAllParentField ? titleNameChildData : titleNameParentData
+                                    }
+                                    onChange={(e, { value }) => this.props.setFieldAndValidate('nameTitle', value)}
+                                    required
+                                    value={this.props.patient.nametitle}
                                 />
-                                <Form.Field
-                                    id='form-input-control-first-name'
-                                    control={Input}
-                                    label='อาชีพ (occupartion)'
-                                    placeholder='อาชีพ'
+                                <Form.Input
+                                    label={patientField.firstname.label}
+                                    onChange={e => this.props.setFieldAndValidate('firstname', e.target.value)}
+                                    required
+                                    value={this.props.patient.firstname}
                                 />
-                            </Form.Group>
-                            <Form.Group widths='equal'>
-                                <Form.Field
-                                    id='form-input-control-first-name'
-                                    control={Input}
-                                    label='โรคประจำตัว (Congenital Disease)'
-                                    placeholder='โรคประจำตัว'
-                                />
-                                <Form.Field
-                                    id='form-input-control-first-name'
-                                    control={Input}
-                                    label='โทรศัพท์บ้าน (Home Phonenumber)'
-                                    placeholder='โทรศัพท์บ้าน'
-                                />
-                                <Form.Field
-                                    id='form-input-control-last-name'
-                                    control={Input}
-                                    label='โทรศัพท์มือถือ (Mobile Number)'
-                                    placeholder='โทรศัพท์มือถือ'
+                                <Form.Input
+                                    label={patientField.lastname.label}
+                                    onChange={e => this.props.setFieldAndValidate('lastname', e.target.value)}
+                                    required
+                                    value={this.props.patient.lastname}
                                 />
                             </Form.Group>
-                            <Form.Group widths='equal'>
 
+                            <Form.Group widths='equal'>
+                                <Form.Input
+                                    label={patientField.congenitalDisease.label}
+                                    required
+                                    onChange={e => this.props.setFieldAndValidate('congenitalDisease', e.target.value)}
+                                    value={this.props.patient.congenitalDisease}
+                                />
+                                <Form.Input
+                                    label={patientField.gender.label}
+                                    required
+                                    value={this.props.patient.gender}
+                                    readOnly
+                                />
+                                <Form.Input
+                                    label={patientField.bloodgroup.label}
+                                    required
+                                    readOnly
+                                    value={this.props.patient.bloodgroup}
+                                />
+                            </Form.Group>
+                            <Form.Group widths='equal'>
                                 <Form.Field
                                     control={Dropdown}
-                                    search selection
-                                    options={'options'}
-                                    label='ศาสนา (Religion)'
-                                    placeholder='ศาสนา'
-                                />
-                                <Form.Select
-                                    control={Dropdown}
-                                    search selection
-                                    label='ศาสนา (Religion)'
-                                    options={'options'}
-                                    placeholder='ศาสนา'
+                                    search
+                                    selection
+                                    allowAdditions
+                                    onAddItem={(e, { value }) => religionData.push({ key: value, text: value, value: value })}
+                                    additionLabel='other : '
+                                    label={patientField.religion.label}
+                                    options={religionData}
+                                    onChange={(e, { value }) => this.props.setFieldAndValidate('religion', value)}
+                                    required
+                                    value={this.props.patient.religion}
                                 />
                                 <Form.Field
-                                    id='form-input-control-last-name'
-                                    control={Input}
-                                    label='ประเทศ (Country)'
-                                    placeholder='ประเทศ'
+                                    control={Dropdown}
+                                    search
+                                    selection
+                                    allowAdditions
+                                    onAddItem={(e, { value }) => nationalityData.push({ key: value, text: value, value: value })}
+                                    additionLabel='other : '
+                                    control={Select}
+                                    label={patientField.nationality.label}
+                                    options={nationalityData}
+                                    onChange={(e, { value }) => this.props.setFieldAndValidate('nationality', value)}
+                                    required
+                                    value={this.props.patient.nationality}
+                                />
+                                <Form.Input
+                                    label={patientField.country.label}
+                                    required
+                                    value={this.props.patient.country}
+                                />
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <Form.Field
+                                    control={Select}
+                                    label={patientField.status.label}
+                                    options={statusData}
+                                    onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
+                                    required
+                                    value={this.props.patient.status}
+                                />
+                                <Form.Input
+                                    label={patientField.occupartion.label}
+                                    onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
+                                    value={this.props.patient.occupartion}
+                                />
+                                <Form.Input
+                                    label={patientField.homePhonenumber.label}
+                                    onChange={e => this.props.setFieldAndValidate('homePhonenumber', e.target.value)}
+                                    value={this.props.patient.mobileNumber}
+                                />
+                                <Form.Input
+                                    label={patientField.mobileNumber.label}
+                                    required
+                                    onChange={e => this.props.setFieldAndValidate('mobileNumber', e.target.value)}
+                                    value={this.props.patient.mobileNumber}
                                 />
                             </Form.Group>
                         </Form>
@@ -163,11 +260,8 @@ export default class EditProfile extends React.Component {
                                         options={'options'}
                                         placeholder='จังหวัด'
                                     />
-
                                 </Form.Group>
-
                                 <Form.Group widths='equal'>
-
                                     <Form.Select
                                         control={Dropdown}
                                         search selection
@@ -182,7 +276,6 @@ export default class EditProfile extends React.Component {
                                         options={'options'}
                                         placeholder='แขวง/ตำบล'
                                     />
-
                                     <Form.Field
                                         id='form-input-control-last-name'
                                         control={Input}
