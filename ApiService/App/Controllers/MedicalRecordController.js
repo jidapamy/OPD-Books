@@ -27,7 +27,9 @@ const setMRForDoctorCtr = async (req, res) => {
     if (isPatient(patientCitizenId)) {
         if (isMedicalRecord(medicalRecordId)) {
             if (!alreadyMedicalRecord(medicalRecordId)) {
+                console.log("โย้")
                 if (haveMedicalRecordsOfPatient(patientCitizenId, medicalRecordId)) {
+                    console.log("เย้")
                     if (!haveMDRinPatientHistory(patientCitizenId, medicalRecordId)) {
                         const result = await setMedicalRecordForDoctor(req.body)
                         res.send(result)
@@ -49,8 +51,8 @@ const setMRForDoctorCtr = async (req, res) => {
 }
 
 const getMRForNurseCtr = async (req, res) => {
-    if (isMedicalRecord(req.params.medId)) {
-        const result = await getMedicalRecordForNurse(req.params.medId)
+    if (isMedicalRecord(req.body.medicalRecordId)) {
+        const result = await getMedicalRecordForNurse(req.body.medicalRecordId)
         res.send(result)
         return
     }
@@ -58,9 +60,9 @@ const getMRForNurseCtr = async (req, res) => {
 }
 
 const getMRForDoctorCtr = async (req, res) => {
-    if (isMedicalRecord(req.params.medId)) {
-        if (alreadyMedicalRecord(req.params.medId)) {
-            const result = await getMedicalRecordForDoctor(req.params.medId)
+    if (isMedicalRecord(req.body.medicalRecordId)) {
+        if (alreadyMedicalRecord(req.body.medicalRecordId)) {
+            const result = await getMedicalRecordForDoctor(req.body.medicalRecordId)
             res.send(result)
             return
         }
@@ -71,9 +73,9 @@ const getMRForDoctorCtr = async (req, res) => {
 }
 
 const getMRForPharmacyCtr = async (req, res) => {
-    if (isMedicalRecord(req.params.medId)) {
-        if (alreadyMedicalRecord(req.params.medId)) {
-            const result = await getMedicalRecordForPharmacy(req.params.medId)
+    if (isMedicalRecord(req.body.medicalRecordId)) {
+        if (alreadyMedicalRecord(req.body.medicalRecordId)) {
+            const result = await getMedicalRecordForPharmacy(req.body.medicalRecordId)
             res.send(result)
             return
         }
@@ -84,9 +86,9 @@ const getMRForPharmacyCtr = async (req, res) => {
 }
 
 const getMedicalRecordCtr = async (req, res) => {
-    if (isMedicalRecord(req.params.medId)) {
-        if (alreadyMedicalRecord(req.params.medId)) {
-            const result = await getMedicalRecord(req.params.medId)
+    if (isMedicalRecord(req.body.medicalRecordId)) {
+        if (alreadyMedicalRecord(req.body.medicalRecordId)) {
+            const result = await getMedicalRecord(req.body.medicalRecordId)
             res.send(result)
             return
         }
@@ -97,10 +99,11 @@ const getMedicalRecordCtr = async (req, res) => {
 }
 
 const getHistoryMedicalRecordCtr = async (req, res) => {
-    if (isPatient(req.params.patientCitizenId)) {
-        let length = lengthPatientHistory(req.params.patientCitizenId)
+    if (isPatient(req.body.patientCitizenId)) {
+        let length = lengthPatientHistory(req.body.patientCitizenId)
+        console.log("Length ",length)
         if (length > 0) {
-            const result = await getHistoryMedicalRecord(req.params.patientCitizenId, length)
+            const result = await getHistoryMedicalRecord(req.body.patientCitizenId, length)
             res.send(result)
             return
         }
@@ -111,10 +114,10 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
 }
 
 const getBasicDataHistoryMedicalRecordCtr = async (req, res) => {
-    if (isPatient(req.params.patientCitizenId)) {
-        let length = lengthPatientHistory(req.params.patientCitizenId)
+    if (isPatient(req.body.patientCitizenId)) {
+        let length = lengthPatientHistory(req.body.patientCitizenId)
         if (length > 0) {
-            const result = await getMedicalRecordForShowHistory(req.params.patientCitizenId, length)
+            const result = await getMedicalRecordForShowHistory(req.body.patientCitizenId, length)
             res.send(result)
             return
         }
