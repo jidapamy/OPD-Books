@@ -403,7 +403,7 @@ export default class DemoExample extends React.Component {
                     <Dimmer page active={this.state.loader}>
                         <Loader size='massive' indeterminate>Loading</Loader>
                     </Dimmer>
-                    <Menu vertical  fixed='left' style={{ width: "17rem" }}>
+                    <Menu inverted vertical  fixed='left' style={{ width: "17rem" }}>
                         
                         {/* <Menu.Item color='teal'>
                             <Header style={style.navbarDeco} >Queues</Header>

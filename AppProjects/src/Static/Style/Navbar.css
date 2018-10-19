@@ -1,10 +1,9 @@
 .images {
-  background: url('./../Img/HBG.gif') no-repeat center ;
+  background: url('./../Img/HBG.svg') no-repeat center ;
   /* background: url(https://static.wixstatic.com/media/de2056_3bafaae06ffa43268fdc17e2fa479574~mv2.jpg) no-repeat center center; */
   background-size: cover;
   position: relative;
   height: 100vh;
-  margin-top: 100vh;
   margin: auto; 
   border: 0px;
 }
@@ -26,6 +25,7 @@
   padding-top: 180px;
   font-family: Kanit;
   font-size: 50px;
+  height: auto;
 }
 .images .detail {
   color: #00b5ad;
@@ -33,6 +33,7 @@
   margin-left: 8%;
   font-family: Kanit;
   font-size: 30px;
+  height: auto;
 }
 .images p {
   text-align: center;

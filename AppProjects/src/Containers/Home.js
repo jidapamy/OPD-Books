@@ -17,6 +17,7 @@ import styled from "styled-components";
 // << IMPORT PHOTO >>
 import Contain1 from "../Static/Img/Contianer/Contain1.svg";
 import Contain2 from "../Static/Img/Contianer/Contain2.svg";
+import HBG from "../Static/Img/HBG.svg";
 import LogoWebpage from "../Static/Img/logoWebpage.png";
 import icon1 from "../Static/Img/Contianer/icon1.png";
 import icon2 from "../Static/Img/Contianer/icon2.png";
@@ -51,6 +52,10 @@ const ImageSizeRow = styled(Image)`
   width: 150px;
   height: 150px;
 `;
+const HeaderCon = styled(Header)`
+  z-index:1;
+  margin-top:-10em !important; 
+`;
 
 const fixedMenuStyle = {
   backgroundColor: "transparent",
@@ -74,8 +79,16 @@ export default class Home extends React.Component {
     overlayFixed: false
   };
 
-  stickTopMenu = () => this.setState({ menuFixed: true });
-  unStickTopMenu = () => this.setState({ menuFixed: false });
+  stickTopMenu = () => {
+    // เลื่อนลง onBottomPassed
+    console.log("onBottomPassed + เลื่อนลง true ")
+    this.setState({ menuFixed: true });
+  }
+  unStickTopMenu = () => {
+    // เลื่อนชิดบน onBottomVisible
+    console.log("onBottomVisible + เลื่อนชิดบน false")
+    this.setState({ menuFixed: false });
+  }
 
   componentDidMount() {
     new WOW.WOW().init();
@@ -93,27 +106,29 @@ export default class Home extends React.Component {
       <div>
         <Responsive {...Responsive.onlyComputer}>
         <Segment.Group>
-          <div className="images">
+           
+            {/* <div className="images"> */}
             <Visibility
               onBottomPassed={this.stickTopMenu}
               onBottomVisible={this.unStickTopMenu}
               once={false}
             >
               <Menu
-                size="big"
+                size='large'
                 pointing={true}
                 secondary={!menuFixed}
                 borderless={true}
-                fixed={menuFixed && "top"}
-                style={!menuFixed ? fixedMenuStyle : menuStyle}
+                fixed='top'
+                style={menuFixed ? fixedMenuStyle : menuStyle}
                 style={{ border: "0px" }}
               >
+              
                 <Menu.Item>
-                    <Image src={LogoWebpage}></Image>
-                  {/* <Icon color="red" size="big" name="heartbeat" /> */}
-                  {/* <span style={{ fontSize: "2em", color: "#00B5AD" }}>
+                    {/* <Image src={LogoWebpage}></Image> */}
+                  <Icon color="red" size="big" name="heartbeat" />
+                  <span style={{ fontSize: "2em", color: "#00B5AD" }}>
                     OPD BOOKS
-                  </span> */}
+                  </span>
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>
@@ -128,15 +143,16 @@ export default class Home extends React.Component {
                   </Menu.Item>
                 </Menu.Menu>
               </Menu>
+              
             </Visibility>
-            <h1 className="heading">Welcome Everyone </h1>
-            <h4 className="detail">OPD Book on Blockchain </h4>
-            <Link to="/signup">
-              <p>
-                <button className="btn btn-large">Sign UP</button>
-              </p>
-            </Link>
-          </div>
+            <Image src={HBG}></Image>
+            <Grid>
+            <HeaderCon as='h1'>Welcome Everyone </HeaderCon>
+            <Header as='h4'>OPD Book on Blockchain </Header>
+                <Link to="/signup"><Button basic color='teal' size='huge'>Sign UP</Button></Link>
+                <Link to="/signup"><Button basic color='teal' size='huge'>Test API</Button></Link>
+            </Grid>
+          {/* </div> */}
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
             vertical
