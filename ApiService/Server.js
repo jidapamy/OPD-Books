@@ -8,7 +8,6 @@ const routes = require('./App')
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use('/', routes)
 
 app.listen(3015, () => {

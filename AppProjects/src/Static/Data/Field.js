@@ -1,5 +1,6 @@
 export const patientField = {
     address: { label: "Address", variable: "address" },
+    age: { label: "Age", variable: "age" },
     allergy: { label: "Allergy", variable: "allergy" },
     bloodgroup: { label: "Blood Group", variable: "bloodgroup" },
     citizenId: { label: "Citizen ID", variable: "citizenId" },

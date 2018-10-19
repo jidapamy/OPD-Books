@@ -4,10 +4,10 @@ import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
-import { getPatient } from "../../Services/ManagePatientMethod";
+import { getPatient, requestOTP, getPatientWithOTP, cancelRequestOTP } from "../../Services/ManagePatientMethod";
 import BGRegistra from "./../../Static/Img/BGRegistra.png";
-import { Button, Container, Grid, Image, Header,Divider,Modal,Form } from "semantic-ui-react";
-
+import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, Loader } from "semantic-ui-react";
+import OTPfactor from "./OTPfactor";
 const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
@@ -53,7 +53,11 @@ class Registration extends Component {
     patient: {},
     employee: {},
     citizenIdSearch: '',
-    loader: false
+    loader: false,
+    openOTP:false,
+    requestId:"",
+    mobileNumber:"",
+    pin:""
   };
 
   getPatient = citizenId => {
@@ -65,31 +69,15 @@ class Registration extends Component {
     });
   };
 
-  closeModal = () => this.setState({ openDetail: false });
+  closeModal = () => this.setState({ openDetail: false, openOTP: false, citizenIdSearch: '',});
 
   scanQRCode = citizenId => {
     // Decrypt
     if (citizenId) {
-      this.props.setField("loader",true)
       this.setState({
         openScan: false,
       })
-      getPatient(citizenId).then(res => {
-        this.props.setField("loader", false)
-        if (res.status) {
-          this.setState({
-            patient: res.data,
-            openDetail: true
-          });
-        } else {
-          swal({
-            type: "error",
-            text: res.message,
-            showConfirmButton: false,
-            timer: 2000
-          });
-        }
-      })
+      this.requestOTP()
     }
   }
 
@@ -127,8 +115,104 @@ class Registration extends Component {
   // };
 
 
+  validateOTP = (pin) => {
+    let data = {
+      pin: pin,
+      requestId: this.state.requestId,
+      citizenId: this.state.citizenIdSearch
+    }
+    // this.props.setField("loader", true)
+    this.setState({ loader: true })
+    getPatientWithOTP(data).then(res => {
+      // this.props.setField("loader", false)
+      if(res.status){
+        this.setState({ 
+          openOTP: false,
+          openDetail: true,
+          patient: res.data,
+          pin: "",
+          loader: false,
+          citizenIdSearch: '',
+        })
+      }else{
+        this.setState({
+          pin: "",
+          loader: false,
+        })
+        if (res.statusCode == '17'){
+          this.setState({
+            pin: "",
+            openOTP: false,
+            citizenIdSearch: '',
+          })
+        }
+        swal({
+          type: "error",
+          text: res.message,
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+      }
+    })
+  }
+
+  requestOTP = (requestId=null) => {
+    let data = {
+      requestId: requestId,
+      citizenId: this.state.citizenIdSearch
+    }
+    // this.props.setField("loader", true)
+    this.setState({ loader: true })
+    requestOTP(data).then(res => {
+      // this.props.setField("loader", false)
+      if (res.status) {
+        this.setState({
+          requestId: res.data.requestId,
+          mobileNumber: res.data.mobileNumber,
+          openOTP: true,
+          loader: false,
+        });
+      } else {
+        this.setState({
+          pin: "",
+        })
+        swal({
+          type: "error",
+          text: res.message,
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+      }
+    })
+  }
+
+  cancelRequestOTP = (requestOTP) => {
+    cancelRequestOTP(requestOTP).then(res => {
+      if(res.status){
+        this.setState({
+          openOTP: false,
+          openDetail: false,
+          pin: "",
+          citizenIdSearch: '',
+        })
+    } else {
+        swal({
+          type: "error",
+          text: res.message,
+          showConfirmButton: false,
+          showCloseButton: true,
+        });
+      }
+    })
+  }
+
   render() {
-    return  <Wrapper>
+    return  (
+    <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+      <Dimmer page active={this.state.loader}>
+        <Loader size='massive' indeterminate>Loading</Loader>
+      </Dimmer>
+    <Wrapper>
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
@@ -142,7 +226,15 @@ class Registration extends Component {
         <Image centered style={style.d1} rounded src={ScanButton} 
             onClick={() => this.setState({ openScan: true })} />
         <Form onSubmit={() => this.searchPatient()} style={{ margin: " 0% 15% ", borderRadius: '10px'}}>
-          <Form.Input size='large' label='Citizen Id'  type='text' action={{ color: 'teal', icon: 'search', content: 'Search' }} placeholder='1-2345-67890-12-3' onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}/>
+          <Form.Input 
+            size='large' 
+            label='Citizen Id'  
+            type='text' 
+            action={{ color: 'teal', icon: 'search', content: 'Search' }} 
+            placeholder='x-xxxx-xxxxx-xx-x' 
+            onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}
+            value={this.state.citizenIdSearch}
+          />
           </Form>
         </Container>
 
@@ -162,6 +254,20 @@ class Registration extends Component {
           </Button>
           </Modal.Content>
         </PopupQRCode>
+
+      <Modal open={this.state.openOTP} onClose={this.closeModal}>
+        <OTPfactor 
+          requestId={this.state.requestId}
+          mobileNumber={this.state.mobileNumber}
+          validateOTP={this.validateOTP}
+          requestOTP={this.requestOTP}
+          pin={this.state.pin}
+          cancelRequestOTP={this.cancelRequestOTP}
+        />
+      </Modal>
+
+
+
 
         <Modal open={this.state.openDetail} onClose={this.closeModal}>
           <Modal.Content>
@@ -535,6 +641,8 @@ class Registration extends Component {
           </Modal.Actions>
         </Modal>
     </Wrapper>
+    </Dimmer.Dimmable>
+    )
   }
 }
 

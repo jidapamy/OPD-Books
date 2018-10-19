@@ -46,9 +46,11 @@ export default class EditProfile extends React.Component {
                         onClose={this.close} 
                         > */}
                         <Modal.Content >
-                             <Header as='h1'>Edit Profile</Header>
-                            <FormEditProfile/>
-                        
+                            <Header as='h1'>Edit Profile</Header>
+                            <FormEditProfile
+                                patient={this.props.patient}
+                        />
+                    
                         </Modal.Content>
                         <Modal.Actions style={{ border: 0 }} >
                             <Button size='hug' onClick={this.close} style={{ borderRadius: '2rem' }} color='red'>

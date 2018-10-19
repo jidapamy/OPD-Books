@@ -158,6 +158,7 @@ export default class PatientProfile extends Component {
       this.props.history.push("/signin");
       return
     }
+    this.setState(this.props.location.state)
     let citizenId = this.props.location.state.citizenId;
     getPatient(citizenId).then(patient => {
       getTreatmentHistoryOfPatient(citizenId).then(history => {
@@ -246,8 +247,10 @@ export default class PatientProfile extends Component {
             <Modal style={{ borderRadius: '2rem' }} open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
               {/* <EditProfile /> */}
               <Modal.Content >
-                <Header as='h1'>Edit Profile</Header>
-                <FormEditProfile />
+                <Header as='h1'>Edit Profile นะจ๊ะ</Header>
+                <FormEditProfile 
+                  patient={this.state.patient}
+                />
 
               </Modal.Content>
               <Modal.Actions style={{ border: 0 }} >
