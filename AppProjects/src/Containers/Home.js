@@ -18,7 +18,7 @@ import styled from "styled-components";
 import Contain1 from "../Static/Img/Contianer/Contain1.svg";
 import Contain2 from "../Static/Img/Contianer/Contain2.svg";
 import HBG from "../Static/Img/HBG.svg";
-import LogoWebpage from "../Static/Img/logoWebpage.png";
+import LogoWebpage from "../../src/Static/Img/logoWebpage.svg";
 import icon1 from "../Static/Img/Contianer/icon1.png";
 import icon2 from "../Static/Img/Contianer/icon2.png";
 import icon3 from "../Static/Img/Contianer/icon3.png";
@@ -40,7 +40,7 @@ const GridColumn = styled(Grid.Column)`
   justify-content: center;
   align-items: center;
 `;
-const SegmentGray = styled(Segment)`background-color: "#EDEEF1";`;
+const SegmentGray = styled(Segment)`background-color: "#EDEEF1";`
 
 const HeaderCenter = styled(Header)`
   display: flex;
@@ -52,10 +52,14 @@ const ImageSizeRow = styled(Image)`
   width: 150px;
   height: 150px;
 `;
-const HeaderCon = styled(Header)`
-  z-index:1;
-  margin-top:-10em !important; 
+const ContainerCon = styled(Container)`
+  position: absolute;
+  width: 100%;
+  max-width: 706px;
+  top: 5%;
+  left: 5%;
 `;
+
 
 const fixedMenuStyle = {
   backgroundColor: "transparent",
@@ -103,11 +107,11 @@ export default class Home extends React.Component {
   render() {
     const { menuFixed } = this.state;
     return (
-      <div>
+      <span>
         <Responsive {...Responsive.onlyComputer}>
         <Segment.Group>
            
-            {/* <div className="images"> */}
+            {/* <box className="images"> */}
             <Visibility
               onBottomPassed={this.stickTopMenu}
               onBottomVisible={this.unStickTopMenu}
@@ -124,20 +128,24 @@ export default class Home extends React.Component {
               >
               
                 <Menu.Item>
-                    {/* <Image src={LogoWebpage}></Image> */}
-                  <Icon color="red" size="big" name="heartbeat" />
-                  <span style={{ fontSize: "2em", color: "#00B5AD" }}>
+                    <Image size='mini' src={LogoWebpage}/>
+                  <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                     OPD BOOKS
                   </span>
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>
-                    <Button basic inverted={!menuFixed} onClick={()=>this.goToPage('/signin')}>
+                    <Header  inverted={!menuFixed} onClick={() => this.goToPage('/apiDocument')}>
+                      API Document
+                    </Header>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Button color={!menuFixed ? '' : 'teal'} inverted={!menuFixed} onClick={()=>this.goToPage('/signin')}>
                       Sign In
                     </Button>
                   </Menu.Item>
                   <Menu.Item>
-                    <Button basic inverted={!menuFixed} onClick={()=>this.goToPage('/signup')}>
+                    <Button color={!menuFixed ? '' : 'teal'} inverted={!menuFixed} onClick={()=>this.goToPage('/signup')}>
                       Sign Up
                     </Button>
                   </Menu.Item>
@@ -146,13 +154,16 @@ export default class Home extends React.Component {
               
             </Visibility>
             <Image src={HBG}></Image>
-            <Grid>
-            <HeaderCon as='h1'>Welcome Everyone </HeaderCon>
-            <Header as='h4'>OPD Book on Blockchain </Header>
-                <Link to="/signup"><Button basic color='teal' size='huge'>Sign UP</Button></Link>
-                <Link to="/signup"><Button basic color='teal' size='huge'>Test API</Button></Link>
-            </Grid>
-          {/* </div> */}
+            <box >	
+              <Header style={{ fontSize: '50px' }}>Hello, we are</Header>
+              <Header style={{ fontSize: '50px' }}>OPD BOOKS </Header>
+              <Header.Content style={{ fontSize: '20px', color:'#434444' }} >By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.</Header.Content>
+              <br/>
+              <Link to="/signup"><Button size='huge' style={{ fontSize: '25px', borderRadius: '100px', backgroundColor:'#31A5BA',color:'white' }} >Sign UP</Button></Link>
+              <Link to="/apiDocument"><Button  size='huge' style={{ fontSize: '25px', borderRadius: '100px' }}>DEMO</Button></Link>
+            </box>
+            
+           
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
             vertical
@@ -403,13 +414,11 @@ export default class Home extends React.Component {
             </Grid>
           </Segment>
           <Segment
-            inverted
-            color="teal"
+              style={{ backgroundColor: '#31A5BA', color: 'white', padding: "2em 0em" }}
             tertiary
             vertical
-            style={{ padding: "2em 0em" }}
           >
-            <Container>
+              <Container style={{ backgroundColor: '#31A5BA', color: 'white' }}>
               <Grid divided inverted stackable>
                 <Grid.Row>
                   <Grid.Column width={3}>
@@ -456,7 +465,7 @@ export default class Home extends React.Component {
             goToPage={this.goToPage}
           />
         </Responsive>
-      </div>
+      </span>
     );
   }
 }

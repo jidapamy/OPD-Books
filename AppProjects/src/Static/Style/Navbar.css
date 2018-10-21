@@ -99,3 +99,24 @@ video.fullscreen {
   z-index: -100;
   transform: translate(-50%, -50%);
 }
+Box{ 
+  font-family: kanit;
+  color: rgb(0, 0, 0);
+  width: 35%;
+  float: left;
+  top:5%;
+  z-index:1;
+  left: 5%;
+  position: absolute;
+      }
+BoxMobile{ 
+  font-family: kanit;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  top:2%;
+  z-index:1;
+  left: 5%;
+  position: absolute;
+      }
+

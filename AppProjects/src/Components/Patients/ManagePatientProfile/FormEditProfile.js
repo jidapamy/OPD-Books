@@ -62,7 +62,9 @@ export default class EditProfile extends React.Component {
         const { editprofile, editAdress, editEmp, underAge, allergy, open } = this.state
         return (
             <div>
-                <Segment color='teal' style={{ borderRadius: '2rem' }} onClick={this.handleEditprofile}> <h3><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'caret down' : 'caret right'} /></h3></Segment>
+                
+
+                {/* <Segment color='teal' style={{ borderRadius: '2rem' }} onClick={this.handleEditprofile}> <h3><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'caret down' : 'caret right'} /></h3></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {editAdress &&<Segment style={{ borderRadius: '2rem', marginTop: -15 }} >
                         <Form>
@@ -106,15 +108,7 @@ export default class EditProfile extends React.Component {
                                     type='email'
                                     value={this.props.patient.email}
                                 />
-                                {/* <Password
-                                    cardType={this.props.cardType}
-                                    setPatientDetail={this.props.setPatientDetail}
-                                    errorText={this.props.errorText}
-                                    setField={this.props.setField}
-                                    setFieldAndValidate={this.props.setFieldAndValidate}
-                                    errorField={this.props.errorField}
-                                    patient={this.props.patient}
-                                /> */}
+                                
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field
@@ -525,7 +519,7 @@ export default class EditProfile extends React.Component {
                                 </Form.Group>
                             </Form>
                         </Segment >}
-                </Transition.Group>
+                </Transition.Group> */}
 
 
 

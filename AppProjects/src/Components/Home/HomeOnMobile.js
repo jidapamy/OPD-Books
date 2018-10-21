@@ -17,6 +17,7 @@ import styled from "styled-components";
 import BGMobile from "../../Static/Img/Contianer/BGMobile.svg";
 import Contain1 from "../../Static/Img/Contianer/Contain1.svg";
 import Contain2 from "../../Static/Img/Contianer/Contain2.svg";
+import logoWebMobile from "../../Static/Img/logoWebMobile.svg";
 import icon1 from "../../Static/Img/Contianer/icon1.png";
 import icon2 from "../../Static/Img/Contianer/icon2.png";
 import icon3 from "../../Static/Img/Contianer/icon3.png";
@@ -50,7 +51,7 @@ const ImageSizeRow = styled(Image)`
 `;
 const Contents = styled(Container)`
   z-index:-2;
-  margin-Top:-23rem;
+  margin-Top:-24.5rem;
 `;
 const Images = styled(Image)`
   z-index:-1;
@@ -88,10 +89,10 @@ export default class HomeOnMobile extends React.Component {
                             style={{ border: "0px" }}
                         >
                             <Menu.Item>
-                                <Icon color="red" size="big" name="heartbeat" />
-                                <span style={{ fontSize: "2em", color: "#00B5AD" }}>
+                                <Image size='mini' style={{height:'22px'}} src={logoWebMobile} />
+                                <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                                     OPD BOOKS
-                                    </span>
+                                </span>
                             </Menu.Item>
 
                             <Menu.Menu position="right">
@@ -109,13 +110,14 @@ export default class HomeOnMobile extends React.Component {
                         </Menu>
 
                         <Images src={BGMobile} style={{ marginTop: -15 }} />
+                        
 
                         <Contents text >
                             <Header
                                 inverted
                                 textAlign='center'
                                 as='h1'
-                                content='Project OPDBooks'
+                                content='Hello, we are'
                                 style={{
                                     fontSize: '2em',
                                     fontWeight: 'normal',
@@ -127,13 +129,25 @@ export default class HomeOnMobile extends React.Component {
                                 inverted
                                 textAlign='center'
                                 as='h3'
-                                content='Do whatever you want when you want to.'
+                                content='OPD BOOKS'
                                 style={{
                                     fontSize: '1.5em',
                                     fontWeight: 'normal',
                                     marginTop: '0.5em',
                                 }}
                             />
+                            <Header.Content
+                                inverted
+                                textAlign='center'
+                                as='h3'
+                                content='By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.'
+                                style={{
+                                    fontSize: '1em',
+                                    fontWeight: 'normal',
+                                    marginTop: '0.5em',
+                                    color: '#FFFFFF'
+                                    }}
+                    />
                             <Grid textAlign='center'>
                                 <Grid.Column width={4}>
                                 </Grid.Column>
