@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 975">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Web_1920_1);
+      }
+
+      .cls-2 {
+        opacity: 0.201;
+      }
+
+      .cls-3 {
+        opacity: 0.7;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-4, .cls-8 {
+        fill: none;
+      }
+
+      .cls-4 {
+        stroke: #31a5ba;
+      }
+
+      .cls-4, .cls-5, .cls-6 {
+        stroke-width: 2px;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        stroke: #a4a1fb;
+      }
+
+      .cls-6 {
+        stroke: #55d8fe;
+      }
+
+      .cls-7 {
+        stroke: none;
+      }
+
+      .cls-9 {
+        fill: #fcfcfc;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#31a5ba"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip-Web_1920_1">
+      <rect width="1920" height="975"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_1" data-name="Web 1920 – 1" class="cls-1">
+    <rect class="cls-9" width="1920" height="975"/>
+    <g id="Group_243" data-name="Group 243" transform="translate(247 109)">
+      <g id="Products_Sold_Graph" data-name="Products Sold Graph" class="cls-2" transform="translate(-757.529 311.726)">
+        <path id="Filled.Graph" class="cls-3" d="M330,764.877V546.706s308.5,143.1,555,152.089c266.539-8.71,312.693-69.952,520.308-152.089,177.416-68.461,354.346-87.251,524.168-82.413s317.013,78.793,517.612,86.372c353.879-30.534,534.429-184.911,558.338-249.388v544.74L330,846.259Z" transform="translate(-317.723 -288.325)"/>
+        <path id="Line.Graph" class="cls-4" d="M313,493.785S619.512,640.3,861.863,643.452s335.438-75.606,521.062-149.472,362.09-86.472,524.554-83.989,320.4,79.889,520.019,84,522.561-133.8,558.472-248.748" transform="translate(-298.268 -234.833)"/>
+        <g id="Mar.Ellipse" class="cls-5" transform="translate(1072.897 247.907)">
+          <circle class="cls-7" cx="12.259" cy="12.259" r="12.259"/>
+          <circle class="cls-8" cx="12.259" cy="12.259" r="11.259"/>
+        </g>
+        <g id="Feb.Ellipse" class="cls-5" transform="translate(718.407 383.633)">
+          <circle class="cls-7" cx="12.259" cy="12.259" r="12.259"/>
+          <circle class="cls-8" cx="12.259" cy="12.259" r="11.259"/>
+        </g>
+      </g>
+      <g id="Products_Sold_Graph-2" data-name="Products Sold Graph" class="cls-2" transform="translate(-687.529 506.726)">
+        <path id="Filled.Graph-2" data-name="Filled.Graph" class="cls-3" d="M330,764.877V546.706s308.5,143.1,555,152.089c266.539-8.71,312.693-69.952,520.308-152.089,177.416-68.461,354.346-87.251,524.168-82.413s317.013,78.793,517.612,86.372c353.879-30.534,534.429-184.911,558.338-249.388v544.74L330,846.259Z" transform="translate(-317.723 -288.325)"/>
+        <path id="Line.Graph-2" data-name="Line.Graph" class="cls-4" d="M313,493.785S619.512,640.3,861.863,643.452s335.438-75.606,521.062-149.472,362.09-86.472,524.554-83.989,320.4,79.889,520.019,84,522.561-133.8,558.472-248.748" transform="translate(-298.268 -234.833)"/>
+        <g id="Mar.Ellipse-2" data-name="Mar.Ellipse" class="cls-5" transform="translate(1072.897 247.907)">
+          <circle class="cls-7" cx="12.259" cy="12.259" r="12.259"/>
+          <circle class="cls-8" cx="12.259" cy="12.259" r="11.259"/>
+        </g>
+      </g>
+      <g id="Total_Views_Graph" data-name="Total Views Graph" class="cls-2" transform="translate(-761.926 378.582)">
+        <path id="Filled.Graph-3" data-name="Filled.Graph" class="cls-3" d="M330,687.576V354.422S631.107,685.647,878.452,698.112c275.977-2.807,278.239-171.952,520.751-264.548,203.024-72.706,357.942,125.622,527.763,130.459s287.023-135.926,518.71-145.705c300.179,14.727,541.051,202.792,559.742,212.9V768.716L330,768.958Z" transform="translate(-313.715 -344.568)"/>
+        <path id="Line.Graph-3" data-name="Line.Graph" class="cls-4" d="M312.953,279.164S623.431,616.493,866.082,619.648s325.629-198.754,520.459-266.824,363.846,129.84,526.511,132.324,318.406-148.686,518.271-144.577S2859.7,459.03,2986.03,549.234" transform="translate(-298.327 -266.489)"/>
+        <g id="May.Ellipse" class="cls-6" transform="translate(2114.927 61.363)">
+          <circle class="cls-7" cx="12.259" cy="12.259" r="12.259"/>
+          <circle class="cls-8" cx="12.259" cy="12.259" r="11.259"/>
+        </g>
+        <g id="Mar.Ellipse-3" data-name="Mar.Ellipse" class="cls-6" transform="translate(1155.767 60.537)">
+          <circle class="cls-7" cx="12.259" cy="12.259" r="12.259"/>
+          <circle class="cls-8" cx="12.259" cy="12.259" r="11.259"/>
+        </g>
+      </g>
+      <g id="Total_Views_Graph-2" data-name="Total Views Graph" class="cls-2" transform="translate(-1297.649 378.919)">
+        <path id="Filled.Graph-4" data-name="Filled.Graph" class="cls-3" d="M330,730.6V354.422s339.99,374,619.277,388.074c311.615-3.17,314.169-194.157,588-298.711,229.242-82.095,404.165,141.844,595.916,147.306S2457.28,437.613,2718.887,426.57c338.943,16.629,610.92,228.98,632.025,240.4V822.217L330,822.49Z" transform="translate(-314.63 -344.568)"/>
+        <path id="Line.Graph-4" data-name="Line.Graph" class="cls-4" d="M312.953,279.164S663.525,660.055,937.512,663.617,1305.191,439.2,1525.181,362.336s410.832,146.608,594.5,149.412,359.523-167.886,585.2-163.247,483.7,133.757,626.339,235.609" transform="translate(-298.327 -266.124)"/>
+        <g id="Apr.Ellipse" class="cls-6" transform="translate(1919.491 215.725)">
+          <circle class="cls-7" cx="13.842" cy="13.842" r="13.842"/>
+          <circle class="cls-8" cx="13.842" cy="13.842" r="12.842"/>
+        </g>
+        <g id="Mar.Ellipse-4" data-name="Mar.Ellipse" class="cls-6" transform="translate(1210.16 81.872)">
+          <circle class="cls-7" cx="13.842" cy="13.842" r="13.842"/>
+          <circle class="cls-8" cx="13.842" cy="13.842" r="12.842"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

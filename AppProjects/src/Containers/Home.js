@@ -59,7 +59,11 @@ const ContainerCon = styled(Container)`
   top: 5%;
   left: 5%;
 `;
+const buttonActive = {
+  backgroundColor: '#31A5BA',
+  color: '#FFF'
 
+};
 
 const fixedMenuStyle = {
   backgroundColor: "transparent",
@@ -140,12 +144,12 @@ export default class Home extends React.Component {
                     </Header>
                   </Menu.Item>
                   <Menu.Item>
-                    <Button color={!menuFixed ? '' : 'teal'} inverted={!menuFixed} onClick={()=>this.goToPage('/signin')}>
+                    <Button color={!menuFixed ? '' : ''} inverted={!menuFixed} onClick={()=>this.goToPage('/signin')}>
                       Sign In
                     </Button>
                   </Menu.Item>
                   <Menu.Item>
-                    <Button color={!menuFixed ? '' : 'teal'} inverted={!menuFixed} onClick={()=>this.goToPage('/signup')}>
+                    <Button color={!menuFixed ? '' : 'blue'} inverted={!menuFixed} onClick={()=>this.goToPage('/signup')}>
                       Sign Up
                     </Button>
                   </Menu.Item>

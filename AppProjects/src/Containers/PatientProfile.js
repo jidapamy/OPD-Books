@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Header, Icon, Dropdown, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader, Divider
+  Grid, Menu, Segment, Container, Header, Icon, Dropdown, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader, Divider, Image
 } from "semantic-ui-react";
 import styled from "styled-components";
 import { QRCode } from "react-qr-svg";
@@ -9,6 +9,7 @@ import InfoPatientMobile from '../Components/Patients/ManagePatientProfile/Respo
 import ProfilePatientMobile from '../Components/Patients/Profile/Responsive/ProfilePatientMobile';
 import FromHisProfilePatient from '../Components/Patients/Profile/FromHisProfilePatient';
 import MedicalPatient from '../Components/Patients/Profile/MedicalPatient';
+import LogoWebpage from "../../src/Static/Img/logoWebpage.svg";
 import EditProfile from './EditProfile';
 import FormEditProfile from '../Components/Patients/ManagePatientProfile/FormEditProfile'
 
@@ -207,10 +208,10 @@ export default class PatientProfile extends Component {
               <Segment>
                 <Menu borderless={true} size='large'>
                   <Menu.Item onClick={() => this.goToPage('/')}>
-                    <Icon color="red" size="big" name="heartbeat" />
-                    <span style={{ fontSize: "1.2em", color: "#00B5AD" }}>
+                    <Image size='mini' src={LogoWebpage} />
+                    <span style={{ fontSize: "1.3em", color: "#31A5BA", fontWeight: 900 }}>
                       OPD BOOKS
-                            </span>
+                  </span>
                   </Menu.Item>
                   <Menu.Menu position='right'>
                     <Dropdown item text={this.state.patient.firstname} >
@@ -280,11 +281,11 @@ export default class PatientProfile extends Component {
                   <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
                     <Icon size="big" name='bars' style={{ color: 'black' }} />
                   </Menu.Item>
-                  <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                    <Icon size="big" name="heartbeat" style={{ color: 'black' }} />
-                    <span style={{ fontSize: "2em", color: 'black' }}>
+                  <Menu.Item textAlign='Center' style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
+                    <Image size='mini' src={LogoWebpage} />
+                    <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                       OPD BOOKS
-                                        </span>
+                  </span>
                   </Menu.Item>
                 </Boderhide>
               </Menu>

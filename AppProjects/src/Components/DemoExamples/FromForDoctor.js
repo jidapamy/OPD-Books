@@ -42,7 +42,7 @@ export default class ShowFormNurse extends Component {
             color="teal"
             content="Send To Pharmacy"
             icon="send"
-            style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
+            style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#31A5BA', color: '#FFF' }}
             onClick={() => this.showPopupConfirm()}
           />
         </Grid.Column>

@@ -510,7 +510,7 @@ export const style = {
     navbarDeco: {
         fontSize: '20px',
         borderRadius: '0px',
-        color: '#3EBDB2',
+        color: '#31A5BA',
         textAlign: 'center',
         paddingTop: '15%'
 
@@ -749,7 +749,7 @@ export const style = {
         bottom: '0%',
         width:'100%',
         textAlign: 'right',
-        background: '#4D8B87',
+        background: '#298C9F',
         color:'#262626',
         height:'auto',
     },

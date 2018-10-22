@@ -21,7 +21,7 @@ export default class FooterDemo extends Component {
       <div>
         <div style={{ marginLeft: "0px", textAlign: 'left' }}>
           <div style={style.footerChoosing}>
-            <Menu borderless style={{ background: "#4D8B87", fontWeight: "bold", color: "#ffffff" }} >
+            <Menu borderless style={{ background: "#1D7A8B", fontWeight: "bold", color: "#ffffff" }} >
               <Menu.Item name='Home'
                 active={this.state.activeTab === 'home'}
                 onClick={() => this.props.chooseTab("home")}

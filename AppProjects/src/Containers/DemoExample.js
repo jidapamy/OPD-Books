@@ -386,7 +386,7 @@ export default class DemoExample extends React.Component {
                 <Form onSubmit={() => this.search(this.state.empPosition, this.state.id)} style={{ margin: " 3% " }}>
                     <Form.Input
                         type='text'
-                        action={{ icon: 'search',color: 'teal' }}
+                        action={{ icon: 'search',color: 'blue' }}
                         placeholder='Search Id ...'
                         onChange={(e) => this.setState({ id: e.target.value })}
                         value={this.state.id} />

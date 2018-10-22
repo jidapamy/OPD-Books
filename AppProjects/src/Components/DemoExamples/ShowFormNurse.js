@@ -47,10 +47,9 @@ export default class ShowFormNurse extends Component {
         if (this.props.empPosition === 2){
             return <Button
                 fluid
-                color="teal"
                 content="Send To Doctor"
                 icon="send"
-                style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
+                style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#31A5BA', color: '#FFF' }}
                 onClick={() => this.showPopupConfirm()}
             />
         }
