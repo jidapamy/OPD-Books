@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Grid, Menu, Segment, Container, Header, Icon, Dropdown, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader
+  Grid, Menu, Segment, Container, Header, Icon, Dropdown, Responsive, Sidebar, Visibility, Button, Modal, Dimmer, Loader, Divider
 } from "semantic-ui-react";
 import styled from "styled-components";
 import { QRCode } from "react-qr-svg";
@@ -55,6 +55,7 @@ const PopupQRCode = styled(Modal)`
   transform: translate(-50%, -50%);
   width: 50%;
 `;
+
 
 const Boderhide = styled(Menu)`
   border:0;
@@ -175,7 +176,7 @@ export default class PatientProfile extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   showModal = () => {
     if (this.state.patient.citizenId) {
-      return <PopupQRCode size={'mini'} open={this.state.open} onClose={this.close}>
+      return <PopupQRCode  size={'mini'} open={this.state.open} onClose={this.close}>
         <Modal.Content>
           <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={this.state.patient.citizenId} />
           <Header textAlign={"center"} size="large">
@@ -275,23 +276,19 @@ export default class PatientProfile extends Component {
                 </Grid>
               </Container>
             </BG>
-            <Modal style={{ borderRadius: '2rem' }} open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
+            <Modal style={{ borderRadius: 20 }} size='large'  open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
               {/* <EditProfile /> */}
               <Modal.Content >
-                <Header as='h1'>Edit Profile นะจ๊ะ</Header>
+                <Header as='h1' style={{color: '#31A5BA' }} >
+                  Account Settings
+                </Header>
+                <br/>
                 <FormEditProfile 
                   patient={this.state.patient}
                 />
 
               </Modal.Content>
-              <Modal.Actions style={{ border: 0 }} >
-                <Button size='hug' onClick={this.close} style={{ borderRadius: '2rem' }} color='red'>
-                  Cancel
-                            </Button>
-                <Button size='hug' style={{ borderRadius: '2rem' }} color='green'>
-                  Success
-                            </Button>
-              </Modal.Actions>
+              
             </Modal>
           </Responsive>
 

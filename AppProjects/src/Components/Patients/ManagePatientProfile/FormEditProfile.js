@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Segment, Icon, Form, Input, Transition, Dropdown, Select
+    Segment, Icon, Form, Input, Transition, Dropdown, Select, Menu, Container, Button, Grid
 } from "semantic-ui-react";
 import swal from 'sweetalert2';
 import {
@@ -11,7 +11,28 @@ import { patientField, mdrField } from "../../../Static/Data/Field"
 
 const provincesData = require('../../../Static/Data/Provinces')
 
+const itemStyle = {
+    paddingLeft: '1.5%',
+    paddingRight: '1.5%',
+    color: '#000',
+    fontSize:'10px',
+};
 
+const itemActiveStyle = {
+    paddingLeft: '1.5%',
+    paddingRight: '1.5%',
+    backgroundColor: '#31A5BA',
+    color: '#FFF'
+
+};
+const elimentStyle = {
+    paddingLeft: '1.5%',
+    paddingRight: '1.5%',
+    backgroundColor: '#F7F7F7',
+};
+const headerSetting = {
+    color: '#8A8A8A',
+};
 
 export default class EditProfile extends React.Component {
     state = {
@@ -20,7 +41,12 @@ export default class EditProfile extends React.Component {
         editEmp: false,
         underAge: false,
         allergy: false,
-        open: false
+        open: false,
+        ChangePassword:false,
+        ChangeEmail: false,
+        editEmail:false,
+
+        
     }
     componentWillMount() {
         this.setState({
@@ -56,15 +82,20 @@ export default class EditProfile extends React.Component {
     handleEditEmp = () => this.setState({ editEmp: !this.state.editEmp })
     handleUnderAge = () => this.setState({ underAge: !this.state.underAge })
     handleAllergy = () => this.setState({ allergy: !this.state.allergy })
-
+    handleChangePassword = () => this.setState({ ChangePassword: !this.state.ChangePassword })
+    handleChangeEmail = () => this.setState({ ChangeEmail: !this.state.ChangeEmail })
+    handleActiveEditEmail = () => this.setState({ editEmail: !this.state.editEmail })
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
-        const { editprofile, editAdress, editEmp, underAge, allergy, open } = this.state
+        const { editprofile, editAdress, editEmp, underAge, allergy, ChangePassword, ChangeEmail, editEmail } = this.state
         return (
             <div>
-                <Segment color='teal' style={{ borderRadius: '2rem' }} onClick={this.handleEditprofile}> <h3><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'caret down' : 'caret right'} /></h3></Segment>
+                <h4 style={headerSetting}>General Account Setting</h4>
+                <Segment style={editprofile ? itemActiveStyle : itemStyle} vertical onClick={ () => this.handleEditprofile()}> 
+                    <h4 ><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {editAdress &&<Segment style={{ borderRadius: '2rem', marginTop: -15 }} >
+                    {editprofile && <Segment style={elimentStyle} vertical >
                         <Form>
                             <Form.Group widths='equal' >
                                 <Form.Input fluid
@@ -97,24 +128,6 @@ export default class EditProfile extends React.Component {
                                     readOnly
                                     value={this.props.patient.age}
                                 />
-                            </Form.Group>
-                            <Form.Group widths='equal'>
-                                <Form.Input
-                                    label={patientField.email.label}
-                                    width={6}
-                                    required
-                                    type='email'
-                                    value={this.props.patient.email}
-                                />
-                                {/* <Password
-                                    cardType={this.props.cardType}
-                                    setPatientDetail={this.props.setPatientDetail}
-                                    errorText={this.props.errorText}
-                                    setField={this.props.setField}
-                                    setFieldAndValidate={this.props.setFieldAndValidate}
-                                    errorField={this.props.errorField}
-                                    patient={this.props.patient}
-                                /> */}
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field
@@ -218,6 +231,10 @@ export default class EditProfile extends React.Component {
                                     onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
                                     value={this.props.patient.occupartion}
                                 />
+                                
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                
                                 <Form.Input
                                     label={patientField.homePhonenumber.label}
                                     onChange={e => this.props.setFieldAndValidate('homePhonenumber', e.target.value)}
@@ -234,10 +251,11 @@ export default class EditProfile extends React.Component {
                     </Segment>}
                 </Transition.Group>
 
-                <Segment color='yellow' style={{ borderRadius: '2rem' }} onClick={this.handleEditAdress}><h3><Icon name='home' />Adress<Icon style={{ float: 'right' }} name={editAdress ? 'caret down' : 'caret right'} /></h3></Segment>
+                <Segment style={editAdress ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleEditAdress()}>
+                    <h4><Icon name='home' />Adress<Icon style={{ float: 'right' }} name={editAdress ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {editAdress &&
-                        <Segment style={{ borderRadius: '2rem', marginTop: -15 }}>
+                        <Segment style={elimentStyle} vertical>
                             <Form>
                                 <Form.Group widths='equal'>
                                     <Form.Select
@@ -288,10 +306,10 @@ export default class EditProfile extends React.Component {
                 </Transition.Group>
 
 
-                <Segment color='yellow' style={{ borderRadius: '2rem' }} onClick={this.handleEditEmp}><h3><Icon name='home' />AdressEmp<Icon style={{ float: 'right' }} name={editEmp ? 'caret down' : 'caret right'} /></h3></Segment>
+                <Segment style={editEmp ? itemActiveStyle : itemStyle} vertical onClick={this.handleEditEmp}><h4><Icon name='home' />AdressEmp<Icon style={{ float: 'right' }} name={editEmp ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {editEmp &&
-                        <Segment style={{ borderRadius: '2rem', marginTop: -15 }}>
+                        <Segment style={elimentStyle} vertical>
                             <Form>
                                 <Form.Group widths='equal'>
                                     <Form.Select
@@ -390,10 +408,10 @@ export default class EditProfile extends React.Component {
 
 
 
-                <Segment color='yellow' style={{ borderRadius: '2rem' }} onClick={this.handleUnderAge}><h3><Icon name='home' />under 15 years old<Icon style={{ float: 'right' }} name={underAge ? 'caret down' : 'caret right'} /></h3></Segment>
+                <Segment style={underAge ? itemActiveStyle : itemStyle} vertical onClick={this.handleUnderAge}><h4><Icon name='child' />under 15 years old<Icon style={{ float: 'right' }} name={underAge ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {underAge &&
-                        <Segment style={{ borderRadius: '2rem', marginTop: -15 }}>
+                        <Segment style={elimentStyle} vertical>
                             <Form>
                                 <Form.Group widths='equal'>
                                     <Form.Field
@@ -427,10 +445,10 @@ export default class EditProfile extends React.Component {
                         </Segment >}
                 </Transition.Group>
 
-                <Segment color='yellow' style={{ borderRadius: '2rem' }} onClick={this.handleAllergy}><h3><Icon name='home' />Allergy<Icon style={{ float: 'right' }} name={allergy ? 'caret down' : 'caret right'} /></h3></Segment>
+                <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={this.handleAllergy}><h4><Icon name='pills' />Allergy<Icon style={{ float: 'right' }} name={allergy ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {allergy &&
-                        <Segment style={{ borderRadius: '2rem', marginTop: -15 }}>
+                        <Segment style={elimentStyle} vertical>
                             <Form>
                                 <h3 >Do you have a history of allergies<span style={{ color: 'red' }}> * </span></h3 >
 
@@ -525,7 +543,95 @@ export default class EditProfile extends React.Component {
                                 </Form.Group>
                             </Form>
                         </Segment >}
+                </Transition.Group> 
+                <br /><h3 style={headerSetting}>Security Setting</h3>
+                <Segment style={ChangeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleChangeEmail()}>
+                    <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={ChangeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
+                    {ChangeEmail && <Segment style={elimentStyle} vertical >
+                        <Form text >
+                            <Form.Group widths={6}>
+                            <Form.Input
+                                icon='mail' iconPosition='left' 
+                                readOnly={!editEmail}
+                                label={patientField.email.label}
+                                width={6}
+                                required
+                                type='email'
+                                value={this.props.patient.email}
+                                autoFocus
+                            />
+                                <Form.Button 
+                                    label='&nbsp;' 
+                                    circular icon='edit' 
+                                    onClick={() => this.handleActiveEditEmail()} 
+                                    style={{ color: '#31A5BA',backgroundColor:'#FFF',fontSize:16 }}
+                                />
+                            </Form.Group>
+                            <Form.Group widths={6}>
+                           
+                             <Form.Input
+                                icon='lock' iconPosition='left' 
+                                label='Pssword'
+                                width={6}
+                                required
+                                type='password'
+                                value={this.props.patient.password}
+                            />
+                            </Form.Group>
+                            <Grid>
+                            <Grid.Column width={6}>
+                                    <Button fluid content='Submit' style={{ backgroundColor: '#31A5BA', color: '#FFF' }} />
+                            </Grid.Column>
+                            </Grid>
+                            {/* <Form.Button
+                                label='&nbsp;'
+                                icon='pencil'
+                                onClick={() => this.handleActiveEditEmail()}
+                                style={{ backgroundColor: '#31A5BA' }}
+                            /> */}
+                        </Form>
+                    </Segment>}
                 </Transition.Group>
+                <Segment style={ChangePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleChangePassword()}>
+                    <h4 ><Icon name='lock' />Change Password <Icon style={{ float: 'right' }} name={ChangePassword ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
+                    {ChangePassword && <Segment style={elimentStyle} vertical >
+                        <Form>
+
+                                <Form.Input
+                                    icon='lock' iconPosition='left'
+                                    label='Old Pssword'
+                                    width={6}
+                                    required
+                                    type='password'
+                                    value={this.props.patient.password}
+                                />
+                                <Form.Input
+                                    icon='lock' iconPosition='left'
+                                    label='New Pssword'
+                                    width={6}
+                                    required
+                                    type='password'
+                                    value={this.props.patient.password}
+                                />
+                                <Form.Input
+                                    icon='lock' iconPosition='left'
+                                    label='Confirm New Pssword'
+                                    width={6}
+                                    required
+                                    type='password'
+                                    value={this.props.patient.password}
+                                />
+                                <Grid>
+                                    <Grid.Column width={6}>
+                                        <Button fluid content='Submit' style={{ backgroundColor: '#31A5BA', color: '#FFF' }} />
+                                    </Grid.Column>
+                                </Grid>
+                        </Form>
+                    </Segment>}
+                </Transition.Group>
+
 
 
 
