@@ -1,7 +1,8 @@
 const medicalRecordScheme = {
-    medicalRecord : [
+    info : [
         {
-            medicalRecordId: 'byte',
+            patientCitizenId: 'byte',
+            treatmentYear: 'uint'
         }
     ],
     nurse: [

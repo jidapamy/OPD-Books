@@ -20,7 +20,7 @@ import BackgroundImage from "../Static/Img/BGGs.png";
 import { Link } from "react-router-dom";
 //service
 import { getPatient } from '../Services/ManagePatientMethod'
-import { getTreatmentHistoryOfPatient } from "../Services/MedicalRecordMethod";
+import { getTreatmentHistoryOfPatient, getMedicalRecord } from "../Services/MedicalRecordMethod";
 
 const BG = styled.div`
   background: url('${BackgroundImage}') no-repeat center fixed;
@@ -190,10 +190,38 @@ export default class PatientProfile extends Component {
       </PopupQRCode>
     }
   }
+
+  viewMedicalRecord = (history) => {
+    this.setState({ loader : true })
+    getMedicalRecord(+history.medicalRecordId).then(res => {
+      this.setState({ 
+        loader: false,
+        chooseMedicalRecord: res.data,
+        statusShowHistory: false
+      })
+    })
+  }
+
+  sortMedicalRecord = (year) => {
+    this.setState({ loader: true })
+    getTreatmentHistoryOfPatient(this.state.patient.citizenId,year).then(history => {
+      this.setState({
+        historyTreatment: history.data,
+        historyMsg: history.message,
+        loader: false
+      });
+    })
+  }
+
+
+
+
+
   render() {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
 
+    console.log("chooseMedicalRecord",this.state.chooseMedicalRecord)
     return (
       <div>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
@@ -239,7 +267,10 @@ export default class PatientProfile extends Component {
                     patient={this.state.patient}
                     historyTreatment={this.state.historyTreatment}
                     historyMsg={this.state.historyMsg}
-                    setField={this.setField} />
+                    setField={this.setField} 
+                    viewMedicalRecord={this.viewMedicalRecord}
+                    sortMedicalRecord={this.sortMedicalRecord}
+                  />
                   <MedicalPatient
                     chooseMedicalRecord={this.state.chooseMedicalRecord}
                   />

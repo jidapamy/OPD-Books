@@ -23,7 +23,7 @@ import {
     getMedicalRecordForNurse,
     getMedicalRecordForPharmacy,
     setMedicalRecordForDoctor,
-    getBasicDataTreatmentHistory
+    getTreatmentHistoryOfPatient
 } from "../Services/MedicalRecordMethod";
 
 import { getInfoPatient } from '../Services/ManagePatientMethod'
@@ -294,7 +294,7 @@ export default class DemoExample extends React.Component {
                 if (data.status) {
                     getInfoPatient(data.data.patientCitizenId).then(dataPatient => {
                         if (dataPatient.status) {
-                            getBasicDataTreatmentHistory(data.data.patientCitizenId).then(history => {
+                            getTreatmentHistoryOfPatient(data.data.patientCitizenId).then(history => {
                                 this.setState({
                                     historyTreatment: history.data,
                                     historyMsg: history.message,

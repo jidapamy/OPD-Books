@@ -1,8 +1,8 @@
 const { contract, defaultAccount } = require('../Lib/Web3')
 const { convertString, bindData, unlockAccount, lockAccount, convertToAscii } = require('../Services/Utils')
+const { requestOTP, validateOTP, cancelOTP } = require("./AuthenticationRepo")
 const { patientScheme } = require("../Models/PatientModel")
 const moment = require("moment");
-const nexmo = require("../Lib/Nexmo")
 
 const login = async (citizenId, password) => {
     const res = await contract.Login(convertString(citizenId), convertString(password));
@@ -212,7 +212,7 @@ const verifiedByCitizenId = async (citizenId) => {
         console.log("verifiedByCitizenId", res)
         return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
     } catch (err) {
-        return ({ status: false, statusCode: err.message.status ,message: err.message.error_text, data: { requestId: err.requestId } });
+        return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
     }
 }
 
@@ -244,63 +244,38 @@ const getPatientWithOTP = async (data) => {
         let patient = { ...combindedInfoData, ...combindedAddressData, ...combindedAllergyData, ...combindedEmerData, ...combindedParentData }
         return ({ status: true, message: "SUCCESS", data: patient })
     } catch (err) {
-        return ({ status: false, statusCode: err.message.status , message: err.message.error_text, data: { requestId: err.requestId } });
+        return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
     }
 }
 
 const cancelRequestOTP = async (requestId) => {
     try {
         const res = await cancelOTP(requestId)
-        return ({ status: true, message: "SUCCESS"});
+        return ({ status: true, message: "SUCCESS" });
     } catch (err) {
         return ({ status: false, statusCode: err.message.status, message: err.message.error_text });
     }
 }
 
-const requestOTP = (phoneNumber) => new Promise((resolve, reject) => {
-    // { status: '10', error_text: 'Concurrent verifications to the same number are not allowed'}
-    nexmo.verify.request({ number: phoneNumber, brand: 'OPD Books' }, (err, result) => {
-        if (err) reject({ message: 'Server Error' })
-        console.log("requestOTP", result);
-        if (result && result.status == '0') {
-            resolve({ requestId: result.request_id })
-            return
-        }
-        reject({ message: result, requestId: result.request_id })
-    })
-})
+const forgotPasswordVerify = async (citizenId, dob) => {
+    const byteCitizenId = convertString(citizenId)
+    const byteDob = convertString(dob)
+    return contract.verifyForgotpassword(byteCitizenId, byteDob);
+}
 
-const validateOTP = (requestId, code) => new Promise((resolve, reject) => {
-    // { status: '6', error_text: 'The Nexmo platform was unable to process this message for the following reason: Request \'de0868436bcc481991df0e036515a01b\' was not found or it has been verified already.'}
-    // { status: '16', error_text: 'The code provided does not match the expected value' }
-    // { status: '17', error_text: 'A wrong code was provided too many times. Workflow terminated'}
-    nexmo.verify.check({ request_id: requestId, code }, (err, result) => {
-        if (err) reject({ message: 'Server Error' })
-        console.log("validateOTP", result);
-        if (result && result.status == '0') {
-            resolve({ message: 'Account verified! 🎉' })
-            return
-        }
-        reject({ message: result, requestId: requestId })
-    })
-})
+const forgotPasswordConfirm = async (citizenId, password) => {
+    const byteCitizenId = convertString(citizenId)
+    const bytePassword = convertString(password)
+    const statusSubmit = contract.submitPassword(byteCitizenId, bytePassword)
+    if (statusSubmit) {
+        return { status: true, message: "SUCCESS" };
+    } else {
+        return { status: false, message: "Password must differ from old password" };
+    }
 
-const cancelOTP = (requestId) => new Promise((resolve, reject) => {
-    // { status: '6', error_text: 'The requestId \'01a218e770de499cb7b27b6dee3d144e\' does not exist or its no longer active.'}
-    // { status: '10', error_text: 'Concurrent verifications to the same number are not allowed'}
-    // { status: '19', error_text: 'Verification request [\'53c28372047c483f8e6e428d44093148\'] can\'t be cancelled within the first 30 seconds.'}
-    // { status : "19",error_text: "Verification request  ['7e7563aa38704911b36a67f2cd5d3759'] can't be cancelled now. Too many attempts to re-deliver have already been made."}
-    nexmo.verify.control({ request_id: requestId, cmd: 'cancel' }, (err, result) => {
-        if (err) reject({ message: err })
-        console.log("CENCEL!!!!",result)
-        if (result && result.status == '0') {
-            resolve({ message: 'cancel success!' })
-            return
-        } else {
-            reject({ message: result})
-        }
-    });
-})
+}
+
+
 module.exports = {
     isPatient,
     login,
@@ -313,5 +288,8 @@ module.exports = {
     // validateOTP,
     getPatientWithOTP,
     verifiedByCitizenId,
-    cancelRequestOTP
+    cancelRequestOTP,
+
+    forgotPasswordVerify,
+    forgotPasswordConfirm
 };

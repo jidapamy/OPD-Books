@@ -1,12 +1,18 @@
-const { isPatient, isEmail, insert, get, getBasicData, edit, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP } = require("../Repositories/PatientRepo")
+const { isPatient, isEmail, insert, get, getBasicData, edit, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
+        forgotPasswordVerify, forgotPasswordConfirm } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
     if (!isPatient(req.body.citizenId)) {
         if (!isEmail(req.body.email)) {
-            const result = await insert(req.body)
-            res.send(result)
-            return;
+            try {
+                const result = await insert(req.body)
+                res.send(result)
+                return;
+            } catch (error) {
+                res.send(msg.getMsgError(error))
+                return;
+            }
         }
         res.send(msg.getMsgNotFound(msg.msgVariable.email));
         return;
@@ -100,6 +106,38 @@ const cancelRequestOTPCtr = async (req, res) => {
     res.send(result)
 }
 
+const forgotPasswordVerifyCtr = async (req, res) => {
+    if (!isPatient(req.body.citizenId)) {
+        try {
+            const result = await forgotPasswordVerify(req.body.citizenId, req.body.dob)
+            res.send(result)
+            return
+        } catch (error) {
+            res.send(msg.getMsgError(error))
+            return;
+        }
+    }
+    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+}
+
+const forgotPasswordConfirmCtr = async (req, res) => {
+    if (req.body.newPassword === req.body.newPasswordConfirm){
+        if (!isPatient(req.body.citizenId)) {
+            try {
+                const result = await forgotPasswordConfirm(req.body.citizenId, req.body.newPassword)
+                res.send(result)
+                return
+            } catch (error) {
+                res.send(msg.getMsgError(error))
+                return;
+            }
+        }
+        res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+    }
+    res.send(msg.getMsgError("Those password didn't match. Try again."))
+}
+
+
 module.exports = {
     insertCtr,
     getCtr,
@@ -111,5 +149,9 @@ module.exports = {
     // validateOTPCtr,
     getPatientWithOTPCtr,
     requestOTPCtr,
-    cancelRequestOTPCtr
+    cancelRequestOTPCtr,
+
+    forgotPasswordVerifyCtr,
+    forgotPasswordConfirmCtr
+
 };
