@@ -1,7 +1,7 @@
 const { setMedicalRecordForNurse, setMedicalRecordForDoctor, getMedicalRecordForNurse,
     getMedicalRecordForDoctor, isMedicalRecord, alreadyMedicalRecord, haveMedicalRecordsOfPatient,
     getMedicalRecord, getHistoryMedicalRecord, lengthPatientHistory, haveMDRinPatientHistory,
-    getMedicalRecordForPharmacy, getMedicalRecordForShowHistory } = require("../Repositories/MedicalRecordRepo")
+    getMedicalRecordForPharmacy } = require("../Repositories/MedicalRecordRepo")
 const { isPatient, isEmail } = require("../Repositories/PatientRepo")
 const { lockAccount } = require('../Services/Utils')
 
@@ -103,21 +103,7 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
         let length = lengthPatientHistory(req.body.patientCitizenId)
         console.log("Length ",length)
         if (length > 0) {
-            const result = await getHistoryMedicalRecord(req.body.patientCitizenId, length)
-            res.send(result)
-            return
-        }
-        res.send(msg.getMsgSuccess(msg.msgVariable.nothaveHistoryMDR))
-        return
-    }
-    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
-}
-
-const getBasicDataHistoryMedicalRecordCtr = async (req, res) => {
-    if (isPatient(req.body.patientCitizenId)) {
-        let length = lengthPatientHistory(req.body.patientCitizenId)
-        if (length > 0) {
-            const result = await getMedicalRecordForShowHistory(req.body.patientCitizenId, length)
+            const result = await getHistoryMedicalRecord(req.body.patientCitizenId, length, req.body.treatmentYear)
             res.send(result)
             return
         }
@@ -135,5 +121,4 @@ module.exports = {
     getMedicalRecordCtr,
     getHistoryMedicalRecordCtr,
     getMRForPharmacyCtr,
-    getBasicDataHistoryMedicalRecordCtr
 };

@@ -31,13 +31,7 @@ export const getMedicalRecord = async (medicalRecordId) => {
     return res.data
 };
 
-export const getTreatmentHistoryOfPatient = async (citizentId) => {
-    let res = await axios.post(`/medicalRecords/getHistoryMedicalRecord`, { patientCitizenId: citizentId })
+export const getTreatmentHistoryOfPatient = async (citizentId, treatmentYear=null) => {
+    let res = await axios.post(`/medicalRecords/getHistoryMedicalRecord`, { patientCitizenId: citizentId, treatmentYear: treatmentYear })
     return res.data
 };
-
-export const getBasicDataTreatmentHistory = async (citizentId) => {
-    let res = await axios.post(`/medicalRecords/getBasicDataHistoryMedicalRecord`, { patientCitizenId: citizentId })
-    return res.data
-};
-

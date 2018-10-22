@@ -2,6 +2,8 @@ const { web3, contract, defaultAccount } = require('../Lib/Web3')
 const { convertString, convertToAscii, bindData, unlockAccount, lockAccount } = require('../Services/Utils')
 const moment = require("moment");
 const { medicalRecordScheme } = require("../Models/MedicalRecordModel")
+const { sendEmail } = require("./AuthenticationRepo")
+const msg = require("../Services/Message")
 
 const notRequiredField = (value) => {
     if (value) {
@@ -24,6 +26,7 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
             convertString(medicalRecord.temperature),
             convertString(medicalRecord.date),
             convertString(medicalRecord.time),
+            medicalRecord.treatmentYear,
             defaultAccount
         );
         let medicalRecordId = await contract.getMedicalRecordId(key).toString()
@@ -73,6 +76,11 @@ const setMedicalRecordForDoctor = async medicalRecord => {
             medicalRecord.medicalRecordId,
             defaultAccount
         );
+
+        let email = contract.getEmail(convertString(medicalRecord.patientCitizenId))
+        await sendEmail(convertToAscii(email))
+
+
         // console.log("Success")
         lockAccount()
         let checkTxDoctor = false;
@@ -96,11 +104,11 @@ const getMedicalRecordForNurse = async (medicalRecordId) => {
     // const byteMedicalRecordId = convertString(medicalRecordId)
     const nurse1 = await contract.getMedicalRecordForNursePart1(medicalRecordId);
     const nurse2 = await contract.getMedicalRecordForNursePart2(medicalRecordId);
-    const patientCitizenId = await contract.getPatientIdFormMDR(medicalRecordId);
+    const mdrInfo = await contract.getMedicalRecordInfo(medicalRecordId);
     const combindedNurseData = bindData(medicalRecordScheme, [nurse1, nurse2], 'nurse')
-    let medicalRecord = combindedNurseData
+    const combindedInfoData = bindData(medicalRecordScheme, [mdrInfo], 'info')
+    let medicalRecord = { ...combindedNurseData, ...combindedInfoData}
     medicalRecord.medicalRecordId = medicalRecordId;
-    medicalRecord.patientCitizenId = convertToAscii(patientCitizenId);
 
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };
@@ -108,12 +116,12 @@ const getMedicalRecordForNurse = async (medicalRecordId) => {
 const getMedicalRecordForDoctor = async (medicalRecordId) => {
     // const byteMedicalRecordId = convertString(medicalRecordId)
     const doctor = await contract.getMedicalRecordForDoctor(medicalRecordId);
-    const patientCitizenId = await contract.getPatientIdFormMDR(medicalRecordId);
+    const mdrInfo = await contract.getMedicalRecordInfo(medicalRecordId);
 
     const combindedDortorData = bindData(medicalRecordScheme, [doctor], 'doctor')
-    let medicalRecord = combindedDortorData
+    const combindedInfoData = bindData(medicalRecordScheme, [mdrInfo], 'info')
+    let medicalRecord = {...combindedDortorData,...combindedInfoData}
     medicalRecord.medicalRecordId = medicalRecordId;
-    medicalRecord.patientCitizenId = convertToAscii(patientCitizenId);
 
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };
@@ -134,35 +142,40 @@ const getMedicalRecord = async medicalRecordId => {
     return { status: true, message: "SUCCESS", data: { ...nurse.data, ...doctor.data } };
 }
 
-const getMedicalRecordForShowHistory = async (citizenId, length) => {
+const getHistoryMedicalRecord = async (citizenId, length, year=null) => {
     const byteCitizenId = convertString(citizenId)
     let medicalRecord = []
-    for (let i = 0; i < length; i++) {
-        let medicalRecordId = await contract.getHistoryMedicalRecordPatient(byteCitizenId, i);
-        // let stringMedicalRecordId = convertToAscii(byteMedicalRecordId)
-        const data = await contract.getMedicalRecordForShowHistory(medicalRecordId.toString())
-        const combindedHistoryData = bindData(medicalRecordScheme, [data], 'history')
-        combindedHistoryData.medicalRecordId = stringMedicalRecordId;
-        medicalRecord.push(combindedHistoryData)
+    // Sort by last
+    for (let i = length-1 ; i >= 0 ; i--) {
+        if (year){
+            let statusSort = await contract.checkTreatmentYear(byteCitizenId, i, year)
+            if (statusSort){
+                // ณ i นั้นมี treatmentYear = year >> get ออกมา
+                let historyData = await getHistoryData(byteCitizenId,i)
+                medicalRecord.push(historyData)
+            }
+        }else{
+            // ไม่ได้เลือกปีให้ sort
+            let historyData = await getHistoryData(byteCitizenId, i)
+            medicalRecord.push(historyData)
+        }
+    }
+    if(medicalRecord.length === 0){
+        return msg.getMsgSuccess(msg.msgVariable.nothaveHistoryMDR)
     }
     return { status: true, message: "SUCCESS", data: medicalRecord };
 
 }
 
-const getHistoryMedicalRecord = async (citizenId, length) => {
-    const byteCitizenId = convertString(citizenId)
-    let medicalRecord = []
-    for (let i = 0; i < length; i++) {
-        let medicalRecordId = await contract.getHistoryMedicalRecordPatient(byteCitizenId, i);
-        // console.log("byteMedicalRecordId", byteMedicalRecordId.toString())
-        // let stringMedicalRecordId = byteMedicalRecordId.toString()
-        // console.log("stringMedicalRecordId", stringMedicalRecordId)
-        const { data } = await getMedicalRecord(medicalRecordId.toString())
-        medicalRecord.push(data)
-    }
-    return { status: true, message: "SUCCESS", data: medicalRecord };
-
+const getHistoryData = async (byteCitizenId , index) => {
+    let medicalRecordId = await contract.getHistoryMedicalRecordPatient(byteCitizenId, index);
+    // let stringMedicalRecordId = convertToAscii(byteMedicalRecordId)
+    const data = await contract.getMedicalRecordForShowHistory(medicalRecordId.toString())
+    const combindedHistoryData = bindData(medicalRecordScheme, [data], 'history')
+    combindedHistoryData.medicalRecordId = medicalRecordId.toString();
+    return combindedHistoryData
 }
+
 const isMedicalRecord = medicalRecordId => {
     // const byteMedicalRecordId = convertString(medicalRecordId)
     return contract.haveMedicalRecords(medicalRecordId)
@@ -191,6 +204,8 @@ const lengthPatientHistory = (patientCitizenId) => {
     return +contract.countHistoryMedicalRecordForPatient(bytePatientCitizenId).toString();
 }
 
+
+
 module.exports = {
     setMedicalRecordForNurse,
     setMedicalRecordForDoctor,
@@ -204,5 +219,4 @@ module.exports = {
     getHistoryMedicalRecord,
     lengthPatientHistory,
     getMedicalRecordForPharmacy,
-    getMedicalRecordForShowHistory
 };
