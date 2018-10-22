@@ -5,6 +5,7 @@ import Home from "./Containers/Home";
 import Login from "./Containers/Login";
 // import OTPfactor from "./Containers/OTPfactor";
 import ManagePatientRecord from "./Containers/Register";
+import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
 import DemoExample from "./Containers/DemoExample";
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route component={scrollToTop} />
       <Route exact path="/" component={Home} />
       {/* patient */}
+      <Route path="/FormEditProfile" component={FormEditProfile} />
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
