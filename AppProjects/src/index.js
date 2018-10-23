@@ -11,6 +11,7 @@ import apiDocument from "./Containers/Document"
 import DemoExample from "./Containers/DemoExample";
 import ErrorNotFound from "./Components/Errors/ErrorNotFound";
 import ErrorTimeOut from "./Components/Errors/ErrorTimeOut";
+import ForgotPassword from "./Components/Patients/ManagePatientProfile/ForgotPassword";
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -39,6 +40,7 @@ ReactDOM.render(
       {/* <Route path="/OTPfactor" component={OTPfactor} /> */}
       <Route path="/ErrorNotFound" component={ErrorNotFound} />
       <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
+      <Route path="/ForgotPassword" component={ForgotPassword} />
     </div>
   </Router>,
   document.getElementById("root")
