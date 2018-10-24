@@ -510,7 +510,7 @@ export const style = {
     navbarDeco: {
         fontSize: '20px',
         borderRadius: '0px',
-        color: '#3EBDB2',
+        color: '#31A5BA',
         textAlign: 'center',
         paddingTop: '15%'
 
@@ -677,18 +677,18 @@ export const style = {
     },
     HeadCodeMirror2: {
         color: '#00cc99',
-         fontSize: '17px',
-        width:'100%',
+        fontSize: '17px',
+        width: '100%',
         padding: '3%',
-        paddingLeft:'5%',
+        paddingLeft: '5%',
 
     },
     HeadCodeMirror3: {
         color: '#cc3300',
         fontSize: '17px',
-        width:'100%',
+        width: '100%',
         padding: '3%',
-        paddingLeft:'5%',
+        paddingLeft: '5%',
 
     },
     topicCodeMirror: {
@@ -730,42 +730,189 @@ export const style = {
         position: 'absolute',
         bottom: '2%',
         marginLeft: '15%',
-        width:'70%',
+        width: '70%',
         textAlign: 'center',
         background: '#4D8B87',
-        color:'#ffffff',
+        color: '#ffffff',
     },
 
-    demoDropdown:{
+    demoDropdown: {
         background: '#f2f2f2',
     },
 
     // footer
 
-    footerChoosing:{
-        border:"0px", 
-        borderRadius:"0px",
+    footerChoosing: {
+        border: "0px",
+        borderRadius: "0px",
         position: 'fixed',
         bottom: '0%',
-        width:'100%',
+        width: '100%',
         textAlign: 'right',
-        background: '#4D8B87',
-        color:'#262626',
-        height:'auto',
+        background: '#298C9F',
+        color: '#262626',
+        height: 'auto',
     },
 
-    footerBeforClick:{
-       color:'#ffffff',
-       fontSize:'13.5px',
-       fontWeight:'bold',
+    footerBeforClick: {
+        color: '#ffffff',
+        fontSize: '13.5px',
+        fontWeight: 'bold',
     },
-    footerAfterClick:{
-        color:'#ffffff',
-        fontWeight:'bold',
-        fontSize:'13.5px',
-        backgroundColor:'#262626',
-        borderRadius:'0px'
-     },
+    footerAfterClick: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: '13.5px',
+        backgroundColor: '#262626',
+        borderRadius: '0px'
+    },
+
+
+
+    //ForgotPassword
+
+    Container: {
+        textAlign: 'center',
+        //marginTop: '15%',
+        paddingTop: '5%',
+        height: '100%',
+        width: '50%',
+
+    },
+    DecoSegment: {
+        // opacity: '0.7',
+        borderRadius: '25px',
+        border: '0px solid',
+        // backgroundColor:'#000000',
+        height: '530px',
+
+    }
+    ,
+    circularActive: {
+        width: '6%',
+        borderRadius: '100%',
+        border: '3.5px solid  ',
+        // borderColor: 'linear-gradient(red, yellow, blue)',
+        fontSize: '25px',
+        padding: '1.5%',
+        // borderColor:'rgba(49, 165, 186, 1)  100%;'
+
+
+
+    },
+
+    circularInactive: {
+        width: '6%',
+        borderRadius: '100%',
+        border: '3.5px solid ',
+        fontSize: '25px',
+        padding: '1.5%',
+        backgroundColor: '#ffffff',
+
+
+
+    },
+
+    ForgotTopic: {
+        fontSize: '40px',
+        marginBottom: '1%',
+        marginTop: '1.5%',
+        color: '#ffffff',
+    },
+
+    circularZone: {
+        textAlign: 'center',
+        marginLeft: '20%',
+        marginTop: '10%'
+
+    },
+
+    inputForgotZone: {
+        textAlign: 'center !important',
+        marginTop: '2%',
+
+    },
+
+    inputForgot: {
+        width: '84%',
+        marginBottom: '1%',
+        // height: '16%'
+    },
+    ButtonNext: {
+        width: '100%',
+        backgroundColor: '#31A5BA',
+        color: '#ffffff',
+        // marginBottom: '1.5%',
+        height: '16%',
+    },
+    ButtonCancel: {
+        width: '100%',
+        backgroundColor: '#BA3131',
+        color: '#ffffff',
+        height: '16%'
+
+    },
+
+    DividerEdit: {
+        // width:'40%',
+        textAlign: 'center',
+        opacity: '0.5',
+        paddingRight: '10%',
+
+
+
+    },
+
+    LabelIcon: {
+        width: '3%',
+        fontSize: '15px',
+        textAlign: 'center',
+        height: '10%',
+        marginTop: '-3%',
+    },
+
+    InputDate: {
+        width: '30%',
+        display: 'flex',
+
+    },
+
+    // PaddingDate:{
+    //     paddingLeft:'3rem',
+    //     width: '60rem !important',
+    //     display: 'flex',
+
+    // },
+
+    ForgotDescrip: {
+        fontSize: '16px',
+        color: '#666666',
+
+    },
+
+    bgDescription: {
+        width: '73%',
+        textAlign: 'left',
+        marginLeft: '14%',
+    },
+
+    twoColumnButton: {
+        width: '87%',
+
+
+    }
+
+
+
+
+
+
+
+    //ForgotPassword On mobile
+
+
+
+
 
 
 

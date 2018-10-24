@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ScanButton from "./../../Static/Img/ScanButton.png";
+import ScanButton from "./../../Static/Img/ScanButton.svg";
 import styled from "styled-components";
 import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
 import { getPatient, requestOTP, getPatientWithOTP, cancelRequestOTP } from "../../Services/ManagePatientMethod";
-import BGRegistra from "./../../Static/Img/BGRegistra.png";
+import BGRegistra from "./../../Static/Img/BGRegistra.svg";
 import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, Loader } from "semantic-ui-react";
 import OTPfactor from "./OTPfactor";
 const PopupQRCode = styled(Modal)`
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `;
 const style = {
   h1: {
-    marginTop: "3em",
+    marginTop: "2.5em",
     marginBottom: "50px"
   },
   h2: {
@@ -42,7 +42,7 @@ const style = {
     color: "#AFB4B7"
   },
   colorHeader: {
-    color: "#00B5AD"
+    color: "#31A5BA"
   }
 };
 
@@ -95,25 +95,9 @@ class Registration extends Component {
       showConfirmButton: false,
       timer: 1500
     });
-    // this.props.sendToNurse(this.state.patient)
 
   }
-  // handleError = err => {
-  // };
-
-  // sendToNurse = (patient) => {
-  //   if (patient[patientField.citizenId.variable]) {
-  //     let name = patient[patientField.nametitle.variable] + " " + patient[patientField.firstname.variable] + "  " + patient[patientField.lastname.variable]
-  //     swal({
-  //       type: "success",
-  //       title: "Add Queue Success!",
-  //       showConfirmButton: false,
-  //       timer: 1500
-  //     });
-  //     this.resetState()
-  //   }
-  // };
-
+  
 
   validateOTP = (pin) => {
     let data = {
@@ -216,7 +200,7 @@ class Registration extends Component {
         <Container>
           <Header as="h1" style={style.h1} textAlign="center">
             <Header.Content>
-              <span style={{ fontSize: "2em", color: "#00B5AD" }}>
+                <span style={{ fontSize: "2em", color: "#31A5BA" }}>
                 OPD BOOKS
               </span>
               <Header.Subheader>Medical Record on Blockchain</Header.Subheader>
@@ -230,10 +214,11 @@ class Registration extends Component {
             size='large' 
             label='Citizen Id'  
             type='text' 
-            action={{ color: 'teal', icon: 'search', content: 'Search' }} 
+            icon='search'
             placeholder='x-xxxx-xxxxx-xx-x' 
             onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}
             value={this.state.citizenIdSearch}
+            style={{ bloodgroupColor:'#31A5BA', color:'#FFF'}}
           />
           </Form>
         </Container>

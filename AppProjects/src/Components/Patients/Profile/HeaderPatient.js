@@ -2,11 +2,14 @@ import React from "react";
 import {
     Grid,Container, Header, Icon, Image, Label,
 } from "semantic-ui-react";
-import myQR from "../../../Static/Img/myQR.png";
+import myQR from "../../../Static/Img/myQR.svg";
 import { patientField } from "../../../Static/Data/Field"
 import { color } from "../../../Static/Data/ColorPattern"
 
-
+const labelInfo = {
+    backgroundColor: '#31A5BA',
+    color:'#FFF',
+};
 export default class HeaderPatient extends React.Component {
     state = {
         patient: this.props.patient ? this.props.patient : {}
@@ -36,7 +39,7 @@ export default class HeaderPatient extends React.Component {
             <Container style={{ paddingTop: "1em" }} >
                     <Grid>
                         <Grid.Column width={2}>
-                        <Image src="https://react.semantic-ui.com/images/avatar/small/matthew.png" size="small" spaced="left" circular />
+                        <Image src="https://react.semantic-ui.com/images/avatar/small/matthew.png"  size="small" spaced="left" circular />
                         </Grid.Column>
                         <Grid.Column width={4}>
                             <Header as="h2">
@@ -55,11 +58,11 @@ export default class HeaderPatient extends React.Component {
                             </Grid.Row>
                             <Grid.Row style={{ paddingTop: "4%" }}>
                                 <Header.Content as="h5" floated="left">
-                                    <Label as="a" color="teal">
+                                <Label as="a" style={labelInfo}>
                                         <Icon name="phone" />
                                         {this.state.patient[patientField.mobileNumber.variable]}
                                     </Label>
-                                    <Label as="a" color="teal">
+                                <Label as="a" style={labelInfo}>
                                         <Icon name="home" />
                                         {this.state.patient[patientField.homePhonenumber.variable]}
                                     </Label>

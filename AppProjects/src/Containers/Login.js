@@ -50,7 +50,7 @@ export default class PatientRecord extends Component {
                   verticalAlign="middle"
                 >
                     <Grid.Column style={{ maxWidth: 450 }}>
-                      <Header style={{ fontSize: "5em" }} color="teal" textAlign="center">
+                <Header style={{ fontSize: "5em", color:'#31A5BA' }} textAlign="center">
                         OPD BOOKS
                       </Header>
                       <Form size="large">
@@ -84,7 +84,7 @@ export default class PatientRecord extends Component {
                               })}
                           />
                           <Button
-                            color="teal"
+                            style={{backgroundColor: '#31A5BA', color: '#FFF' }}
                             fluid
                             size="large"
                             onClick={() => this.login()}
@@ -95,7 +95,7 @@ export default class PatientRecord extends Component {
                       </Form>
                       <Message style={{ borderRadius: "2rem" }}>
                       <Link to="/forgotPassword">
-                          Forgot Passoword?
+                          Forgot Passoword?{" "}
                         </Link>
                         New to us?{" "}
                         <Link to="/signup">
