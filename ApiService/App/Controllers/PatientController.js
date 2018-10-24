@@ -1,5 +1,5 @@
-const { isPatient, isEmail, insert, get, getBasicData, edit, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
-        forgotPasswordVerify, forgotPasswordConfirm } = require("../Repositories/PatientRepo")
+const { isPatient, isEmail, insert, get, getBasicData, edit, checkPassword, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
+    forgotPasswordVerify, confirmChangePassword } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -14,10 +14,10 @@ const insertCtr = async (req, res) => {
                 return;
             }
         }
-        res.send(msg.getMsgNotFound(msg.msgVariable.email));
+        res.send(msg.getMsgDuplicate(msg.msgVariable.email));
         return;
     }
-    res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+    res.send(msg.getMsgDuplicate(msg.msgVariable.citizenID));
 }
 
 const getCtr = (req, res) => {
@@ -47,7 +47,8 @@ const isEmailCtr = (req, res) => {
 }
 
 const editCtr = async (req, res) => {
-    if (!isPatient(req.body.citizenId)) {
+    console.log("edit",req.body)
+    if (isPatient(req.body.citizenId)) {
         const result = await edit(req.body)
         res.send(result)
         return;
@@ -55,26 +56,10 @@ const editCtr = async (req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
-// const requestOTPCtr = async(req, res) => {
-//     console.log(req.body)
-//     if (req.body.phoneNumber){
-//         requestOTP(req.body.phoneNumber,res)
-//         return
-//     }
-//     res.send(msg.getMsgError("undefined"))
-// }
-
-// const validateOTPCtr = async (req, res) => {
-//     console.log(req.body)
-//     if (req.body.pin && req.body.requestId) {
-//         const result = await validateOTP(req.body, res)
-//         console.log("res",result)
-//         // console.log(await validateOTP(req.body, res))
-//         //  res.send("success")
-//         return
-//     }
-//     res.send(msg.getMsgError("undefined"))
-// }
+const checkPasswordCtr = (req, res) => {
+    console.log("checkPasswordCtr")
+    res.send(checkPassword(req.body.citizenId,req.body.password))
+}
 
 const requestOTPCtr = async (req, res) => {
     if (isPatient(req.body.citizenId)) {
@@ -120,11 +105,12 @@ const forgotPasswordVerifyCtr = async (req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
-const forgotPasswordConfirmCtr = async (req, res) => {
+const confirmChangePasswordCtr = async (req, res) => {
+    console.log("confirmChangePasswordCtr")
     if (req.body.newPassword === req.body.newPasswordConfirm){
-        if (!isPatient(req.body.citizenId)) {
+        if (isPatient(req.body.citizenId)) {
             try {
-                const result = await forgotPasswordConfirm(req.body.citizenId, req.body.newPassword)
+                const result = await confirmChangePassword(req.body.citizenId, req.body.newPassword, req.body.oldPassword)
                 res.send(result)
                 return
             } catch (error) {
@@ -145,6 +131,7 @@ module.exports = {
     isEmailCtr,
     getBasicDataCtr,
     editCtr,
+    checkPasswordCtr,
     // requestOTPCtr,
     // validateOTPCtr,
     getPatientWithOTPCtr,
@@ -152,6 +139,6 @@ module.exports = {
     cancelRequestOTPCtr,
 
     forgotPasswordVerifyCtr,
-    forgotPasswordConfirmCtr
+    confirmChangePasswordCtr
 
 };

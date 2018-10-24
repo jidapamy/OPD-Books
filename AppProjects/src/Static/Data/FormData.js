@@ -53,60 +53,59 @@
 
 
 export const genderData = [
-    { key: 'm', text: 'ชาย (Male)', value: 'M' },
-    { key: 'f', text: 'หญิง (Female)', value: 'F' },
+    { key: 'm', text: 'Male', value: 'Male' },
+    { key: 'f', text: 'Female', value: 'Female' },
 ]
 export const cardTypeData = [
     { key: 'idcard', text: 'ID Card No.', value: 'idcard' },
     { key: 'passport', text: 'Passport No.', value: 'passport' },
 ]
 export const titleNameData = [
-    { key: 'เด็กชาย', text: 'เด็กชาย (Master)', value: 'Master' },
-    { key: 'เด็กหญิง', text: 'เด็กหญิง (Miss.)', value: 'Miss.' },
-    { key: 'นาย', text: 'นาย (Mr.)', value: 'Mr.' },
-    { key: 'นาง', text: 'นาง (Mrs.)', value: 'Mrs.' },
-    { key: 'นางสาว', text: 'นางสาว (Miss.)', value: 'Miss.' },
+    { key: 'Master', text: 'Master', value: 'Master' },
+    { key: 'Miss', text: 'Miss', value: 'Miss' },
+    { key: 'Mrs.', text: 'Mrs.', value: 'Mrs.' },
+    { key: 'Mr.', text: 'Mr.', value: 'Mr.' },
 ]
 export const titleNameChildData = [
-    { key: 'เด็กชาย', text: 'เด็กชาย (Master)', value: 'Master' },
-    { key: 'เด็กหญิง', text: 'เด็กหญิง (Miss.)', value: 'Miss.' },
+    { key: 'Master', text: 'Master', value: 'Master' },
+    { key: 'Miss', text: 'Miss', value: 'Miss' },
 ]
 export const titleNameParentData = [
-    { key: 'นาย', text: 'นาย (Mr.)', value: 'Mr.' },
-    { key: 'นาง', text: 'นาง (Mrs.)', value: 'Mrs.' },
-    { key: 'นางสาว', text: 'นางสาว (Miss.)', value: 'Miss.' },
+    { key: 'Miss', text: 'Miss', value: 'Miss' },
+    { key: 'Mrs.', text: 'Mrs.', value: 'Mrs.' },
+    { key: 'Mr.', text: 'Mr.', value: 'Mr.' },
 ]
 export const bloodgroupData = [
     { key: 'O', text: 'O', value: 'O' },
     { key: 'A', text: 'A', value: 'A' },
     { key: 'B', text: 'B', value: 'B' },
     { key: 'AB', text: 'AB', value: 'AB' },
-    { key: 'Unknown', text: 'ไม่ระบุ (Unknown)', value: 'Unknown' },
+    { key: 'Unknown', text: 'Unknown', value: 'Unknown' },
 ]
 export const typesOfHousingData = [
-    { key: 'Apartment', text: 'อพาร์ทเม้นท์ (Apartment)', value: 'Apartment' },
-    { key: 'Single-family', text: 'บ้านเดี่ยว (Single-family house)', value: 'Single-family house' },
-    { key: 'Townhouse', text: 'ทาวน์เฮาส์ (Townhouse)', value: 'Townhouse' },
-    { key: 'Flat', text: 'แฟลต (Flat)', value: 'Flat' },
-    { key: 'Condominium', text: 'คอนโดมิเนียม (Condominium)', value: 'Condominium' },
+    { key: 'Apartment', text: 'Apartment', value: 'Apartment' },
+    { key: 'Single-family', text: 'Single-family', value: 'Single-family house' },
+    { key: 'Townhouse', text: 'Townhouse', value: 'Townhouse' },
+    { key: 'Flat', text: 'Flat', value: 'Flat' },
+    { key: 'Condominium', text: 'Condominium', value: 'Condominium' },
 ]
 export const nationalityData = [
-    { key: 'Thai', text: 'ไทย (Thai)', value: 'Thai' },
-    { key: 'Chinese', text: 'จีน (Chinese)', value: 'Chinese' },
-    { key: 'Indian', text: 'อินเดีย (Indian)', value: 'Indian' },
+    { key: 'Thai', text: 'Thai', value: 'Thai' },
+    { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
+    { key: 'Indian', text: 'Indian', value: 'Indian' },
 ]
 export const religionData = [
-    { key: 'Buddhism', text: 'พุทธ (Buddhism)', value: 'Buddhism' },
-    { key: 'Christian', text: 'คริสต์ (Christian)', value: 'Christian' },
-    { key: 'Muslim', text: 'อิสลาม (Muslim)', value: 'Muslim' },
+    { key: 'Buddhism', text: 'Buddhism', value: 'Buddhism' },
+    { key: 'Christian', text: 'Christian', value: 'Christian' },
+    { key: 'Muslim', text: 'Muslim', value: 'Muslim' },
 ]
 export const statusData = [
-    { key: 'Single', text: 'โสด (Single)', value: 'Single' },
-    { key: 'Engaged', text: 'หมั้น (Engaged)', value: 'Engaged' },
-    { key: 'Married', text: 'แต่งงาน (Married)', value: 'Married' },
-    { key: 'Brokeup', text: 'แยกกันอยู่ (Broke up with bf/gf)', value: 'Broke up with bf/gf' },
-    { key: 'Divorced', text: 'หย่าร้าง (Divorced)', value: 'Divorced' },
-    { key: 'Widowed', text: 'หม้าย (Widowed)', value: 'Widowed' },
+    { key: 'Single', text: 'Single', value: 'Single' },
+    { key: 'Engaged', text: 'Engaged', value: 'Engaged' },
+    { key: 'Married', text: 'Married', value: 'Married' },
+    { key: 'Brokeup', text: 'Broke up with bf/gf', value: 'Broke up with bf/gf' },
+    { key: 'Divorced', text: 'Divorced', value: 'Divorced' },
+    { key: 'Widowed', text: 'Widowed', value: 'Widowed' },
 ] 
 
 export const countryData = [

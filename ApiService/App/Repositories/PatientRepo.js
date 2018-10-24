@@ -54,7 +54,7 @@ const insert = async (patient) => {
     if (unlockAccount()) {
         // console.log(patient)
         contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
-        contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nameTitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
+        contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nametitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
         contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount);
         contract.setInfoPatientPart4(
             convertString(patient.citizenId),
@@ -115,22 +115,26 @@ const insert = async (patient) => {
 }
 
 const isPatient = citizenId => {
+    console.log(citizenId)
     const byteCitizenId = convertString(citizenId)
+    console.log(byteCitizenId)
     return contract.haveCitizenId(byteCitizenId);
 }
 
 const isEmail = (email) => {
+    console.log("email", email)
     const byteEmail = convertString(email)
     return contract.haveEmail(byteEmail)
 }
 
 const edit = async (data) => {
+    console.log("edit", data)
     if (unlockAccount()) {
         if (data.editInfoPart1) {
             contract.setInfoPatientPart1(convertString(data.citizenId), convertString(moment().format("L")), convertString(data.password), defaultAccount);
         }
         if (data.editInfoPart2) {
-            contract.setInfoPatientPart2(convertString(data.citizenId), convertString(data.dob), convertString(data.nameTitle), convertString(data.firstname), convertString(data.lastname), convertString(data.gender), defaultAccount);
+            contract.setInfoPatientPart2(convertString(data.citizenId), convertString(data.dob), convertString(data.nametitle), convertString(data.firstname), convertString(data.lastname), convertString(data.gender), defaultAccount);
         }
         if (data.editInfoPart3) {
             contract.setInfoPatientPart3(convertString(data.citizenId), convertString(data.congenitalDisease), convertString(data.bloodgroup), convertString(data.religion), convertString(data.nationality), convertString(data.country), defaultAccount);
@@ -146,7 +150,16 @@ const edit = async (data) => {
                 defaultAccount);
         }
         if (data.editEmail) {
-            contract.setEmail(convertString(data.email), defaultAccount);
+            console.log("EDIT EMAIL!!")
+            contract.setEmail(convertString(data.email),convertString(data.newEmail), defaultAccount);
+            contract.setInfoPatientPart4(
+                convertString(data.citizenId),
+                convertString(data.status),
+                convertString(!data.occupartion ? "-" : data.occupartion),
+                convertString(!data.homePhonenumber ? "-" : data.homePhonenumber),
+                convertString(data.mobileNumber),
+                convertString(data.newEmail),
+                defaultAccount);
         }
         if (data.editAddress) {
             contract.setAddressPatient(convertString(data.citizenId), convertString(data.typeofHouse), data.address, convertString(data.province), convertString(data.district), convertString(data.subDistrict), convertString(data.zipcode), defaultAccount);
@@ -198,6 +211,13 @@ const edit = async (data) => {
     } else {
         return { status: false, message: "ERROR" };
     }
+}
+
+const checkPassword = (citizenId, password) => {
+    console.log("checkPassword",citizenId, password)
+    const byteCitizenId = convertString(citizenId)
+    const bytePassword = convertString(password)
+    return contract.checkPassword(byteCitizenId, bytePassword)
 }
 
 const verifiedByCitizenId = async (citizenId) => {
@@ -263,18 +283,52 @@ const forgotPasswordVerify = async (citizenId, dob) => {
     return contract.verifyForgotpassword(byteCitizenId, byteDob);
 }
 
-const forgotPasswordConfirm = async (citizenId, password) => {
+const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) => {
+    console.log("confirmChangePassword")
     const byteCitizenId = convertString(citizenId)
-    const bytePassword = convertString(password)
-    const statusSubmit = contract.submitPassword(byteCitizenId, bytePassword)
-    if (statusSubmit) {
-        return { status: true, message: "SUCCESS" };
-    } else {
-        return { status: false, message: "Password must differ from old password" };
+    const bytePassword = convertString(newPassword)
+    if(oldPassword){
+        console.log("oldPassword // เปลี่ยนรหัสผ่าน")
+        if (checkPassword(citizenId, oldPassword)) {
+            // กรณีรู้รหัสเก่า >> เปลี่ยน pass
+            if (!checkPassword(citizenId, newPassword)) {
+                // เชคว่า รหัสใหม่ ตรงกับในระบบไหม >> ถ้าไม่ตรงถึงเปลี่ยนรหัสได้
+                if (unlockAccount()) {
+                    contract.setPassword(byteCitizenId, bytePassword)
+                    lockAccount()
+                }
+                let check = false
+                while (check === false) {
+                    check = await checkPassword(citizenId, newPassword);
+                    if (check) {
+                        return { status: true, message: "SUCCESS" };
+                    }
+                }
+            } else {
+                return { status: false, message: "Password must differ from old password!" };
+            }
+        }
+        return { status: false, message: "Your password was incorrect. Please re-enter your password" };
+    }else{
+        // กรณีลืมรหัสผ่าน
+        if (!checkPassword(citizenId, newPassword)) {
+            // เชคว่า รหัสใหม่ ตรงกับในระบบไหม >> ถ้าไม่ตรงถึงเปลี่ยนรหัสได้
+            if (unlockAccount()) {
+                contract.setPassword(byteCitizenId, bytePassword)
+                lockAccount()
+            }
+            let check = false
+            while (check === false) {
+                check = await checkPassword(citizenId, newPassword);
+                if (check) {
+                    return { status: true, message: "SUCCESS" };
+                }
+            }
+        } else {
+            return { status: false, message: "Password must differ from old password!" };
+        }
     }
-
 }
-
 
 module.exports = {
     isPatient,
@@ -283,7 +337,9 @@ module.exports = {
     get,
     insert,
     getBasicData,
+
     edit,
+    checkPassword,
     // requestOTP,
     // validateOTP,
     getPatientWithOTP,
@@ -291,5 +347,5 @@ module.exports = {
     cancelRequestOTP,
 
     forgotPasswordVerify,
-    forgotPasswordConfirm
+    confirmChangePassword
 };

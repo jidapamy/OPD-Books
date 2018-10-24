@@ -4,7 +4,7 @@ const patientScheme = {
             registerDate: 'byte',
             citizenId: 'byte',
             // hospitalNumber: 'byte',
-            password: 'byte'
+            // password: 'byte'
         },
         {
             dob: 'byte',

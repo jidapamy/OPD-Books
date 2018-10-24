@@ -31,7 +31,7 @@ export default class ProfilePatientMobile extends React.Component {
                 </Grid>
                 <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://react.semantic-ui.com/images/avatar/small/matthew.png' size='small' circular centered />
                 <Statistic inverted size='mini'>
-                    <Statistic.Label style={{ fontSize: '1.1em' }} inverted>{this.props.patient.nameTitle} {this.props.patient.firstname} {this.props.patient.lastname}</Statistic.Label>
+                    <Statistic.Label style={{ fontSize: '1.1em' }} inverted>{this.props.patient.nametitle} {this.props.patient.firstname} {this.props.patient.lastname}</Statistic.Label>
                     <Statistic style={{ fontSize: '1.1em' }} > Citizen: {this.props.patient.citizenId}</Statistic>
                 </Statistic>
             </BGMobiles>

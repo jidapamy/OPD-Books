@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Dropdown } from 'semantic-ui-react'
 import { typesOfHousingData } from '../../../Static/Data/FormData'
+import { patientField } from "../../../Static/Data/Field"
+
 const provincesData = require('../../../Static/Data/Provinces')
 const amphursData = require('../../../Static/Data/Amphurs')
 const districtsData = require('../../../Static/Data/Districts')
@@ -104,9 +106,9 @@ export default class HomeAddress extends Component {
                         allowAdditions
                         onAddItem={(e, { value }) => typesOfHousingData.push({ key: value, text: value, value: value })}
                         additionLabel='other : '
-                        label='ประเภทที่พักอาศัย (Types of Housing)'
+                        label={patientField.typeofHouse.label}
                         options={typesOfHousingData}
-                        placeholder='เลือกประเภทที่พักอาศัย'
+                        placeholder='- Select -'
                         width={6}
                         onChange={(e, { value }) => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'typeofHouse' : 'emerTypeofHouse',value)
@@ -117,8 +119,8 @@ export default class HomeAddress extends Component {
                         error={this.props.field === 'home' ? this.props.errorField.typeofHouse : this.props.errorField.emerTypeofHouse}
                     />
                     <Form.Input
-                        label='ที่อยู่(Address) '
-                        placeholder='บ้านเลขที่/หมู่/ถนน'
+                        label={patientField.address.label}
+                        placeholder='House no/ Street address'
                         width={6}
                         onChange={e => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'address' : 'emerAddress', e.target.value)
@@ -133,8 +135,8 @@ export default class HomeAddress extends Component {
                         search selection
                         wrapSelection={false}
                         options={this.state.provinces}
-                        label='จังหวัด (Province)'
-                        placeholder='เลือกจังหวัด'
+                        label={patientField.province.label}
+                        placeholder='- Select -'
                         width={6}
                         onChange={(e, value) => this.changeProvince(value)}
                         required={this.props.field === 'home' || this.props.required}
@@ -149,8 +151,8 @@ export default class HomeAddress extends Component {
                         search selection
                         wrapSelection={false}
                         options={this.state.amphurs}
-                        label='เขต/อำเภอ (District)'
-                        placeholder='เลือกเขต/อำเภอ'
+                        label={patientField.district.label}
+                        placeholder='- Select -'
                         width={6}
                         onChange={(e, value) => this.changeAmphur(value)}
                         required={this.props.field === 'home' || this.props.required}
@@ -162,9 +164,9 @@ export default class HomeAddress extends Component {
                         control={Dropdown}
                         search selection
                         wrapSelection={false}
-                        label='แขวง/ตำบล (Sub-District)'
+                        label={patientField.subDistrict.label}
                         options={this.state.districts}
-                        placeholder='แขวง/ตำบล'
+                        placeholder='- Select -'
                         width={6}
                         onChange={(e, value) => this.changeDistrict(value)}
                         required={this.props.field === 'home' || this.props.required}
@@ -173,8 +175,8 @@ export default class HomeAddress extends Component {
                         error={this.props.field === 'home' ? this.props.errorField.subDistrict : this.props.errorField.emerSubDistrict}
                     />
                     <Form.Input
-                        label='รหัสไปรษณีย์ (Postal Code)'
-                        placeholder='รหัสไปรษณีย์'
+                        label={patientField.zipcode.label}
+                        placeholder={patientField.zipcode.label}
                         width={6}
                         onChange={e => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'zipcode' : 'emerZipcode', e.target.value)

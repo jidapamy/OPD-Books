@@ -47,6 +47,11 @@ export default class HeaderPatient extends React.Component {
                                     <span style={{ color: color.teal }}>{patientField.citizenId.label} : </span>
                                     {this.state.patient[patientField.citizenId.variable]}
                                 </Header.Subheader>
+                                { this.props.show && <Header.Subheader>
+                                    <span style={{ color: color.teal }}>{patientField.email.label} : </span>
+                                    {this.state.patient[patientField.email.variable]}
+                                </Header.Subheader>
+                                }
                             </Grid.Row>
                             <Grid.Row style={{ paddingTop: "4%" }}>
                                 <Header.Content as="h5" floated="left">

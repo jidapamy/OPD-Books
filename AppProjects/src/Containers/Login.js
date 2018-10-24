@@ -94,6 +94,9 @@ export default class PatientRecord extends Component {
                         </Segment>
                       </Form>
                       <Message style={{ borderRadius: "2rem" }}>
+                      <Link to="/forgotPassword">
+                          Forgot Passoword?
+                        </Link>
                         New to us?{" "}
                         <Link to="/signup">
                           Sign Up
