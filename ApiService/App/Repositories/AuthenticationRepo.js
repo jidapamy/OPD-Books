@@ -1,7 +1,6 @@
 const nexmo = require("../Lib/Nexmo")
 const transporter = require("../Lib/Email")
-var smtpTransport = require('nodemailer-smtp-transport');
-var handlebars = require('handlebars');
+const handlebars = require('handlebars');
 var fs = require('fs');
 
 // OTP
@@ -50,41 +49,97 @@ const cancelOTP = (requestId) => new Promise((resolve, reject) => {
     });
 })
 
-
-//Email 
-
-
-
-// smtpTransport = nodemailer.createTransport(smtpTransport({
-//     host: 'smtp.gmail.com',
-//     port: 587,
-//     secure: false, // true for 465, false for other ports
-//     auth: {
-//         user: 'opdbooksblockchain@gmail.com', // generated ethereal user
-//         pass: 'Opdbooks147'// generated ethereal password
-//     }
-// }));
-
-const createEmail = (mail) =>('./index.html', function (err, html) {
-    var template = handlebars.compile(html);
+const createEmail = (data) => new Promise((resolve, reject) => {
+    console.log("createEmail")
+    const html = require("./mailWeb")
+    var template = handlebars.compile(html(data));
     var replacements = {
         username: "OPD BOOKS"
     };
     var htmlToSend = template(replacements);
-    var mailOptions = {
-        from: '"OPD BOOKS" <opdbooksblockchain@gmail.com>', // sender address
-        to: mail, // list of receivers
-        subject: 'MedicalRecord', // Subject line
-        text: 'Hello world?', // plain text body
-        html: htmlToSend
+    let mailOptions = {
+        from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
+        to: data.email, // list of receivers
+        subject: 'Your medical record is saved successfully.', // Subject line
+        text: 'Your medical record is saved successfully.!!', // plain text body
+        html: htmlToSend // html body
     };
-    transporter.sendMail(mailOptions, function (error, response) {
+
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
-            // callback(error);
+            console.log(error)
+            reject({ message: error })
+            return
         }
+        console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        resolve({ message: 'send email success!' })
+        return
+
     });
 });
+
+// readHTMLFile('./index.html', function (err, html) {
+//     var template = handlebars.compile(html);
+//     var replacements = {
+//         username: "OPD BOOKS"
+//     };
+//     var htmlToSend = template(replacements);
+//     var mailOptions = {
+//         from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
+//         to: 'thailand_hka@hotmail.com', // list of receivers
+//         subject: 'MedicalRecord', // Subject line
+//         text: 'Hello world?', // plain text body
+//         html: htmlToSend
+//     };
+//     transporter.sendMail(mailOptions, function (error, response) {
+//         if (error) {
+//             console.log(error);
+//             // callback(error);
+//         }
+//     });
+// });
+
+//Email 
+
+// const createEmail = (email) => new Promise('./index.html', function (err, html) {
+//     console.log("createEmail",email)
+//     var template = handlebars.compile(html);
+//     var replacements = {
+//         username: "OPD BOOKS"
+//     };
+//     var htmlToSend = template(replacements);
+//     var mailOptions = {
+//         from: '"OPD BOOKS" <opdbooksblockchain@gmail.com>', // sender address
+//         to: email, // list of receivers
+//         subject: 'MedicalRecord', // Subject line
+//         text: 'Hello world?', // plain text body
+//         html: htmlToSend
+//     };
+//     transporter.sendMail(mailOptions, function (error, response) {
+//         if (error) {
+//             reject({ message: err })
+//             return
+//         }
+//         console.log('Message sent: %s', info.messageId);
+//         // Preview only available when sending through an Ethereal account
+//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+//         resolve({ message: 'send email success!' })
+//         return
+
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,14 +171,15 @@ const createEmail = (mail) =>('./index.html', function (err, html) {
 //     });
 // });
 
-const sendEmail = async(email) => {
+const sendEmail = async (data) => {
     try {
-        const result = await createEmail(email)
+        console.log("sendEmail",data)
+        const result = await createEmail(data)
         return ({ status: true, message: "SUCCESS" })
     } catch (error) {
         throw new Error(error)
     }
-   
+
 }
 
 

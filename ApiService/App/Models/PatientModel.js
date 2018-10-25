@@ -70,6 +70,14 @@ const patientScheme = {
             privilege: 'byte',
 
         }
+    ],
+    patientAndEmail: [
+        {
+            nametitle: 'byte',
+            firstname: 'byte',
+            lastname: 'byte',
+            email: 'byte',
+        }
     ]
 }
 

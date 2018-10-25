@@ -1,3 +1,4 @@
+const html = (data) => (`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +7,6 @@
   <title>OPD BOOKS</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
-
-
-
 
 </head>
 <style>
@@ -66,7 +64,7 @@
     <p class="card-subtitle mb-2 text-muted texcenter">the blockchain eliminates a number of risks that come with data
       being
       held centrally.</p>
-    <h4 class="display-6 text-info texcenter"><b>Dear Mr.Surakiti Sopnnacap</b></h4>
+    <h4 class="display-6 text-info texcenter"><b>Dear ${data.nametitle}${data.firstname} ${data.lastname}</b></h4>
     <!-- <span class="badge badge-pill badge-info paddingName texcenter" style="font-size:15px">Dear Mr.Surakiti Sopnnacap</span> -->
     <hr class="my-4">
 
@@ -76,8 +74,8 @@
 <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="container paddingCon">
       <h1 class="card-title text-info texcenter">Medical Record</h1>
-      <h6 class=" text-muted"><b>Date :</b> 14/O7/2019 14:20 PM </h6>
-      <h6 class=" mb-2 text-muted"><b>Clinic :</b> SIT Clinic</h6>
+      <h6 class=" text-muted"><b>Date :</b> ${data.date} ${data.time} </h6>
+      <h6 class=" mb-2 text-muted"><b>Clinic :</b> ${data.clinic}</h6>
       <hr>
       <div class="row">
         <div class="col">
@@ -93,13 +91,13 @@
 
       <div class="row">
         <div class="col">
-          <p class="card-text">162.0 cm.</p>
+          <p class="card-text">${data.height} cm.</p>
         </div>
         <div class="col">
-          <p class="card-text">58.0" kg.</p>
+          <p class="card-text">${data.bodyWeight} Kg.</p>
         </div>
         <div class="col">
-          <p class="card-text">24</p>
+          <p class="card-text">${data.bmi} </p>
         </div>
       </div>
 
@@ -119,13 +117,13 @@
 
       <div class="row">
         <div class="col">
-          <p class="card-text">162.0 C.</p>
+          <p class="card-text">${data.temperature} C.</p>
         </div>
         <div class="col">
-          <p class="card-text">162.0 PR.</p>
+          <p class="card-text">${data.pulseRate} PR.</p>
         </div>
         <div class="col">
-          <p class="card-text">162.0 PR.</p>
+          <p class="card-text">${data.respiratoryRate} PR.</p>
         </div>
       </div>
 
@@ -145,13 +143,13 @@
 
       <div class="row">
         <div class="col">
-          <p class="card-text">162.0 mmHg.</p>
+          <p class="card-text">${data.BP1} mmHg.</p>
         </div>
         <div class="col">
-          <p class="card-text">162.0 mmHg.</p>
+          <p class="card-text">${data.BP2} mmHg.</p>
         </div>
         <div class="col">
-          <p class="card-text">162.0 mmHg.</p>
+          <p class="card-text">${data.BP3} mmHg.</p>
         </div>
       </div>
 
@@ -167,10 +165,27 @@
         <div class="col ">
           <div class="card ">
             <div class="card-body ">
-              <p class="card-text">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text">${data.chiefComplaint}</p>
             </div>
           </div>
         </div>
+      </div>
+      <br/>
+       <div class="row justify-content-between">
+          <div class="col-4">
+           
+          </div>
+          <div class="col-3">
+            <b>Nurse Name</b>
+          </div>
+      </div>
+      <div class="row justify-content-between">
+          <div class="col-4">
+           
+          </div>
+          <div class="col-3">
+            ${data.nurseName}
+          </div>
       </div>
       <br>
 
@@ -183,7 +198,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body mb-2">
-              <p class="card-text">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text">${data.presentIllness}</p>
             </div>
           </div>
         </div>
@@ -199,7 +214,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text">${data.physicalExem}</p>
             </div>
           </div>
         </div>
@@ -215,7 +230,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text">${data.diagnosis}</p>
             </div>
           </div>
         </div>
@@ -231,7 +246,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <p class="card-text ">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text ">${data.treatment}</p>
             </div>
           </div>
         </div>
@@ -247,13 +262,13 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">มีอาการมึนหัว อาเจียน ปวดเมื่อยตามตัว</p>
+              <p class="card-text">${data.recommendation}</p>
             </div>
           </div>
         </div>
       </div>
-
-      <br/>
+    
+    <br/>
        <div class="row justify-content-between">
           <div class="col-4">
             <b>Appointment</b>
@@ -262,16 +277,15 @@
             <b>Doctor Name</b>
           </div>
       </div>
-      
       <div class="row justify-content-between">
           <div class="col-4">
-            Date
+            ${data.appointment}
           </div>
           <div class="col-3">
-           Docter
+           ${data.doctorName}
           </div>
       </div>
-      <br/>
+      
 
       </div>
     </div>
@@ -288,3 +302,6 @@
   crossorigin="anonymous"></script>
 
 </html>
+`)
+
+module.exports = html
