@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 import { Label, Segment, Form, Divider, Header } from 'semantic-ui-react'
 import ErrorMessage from './ErrorMessage'
+import { groupInfoPatientField } from "../../../Static/Data/Field"
+
+const style = { 
+    topicAllergy : {
+        color: '#217e8f',
+        margin: 0,
+        marginBottom:' 1%'
+    },
+    topicPrivilage: {
+        color: '#217e8f',
+        margin: 0,
+        marginBottom: ' 2%'
+    },
+    element : {
+        padding: '0 2%'
+    }
+}
 
 export default class Allergy extends Component {
 
@@ -12,8 +29,7 @@ export default class Allergy extends Component {
     }
 
     chooseChoice = (field, value) => {
-        if (value === 'not have' || value === 'ข้าราชการ' || value === 'ครอบครัวข้าราชการ' || value === 'รัฐวิสาหิจ' ||
-            value === 'ครอบครัวรัฐวิสาหกิจ' || value === 'บุคคลทั่วไป') {
+        if (!this.checkOther(value)) {
             this.setState({ ['disabledOther' + field]: true })
             this.setState({ ['other'+field]: '' })
         } else {
@@ -22,112 +38,128 @@ export default class Allergy extends Component {
         this.props.setFieldAndValidate(field, value)
     }
 
+    checkOther = (value) => {
+        if(value){
+            if (value === 'not have' || value === 'Government officer' || value === 'Family of government officer' || value === 'Normal person' ||
+                value === 'State enterprise officer' || value === 'Family of state enterprise officer') {
+                return false;
+            }
+            return true;
+        }
+        return false
+    }
+
+    componentWillMount = () => {
+        if(this.props.patient){
+            if (this.props.patient.privilege && this.checkOther(this.props.patient.privilege)){
+                this.setState({ 
+                    otherprivilege: this.props.patient.privilege,
+                    disabledOtherprivilege: false,
+                })
+            }
+            if (this.props.patient.allergy && this.checkOther(this.props.patient.allergy)){
+                this.setState({ 
+                    otherallergy: this.props.patient.allergy ,
+                    disabledOtherallergy: false,
+                })
+            }
+        }
+    }
+
     render() {
         return (
             <div>
-                <Segment style={{ borderRadius: '2rem' }}>
-                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>History of Food Or Drug Allergy</h2></Header>
-                    <Divider/>
-                    <ErrorMessage
-                        errorText={this.props.errorText}
-                        cardType={this.props.cardType}
-                    />
-                    <Segment color={this.props.errorField.allergy ? 'red' : 'teal'} style={{ borderRadius: '2rem' }}>
-                        <h3 >คุณมีประวัติการแพ้หรือไม่<span style={{ color: 'red' }}> * </span></h3 >
+                <Form>
+                    <h5 style={style.topicAllergy}>{groupInfoPatientField.allergy.label}<span style={{ color: 'red' }}> * </span></h5>
+                    <Form.Group inline style={style.element}>
+                        <Form.Radio
+                            label='No'
+                            value='not have'
+                            checked={this.props.patient.allergy === 'not have'}
+                            onChange={(e, { value }) => this.chooseChoice('allergy', value)}
+                            width={4}
+                        />
+                        <Form.Radio
+                            label='Yes, Please specify'
+                            value='other'
+                            checked={!this.state.disabledOtherallergy}
+                            onChange={(e, { value }) => this.chooseChoice('allergy', value)}
+                        />
+                        <Form.Input
+                            label=''
+                            placeholder='Please specify'
+                            width={4}
+                            disabled={this.state.disabledOtherallergy}
+                            onChange={(e, { value }) => {
+                                this.chooseChoice('allergy', value)
+                                this.setState({ otherallergy: value })
+                            }}
+                            required={!this.state.disabledOtherallergy}
+                            value={this.state.otherallergy}
+                        />
                         <br></br>
-                        <Form.Group inline>
-                            <Form.Radio
-                                label='ไม่เคยมีประวัติแพ้ ( No )'
-                                value='not have'
-                                checked={this.props.patient.allergy === 'not have'}
-                                onChange={(e, { value }) => this.chooseChoice('allergy', value)}
-                            />
-                            <Form.Radio
-                                label='มีประวัติแพ้, โปรดระบุ (Yes, Please specify)'
-                                value='other'
-                                checked={!this.state.disabledOtherallergy}
-                                onChange={(e, { value }) => this.chooseChoice('allergy', value)}
-                            />
-                            <Form.Input
-                                label=''
-                                placeholder='โปรดระบุสิ่งที่แพ้'
-                                width={4}
-                                disabled={this.state.disabledOtherallergy}
-                                onChange={(e, { value }) => {
-                                    this.chooseChoice('allergy', value)
-                                    this.setState({ otherallergy: value})
-                                }}
-                                required={!this.state.disabledOtherallergy}
-                                value={this.state.otherallergy}
-                            />
-                            <br></br>
-                        </Form.Group>
-                    </Segment>
-                    <Segment color={this.props.errorField.privilege ? 'red' : 'teal'} style={{ borderRadius: '2rem' }}>
-                        <h3>สิทธิในการรักษา<span style={{ color: 'red' }}>*</span></h3>
-                        <br></br>
-                        <Form.Group inline>
-                            <Form.Radio
-                                value='ข้าราชการ'
-                                label='ข้าราชการ'
-                                checked={this.props.patient.privilege === 'ข้าราชการ'}
-                                width={4}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                            <Form.Radio
-                                value='ครอบครัวข้าราชการ'
-                                label='ครอบครัวข้าราชการ'
-                                checked={this.props.patient.privilege === 'ครอบครัวข้าราชการ'}
-                                width={4}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                            <Form.Radio
-                                value='รัฐวิสาหิจ'
-                                label='รัฐวิสาหิจ'
-                                checked={this.props.patient.privilege === 'รัฐวิสาหิจ'}
-                                width={2}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                        </Form.Group>
+                    </Form.Group>
 
-                        <Form.Group inline>
-                            <Form.Radio
-                                value='ครอบครัวรัฐวิสาหกิจ'
-                                label='ครอบครัวรัฐวิสาหกิจ'
-                                width={4}
-                                checked={this.props.patient.privilege === 'ครอบครัวรัฐวิสาหกิจ'}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                            <Form.Radio
-                                value='บุคคลทั่วไป'
-                                label='บุคคลทั่วไป'
-                                width={4}
-                                checked={this.props.patient.privilege === 'บุคคลทั่วไป'}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                            <Form.Radio
-                                label='อื่นๆ'
-                                value='other'
-                                checked={!this.state.disabledOtherprivilege}
-                                onChange={(e, { value }) => this.chooseChoice('privilege', value)}
-                            />
-                            <Form.Input
-                                label=''
-                                placeholder='โปรดระบุสิทธิ์การรักษาอื่นๆ'
-                                width={4}
-                                disabled={this.state.disabledOtherprivilege}
-                                required={!this.state.disabledOtherprivilege}
-                                onChange={e => {
-                                    this.chooseChoice('privilege', e.target.value)
-                                    this.setState({ otherprivilege: e.target.value })
-                                }}
-                                value={this.state.otherprivilege}
-                            />
-                            <br></br>
-                        </Form.Group>
-                    </Segment>
-                </Segment>
-                <br></br>
+                    <h5 style={style.topicPrivilage}>{groupInfoPatientField.privilege.label}<span style={{ color: 'red' }}> *</span></h5>
+                    <Form.Group inline style={style.element}>
+                        <Form.Radio
+                            value='Government officer'
+                            label='Government officer'
+                            checked={this.props.patient.privilege === 'Government officer'}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                            width={4}
+                        />
+                        <Form.Radio
+                            value='Family of government officer'
+                            label='Family of government officer'
+                            checked={this.props.patient.privilege === 'Family of government officer'}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                            width={5}
+                        />
+                        <Form.Radio
+                            value='Normal person'
+                            label='Normal person'
+                            checked={this.props.patient.privilege === 'Normal person'}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                            width={3}
+                        />
+                    </Form.Group>
+
+                    <Form.Group inline style={style.element}>
+                        <Form.Radio
+                            value='State enterprise officer'
+                            label='State enterprise officer'
+                            checked={this.props.patient.privilege === 'State enterprise officer'}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                            width={4}
+                        />
+                        <Form.Radio
+                            value='Family of state enterprise officer'
+                            label='Family of state enterprise officer'
+                            checked={this.props.patient.privilege === 'Family of state enterprise officer'}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                            width={5}
+                        />
+                        <Form.Radio
+                            label='Other'
+                            value='Other'
+                            checked={this.checkOther(this.props.patient.privilege)}
+                            onChange={(e, { value }) => this.chooseChoice('privilege', value)}
+                        />
+                        <Form.Input
+                            label=''
+                            placeholder='Please specify other'
+                            disabled={this.state.disabledOtherprivilege}
+                            required={!this.state.disabledOtherprivilege}
+                            onChange={e => {
+                                this.chooseChoice('privilege', e.target.value)
+                                this.setState({ otherprivilege: e.target.value })
+                            }}
+                            width={4}
+                            value={this.state.otherprivilege}
+                        />
+                    </Form.Group>
+                </Form>
             </div>
         )
     }

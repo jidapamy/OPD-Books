@@ -6,6 +6,7 @@ const msgVariable = {
     doctorNotAssign: "Doctor has not assign this medical record yet",
     alreadyMRDinPatientHistory: "This medical record is already in the patient history.",
     nothaveHistoryMDR : "Not have any history medical record",
+    dob: "date of birth",
 }
 
 const getMsgNotFound = (field, data = null) => {

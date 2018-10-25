@@ -1,53 +1,49 @@
 import React, { Component} from 'react';
 import { Label,Segment, Form, Header, Divider } from 'semantic-ui-react'
 import ErrorMessage from './ErrorMessage'
+import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
 
 export default class PatientParent extends Component { 
     render(){
         return (
             <div>
-                <Segment style={{ borderRadius: '2rem' }}>
-                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>In case under 15 years old <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
-                    <Divider/>
-                    
-                    <ErrorMessage
-                        errorText={this.props.errorText}
-                        cardType={this.props.cardType}
-                    />
+                <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p>
                     <Form.Group >
                         <Form.Input
-                            label='ชื่อจริงบิดา (Father&#39;s firstname)'
-                            placeholder='ชื่อ'
+                            label={patientField.fatherFirstname.label}
+                            placeholder={patientField.fatherFirstname.label}
                             width={8}
-                            onChange={e => this.props.setFieldAndValidate('fatherFirstname', e.target.value)}
+                        onChange={e => this.props.setFieldAndValidate("fatherFirstname", e.target.value)}
                             error={this.props.errorField.fatherFirstname}
+                            value={this.props.patient.fatherFirstname}
                         />
                         <Form.Input
-                            label='นามสกุล (Father&#39;s lastname)'
-                            placeholder='นามสกุล'
+                            label={patientField.fatherLastname.label}
+                            placeholder={patientField.fatherLastname.label}
                             width={8}
-                            onChange={e => this.props.setFieldAndValidate('fatherLastname', e.target.value)}
+                            onChange={e => this.props.setFieldAndValidate("fatherLastname", e.target.value)}
                             error={this.props.errorField.fatherLastname}
+                            value={this.props.patient.fatherLastname}
                         />
                     </Form.Group>
                     <Form.Group style={{ borderRadius: '2rem' }}>
                         <Form.Input
-                            label='ชื่อจริงมารดา (Mother&#39;s firstname)'
-                            placeholder='ชื่อ'
+                            label={patientField.motherFirstname.label}
+                            placeholder={patientField.motherFirstname.label}
                             width={8}
-                            onChange={e => this.props.setFieldAndValidate('motherFirstname', e.target.value)}
+                            onChange={e => this.props.setFieldAndValidate("motherFirstname", e.target.value)}
                             error={this.props.errorField.motherFirstname}
+                            value={this.props.patient.motherFirstname}
                         />
                         <Form.Input
-                            label='นามสกุล (Mother&#39;s lastname)'
-                            placeholder='นามสกุล'
+                            label={patientField.motherLastname.label}
+                            placeholder={patientField.motherLastname.label}
                             width={8}
-                            onChange={e => this.props.setFieldAndValidate('motherLastname', e.target.value)}
+                            onChange={e => this.props.setFieldAndValidate("motherLastname", e.target.value)}
                             error={this.props.errorField.motherLastname}
+                            value={this.props.patient.motherLastname}
                         />
                     </Form.Group>
-                </Segment>
-                <br></br>
             </div>
         )
     }

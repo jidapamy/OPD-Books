@@ -1,5 +1,8 @@
 const nexmo = require("../Lib/Nexmo")
 const transporter = require("../Lib/Email")
+var smtpTransport = require('nodemailer-smtp-transport');
+var handlebars = require('handlebars');
+var fs = require('fs');
 
 // OTP
 const requestOTP = (phoneNumber) => new Promise((resolve, reject) => {
@@ -50,28 +53,68 @@ const cancelOTP = (requestId) => new Promise((resolve, reject) => {
 
 //Email 
 
-const createEmail = (email) => new Promise((resolve, reject) => {
-    let mailOptions = {
-        from: '"Fred Foo 👻" <opdbooksblockchain@gmail.com>', // sender address
-        to: email, // list of receivers
-        subject: 'Your medical record is saved successfully.', // Subject line
-        text: 'Your medical record is saved successfully.!!', // plain text body
-        html: "<b>successfully!!</b> <a href='www.opdbooks.tk'>OPD Books</a>" // html body
+
+
+// smtpTransport = nodemailer.createTransport(smtpTransport({
+//     host: 'smtp.gmail.com',
+//     port: 587,
+//     secure: false, // true for 465, false for other ports
+//     auth: {
+//         user: 'opdbooksblockchain@gmail.com', // generated ethereal user
+//         pass: 'Opdbooks147'// generated ethereal password
+//     }
+// }));
+
+const createEmail = (mail) =>('./index.html', function (err, html) {
+    var template = handlebars.compile(html);
+    var replacements = {
+        username: "OPD BOOKS"
     };
-
-    transporter.sendMail(mailOptions, (error, info) => {
+    var htmlToSend = template(replacements);
+    var mailOptions = {
+        from: '"OPD BOOKS" <opdbooksblockchain@gmail.com>', // sender address
+        to: mail, // list of receivers
+        subject: 'MedicalRecord', // Subject line
+        text: 'Hello world?', // plain text body
+        html: htmlToSend
+    };
+    transporter.sendMail(mailOptions, function (error, response) {
         if (error) {
-            reject({ message: err })
-            return
+            console.log(error);
+            // callback(error);
         }
-        console.log('Message sent: %s', info.messageId);
-        // Preview only available when sending through an Ethereal account
-        // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-        resolve({ message: 'send email success!' })
-        return
-
     });
 });
+
+
+
+
+
+
+
+
+// const createEmail = (email) => new Promise((resolve, reject) => {
+//     let mailOptions = {
+//         from: '"Fred Foo 👻" <opdbooksblockchain@gmail.com>', // sender address
+//         to: email, // list of receivers
+//         subject: 'Your medical record is saved successfully.', // Subject line
+//         text: 'Your medical record is saved successfully.!!', // plain text body
+//         html: "<b>successfully!!</b> <a href='www.opdbooks.tk'>OPD Books</a>" // html body
+//     };
+
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//             reject({ message: err })
+//             return
+//         }
+//         console.log('Message sent: %s', info.messageId);
+//         // Preview only available when sending through an Ethereal account
+//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+//         resolve({ message: 'send email success!' })
+//         return
+
+//     });
+// });
 
 const sendEmail = async(email) => {
     try {

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Home from "./Containers/Home";
 import Login from "./Containers/Login";
 // import OTPfactor from "./Containers/OTPfactor";
-import ManagePatientRecord from "./Containers/Register";
+import ManagePatientRecord from "./Containers/ManagePatientRecord";
 import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
@@ -40,7 +40,7 @@ ReactDOM.render(
       {/* <Route path="/OTPfactor" component={OTPfactor} /> */}
       <Route path="/ErrorNotFound" component={ErrorNotFound} />
       <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
-      <Route path="/ForgotPassword" component={ForgotPassword} />
+      <Route path="/forgotPassword" component={ForgotPassword} />
     </div>
   </Router>,
   document.getElementById("root")

@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 //service
 import { getPatient } from '../Services/ManagePatientMethod'
 import { getTreatmentHistoryOfPatient, getMedicalRecord } from "../Services/MedicalRecordMethod";
+import ManagePatientRecord from "./ManagePatientRecord";
 
 const BG = styled.div`
   background: url('${BackgroundImage}') no-repeat center fixed;
@@ -78,6 +79,7 @@ export default class PatientProfile extends Component {
     open: false,
     QRCode: "",
     patient: {},
+    originalData:{},
     historyTreatment: [],
     historyMsg: "",
     chooseMedicalRecord: {},
@@ -155,17 +157,20 @@ export default class PatientProfile extends Component {
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
 
   //Connect API
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     if (!this.props.location.state) {
       this.props.history.push("/signin");
       return
     }
+    console.log("componentDidMount Patient")
     this.setState(this.props.location.state)
     let citizenId = this.props.location.state.citizenId;
     getPatient(citizenId).then(patient => {
+      let patientData = patient.data;
+      let patientOriginalData = patient.data;
       getTreatmentHistoryOfPatient(citizenId).then(history => {
         this.setState({
-          patient: patient.data,
+          patient: {...patientData},
           historyTreatment: history.data,
           historyMsg: history.message,
           loader: false
@@ -221,7 +226,7 @@ export default class PatientProfile extends Component {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
 
-    console.log("chooseMedicalRecord",this.state.chooseMedicalRecord)
+    console.log("PatientProfile",this.state)
     return (
       <div>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
@@ -284,8 +289,10 @@ export default class PatientProfile extends Component {
                   Account Settings
                 </Header>
                 <br/>
-                <FormEditProfile 
+                <ManagePatientRecord 
                   patient={this.state.patient}
+                  editStatus={true}
+                  setField={this.setField} 
                 />
 
               </Modal.Content>

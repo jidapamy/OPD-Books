@@ -10,7 +10,6 @@ export const getPatient = async (citizenId) => {
   let res = await axios.post(`/patients/get`, { citizenId: citizenId })
   // console.log(res)
   if (res.data.status){
-    res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
     res.data.data.age = calculateAge(res.data.data.dob)
   }
   console.log(res.data)
@@ -36,13 +35,21 @@ export const checkEmail = async (email) => {
 }
 
 export const editProfile = async (data) => {
+  console.log("editProfile Method")
   let res = await axios.post(`/patients/edit`, data)
   return res.data
 }
 
+export const checkPassword = async (citizenId,password) => {
+  let res = await axios.post(`/patients/checkPassword`, { citizenId: citizenId , password: password })
+  console.log("checkPassword",res.data)
+  return res.data
+}
+
+
 export const requestOTP = async (data) => {
   console.log("requestOTP")
-  let res = await axios.post(`/patients/requestOTPCtr`, data)
+  let res = await axios.post(`/patients/requestOTP`, data)
   return res.data
 }
 
@@ -56,22 +63,35 @@ export const getPatientWithOTP = async (data) => {
   return res.data
 }
 
-
 export const cancelRequestOTP = async (requestId) => {
-  console.log("requestOTPAgain")
   let res = await axios.post(`/patients/cancelRequestOTP`, { requestId: requestId })
   return res.data
 }
 
+export const validateOTP = async (data) => {
+  let res = await axios.post(`/patients/validateOTP`, data)
+  return res.data
+}
 
+export const confirmChangePassword = async (patient) => {
+  let res = await axios.post(`/patients/confirmChangePassword`, patient)
+  console.log("checkPassword", res.data)
+  return res.data
+}
+
+export const forgotPasswordVerify = async (citizenId,dob) => {
+  console.log("forgotPasswordVerify")
+  let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob })
+  return res.data
+}
 
 const calculateAge = (dob) => {
   let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
   let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
-  let tmp = year + " ปี"
+  let tmp = year + " years"
   if (year === 0) {
     month = month
-    tmp = year + " ปี " + month + " เดือน"
+    tmp = year + " years " + month + " month"
   }
  return tmp
 }

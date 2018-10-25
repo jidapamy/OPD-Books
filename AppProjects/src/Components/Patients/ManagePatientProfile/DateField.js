@@ -1,12 +1,40 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Label } from 'semantic-ui-react'
 import moment from 'moment';
-import Date from './Date';
+import { patientField } from "../../../Static/Data/Field"
+import DatePicker from 'react-datepicker';
 
 export default class DateField extends Component {
     state = {
         dob: null,
         age: ''
+    }
+
+    DateInput = () => {
+        if (this.state.dob !== null || this.state.dob != undefined) {
+            return <DatePicker
+                placeholderText="ex. 01/01/1990"
+                selected={moment(this.state.dob, 'DD/MM/YYYY')}
+                onChange={e => this.setDate(e)}
+                dateFormatCalendar={"MMM YYYY"}
+                minDate={moment().subtract(145, "year")}
+                maxDate={moment().add(0, "year")}
+                showYearDropdown
+                showMonthDropdown
+                required
+            />
+        }
+        return <DatePicker
+            placeholderText="ex. 01/01/1990"
+            selected={this.state.dob}
+            onChange={e => this.setDate(e)}
+            dateFormatCalendar={"MMM YYYY"}
+            minDate={moment().subtract(145, "year")}
+            maxDate={moment().add(0, "year")}
+            showYearDropdown
+            showMonthDropdown
+            required
+        />
     }
 
     setDate = async (value) => {
@@ -19,27 +47,37 @@ export default class DateField extends Component {
         let dob = '' + this.state.dob
         let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
         let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
-        let tmp = year + " ปี"
+        let tmp = year + " years"
         if (year === 0) {
             month = month
-            tmp = year + " ปี " + month + " เดือน"
+            tmp = year + " years " + month + " months"
         }
-        this.props.setField('age',tmp)
-        if(year < 15){
+        console.log("age", tmp)
+        this.props.setFieldAndValidate('age', tmp)
+        if (year < 15) {
             this.props.setField('requiredAllParentField', true)
-        }else{
+        } else {
             this.props.setField('requiredAllParentField', false)
+        }
+    }
+
+    componentWillMount = () => {
+        if (this.props.patient) {
+            if (this.props.patient.dob) {
+                this.setState({ dob: this.props.patient.dob })
+            }
         }
     }
 
     render() {
         return (
             <Form.Field
-                control={() => Date({ setDate: this.setDate, dob: this.state.dob })}
-                label='วัน/เดือน/ปีเกิด (Dob)'
-                width={3}
+                control={this.DateInput}
+                label={patientField.dob.label}
                 required
-                error={this.props.errorField.dob}
+                error={this.props.errorField ? this.props.errorField.dob : false}
+                placeholderText="ex. 01/01/1990"
+                value={this.state.dob}
             />
         )
     }
