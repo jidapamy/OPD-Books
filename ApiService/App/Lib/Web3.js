@@ -1336,6 +1336,7 @@ const PatientRecordContract = web3.eth.contract(
 				},
 				{
 					"name": "_date",
+<<<<<<< HEAD
 					"type": "bytes32"
 				},
 				{
@@ -1343,6 +1344,15 @@ const PatientRecordContract = web3.eth.contract(
 					"type": "bytes32"
 				},
 				{
+=======
+					"type": "bytes32"
+				},
+				{
+					"name": "_time",
+					"type": "bytes32"
+				},
+				{
+>>>>>>> f93451fa0d495c2db376ae83cdbb871c7fc4cc8e
 					"name": "_treatmentYear",
 					"type": "uint256"
 				}
@@ -1481,6 +1491,7 @@ const PatientRecordContract = web3.eth.contract(
 		}
 	]
 );
+
 
 
 const contract = PatientRecordContract.at("0x943edb3f9c47958d29088c881d2d27f5aa67629c");
