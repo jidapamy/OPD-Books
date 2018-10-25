@@ -280,7 +280,8 @@ const cancelRequestOTP = async (requestId) => {
 const forgotPasswordVerify = async (citizenId, dob) => {
     const byteCitizenId = convertString(citizenId)
     const byteDob = convertString(dob)
-    return contract.verifyForgotpassword(byteCitizenId, byteDob);
+    console.log("forgotPasswordVerify",citizenId, dob) 
+    return contract.forgotPasswordVerify(byteCitizenId, byteDob);
 }
 
 const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) => {
@@ -330,6 +331,16 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
     }
 }
 
+validateOTPvalue = async (requestId, pin) => {
+    try{
+        const res = await validateOTP(requestId, pin)
+        console.log(validateOTPvalue,res)
+        return { status: true, message: "SUCCESS" };
+    }catch(err){
+        return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
+    }
+}
+
 module.exports = {
     isPatient,
     login,
@@ -341,7 +352,7 @@ module.exports = {
     edit,
     checkPassword,
     // requestOTP,
-    // validateOTP,
+    validateOTPvalue,
     getPatientWithOTP,
     verifiedByCitizenId,
     cancelRequestOTP,

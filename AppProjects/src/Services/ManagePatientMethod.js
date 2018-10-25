@@ -64,8 +64,12 @@ export const getPatientWithOTP = async (data) => {
 }
 
 export const cancelRequestOTP = async (requestId) => {
-  console.log("requestOTPAgain")
   let res = await axios.post(`/patients/cancelRequestOTP`, { requestId: requestId })
+  return res.data
+}
+
+export const validateOTP = async (data) => {
+  let res = await axios.post(`/patients/validateOTP`, data)
   return res.data
 }
 
@@ -75,6 +79,11 @@ export const confirmChangePassword = async (patient) => {
   return res.data
 }
 
+export const forgotPasswordVerify = async (citizenId,dob) => {
+  console.log("forgotPasswordVerify")
+  let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob })
+  return res.data
+}
 
 const calculateAge = (dob) => {
   let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));

@@ -1,5 +1,5 @@
 const { isPatient, isEmail, insert, get, getBasicData, edit, checkPassword, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
-    forgotPasswordVerify, confirmChangePassword } = require("../Repositories/PatientRepo")
+    forgotPasswordVerify, confirmChangePassword, validateOTPvalue } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -92,10 +92,14 @@ const cancelRequestOTPCtr = async (req, res) => {
 }
 
 const forgotPasswordVerifyCtr = async (req, res) => {
-    if (!isPatient(req.body.citizenId)) {
+    if (isPatient(req.body.citizenId)) {
         try {
             const result = await forgotPasswordVerify(req.body.citizenId, req.body.dob)
-            res.send(result)
+            if(result){
+                res.send(msg.getMsgSuccess())
+            }else{
+                res.send(msg.getMsgNotMatch(msg.msgVariable.citizenID,msg.msgVariable.dob))
+            }
             return
         } catch (error) {
             res.send(msg.getMsgError(error))
@@ -106,7 +110,7 @@ const forgotPasswordVerifyCtr = async (req, res) => {
 }
 
 const confirmChangePasswordCtr = async (req, res) => {
-    console.log("confirmChangePasswordCtr")
+    console.log("confirmChangePasswordCtr", req.body.newPassword ,req.body.newPasswordConfirm)
     if (req.body.newPassword === req.body.newPasswordConfirm){
         if (isPatient(req.body.citizenId)) {
             try {
@@ -123,6 +127,11 @@ const confirmChangePasswordCtr = async (req, res) => {
     res.send(msg.getMsgError("Those password didn't match. Try again."))
 }
 
+const validateOTPCtr = async (req, res)  => {
+    const result = await validateOTPvalue(req.body.requestId,req.body.pin)
+    res.send(result)
+}
+
 
 module.exports = {
     insertCtr,
@@ -133,7 +142,7 @@ module.exports = {
     editCtr,
     checkPasswordCtr,
     // requestOTPCtr,
-    // validateOTPCtr,
+    validateOTPCtr,
     getPatientWithOTPCtr,
     requestOTPCtr,
     cancelRequestOTPCtr,

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const { insertCtr, getCtr, isCitizenIdCtr, isEmailCtr, getBasicDataCtr, editCtr, checkPasswordCtr, getPatientWithOTPCtr, requestOTPCtr,
-    cancelRequestOTPCtr, forgotPasswordVerifyCtr, confirmChangePasswordCtr} = require("../Controllers/PatientController")
+    cancelRequestOTPCtr, forgotPasswordVerifyCtr, confirmChangePasswordCtr, validateOTPCtr} = require("../Controllers/PatientController")
 
 router.post("/insert", insertCtr);
 router.post("/get", getCtr);
@@ -11,7 +11,7 @@ router.post("/isEmail", isEmailCtr);
 router.post("/edit", editCtr);
 router.post("/checkPassword", checkPasswordCtr);
 // router.post("/requestOTP", requestOTPCtr);
-// router.post("/validateOTP", validateOTPCtr);
+router.post("/validateOTP", validateOTPCtr);
 router.post("/getPatientWithOTP", getPatientWithOTPCtr);
 router.post("/requestOTP", requestOTPCtr);
 router.post("/cancelRequestOTP", cancelRequestOTPCtr);
