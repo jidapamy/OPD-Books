@@ -27,6 +27,9 @@ const Wrapper = styled.div`
 const ContanierTop = styled(Container)`
     padding-top:4%;
 `
+const ColorHeader = {
+    color:'#31A5BA',
+}
 
 const GridColumn = styled(Grid.Column)`
     display: flex;
@@ -72,10 +75,10 @@ export default class Register extends Component {
         return (
             <Wrapper>
                 <ContanierTop>
-                    <Header size='huge' color='teal' textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
+                    <Header size='huge' style={ColorHeader} textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
                     <Form>
                         <SegmentForm >
-                            <Header as='h2' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.info.label}</h2></Header>
+                            <Header as='h2' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.info.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
                                 errorText={this.state.errorInfo}
@@ -99,7 +102,7 @@ export default class Register extends Component {
                         </SegmentForm>
                         <br></br>
                         <SegmentForm>
-                            <Header as='a' color='teal' ribbon ><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.address.label}</h2></Header>
+                            <Header as='a' style={ColorHeader} ribbon ><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.address.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
                                 errorText={this.state.errorAddr}
@@ -117,7 +120,7 @@ export default class Register extends Component {
                         <br></br>
 
                        <SegmentForm>
-                            <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.emerContact.label}</h2></Header>
+                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.emerContact.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
                                 errorText={this.state.errorEmer}
@@ -138,7 +141,7 @@ export default class Register extends Component {
                         <br></br>
 
                        <SegmentForm>
-                            <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
+                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
                             <Divider />
                             <ErrorMessage
                                 cardType={this.state.cardType}
@@ -158,7 +161,7 @@ export default class Register extends Component {
                         <br></br>
 
                          <SegmentForm>
-                            <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.allergyNPrivilege.label}</h2></Header>
+                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.allergyNPrivilege.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
                                 cardType={this.state.cardType}
