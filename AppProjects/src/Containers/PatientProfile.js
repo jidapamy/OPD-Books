@@ -85,7 +85,7 @@ export default class PatientProfile extends Component {
     chooseMedicalRecord: {},
     loader: true,
     showEditPage: false,
-    showEditProfile: false,
+    // showEditProfile: false,
     // my
     openEditPrfile: false
   };
@@ -94,7 +94,7 @@ export default class PatientProfile extends Component {
     if (this.state.menuTab == 0) {
       return <ProfilePatientMobile
         show={this.show}
-        showModal={this.showModal}
+        showQRCode={this.showQRCode}
         open={this.state.open}
         patient={this.state.patient}
         tab={this.state.tab}
@@ -180,7 +180,7 @@ export default class PatientProfile extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  showModal = () => {
+  showQRCode = () => {
     if (this.state.patient.citizenId) {
       return <PopupQRCode  size={'mini'} open={this.state.open} onClose={this.close}>
         <Modal.Content>
@@ -249,7 +249,7 @@ export default class PatientProfile extends Component {
                   <Menu.Menu position='right'>
                     <Dropdown item text={this.state.patient.firstname} >
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => this.setState({ showEditProfile : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setState({ showEditPage : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                     <Menu.Item>
@@ -282,7 +282,7 @@ export default class PatientProfile extends Component {
                 </Grid>
               </Container>
             </BG>
-            <Modal style={{ borderRadius: 20 }} size='large'  open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
+            <Modal style={{ borderRadius: 20 }} size='large' open={this.state.showEditPage} onClose={() => this.setState({ showEditPage : false })}>
               {/* <EditProfile /> */}
               <Modal.Content >
                 <Header as='h1' style={{color: '#31A5BA' }} >
@@ -294,10 +294,10 @@ export default class PatientProfile extends Component {
                   editStatus={true}
                   setField={this.setField} 
                 />
-
               </Modal.Content>
               
             </Modal>
+            {this.showQRCode()}
           </Responsive>
 
           <Responsive {...Responsive.onlyMobile}>
