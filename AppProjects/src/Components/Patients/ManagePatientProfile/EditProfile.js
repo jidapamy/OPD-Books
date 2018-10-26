@@ -415,23 +415,6 @@ export default class EditProfile extends React.Component {
                                    Your password and confirm password does not match.
                                 </p>
                             }
-
-                            {/* <Form.Input
-                                icon='lock' iconPosition='left'
-                                label='New Password'
-                                width={6}
-                                required
-                                type='password'
-                                value={this.props.state.patient.password}
-                            />
-                            <Form.Input
-                                icon='lock' iconPosition='left'
-                                label='Confirm New Password'
-                                width={6}
-                                required
-                                type='password'
-                                value={this.props.state.patient.password}
-                            /> */}
                             <Button
                                 disabled={!this.state.oldPassword || this.state.newPassword.length < 7 || this.state.newPasswordConfirm.length < 7 || this.state.errorPassword}
                                 onClick={() => this.submitPassword()}

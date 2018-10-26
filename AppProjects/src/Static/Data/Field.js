@@ -15,7 +15,7 @@ export const patientField = {
     age: { label: "Age", variable: "age" },
     allergy: { label: "Allergy", variable: "allergy" },
     bloodgroup: { label: "Blood Group", variable: "bloodgroup" },
-    citizenId: { label: "Citizen Id/Passpot", variable: "citizenId" },
+    citizenId: { label: "Citizen Id/Passport", variable: "citizenId" },
     congenitalDisease: { label: "Congenital Disease", variable: "congenitalDisease" },
     country: { label: "Country", variable: "country" },
     district: { label: "District", variable: "district" },
