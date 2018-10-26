@@ -175,18 +175,12 @@ const html = (data) => (`
           <div class="col-4">
            
           </div>
-          <div class="col-3">
-            <b>Nurse Name</b>
-          </div>
-      </div>
-      <div class="row justify-content-between">
           <div class="col-4">
-           
-          </div>
-          <div class="col-3">
-            ${data.nurseName}
+            <p><b>Nurse Name</b></p>
+            <p>${data.nurseName}</p>
           </div>
       </div>
+     
       <br>
 
       <div class="row">
@@ -271,21 +265,14 @@ const html = (data) => (`
     <br/>
        <div class="row justify-content-between">
           <div class="col-4">
-            <b>Appointment</b>
+            <p><b>Appointment</b></p>
+             <p>${data.appointment}</p>
           </div>
-          <div class="col-3">
-            <b>Doctor Name</b>
-          </div>
-      </div>
-      <div class="row justify-content-between">
           <div class="col-4">
-            ${data.appointment}
-          </div>
-          <div class="col-3">
-           ${data.doctorName}
+            <p><b>Doctor Name</b></p>
+             <p>${data.doctorName}</p>
           </div>
       </div>
-      
 
       </div>
     </div>
