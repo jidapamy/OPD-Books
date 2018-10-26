@@ -7,7 +7,7 @@ import {
     titleNameChildData, genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
 } from '../../../Static/Data/FormData'
-import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
+import { patientField, groupInfoPatientField, pattern } from "../../../Static/Data/Field"
 import InfoPatient from '../../../Components/Patients/ManagePatientProfile/InfoPatient';
 import HomeAddress from '../../../Components/Patients/ManagePatientProfile/HomeAddress'
 import EmergencyContact from '../../../Components/Patients/ManagePatientProfile/EmergencyContact'
@@ -70,7 +70,6 @@ export default class EditProfile extends React.Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        console.log("nextProps", nextProps)
         if (nextProps.state.editSuccess){
             this.setState({
                 [nextProps.state.editSuccess]: false,
@@ -96,7 +95,6 @@ export default class EditProfile extends React.Component {
     }
 
     editEmail = (e) => {
-        console.log("editEmail")
         if (this.state.editEmail === false) {
             // false > true : ถ้าเป็น true >> พิมพ์ได้
             this.inputEmail.focus()
@@ -117,7 +115,6 @@ export default class EditProfile extends React.Component {
     }
 
     submitEmail = async () => {
-        console.log("this.state.email", this.state.email)
         if (!await checkEmail(this.state.email)){
             if (await checkPassword(this.props.state.patient.citizenId, this.state.passwordConfirmEmail)) {
                 console.log("Match ")
@@ -148,14 +145,15 @@ export default class EditProfile extends React.Component {
     showComfirmChangeEmail = () => {
         if (this.state.editEmail) {
             return <div>
-                <Form.Group widths={6}>
-                    <Form.Field icon='lock' iconPosition='left' width={6} required>
+                <Form.Group widths={3}>
+                    <Form.Field icon='lock' iconPosition='left' required>
                         <label>{patientField.password.label}</label>
                         <input
                             type='password'
                             onChange={(e) => this.setState({ passwordConfirmEmail: e.target.value })}
                             value={this.state.passwordConfirmEmail}
                             ref={(e) => this.inputPasswordEmail = e}
+                            placeholder="Password"
                         />
                     </Form.Field>
                 </Form.Group>
@@ -171,9 +169,8 @@ export default class EditProfile extends React.Component {
     }
 
     validateEmail = () => {
-        console.log("validateEmail")
         if (this.state.email) {
-            if (!this.state.email.match(/^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]/)) {
+            if (!this.state.email.match(pattern.email.pattern)) {
                 this.setState({ errorEmail: true })
             } else {
                 this.setState({ errorEmail: false })
@@ -182,10 +179,9 @@ export default class EditProfile extends React.Component {
     }
 
     validatePassword = () => {
-        console.log("validatePassword")
         if (this.state.newPassword && this.state.newPasswordConfirm) {
             if (this.state.newPassword === this.state.newPasswordConfirm){
-                if (!this.state.newPassword.match(/^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,20}.+$/)) {
+                if (!this.state.newPassword.match(pattern.password.pattern)) {
                     this.setState({ errorPassword : true })
                 } else {
                     this.setState({ errorPassword: false })
@@ -197,7 +193,6 @@ export default class EditProfile extends React.Component {
     }
 
     submitPassword = async () => {
-        console.log("submitPassword")
         this.validatePassword()
         if (!this.state.errorPassword){
             if (await checkPassword(this.props.state.patient.citizenId, this.state.oldPassword)) {
@@ -219,7 +214,7 @@ export default class EditProfile extends React.Component {
     }
 
     render() {
-        console.log("PROS in EDIT PAGE!!", this.props)
+        console.log(this.state)
         const { info, address, emer, parent, allergy, changePassword, changeEmail, editEmail } = this.state
         return (
             <div>
@@ -315,7 +310,7 @@ export default class EditProfile extends React.Component {
                         </Segment >}
                 </Transition.Group>
 
-                <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("allergy", !this.state.allergy)}>
+                {/* <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("allergy", !this.state.allergy)}>
                     <h4><Icon name='pills' />{groupInfoPatientField.allergyNPrivilege.label}<Icon style={{ float: 'right' }} name={allergy ? 'angle down' : 'angle left'} /></h4>
                 </Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
@@ -334,9 +329,10 @@ export default class EditProfile extends React.Component {
                                 <Button onClick={() => this.confirm('allergy')}>Submit</Button>
                             </Form>
                         </Segment >}
-                </Transition.Group>
+                </Transition.Group> */}
+
                 <br /><h3 style={headerSetting}>Security Setting</h3>
-                <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("changeEmail", !this.state.changeEmail)}>
+                <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changeEmail: !this.state.changeEmail, email: this.props.state.patient.email, passwordConfirmEmail:'',errorDupEmail:false })}>
                     <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={changeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {changeEmail && <Segment style={elimentStyle} vertical >
@@ -346,8 +342,8 @@ export default class EditProfile extends React.Component {
                                 Please include an '@' and enter the part following '@' in the email address. <span style={{ color: '#000', fontSize: '14px' }}>'{this.state.email}'</span> is incomplete.
                                 </p>
                             }
-                            <Form.Group widths={6}>
-                                <Form.Field required width={6} icon='mail' iconPosition='left' error={this.state.email==''||this.state.errorEmail||this.state.errorDupEmail}>
+                            <Form.Group widths="3">
+                                <Form.Field required icon='mail' iconPosition='left' error={this.state.email==''||this.state.errorEmail||this.state.errorDupEmail}>
                                     <label>{patientField.email.label}</label>
                                     <input class="otp"
                                         readOnly={!editEmail}
@@ -355,8 +351,10 @@ export default class EditProfile extends React.Component {
                                         value={this.state.email != null ? this.state.email : this.props.state.patient.email}
                                         onBlur={() => this.validateEmail()}
                                         onChange={(e) => this.setState({ email: e.target.value, errorDupEmail:false})}
+                                        icon={<Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />}
                                     />
                                 </Form.Field>
+                                
                                 <Label
                                     circular as='a'
                                     onClick={() => this.editEmail()}
@@ -369,12 +367,14 @@ export default class EditProfile extends React.Component {
                         </Form>
                     </Segment>}
                 </Transition.Group>
-                <Segment style={changePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("changePassword", !this.state.changePassword)}>
+                <Segment style={changePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changePassword: !this.state.changePassword, newPassword: '', newPasswordConfirm: '', oldPassword: '', errorPassword:false, })}>
                     <h4 ><Icon name='lock' />Change Password <Icon style={{ float: 'right' }} name={changePassword ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {changePassword && <Segment style={elimentStyle} vertical >
                         <Form>
-                            <Form.Field required width={6}>
+                            <p style={{ color: '#277e8e', fontSize: '12px' }}> * Password must be 8-20 characters long, including a number, and a letter. </p>
+                            <Form.Group widths={3}>
+                            <Form.Field required>
                                 <label>Old Password</label>
                                 <input class="otp"
                                     ref={(e) => this.inputOldPassword = e}
@@ -382,29 +382,35 @@ export default class EditProfile extends React.Component {
                                     onChange={(e) => { this.setState({ oldPassword: e.target.value }) }}
                                     autoFocus
                                     type='password'
+                                    placeholder="Old Password"
                                 />
                             </Form.Field>
+                            </Form.Group>
+                            <Form.Group widths={3}>
                             <Form.Input
                                 label='New Password'
-                                width={6}
                                 required
                                 type='password'
                                 value={this.state.newPassword}
                                 onChange={(e) => { this.setState({ newPassword: e.target.value})}}
                                 error={ this.state.errorPassword }
                                 onBlur={() => this.validatePassword()}
+                                placeholder="New Password"
 
                             />
+                            </Form.Group>
+                            <Form.Group widths={3}>
                             <Form.Input
                                 label='Comfirm New Password'
-                                width={6}
                                 required
                                 type='password'
                                 value={this.state.newPasswordConfirm}
                                 onBlur={()=>this.validatePassword()}
                                 onChange={(e) => { this.setState({ newPasswordConfirm: e.target.value}) }}
                                 error={this.state.errorPassword}
+                                placeholder='Comfirm New Password'
                             />
+                            </Form.Group>
                             {this.state.errorPassword && this.state.newPassword === this.state.newPasswordConfirm &&
                                 <p style={{ color: '#dd1037', fontSize: '12px' }}>
                                    Password must be 8-20 characters long, including a number, and a letter.

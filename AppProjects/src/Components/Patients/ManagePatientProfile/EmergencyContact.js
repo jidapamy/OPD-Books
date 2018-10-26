@@ -154,7 +154,7 @@ export default class EmergencyContact extends Component {
         return (
             <div>
                     {this.showCheckbox()}
-                    <Form.Group>
+                <Form.Group widths="equal">
                         <Form.Field
                             control={Dropdown}
                             search
@@ -165,7 +165,6 @@ export default class EmergencyContact extends Component {
                             label={patientField.emerTitle.label}
                             options={titleNameParentData}
                             placeholder='- Select -'
-                            width={6}
                             onChange={async (e, { value }) => {
                                 this.setField('emerTitle', value)
                             }}
@@ -176,7 +175,6 @@ export default class EmergencyContact extends Component {
                         <Form.Input
                             label={patientField.emerFirstname.label}
                             placeholder={patientField.emerFirstname.label}
-                            width={6}
                             onChange={async (e) => {
                                 this.setField('emerFirstname', e.target.value)
                             }}
@@ -187,7 +185,6 @@ export default class EmergencyContact extends Component {
                         <Form.Input
                             label={patientField.emerLastname.label}
                             placeholder={patientField.emerLastname.label}
-                            width={6}
                             onChange={async (e) => {
                                 this.setField('emerLastname', e.target.value)
                             }}
@@ -200,7 +197,6 @@ export default class EmergencyContact extends Component {
                         <Form.Input
                             label={patientField.emerRelationship.label}
                             placeholder={patientField.emerRelationship.label}
-                            // width={6}
                             onChange={async (e) => {
                                 this.setField('emerRelationship', e.target.value)
                             }}

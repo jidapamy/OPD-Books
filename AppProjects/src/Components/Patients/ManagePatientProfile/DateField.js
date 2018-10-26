@@ -3,6 +3,7 @@ import { Form, Label } from 'semantic-ui-react'
 import moment from 'moment';
 import { patientField } from "../../../Static/Data/Field"
 import DatePicker from 'react-datepicker';
+import { calculateAge } from "../../.../../../Services/Utils" 
 
 export default class DateField extends Component {
     state = {
@@ -22,9 +23,12 @@ export default class DateField extends Component {
                 showYearDropdown
                 showMonthDropdown
                 required
+                value={this.state.dob}
+
             />
         }
         return <DatePicker
+            dateFormat={"DD/MM/YYYY"}
             placeholderText="ex. 01/01/1990"
             selected={this.state.dob}
             onChange={e => this.setDate(e)}
@@ -34,32 +38,45 @@ export default class DateField extends Component {
             showYearDropdown
             showMonthDropdown
             required
+            value={this.state.dob}
         />
     }
 
-    setDate = async (value) => {
-        await this.setState({ dob: value.format('DD/MM/YYYY') })
-        this.calculateAge();
-        this.props.setFieldAndValidate('dob', value.format('DD/MM/YYYY'))
-    }
-
-    calculateAge = () => {
-        let dob = '' + this.state.dob
+    setDate = (value) => {
+        console.log(value)
+        let dob = value.format('DD/MM/YYYY')
+        console.log(dob)
         let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
-        let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
-        let tmp = year + " years"
-        if (year === 0) {
-            month = month
-            tmp = year + " years " + month + " months"
-        }
-        console.log("age", tmp)
-        this.props.setFieldAndValidate('age', tmp)
+        console.log(year)
         if (year < 15) {
             this.props.setField('requiredAllParentField', true)
         } else {
             this.props.setField('requiredAllParentField', false)
         }
+        this.setState({ dob: dob })
+        let age = calculateAge(dob);
+        this.props.setFieldAndValidate('age', age)
+        this.props.setFieldAndValidate('dob', dob)
     }
+
+    // calculateAge = () => {
+    //     console.log(this.state.dob)
+    //     let dob = '' + this.state.dob
+    //     let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
+    //     let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
+    //     let tmp = year + " years"
+    //     if (year === 0) {
+    //         month = month
+    //         tmp = year + " years " + month + " months"
+    //     }
+    //     console.log("age", tmp)
+    //     this.props.setFieldAndValidate('age', tmp)
+    //     if (year < 15) {
+    //         this.props.setField('requiredAllParentField', true)
+    //     } else {
+    //         this.props.setField('requiredAllParentField', false)
+    //     }
+    // }
 
     componentWillMount = () => {
         if (this.props.patient) {
@@ -77,7 +94,6 @@ export default class DateField extends Component {
                 required
                 error={this.props.errorField ? this.props.errorField.dob : false}
                 placeholderText="ex. 01/01/1990"
-                value={this.state.dob}
             />
         )
     }

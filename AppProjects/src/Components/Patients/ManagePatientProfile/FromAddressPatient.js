@@ -2,6 +2,7 @@ import React from "react";
 import {
     Grid, Segment, Container, Divider, Header,Icon
 } from "semantic-ui-react";
+import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
 
 export default class FromAddressPatient extends React.Component {
 
@@ -11,23 +12,23 @@ export default class FromAddressPatient extends React.Component {
                 <Segment.Group >
                     <Segment color='yellow' attached='top'>
                         <Icon color='yellow' name='pills' />
-                        <span style={{ color: '#FFB100' }}> Allergy : </span> {this.props.patient.allergy} <br />
+                        <span style={{ color: '#FFB100' }}> {patientField.allergy.label} : </span> {this.props.patient.allergy} <br />
                         <Icon color='yellow' name='medkit' />
-                        <span style={{ color: '#FABD08' }}> Privilege : </span> {this.props.patient.privilege}
+                        <span style={{ color: '#FABD08' }}> {patientField.privilege.label} : </span> {this.props.patient.privilege}
                     </Segment>
                 </Segment.Group >
                 <Segment.Group >
                     <Segment color='teal'>
-                        <h4><Icon name='child' />In Case Under15 Year Old</h4>
+                        <h4><Icon name='child' />{groupInfoPatientField.parent.label}</h4>
                         <Divider />
                         <Container>
                             <Grid>
                                 <Grid.Column width={6}>
                                     <Header.Subheader >
-                                        Father Name
+                                        {groupInfoPatientField.fatherName.label}
                     </Header.Subheader>
                                     <Header.Subheader >
-                                        Mother Name
+                                        {groupInfoPatientField.motherName.label}
                     </Header.Subheader>
                                 </Grid.Column>
                                 <Grid.Column width={10}>
@@ -45,30 +46,29 @@ export default class FromAddressPatient extends React.Component {
 
                 <Segment.Group >
                     <Segment color='teal'>
-                        <h4><Icon name='home' />Address</h4>
+                        <h4><Icon name='home' />{groupInfoPatientField.address.label}</h4>
                         <Divider />
                         <Container>
                             <Grid>
                                 <Grid.Column width={6}>
                                     <Header.Subheader >
-                                        Type Of House
-                    </Header.Subheader>
+                                        {patientField.typeofHouse.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Address
-                    </Header.Subheader>
+                                        {patientField.address.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Sub District
-                    </Header.Subheader>
+                                        {patientField.address.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        District
-                    </Header.Subheader>
+                                        {patientField.address.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Province
-                    </Header.Subheader>
+                                        {patientField.address.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Zipcode
-                    </Header.Subheader>
-
+                                        {patientField.address.label}
+                                    </Header.Subheader>
                                 </Grid.Column>
                                 <Grid.Column width={10}>
                                     <Header.Subheader >
@@ -101,42 +101,41 @@ export default class FromAddressPatient extends React.Component {
                 <Segment.Group >
 
                     <Segment color='teal'>
-                        <h4><Icon name='home' />Emergency Address</h4>
+                        <h4><Icon name='home' />{groupInfoPatientField.emerContact.label}</h4>
                         <Divider />
                         <Container>
                             <Grid>
                                 <Grid.Column width={6}>
                                     <Header.Subheader >
-                                        Name
-                    </Header.Subheader>
+                                        {groupInfoPatientField.emerName.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Relationship
-                    </Header.Subheader>
+                                        {patientField.emerRelationship.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Home Number
-                    </Header.Subheader>
+                                        {patientField.emerHomePhonenumber.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Phon Number
-                    </Header.Subheader>
+                                        {patientField.emerMobileNumber.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Type Of House
-                    </Header.Subheader>
+                                        {patientField.emerTypeofHouse.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Address
-                    </Header.Subheader>
+                                        {patientField.emerAddress.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Sub District
-                    </Header.Subheader>
+                                        {patientField.emerSubDistrict.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        District
-                    </Header.Subheader>
+                                        {patientField.emerDistrict.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Province
-                    </Header.Subheader>
+                                        {patientField.emerProvince.label}
+                                    </Header.Subheader>
                                     <Header.Subheader >
-                                        Zipcode
-                    </Header.Subheader>
-
+                                        {patientField.emerZipcode.label}
+                                    </Header.Subheader>
                                 </Grid.Column>
                                 <Grid.Column width={10}>
                                     <Header.Subheader >

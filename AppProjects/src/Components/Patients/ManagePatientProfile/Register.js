@@ -51,7 +51,6 @@ export default class Register extends Component {
     }
 
     componentWillMount = () => {
-        console.log("componentWillMount")
         if (this.props.state){
             if (!this.props.state.patient.registerDate){
                 this.props.state.patient.registerDate = moment().format('LLLL')
@@ -68,7 +67,6 @@ export default class Register extends Component {
     // }
 
     render() {
-        console.log(this.props)
         return (
             <Wrapper>
                 <ContanierTop>
@@ -138,7 +136,7 @@ export default class Register extends Component {
                         <br></br>
 
                        <SegmentForm>
-                            <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
+                            <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: 'red', fontSize: "1rem" }}>{this.props.state.requiredAllParentField ? '*' : ''}</span></h2></Header>
                             <Divider />
                             <ErrorMessage
                                 cardType={this.state.cardType}
@@ -149,7 +147,6 @@ export default class Register extends Component {
                                 patient={this.props.state.patient}
                                 errorText={this.state.errorEmer}
                                 cardType={this.props.state.cardType}
-                                requiredAllParentField={this.props.state.requiredAllParentField}
 
                                 setPatientDetail={this.props.setPatientDetail}
                                 setFieldAndValidate={this.props.setFieldAndValidate}

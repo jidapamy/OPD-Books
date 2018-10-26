@@ -7,6 +7,9 @@ export const groupInfoPatientField = {
     allergyNPrivilege: { label: "Allergy & Privilege" },
     allergy: { label: "Allergy history" },
     privilege: { label: "Privilege" },
+    fatherName : { label : "Father's name" },
+    motherName: { label: "Mother's name" },
+    emerName: { label: "Name" }
 }
 
 
@@ -81,4 +84,15 @@ export const mdrField = {
     recommendation: { label: "Recommendation", variable: "recommendation" },
     appointment: { label: "F/D Date", variable: "appointment" },
     doctorName: { label: "Doctor Name", variable: "doctorName" },
+}
+
+export const pattern = {
+    email: {
+        pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/,
+        label: "Please include an '@' and enter the part following '@' in the email address."
+    },
+    password: {
+        pattern: /^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,20}.+$/,
+        label: "Password must be 8-20 characters long, including a number, and a letter."
+    }
 }

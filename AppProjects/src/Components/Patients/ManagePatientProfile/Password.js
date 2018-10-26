@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import { setErrorMsg, setErrorMsgSplice } from './../../../Services/Utils';
+import { pattern } from "../../../Static/Data/Field"
 
 export default class Password extends Component {
 
@@ -30,9 +31,9 @@ export default class Password extends Component {
         this.props.setPatientDetail('password', '')
         const error = { status: false, message: '' }
         if (this.state.password !== null && this.state.confirmpassword !== null) {
-            if (!this.state.password.match(/^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,20}.+$/)) { 
+            if (!this.state.password.match(pattern.password.pattern)) { 
                 error.status = true;
-                error.message = "Password must be 8-20 characters long, including a number, and a letter."
+                error.message = pattern.password.label
             } else {
                 if (this.state.password === this.state.confirmpassword) {
                     error.status = false;

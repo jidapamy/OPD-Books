@@ -284,7 +284,7 @@ export default class PatientProfile extends Component {
             </BG>
             <Modal style={{ borderRadius: 20 }} size='large' open={this.state.showEditPage} onClose={() => this.setState({ showEditPage : false })}>
               {/* <EditProfile /> */}
-              <Modal.Content >
+              <Modal.Content style={{ paddingBottom: '4rem' }}>
                 <Header as='h1' style={{color: '#31A5BA' }} >
                   Account Settings
                 </Header>

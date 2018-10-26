@@ -8,29 +8,26 @@ export default class PatientParent extends Component {
         return (
             <div>
                 <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p>
-                    <Form.Group >
+                    <Form.Group widths="equal">
                         <Form.Input
                             label={patientField.fatherFirstname.label}
                             placeholder={patientField.fatherFirstname.label}
-                            width={8}
-                        onChange={e => this.props.setFieldAndValidate("fatherFirstname", e.target.value)}
+                            onChange={e => this.props.setFieldAndValidate("fatherFirstname", e.target.value)}
                             error={this.props.errorField.fatherFirstname}
                             value={this.props.patient.fatherFirstname}
                         />
                         <Form.Input
                             label={patientField.fatherLastname.label}
                             placeholder={patientField.fatherLastname.label}
-                            width={8}
                             onChange={e => this.props.setFieldAndValidate("fatherLastname", e.target.value)}
                             error={this.props.errorField.fatherLastname}
                             value={this.props.patient.fatherLastname}
                         />
                     </Form.Group>
-                    <Form.Group style={{ borderRadius: '2rem' }}>
+                <Form.Group widths="equal">
                         <Form.Input
                             label={patientField.motherFirstname.label}
                             placeholder={patientField.motherFirstname.label}
-                            width={8}
                             onChange={e => this.props.setFieldAndValidate("motherFirstname", e.target.value)}
                             error={this.props.errorField.motherFirstname}
                             value={this.props.patient.motherFirstname}
@@ -38,7 +35,6 @@ export default class PatientParent extends Component {
                         <Form.Input
                             label={patientField.motherLastname.label}
                             placeholder={patientField.motherLastname.label}
-                            width={8}
                             onChange={e => this.props.setFieldAndValidate("motherLastname", e.target.value)}
                             error={this.props.errorField.motherLastname}
                             value={this.props.patient.motherLastname}

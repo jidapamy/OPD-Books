@@ -11,21 +11,21 @@ import {
     nationalityData, religionData, statusData, countryData
 } from '../../../Static/Data/FormData'
 import { checkEmail } from "../../../Services/ManagePatientMethod";
-import { patientField } from "../../../Static/Data/Field"
+import { patientField, pattern } from "../../../Static/Data/Field"
 
 export default class InfoPateint extends Component {
     state = { errorText: [] }
 
     validateEmail = (value) => {
-        if (value.match(/^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]/)) {
-            // ^[A-Za-z0-9$@$!%*#?&]+@+[A-Za-z0-9$@$!%*#?&]+.[A-Za-z]{2,64}
+        if (value.match(pattern.email.pattern)) {
+            // /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/
             this.props.errorField.email = false
             const result = setErrorMsgSplice('email', this.props.errorText)
             this.props.setField('errorInfo', result)
             return true;
         } else {
             this.props.errorField.email = true
-            const result = setErrorMsg('email', `Please include an '@' and enter the part following '@' in the email address. '${value}' is incomplete. `, this.props.errorText)
+            const result = setErrorMsg('email', pattern.email.label , this.props.errorText)
             this.props.setField('errorInfo', result)
             return false;
         }
@@ -154,171 +154,9 @@ export default class InfoPateint extends Component {
                             value={this.props.patient.bloodgroup}
                         />
                     </Form.Group>
-                    <Form.Group widths="equal">
-                        <Form.Field
-                            control={Dropdown}
-                            search
-                            selection
-                            allowAdditions
-                            onAddItem={(e, { value }) => religionData.push({ key: value, text: value, value: value })}
-                            additionLabel='other : '
-                            label={patientField.religion.label}
-                            options={religionData}
-                            placeholder='- Select -'
-                            onChange={(e, { value }) => this.props.setFieldAndValidate('religion', value)}
-                            required
-                            error={this.props.errorField ? this.props.errorField.religion : false}
-                            value={this.props.patient.religion}
-                        />
-                        <Form.Field
-                            control={Dropdown}
-                            search
-                            selection
-                            allowAdditions
-                            onAddItem={(e, { value }) => nationalityData.push({ key: value, text: value, value: value })}
-                            additionLabel='other : '
-                            control={Select}
-                            label={patientField.nationality.label}
-                            options={nationalityData}
-                            placeholder='- Select -'
-                            onChange={(e, { value }) => this.props.setFieldAndValidate('nationality', value)}
-                            required
-                            error={this.props.errorField ? this.props.errorField.nationality : false}
-                            value={this.props.patient.nationality}
-                        />
-                        <Form.Field
-                            control={Dropdown}
-                            search selection
-                            wrapSelection={false}
-                            options={countryData}
-                            placeholder='- Select -'
-                            label={patientField.country.label}
-                            value={this.props.patient.country}
-                            onChange={(e, { value }) => this.props.setFieldAndValidate('country', value)}
-                            required
-                        />
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Field
-                            control={Select}
-                            label={patientField.status.label}
-                            options={statusData}
-                            placeholder='- Select -'
-                            width={4}
-                            onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
-                            required
-                            error={this.props.errorField ? this.props.errorField.status : false}
-                            value={this.props.patient.status}
-                        />
-                        <Form.Input
-                            label={patientField.occupartion.label}
-                            placeholder={patientField.occupartion.label}
-                            width={4}
-                            onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
-                            value={this.props.patient.occupartion}
-                        />
-                        < PhoneNumber
-                            setPatientDetail={this.props.setPatientDetail}
-                            errorText={this.props.errorText}
-                            errorField={this.props.errorField}
-                            setField={this.props.setField}
-                            cardType={this.props.cardType}
-                            field='info'
-                            width={4}
-                            setFieldAndValidate={this.props.setFieldAndValidate}
-                            patient={this.props.patient}
-                        />
-                    </Form.Group>
                 </div>
             )
         }
-        return (
-            <div>
-                <Form.Group widths="equal">
-                    <Form.Input
-                        label={patientField.congenitalDisease.label}
-                        placeholder={patientField.congenitalDisease.label}
-                        required
-                        error={this.props.errorField ? this.props.errorField.congenitalDisease : false}
-                        onChange={e => this.props.setFieldAndValidate('congenitalDisease', e.target.value)}
-                        value={this.props.patient.congenitalDisease}
-                    />
-                    <Form.Field
-                        control={Dropdown}
-                        search
-                        selection
-                        allowAdditions
-                        onAddItem={(e, { value }) => religionData.push({ key: value, text: value, value: value })}
-                        additionLabel='other : '
-                        label={patientField.religion.label}
-                        options={religionData}
-                        placeholder='- Select -'
-                        onChange={(e, { value }) => this.props.setFieldAndValidate('religion', value)}
-                        required
-                        error={this.props.errorField ? this.props.errorField.religion : false}
-                        value={this.props.patient.religion}
-                    />
-                    <Form.Field
-                        control={Dropdown}
-                        search
-                        selection
-                        allowAdditions
-                        onAddItem={(e, { value }) => nationalityData.push({ key: value, text: value, value: value })}
-                        additionLabel='other : '
-                        control={Select}
-                        label={patientField.nationality.label}
-                        options={nationalityData}
-                        placeholder='- Select -'
-                        onChange={(e, { value }) => this.props.setFieldAndValidate('nationality', value)}
-                        required
-                        error={this.props.errorField ? this.props.errorField.nationality : false}
-                        value={this.props.patient.nationality}
-                    />
-                </Form.Group>
-                <Form.Group widths="equal">
-                    <Form.Field
-                        control={Dropdown}
-                        search selection
-                        wrapSelection={false}
-                        options={countryData}
-                        placeholder='- Select -'
-                        label={patientField.country.label}
-                        value={this.props.patient.country}
-                        onChange={(e, { value }) => this.props.setFieldAndValidate('country', value)}
-                        required
-                    />
-                    <Form.Field
-                        control={Select}
-                        label={patientField.status.label}
-                        options={statusData}
-                        placeholder='- Select -'
-                        onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
-                        required
-                        error={this.props.errorField ? this.props.errorField.status : false}
-                        value={this.props.patient.status}
-                    />
-                    <Form.Input
-                        label={patientField.occupartion.label}
-                        placeholder={patientField.occupartion.label}
-                        onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
-                        value={this.props.patient.occupartion}
-                    />
-                </Form.Group>
-                <Form.Group widths="equal">
-                    < PhoneNumber
-                        setPatientDetail={this.props.setPatientDetail}
-                        errorText={this.props.errorText}
-                        errorField={this.props.errorField}
-                        setField={this.props.setField}
-                        cardType={this.props.cardType}
-                        field='info'
-                        width={null}
-                        setFieldAndValidate={this.props.setFieldAndValidate}
-                        patient={this.props.patient}
-                    />
-                </Form.Group>
-            </div>
-        )
     }
 
     render() {
@@ -367,6 +205,78 @@ export default class InfoPateint extends Component {
                 </Form.Group>
 
                 {this.showTag2()}
+                <Form.Group widths="equal">
+                    <Form.Field
+                        control={Dropdown}
+                        search
+                        selection
+                        allowAdditions
+                        onAddItem={(e, { value }) => religionData.push({ key: value, text: value, value: value })}
+                        additionLabel='other : '
+                        label={patientField.religion.label}
+                        options={religionData}
+                        placeholder='- Select -'
+                        onChange={(e, { value }) => this.props.setFieldAndValidate('religion', value)}
+                        required
+                        error={this.props.errorField ? this.props.errorField.religion : false}
+                        value={this.props.patient.religion}
+                    />
+                    <Form.Field
+                        control={Dropdown}
+                        search
+                        selection
+                        allowAdditions
+                        onAddItem={(e, { value }) => nationalityData.push({ key: value, text: value, value: value })}
+                        additionLabel='other : '
+                        control={Select}
+                        label={patientField.nationality.label}
+                        options={nationalityData}
+                        placeholder='- Select -'
+                        onChange={(e, { value }) => this.props.setFieldAndValidate('nationality', value)}
+                        required
+                        error={this.props.errorField ? this.props.errorField.nationality : false}
+                        value={this.props.patient.nationality}
+                    />
+                    <Form.Field
+                        control={Dropdown}
+                        search selection
+                        wrapSelection={false}
+                        options={countryData}
+                        placeholder='- Select -'
+                        label={patientField.country.label}
+                        value={this.props.patient.country}
+                        onChange={(e, { value }) => this.props.setFieldAndValidate('country', value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group widths="equal">
+                    <Form.Field
+                        control={Select}
+                        label={patientField.status.label}
+                        options={statusData}
+                        placeholder='- Select -'
+                        onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
+                        required
+                        error={this.props.errorField ? this.props.errorField.status : false}
+                        value={this.props.patient.status}
+                    />
+                    <Form.Input
+                        label={patientField.occupartion.label}
+                        placeholder={patientField.occupartion.label}
+                        onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
+                        value={this.props.patient.occupartion}
+                    />
+                    < PhoneNumber
+                        setPatientDetail={this.props.setPatientDetail}
+                        errorText={this.props.errorText}
+                        errorField={this.props.errorField}
+                        setField={this.props.setField}
+                        cardType={this.props.cardType}
+                        field='info'
+                        setFieldAndValidate={this.props.setFieldAndValidate}
+                        patient={this.props.patient}
+                    />
+                </Form.Group>
             </div>
         )
     }

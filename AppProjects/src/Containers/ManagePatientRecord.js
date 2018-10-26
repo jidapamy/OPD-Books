@@ -186,7 +186,6 @@ export default class ManagePatientRecord extends Component {
   ]
 
   setField = (field, value) => {
-    console.log("setField", field, value)
     this.setState({ [field]: value })
   }
 
@@ -335,7 +334,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   validateEdit = async (group) => {
-    console.log("validateEdit")
     this.setState({ editSuccess: '' })
     let patient = { ...this.props.patient}
     let arr = [];
@@ -364,7 +362,6 @@ export default class ManagePatientRecord extends Component {
           }
         }
       })
-      console.log("edit", patient)
 
       let message = ""
       if (arr.length > 0) {
@@ -382,7 +379,6 @@ export default class ManagePatientRecord extends Component {
         }
         return false
       }
-      console.log("validateEdit return true")
       return this.showPopupConfirmEdit(patient, group);
     }
     return false
@@ -397,9 +393,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirmEdit = (patient, group) => {
-    console.log("popup", JSON.stringify(this.state.patient))
-    console.log("this.state.patient",this.state.patient)
-    console.log("patient", patient)
     swal({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -427,7 +420,6 @@ export default class ManagePatientRecord extends Component {
                   ).then(res => {
                     if(res){
                       this.props.setField("patient", patient)
-                      console.log("showPopupConfirmEdit return true")
                       this.setState({ editSuccess: group })
                       return true
                     }
@@ -440,7 +432,7 @@ export default class ManagePatientRecord extends Component {
                     showConfirmButton: false,
                     showCloseButton: true,
                   });
-                  this.setState({ editSuccess: group })
+                  // this.setState({ editSuccess: group })
                 }
               }
               return false
@@ -453,7 +445,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   setFieldAndValidate = (field, value) => {
-    console.log("setFieldAndValidate", this.state, this.props)
     this.setPatientDetail(field, value)
     this.state.errorField[field] = false
     this.setState({ reState: '' })
@@ -470,7 +461,6 @@ export default class ManagePatientRecord extends Component {
   // }
 
   componentDidMount = () => {
-    console.log("componentDidMount", this.props)
     if (this.props.patient) {
       this.setState({
         patient: { ...this.props.patient },
@@ -480,7 +470,6 @@ export default class ManagePatientRecord extends Component {
 
 
   render() {
-    console.log("MANAGE", this.state, this.props)
     if (this.props.editStatus) {
       return (
         <EditProfile

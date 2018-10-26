@@ -1,6 +1,6 @@
 import axios from "../Lib/Axois"
 import moment from 'moment';
-
+import { calculateAge } from "./Utils" 
 export const insertPatient = async (data) => {
   let res = await axios.post('/patients/insert', data)
   return res.data
@@ -83,15 +83,4 @@ export const forgotPasswordVerify = async (citizenId,dob) => {
   console.log("forgotPasswordVerify")
   let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob })
   return res.data
-}
-
-const calculateAge = (dob) => {
-  let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
-  let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
-  let tmp = year + " years"
-  if (year === 0) {
-    month = month
-    tmp = year + " years " + month + " month"
-  }
- return tmp
 }

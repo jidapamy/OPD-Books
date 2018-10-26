@@ -98,7 +98,7 @@ export default class HomeAddress extends Component {
         
         return (
             <div>
-                <Form.Group >
+                <Form.Group widths="equal">
                     <Form.Field
                         control={Dropdown}
                         search
@@ -109,7 +109,6 @@ export default class HomeAddress extends Component {
                         label={patientField.typeofHouse.label}
                         options={typesOfHousingData}
                         placeholder='- Select -'
-                        width={6}
                         onChange={(e, { value }) => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'typeofHouse' : 'emerTypeofHouse',value)
                             this.setField(this.props.field === 'home' ? 'typeofHouse' : 'emerTypeofHouse', value)
@@ -121,7 +120,6 @@ export default class HomeAddress extends Component {
                     <Form.Input
                         label={patientField.address.label}
                         placeholder='House no/ Street address'
-                        width={6}
                         onChange={e => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'address' : 'emerAddress', e.target.value)
                             this.setField(this.props.field === 'home' ? 'address' : 'emerAddress', e.target.value)
@@ -137,7 +135,6 @@ export default class HomeAddress extends Component {
                         options={this.state.provinces}
                         label={patientField.province.label}
                         placeholder='- Select -'
-                        width={6}
                         onChange={(e, value) => this.changeProvince(value)}
                         required={this.props.field === 'home' || this.props.required}
                         value={this.props.emerProvince != undefined ? this.props.emerProvince : province}
@@ -145,7 +142,7 @@ export default class HomeAddress extends Component {
                         error={this.props.field === 'home' ? this.props.errorField.province : this.props.errorField.emerProvince}
                     />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group widths="equal">
                     <Form.Field
                         control={Dropdown}
                         search selection
@@ -153,7 +150,6 @@ export default class HomeAddress extends Component {
                         options={this.state.amphurs}
                         label={patientField.district.label}
                         placeholder='- Select -'
-                        width={6}
                         onChange={(e, value) => this.changeAmphur(value)}
                         required={this.props.field === 'home' || this.props.required}
                         value={this.props.emerDistrict != undefined ? this.props.emerDistrict : district}
@@ -167,7 +163,6 @@ export default class HomeAddress extends Component {
                         label={patientField.subDistrict.label}
                         options={this.state.districts}
                         placeholder='- Select -'
-                        width={6}
                         onChange={(e, value) => this.changeDistrict(value)}
                         required={this.props.field === 'home' || this.props.required}
                         value={this.props.emerSubDistrict != undefined ? this.props.emerSubDistrict : subDistrict}
@@ -177,7 +172,6 @@ export default class HomeAddress extends Component {
                     <Form.Input
                         label={patientField.zipcode.label}
                         placeholder={patientField.zipcode.label}
-                        width={6}
                         onChange={e => {
                             this.props.setFieldAndValidate(this.props.field === 'home' ? 'zipcode' : 'emerZipcode', e.target.value)
                             this.setState({ zipcode: e.target.value })
