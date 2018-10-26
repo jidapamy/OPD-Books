@@ -13,7 +13,7 @@ const loginCtr = async (req, res) => {
 
 const sendEmailCtr = async (req, res) => {
     // if (isPatient(req.body.citizenId)) {
-    const result = await sendEmail(req.body.email)
+    const result = await sendEmail(req.body)
     res.send(result)
     return;
     // }

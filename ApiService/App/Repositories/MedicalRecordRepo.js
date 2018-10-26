@@ -2,6 +2,7 @@ const { web3, contract, defaultAccount } = require('../Lib/Web3')
 const { convertString, convertToAscii, bindData, unlockAccount, lockAccount } = require('../Services/Utils')
 const moment = require("moment");
 const { medicalRecordScheme } = require("../Models/MedicalRecordModel")
+const { patientScheme } = require("../Models/PatientModel")
 const { sendEmail } = require("./AuthenticationRepo")
 const msg = require("../Services/Message")
 
@@ -77,9 +78,13 @@ const setMedicalRecordForDoctor = async medicalRecord => {
             defaultAccount
         );
 
-        let email = contract.getEmail(convertString(medicalRecord.patientCitizenId))
-        await sendEmail(convertToAscii(email))
+        let patientNameAndEmail = contract.getPatientNameAndEmail(convertString(medicalRecord.patientCitizenId))
+        const combindedData = bindData(patientScheme, [patientNameAndEmail], 'patientAndEmail')
 
+        getMedicalRecordForNurse(medicalRecord.medicalRecordId).then(async(res) => {
+            let tmp = { ...res.data, ...medicalRecord, ...combindedData }
+            await sendEmail(tmp)
+        })
 
         // console.log("Success")
         lockAccount()
@@ -110,6 +115,7 @@ const getMedicalRecordForNurse = async (medicalRecordId) => {
     let medicalRecord = { ...combindedNurseData, ...combindedInfoData}
     medicalRecord.medicalRecordId = medicalRecordId;
 
+    console.log("getMedicalRecordForNurse", medicalRecord)
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };
 
