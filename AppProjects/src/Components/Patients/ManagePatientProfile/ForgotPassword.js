@@ -29,8 +29,8 @@ import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVe
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 
 const Wrapper = styled.div`
-  background: url(${BackgroundImage}) no-repeat center fixed;
-  background-size: 100% 100%;
+    background: url('${BackgroundImage}') no-repeat center fixed;
+    background-size: 100% 100%;
 `;
 
 const DateBirthday = styled(DatePicker)`
@@ -56,14 +56,14 @@ export default class ForgotPassword extends Component {
     state = {
         citizenId: '',
         newPassword: '',
-        newPasswordConfirm:'',
+        newPasswordConfirm: '',
         dob: null,
         step: 1,
         openOTP: false,
         requestId: "",
         mobileNumber: "",
         pin: "",
-        loader:false
+        loader: false
     }
 
     DateInput = () => {
@@ -260,7 +260,6 @@ export default class ForgotPassword extends Component {
                     body > div,
                     body > div > div,
                     body > div > div > div.login-form {
-                        height: 100%;
                     }
                 `}</style>
 
@@ -311,7 +310,9 @@ export default class ForgotPassword extends Component {
                                                 </Form.Group>
                                                 <Form.Group style={style.twoColumnButton}>
                                                     <Button style={style.ButtonCancel} onClick={() => this.props.history.push("/signin")}><Icon name='arrow circle left' />&nbsp;&nbsp;Back Home</Button>
-                                                    <Button style={style.ButtonNext} onClick={() => this.nextStep(1)}>Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
+                                                    {/* <Button style={style.ButtonNext} onClick={() => this.nextStep(1)}>Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button> */}
+                                                    <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
+
                                                 </Form.Group>
                                             </Form>
                                             <br />
@@ -347,16 +348,16 @@ export default class ForgotPassword extends Component {
                                         <Grid.Column>
                                             <Form style={{ paddingLeft: '15.5%' }}>
                                                 <Form.Group>
-                                                    <Input 
-                                                        type="password" 
-                                                        icon='lock' 
-                                                        iconPosition='left' 
-                                                        placeholder='New Password ...' 
-                                                        style={style.inputForgot} 
-                                                        onChange={(e)=>this.setState({ newPassword : e.target.value})}
+                                                    <Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='New Password ...'
+                                                        style={style.inputForgot}
+                                                        onChange={(e) => this.setState({ newPassword: e.target.value })}
                                                         value={this.state.newPassword}
                                                     />
-                                                        <br />
+                                                    <br />
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Input
@@ -365,7 +366,7 @@ export default class ForgotPassword extends Component {
                                                         iconPosition='left'
                                                         placeholder='New Password Confirm ...'
                                                         style={style.inputForgot}
-                                                        onChange={(e) => this.setState({ newPasswordConfirm : e.target.value })}
+                                                        onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
                                                         value={this.state.newPasswordConfirm}
                                                     />
                                                 </Form.Group>

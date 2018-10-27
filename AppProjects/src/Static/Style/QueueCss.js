@@ -785,6 +785,7 @@ export const style = {
         border: '0px solid',
         // backgroundColor:'#000000',
         height: '530px',
+        marginBottom: '8%',
 
     }
     ,
