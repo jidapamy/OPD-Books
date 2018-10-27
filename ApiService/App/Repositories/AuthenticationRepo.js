@@ -1,5 +1,7 @@
 const nexmo = require("../Lib/Nexmo")
 const transporter = require("../Lib/Email")
+const handlebars = require('handlebars');
+var fs = require('fs');
 
 // OTP
 const requestOTP = (phoneNumber) => new Promise((resolve, reject) => {
@@ -47,21 +49,26 @@ const cancelOTP = (requestId) => new Promise((resolve, reject) => {
     });
 })
 
-
-//Email 
-
-const createEmail = (email) => new Promise((resolve, reject) => {
+const createEmail = (data) => new Promise((resolve, reject) => {
+    console.log("createEmail")
+    const html = require("./mailWeb")
+    var template = handlebars.compile(html(data));
+    var replacements = {
+        username: "OPD BOOKS"
+    };
+    var htmlToSend = template(replacements);
     let mailOptions = {
-        from: '"Fred Foo 👻" <opdbooksblockchain@gmail.com>', // sender address
-        to: email, // list of receivers
+        from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
+        to: data.email, // list of receivers
         subject: 'Your medical record is saved successfully.', // Subject line
         text: 'Your medical record is saved successfully.!!', // plain text body
-        html: "<b>successfully!!</b> <a href='www.opdbooks.tk'>OPD Books</a>" // html body
+        html: htmlToSend // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            reject({ message: err })
+            console.log(error)
+            reject({ message: error })
             return
         }
         console.log('Message sent: %s', info.messageId);
@@ -73,14 +80,106 @@ const createEmail = (email) => new Promise((resolve, reject) => {
     });
 });
 
-const sendEmail = async(email) => {
+// readHTMLFile('./index.html', function (err, html) {
+//     var template = handlebars.compile(html);
+//     var replacements = {
+//         username: "OPD BOOKS"
+//     };
+//     var htmlToSend = template(replacements);
+//     var mailOptions = {
+//         from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
+//         to: 'thailand_hka@hotmail.com', // list of receivers
+//         subject: 'MedicalRecord', // Subject line
+//         text: 'Hello world?', // plain text body
+//         html: htmlToSend
+//     };
+//     transporter.sendMail(mailOptions, function (error, response) {
+//         if (error) {
+//             console.log(error);
+//             // callback(error);
+//         }
+//     });
+// });
+
+//Email 
+
+// const createEmail = (email) => new Promise('./index.html', function (err, html) {
+//     console.log("createEmail",email)
+//     var template = handlebars.compile(html);
+//     var replacements = {
+//         username: "OPD BOOKS"
+//     };
+//     var htmlToSend = template(replacements);
+//     var mailOptions = {
+//         from: '"OPD BOOKS" <opdbooksblockchain@gmail.com>', // sender address
+//         to: email, // list of receivers
+//         subject: 'MedicalRecord', // Subject line
+//         text: 'Hello world?', // plain text body
+//         html: htmlToSend
+//     };
+//     transporter.sendMail(mailOptions, function (error, response) {
+//         if (error) {
+//             reject({ message: err })
+//             return
+//         }
+//         console.log('Message sent: %s', info.messageId);
+//         // Preview only available when sending through an Ethereal account
+//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+//         resolve({ message: 'send email success!' })
+//         return
+
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const createEmail = (email) => new Promise((resolve, reject) => {
+//     let mailOptions = {
+//         from: '"Fred Foo 👻" <opdbooksblockchain@gmail.com>', // sender address
+//         to: email, // list of receivers
+//         subject: 'Your medical record is saved successfully.', // Subject line
+//         text: 'Your medical record is saved successfully.!!', // plain text body
+//         html: "<b>successfully!!</b> <a href='www.opdbooks.tk'>OPD Books</a>" // html body
+//     };
+
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//             reject({ message: err })
+//             return
+//         }
+//         console.log('Message sent: %s', info.messageId);
+//         // Preview only available when sending through an Ethereal account
+//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+//         resolve({ message: 'send email success!' })
+//         return
+
+//     });
+// });
+
+const sendEmail = async (data) => {
     try {
-        const result = await createEmail(email)
+        console.log("sendEmail",data)
+        const result = await createEmail(data)
         return ({ status: true, message: "SUCCESS" })
     } catch (error) {
         throw new Error(error)
     }
-   
+
 }
 
 

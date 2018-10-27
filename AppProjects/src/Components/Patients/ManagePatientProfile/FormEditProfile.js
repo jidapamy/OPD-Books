@@ -1,13 +1,19 @@
 import React from "react";
 import {
-    Segment, Icon, Form, Input, Transition, Dropdown, Select, Menu, Container, Button, Grid
+    Segment, Icon, Form, Input, Transition, Dropdown, Select, Menu, Container, Button, Grid, Label
 } from "semantic-ui-react";
 import swal from 'sweetalert2';
 import {
     titleNameChildData, genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
 } from '../../../Static/Data/FormData'
-import { patientField, mdrField } from "../../../Static/Data/Field"
+import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
+import InfoPatient from '../../../Components/Patients/ManagePatientProfile/InfoPatient';
+import HomeAddress from '../../../Components/Patients/ManagePatientProfile/HomeAddress'
+import EmergencyContact from '../../../Components/Patients/ManagePatientProfile/EmergencyContact'
+import PatientParent from '../../../Components/Patients/ManagePatientProfile/PatientParent'
+import Allergy from '../../../Components/Patients/ManagePatientProfile/Allergy'
+import ErrorMessage from '../../../Components/Patients/ManagePatientProfile/ErrorMessage'
 
 const provincesData = require('../../../Static/Data/Provinces')
 
@@ -37,13 +43,13 @@ const headerSetting = {
 export default class EditProfile extends React.Component {
     state = {
         editprofile: false,
-        editAdress: false,
+        editAddress: false,
         editEmp: false,
         underAge: false,
         allergy: false,
         open: false,
-        ChangePassword:false,
-        ChangeEmail: false,
+        changePassword:false,
+        changeEmail: false,
         editEmail:false,
 
         
@@ -77,26 +83,44 @@ export default class EditProfile extends React.Component {
         })
     }
 
-    handleEditprofile = () => this.setState({ editprofile: !this.state.editprofile })
-    handleEditAdress = () => this.setState({ editAdress: !this.state.editAdress })
-    handleEditEmp = () => this.setState({ editEmp: !this.state.editEmp })
-    handleUnderAge = () => this.setState({ underAge: !this.state.underAge })
-    handleAllergy = () => this.setState({ allergy: !this.state.allergy })
-    handleChangePassword = () => this.setState({ ChangePassword: !this.state.ChangePassword })
-    handleChangeEmail = () => this.setState({ ChangeEmail: !this.state.ChangeEmail })
-    handleActiveEditEmail = () => this.setState({ editEmail: !this.state.editEmail })
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    // handleEditprofile = () => this.setState({ editprofile: !this.state.editprofile })
+    // handleEditAdress = () => this.setState({ editAdress: !this.state.editAdress })
+    // handleEditEmp = () => this.setState({ editEmp: !this.state.editEmp })
+    // handleUnderAge = () => this.setState({ underAge: !this.state.underAge })
+    // handleAllergy = () => this.setState({ allergy: !this.state.allergy })
+    // handlechangePassword = () => this.setState({ changePassword: !this.state.changePassword })
+    // handlechangeEmail = () => this.setState({ changeEmail: !this.state.changeEmail })
+    // handleActiveEditEmail = () => this.setState({ editEmail: !this.state.editEmail })
+    // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+    setField = ( field,value ) => {
+        this.setState({ [field] : value })
+    }
 
     render() {
-        const { editprofile, editAdress, editEmp, underAge, allergy, ChangePassword, ChangeEmail, editEmail } = this.state
+        const { editprofile, editAddress, editEmp, underAge, allergy, changePassword, changeEmail, editEmail } = this.state
         return (
             <div>
                 <h4 style={headerSetting}>General Account Setting</h4>
-                <Segment style={editprofile ? itemActiveStyle : itemStyle} vertical onClick={ () => this.handleEditprofile()}> 
-                    <h4 ><Icon name='file alternate outline' />Profile <Icon style={{ float: 'right' }} name={editprofile ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={editprofile ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("editprofile", !this.state.editprofile)}> 
+                    <h4 ><Icon name='file alternate outline' />{groupInfoPatientField.info.label}<Icon style={{ float: 'right' }} name={editprofile ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {editprofile && <Segment style={elimentStyle} vertical >
                         <Form>
+                        <InfoPatient 
+                            patient={this.props.patient}
+                            currentDate={this.state.currentDate}
+                            // setPatientDetail={this.setPatientDetail}
+                            // errorText={this.state.errorInfo}
+                            setField={this.setField}
+                            // cardType={this.state.cardType}
+                            // age={this.state.age}
+                            // errorField={this.state.errorField}
+                            // setFieldAndValidate={this.setFieldAndValidate}
+                            // requiredAllParentField={this.state.requiredAllParentField}
+                        />
+                        </Form>
+                        {/* <Form>
                             <Form.Group widths='equal' >
                                 <Form.Input fluid
                                     style={{ border: '0 px' }}
@@ -145,7 +169,7 @@ export default class EditProfile extends React.Component {
                                     options={
                                         this.props.requiredAllParentField ? titleNameChildData : titleNameParentData
                                     }
-                                    onChange={(e, { value }) => this.props.setFieldAndValidate('nameTitle', value)}
+                                    onChange={(e, { value }) => this.props.setFieldAndValidate('nametitle', value)}
                                     required
                                     value={this.props.patient.nametitle}
                                 />
@@ -247,14 +271,14 @@ export default class EditProfile extends React.Component {
                                     value={this.props.patient.mobileNumber}
                                 />
                             </Form.Group>
-                        </Form>
+                        </Form> */}
                     </Segment>}
                 </Transition.Group>
 
-                <Segment style={editAdress ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleEditAdress()}>
-                    <h4><Icon name='home' />Adress<Icon style={{ float: 'right' }} name={editAdress ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={editAddress ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("editAddress", !this.state.editAddress)}>
+                    <h4><Icon name='home' />{groupInfoPatientField.address.label}<Icon style={{ float: 'right' }} name={editAddress ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
-                    {editAdress &&
+                    {editAddress &&
                         <Segment style={elimentStyle} vertical>
                             <Form>
                                 <Form.Group widths='equal'>
@@ -306,7 +330,9 @@ export default class EditProfile extends React.Component {
                 </Transition.Group>
 
 
-                <Segment style={editEmp ? itemActiveStyle : itemStyle} vertical onClick={this.handleEditEmp}><h4><Icon name='home' />AdressEmp<Icon style={{ float: 'right' }} name={editEmp ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={editEmp ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("editEmp", !this.state.editEmp)}>
+                    <h4><Icon name='home' />{groupInfoPatientField.emerContact.label}<Icon style={{ float: 'right' }} name={editEmp ? 'angle down' : 'angle left'} /></h4>
+                </Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {editEmp &&
                         <Segment style={elimentStyle} vertical>
@@ -408,11 +434,15 @@ export default class EditProfile extends React.Component {
 
 
 
-                <Segment style={underAge ? itemActiveStyle : itemStyle} vertical onClick={this.handleUnderAge}><h4><Icon name='child' />under 15 years old<Icon style={{ float: 'right' }} name={underAge ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={underAge ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("underAge", !this.state.underAge)}> 
+                <h4><Icon name='child' />{groupInfoPatientField.parent.label}<Icon style={{ float: 'right' }} name={underAge ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {underAge &&
                         <Segment style={elimentStyle} vertical>
                             <Form>
+                                <Form.Group>
+                                <p style={{ color: '#277e8e', paddingLeft: '0.5em', paddingRight: '0.5em', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p>
+                                </Form.Group>
                                 <Form.Group widths='equal'>
                                     <Form.Field
                                         id='form-input-control-first-name'
@@ -445,14 +475,14 @@ export default class EditProfile extends React.Component {
                         </Segment >}
                 </Transition.Group>
 
-                <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={this.handleAllergy}><h4><Icon name='pills' />Allergy<Icon style={{ float: 'right' }} name={allergy ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("allergy", !this.state.allergy)}> 
+                    <h4><Icon name='pills' />{groupInfoPatientField.allergyNPrivilege.label}<Icon style={{ float: 'right' }} name={allergy ? 'angle down' : 'angle left'} /></h4>
+                    </Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {allergy &&
                         <Segment style={elimentStyle} vertical>
                             <Form>
-                                <h3 >Do you have a history of allergies<span style={{ color: 'red' }}> * </span></h3 >
-
-
+                                <h3 >{groupInfoPatientField.allergy.label}<span style={{ color: 'red' }}> * </span></h3 >
                                 <Form.Group inline>
                                     <Form.Radio
                                         label=' No '
@@ -483,7 +513,7 @@ export default class EditProfile extends React.Component {
 
 
 
-                                <h3>สิทธิในการรักษา<span style={{ color: 'red' }}>*</span></h3>
+                                <h3>{groupInfoPatientField.privilege.label}<span style={{ color: 'red' }}>*</span></h3>
                                 <Form.Group inline>
                                     <Form.Radio
                                         value='government officer'
@@ -545,10 +575,10 @@ export default class EditProfile extends React.Component {
                         </Segment >}
                 </Transition.Group> 
                 <br /><h3 style={headerSetting}>Security Setting</h3>
-                <Segment style={ChangeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleChangeEmail()}>
-                    <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={ChangeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("changeEmail", !this.state.changeEmail)}> 
+                    <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={changeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {ChangeEmail && <Segment style={elimentStyle} vertical >
+                    {changeEmail && <Segment style={elimentStyle} vertical >
                         <Form text >
                             <Form.Group widths={6}>
                             <Form.Input
@@ -564,7 +594,7 @@ export default class EditProfile extends React.Component {
                                 <Form.Button 
                                     label='&nbsp;' 
                                     circular icon='edit' 
-                                    onClick={() => this.handleActiveEditEmail()} 
+                                    onClick={() => this.setField("editEmail", !this.state.editEmail)} 
                                     style={{ color: '#31A5BA',backgroundColor:'#FFF',fontSize:16 }}
                                 />
                             </Form.Group>
@@ -593,10 +623,10 @@ export default class EditProfile extends React.Component {
                         </Form>
                     </Segment>}
                 </Transition.Group>
-                <Segment style={ChangePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.handleChangePassword()}>
-                    <h4 ><Icon name='lock' />Change Password <Icon style={{ float: 'right' }} name={ChangePassword ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Segment style={changePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("changePassword", !this.state.changePassword)}> 
+                    <h4 ><Icon name='lock' />Change Password <Icon style={{ float: 'right' }} name={changePassword ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {ChangePassword && <Segment style={elimentStyle} vertical >
+                    {changePassword && <Segment style={elimentStyle} vertical >
                         <Form>
 
                                 <Form.Input

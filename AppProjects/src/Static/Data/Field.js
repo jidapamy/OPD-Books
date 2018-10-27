@@ -1,9 +1,24 @@
+export const groupInfoPatientField = {
+    info: { label: "Personal Information"},
+    address: { label: "Home Address" },
+    emerContact: { label: "Emergency Contact" },
+    parent: { label: "Parent's Patient" },
+    descriptionParent: { label: "This group required fill for patient under 15 years old" },
+    allergyNPrivilege: { label: "Allergy & Privilege" },
+    allergy: { label: "Allergy history" },
+    privilege: { label: "Privilege" },
+    fatherName : { label : "Father's name" },
+    motherName: { label: "Mother's name" },
+    emerName: { label: "Name" }
+}
+
+
 export const patientField = {
     address: { label: "Address", variable: "address" },
     age: { label: "Age", variable: "age" },
     allergy: { label: "Allergy", variable: "allergy" },
     bloodgroup: { label: "Blood Group", variable: "bloodgroup" },
-    citizenId: { label: "Citizen ID", variable: "citizenId" },
+    citizenId: { label: "Citizen Id/Passport", variable: "citizenId" },
     congenitalDisease: { label: "Congenital Disease", variable: "congenitalDisease" },
     country: { label: "Country", variable: "country" },
     district: { label: "District", variable: "district" },
@@ -11,9 +26,9 @@ export const patientField = {
     email: { label: "Email", variable: "email" },
     emerAddress: { label: "Address", variable: "emerAddress" },
     emerDistrict: { label: "District", variable: "emerDistrict" },
-    emerFirstname: { label: "Firstname", variable: "emerFirstname" },
+    emerFirstname: { label: "First name", variable: "emerFirstname" },
     emerHomePhonenumber: { label: "Home phone number", variable: "emerHomePhonenumber" },
-    emerLastname: { label: "Lastname", variable: "emerLastname" },
+    emerLastname: { label: "Last name", variable: "emerLastname" },
     emerMobileNumber: { label: "Phone number", variable: "emerMobileNumber" },
     emerProvince: { label: "Province", variable: "emerProvince" },
     emerRelationship: { label: "Relationship", variable: "emerRelationship" },
@@ -21,15 +36,15 @@ export const patientField = {
     emerTitle: { label: "Name Title", variable: "emerTitle" },
     emerTypeofHouse: { label: "Type of house", variable: "emerTypeofHouse" },
     emerZipcode: { label: "Zipcode", variable: "emerZipcode" },
-    fatherFirstname: { label: "Firstname", variable: "fatherFirstname" },
-    fatherLastname: { label: "Lastname", variable: "fatherLastname" },
-    firstname: { label: "Firstname", variable: "firstname" },
+    fatherFirstname: { label: "Father's first name", variable: "fatherFirstname" },
+    fatherLastname: { label: "Father's last name", variable: "fatherLastname" },
+    firstname: { label: "First name", variable: "firstname" },
     gender: { label: "Gender", variable: "gender" },
     homePhonenumber: { label: "Home phone number", variable: "homePhonenumber" },
-    lastname: { label: "Lastname", variable: "lastname" },
+    lastname: { label: "Last name", variable: "lastname" },
     mobileNumber: { label: "Phone number", variable: "mobileNumber" },
-    motherFirstname: { label: "Firstname", variable: "motherFirstname" },
-    motherLastname: { label: "Lastname", variable: "motherLastname" },
+    motherFirstname: { label: "Mother's first name", variable: "motherFirstname" },
+    motherLastname: { label: "Mother's first name", variable: "motherLastname" },
     nametitle: { label: "Name Title", variable: "nametitle" },
     nationality: { label: "Nationality", variable: "nationality" },
     occupartion: { label: "Occupartion", variable: "occupartion" },
@@ -69,4 +84,15 @@ export const mdrField = {
     recommendation: { label: "Recommendation", variable: "recommendation" },
     appointment: { label: "F/D Date", variable: "appointment" },
     doctorName: { label: "Doctor Name", variable: "doctorName" },
+}
+
+export const pattern = {
+    email: {
+        pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/,
+        label: "Please include an '@' and enter the part following '@' in the email address."
+    },
+    password: {
+        pattern: /^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,20}.+$/,
+        label: "Password must be 8-20 characters long, including a number, and a letter."
+    }
 }

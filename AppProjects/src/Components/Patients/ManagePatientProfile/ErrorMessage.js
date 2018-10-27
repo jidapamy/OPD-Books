@@ -8,7 +8,7 @@ export default class ErrorMessage extends Component {
             <Message
                 hidden={this.props.errorText.length === 0}
                 negative
-                header={this.props.cardType === 'idcard' ? 'ข้อมูลผิดพลาด' : 'Invalid'}
+                header='Invalid'
                 list={errorList}
             />
         )

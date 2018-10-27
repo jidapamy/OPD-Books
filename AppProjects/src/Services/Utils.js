@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 // Validate
 export function setErrorMsg(key, value, arr) {
     let duplicated = false;
@@ -18,7 +20,6 @@ export function setErrorMsg(key, value, arr) {
     return arr
 }
 
-
 export function setErrorMsgSplice(key, arr) {
     let indexSplice = -1;
     if (arr.length !== 0) {
@@ -33,4 +34,16 @@ export function setErrorMsgSplice(key, arr) {
         arr.splice(indexSplice, 1);
     }
     return arr
+}
+
+// profile patient
+export const calculateAge = (dob) => {
+    let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
+    let month = (+(moment().format('MM'))) - (+dob.substring(3, 5));
+    let tmp = year + " years"
+    if (year === 0) {
+        month = month
+        tmp = year + " years " + month + " month"
+    }
+    return tmp
 }

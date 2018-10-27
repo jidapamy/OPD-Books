@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import { setErrorMsg, setErrorMsgSplice } from './../../../Services/Utils';
+import { patientField } from "../../../Static/Data/Field"
 
 export default class PhoneNumber extends Component {
 
     phoneText = [{
-        label: 'โทรศัพท์บ้าน (Home Phonenumber)',
+        label: patientField.homePhonenumber.label,
         placeholder: 'ex. 021111111',
         attribute: 'homePhonenumber',
         attributeEmer: 'emerHomePhonenumber',
@@ -13,7 +14,7 @@ export default class PhoneNumber extends Component {
         required: false
     },
     {
-        label: 'โทรศัพท์มือถือ (Mobile Number)',
+        label: patientField.mobileNumber.label,
         placeholder: 'ex. 0811111111',
         attribute: 'mobileNumber',
         attributeEmer: 'emerMobileNumber',
@@ -68,7 +69,7 @@ export default class PhoneNumber extends Component {
                     key={index}
                     label={text.label}
                     placeholder={text.placeholder}
-                    width={this.props.field !== 'emer' ? 4 : 6}
+                    width={this.props.width}
                     required={required}
                     onBlur={e => this.validateSyntaxPhoneNumber(this.props.field !== 'emer' ? text.attribute : text.attributeEmer, e.target.value)}
                     onChange={e => this.props.setFieldAndValidate(this.props.field !== 'emer' ? text.attribute : text.attributeEmer, e.target.value)}

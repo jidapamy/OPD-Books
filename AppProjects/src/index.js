@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 
 import Home from "./Containers/Home";
 import Login from "./Containers/Login";
-// import OTPfactor from "./Containers/OTPfactor";
-import ManagePatientRecord from "./Containers/Register";
+import OTPfactor from "./Components/DemoExamples/OTPfactor";
+import ManagePatientRecord from "./Containers/ManagePatientRecord";
 import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
-import DemoExample from "./Containers/DemoExample";
 import ErrorNotFound from "./Components/Errors/ErrorNotFound";
 import ErrorTimeOut from "./Components/Errors/ErrorTimeOut";
 import ForgotPassword from "./Components/Patients/ManagePatientProfile/ForgotPassword";
@@ -39,11 +38,11 @@ ReactDOM.render(
       {/* vender */}
       {/* <Route path="/demoExample" component={DemoExample} /> */}
       <Route path="/apiDocument" component={apiDocument} />
-      {/* <Route path="/OTPfactor" component={OTPfactor} /> */}
+      <Route path="/OTPfactor" component={OTPfactor} />
       <Route path="/ErrorNotFound" component={ErrorNotFound} />
       <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
-      <Route path="/ForgotPassword" component={ForgotPassword} />
-      <Route path="/FooterMobile" component={FooterOnMobile} />
+      <Route path="/forgotPassword" component={ForgotPassword} />
+      <Route path="/footerMobile" component={FooterOnMobile} />
     </div>
   </Router>,
   document.getElementById("root")

@@ -1,19 +1,36 @@
 import React from "react";
-import { Grid, Menu, Segment, Container, Icon, Image,Statistic } from "semantic-ui-react";
+import { Header, Grid, Menu, Segment, Container, Icon, Image, Statistic, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import EditProfile from '../../../../Containers/EditProfile';
-import FormEditProfile from '../../ManagePatientProfile/FormEditProfile'
+import ManagePatientRecord from '../../../../Containers/ManagePatientRecord'
+import { groupInfoPatientField, patientField } from "../../../../Static/Data/Field"
+import { color } from "../../../../Static/Data/ColorPattern"
 
 const BGMobiles = styled(Segment) `
   background: url('https://i.pinimg.com/564x/f1/48/0b/f1480ba048e8dc86bd8bbd6d979b92fb.jpg') !important;
   background-size: 100% 100%;
 `
+const labelInfo = {
+    backgroundColor: '#31A5BA',
+    color: '#FFF',
+};
 
 export default class ProfilePatientMobile extends React.Component {
     showPage = () => {
         if(this.props.showEditPage){
-            return <div><h2><Icon name='arrow left' onClick={() => this.setState({ infoPatient: true })} /> Edit Profile</h2>
-                <FormEditProfile /></div>
+            return <div style={{ padding:'3%' }}>
+                {/* <h2><Icon name='arrow left' onClick={() => this.props.setField("showEditPage",false)} /> Edit Profile</h2> */}
+                <Header as='h2' style={{ color: '#31A5BA' }} >
+                    <Icon style={{ fontSize: '20px', marginTop: '-13px' }} name='arrow left' onClick={() => this.props.setField("showEditPage", false)} />
+                    Account Settings
+                </Header>
+                <br/>
+                <ManagePatientRecord
+                    patient={this.props.patient}
+                    editStatus={true}
+                    setField={this.props.setField}
+                />
+                </div>
         }else{
             return<div> <BGMobiles
                 inverted
@@ -30,10 +47,31 @@ export default class ProfilePatientMobile extends React.Component {
                     </Grid.Column>
                 </Grid>
                 <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://react.semantic-ui.com/images/avatar/small/matthew.png' size='small' circular centered />
-                <Statistic inverted size='mini'>
-                    <Statistic.Label style={{ fontSize: '1.1em' }} inverted>{this.props.patient.nameTitle} {this.props.patient.firstname} {this.props.patient.lastname}</Statistic.Label>
-                    <Statistic style={{ fontSize: '1.1em' }} > Citizen: {this.props.patient.citizenId}</Statistic>
+                <Statistic size='mini'>
+                    <Header as="h2">
+                        {this.props.patient.nametitle} {this.props.patient[patientField.firstname.variable]} {this.props.patient[patientField.lastname.variable]}
+                    </Header>
+                    <Header.Subheader>
+                        <span style={{ color: color.teal }}>{patientField.citizenId.label} : </span>
+                        {this.props.patient[patientField.citizenId.variable]}
+                    </Header.Subheader>
+                    <Header.Subheader>
+                        <span style={{ color: color.teal }}>{patientField.email.label} : </span>
+                        {this.props.patient[patientField.email.variable]}
+                    </Header.Subheader>
+                    {/* <Statistic.Label style={{ fontSize: '1.1em' }} inverted>{this.props.patient.nametitle} {this.props.patient.firstname} {this.props.patient.lastname}</Statistic.Label>
+                    <Statistic style={{ fontSize: '1.1em' }} > {patientField.citizenId.label}: {this.props.patient.citizenId}</Statistic> */}
                 </Statistic>
+                <Header.Content floated="left">
+                    <Label as="a" style={labelInfo}>
+                        <Icon name="phone" />
+                        {this.props.patient[patientField.mobileNumber.variable]}
+                    </Label>
+                    <Label as="a" style={labelInfo}>
+                        <Icon name="home" />
+                        {this.props.patient[patientField.homePhonenumber.variable]}
+                    </Label>
+                </Header.Content>
             </BGMobiles>
 
             <Menu fluid widths={2} style={{ marginTop: '-2px' }}>
@@ -42,7 +80,7 @@ export default class ProfilePatientMobile extends React.Component {
 
             </Menu>
             <Container>
-                {this.props.showModal()}
+                {this.props.showQRCode()}
                 {this.props.showtab(this.props.tab)}
                 <br /><br /> 
             </Container >

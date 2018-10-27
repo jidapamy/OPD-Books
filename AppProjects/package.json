@@ -9,6 +9,7 @@
     "css-animation": "^1.4.1",
     "ethereumjs-testrpc": "^6.0.3",
     "moment": "^2.22.2",
+    "nodemailer": "^4.6.8",
     "react": "^16.4.2",
     "react-codemirror": "^1.0.0",
     "react-countdown-clock": "^2.4.0",

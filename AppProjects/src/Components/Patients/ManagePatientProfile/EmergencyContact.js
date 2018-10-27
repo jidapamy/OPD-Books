@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Label, Segment, Checkbox, Form, Dropdown, Divider, Header } from 'semantic-ui-react'
 import { titleNameParentData } from '../../../Static/Data/FormData'
+import { patientField } from "../../../Static/Data/Field"
 
 import HomeAddress from './HomeAddress'
 import PhoneNumber from './PhoneNumber'
@@ -55,6 +56,7 @@ export default class EmergencyContact extends Component {
             emerZipcode: this.props.patient.zipcode,
         }
         if (status) {
+            console.log("check same!")
             this.emerOldAddress = {
                 emerAddress: this.state.emerAddress,
                 emerDistrict: this.state.emerDistrict,
@@ -119,16 +121,10 @@ export default class EmergencyContact extends Component {
         } else { this.props.setField('requiredAllEmerField', true)}
     }
 
-    render() {
-        return (
-            <div>
-                <Segment style={{ borderRadius: '2rem' }}>
-                    <Header as='a' color='teal' ribbon><h2 style={{ fontFamily: 'Kanit' }}>Contact First And Last Name In Case Of Emergency</h2></Header>
-                    <Divider/>
-                    <ErrorMessage
-                        errorText={this.props.errorText}
-                        cardType={this.props.cardType}
-                    />
+    showCheckbox = () => {
+        if(!this.props.editStatus){
+            return (
+                <div>
                     <Form.Field
                         label='Clear'
                         onClick={() => this.clearField()}
@@ -137,13 +133,28 @@ export default class EmergencyContact extends Component {
                     <Form.Group>
                         <Form.Field
                             control={Checkbox}
-                            label='ที่อยู่เดียวกับที่อยู่ปัจจุบัน'
+                            label='Similar to the present address'
                             onChange={() => this.changeStatusSameAddress()}
                             checked={this.state.statusSameAddress}
                         />
                     </Form.Group>
                     <br />
-                    <Form.Group>
+                </div>
+            )
+        }
+    }
+
+    componentWillMount = () => {
+        if(this.props.patient){
+            this.setState(this.props.patient)
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                    {this.showCheckbox()}
+                <Form.Group widths="equal">
                         <Form.Field
                             control={Dropdown}
                             search
@@ -151,10 +162,9 @@ export default class EmergencyContact extends Component {
                             allowAdditions
                             onAddItem={(e, { value }) => titleNameParentData.push({ key: value, text: value, value: value })}
                             additionLabel='other : '
-                            label='คำนำหน้า'
+                            label={patientField.emerTitle.label}
                             options={titleNameParentData}
-                            placeholder='เลือกคำนำหน้า'
-                            width={6}
+                            placeholder='- Select -'
                             onChange={async (e, { value }) => {
                                 this.setField('emerTitle', value)
                             }}
@@ -163,9 +173,8 @@ export default class EmergencyContact extends Component {
                             error={this.props.errorField.emerTitle}
                         />
                         <Form.Input
-                            label='ชื่อจริง'
-                            placeholder='ชื่อ'
-                            width={6}
+                            label={patientField.emerFirstname.label}
+                            placeholder={patientField.emerFirstname.label}
                             onChange={async (e) => {
                                 this.setField('emerFirstname', e.target.value)
                             }}
@@ -174,9 +183,8 @@ export default class EmergencyContact extends Component {
                             error={this.props.errorField.emerFirstname}
                         />
                         <Form.Input
-                            label='นามสกุล'
-                            placeholder='นามสกุล'
-                            width={6}
+                            label={patientField.emerLastname.label}
+                            placeholder={patientField.emerLastname.label}
                             onChange={async (e) => {
                                 this.setField('emerLastname', e.target.value)
                             }}
@@ -185,11 +193,10 @@ export default class EmergencyContact extends Component {
                             error={this.props.errorField.emerLastname}
                         />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group widths="equal">
                         <Form.Input
-                            label='เกี่ยวข้องเป็น (Relationship)'
-                            placeholder='ความสัมพันธ์'
-                            width={6}
+                            label={patientField.emerRelationship.label}
+                            placeholder={patientField.emerRelationship.label}
                             onChange={async (e) => {
                                 this.setField('emerRelationship', e.target.value)
                             }}
@@ -205,6 +212,7 @@ export default class EmergencyContact extends Component {
                             cardType={this.props.cardType}
                             errorField={this.props.errorField}
                             field='emer'
+                            width={null}
                             required={this.props.requiredAllEmerField}
                             setFieldAndValidate={this.props.setFieldAndValidate}
                             patient={this.props.patient}
@@ -225,8 +233,6 @@ export default class EmergencyContact extends Component {
                         setFieldAndValidate={this.props.setFieldAndValidate}
                         patient={this.props.patient}
                     />
-                </Segment>
-                <br></br>
             </div>
         )
     }

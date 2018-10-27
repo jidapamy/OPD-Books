@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 //service
 import { getPatient } from '../Services/ManagePatientMethod'
 import { getTreatmentHistoryOfPatient, getMedicalRecord } from "../Services/MedicalRecordMethod";
+import ManagePatientRecord from "./ManagePatientRecord";
 
 const BG = styled.div`
   background: url('${BackgroundImage}') no-repeat center fixed;
@@ -78,12 +79,13 @@ export default class PatientProfile extends Component {
     open: false,
     QRCode: "",
     patient: {},
+    originalData:{},
     historyTreatment: [],
     historyMsg: "",
     chooseMedicalRecord: {},
     loader: true,
     showEditPage: false,
-    showEditProfile: false,
+    // showEditProfile: false,
     // my
     openEditPrfile: false
   };
@@ -92,7 +94,7 @@ export default class PatientProfile extends Component {
     if (this.state.menuTab == 0) {
       return <ProfilePatientMobile
         show={this.show}
-        showModal={this.showModal}
+        showQRCode={this.showQRCode}
         open={this.state.open}
         patient={this.state.patient}
         tab={this.state.tab}
@@ -155,17 +157,20 @@ export default class PatientProfile extends Component {
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened })
 
   //Connect API
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     if (!this.props.location.state) {
       this.props.history.push("/signin");
       return
     }
+    console.log("componentDidMount Patient")
     this.setState(this.props.location.state)
     let citizenId = this.props.location.state.citizenId;
     getPatient(citizenId).then(patient => {
+      let patientData = patient.data;
+      let patientOriginalData = patient.data;
       getTreatmentHistoryOfPatient(citizenId).then(history => {
         this.setState({
-          patient: patient.data,
+          patient: {...patientData},
           historyTreatment: history.data,
           historyMsg: history.message,
           loader: false
@@ -175,7 +180,7 @@ export default class PatientProfile extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  showModal = () => {
+  showQRCode = () => {
     if (this.state.patient.citizenId) {
       return <PopupQRCode  size={'mini'} open={this.state.open} onClose={this.close}>
         <Modal.Content>
@@ -221,7 +226,7 @@ export default class PatientProfile extends Component {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
 
-    console.log("chooseMedicalRecord",this.state.chooseMedicalRecord)
+    console.log("PatientProfile",this.state)
     return (
       <div>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
@@ -244,7 +249,7 @@ export default class PatientProfile extends Component {
                   <Menu.Menu position='right'>
                     <Dropdown item text={this.state.patient.firstname} >
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => this.setState({ showEditProfile : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setState({ showEditPage : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                     <Menu.Item>
@@ -277,20 +282,22 @@ export default class PatientProfile extends Component {
                 </Grid>
               </Container>
             </BG>
-            <Modal style={{ borderRadius: 20 }} size='large'  open={this.state.showEditProfile} onClose={() => this.setState({ showEditProfile : false })}>
+            <Modal style={{ borderRadius: 20 }} size='large' open={this.state.showEditPage} onClose={() => this.setState({ showEditPage : false })}>
               {/* <EditProfile /> */}
-              <Modal.Content >
+              <Modal.Content style={{ paddingBottom: '4rem' }}>
                 <Header as='h1' style={{color: '#31A5BA' }} >
                   Account Settings
                 </Header>
                 <br/>
-                <FormEditProfile 
+                <ManagePatientRecord 
                   patient={this.state.patient}
+                  editStatus={true}
+                  setField={this.setField} 
                 />
-
               </Modal.Content>
               
             </Modal>
+            {this.showQRCode()}
           </Responsive>
 
           <Responsive {...Responsive.onlyMobile}>
