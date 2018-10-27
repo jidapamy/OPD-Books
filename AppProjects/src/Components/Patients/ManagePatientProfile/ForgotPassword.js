@@ -39,8 +39,6 @@ const DateBirthday = styled(DatePicker)`
     margin-left: -3.5% !important; 
 `
 
-
-
 const styles = {
     icon: {
         fontSize: "17px",

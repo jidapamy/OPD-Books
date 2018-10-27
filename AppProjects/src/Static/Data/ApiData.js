@@ -21,7 +21,7 @@ export const apiData = [
                     { name: "emerAddress", type: "String", des: "บ้านเลขที่ของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)" },
                     { name: "emerDistrict", type: "String", des: "อำเภอของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)" },
                     { name: "emerFirstname", type: "String", des: "ชื่อของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)" },
-                    { name: "emerHomePhonenumber", type: "String", des: "เบอร์โทรศัพท์บ้าน (กรณีติดต่อฉุกเฉิน)" },
+                    { name: "emerHomePhone number", type: "String", des: "เบอร์โทรศัพท์บ้าน (กรณีติดต่อฉุกเฉิน)" },
                     { name: "emerLastname", type: "String", des: "นามสกุลของผู้เกี่ยวข้องกับผู้ป่วย (กรณีติดต่อฉุกเฉิน)" },
                     { name: "emerMobileNumber", type: "String", des: "เบอร์โทรศัพท์มือถือ (กรณีติดต่อฉุกเฉิน)" },
                     { name: "emerProvince", type: "String", des: "จังหวัด (กรณีติดต่อฉุกเฉิน)" },

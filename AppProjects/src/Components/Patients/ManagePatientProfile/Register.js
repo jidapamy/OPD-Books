@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label, Divider } from 'semantic-ui-react'
 import styled from 'styled-components'
-import ScrollUpButton from "react-scroll-up-button";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import moment from 'moment';
 
 //Component
@@ -29,6 +29,11 @@ const ContanierTop = styled(Container)`
 `
 const ColorHeader = {
     color:'#31A5BA',
+}
+const ButtonRegis = {
+    color:'#FFF',
+    backgroundColor: '#31A5BA',
+    borderRadius:20,
 }
 
 const GridColumn = styled(Grid.Column)`
@@ -65,9 +70,7 @@ export default class Register extends Component {
         }
     }
 
-    // componentWillReceiveProps = (nextProps) => {
-    //     this.setState({ activeTab: nextProps.tab });
-    // }
+  
 
     render() {
         return (
@@ -183,18 +186,23 @@ export default class Register extends Component {
                             />
                         </Form.Group>
                         <GridColumn width={16}>
-                            <Button disabled={!this.state.agreement}
+                            
+                            <Button 
+                                disabled={!this.state.agreement}
                                 onClick={() => this.props.validate()}
-                                color='green'>
+                                style={ButtonRegis}>
                                 <h3>CONFIRM</h3>
                             </Button>
-                            <Link to='/'><Button color='google plus'><h3>CANCEL</h3></Button></Link>
+
+                            <Link to='/'>
+                                <Button style={{ borderRadius: 20}}color='google plus'><h3>CANCEL</h3></Button>
+                            </Link>
 
                         </GridColumn>
                         <br></br><br></br>
                     </Form>
                 </ContanierTop>
-                <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
+                <ScrollUpButton style={{ borderRadius: 60, backgroundColor:'#31A5BA',borderColor:'#D6F2F2',color:'#FFF'}} ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
             </Wrapper> 
         )
     }

@@ -158,7 +158,7 @@ export default class Home extends React.Component {
               
             </Visibility>
             <Image src={HBG}></Image>
-            <box >	
+            <box>	
               <Header style={{ fontSize: '50px' }}>Hello, we are</Header>
               <Header style={{ fontSize: '50px' }}>OPD BOOKS </Header>
               <Header.Content style={{ fontSize: '20px', color:'#434444' }} >By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.</Header.Content>
