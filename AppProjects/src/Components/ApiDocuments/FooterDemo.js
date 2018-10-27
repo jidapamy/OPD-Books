@@ -3,8 +3,10 @@ import {
   Header,
   Menu,
   Table,
+  Responsive
 } from "semantic-ui-react";
 import { style } from "../../Static/Style/QueueCss";
+import FooterOnMobile from './FooterOnMobile'
 
 export default class FooterDemo extends Component {
   state = {
@@ -18,7 +20,8 @@ export default class FooterDemo extends Component {
   render() {
     console.log("PROPS",this.props)
     return (
-      <div>
+      <span>
+        <Responsive {...Responsive.onlyComputer}>
         <div style={{ marginLeft: "0px", textAlign: 'left' }}>
           <div style={style.footerChoosing}>
             <Menu borderless style={{ background: "#1D7A8B", fontWeight: "bold", color: "#ffffff" }} >
@@ -63,7 +66,16 @@ export default class FooterDemo extends Component {
             </Menu>
           </div>
         </div>
-      </div>
+
+      </Responsive>
+
+      <FooterOnMobile 
+       history={this.props.history}
+       chooseTab={this.props.chooseTab}
+       tab={this.props.tab}
+      />
+
+      </span>
 
 
 

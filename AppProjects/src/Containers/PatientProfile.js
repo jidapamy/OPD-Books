@@ -335,8 +335,9 @@ export default class PatientProfile extends Component {
                 {this.menuTab()}
               </Sidebar.Pusher>
             </Sidebar.Pushable>
+
           </Responsive>
-        </Dimmer.Dimmable>
+        </Dimmer.Dimmable>  
       </div>
     )
   }

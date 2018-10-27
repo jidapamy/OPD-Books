@@ -33,8 +33,6 @@ const DateBirthday = styled(DatePicker)`
     margin-left: -3.5% !important; 
 `
 
-
-
 const styles = {
     icon: {
         fontSize: "17px",
@@ -103,7 +101,9 @@ export default class ForgotPassword extends Component {
 
 
                         {/* <Grid style={style.circularZone}> */}
-                        <Grid>
+
+                        {/*----------------- fill in the field ---------------------*/}
+                        {/* <Grid>
                             <Grid.Row style={style.circularZone}>
                                 <Grid.Column>
 
@@ -114,7 +114,6 @@ export default class ForgotPassword extends Component {
                             <Grid.Row >
                                 <Grid.Column style={style.inputForgotZone}>
                                     <Message style={style.bgDescription}>
-                                        {/* <Message.Header><i>STEP 1 :</i></Message.Header> */}
                                         <Message.List>
                                             <Message.Item>Please, fill in the field , then click 'Send To Verify' button.</Message.Item>
                                             <Message.Item>Waiting for <u>OTP</u> authentication from your mobile phone.&nbsp;
@@ -151,7 +150,7 @@ export default class ForgotPassword extends Component {
                                     </Grid.Column>
                                 </Grid.Row>
                             </Container>
-                        </Grid>
+                        </Grid> */}
 
 
                         {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
@@ -207,7 +206,7 @@ export default class ForgotPassword extends Component {
 
                         {/*----------------- OTP ---------------------*/}
 
-                        {/* <Grid>
+                        <Grid>
                             <Grid.Row>
                                 <Grid.Column>
                                     <br/><br/>
@@ -298,15 +297,7 @@ export default class ForgotPassword extends Component {
                         <Grid.Row >
                                 <a onClick={() => this.props.cancelRequestOTP(this.props.requestId)}>Cancel </a>
                         </Grid.Row>
-                        </Grid> */}
-
-
-
-
-
-
-
-
+                        </Grid>
 
                     </Segment>
                 </Container>
