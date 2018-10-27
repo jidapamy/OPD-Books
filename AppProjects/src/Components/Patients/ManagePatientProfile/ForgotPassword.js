@@ -26,6 +26,7 @@ import moment from 'moment';
 import swal from "sweetalert2";
 import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
+import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 
 const Wrapper = styled.div`
   background: url(${BackgroundImage}) no-repeat center fixed;
@@ -104,12 +105,7 @@ export default class ForgotPassword extends Component {
                     // ผ่าน
                     this.requestOTP()
                 } else {
-                    swal({
-                        type: "error",
-                        text: res.message,
-                        showConfirmButton: false,
-                        showCloseButton: true,
-                    });
+                    errorPopup(res.message)
                 }
             })
         }
@@ -128,24 +124,32 @@ export default class ForgotPassword extends Component {
                         if (res) {
                             swal.disableLoading()
                             if (res.status) {
-                                swal(
-                                    'Successful!',
-                                     'You have successfully logged into the system',
-                                    'success',
-                                ).then(res => {
+                                successPopup('You have successfully logged into the system').then(res => {
                                     if (res) {
                                         this.props.history.push("/signin")
                                         return true
                                     }
                                     return false
                                 })
+                                // swal(
+                                //     'Successful!',
+                                //      'You have successfully logged into the system',
+                                //     'success',
+                                // ).then(res => {
+                                //     if (res) {
+                                //         this.props.history.push("/signin")
+                                //         return true
+                                //     }
+                                //     return false
+                                // })
                             } else {
-                                swal({
-                                    type: "error",
-                                    text: res.message,
-                                    showConfirmButton: false,
-                                    showCloseButton: true,
-                                });
+                                errorPopup(res.message)
+                                // swal({
+                                //     type: "error",
+                                //     text: res.message,
+                                //     showConfirmButton: false,
+                                //     showCloseButton: true,
+                                // });
                             }
                         }
                         return false
@@ -183,12 +187,13 @@ export default class ForgotPassword extends Component {
                         citizenIdSearch: '',
                     })
                 }
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }
@@ -214,12 +219,13 @@ export default class ForgotPassword extends Component {
                     pin: "",
                     loader: false,
                 })
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }
@@ -234,12 +240,13 @@ export default class ForgotPassword extends Component {
                     citizenIdSearch: '',
                 })
             } else {
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }

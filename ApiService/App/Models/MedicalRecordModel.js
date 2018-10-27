@@ -39,6 +39,16 @@ const medicalRecordScheme = {
     ],
     pharmacy: [
         {
+            clinic: 'byte',
+            height: 'byte',
+            bodyWeight: 'byte',
+            bmi: 'byte',
+            temperature: 'byte',
+            date: 'byte',
+            time: 'byte',
+            // medicalRecordId: 'byte',
+        },
+        {
             treatment: 'byte',
             recommendation: 'byte',
             appointment: 'byte',

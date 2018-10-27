@@ -135,8 +135,9 @@ const getMedicalRecordForDoctor = async (medicalRecordId) => {
 const getMedicalRecordForPharmacy = async (medicalRecordId) => {
     // console.log(medicalRecordId)
     // const byteMedicalRecordId = convertString(medicalRecordId)
+    const nurse = await contract.getMedicalRecordForNursePart1(medicalRecordId);
     const pharmacy = await contract.getMedicalRecordForPharmacy(medicalRecordId);
-    const combindedPharmacyData = bindData(medicalRecordScheme, [pharmacy], 'pharmacy')
+    const combindedPharmacyData = bindData(medicalRecordScheme, [nurse,pharmacy], 'pharmacy')
     let medicalRecord = combindedPharmacyData
 
     return { status: true, message: "SUCCESS", data: medicalRecord };

@@ -12,6 +12,8 @@ import {
 } from '../../../Static/Data/FormData'
 import { checkEmail } from "../../../Services/ManagePatientMethod";
 import { patientField, pattern } from "../../../Static/Data/Field"
+import Phone from './Phone'
+
 
 export default class InfoPateint extends Component {
     state = { errorText: [] }
@@ -159,6 +161,99 @@ export default class InfoPateint extends Component {
         }
     }
 
+    showTag3 = () => {
+        if(!this.props.editStatus){
+            return <Form.Group widths="equal">
+                <Form.Field
+                    control={Select}
+                    label={patientField.status.label}
+                    options={statusData}
+                    placeholder='- Select -'
+                    onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
+                    required
+                    error={this.props.errorField ? this.props.errorField.status : false}
+                    value={this.props.patient.status}
+                />
+                <Form.Input
+                    label={patientField.occupartion.label}
+                    placeholder={patientField.occupartion.label}
+                    onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
+                    value={this.props.patient.occupartion}
+                />
+                <Phone
+                    setPatientDetail={this.props.setPatientDetail}
+                    errorText={this.props.errorText}
+                    errorField={this.props.errorField}
+                    setField={this.props.setField}
+                    cardType={this.props.cardType}
+                    field='info'
+                    type='home'
+                    setFieldAndValidate={this.props.setFieldAndValidate}
+                    patient={this.props.patient}
+                />
+                <Phone
+                    setPatientDetail={this.props.setPatientDetail}
+                    errorText={this.props.errorText}
+                    errorField={this.props.errorField}
+                    setField={this.props.setField}
+                    cardType={this.props.cardType}
+                    field='info'
+                    type='mobile'
+                    setFieldAndValidate={this.props.setFieldAndValidate}
+                    patient={this.props.patient}
+                />
+                {/* < PhoneNumber
+                    setPatientDetail={this.props.setPatientDetail}
+                    errorText={this.props.errorText}
+                    errorField={this.props.errorField}
+                    setField={this.props.setField}
+                    cardType={this.props.cardType}
+                    field='info'
+                    setFieldAndValidate={this.props.setFieldAndValidate}
+                    patient={this.props.patient}
+                /> */}
+            </Form.Group>
+        }
+        return <Form.Group widths="equal">
+            <Form.Field
+                control={Select}
+                label={patientField.status.label}
+                options={statusData}
+                placeholder='- Select -'
+                onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
+                required
+                error={this.props.errorField ? this.props.errorField.status : false}
+                value={this.props.patient.status}
+            />
+            <Form.Input
+                label={patientField.occupartion.label}
+                placeholder={patientField.occupartion.label}
+                onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
+                value={this.props.patient.occupartion}
+            />
+            <Phone
+                setPatientDetail={this.props.setPatientDetail}
+                errorText={this.props.errorText}
+                errorField={this.props.errorField}
+                setField={this.props.setField}
+                cardType={this.props.cardType}
+                field='info'
+                type='home'
+                setFieldAndValidate={this.props.setFieldAndValidate}
+                patient={this.props.patient}
+            />
+            {/* < PhoneNumber
+                setPatientDetail={this.props.setPatientDetail}
+                errorText={this.props.errorText}
+                errorField={this.props.errorField}
+                setField={this.props.setField}
+                cardType={this.props.cardType}
+                field='info'
+                setFieldAndValidate={this.props.setFieldAndValidate}
+                patient={this.props.patient}
+            /> */}
+        </Form.Group>
+    }
     render() {
         return (
             <div>
@@ -249,34 +344,8 @@ export default class InfoPateint extends Component {
                         required
                     />
                 </Form.Group>
-                <Form.Group widths="equal">
-                    <Form.Field
-                        control={Select}
-                        label={patientField.status.label}
-                        options={statusData}
-                        placeholder='- Select -'
-                        onChange={(e, { value }) => this.props.setFieldAndValidate('status', value)}
-                        required
-                        error={this.props.errorField ? this.props.errorField.status : false}
-                        value={this.props.patient.status}
-                    />
-                    <Form.Input
-                        label={patientField.occupartion.label}
-                        placeholder={patientField.occupartion.label}
-                        onChange={e => this.props.setFieldAndValidate('occupartion', e.target.value)}
-                        value={this.props.patient.occupartion}
-                    />
-                    < PhoneNumber
-                        setPatientDetail={this.props.setPatientDetail}
-                        errorText={this.props.errorText}
-                        errorField={this.props.errorField}
-                        setField={this.props.setField}
-                        cardType={this.props.cardType}
-                        field='info'
-                        setFieldAndValidate={this.props.setFieldAndValidate}
-                        patient={this.props.patient}
-                    />
-                </Form.Group>
+                {this.showTag3()}
+               
             </div>
         )
     }

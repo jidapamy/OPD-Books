@@ -224,16 +224,18 @@ const verifiedByCitizenId = async (citizenId) => {
     const byteCitizenId = convertString(citizenId)
     const byteMobileNumber = contract.getMobileNumber(byteCitizenId)
     let stringMobileNumber = convertToAscii(byteMobileNumber);
-    let mobileNumber = "66" + stringMobileNumber.substring(1)
-    console.log(mobileNumber)
-    let hideNumber = stringMobileNumber.substring(0, 3) + "-xxx-xx" + stringMobileNumber.substring(stringMobileNumber.length - 2)
-    try {
-        const res = await requestOTP(mobileNumber)
-        console.log("verifiedByCitizenId", res)
-        return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
-    } catch (err) {
-        return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
-    }
+    return requestOTPwithMobile(stringMobileNumber)
+
+    // let mobileNumber = "66" + stringMobileNumber.substring(1)
+    // console.log(mobileNumber)
+    // let hideNumber = stringMobileNumber.substring(0, 3) + "-xxx-xx" + stringMobileNumber.substring(stringMobileNumber.length - 2)
+    // try {
+    //     const res = await requestOTP(mobileNumber)
+    //     console.log("verifiedByCitizenId", res)
+    //     return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
+    // } catch (err) {
+    //     return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
+    // }
 }
 
 const getPatientWithOTP = async (data) => {
@@ -331,6 +333,18 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
     }
 }
 
+requestOTPwithMobile = async (mobileNumber) => {
+    let mobileNumberConvert = "66" + mobileNumber.substring(1)
+    console.log(mobileNumberConvert)
+    let hideNumber = mobileNumber.substring(0, 3) + "-xxx-xx" + mobileNumber.substring(mobileNumber.length - 2)
+    try {
+        const res = await requestOTP(mobileNumberConvert)
+        return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
+    } catch (err) {
+        return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
+    }
+}
+
 validateOTPvalue = async (requestId, pin) => {
     try{
         const res = await validateOTP(requestId, pin)
@@ -358,5 +372,6 @@ module.exports = {
     cancelRequestOTP,
 
     forgotPasswordVerify,
-    confirmChangePassword
+    confirmChangePassword,
+    requestOTPwithMobile
 };

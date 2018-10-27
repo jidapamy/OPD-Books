@@ -9,7 +9,7 @@ const msg = require("../Services/Message")
 
 const setMRForNurseCtr = async (req, res) => {
     if (isPatient(req.body.patientCitizenId)) {
-        console.log("ispatient")
+        console.log("ispatient", req.body)
         setMedicalRecordForNurse(req.body)
             .then(result => { res.send(result); })
             .catch(err => {
@@ -27,9 +27,7 @@ const setMRForDoctorCtr = async (req, res) => {
     if (isPatient(patientCitizenId)) {
         if (isMedicalRecord(medicalRecordId)) {
             if (!alreadyMedicalRecord(medicalRecordId)) {
-                console.log("โย้")
                 if (haveMedicalRecordsOfPatient(patientCitizenId, medicalRecordId)) {
-                    console.log("เย้")
                     if (!haveMDRinPatientHistory(patientCitizenId, medicalRecordId)) {
                         const result = await setMedicalRecordForDoctor(req.body)
                         res.send(result)

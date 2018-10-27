@@ -2,7 +2,6 @@ import React from "react";
 import {
     Menu, Container, Header, Form, Dimmer, Loader, Image
 } from "semantic-ui-react";
-import swal from "sweetalert2";
 
 //service
 import { style } from "../Static/Style/QueueCss";
@@ -27,6 +26,7 @@ import {
 } from "../Services/MedicalRecordMethod";
 
 import { getInfoPatient } from '../Services/ManagePatientMethod'
+import { confirmPopup, successPopup, errorPopup} from "../Components/SweetAlert"
 
 
 import moment from "moment";
@@ -43,6 +43,7 @@ export default class DemoExample extends React.Component {
             date: moment().format("LL"),
             time: moment().format("LT"),
             clinic: "SIT KMUTT Clinic",
+            treatmentYear: new Date().getFullYear()
         },
         loader: false,
         choosePatient: null,
@@ -59,17 +60,10 @@ export default class DemoExample extends React.Component {
     showPopupConfirm = async (obj) => {
         this.setState({ resetState: false })
         let mdr = { ...this.state.medicalRecord, ...obj, ...{ patientCitizenId: this.state.patient.citizenId } }
-        swal({
-            title: "ยืนยันการบันทึกข้อมูล?",
-            text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
-            type: "warning",
-            showCancelButton: true,
-            cancelButtonColor: "#d33",
-            confirmButtonColor: "#1FCB4A",
-            confirmButtonText: "Confirm",
-            cancelButtonText: "Cancel"
-        }).then(result => {
-            if (result.value) {
+        mdr.date = moment(mdr.date).format("l")
+        console.log(mdr)
+        confirmPopup().then(res => {
+            if (res.value) {
                 if (this.state.empPosition === 2) {
                     return this.sendToDoctor(mdr);
                 } else if (this.state.empPosition === 3) {
@@ -77,40 +71,29 @@ export default class DemoExample extends React.Component {
                 } else {
                 }
             }
-        });
+        })
     };
 
     sendToNurse = (patient) => {
         if (patient[patientField.citizenId.variable]) {
             let name = patient[patientField.nametitle.variable] + " " + patient[patientField.firstname.variable] + "  " + patient[patientField.lastname.variable]
-            swal({
-                type: "success",
-                title: "Add Queue Success!",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            this.resetState()
+            successPopup('Add Queue Success!').then(res => {
+                this.resetState()
+            })
         }
     };
 
     sendToDoctor = async (mdr) => {
+        // console.log(mdr)
         this.setLoader(true)
         await setMedicalRecordForNurse(mdr).then(res => {
             this.setLoader(false)
             if (res.status) {
-                swal({
-                    type: "success",
-                    title: `${mdrField.medicalRecordId.label} : ${res.data[mdrField.medicalRecordId.variable]}`,
-                    showConfirmButton: true,
-                });
-                this.resetState()
+                successPopup(`The medical record id is '${res.data[mdrField.medicalRecordId.variable]}'`).then(res => {
+                    this.resetState()
+                })
             } else {
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                errorPopup(res.message)
             }
         })
     }
@@ -120,20 +103,11 @@ export default class DemoExample extends React.Component {
         setMedicalRecordForDoctor(mdr).then(res => {
             this.setLoader(false)
             if (res.status) {
-                swal({
-                    type: "success",
-                    title: res.message,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            this.resetState()
+                successPopup(res.message).then(res => {
+                    this.resetState()
+                })
             } else {
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                errorPopup(res.message)
             }
         })
     }
@@ -265,6 +239,7 @@ export default class DemoExample extends React.Component {
                 date: moment().format("LL"),
                 time: moment().format("LT"),
                 clinic: "SIT KMUTT Clinic",
+                treatmentYear: new Date().getFullYear()
             }
         })
     }
@@ -280,18 +255,16 @@ export default class DemoExample extends React.Component {
                         loader: false,
                     });
                 } else {
-                    swal({
-                        type: "error",
-                        text: data.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    this.setLoader(false)
+                    errorPopup(data.message).then(res => {
+                        this.setLoader(false)
+                    })
                 }
             })
         } else if (empPosition === 3) { // หมอ
             getMedicalRecordForNurse(id).then(data => {
                 if (data.status) {
+                    console.log(data)
+                    data.data.date = moment(data.data.date).format("ll")
                     getInfoPatient(data.data.patientCitizenId).then(dataPatient => {
                         if (dataPatient.status) {
                             getTreatmentHistoryOfPatient(data.data.patientCitizenId).then(history => {
@@ -304,29 +277,22 @@ export default class DemoExample extends React.Component {
                                 });
                             })
                         } else {
-                            swal({
-                                type: "error",
-                                text: dataPatient.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                            this.setLoader(false)
+                            errorPopup(dataPatient.message).then(res => {
+                                this.setLoader(false)
+                            })
                         }
                     })
                 } else {
-                    swal({
-                        type: "error",
-                        text: data.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    this.setLoader(false)
+                    errorPopup(data.message).then(res => {
+                        this.setLoader(false)
+                    })
                 }
 
             })
         } else if (empPosition === 4) {
             getMedicalRecordForPharmacy(id).then(data => {
                 if (data.status) {
+                    data.data.date = moment(data.data.date).format("ll")
                     getInfoPatient(data.data.patientCitizenId).then(dataPatient => {
                         if (dataPatient.status) {
                             this.setState({
@@ -335,23 +301,15 @@ export default class DemoExample extends React.Component {
                                 medicalRecord: data.data,
                             });
                         } else {
-                            swal({
-                                type: "error",
-                                text: dataPatient.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                            this.setLoader(false)
+                            errorPopup(dataPatient.message,).then(res => {
+                                this.setLoader(false)
+                            })
                         }
                     })
                 } else {
-                    swal({
-                        type: "error",
-                        text: data.message,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    this.setLoader(false)
+                    errorPopup(data.message).then(res => {
+                        this.setLoader(false)
+                    })
                 }
 
             })
@@ -396,7 +354,7 @@ export default class DemoExample extends React.Component {
     }
 
     render() {
-        console.log(this.state.empPosition,this.props)
+        console.log(this.state)
         return (
             <div style={{ background: "#ddd", height: "100vh" }}>
                 <Dimmer.Dimmable blurring dimmed={this.state.loader}>
