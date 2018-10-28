@@ -1,5 +1,5 @@
 const { isPatient, isEmail, insert, get, getBasicData, edit, checkPassword, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
-    forgotPasswordVerify, confirmChangePassword, validateOTPvalue } = require("../Repositories/PatientRepo")
+    forgotPasswordVerify, confirmChangePassword, validateOTPvalue, requestOTPwithMobile } = require("../Repositories/PatientRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -62,11 +62,20 @@ const checkPasswordCtr = (req, res) => {
 }
 
 const requestOTPCtr = async (req, res) => {
+    console.log('requestOTPCtr', req.body)
     if (isPatient(req.body.citizenId)) {
         if (req.body.requestId){
             const statusCancel = await cancelRequestOTP(req.body.requestId)
             if (!statusCancel.status){
                 res.send(statusCancel)
+                return
+            }
+        }
+        if(req.body.mobileNumber) {
+            console.log('mobileNumber', req.body.mobileNumber)
+            const requestOTP = await requestOTPwithMobile(req.body.mobileNumber)
+            if (requestOTP) {
+                res.send(requestOTP)
                 return
             }
         }

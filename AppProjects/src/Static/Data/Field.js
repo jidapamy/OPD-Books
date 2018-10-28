@@ -94,5 +94,13 @@ export const pattern = {
     password: {
         pattern: /^(?=.*[A-Za-z$@$!%*#?&])+(?=.*[0-9_\W]){8,20}.+$/,
         label: "Password must be 8-20 characters long, including a number, and a letter."
+    },
+    mobileNumber: {
+        pattern: /^[0][0-9]{2}?[-]?[0-9]{3}?[-]?[0-9]{4}$/,
+        label: 'Mobile phone must start with 0 and only 10 digits!'
+    },
+    homePhonenumber: {
+        pattern: /^[0][0-9]?[-]?[0-9]{3}?[-]?[0-9]{4}$/,
+        label: 'Home phone number must start with 0 and only 9 digits!'
     }
 }

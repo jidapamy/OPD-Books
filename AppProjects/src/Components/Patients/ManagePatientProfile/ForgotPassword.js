@@ -26,10 +26,11 @@ import moment from 'moment';
 import swal from "sweetalert2";
 import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
+import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 
 const Wrapper = styled.div`
-  background: url(${BackgroundImage}) no-repeat center fixed;
-  background-size: 100% 100%;
+    background: url('${BackgroundImage}') no-repeat center fixed;
+    background-size: 100% 100%;
 `;
 
 const DateBirthday = styled(DatePicker)`
@@ -37,8 +38,6 @@ const DateBirthday = styled(DatePicker)`
     width: 32rem !important;
     margin-left: -3.5% !important; 
 `
-
-
 
 const styles = {
     icon: {
@@ -57,14 +56,14 @@ export default class ForgotPassword extends Component {
     state = {
         citizenId: '',
         newPassword: '',
-        newPasswordConfirm:'',
+        newPasswordConfirm: '',
         dob: null,
         step: 1,
         openOTP: false,
         requestId: "",
         mobileNumber: "",
         pin: "",
-        loader:false
+        loader: false
     }
 
     DateInput = () => {
@@ -104,12 +103,7 @@ export default class ForgotPassword extends Component {
                     // ผ่าน
                     this.requestOTP()
                 } else {
-                    swal({
-                        type: "error",
-                        text: res.message,
-                        showConfirmButton: false,
-                        showCloseButton: true,
-                    });
+                    errorPopup(res.message)
                 }
             })
         }
@@ -128,24 +122,32 @@ export default class ForgotPassword extends Component {
                         if (res) {
                             swal.disableLoading()
                             if (res.status) {
-                                swal(
-                                    'Successful!',
-                                     'You have successfully logged into the system',
-                                    'success',
-                                ).then(res => {
+                                successPopup('You have successfully logged into the system').then(res => {
                                     if (res) {
                                         this.props.history.push("/signin")
                                         return true
                                     }
                                     return false
                                 })
+                                // swal(
+                                //     'Successful!',
+                                //      'You have successfully logged into the system',
+                                //     'success',
+                                // ).then(res => {
+                                //     if (res) {
+                                //         this.props.history.push("/signin")
+                                //         return true
+                                //     }
+                                //     return false
+                                // })
                             } else {
-                                swal({
-                                    type: "error",
-                                    text: res.message,
-                                    showConfirmButton: false,
-                                    showCloseButton: true,
-                                });
+                                errorPopup(res.message)
+                                // swal({
+                                //     type: "error",
+                                //     text: res.message,
+                                //     showConfirmButton: false,
+                                //     showCloseButton: true,
+                                // });
                             }
                         }
                         return false
@@ -183,12 +185,13 @@ export default class ForgotPassword extends Component {
                         citizenIdSearch: '',
                     })
                 }
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }
@@ -214,12 +217,13 @@ export default class ForgotPassword extends Component {
                     pin: "",
                     loader: false,
                 })
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }
@@ -234,12 +238,13 @@ export default class ForgotPassword extends Component {
                     citizenIdSearch: '',
                 })
             } else {
-                swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
+                errorPopup(res.message)
+                // swal({
+                //     type: "error",
+                //     text: res.message,
+                //     showConfirmButton: false,
+                //     showCloseButton: true,
+                // });
             }
         })
     }
@@ -255,7 +260,6 @@ export default class ForgotPassword extends Component {
                     body > div,
                     body > div > div,
                     body > div > div > div.login-form {
-                        height: 100%;
                     }
                 `}</style>
 
@@ -306,7 +310,9 @@ export default class ForgotPassword extends Component {
                                                 </Form.Group>
                                                 <Form.Group style={style.twoColumnButton}>
                                                     <Button style={style.ButtonCancel} onClick={() => this.props.history.push("/signin")}><Icon name='arrow circle left' />&nbsp;&nbsp;Back Home</Button>
-                                                    <Button style={style.ButtonNext} onClick={() => this.nextStep(1)}>Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
+                                                    {/* <Button style={style.ButtonNext} onClick={() => this.nextStep(1)}>Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button> */}
+                                                    <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
+
                                                 </Form.Group>
                                             </Form>
                                             <br />
@@ -342,16 +348,16 @@ export default class ForgotPassword extends Component {
                                         <Grid.Column>
                                             <Form style={{ paddingLeft: '15.5%' }}>
                                                 <Form.Group>
-                                                    <Input 
-                                                        type="password" 
-                                                        icon='lock' 
-                                                        iconPosition='left' 
-                                                        placeholder='New Password ...' 
-                                                        style={style.inputForgot} 
-                                                        onChange={(e)=>this.setState({ newPassword : e.target.value})}
+                                                    <Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='New Password ...'
+                                                        style={style.inputForgot}
+                                                        onChange={(e) => this.setState({ newPassword: e.target.value })}
                                                         value={this.state.newPassword}
                                                     />
-                                                        <br />
+                                                    <br />
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Input
@@ -360,7 +366,7 @@ export default class ForgotPassword extends Component {
                                                         iconPosition='left'
                                                         placeholder='New Password Confirm ...'
                                                         style={style.inputForgot}
-                                                        onChange={(e) => this.setState({ newPasswordConfirm : e.target.value })}
+                                                        onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
                                                         value={this.state.newPasswordConfirm}
                                                     />
                                                 </Form.Group>

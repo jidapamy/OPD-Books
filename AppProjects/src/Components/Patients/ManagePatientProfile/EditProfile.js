@@ -16,7 +16,11 @@ import Allergy from '../../../Components/Patients/ManagePatientProfile/Allergy'
 import ErrorMessage from '../../../Components/Patients/ManagePatientProfile/ErrorMessage'
 import { checkPassword, checkEmail} from '../../../Services/ManagePatientMethod'
 import Password from './Password'
+import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
+import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/ManagePatientMethod";
+
 const provincesData = require('../../../Static/Data/Provinces')
+
 
 let inputEmail = React.createRef();
 
@@ -53,6 +57,7 @@ export default class EditProfile extends React.Component {
         changePassword: false,
         changeEmail: false,
         editEmail: false,
+        changeMobileNumber:false,
 
         email: null,
         passwordConfirmEmail: '',
@@ -62,7 +67,13 @@ export default class EditProfile extends React.Component {
         oldPassword:'',
         newPassword:'',
         newPasswordConfirm:'',
-        errorPassword:false
+        errorPassword:false,
+
+        mobileNumber: null,
+        otp:'',
+        requestId:'',
+        mobileNumberbind:''
+
 
     }
     componentWillMount() {
@@ -121,21 +132,13 @@ export default class EditProfile extends React.Component {
                 this.props.setFieldAndValidate("newEmail", this.state.email)
                 this.confirm("changeEmail")
             } else {
-                swal(
-                    'Your password was incorrect.',
-                    'Please re-enter your password',
-                    'error',
-                ).then(res => {
+                errorPopup('Please re-enter your password', 'Your password was incorrect.').then(res => {
                     this.inputPasswordEmail.focus()
                     this.setState({ passwordConfirmEmail: '' })
                 })
             }
         }else{
-            swal(
-                'Email Duplicated!',
-                'This E-mail is already exists in the system. Please re-enter your new email',
-                'error',
-            ).then(res => {
+            errorPopup('This E-mail is already exists in the system. Please re-enter your new email', 'Email Duplicated!').then(res => {
                 this.inputEmail.focus()
                 this.setState({ errorDupEmail: true })
             })
@@ -201,22 +204,158 @@ export default class EditProfile extends React.Component {
                 this.props.setFieldAndValidate("newPasswordConfirm", this.state.newPasswordConfirm)
                 this.confirm("changePassword")
             } else {
-                swal(
-                    'Your password was incorrect.',
-                    'Please re-enter your password',
-                    'error',
-                ).then(res => {
+                errorPopup('Please re-enter your password', 'Your password was incorrect.').then(res => {
                     this.inputOldPassword.focus()
-                    this.setState({ oldPassword: '', newPassword: '', newPasswordConfirm:'' })
+                    this.setState({ oldPassword: '', newPassword: '', newPasswordConfirm: '' })
                 })
             }
         }
     }
 
+    showRequestOTP = () => {
+        if (this.state.sendOTP) {
+            return <div>
+                <p style={{ color: '#277e8e', fontSize: '12px' }}> 
+                    * If you want to change your mobile phone, please push 
+                    <span style={{ color: '#ba3131'}}> cencel </span> button. <br/>
+                    The system has sent OTP Password to your mobile phone : <span style={{ color: "#000" }}>{this.state.mobileNumberbind}</span> <br />
+                Reference Code : <span style={{ color : "#000" }}>{this.state.requestId}</span> </p>
+                <Form.Group widths={3}>
+                    <Form.Input
+                        label="OTP code"
+                        required
+                        value={this.state.otp}
+                        onChange={(e) => { this.setState({ otp : e.target.value }) }}
+                    />
+                </Form.Group>
+                <Button
+                    disabled={!this.state.otp}
+                    onClick={() => this.submitValidateOTP()}
+                >
+                    Submit
+                </Button>
+            </div>
+        }
+    }
+
+    showButtonStatusRequest = () => {
+        if(this.state.sendOTP){
+            return <div><Label
+                as='a'
+                onClick={() => this.requestOTP(this.state.requestId)}
+                // onClick={() => this.setState({ sendOTP: !this.state.sendOTP })}
+                style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, marginTop: '22px', padding: '10px' }}>
+                Request for OTP Password again <Icon name="redo" size='large' style={{ color: '#31A5BA' }} />
+            </Label>
+                <Label
+                    as='a'
+                    onClick={() => this.cancelRequestOTP(this.state.requestId)}
+                    // onClick={() => this.setState({ sendOTP: !this.state.sendOTP })}
+                    style={{ color: '#ba3131', backgroundColor: '#FFF', fontSize: 12, marginTop: '22px', padding: '10px' }}>
+                    Cancel <Icon name="cancel" size='large' style={{ color: '#ba3131' }} />
+                </Label>
+            </div>
+        }
+        return <Label
+            as='a'
+            onClick={() => this.requestOTP()}
+            // onClick={() => this.setState({ sendOTP: !this.state.sendOTP })}
+            style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, marginTop: '22px', padding: '10px' }}>
+            Request OTP <Icon name="send" size='large' style={{ color: '#31A5BA' }} />
+        </Label>
+    }
+
+    requestOTP = (requestId = null) => {
+        let data = {
+            requestId: requestId,
+            citizenId: this.props.state.patient.citizenId,
+            mobileNumber: this.state.mobileNumber != null ? this.state.mobileNumber : this.props.state.patient.mobileNumber
+        }
+        console.log(data)
+        swal({
+            title: 'The system is sending OTP Password to your mobile phone',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                requestOTP(data).then(res => {
+                   swal.close()
+                    if (res.status) {
+                        this.setState({
+                            requestId: res.data.requestId,
+                            mobileNumberbind: res.data.mobileNumber,
+                            sendOTP: true
+                        });
+                    } else {
+                        errorPopup(res.message)
+                    }
+                })
+            },
+        })
+    }
+
+    cancelRequestOTP = (requestOTP) => {
+        swal({
+            title: 'The system is cenceling your request OTP',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                cancelRequestOTP(requestOTP).then(res => {
+                   swal.close()
+                    if (res.status) {
+                        this.setState({
+                            otp: "",
+                            sendOTP: false,
+                            // changeMobileNumber: false
+                        })
+                    } else {
+                        errorPopup(res.message)
+                    }
+                })
+            }
+        })
+    }
+
+    submitValidateOTP = (pin) => {
+        let data = {
+            pin: pin,
+            requestId: this.state.requestId,
+            citizenId: this.props.state.patient.citizenId,
+        }
+        swal({
+            title: 'The system is validating OTP Password',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                validateOTP(data).then(res => {
+                   swal.close()
+                    if (res.status) {
+                        this.setState({
+                            otp: "",
+                            sendOTP: false,
+                            changeMobileNumber: false
+                        })
+                    } else {
+                        this.setState({
+                            otp: "",
+                        })
+                        if (res.statusCode == '17') {
+                            this.setState({
+                                otp: "",
+                                sendOTP: false,
+                            })
+                        }
+                        errorPopup(res.message)
+                    }
+                })
+            }
+        })
+    }
+
     render() {
         console.log(this.state)
-        const { info, address, emer, parent, allergy, changePassword, changeEmail, editEmail } = this.state
+        const { info, address, emer, parent, allergy, changePassword, changeEmail, editEmail, changeMobileNumber } = this.state
         return (
+            
             <div>
                 <h4 style={headerSetting}>General Account Setting</h4>
                 <Segment style={info ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("info", !this.state.info)}>
@@ -332,41 +471,6 @@ export default class EditProfile extends React.Component {
                 </Transition.Group> */}
 
                 <br /><h3 style={headerSetting}>Security Setting</h3>
-                <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changeEmail: !this.state.changeEmail, email: this.props.state.patient.email, passwordConfirmEmail:'',errorDupEmail:false })}>
-                    <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={changeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
-                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {changeEmail && <Segment style={elimentStyle} vertical >
-                        <Form text >
-                            {this.state.errorEmail && 
-                                <p style={{ color: '#dd1037', fontSize: '12px' }}>
-                                Please include an '@' and enter the part following '@' in the email address. <span style={{ color: '#000', fontSize: '14px' }}>'{this.state.email}'</span> is incomplete.
-                                </p>
-                            }
-                            <Form.Group widths="3">
-                                <Form.Field required icon='mail' iconPosition='left' error={this.state.email==''||this.state.errorEmail||this.state.errorDupEmail}>
-                                    <label>{patientField.email.label}</label>
-                                    <input class="otp"
-                                        readOnly={!editEmail}
-                                        ref={(e) => this.inputEmail = e}
-                                        value={this.state.email != null ? this.state.email : this.props.state.patient.email}
-                                        onBlur={() => this.validateEmail()}
-                                        onChange={(e) => this.setState({ email: e.target.value, errorDupEmail:false})}
-                                        icon={<Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />}
-                                    />
-                                </Form.Field>
-                                
-                                <Label
-                                    circular as='a'
-                                    onClick={() => this.editEmail()}
-                                    style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, width: '38px', height: '38px', marginTop: '2%' }}>
-                                    <Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />
-                                </Label>
-                                {/* <Icon onClick={() => this.editEmail()} link style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 16 }} circular color='teal' name='edit' /> */}
-                            </Form.Group>
-                            {this.showComfirmChangeEmail()}
-                        </Form>
-                    </Segment>}
-                </Transition.Group>
                 <Segment style={changePassword ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changePassword: !this.state.changePassword, newPassword: '', newPasswordConfirm: '', oldPassword: '', errorPassword:false, })}>
                     <h4 ><Icon name='lock' />Change Password <Icon style={{ float: 'right' }} name={changePassword ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
@@ -427,6 +531,71 @@ export default class EditProfile extends React.Component {
                             >
                                 Submit
                             </Button>
+                        </Form>
+                    </Segment>}
+                </Transition.Group>
+
+
+                <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changeEmail: !this.state.changeEmail, email: this.props.state.patient.email, passwordConfirmEmail: '', errorDupEmail: false })}>
+                    <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={changeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
+                    {changeEmail && <Segment style={elimentStyle} vertical >
+                        <Form text >
+                            {this.state.errorEmail &&
+                                <p style={{ color: '#dd1037', fontSize: '12px' }}>
+                                    Please include an '@' and enter the part following '@' in the email address. <span style={{ color: '#000', fontSize: '14px' }}>'{this.state.email}'</span> is incomplete.
+                                </p>
+                            }
+                            <Form.Group widths="3">
+                                <Form.Field required icon='mail' iconPosition='left' error={this.state.email == '' || this.state.errorEmail || this.state.errorDupEmail}>
+                                    <label>{patientField.email.label}</label>
+                                    <input class="otp"
+                                        readOnly={!editEmail}
+                                        ref={(e) => this.inputEmail = e}
+                                        value={this.state.email != null ? this.state.email : this.props.state.patient.email}
+                                        onBlur={() => this.validateEmail()}
+                                        onChange={(e) => this.setState({ email: e.target.value, errorDupEmail: false })}
+                                        icon={<Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />}
+                                    />
+                                </Form.Field>
+
+                                <Label
+                                    circular as='a'
+                                    onClick={() => this.editEmail()}
+                                    style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, width: '38px', height: '38px', marginTop: '2%' }}>
+                                    <Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />
+                                </Label>
+                                {/* <Icon onClick={() => this.editEmail()} link style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 16 }} circular color='teal' name='edit' /> */}
+                            </Form.Group>
+                            {this.showComfirmChangeEmail()}
+                        </Form>
+                    </Segment>}
+                </Transition.Group>
+
+
+                <Segment style={changeMobileNumber ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changeMobileNumber: !this.state.changeMobileNumber, email: this.props.state.patient.email, passwordConfirmEmail: '', errorDupEmail: false })}>
+                    <h4 ><Icon name='mail' />Change Mobile Number <Icon style={{ float: 'right' }} name={changeMobileNumber ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
+                    {changeMobileNumber && <Segment style={elimentStyle} vertical >
+                        <Form text >
+                            <Form.Group widths="3">
+                                <Form.Input
+                                    label={patientField.mobileNumber.label}
+                                    required
+                                    value={this.state.mobileNumber != null ? this.state.mobileNumber : this.props.state.patient.mobileNumber}
+                                    onChange={(e) => { this.setState({ mobileNumber: e.target.value }) }}
+                                    readOnly={this.state.sendOTP}
+                                />
+                                {this.showButtonStatusRequest()}
+                                {/* <Label
+                                    as='a'
+                                    // onClick={() => this.requestOTP()}
+                                    onClick={ () => this.setState({ sendOTP: !this.state.sendOTP })}
+                                    style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, marginTop: '22px', padding: '10px' }}>
+                                    Request OTP <Icon name="send" size='large' style={{ color: '#31A5BA'}} />
+                                </Label> */}
+                            </Form.Group>
+                            {this.showRequestOTP()}
                         </Form>
                     </Segment>}
                 </Transition.Group>

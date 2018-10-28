@@ -7,7 +7,9 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { style } from "../../Static/Style/QueueCss";
 import FromForNurse from "./FromForNurse";
 import FromForDoctor from "./FromForDoctor";
-import swal from "sweetalert2";
+import { confirmPopup, successPopup, errorPopup } from "../SweetAlert"
+
+// import swal from "sweetalert2";
 
 export default class FormMedicalRecord extends Component {
   showForm = () => {
@@ -58,17 +60,8 @@ export default class FormMedicalRecord extends Component {
   };
 
   showPopupConfirm = async () => {
-    swal({
-      title: "ยืนยันการบันทึกข้อมูล?",
-      text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
-      type: "warning",
-      showCancelButton: true,
-      cancelButtonColor: "#d33",
-      confirmButtonColor: "#1FCB4A",
-      confirmButtonText: "Confirm",
-      cancelButtonText: "Cancel"
-    }).then(result => {
-      if (result.value) {
+    confirmPopup().then(res => {
+      if(res.value){
         if (this.props.empLogin.position === 2) {
           this.props.sendToDoctor();
         } else if (this.props.empLogin.position === 3) {
@@ -76,15 +69,39 @@ export default class FormMedicalRecord extends Component {
         } else {
           this.props.sendToPayment();
         }
-        swal({
-          type: "success",
-          title: "บันทึกข้อมูลสำเร็จ",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        this.props.reState();
+        successPopup("Your work have been saved successfully").then(res => {
+          this.props.reState();
+        })
       }
-    });
+    })
+
+    // swal({
+    //   title: "ยืนยันการบันทึกข้อมูล?",
+    //   text: "ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้องตามความเป็นจริง",
+    //   type: "warning",
+    //   showCancelButton: true,
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonColor: "#1FCB4A",
+    //   confirmButtonText: "Confirm",
+    //   cancelButtonText: "Cancel"
+    // }).then(result => {
+    //   if (result.value) {
+    //     if (this.props.empLogin.position === 2) {
+    //       this.props.sendToDoctor();
+    //     } else if (this.props.empLogin.position === 3) {
+    //       this.props.sendToPharmacy();
+    //     } else {
+    //       this.props.sendToPayment();
+    //     }
+    //     swal({
+    //       type: "success",
+    //       title: "บันทึกข้อมูลสำเร็จ",
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     });
+    //     this.props.reState();
+    //   }
+    // });
   };
 
   render() {

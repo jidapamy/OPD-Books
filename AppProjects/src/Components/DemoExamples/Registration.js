@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.svg";
 import styled from "styled-components";
-import swal from "sweetalert2";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
 import { getPatient, requestOTP, getPatientWithOTP, cancelRequestOTP } from "../../Services/ManagePatientMethod";
 import BGRegistra from "./../../Static/Img/BGRegistra.svg";
 import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, Loader } from "semantic-ui-react";
 import OTPfactor from "./OTPfactor";
+import { confirmPopup, successPopup, errorPopup } from "../SweetAlert"
+
 const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
@@ -89,13 +90,7 @@ class Registration extends Component {
     this.setState({ 
       openDetail: false,
      })
-    swal({
-      type: "success",
-      title: "Add Queue Success!",
-      showConfirmButton: false,
-      timer: 1500
-    });
-
+    successPopup("Add Queue Success!")
   }
   
 
@@ -130,12 +125,7 @@ class Registration extends Component {
             citizenIdSearch: '',
           })
         }
-        swal({
-          type: "error",
-          text: res.message,
-          showConfirmButton: false,
-          showCloseButton: true,
-        });
+        errorPopup(res.message)
       }
     })
   }
@@ -160,12 +150,7 @@ class Registration extends Component {
         this.setState({
           pin: "",
         })
-        swal({
-          type: "error",
-          text: res.message,
-          showConfirmButton: false,
-          showCloseButton: true,
-        });
+        errorPopup(res.message)
       }
     })
   }
@@ -180,12 +165,7 @@ class Registration extends Component {
           citizenIdSearch: '',
         })
     } else {
-        swal({
-          type: "error",
-          text: res.message,
-          showConfirmButton: false,
-          showCloseButton: true,
-        });
+        errorPopup(res.message)
       }
     })
   }

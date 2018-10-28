@@ -2,7 +2,6 @@ import React from "react";
 import {
     Segment, Icon, Form, Input, Transition, Dropdown, Select, Menu, Container, Button, Grid, Label
 } from "semantic-ui-react";
-import swal from 'sweetalert2';
 import {
     titleNameChildData, genderData, cardTypeData, titleNameParentData, bloodgroupData,
     nationalityData, religionData, statusData, countryData
@@ -63,35 +62,6 @@ export default class EditProfile extends React.Component {
     closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
         this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
     }
-    showPopupConfirm = () => {
-        swal({
-            title: '<strong>HTML <u>example</u></strong>',
-            type: 'info',
-            html:
-                '<Segment>ssd</Segment>' +
-                '<a href="//github.com">links</a> ' +
-                'and other HTML tags',
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText:
-                '<i class="fa fa-thumbs-up"></i> Great!',
-            confirmButtonAriaLabel: 'Thumbs up, great!',
-            cancelButtonText:
-                '<i class="fa fa-thumbs-down"></i>',
-            cancelButtonAriaLabel: 'Thumbs down',
-        })
-    }
-
-    // handleEditprofile = () => this.setState({ editprofile: !this.state.editprofile })
-    // handleEditAdress = () => this.setState({ editAdress: !this.state.editAdress })
-    // handleEditEmp = () => this.setState({ editEmp: !this.state.editEmp })
-    // handleUnderAge = () => this.setState({ underAge: !this.state.underAge })
-    // handleAllergy = () => this.setState({ allergy: !this.state.allergy })
-    // handlechangePassword = () => this.setState({ changePassword: !this.state.changePassword })
-    // handlechangeEmail = () => this.setState({ changeEmail: !this.state.changeEmail })
-    // handleActiveEditEmail = () => this.setState({ editEmail: !this.state.editEmail })
-    // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     setField = ( field,value ) => {
         this.setState({ [field] : value })

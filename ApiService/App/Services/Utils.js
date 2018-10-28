@@ -36,6 +36,7 @@ const mappingDataToScheme = (result, partKeys, data, partTypes) => {
 
 const convertValue = (data, type) => {
     if (type === 'byte') data = convertToAscii(data)
+    // if (type === 'uint') data = data.toString()
     return data ? data : '-'
 }
 const unlockAccount = async () => {

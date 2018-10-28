@@ -18,10 +18,10 @@ import ErrorMessage from '../Components/Patients/ManagePatientProfile/ErrorMessa
 import Register from '../Components/Patients/ManagePatientProfile/Register'
 import EditProfile from '../Components/Patients/ManagePatientProfile/EditProfile'
 
-
 //provider
 import { setErrorMsg, setErrorMsgSplice } from '../Services/Utils';
 import { insertPatient, editProfile, confirmChangePassword } from "../Services/ManagePatientMethod";
+import { confirmPopup, successPopup, errorPopup } from "../Components/SweetAlert"
 
 //static
 import BackgroundImage from './../Static/Img/BG.png'
@@ -64,7 +64,8 @@ export default class ManagePatientRecord extends Component {
     errorAllergy: [],
     agreement: false,
     reState: '',
-    editSuccess:''
+    editSuccess:'',
+    // changeMobile : false,
   }
 
   allField = {
@@ -193,25 +194,6 @@ export default class ManagePatientRecord extends Component {
     this.state.patient[field] = value;
   }
 
-  // checkEmptyField = () => {
-  //   var tmp = [];
-  //   var result = this.messageErrorRequired.filter(field => this.state.patient[field.field] === '')
-  //     .map(field => {
-  //       this.state.errorField[field.field] = true
-  //       if (field.key === 'info') {
-  //         return (setErrorMsg('info', 'กรุณากรอกข้อมูลส่วนประวัติส่วนตัวให้ครบถ้วน', this.state.errorInfo))
-  //       } else if (field.key === 'homeAddress') {
-  //         return (setErrorMsg('homeAddress', 'กรุณากรอกข้อมูลส่วนที่อยู่ปัจจุบันให้ครบถ้วน', this.state.errorAddr))
-  //       } else if (field.key === 'allergy') {
-  //         return (setErrorMsg('allergy', 'กรุณากรอกข้อมูลส่วนของการแพ้ยาให้ครบถ้วน', this.state.errorAllergy))
-  //       } else if (field.key === 'privilege') {
-  //         return (setErrorMsg('privilege', 'กรุณากรอกข้อมูลส่วนสิทธิการรักษาให้ครบถ้วน', this.state.errorAllergy))
-  //       }
-  //     })
-  //   this.setState({ reState: '' })
-  // }
-
-
   validate = () => {
     let statusErrInfo = false;
     let statusErrAddr = false;
@@ -297,18 +279,9 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirm = async () => {
-    swal({
-      title: 'Are you sure?',
-      text: "Please check that your information is correct and true.",
-      type: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#d33',
-      confirmButtonColor: '#1FCB4A',
-      confirmButtonText: 'Confirm',
-      cancelButtonText: 'Cancel',
-    }).then(async (result) => {
-      if (result.value) {
-        swal({
+    confirmPopup().then( async res => {
+      if (res.value) {
+      swal({
           title: 'System is saving data.',
           html: 'Please do not close this popup.!',
           onOpen: () => {
@@ -317,11 +290,7 @@ export default class ManagePatientRecord extends Component {
               if (res) {
                 swal.disableLoading()
                 if (res.status) {
-                  swal(
-                    'Successful!',
-                    'You have successfully logged into the system to get started..',
-                    'success',
-                  ).then((result) => {
+                  successPopup('You have successfully logged into the system to get started.').then( res => {
                     this.props.history.push('/signin')
                   })
                 }
@@ -393,55 +362,31 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirmEdit = (patient, group) => {
-    swal({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: '#d33',
-      confirmButtonColor: '#1FCB4A',
-      confirmButtonText: 'Confirm',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.value) {
-        swal({
-          title: 'System is saving data.',
-          html: 'Please do not close this popup.!',
-          onOpen: () => {
-            swal.showLoading()
-            this.processMethod(group).then(res => {
-              if (res) {
-                swal.disableLoading()
-                if (res.status) {
-                  swal(
-                    'Successful!',
-                    'You can check your profile on the profile page.',
-                    'success',
-                  ).then(res => {
-                    if(res){
-                      this.props.setField("patient", patient)
-                      this.setState({ editSuccess: group })
-                      return true
-                    }
-                    return false
-                  })
-                }else{
-                  swal({
-                    type: "error",
-                    text: res.message,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                  });
-                  // this.setState({ editSuccess: group })
-                }
+    confirmPopup("You won't be able to revert this!").then(result => {
+      swal({
+        title: 'System is saving data.',
+        html: 'Please do not close this popup.!',
+        onOpen: () => {
+          swal.showLoading()
+          this.processMethod(group).then(res => {
+            if (res) {
+              swal.disableLoading()
+              if (res.status) {
+                successPopup('You can check your profile on the profile page.').then(res => {
+                  if (res) {
+                    this.props.setField("patient", patient)
+                    this.setState({ editSuccess: group })
+                  }
+                })
+              } else {
+                errorPopup(res.message)
               }
-              return false
-            })
-          }
-        })
-      }
-      return false
+            }
+          })
+        }
+      })
     })
+
   }
 
   setFieldAndValidate = (field, value) => {
@@ -449,16 +394,6 @@ export default class ManagePatientRecord extends Component {
     this.state.errorField[field] = false
     this.setState({ reState: '' })
   }
-
-
-  // componentWillReceiveProps = (nextProps) => {
-  //   console.log("componentWillReceiveProps", nextProps)
-  //   if (nextProps.patient){
-  //     this.setState({ 
-  //       patient: nextProps.patient,
-  //     });
-  //   }
-  // }
 
   componentDidMount = () => {
     if (this.props.patient) {
@@ -479,8 +414,8 @@ export default class ManagePatientRecord extends Component {
           cardType={this.state.cardType}
           setFieldAndValidate={this.setFieldAndValidate}
           editStatus={true}
-          // showPopupConfirmEdit={this.showPopupConfirmEdit}
           validateEdit={this.validateEdit}
+          setLoader={this.props.setLoader}
         />
       )
     }

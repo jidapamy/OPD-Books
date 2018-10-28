@@ -218,6 +218,10 @@ export default class PatientProfile extends Component {
     })
   }
 
+  setLoader = (boolean) => {
+    this.setState({ loader: boolean })
+  }
+
 
 
 
@@ -293,6 +297,7 @@ export default class PatientProfile extends Component {
                   patient={this.state.patient}
                   editStatus={true}
                   setField={this.setField} 
+                  setLoader={this.setLoader}
                 />
               </Modal.Content>
               
@@ -342,8 +347,9 @@ export default class PatientProfile extends Component {
                 {this.menuTab()}
               </Sidebar.Pusher>
             </Sidebar.Pushable>
+
           </Responsive>
-        </Dimmer.Dimmable>
+        </Dimmer.Dimmable>  
       </div>
     )
   }

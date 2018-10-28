@@ -679,7 +679,7 @@ export const style = {
         color: '#00cc99',
         fontSize: '17px',
         width: '100%',
-        padding: '3%',
+        padding: '-3%',
         paddingLeft: '5%',
 
     },
@@ -785,6 +785,7 @@ export const style = {
         border: '0px solid',
         // backgroundColor:'#000000',
         height: '530px',
+        marginBottom: '8%',
 
     }
     ,
@@ -900,16 +901,84 @@ export const style = {
         width: '87%',
 
 
-    }
-
-
-
-
-
-
+    },
 
     //ForgotPassword On mobile
 
+    sidebarEdit: {
+        color: 'black',
+
+    },
+
+
+    footerMobileChoosing: {
+        border: "0px",
+        borderRadius: "0px",
+        position: 'fixed',
+        bottom: '0%',
+        width: '100%',
+        textAlign: 'center',
+        background: '#298C9F',
+        color: '#262626',
+        height: 'auto',
+        padding:"0px",
+        
+    },
+
+    footerMobileBeforClick: {
+        color: '#ffffff',
+        fontSize: '20px',
+        fontWeight: 'bold',
+        width:'100%',
+    },
+    footerMobileAfterClick: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: '20px',
+        backgroundColor: '#262626',
+        borderRadius: '0px',
+        width:'100%',
+    },
+
+
+    //API Mobile 
+
+    tableHeadMobile: {
+        background: '#444040',
+        color: '#ffffff',
+        borderRadius: '0px',
+        padding: '3%',
+        fontSize: '15px',
+        textAlign: 'left',
+        width: '100%',
+        // textAlign: 'Left',
+        height: '35%',
+        marginBottom: '-2%',
+        
+
+    },
+
+    tableBodyMobile: {
+        textAlign: 'left',
+        fontSize: '15px',
+    },
+
+
+    // Code Mirror CSS on Mobile
+    bgCodeMirrorMobile: {
+        backgroundColor: '#2B2B2B',
+        width: '100%',
+        height: 'auto',
+        // margin: '3%',
+        marginTop: '-10%',
+        marginBottom: '8%'
+    },
+    
+    AreaCodeMirrorMobile: {
+        marginLeft: '7%',
+    },
+    
+   
 
 
 
