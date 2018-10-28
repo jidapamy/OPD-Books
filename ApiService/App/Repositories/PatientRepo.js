@@ -350,8 +350,8 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
 }
 
 requestOTPwithMobile = async (mobileNumber) => {
-    // let mobileNumberConvert = "66" + mobileNumber.substring(1)
-    let mobileNumberConvert = mobileNumber
+    let mobileNumberConvert = "66" + mobileNumber.substring(1)
+    // let mobileNumberConvert = mobileNumber
     let hideNumber = mobileNumber.substring(0, 3) + "-xxx-xx" + mobileNumber.substring(mobileNumber.length - 2)
     try {
         const res = await requestOTP(mobileNumberConvert)
