@@ -101,7 +101,7 @@ const html = (data) => (`
     </div>
     <div class="col">
       <br/><br/>
-       <button type="button" class="btn btn-info btn-block">Confirm Email</button>
+       <button type="button" class="btn btn-info btn-block">Visit Website</button>
     </div>
     <div class="col">
     </div>
