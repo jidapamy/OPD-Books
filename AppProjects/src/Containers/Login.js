@@ -50,7 +50,7 @@ export default class PatientRecord extends Component {
                   verticalAlign="middle"
                 >
                     <Grid.Column style={{ maxWidth: 450 }}>
-                <Header style={{ fontSize: "5em", color:'#31A5BA' }} textAlign="center">
+                <Header style={{ fontSize: "4em", color:'#31A5BA' }} textAlign="center">
                         OPD BOOKS
                       </Header>
                       <Form size="large">

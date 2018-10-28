@@ -139,6 +139,11 @@ export default class Home extends React.Component {
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>
+                    <Header inverted={!menuFixed} >
+                      <a href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
+                    </Header>
+                  </Menu.Item>
+                  <Menu.Item>
                     <Header  inverted={!menuFixed} onClick={() => this.goToPage('/apiDocument')}>
                       API Document
                     </Header>
