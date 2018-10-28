@@ -20,8 +20,8 @@ import EditProfile from '../Components/Patients/ManagePatientProfile/EditProfile
 
 //provider
 import { setErrorMsg, setErrorMsgSplice } from '../Services/Utils';
-import { insertPatient, editProfile, confirmChangePassword } from "../Services/ManagePatientMethod";
-import { confirmPopup, successPopup, errorPopup } from "../Components/SweetAlert"
+import { insertPatient, editProfile, confirmChangePassword, validateOTP } from "../Services/ManagePatientMethod";
+import { confirmPopup, successPopup, successTXPopup, errorPopup } from "../Components/SweetAlert"
 
 //static
 import BackgroundImage from './../Static/Img/BG.png'
@@ -64,7 +64,7 @@ export default class ManagePatientRecord extends Component {
     errorAllergy: [],
     agreement: false,
     reState: '',
-    editSuccess:'',
+    editSuccess: '',
     // changeMobile : false,
   }
 
@@ -84,7 +84,7 @@ export default class ManagePatientRecord extends Component {
       { field: 'nationality', key: 'editInfoPart3', required: true },
       { field: 'country', key: 'editInfoPart3', required: true },
       { field: 'status', key: 'editInfoPart4', required: true },
-      { field: 'mobileNumber', key: 'editInfoPart4', required: true },
+      // { field: 'mobileNumber', key: 'editInfoPart4', required: true },
       { field: 'occupartion', key: 'editInfoPart4', required: false },
       { field: 'homePhonenumber', key: 'editInfoPart4', required: false },
     ],
@@ -129,6 +129,9 @@ export default class ManagePatientRecord extends Component {
     ],
     changePassword: [
       { field: 'password', key: 'editPassword', required: true },
+    ],
+    changeMobileNumber: [
+      { field: 'mobileNumber', key: 'editInfoPart4', required: true },
     ]
   }
 
@@ -279,18 +282,18 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirm = async () => {
-    confirmPopup().then( async res => {
+    confirmPopup().then(async res => {
       if (res.value) {
-      swal({
+        swal({
           title: 'System is saving data.',
           html: 'Please do not close this popup.!',
           onOpen: () => {
             swal.showLoading()
-            insertPatient(this.state.patient).then(res => {
+            insertPatient(this.state.patient).then(async res => {
               if (res) {
                 swal.disableLoading()
                 if (res.status) {
-                  successPopup('You have successfully logged into the system to get started.').then( res => {
+                  successTXPopup('You have successfully logged into the system to get started.', res.data.transaction).then(res => {
                     this.props.history.push('/signin')
                   })
                 }
@@ -302,11 +305,25 @@ export default class ManagePatientRecord extends Component {
     })
   }
 
-  validateEdit = async (group) => {
+  validateEdit = async (group, dataForOTP = null) => {
+    console.log('validateEdit', group)
     this.setState({ editSuccess: '' })
-    let patient = { ...this.props.patient}
+    let patient = { ...this.props.patient }
     let arr = [];
-    if (this.allField[group]){
+    if (dataForOTP) {
+      console.log("newMobileNumber",this.state.patient, this.props.patient)
+      // console.log(this.state.patient.mobileNumber , this.props.patient.mobileNumber)
+      if (this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
+        patient.mobileNumber = this.state.patient.mobileNumber
+        // this.state.patient.mobileNumber = this.state.patient.newMobileNumber
+        this.state.patient.editInfoPart4 = true;
+        console.log("patient",patient)
+        this.submitValidateOTP(patient, { ...{ group: group }, ...dataForOTP })
+        return
+      }
+    }
+    if (this.allField[group]) {
+      // console.log(this.allField[group])
       this.allField[group].map(field => {
         if (this.state.patient[field.field]) {
           if (this.state.patient[field.field] != this.props.patient[field.field]) {
@@ -345,18 +362,19 @@ export default class ManagePatientRecord extends Component {
             message += text + ", ";
           })
           alert(message)
+          return
         }
-        return false
       }
-      return this.showPopupConfirmEdit(patient, group);
+      this.showPopupConfirmEdit(patient, group);
+      return
     }
-    return false
+    return
   }
 
-  processMethod = async(group) => {
-    if(group === 'changePassword'){
+  processMethod = async (group) => {
+    if (group === 'changePassword') {
       return await confirmChangePassword(this.state.patient)
-    }else{
+    } else {
       return await editProfile(this.state.patient)
     }
   }
@@ -372,7 +390,7 @@ export default class ManagePatientRecord extends Component {
             if (res) {
               swal.disableLoading()
               if (res.status) {
-                successPopup('You can check your profile on the profile page.').then(res => {
+                successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
                   if (res) {
                     this.props.setField("patient", patient)
                     this.setState({ editSuccess: group })
@@ -386,7 +404,87 @@ export default class ManagePatientRecord extends Component {
         }
       })
     })
+  }
 
+  submitValidateOTP = (patient, data) => {
+    // data = pin, requestId, citizenId, group
+    console.log('submitValidateOTP', patient, data, this.state.patient)
+    debugger
+    confirmPopup("You won't be able to revert this!").then(result => {
+      if (result.value){
+        swal({
+          title: 'System is saving data.',
+          html: 'Please do not close this popup.!',
+          onOpen: () => {
+            swal.showLoading()
+            validateOTP(data).then(res => {
+              if (res.status) {
+                this.state.patient.mobileNumber = this.state.patient.newMobileNumber
+                this.processMethod(data.group).then(res => {
+                  // if (res) {
+                    swal.disableLoading()
+                    if (res.status) {
+                      successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
+                        if (res) {
+                          patient.mobileNumber = this.state.patient.newMobileNumber;
+                          this.props.setField("patient", patient)
+                          this.setState({ editSuccess: data.group })
+                        }
+                      })
+                    } else {
+                      errorPopup(res.message)
+                    }
+                  // }
+                })
+              } else {
+                if (res.statusCode == '17') {
+                  // ผิดเกิด 3 ครั้ง
+                  // patient.mobileNumber = this.props.patient.mobileNumber;
+                  console.log("3 times patient", patient)
+                  this.props.setField("patient", patient)
+                  this.setState({ editSuccess: "sendOTP" })
+                }
+                errorPopup(res.message, 'OTP Password incorrect!')
+              }
+            })
+          }
+        })
+      }
+
+      // validateOTP(data).then(res => {
+      //   console.log('validateOTP')
+      //   if (res.status) {
+      //     swal({
+      //       title: 'System is saving data.',
+      //       html: 'Please do not close this popup.!',
+      //       onOpen: () => {
+      //         swal.showLoading()
+      //         this.processMethod(data.group).then(res => {
+      //           if (res) {
+      //             swal.disableLoading()
+      //             if (res.status) {
+      //               successPopup('You can check your profile on the profile page.').then(res => {
+      //                 if (res) {
+      //                   this.props.setField("patient", patient)
+      //                   this.setState({ editSuccess: data.group })
+      //                 }
+      //               })
+      //             } else {
+      //               errorPopup(res.message)
+      //             }
+      //           }
+      //         })
+      //       }
+      //     })
+      //   } else {
+      //     if (res.statusCode == '17') {
+      //       // ผิดเกิด 3 ครั้ง
+      //       this.setState({ editSuccess: data.group })
+      //     }
+      //     errorPopup(res.message, 'OTP Password incorrect!')
+      //   }
+      // })
+    })
   }
 
   setFieldAndValidate = (field, value) => {

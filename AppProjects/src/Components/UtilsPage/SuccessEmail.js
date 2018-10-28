@@ -1,15 +1,13 @@
 import React from "react";
 import {
-    Grid, Menu, Container, Icon, Image, Button,
+    Grid, Menu, Container, Icon, Image, Button, Header,
 } from "semantic-ui-react";
-import styled from "styled-components";
-import notfound from './../../Static/Img/Error/404.gif'
 import { Link } from "react-router-dom";
 
-export default class ErrorNotFound extends React.Component {
+export default class SuccessEmail extends React.Component {
     render() {
         return (
-           <div>
+            <div>
                 <Menu
                     size="medium"
                     pointing={true}
@@ -25,36 +23,37 @@ export default class ErrorNotFound extends React.Component {
 
                     <Menu.Menu position="right">
                         <Menu.Item>
-                            <Link to="/signin"><Button basic  color='teal'>
+                            <Link to="/signin"><Button basic color='teal'>
                                 Sign In
                     </Button></Link>
                         </Menu.Item>
 
                         <Menu.Item>
-                            <Link to="/signup"><Button   color='teal' >
+                            <Link to="/signup"><Button color='teal' >
                                 Sign Up
                     </Button></Link>
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>
-                <Image src={notfound} fluid />
+                {/* <Image src={notfound} fluid /> */}
+                <Header as='h1'> VERIFIED EMAIL SUCCESSFUL!! </Header>
                 <Container>
                     <Grid width={16}>
                         <Grid.Column width={2}>
-                            
+
                         </Grid.Column>
                         <Grid.Column width={2} >
                             <Container>
-                            <Link to="/">
-                            <Button basic color='teal' size='massive' style={{ borderRadius: '2rem' }}>
-                                Homepage
+                                <Link to="/">
+                                    <Button basic color='teal' size='massive' style={{ borderRadius: '2rem' }}>
+                                        Homepage
                             </Button>
-                            </Link>
+                                </Link>
                             </Container>
-                    </Grid.Column>
-                </Grid>
-                   
-            
+                        </Grid.Column>
+                    </Grid>
+
+
                 </Container>
             </div>
         );

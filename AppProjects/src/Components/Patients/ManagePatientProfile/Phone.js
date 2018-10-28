@@ -50,24 +50,38 @@ export default class Phone extends Component {
 
 
     render() {
-        const errorName = this.props.field !== 'emer' ? this.props.errorField[patientField.mobileNumber.variable] : this.props.errorField[patientField.emerMobileNumber.variable]
         let required = false
         // emer > mobile required depend on this.props.required
         // patient > mobile requird
-        if(this.props.type == 'mobile' && this.props.field !== 'emer'){
-            required = true
-        } else if (this.props.type == 'mobile' && this.props.field == 'emer'){
-            required = this.props.required
+        let variable = ''
+        if (this.props.type == 'mobile'){
+            if (this.props.field == 'emer'){
+                // emer mobile
+                variable = patientField.emerMobileNumber.variable
+                required = this.props.required
+            }else{
+                // patient mobile
+                variable = patientField.mobileNumber.variable
+                required = true
+            }
+        }else{
+            // home
+            if (this.props.field == 'emer') {
+                // emer home
+                variable = patientField.emerHomePhonenumber.variable
+            } else {
+                // patient home
+                variable = patientField.homePhonenumber.variable
+            }
         }
-       
         return <Form.Input
             label={this.props.type === 'mobile' ? patientField.mobileNumber.label : patientField.homePhonenumber.label}
             placeholder={this.props.type === 'mobile' ? patientField.mobileNumber.label : patientField.homePhonenumber.label}
             required={required}
-            onBlur={e => this.validateSyntaxPhoneNumber(this.props.field !== 'emer' ? patientField.mobileNumber.variable : patientField.emerMobileNumber.variable, e.target.value)}
-            onChange={e => this.props.setFieldAndValidate(this.props.field !== 'emer' ? patientField.mobileNumber.variable : patientField.emerMobileNumber.variable, e.target.value)}
-            error={errorName}
-            value={this.props.field !== 'emer' ? this.props.patient[patientField.mobileNumber.variable] : this.props.patient[patientField.emerMobileNumber.variable]}
+            onBlur={e => this.validateSyntaxPhoneNumber(variable, e.target.value)}
+            onChange={e => this.props.setFieldAndValidate(variable, e.target.value)}
+            error={this.props.errorField[variable]}
+            value={this.props.patient[variable]}
         />
     }
 }
