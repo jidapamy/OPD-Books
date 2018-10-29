@@ -191,7 +191,7 @@ export default class InfoPateint extends Component {
                     setFieldAndValidate={this.props.setFieldAndValidate}
                     patient={this.props.patient}
                 />
-                <Phone
+                {/* <Phone
                     setPatientDetail={this.props.setPatientDetail}
                     errorText={this.props.errorText}
                     errorField={this.props.errorField}
@@ -201,7 +201,7 @@ export default class InfoPateint extends Component {
                     type='mobile'
                     setFieldAndValidate={this.props.setFieldAndValidate}
                     patient={this.props.patient}
-                />
+                /> */}
                 {/* < PhoneNumber
                     setPatientDetail={this.props.setPatientDetail}
                     errorText={this.props.errorText}

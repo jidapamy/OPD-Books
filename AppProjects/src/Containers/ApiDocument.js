@@ -230,7 +230,7 @@ export default class apiDocument extends Component {
                       {this.showAttribute()}
                     </Table.Body>
                   </Table>
-                <br /><br />
+                  <br /><br />
                 {/* </Scrollbars> */}
               </Grid.Column>
               <Grid.Column width={8}>

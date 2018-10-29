@@ -12,6 +12,7 @@ import EmergencyContact from './EmergencyContact'
 import PatientParent from './PatientParent'
 import Allergy from './Allergy'
 import ErrorMessage from './ErrorMessage'
+import VerifyField from './VerifyField'
 
 
 //static
@@ -55,6 +56,7 @@ export default class Register extends Component {
         errorEmer: [],
         errorParent: [],
         errorAllergy: [],
+        errorVerify:[],
         agreement: false,
     }
 
@@ -99,6 +101,20 @@ export default class Register extends Component {
                                 setField={this.props.setField}
                                 setFieldAndValidate={this.props.setFieldAndValidate}
                                 
+                            />
+                        </SegmentForm>
+                        <br></br>
+                        <SegmentForm >
+                            <Header as='h2' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>Contract Patient</h2></Header>
+                            <Divider />
+                            <ErrorMessage
+                                errorText={this.state.errorVerify}
+                                cardType={this.state.cardType}
+                            />
+                            <VerifyField
+                                errorText={this.state.errorVerify}
+
+                                patient={this.props.state.patient}
                             />
                         </SegmentForm>
                         <br></br>

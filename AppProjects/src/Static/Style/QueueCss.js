@@ -603,7 +603,7 @@ export const style = {
     // Test
 
     apiDescription: {
-        background: '#FFFFFF',
+        background: '#F74F4',
         padding: '0px',
         color: '#444040',
         fontSize: '14.5px',
