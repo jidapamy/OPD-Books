@@ -72,10 +72,10 @@ export default class EditProfile extends React.Component {
         mobileNumber: null,
         otp:'',
         requestId:'',
-        mobileNumberbind:''
-
-
+        mobileNumberbind:'',
+        sendOTP:false
     }
+
     componentWillMount() {
         this.setState(this.props.state)
     }
@@ -91,14 +91,16 @@ export default class EditProfile extends React.Component {
                 errorPassword: false,
                 passwordConfirmEmail: '',
                 errorEmail: false,
+                mobileNumber: null,
+                otp:''
             })
         }
     }
 
     close = () => this.setState({ open: false })
 
-    confirm = (group) => {
-        this.props.validateEdit(group)
+    confirm = (group, dataForOTP=null) => {
+        this.props.validateEdit(group, dataForOTP)
     }
 
     setField = (field, value) => {
@@ -106,29 +108,32 @@ export default class EditProfile extends React.Component {
     }
 
     editEmail = (e) => {
-        if (this.state.editEmail === false) {
-            // false > true : ถ้าเป็น true >> พิมพ์ได้
-            this.inputEmail.focus()
-        }
-        if(this.state.email==null){
-            this.setState({
-                email: this.props.state.patient.email,
-                editEmail: !this.state.editEmail,
-                passwordConfirmEmail:''
-            })
+        if (this.state.email != this.props.state.patient.email) {
+            if (this.state.editEmail === false) {
+                // false > true : ถ้าเป็น true >> พิมพ์ได้
+                this.inputEmail.focus()
+            }
+            if (this.state.email == null) {
+                this.setState({
+                    email: this.props.state.patient.email,
+                    editEmail: true,
+                    passwordConfirmEmail: ''
+                })
+            } else {
+                this.setState({
+                    editEmail: true,
+                    passwordConfirmEmail: '',
+                    errorEmail: false
+                })
+            }
         }else{
-            this.setState({
-                editEmail: !this.state.editEmail,
-                passwordConfirmEmail: '',
-                errorEmail:false
-            })
+            errorPopup("Your Email has not been changed.")
         }
     }
 
     submitEmail = async () => {
         if (!await checkEmail(this.state.email)){
             if (await checkPassword(this.props.state.patient.citizenId, this.state.passwordConfirmEmail)) {
-                console.log("Match ")
                 this.props.setFieldAndValidate("newEmail", this.state.email)
                 this.confirm("changeEmail")
             } else {
@@ -216,21 +221,24 @@ export default class EditProfile extends React.Component {
         if (this.state.sendOTP) {
             return <div>
                 <p style={{ color: '#277e8e', fontSize: '12px' }}> 
-                    * If you want to change your mobile phone, please push 
-                    <span style={{ color: '#ba3131'}}> cencel </span> button. <br/>
                     The system has sent OTP Password to your mobile phone : <span style={{ color: "#000" }}>{this.state.mobileNumberbind}</span> <br />
                 Reference Code : <span style={{ color : "#000" }}>{this.state.requestId}</span> </p>
                 <Form.Group widths={3}>
                     <Form.Input
-                        label="OTP code"
+                        label="OTP Password"
+                        placeholder="OTP Password"
                         required
                         value={this.state.otp}
                         onChange={(e) => { this.setState({ otp : e.target.value }) }}
                     />
                 </Form.Group>
+                 <p style={{ color: '#277e8e', fontSize: '12px' }}> 
+                    * If you want to change your mobile phone, please push 
+                    <span style={{ color: '#ba3131'}}> Cancel </span> button. <br/>
+                  </p>
                 <Button
                     disabled={!this.state.otp}
-                    onClick={() => this.submitValidateOTP()}
+                    onClick={() => this.submitValidateOTP(this.state.otp)}
                 >
                     Submit
                 </Button>
@@ -266,12 +274,13 @@ export default class EditProfile extends React.Component {
     }
 
     requestOTP = (requestId = null) => {
+        // console.log(this.state.mobileNumber,this.props.state.patient.mobileNumber)
+        if (this.state.mobileNumber != this.props.state.patient.mobileNumber){
         let data = {
             requestId: requestId,
             citizenId: this.props.state.patient.citizenId,
-            mobileNumber: this.state.mobileNumber != null ? this.state.mobileNumber : this.props.state.patient.mobileNumber
+            mobileNumber: this.state.mobileNumber
         }
-        console.log(data)
         swal({
             title: 'The system is sending OTP Password to your mobile phone',
             html: 'Please do not close this popup.!',
@@ -283,7 +292,8 @@ export default class EditProfile extends React.Component {
                         this.setState({
                             requestId: res.data.requestId,
                             mobileNumberbind: res.data.mobileNumber,
-                            sendOTP: true
+                            sendOTP: true,
+                            mobileNumber: data.mobileNumber
                         });
                     } else {
                         errorPopup(res.message)
@@ -291,6 +301,9 @@ export default class EditProfile extends React.Component {
                 })
             },
         })
+        }else{
+            errorPopup("Your mobile number has not been changed.")
+        }
     }
 
     cancelRequestOTP = (requestOTP) => {
@@ -305,6 +318,7 @@ export default class EditProfile extends React.Component {
                         this.setState({
                             otp: "",
                             sendOTP: false,
+                            mobileNumber:null
                             // changeMobileNumber: false
                         })
                     } else {
@@ -316,43 +330,48 @@ export default class EditProfile extends React.Component {
     }
 
     submitValidateOTP = (pin) => {
+        // console.log('submitValidateOTP')
         let data = {
             pin: pin,
             requestId: this.state.requestId,
-            citizenId: this.props.state.patient.citizenId,
+            citizenId: this.props.state.patient.citizenId
         }
-        swal({
-            title: 'The system is validating OTP Password',
-            html: 'Please do not close this popup.!',
-            onOpen: () => {
-                swal.showLoading()
-                validateOTP(data).then(res => {
-                   swal.close()
-                    if (res.status) {
-                        this.setState({
-                            otp: "",
-                            sendOTP: false,
-                            changeMobileNumber: false
-                        })
-                    } else {
-                        this.setState({
-                            otp: "",
-                        })
-                        if (res.statusCode == '17') {
-                            this.setState({
-                                otp: "",
-                                sendOTP: false,
-                            })
-                        }
-                        errorPopup(res.message)
-                    }
-                })
-            }
-        })
+        // console.log(data)
+        this.props.setFieldAndValidate("newMobileNumber", this.state.mobileNumber)
+        this.confirm('changeMobileNumber',data)
+        // swal({
+        //     title: 'The system is validating OTP Password',
+        //     html: 'Please do not close this popup.!',
+        //     onOpen: () => {
+        //         swal.showLoading()
+        //         validateOTP(data).then(res => {
+        //            swal.close()
+        //             if (res.status) {
+        //                 this.setState({
+        //                     otp: "",
+        //                     sendOTP: false,
+        //                     changeMobileNumber: false
+        //                 })
+        //             } else {
+        //                 this.setState({
+        //                     otp: "",
+        //                 })
+        //                 if (res.statusCode == '17') {
+        //                     // ผิดเกิด 3 ครั้ง
+        //                     this.setState({
+        //                         otp: "",
+        //                         sendOTP: false,
+        //                     })
+        //                 }
+        //                 errorPopup(res.message)
+        //             }
+        //         })
+        //     }
+        // })
     }
 
     render() {
-        console.log(this.state)
+        // console.log(this.state,this.props)
         const { info, address, emer, parent, allergy, changePassword, changeEmail, editEmail, changeMobileNumber } = this.state
         return (
             
@@ -550,7 +569,7 @@ export default class EditProfile extends React.Component {
                                 <Form.Field required icon='mail' iconPosition='left' error={this.state.email == '' || this.state.errorEmail || this.state.errorDupEmail}>
                                     <label>{patientField.email.label}</label>
                                     <input class="otp"
-                                        readOnly={!editEmail}
+                                        // readOnly={!editEmail}
                                         ref={(e) => this.inputEmail = e}
                                         value={this.state.email != null ? this.state.email : this.props.state.patient.email}
                                         onBlur={() => this.validateEmail()}
@@ -558,13 +577,18 @@ export default class EditProfile extends React.Component {
                                         icon={<Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />}
                                     />
                                 </Form.Field>
-
                                 <Label
+                                    as='a'
+                                    onClick={() => this.editEmail()}
+                                    style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, marginTop: '22px', padding: '10px' }}>
+                                    Edit email <Icon name="edit" size='large' style={{ color: '#31A5BA' }} />
+                                </Label>
+                                {/* <Label
                                     circular as='a'
                                     onClick={() => this.editEmail()}
                                     style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 12, width: '38px', height: '38px', marginTop: '2%' }}>
                                     <Icon name="edit" size='large' style={{ color: '#31A5BA', padding: '14%' }} />
-                                </Label>
+                                </Label> */}
                                 {/* <Icon onClick={() => this.editEmail()} link style={{ color: '#31A5BA', backgroundColor: '#FFF', fontSize: 16 }} circular color='teal' name='edit' /> */}
                             </Form.Group>
                             {this.showComfirmChangeEmail()}
@@ -573,12 +597,19 @@ export default class EditProfile extends React.Component {
                 </Transition.Group>
 
 
-                <Segment style={changeMobileNumber ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ changeMobileNumber: !this.state.changeMobileNumber, email: this.props.state.patient.email, passwordConfirmEmail: '', errorDupEmail: false })}>
+                <Segment style={changeMobileNumber ? itemActiveStyle : itemStyle} vertical
+                    onClick={() => this.setState({
+                        changeMobileNumber: !this.state.changeMobileNumber, 
+                        sendOTP:false,
+                        mobileNumber: this.props.state.patient.mobileNumber,
+                    }) }
+                >
                     <h4 ><Icon name='mail' />Change Mobile Number <Icon style={{ float: 'right' }} name={changeMobileNumber ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {changeMobileNumber && <Segment style={elimentStyle} vertical >
                         <Form text >
                             <Form.Group widths="3">
+                                {/* <p>state:{this.state.mobileNumber} || props:{this.props.state.patient.mobileNumber}</p> */}
                                 <Form.Input
                                     label={patientField.mobileNumber.label}
                                     required

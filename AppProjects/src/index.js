@@ -9,10 +9,12 @@ import ManagePatientRecord from "./Containers/ManagePatientRecord";
 import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
-import ErrorNotFound from "./Components/Errors/ErrorNotFound";
-import ErrorTimeOut from "./Components/Errors/ErrorTimeOut";
+import ErrorNotFound from "./Components/UtilsPage/ErrorNotFound";
+import ErrorTimeOut from "./Components/UtilsPage/ErrorTimeOut";
 import ForgotPassword from "./Components/Patients/ManagePatientProfile/ForgotPassword";
 import FooterOnMobile from "./Components/ApiDocuments/FooterOnMobile"
+
+import VerifyEmail from "./Components/UtilsPage/VerifyEmail"
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -45,6 +47,9 @@ ReactDOM.render(
       <Route path="/ErrorTimeOut" component={ErrorTimeOut} />
       <Route path="/forgotPassword" component={ForgotPassword} />
       <Route path="/footerMobile" component={FooterOnMobile} />
+
+      <Route path="/auth/verifyEmail" component={VerifyEmail} />
+
     </div>
   </Router>,
   document.getElementById("root")

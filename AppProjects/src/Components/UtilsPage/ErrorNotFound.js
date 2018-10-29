@@ -2,7 +2,6 @@ import React from "react";
 import {
     Grid, Menu, Container, Icon, Image, Button, Responsive
 } from "semantic-ui-react";
-import styled from "styled-components";
 import notfound from './../../Static/Img/Error/404.gif'
 import LogoWebpage from "./../../Static/Img/logoWebpage.svg";
 import { Link } from "react-router-dom";

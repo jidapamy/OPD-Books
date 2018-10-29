@@ -1,7 +1,10 @@
 const nexmo = require("../Lib/Nexmo")
 const transporter = require("../Lib/Email")
 const handlebars = require('handlebars');
-var fs = require('fs');
+const CryptoJS = require("crypto-js");
+const { convertString, bindData, unlockAccount, lockAccount, convertToAscii } = require('../Services/Utils')
+const { contract, defaultAccount } = require('../Lib/Web3')
+const { patientScheme } = require("../Models/PatientModel")
 
 // OTP
 const requestOTP = (phoneNumber) => new Promise((resolve, reject) => {
@@ -49,7 +52,7 @@ const cancelOTP = (requestId) => new Promise((resolve, reject) => {
     });
 })
 
-const createEmail = (data) => new Promise((resolve, reject) => {
+const successfullyEmail = (data) => new Promise((resolve, reject) => {
     console.log("createEmail")
     const html = require("./mailWeb")
     var template = handlebars.compile(html(data));
@@ -80,106 +83,100 @@ const createEmail = (data) => new Promise((resolve, reject) => {
     });
 });
 
-// readHTMLFile('./index.html', function (err, html) {
-//     var template = handlebars.compile(html);
-//     var replacements = {
-//         username: "OPD BOOKS"
-//     };
-//     var htmlToSend = template(replacements);
-//     var mailOptions = {
-//         from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
-//         to: 'thailand_hka@hotmail.com', // list of receivers
-//         subject: 'MedicalRecord', // Subject line
-//         text: 'Hello world?', // plain text body
-//         html: htmlToSend
-//     };
-//     transporter.sendMail(mailOptions, function (error, response) {
-//         if (error) {
-//             console.log(error);
-//             // callback(error);
-//         }
-//     });
-// });
-
-//Email 
-
-// const createEmail = (email) => new Promise('./index.html', function (err, html) {
-//     console.log("createEmail",email)
-//     var template = handlebars.compile(html);
-//     var replacements = {
-//         username: "OPD BOOKS"
-//     };
-//     var htmlToSend = template(replacements);
-//     var mailOptions = {
-//         from: '"OPD BOOKS" <opdbooksblockchain@gmail.com>', // sender address
-//         to: email, // list of receivers
-//         subject: 'MedicalRecord', // Subject line
-//         text: 'Hello world?', // plain text body
-//         html: htmlToSend
-//     };
-//     transporter.sendMail(mailOptions, function (error, response) {
-//         if (error) {
-//             reject({ message: err })
-//             return
-//         }
-//         console.log('Message sent: %s', info.messageId);
-//         // Preview only available when sending through an Ethereal account
-//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-//         resolve({ message: 'send email success!' })
-//         return
-
-//     });
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const createEmail = (email) => new Promise((resolve, reject) => {
-//     let mailOptions = {
-//         from: '"Fred Foo 👻" <opdbooksblockchain@gmail.com>', // sender address
-//         to: email, // list of receivers
-//         subject: 'Your medical record is saved successfully.', // Subject line
-//         text: 'Your medical record is saved successfully.!!', // plain text body
-//         html: "<b>successfully!!</b> <a href='www.opdbooks.tk'>OPD Books</a>" // html body
-//     };
-
-//     transporter.sendMail(mailOptions, (error, info) => {
-//         if (error) {
-//             reject({ message: err })
-//             return
-//         }
-//         console.log('Message sent: %s', info.messageId);
-//         // Preview only available when sending through an Ethereal account
-//         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-//         resolve({ message: 'send email success!' })
-//         return
-
-//     });
-// });
-
 const sendEmail = async (data) => {
     try {
         console.log("sendEmail",data)
-        const result = await createEmail(data)
+        const result = await successfullyEmail(data)
         return ({ status: true, message: "SUCCESS" })
     } catch (error) {
         throw new Error(error)
     }
+}
 
+const verifyEmail = (data) => new Promise((resolve, reject) => {
+    console.log("createEmail")
+    const html = require("./mailWeb")
+    var template = handlebars.compile(html(data));
+    var replacements = {
+        username: "OPD BOOKS"
+    };
+    // var htmlToSend = template(replacements);
+    let mailOptions = {
+        from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
+        to: data.email, // list of receivers
+        subject: 'Email Verification - OPD Books ( Blockchain for patients )', // Subject line
+        text: 'need to verify your email address. Please verify your email address to confirm your account registration', // plain text body
+        html: `<p>Hello ${data.nametitle}${data.firstname} ${data.lastname}</p>
+        In order for your OPD Books application to be processed, we need to verify your email address. Please verify your email address to confirm your account registration of receiving this message.
+        <p>Help us secure your account by verifying your email address. This lets you access all of OPD Books's features.</p>
+        <a href="www.google.com">${encryptEmail(data.citizenId)}</a> 
+        ` // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error)
+            reject({ message: error })
+            return
+        }
+        console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        resolve({ message: 'send email success!' })
+        return
+
+    });
+});
+
+const sendVerifyEmail = async (data) => {
+    try {
+        console.log("sendVerifyEmail", data)
+        const result = await verifyEmail(data)
+        return ({ status: true, message: "SUCCESS" })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+
+const verifiedEmail = async (hashCode) => {
+    // click link in email to verify email
+    // contract.verifyEmail( bytes32  _citizenId )
+    console.log("hashCode",hashCode)
+    let plaintext = decryptEmail(hashCode)
+    console.log("plaintext", plaintext)
+    const byteCitizenId = convertString(plaintext.citizenId)
+    let nameAndEmail = await contract.getPatientNameAndEmail(byteCitizenId)
+    const combindedData = bindData(patientScheme, [nameAndEmail], 'patientAndEmail')
+    if (combindedData.email === plaintext.email){
+        if (!combindedData.verifyEmail){
+            let result = await contract.setVerifyEmail(byteCitizenId, true);
+            if (result) {
+                return ({ status: true, message: "SUCCESS" })
+            } else {
+                return ({ status: false, message: "ERROR" })
+            }
+        }else{
+            return ({ status: false, message: "Email is verified already" })
+        }
+    }
+    return ({ status: false, message: "Email not match in system" })
+}
+
+
+decryptEmail = (hashCode) => {
+    if (hashCode){
+        bytes = CryptoJS.AES.decrypt(hashCode, "OPDEMAIL");
+        let plaintext = bytes.toString(CryptoJS.enc.Utf8);
+        let res = plaintext.split("/andemailopdbooks/")
+        return { citizenId : res[0], email : res[1] }
+
+    }
+    return null
+};
+
+encryptEmail = (citizenId,email) => {
+    return ciphertext = CryptoJS.AES.encrypt(citizenId + '/andemailopdbooks/' + email,"OPDEMAIL");
 }
 
 
@@ -188,4 +185,6 @@ module.exports = {
     validateOTP,
     cancelOTP,
     sendEmail,
+    sendVerifyEmail,
+    verifiedEmail
 };

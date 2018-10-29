@@ -89,6 +89,7 @@ export default class apiDocument extends Component {
         <MySlidedown open={this.state.open === data.system ? true : false}>
           {this.showMethod(i)}
         </MySlidedown>
+        
       </div>
     })
     return tmp
@@ -179,6 +180,11 @@ export default class apiDocument extends Component {
               <br />
               <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
               {this.showData()}<br />
+              <Menu.Item  style={{ backgroundColor: '#31A5BA' }}>
+                <Header  >
+                  <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
+                </Header>
+              </Menu.Item>
             </Menu>
           </div>
           <Body>
@@ -200,6 +206,8 @@ export default class apiDocument extends Component {
                     active={this.state.statusJson === 2}
                     onClick={() => this.setState({ statusJson: 2 })}
                   />
+                 
+                  
                 </Menu>
                 {/* <div style={style.tableHead}>
                   <Grid divided='vertically'>

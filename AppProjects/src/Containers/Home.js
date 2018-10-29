@@ -35,6 +35,12 @@ import "../Static/Style/Navbar.css";
 import "../Static/Style/HomeCss.css";
 import { Link } from "react-router-dom";
 
+const style = {
+  cursors: {
+    cursor: 'pointer'
+  }
+
+}
 const GridColumn = styled(Grid.Column)`
   display: flex;
   justify-content: center;
@@ -139,12 +145,7 @@ export default class Home extends React.Component {
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Menu.Item>
-                    <Header inverted={!menuFixed} >
-                      <a href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
-                    </Header>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Header  inverted={!menuFixed} onClick={() => this.goToPage('/apiDocument')}>
+                    <Header style={style.cursors}  inverted={!menuFixed} onClick={() => this.goToPage('/apiDocument')}>
                       API Document
                     </Header>
                   </Menu.Item>
