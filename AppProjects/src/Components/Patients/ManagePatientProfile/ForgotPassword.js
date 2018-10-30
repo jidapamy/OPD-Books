@@ -10,14 +10,13 @@ import {
     List,
     Form,
     Message,
-    Header,
     Image,
     Modal, Dimmer, Loader
 
 } from "semantic-ui-react";
 import { style } from "../../../Static/Style/QueueCss";
 import BackgroundImage from "../../../Static/Img/BGForgot.png";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
 import DatePicker from 'react-datepicker';
 import onetimepass from '../../../Static/Img/2fa.svg'
@@ -27,6 +26,7 @@ import swal from "sweetalert2";
 import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
+import logo from "../../../Static/Img/Contianer/my.jpg";
 
 const Wrapper = styled.div`
     background: url('${BackgroundImage}') no-repeat center fixed;
@@ -50,6 +50,11 @@ const styles = {
 
 };
 
+const ImageSizeRow = styled(Image)`
+  width: 150px;
+  height: 150px;
+`;
+
 
 
 export default class ForgotPassword extends Component {
@@ -58,12 +63,19 @@ export default class ForgotPassword extends Component {
         newPassword: '',
         newPasswordConfirm: '',
         dob: null,
-        step: 1,
+        step: 2,
         openOTP: false,
         requestId: "",
         mobileNumber: "",
         pin: "",
-        loader: false
+        loader: false,
+        selectSend: "sms",
+
+    }
+
+
+    componentWillReceiveProps = (nextProps) => {
+        this.setState({ selectSend: nextProps.tab });
     }
 
     DateInput = () => {
@@ -129,25 +141,9 @@ export default class ForgotPassword extends Component {
                                     }
                                     return false
                                 })
-                                // swal(
-                                //     'Successful!',
-                                //      'You have successfully logged into the system',
-                                //     'success',
-                                // ).then(res => {
-                                //     if (res) {
-                                //         this.props.history.push("/signin")
-                                //         return true
-                                //     }
-                                //     return false
-                                // })
+                                
                             } else {
                                 errorPopup(res.message)
-                                // swal({
-                                //     type: "error",
-                                //     text: res.message,
-                                //     showConfirmButton: false,
-                                //     showCloseButton: true,
-                                // });
                             }
                         }
                         return false
@@ -186,12 +182,6 @@ export default class ForgotPassword extends Component {
                     })
                 }
                 errorPopup(res.message)
-                // swal({
-                //     type: "error",
-                //     text: res.message,
-                //     showConfirmButton: false,
-                //     showCloseButton: true,
-                // });
             }
         })
     }
@@ -201,10 +191,8 @@ export default class ForgotPassword extends Component {
             requestId: requestId,
             citizenId: this.state.citizenId
         }
-        // this.props.setField("loader", true)
         this.setState({ loader: true })
         requestOTP(data).then(res => {
-            // this.props.setField("loader", false)
             if (res.status) {
                 this.setState({
                     requestId: res.data.requestId,
@@ -218,12 +206,6 @@ export default class ForgotPassword extends Component {
                     loader: false,
                 })
                 errorPopup(res.message)
-                // swal({
-                //     type: "error",
-                //     text: res.message,
-                //     showConfirmButton: false,
-                //     showCloseButton: true,
-                // });
             }
         })
     }
@@ -239,169 +221,177 @@ export default class ForgotPassword extends Component {
                 })
             } else {
                 errorPopup(res.message)
-                // swal({
-                //     type: "error",
-                //     text: res.message,
-                //     showConfirmButton: false,
-                //     showCloseButton: true,
-                // });
             }
         })
     }
 
+
+
+
+
+
     render() {
+        console.log(this.state)
         return (
-            <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-                <Dimmer page active={this.state.loader}>
-                    <Loader size='massive' indeterminate>Loading</Loader>
-                </Dimmer>
-                <Wrapper className="login-form">
-                    <style>{`
+            <span>
+                <Responsive {...Responsive.onlyComputer}>
+                    <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+                        <Dimmer page active={this.state.loader}>
+                            <Loader size='massive' indeterminate>Loading</Loader>
+                        </Dimmer>
+                        <Wrapper className="login-form">
+                            <style>{`
                     body > div,
                     body > div > div,
                     body > div > div > div.login-form {
                     }
                 `}</style>
 
-                    <Container style={style.Container}>
-                        <p style={style.ForgotTopic}>FORGOT PASSWORD</p>
-                        <Segment style={style.DecoSegment}>
-                            {/* <Grid style={style.circularZone}> */}
-                            {this.state.step == 1 && <Grid>
-                                <Grid.Row style={style.circularZone}>
-                                    <Grid.Column>
-                                    </Grid.Column>
-                                </Grid.Row>
-                                <Grid.Row >
-                                    <Grid.Column style={style.inputForgotZone}>
-                                        <Message style={style.bgDescription}>
-                                            {/* <Message.Header><i>STEP 1 :</i></Message.Header> */}
-                                            <Message.List>
-                                                <Message.Item>Please, fill in the field , then click 'Send To Verify' button.</Message.Item>
-                                                <Message.Item>Waiting for <u>OTP</u> authentication from your mobile phone.&nbsp;
-                                            <Icon name='phone' /></Message.Item>
-                                            </Message.List>
-                                        </Message>
-                                    </Grid.Column>
-                                </Grid.Row>
-                                <Container>
-                                    <Grid.Row style={style.inputForgotZone}>
-                                        <Grid.Column>
-                                            <Form style={{ paddingLeft: '15.5%' }}>
-                                                <Form.Group>
-                                                    <Input
-                                                        icon='user'
-                                                        iconPosition='left'
-                                                        placeholder={patientField.citizenId.label}
-                                                        style={style.inputForgot}
-                                                        autoFocus
-                                                        onChange={(e, { value }) => this.setState({ citizenId: e.target.value })}
-                                                        value={this.state.citizenId}
-                                                    />
+                            <Container style={style.Container}>
+                                <p style={style.ForgotTopic}>FORGOT PASSWORD</p>
+                                <Segment style={style.DecoSegment}>
+                                    {this.state.step == 1 && <Grid>
+                                        <Grid.Row style={style.circularZone}>
+                                            <Grid.Column>
+                                            <ImageSizeRow src={logo} />
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                        <Grid.Row >
+                                            <Grid.Column style={style.inputForgotZone}>
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                        <Container>
+                                            <Grid.Row style={style.inputForgotZone}>
+                                                <Grid.Column>
+                                                    <Form style={{ paddingLeft: '7%' }}>
+                                                        <Button.Group style={style.twoColumnButton2}>
+                                                            <Button basic={this.state.selectSend != "sms"} color='black'
+                                                                onClick={() => this.setState({ selectSend: "sms" })}
+                                                            >SMS Authentication</Button>
+                                                            <Button basic={this.state.selectSend != "email"} color='black'
+                                                                onClick={() => this.setState({ selectSend: "email" })}
+                                                            >E-mail Authentication</Button>
+                                                        </Button.Group>
+                                                    </Form>
+                                                    <Form style={{ paddingLeft: '15.5%' }}>
+                                                        <Form.Group>
+                                                            <Message style={style.decoDescription}>
+                                                                <Message.List>
+                                                                    <Message.Item>Choose authentication type.</Message.Item>
+                                                                    <Message.Item>Please, fill in the field , then click 'Send To Verify' button.</Message.Item>
+                                                                    <Message.Item>Waiting for <u>OTP</u> authentication.</Message.Item>
+                                                                </Message.List>
+                                                            </Message>
+
+                                                        </Form.Group>
+                                                        <Form.Group>
+                                                            <Input
+                                                                icon='user'
+                                                                iconPosition='left'
+                                                                placeholder={patientField.citizenId.label}
+                                                                style={style.inputForgot}
+                                                                autoFocus
+                                                                onChange={(e, { value }) => this.setState({ citizenId: e.target.value })}
+                                                                value={this.state.citizenId}
+                                                            />
+                                                            <br />
+                                                        </Form.Group>
+                                                        <Form.Group>
+                                                            <Form.Field style={{ display: 'flex' }} >
+                                                                {this.DateInput()}
+                                                                <Icon name="birthday" style={styles.icon} />
+                                                            </Form.Field>
+                                                        </Form.Group>
+                                                        <Form.Group>
+                                                        </Form.Group>
+                                                        <Form.Group style={style.twoColumnButton}>
+                                                            <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify</Button>
+                                                        </Form.Group>
+                                                    </Form>
                                                     <br />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Form.Field style={{ display: 'flex' }} >
-                                                        {this.DateInput()}
-                                                        <Icon name="birthday" style={styles.icon} />
-                                                    </Form.Field>
-                                                </Form.Group>
-                                                <Form.Group>
-                                                </Form.Group>
-                                                <Form.Group style={style.twoColumnButton}>
-                                                    <Button style={style.ButtonCancel} onClick={() => this.props.history.push("/signin")}><Icon name='arrow circle left' />&nbsp;&nbsp;Back Home</Button>
-                                                    {/* <Button style={style.ButtonNext} onClick={() => this.nextStep(1)}>Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button> */}
-                                                    <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
-
-                                                </Form.Group>
-                                            </Form>
-                                            <br />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Container>
-                            </Grid>}
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                            
+                                        </Container>
+                                    </Grid>}
 
 
-                            {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
+                                    {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
 
-                            {this.state.step == 2 && <Grid>
-                                <Grid.Row style={style.circularZone}>
-                                    <Grid.Column>
+                                    {this.state.step == 2 && <Grid>
+                                        <Grid.Row style={style.circularZone}>
+                                            <Grid.Column>
+                                            <ImageSizeRow src={logo} />
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                        <Grid.Row >
+                                            <Grid.Column style={style.inputForgotZone}>
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                        <Container>
+                                            <Grid.Row style={style.inputForgotZone}>
+                                                <Grid.Column>
 
-                                    </Grid.Column>
-                                </Grid.Row>
-                                <Grid.Row >
-                                    <Grid.Column style={style.inputForgotZone}>
-                                        <Message style={style.bgDescription}>
-                                            <Message.Header><i>STEP 2 :</i></Message.Header>
-                                            <Message.List>
-                                                <Message.Item>Enter new password and confirm new password.&nbsp;
-                                            <Icon name='key' />
-                                                </Message.Item>
-                                            </Message.List>
-                                        </Message>
+                                                    <Form style={{ paddingLeft: '15.5%' }}>
+                                                        <Form.Group>
+                                                            <Message style={style.decoDescription}>
+                                                                <Message.List>
+                                                                    <Message.Item>Enter new password and confirm new password.&nbsp;<Icon name='key' />
+                                                                    </Message.Item>
+                                                                </Message.List>
+                                                            </Message>
 
-                                    </Grid.Column>
-                                </Grid.Row>
-                                <Container>
-                                    <Grid.Row style={style.inputForgotZone}>
-                                        <Grid.Column>
-                                            <Form style={{ paddingLeft: '15.5%' }}>
-                                                <Form.Group>
-                                                    <Input
-                                                        type="password"
-                                                        icon='lock'
-                                                        iconPosition='left'
-                                                        placeholder='New Password ...'
-                                                        style={style.inputForgot}
-                                                        onChange={(e) => this.setState({ newPassword: e.target.value })}
-                                                        value={this.state.newPassword}
-                                                    />
+                                                        </Form.Group>
+                                                        <Form.Group>
+                                                            <Input
+                                                                type="password"
+                                                                icon='lock'
+                                                                iconPosition='left'
+                                                                placeholder='New Password ...'
+                                                                style={style.inputForgot}
+                                                                onChange={(e) => this.setState({ newPassword: e.target.value })}
+                                                                value={this.state.newPassword}
+                                                            />
+                                                        </Form.Group>
+
+                                                        <Form.Group>
+                                                        <Input
+                                                                type="password"
+                                                                icon='lock'
+                                                                iconPosition='left'
+                                                                placeholder='Confirm New Password ...'
+                                                                style={style.inputForgot}
+                                                                onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
+                                                                value={this.state.newPasswordConfirm}
+                                                            />
+                                                        </Form.Group>
+                                                        <Form.Group style={style.twoColumnButton}>
+                                                            <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Submit</Button>
+                                                        </Form.Group>
+                                                    </Form>
                                                     <br />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                    <Input
-                                                        type="password"
-                                                        icon='lock'
-                                                        iconPosition='left'
-                                                        placeholder='New Password Confirm ...'
-                                                        style={style.inputForgot}
-                                                        onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
-                                                        value={this.state.newPasswordConfirm}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group>
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Container>
+                                    </Grid>}
+                                    <Modal open={this.state.openOTP} onClose={() => this.setState({ openOTP: false, step: 1 })}>
+                                        <OTPfactor
+                                            requestId={this.state.requestId}
+                                            mobileNumber={this.state.mobileNumber}
+                                            validateOTP={this.validateOTP}
+                                            requestOTP={this.requestOTP}
+                                            pin={this.state.pin}
+                                            cancelRequestOTP={this.cancelRequestOTP}
+                                        />
+                                    </Modal>
 
-                                                </Form.Group>
-
-                                                <Form.Group style={style.twoColumnButton}>
-                                                    <Button style={style.ButtonCancel} onClick={() => this.props.history.push("/signin")}><Icon name='arrow circle left' />&nbsp;&nbsp;Back Home</Button>
-                                                    <Button style={style.ButtonNext} onClick={() => this.nextStep(2)}>Submit&nbsp;&nbsp;<Icon name='arrow circle right' /></Button>
-                                                </Form.Group>
-
-                                            </Form>
-                                            <br />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Container>
-                            </Grid>}
-
-
-                            <Modal open={this.state.openOTP} onClose={() => this.setState({ openOTP: false, step: 1 })}>
-                                <OTPfactor
-                                    requestId={this.state.requestId}
-                                    mobileNumber={this.state.mobileNumber}
-                                    validateOTP={this.validateOTP}
-                                    requestOTP={this.requestOTP}
-                                    pin={this.state.pin}
-                                    cancelRequestOTP={this.cancelRequestOTP}
-                                />
-                            </Modal>
-
-                        </Segment>
-                    </Container>
-                </Wrapper>
-            </Dimmer.Dimmable>
+                                </Segment>
+                            </Container>
+                        </Wrapper>
+                    </Dimmer.Dimmable>
+                </Responsive>
+                <ForgotPasswordOnMobile />
+            </span>
         )
     }
 }
