@@ -6,7 +6,7 @@ import RegisterAPI from "./Containers/RegisterAPI";
 import Login from "./Containers/Login";
 import OTPfactor from "./Components/DemoExamples/OTPfactor";
 import ManagePatientRecord from "./Containers/ManagePatientRecord";
-import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
+// import FormEditProfile from "./Components/Patients/ManagePatientProfile/FormEditProfile";
 import ProfilePatient from "./Containers/PatientProfile";
 import apiDocument from "./Containers/Document"
 import ErrorNotFound from "./Components/UtilsPage/ErrorNotFound";
@@ -15,6 +15,7 @@ import ForgotPassword from "./Components/Patients/ManagePatientProfile/ForgotPas
 import FooterOnMobile from "./Components/ApiDocuments/FooterOnMobile"
 
 import VerifyEmail from "./Components/UtilsPage/VerifyEmail"
+import EditProfile from "./Components/Patients/ManagePatientProfile/EditProfile"
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -34,7 +35,7 @@ ReactDOM.render(
       <Route exact path="/" component={Home} />
       {/* patient */}
       <Route path="/RegisterAPI" component={RegisterAPI} />
-      <Route path="/FormEditProfile" component={FormEditProfile} />
+      {/* <Route path="/FormEditProfile" component={FormEditProfile} /> */}
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
       <Route path="/profile" component={ProfilePatient} />
@@ -49,6 +50,8 @@ ReactDOM.render(
       <Route path="/footerMobile" component={FooterOnMobile} />
 
       <Route path="/auth/verifyEmail" component={VerifyEmail} />
+      <Route path="/editProfile" component={EditProfile} />
+
 
     </div>
   </Router>,

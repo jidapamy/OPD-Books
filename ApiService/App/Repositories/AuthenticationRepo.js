@@ -93,23 +93,23 @@ const sendEmail = async (data) => {
     }
 }
 
-const verifyEmail = (data) => new Promise((resolve, reject) => {
-    console.log("createEmail")
-    const html = require("./mailWeb")
-    var template = handlebars.compile(html(data));
-    var replacements = {
-        username: "OPD BOOKS"
-    };
+const emailVerified = (data) => new Promise((resolve, reject) => {
+    console.log("emailVerified")
+    // const html = require("./mailWeb")
+    // var template = handlebars.compile(html(data));
+    // var replacements = {
+    //     username: "OPD BOOKS"
+    // };
     // var htmlToSend = template(replacements);
     let mailOptions = {
         from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
         to: data.email, // list of receivers
         subject: 'Email Verification - OPD Books ( Blockchain for patients )', // Subject line
         text: 'need to verify your email address. Please verify your email address to confirm your account registration', // plain text body
-        html: `<p>Hello ${data.nametitle}${data.firstname} ${data.lastname}</p>
-        In order for your OPD Books application to be processed, we need to verify your email address. Please verify your email address to confirm your account registration of receiving this message.
-        <p>Help us secure your account by verifying your email address. This lets you access all of OPD Books's features.</p>
-        <a href="www.google.com">${encryptEmail(data.citizenId)}</a> 
+        html: `<p>Hello ${data.patient.nametitle}${data.patient.firstname} ${data.patient.lastname}</p>
+        In order for your OPD Books application to be processed, we need to verify your email address. 
+        <h3>${data.genVerificationCode}</h3>
+        Thank you.
         ` // html body
     };
 
@@ -131,7 +131,7 @@ const verifyEmail = (data) => new Promise((resolve, reject) => {
 const sendVerifyEmail = async (data) => {
     try {
         console.log("sendVerifyEmail", data)
-        const result = await verifyEmail(data)
+        const result = await emailVerified(data)
         return ({ status: true, message: "SUCCESS" })
     } catch (error) {
         throw new Error(error)

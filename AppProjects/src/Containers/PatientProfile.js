@@ -229,8 +229,6 @@ export default class PatientProfile extends Component {
   render() {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
-
-    console.log("PatientProfile",this.state)
     return (
       <div>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>

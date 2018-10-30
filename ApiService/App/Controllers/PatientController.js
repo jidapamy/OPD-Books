@@ -47,9 +47,9 @@ const isEmailCtr = (req, res) => {
 }
 
 const editCtr = async (req, res) => {
-    console.log("edit",req.body)
     if (isPatient(req.body.citizenId)) {
         const result = await edit(req.body)
+        console.log(result)
         res.send(result)
         return;
     }
