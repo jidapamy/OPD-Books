@@ -7,7 +7,7 @@ import { groupInfoPatientField, patientField } from "../../../../Static/Data/Fie
 import { color } from "../../../../Static/Data/ColorPattern"
 
 const BGMobiles = styled(Segment) `
-  background: url('https://i.pinimg.com/564x/f1/48/0b/f1480ba048e8dc86bd8bbd6d979b92fb.jpg') !important;
+  background: url('https://i.pinimg.com/originals/6d/35/4a/6d354a52bfffd0aa61fe58ec6c46a956.png') !important;
   background-size: 100% 100%;
 `
 const labelInfo = {

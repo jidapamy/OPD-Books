@@ -118,7 +118,7 @@ export default class Home extends React.Component {
     const { menuFixed } = this.state;
     return (
       <span>
-        <Responsive {...Responsive.onlyComputer}>
+        <Responsive {...Responsive.onlyComputer} minWidth={Responsive.onlyTablet.minWidth}> 
         <Segment.Group>
            
             {/* <box className="images"> */}
@@ -139,7 +139,7 @@ export default class Home extends React.Component {
               
                 <Menu.Item>
                     <Image size='mini' src={LogoWebpage}/>
-                  <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
+                  <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}  >
                     OPD BOOKS
                   </span>
                 </Menu.Item>
@@ -164,6 +164,17 @@ export default class Home extends React.Component {
               
             </Visibility>
             <Image src={HBG}></Image>
+            <Responsive minWidth={768} maxWidth={1023}> 
+              <box>
+                <Header style={{ fontSize: '20px' }}>Hello, we are</Header>
+                <Header style={{ fontSize: '20px' }}>OPD BOOKS </Header>
+                <Header.Content style={{ fontSize: '15px', color: '#434444' }} >By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.</Header.Content>
+                <br />
+                <Link to="/signup"><Button size='mini' style={{ fontSize: '5px', borderRadius: '100px', backgroundColor: '#31A5BA', color: 'white' }} >Sign UP</Button></Link>
+                <Link to="/apiDocument"><Button size='mini' style={{ fontSize: '5px', borderRadius: '100px' }}>DEMO</Button></Link>
+              </box>
+            </Responsive> 
+            <Responsive {...Responsive.onlyComputer}  >
             <box>	
               <Header style={{ fontSize: '50px' }}>Hello, we are</Header>
               <Header style={{ fontSize: '50px' }}>OPD BOOKS </Header>
@@ -172,7 +183,7 @@ export default class Home extends React.Component {
               <Link to="/signup"><Button size='huge' style={{ fontSize: '25px', borderRadius: '100px', backgroundColor:'#31A5BA',color:'white' }} >Sign UP</Button></Link>
               <Link to="/apiDocument"><Button  size='huge' style={{ fontSize: '25px', borderRadius: '100px' }}>DEMO</Button></Link>
             </box>
-            
+              </Responsive> 
            
           <Segment
             style={{ padding: "5em 0em", border: "0px" }}
