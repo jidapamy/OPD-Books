@@ -16,50 +16,11 @@ import VerifyField from './VerifyField'
 
 
 //static
-
-import BGcomputer from '../../../Static/Img/Wallpaper/BGcomputer.png'
-import BGIPad1 from '../../../Static/Img/Wallpaper/BGIPad1.png'
-import BGIPad2 from '../../../Static/Img/Wallpaper/BGIPad2.png'
-import BGIPad3 from '../../../Static/Img/Wallpaper/BGIPad3.png'
-import BGIPhone from '../../../Static/Img/Wallpaper/BGIPhone.png'
-import BGIPhonePlus from '../../../Static/Img/Wallpaper/BGIPhonePlus.png'
-import BGIPhonX from '../../../Static/Img/Wallpaper/BGIPhonX.png'
+import { Wrapper } from './../../../Static/Style/QueueCss'
 
 import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
 
 //css
-const Wrapper = styled.div`
-
-@media only screen and (max-width: 1366px) and (min-width: 1024px) {
-  background: url(${BGIPad3}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (max-width: 1112px) and (min-width: 834px) {
-  background: url(${BGIPad2}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (max-width: 1024px) and (min-width: 768px) {
-  background: url(${BGIPad1}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (max-width: 812px) and (min-width: 315px) {
-  background: url(${BGIPhonX}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (max-width: 736px) and (min-width: 414px) {
-  background: url(${BGIPhonePlus}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (max-width: 667px) and (min-width: 375px) {
-  background: url(${BGIPhone}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-@media only screen and (min-width: 1025px)  {
-  background: url(${BGcomputer}) no-repeat center fixed;
-  background-size: 100% 100%;
-}
-
-`
 
 const ContanierTop = styled(Container)`
     padding-top:4%;
