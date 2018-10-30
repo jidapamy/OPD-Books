@@ -261,9 +261,16 @@ export default class ManagePatientRecord extends Component {
               if (res) {
                 swal.disableLoading()
                 if (res.status) {
-                  successTXPopup('You have successfully logged into the system to get started.', res.data.transaction).then(res => {
-                    this.props.history.push('/signin')
-                  })
+                  if (res.data.transaction) {
+                    successTXPopup('You have successfully logged into the system to get started.', res.data.transaction).then(res => {
+                      this.props.history.push('/signin')
+                    })
+                  } else {
+                    successPopup('You have successfully logged into the system to get started.').then(res => {
+                      this.props.history.push('/signin')
+                    })
+                  }
+
                 }
               }
             })
@@ -274,112 +281,199 @@ export default class ManagePatientRecord extends Component {
   }
 
   validateEdit = async (group, dataForOTP = null) => {
-    console.log('validateEdit', group)
-    this.setState({ editSuccess: '' })
-    let patient = { ...this.props.patient }
-    let arr = [];
+    console.log("patient", this.state.patient)
+    console.log("props", this.props.patient)
+    let patient = { ...this.state.patient }
+    let statusChange = false;
     if (dataForOTP) {
-      console.log("newMobileNumber",this.state.patient, this.props.patient)
-      // console.log(this.state.patient.mobileNumber , this.props.patient.mobileNumber)
-      if (this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
+      console.log("newMobileNumber", this.state.patient, this.props.patient)
+      if (this.state.patient.newMobileNumber && this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
         patient.mobileNumber = this.state.patient.mobileNumber
-        // this.state.patient.mobileNumber = this.state.patient.newMobileNumber
-        this.state.patient.editInfoPart4 = true;
-        console.log("patient",patient)
-        this.submitValidateOTP(patient, { ...{ group: group }, ...dataForOTP })
+        patient.editInfoPart4 = true;
+        statusChange = true
+        this.submitValidateOTP(patient, { group, ...dataForOTP })
         return
       }
     }
+
     if (this.allField[group]) {
-      // console.log(this.allField[group])
       this.allField[group].map(field => {
-        if (this.state.patient[field.field]) {
-          if (this.state.patient[field.field] != this.props.patient[field.field]) {
-            patient[field.field] = this.state.patient[field.field]
-            this.state.patient[field.key] = true;
+        if (field.field == 'email') {
+          if (this.state.patient.email != this.props.patient.newEmail) {
+            patient[field.key] = true;
+            patient.newEmail = this.state.patient.newEmail
+            this.state.patient.email = this.state.patient.newEmail
+            statusChange = true
             return
-          }
-          if (field.field == 'email') {
-            if (this.state.patient.email != this.props.patient.newEmail) {
-              this.state.patient[field.key] = true;
-              patient.email = this.state.patient.newEmail
-              return
-            }
-          }
-        } else {
-          if (field.field == 'password') {
-            this.state.patient[field.key] = true;
-            return
-          }
-          if (field.required) {
-            arr.push(field.field)
           }
         }
-      })
-
-      let message = ""
-      if (arr.length > 0) {
-        if (arr.length == 1) {
-          message = arr[0] + " is required!"
-        } else if (arr.length > 1) {
-          arr.map((text, i) => {
-            if (i === arr.length - 1) {
-              message += text + " are required!";
-              return
-            }
-            message += text + ", ";
-          })
-          alert(message)
+        if (field.field == 'password') {
+          patient[field.key] = true;
+          statusChange = true
           return
         }
-      }
-      this.showPopupConfirmEdit(patient, group);
-      return
+        if (this.state.patient[field.field] && this.state.patient[field.field] != this.props.patient[field.field]) {
+          console.log("change", field.field)
+          patient[field.field] = this.state.patient[field.field]
+          patient[field.key] = true;
+          statusChange = true
+          return
+        }
+      })
     }
-    return
+    if (statusChange) {
+      this.showPopupConfirmEdit(patient, group);
+    }
+
+
+
+
+
+
+    // let patient = { ...this.props.patient }
+    // let statusChange = false;
+    // console.log("--Before--")
+    // console.log(this.props.patient, this.state.patient)
+    // console.log("---------")
+    // let arr = [];
+    // if (dataForOTP) {
+    //   console.log("newMobileNumber", this.state.patient, this.props.patient)
+    //   if (this.state.patient.newMobileNumber && this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
+    //     patient.mobileNumber = this.state.patient.mobileNumber
+    //     // this.state.patient.editInfoPart4 = true;
+    //     patient.editInfoPart4 = true;
+    //     console.log("patient", patient, this.props.patient, this.state.patient)
+    //     statusChange = true
+    //     this.submitValidateOTP(patient, { ...{ group: group }, ...dataForOTP })
+    //     return
+    //   }
+    // }
+    // if (this.allField[group]) {
+    //   this.allField[group].map(field => {
+    //     debugger
+    //     // if (this.state.patient[field.field] != '-' && group === 'emer' ){
+    //     if (this.state.patient[field.field] && this.state.patient[field.field] != '') {
+    //       if (this.state.patient[field.field] != this.props.patient[field.field]) {
+    //         console.log("change", field.field)
+    //         patient[field.field] = this.state.patient[field.field]
+    //         // this.state.patient[field.key] = true;
+    //         patient[field.key] = true;
+    //         console.log("patient", patient, this.props.patient, this.state.patient)
+    //         statusChange = true
+    //         return
+    //       }
+    //       if (field.field == 'email') {
+    //         if (this.state.patient.email != this.props.patient.newEmail) {
+    //           // this.state.patient[field.key] = true;
+    //           // patient.email = this.state.patient.newEmail
+    //           patient[field.key] = true;
+    //           patient.newEmail = this.state.patient.newEmail
+    //           this.state.patient.email = this.state.patient.newEmail
+    //           statusChange = true
+    //           return
+    //         }
+    //       }
+    //     } else {
+    //       if (field.field == 'password') {
+    //         // this.state.patient[field.key] = true;
+    //         patient[field.key] = true;
+    //         statusChange = true
+    //         return
+    //       }
+    //       if (field.required) {
+    //         arr.push(field.field)
+    //       }
+    //     }
+    //     // }
+    //     // else {
+    //     //   if (field.required) {
+    //     //     arr.push(field.field)
+    //     //   }
+    //     // }
+    //   })
+    //   if (statusChange) {
+    //     console.log("--After--")
+    //     console.log(patient, this.state.patient)
+    //     console.log("---------")
+    //     let message = ""
+
+    //     if (arr.length > 0) {
+    //       if (arr.length == 1) {
+    //         message = arr[0] + " is required!"
+    //       } else if (arr.length > 1) {
+    //         arr.map((text, i) => {
+    //           if (i === arr.length - 1) {
+    //             message += text + " are required!";
+    //             return
+    //           }
+    //           message += text + ", ";
+    //         })
+    //       }
+    //       // errorPopup(message,"Invalid!")
+    //       return
+    //     }
+    //     this.showPopupConfirmEdit(patient, group);
+    //     return
+    //   } else {
+    //     return
+    //   }
+    // }
+    // return
   }
 
-  processMethod = async (group) => {
+  processMethod = async (group, patient) => {
     if (group === 'changePassword') {
-      return await confirmChangePassword(this.state.patient)
+      return await confirmChangePassword(patient)
     } else {
-      return await editProfile(this.state.patient)
+      return await editProfile(patient)
     }
   }
 
   showPopupConfirmEdit = (patient, group) => {
+    console.log("showPopupConfirmEdit PATIENT : ", patient)
     confirmPopup("You won't be able to revert this!").then(result => {
-      swal({
-        title: 'System is saving data.',
-        html: 'Please do not close this popup.!',
-        onOpen: () => {
-          swal.showLoading()
-          this.processMethod(group).then(res => {
-            if (res) {
-              swal.disableLoading()
-              if (res.status) {
-                successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
-                  if (res) {
-                    this.props.setField("patient", patient)
-                    this.setState({ editSuccess: group })
+      if (result.value) {
+        swal({
+          title: 'System is saving data.',
+          html: 'Please do not close this popup.!',
+          onOpen: () => {
+            swal.showLoading()
+            this.processMethod(group, patient).then(res => {
+              if (res) {
+                swal.disableLoading()
+                if (res.status) {
+                  if (res.data.transaction) {
+                    successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
+                      if (res) {
+                        this.props.setField("patient", { ...this.state.patient })
+                        this.setState({ editSuccess: group })
+                      }
+                    })
+                  } else {
+                    successPopup('You can check your profile on the profile page.').then(res => {
+                      if (res) {
+                        this.props.setField("patient", { ...this.state.patient })
+                        this.setState({ editSuccess: group })
+                      }
+                    })
                   }
-                })
-              } else {
-                errorPopup(res.message)
+                } else {
+                  errorPopup(res.message)
+                  this.setState({ editSuccess: null })
+                }
               }
-            }
-          })
-        }
-      })
+            })
+          }
+        })
+      }
     })
   }
 
   submitValidateOTP = (patient, data) => {
     // data = pin, requestId, citizenId, group
     console.log('submitValidateOTP', patient, data, this.state.patient)
-    debugger
     confirmPopup("You won't be able to revert this!").then(result => {
-      if (result.value){
+      if (result.value) {
         swal({
           title: 'System is saving data.',
           html: 'Please do not close this popup.!',
@@ -388,10 +482,11 @@ export default class ManagePatientRecord extends Component {
             validateOTP(data).then(res => {
               if (res.status) {
                 this.state.patient.mobileNumber = this.state.patient.newMobileNumber
-                this.processMethod(data.group).then(res => {
+                this.processMethod(data.group, patient).then(res => {
                   // if (res) {
-                    swal.disableLoading()
-                    if (res.status) {
+                  swal.disableLoading()
+                  if (res.status) {
+                    if (res.data.transaction) {
                       successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
                         if (res) {
                           patient.mobileNumber = this.state.patient.newMobileNumber;
@@ -400,8 +495,18 @@ export default class ManagePatientRecord extends Component {
                         }
                       })
                     } else {
-                      errorPopup(res.message)
+                      successPopup('You can check your profile on the profile page.').then(res => {
+                        if (res) {
+                          patient.mobileNumber = this.state.patient.newMobileNumber;
+                          this.props.setField("patient", patient)
+                          this.setState({ editSuccess: data.group })
+                        }
+                      })
                     }
+
+                  } else {
+                    errorPopup(res.message)
+                  }
                   // }
                 })
               } else {
@@ -458,7 +563,7 @@ export default class ManagePatientRecord extends Component {
   setFieldAndValidate = (field, value) => {
     this.setPatientDetail(field, value)
     this.state.errorField[field] = false
-    this.setState({ reState: '' })
+    this.setState({ reState: '', editSuccess: null })
   }
 
   componentDidMount = () => {
@@ -472,9 +577,22 @@ export default class ManagePatientRecord extends Component {
 
   render() {
     if (this.props.editStatus) {
+      // let patient = { ...this.state.patient }
+      // if (patient.emerTitle == '-') {
+      //   this.allField.emer.map(field => {
+      //     patient[field.field] = ''
+      //   })
+      // }
+      // if (patient.fatherFirstname == '-' && patient.fatherLastname == '-' || patient.motherFirstname == '-' && patient.motherLastname == '-'){
+      //   this.allField.parent.map(field => {
+      //     patient[field.field] = ''
+      //   })
+      // }
+      // let state = {...this.state }
+      // state.patient = patient;
       return (
         <EditProfile
-          state={this.state}
+          state={{ ...this.state }}
           setPatientDetail={this.setPatientDetail}
           setField={this.setField}
           cardType={this.state.cardType}

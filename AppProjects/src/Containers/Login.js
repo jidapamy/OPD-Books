@@ -11,7 +11,6 @@ import BGIPad3 from '../Static/Img/Wallpaper/BGIPad3.png'
 import BGIPhone from '../Static/Img/Wallpaper/BGIPhone.png'
 import BGIPhonePlus from '../Static/Img/Wallpaper/BGIPhonePlus.png'
 import BGIPhonX from '../Static/Img/Wallpaper/BGIPhonX.png'
-
 const Wrapper = styled.div`
 
 @media only screen and (max-width: 1366px) and (min-width: 1024px) {
@@ -68,7 +67,11 @@ export default class PatientRecord extends Component {
       }
     })
   };
-
+  style = {
+    ImButton: {
+      cursor: 'pointer'
+    }
+  }
   render() {
     return (
       <Wrapper className="login-form">
@@ -84,11 +87,12 @@ export default class PatientRecord extends Component {
                   style={{ height: "100%" }}
                   verticalAlign="middle"
                 >
-                    <Grid.Column style={{ maxWidth: 450 }}>
-            <Image verticalAlign='middle' src={BGLogoLogin} size='medium' />
+                  <Grid.Column style={{ maxWidth: 450 }}>
+            <Link to="/"> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </Link>
                 {/* <Header style={{ fontSize: "4em", color:'#31A5BA' }} textAlign="center">
                         OPD BOOKS
                       </Header> */}
+                       
                       <Form size="large">
                         <Segment style={{ borderRadius: "1.5rem", padding: "5%" }}>
                           <p style={{ color: "red" }}>{this.state.checklogin}</p>

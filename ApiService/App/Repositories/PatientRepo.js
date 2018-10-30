@@ -310,7 +310,7 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
                     lockAccount()
                 }
                 if(arrTx.length>0){
-                    return { status: true, message: "SUCCESS" };
+                    return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
                 }
                 // let check = false
                 // while (check === false) {
@@ -333,7 +333,7 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
                 lockAccount()
             }
             if (arrTx.length > 0) {
-                return { status: true, message: "SUCCESS" };
+                return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
             }
 
             // let check = false

@@ -48,7 +48,7 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
         lockAccount()
 
         if(arrTx.length>1){
-            return { status: true, message: "SUCCESS", data: { medicalRecordId: medicalRecordId } };
+            return { status: true, message: "SUCCESS", data: { medicalRecordId: medicalRecordId, transaction: arrTx  }};
         }
 
         // let check = false
@@ -98,7 +98,7 @@ const setMedicalRecordForDoctor = async medicalRecord => {
         lockAccount()
 
         if(arrTx.length>1){
-            return { status: true, message: "SUCCESS" };
+            return { status: true, message: "SUCCESS", data: { transaction: arrTx  } };
         }
 
 
