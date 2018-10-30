@@ -233,12 +233,13 @@ export default class PatientProfile extends Component {
     console.log("PatientProfile",this.state)
     return (
       <div>
+        
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
           <Dimmer page active={this.state.loader}>
             <Loader indeterminate size='massive'>Loading</Loader>
           </Dimmer>
 
-          <Responsive {...Responsive.onlyComputer}>
+          <Responsive {...Responsive.onlyComputer} minWidth={1023}>
 
             <BG>
               {/* <EditProfile /> */}
@@ -304,8 +305,8 @@ export default class PatientProfile extends Component {
             </Modal>
             {this.showQRCode()}
           </Responsive>
-
-          <Responsive {...Responsive.onlyMobile}>
+          
+            <Responsive {...Responsive.onlyMobile} minWidth={0} maxWidth={1023}>
             <Visibility
               onBottomPassed={this.stickTopMenu}
               onBottomVisible={this.unStickTopMenu}

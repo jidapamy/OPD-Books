@@ -54,7 +54,7 @@ export default class PatientRecord extends Component {
                         OPD BOOKS
                       </Header>
                       <Form size="large">
-                        <Segment style={{ borderRadius: "2rem", padding: "5%" }}>
+                        <Segment style={{ borderRadius: "1.5rem", padding: "5%" }}>
                           <p style={{ color: "red" }}>{this.state.checklogin}</p>
                           <Form.Input
                             className="setfeild"
@@ -93,7 +93,7 @@ export default class PatientRecord extends Component {
                           </Button>
                         </Segment>
                       </Form>
-                      <Message style={{ borderRadius: "2rem" }}>
+                      <Message style={{ borderRadius: "1.5rem" }}>
                       <Link to="/forgotPassword">
                           Forgot Passoword?{" "}
                         </Link>

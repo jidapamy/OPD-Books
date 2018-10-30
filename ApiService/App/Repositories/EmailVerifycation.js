@@ -1,3 +1,4 @@
+const html = (data) => (`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,3 +129,6 @@
   crossorigin="anonymous"></script>
 
 </html>
+`)
+
+module.exports = html

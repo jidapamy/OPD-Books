@@ -21,8 +21,12 @@ import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
 
 //css
 const Wrapper = styled.div`
+
+@media only screen and (max-width: 1024px) {
   background: url(${BackgroundImage}) no-repeat center fixed;
   background-size: 100% 100%;
+}
+
 `
 
 const ContanierTop = styled(Container)`
