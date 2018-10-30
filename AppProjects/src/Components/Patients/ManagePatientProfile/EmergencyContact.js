@@ -4,7 +4,7 @@ import { titleNameParentData } from '../../../Static/Data/FormData'
 import { patientField } from "../../../Static/Data/Field"
 
 import HomeAddress from './HomeAddress'
-import PhoneNumber from './PhoneNumber'
+import Phone from './Phone'
 import ErrorMessage from './ErrorMessage'
 
 
@@ -205,17 +205,29 @@ export default class EmergencyContact extends Component {
                             error={this.props.errorField.emerRelationship}
                             
                         />
-                        < PhoneNumber
+                        <Phone
                             setPatientDetail={this.props.setPatientDetail}
                             errorText={this.props.errorText}
+                            errorField={this.props.errorField}
                             setField={this.props.setField}
                             cardType={this.props.cardType}
-                            errorField={this.props.errorField}
                             field='emer'
-                            width={null}
-                            required={this.props.requiredAllEmerField}
+                            type='home'
                             setFieldAndValidate={this.props.setFieldAndValidate}
                             patient={this.props.patient}
+                            required={this.props.requiredAllEmerField}
+                        />
+                        <Phone
+                            setPatientDetail={this.props.setPatientDetail}
+                            errorText={this.props.errorText}
+                            errorField={this.props.errorField}
+                            setField={this.props.setField}
+                            cardType={this.props.cardType}
+                            field='emer'
+                            type='mobile'
+                            setFieldAndValidate={this.props.setFieldAndValidate}
+                            patient={this.props.patient}
+                            required={this.props.requiredAllEmerField}
                         />
                     </Form.Group>
                     < HomeAddress

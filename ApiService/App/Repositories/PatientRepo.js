@@ -1,6 +1,6 @@
 const { contract, defaultAccount } = require('../Lib/Web3')
 const { convertString, bindData, unlockAccount, lockAccount, convertToAscii } = require('../Services/Utils')
-const { requestOTP, validateOTP, cancelOTP } = require("./AuthenticationRepo")
+const { requestOTP, validateOTP, cancelOTP, sendVerifyEmail } = require("./AuthenticationRepo")
 const { patientScheme } = require("../Models/PatientModel")
 const moment = require("moment");
 
@@ -52,25 +52,27 @@ const getBasicData = citizenId => {
 
 const insert = async (patient) => {
     if (unlockAccount()) {
-        // console.log(patient)
-        contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount);
-        contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nametitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount);
-        contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount);
-        contract.setInfoPatientPart4(
+        console.log("insert")
+        let arrTx = []
+        arrTx.push(await contract.setInfoPatientPart1(convertString(patient.citizenId), convertString(moment().format("L")), convertString(patient.password), defaultAccount))
+        // arrTx.push(infoPart1)
+        arrTx.push(await contract.setInfoPatientPart2(convertString(patient.citizenId), convertString(patient.dob), convertString(patient.nametitle), convertString(patient.firstname), convertString(patient.lastname), convertString(patient.gender), defaultAccount))
+        arrTx.push(await contract.setInfoPatientPart3(convertString(patient.citizenId), convertString(patient.congenitalDisease), convertString(patient.bloodgroup), convertString(patient.religion), convertString(patient.nationality), convertString(patient.country), defaultAccount))
+        arrTx.push(await contract.setInfoPatientPart4(
             convertString(patient.citizenId),
             convertString(patient.status),
             convertString(!patient.occupartion ? "-" : patient.occupartion),
             convertString(!patient.homePhonenumber ? "-" : patient.homePhonenumber),
             convertString(patient.mobileNumber),
             convertString(patient.email),
-            defaultAccount);
+            defaultAccount))
         // contract.setEmail(convertString(patient.email), defaultAccount);
-        contract.setAddressPatient(convertString(patient.citizenId), convertString(patient.typeofHouse), convertString(patient.address), convertString(patient.province), convertString(patient.district), convertString(patient.subDistrict), convertString(patient.zipcode), defaultAccount);
-        contract.setPatientAllergy(convertString(patient.citizenId), convertString(patient.allergy), convertString(patient.privilege), defaultAccount);
-
+        arrTx.push(await contract.setAddressPatient(convertString(patient.citizenId), convertString(patient.typeofHouse), convertString(patient.address), convertString(patient.province), convertString(patient.district), convertString(patient.subDistrict), convertString(patient.zipcode), defaultAccount))
+        arrTx.push(await contract.setPatientAllergy(convertString(patient.citizenId), convertString(patient.allergy), convertString(patient.privilege), defaultAccount))
+        // arrTx.push(await contract.setVerifyEmail(convertString(patient.citizenId),false))
         if (patient.emerTitle || patient.emerFirstname || patient.emerLastname) {
             // console.log("มี emer")
-            contract.setEmergencyContactPart1(
+            arrTx.push(await contract.setEmergencyContactPart1(
                 convertString(patient.citizenId),
                 convertString(patient.emerTitle),
                 convertString(patient.emerFirstname),
@@ -78,8 +80,8 @@ const insert = async (patient) => {
                 convertString(patient.emerRelationship),
                 convertString(!patient.emerHomePhonenumber ? "-" : patient.emerHomePhonenumber),
                 convertString(patient.emerMobileNumber),
-                defaultAccount);
-            contract.setEmergencyContactPart2(
+                defaultAccount))
+            arrTx.push(await contract.setEmergencyContactPart2(
                 convertString(patient.citizenId),
                 convertString(patient.typeofHouse),
                 convertString(patient.address),
@@ -87,30 +89,30 @@ const insert = async (patient) => {
                 convertString(patient.district),
                 convertString(patient.subDistrict),
                 convertString(patient.zipcode),
-                defaultAccount);
+                defaultAccount))
         }
 
         if ((patient.fatherFirstname && patient.fatherLastname) || (patient.motherFirstname && patient.motherLastname)) {
             // console.log("มี พ่อแม่")
-            contract.setPatientParent(
+            arrTx.push(await contract.setPatientParent(
                 convertString(patient.citizenId),
                 convertString(!patient.fatherFirstname ? "-" : patient.fatherFirstname),
                 convertString(!patient.fatherLastname ? "-" : patient.fatherLastname),
                 convertString(!patient.motherFirstname ? "-" : patient.motherFirstname),
-                convertString(!patient.motherLastname ? "-" : patient.motherLastname), defaultAccount);
+                convertString(!patient.motherLastname ? "-" : patient.motherLastname), defaultAccount))
         }
         // console.log("Success")
         lockAccount()
 
-        let check = false
-        while (check === false) {
-            check = await isPatient(patient.citizenId);
-            if (check) {
-                return { status: true, message: "SUCCESS" };
-            }
+        // await sendVerifyEmail(patient)
+        console.log("arrTx",arrTx)
+        
+        if (arrTx.length>5){
+            // required field 6 transaction
+            return { status: true, message: "SUCCESS", data: { transaction : arrTx } };
         }
     } else {
-        return { status: false, message: "ERROR" };
+        return { status: false, message: "ERROR"};
     }
 }
 
@@ -129,47 +131,48 @@ const isEmail = (email) => {
 
 const edit = async (data) => {
     console.log("edit", data)
+    let arrTx = [];
     if (unlockAccount()) {
         if (data.editInfoPart1) {
-            contract.setInfoPatientPart1(convertString(data.citizenId), convertString(moment().format("L")), convertString(data.password), defaultAccount);
+            arrTx.push(await contract.setInfoPatientPart1(convertString(data.citizenId), convertString(moment().format("L")), convertString(data.password), defaultAccount))
         }
         if (data.editInfoPart2) {
-            contract.setInfoPatientPart2(convertString(data.citizenId), convertString(data.dob), convertString(data.nametitle), convertString(data.firstname), convertString(data.lastname), convertString(data.gender), defaultAccount);
+            arrTx.push(await contract.setInfoPatientPart2(convertString(data.citizenId), convertString(data.dob), convertString(data.nametitle), convertString(data.firstname), convertString(data.lastname), convertString(data.gender), defaultAccount))
         }
         if (data.editInfoPart3) {
-            contract.setInfoPatientPart3(convertString(data.citizenId), convertString(data.congenitalDisease), convertString(data.bloodgroup), convertString(data.religion), convertString(data.nationality), convertString(data.country), defaultAccount);
+            arrTx.push(await contract.setInfoPatientPart3(convertString(data.citizenId), convertString(data.congenitalDisease), convertString(data.bloodgroup), convertString(data.religion), convertString(data.nationality), convertString(data.country), defaultAccount))
         }
         if (data.editInfoPart4) {
-            contract.setInfoPatientPart4(
+            arrTx.push(await contract.setInfoPatientPart4(
                 convertString(data.citizenId),
                 convertString(data.status),
                 convertString(!data.occupartion ? "-" : data.occupartion),
                 convertString(!data.homePhonenumber ? "-" : data.homePhonenumber),
                 convertString(data.mobileNumber),
                 convertString(data.email),
-                defaultAccount);
+                defaultAccount))
         }
         if (data.editEmail) {
             console.log("EDIT EMAIL!!")
-            contract.setEmail(convertString(data.email),convertString(data.newEmail), defaultAccount);
-            contract.setInfoPatientPart4(
+            arrTx.push(await contract.setEmail(convertString(data.email),convertString(data.newEmail), defaultAccount))
+            arrTx.push(await contract.setInfoPatientPart4(
                 convertString(data.citizenId),
                 convertString(data.status),
                 convertString(!data.occupartion ? "-" : data.occupartion),
                 convertString(!data.homePhonenumber ? "-" : data.homePhonenumber),
                 convertString(data.mobileNumber),
                 convertString(data.newEmail),
-                defaultAccount);
+                defaultAccount))
         }
         if (data.editAddress) {
-            contract.setAddressPatient(convertString(data.citizenId), convertString(data.typeofHouse), data.address, convertString(data.province), convertString(data.district), convertString(data.subDistrict), convertString(data.zipcode), defaultAccount);
+            arrTx.push(await contract.setAddressPatient(convertString(data.citizenId), convertString(data.typeofHouse), data.address, convertString(data.province), convertString(data.district), convertString(data.subDistrict), convertString(data.zipcode), defaultAccount))
         }
         if (data.editAllergy) {
-            contract.setPatientAllergy(convertString(data.citizenId), convertString(data.allergy), convertString(data.privilege), defaultAccount);
+            arrTx.push(await contract.setPatientAllergy(convertString(data.citizenId), convertString(data.allergy), convertString(data.privilege), defaultAccount))
         }
 
         if (data.editEmerContact1) {
-            contract.setEmergencyContactPart1(
+            arrTx.push(await contract.setEmergencyContactPart1(
                 convertString(data.citizenId),
                 convertString(data.emerTitle),
                 convertString(data.emerFirstname),
@@ -177,10 +180,10 @@ const edit = async (data) => {
                 convertString(data.emerRelationship),
                 convertString(!data.emerHomePhonenumber ? "-" : data.emerHomePhonenumber),
                 convertString(data.emerMobileNumber),
-                defaultAccount);
+                defaultAccount))
         }
         if (data.editEmerContact2) {
-            contract.setEmergencyContactPart2(
+            arrTx.push(await contract.setEmergencyContactPart2(
                 convertString(data.citizenId),
                 convertString(data.typeofHouse),
                 convertString(data.address),
@@ -188,26 +191,31 @@ const edit = async (data) => {
                 convertString(data.district),
                 convertString(data.subDistrict),
                 convertString(data.zipcode),
-                defaultAccount);
+                defaultAccount))
         }
 
         if (data.editParent) {
-            contract.setPatientParent(
+            arrTx.push(await contract.setPatientParent(
                 convertString(data.citizenId),
                 convertString(!data.fatherFirstname ? "-" : data.fatherFirstname),
                 convertString(!data.fatherLastname ? "-" : data.fatherLastname),
                 convertString(!data.motherFirstname ? "-" : data.motherFirstname),
-                convertString(!data.motherLastname ? "-" : data.motherLastname), defaultAccount);
+                convertString(!data.motherLastname ? "-" : data.motherLastname), defaultAccount))
         }
         lockAccount()
 
-        let check = false
-        while (check === false) {
-            check = await isPatient(data.citizenId);
-            if (check) {
-                return { status: true, message: "SUCCESS" };
-            }
+        if (arrTx.length > 0) {
+            // required field 6 transaction
+            return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
         }
+
+        // let check = false
+        // while (check === false) {
+        //     check = await isPatient(data.citizenId);
+        //     if (check) {
+        //         return { status: true, message: "SUCCESS" };
+        //     }
+        // }
     } else {
         return { status: false, message: "ERROR" };
     }
@@ -290,6 +298,7 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
     console.log("confirmChangePassword")
     const byteCitizenId = convertString(citizenId)
     const bytePassword = convertString(newPassword)
+    let arrTx = []
     if(oldPassword){
         console.log("oldPassword // เปลี่ยนรหัสผ่าน")
         if (checkPassword(citizenId, oldPassword)) {
@@ -297,16 +306,19 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
             if (!checkPassword(citizenId, newPassword)) {
                 // เชคว่า รหัสใหม่ ตรงกับในระบบไหม >> ถ้าไม่ตรงถึงเปลี่ยนรหัสได้
                 if (unlockAccount()) {
-                    contract.setPassword(byteCitizenId, bytePassword)
+                    arrTx.push(await contract.setPassword(byteCitizenId, bytePassword))
                     lockAccount()
                 }
-                let check = false
-                while (check === false) {
-                    check = await checkPassword(citizenId, newPassword);
-                    if (check) {
-                        return { status: true, message: "SUCCESS" };
-                    }
+                if(arrTx.length>0){
+                    return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
                 }
+                // let check = false
+                // while (check === false) {
+                //     check = await checkPassword(citizenId, newPassword);
+                //     if (check) {
+                //         return { status: true, message: "SUCCESS" };
+                //     }
+                // }
             } else {
                 return { status: false, message: "Password must differ from old password!" };
             }
@@ -317,16 +329,20 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
         if (!checkPassword(citizenId, newPassword)) {
             // เชคว่า รหัสใหม่ ตรงกับในระบบไหม >> ถ้าไม่ตรงถึงเปลี่ยนรหัสได้
             if (unlockAccount()) {
-                contract.setPassword(byteCitizenId, bytePassword)
+                arrTx.push(await contract.setPassword(byteCitizenId, bytePassword))
                 lockAccount()
             }
-            let check = false
-            while (check === false) {
-                check = await checkPassword(citizenId, newPassword);
-                if (check) {
-                    return { status: true, message: "SUCCESS" };
-                }
+            if (arrTx.length > 0) {
+                return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
             }
+
+            // let check = false
+            // while (check === false) {
+            //     check = await checkPassword(citizenId, newPassword);
+            //     if (check) {
+            //         return { status: true, message: "SUCCESS" };
+            //     }
+            // }
         } else {
             return { status: false, message: "Password must differ from old password!" };
         }
@@ -335,12 +351,25 @@ const confirmChangePassword = async (citizenId, newPassword, oldPassword=null ) 
 
 requestOTPwithMobile = async (mobileNumber) => {
     let mobileNumberConvert = "66" + mobileNumber.substring(1)
-    console.log(mobileNumberConvert)
+    // let mobileNumberConvert = mobileNumber
     let hideNumber = mobileNumber.substring(0, 3) + "-xxx-xx" + mobileNumber.substring(mobileNumber.length - 2)
     try {
         const res = await requestOTP(mobileNumberConvert)
         return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
     } catch (err) {
+        if (err.message.status == '10'){
+            let result = await cancelRequestOTP(err.requestId)
+            if(result.status){
+                try {
+                    const res = await requestOTP(mobileNumberConvert)
+                    return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
+                } catch (err) {
+                    return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
+                }
+            }else{
+                return result
+            }
+        }
         return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });
     }
 }
@@ -348,7 +377,6 @@ requestOTPwithMobile = async (mobileNumber) => {
 validateOTPvalue = async (requestId, pin) => {
     try{
         const res = await validateOTP(requestId, pin)
-        console.log(validateOTPvalue,res)
         return { status: true, message: "SUCCESS" };
     }catch(err){
         return ({ status: false, statusCode: err.message.status, message: err.message.error_text, data: { requestId: err.requestId } });

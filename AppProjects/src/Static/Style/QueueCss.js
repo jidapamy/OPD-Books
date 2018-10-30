@@ -568,25 +568,25 @@ export const style = {
         borderColor: '#2C7E79',
     },
     bgDoc: {
-        background: '#F7F4F4',
+        background: '#FFFFFF',
     },
 
     bgApi: {
         // background:'#EAE8E8',
-        background: '#F7F4F4',
+        background: '#FFFFFF',
         height: '',
     },
     HeaderColor: {
-        color: '#4D8B87',
+        color: '#31A5BA',
         fontSize: '20px'
     },
     HeaderColor2: {
-        color: '#4D8B87',
+        color: '#31A5BA',
         textAlign: 'center',
     },
     headTable: {
         background: '#444040',
-        color: '#ffffff',
+        color: '#FFFFFF',
         borderRadius: '0px',
         padding: '5px',
         fontSize: '15px',
@@ -603,7 +603,7 @@ export const style = {
     // Test
 
     apiDescription: {
-        background: '#F7F4F4',
+        background: '#F74F4',
         padding: '0px',
         color: '#444040',
         fontSize: '14.5px',
@@ -645,15 +645,15 @@ export const style = {
     },
 
     beforeClick: {
-        color: '#4D8B87',
+        color: '#31A5BA',
         textAlign: 'left',
 
     },
 
     afterClick: {
         textAlign: 'left',
-        color: '#4D8B87',
-        background: '#E8E8E8',
+        color: '#31A5BA',
+        background: '#FFFFFF',
         fontWeight: 'bold'
 
 
@@ -676,7 +676,7 @@ export const style = {
 
     },
     HeadCodeMirror2: {
-        color: '#00cc99',
+        color: '#31A5BA',
         fontSize: '17px',
         width: '100%',
         padding: '-3%',

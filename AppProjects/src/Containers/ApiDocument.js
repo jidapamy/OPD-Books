@@ -89,6 +89,7 @@ export default class apiDocument extends Component {
         <MySlidedown open={this.state.open === data.system ? true : false}>
           {this.showMethod(i)}
         </MySlidedown>
+        
       </div>
     })
     return tmp
@@ -160,7 +161,7 @@ export default class apiDocument extends Component {
     margin-left: 205px;
     max-width: 100%;
     height:725px;
-    background-color: #F7F4F4 !important;
+    background-color: #FFFFFF !important;
     padding: 2%;
     `;
 
@@ -179,6 +180,11 @@ export default class apiDocument extends Component {
               <br />
               <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
               {this.showData()}<br />
+              <Menu.Item  style={{ backgroundColor: '#31A5BA' }}>
+                <Header  >
+                  <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
+                </Header>
+              </Menu.Item>
             </Menu>
           </div>
           <Body>
@@ -200,8 +206,10 @@ export default class apiDocument extends Component {
                     active={this.state.statusJson === 2}
                     onClick={() => this.setState({ statusJson: 2 })}
                   />
+                 
+                  
                 </Menu>
-                <div style={style.tableHead}>
+                {/* <div style={style.tableHead}>
                   <Grid divided='vertically'>
                     <Grid.Row>
                       <Grid.Column width={6}>
@@ -216,14 +224,22 @@ export default class apiDocument extends Component {
                     </Grid.Row>
                   </Grid>
                 </div>
-                <br /><br />
-                <Scrollbars autoHide style={{ width: 495, height: 350 }} >
-                  <Table basic='very' collapsing style={style.tableWidth}>
+                <br /><br /> */}
+                {/* <Scrollbars autoHide style={{ width: 495, height: 350 }} > */}
+                <Table fixed style={style.tableWidth}>
+                  <Table.Header >
+                    <Table.Row style={style.tableWidth}>
+                      <Table.HeaderCell>Field</Table.HeaderCell>
+                      <Table.HeaderCell>Type</Table.HeaderCell>
+                      <Table.HeaderCell>Description</Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
                     <Table.Body style={style.tableBody}>
                       {this.showAttribute()}
                     </Table.Body>
                   </Table>
-                </Scrollbars>
+                  <br /><br />
+                {/* </Scrollbars> */}
               </Grid.Column>
               <Grid.Column width={8}>
                 <div style={style.bgCodeMirror}>
@@ -243,7 +259,6 @@ export default class apiDocument extends Component {
                   </Scrollbars>
                 </div>
               </Grid.Column>
-
             </Grid>
           </Body>
         </Responsive>

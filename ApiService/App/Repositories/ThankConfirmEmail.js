@@ -1,3 +1,4 @@
+const html = (data) => (`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,16 +84,14 @@
 <a href="#" class="card-link">Another link</a> -->
 <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="container paddingCon">
-      <h1 class="card-title text-info texcenter">You can now have your special security </h1>
-      <h1 class="card-title text-info texcenter">Code:  </h1>
-       <h6 class="card-title text-info texcenter">Please, do not pass this code to a third party, for your account security.  </h1>
+      <h1 class="card-title text-info texcenter">THANK YOU VERIFY</h1>
       <div class="container">
   <div class="row">
     <div class="col">
     </div>
     <div class="col">
       <br/>
-      <!-- <image class="sizeImage" src='https://eshoreltd.com/wp-content/uploads/2016/10/lock-icon.png'> -->
+      <image class="sizeImage" src='https://www.datavalidation.com/assets/images/15469571.validation-icon.png'>
     </div>
     <div class="col">
     </div>
@@ -128,3 +127,6 @@
   crossorigin="anonymous"></script>
 
 </html>
+`)
+
+module.exports = html

@@ -598,7 +598,6 @@ export default class EditProfile extends React.Component {
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {changePassword && <Segment style={elimentStyle} vertical >
                         <Form>
-
                                 <Form.Input
                                     icon='lock' iconPosition='left'
                                     label='Old Pssword'

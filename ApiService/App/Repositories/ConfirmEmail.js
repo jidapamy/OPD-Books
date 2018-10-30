@@ -1,3 +1,4 @@
+const html = (data) => (`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,11 +33,6 @@
     padding: 5%;
 
   }
-  .sizeImage {
-      width: 200px;
-       height: 200px;
-
-    }
 
   @media only screen and (max-width: 812px) {
     h1 {
@@ -54,11 +50,6 @@
     .paddingCon {
       padding-left: 0;
       padding-right: 0;
-
-    }
-    .sizeImage {
-      width: 100px;
-       height: 100px;
 
     }
   }
@@ -83,34 +74,9 @@
 <a href="#" class="card-link">Another link</a> -->
 <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="container paddingCon">
-      <h1 class="card-title text-info texcenter">You can now have your special security </h1>
-      <h1 class="card-title text-info texcenter">Code:  </h1>
-       <h6 class="card-title text-info texcenter">Please, do not pass this code to a third party, for your account security.  </h1>
-      <div class="container">
-  <div class="row">
-    <div class="col">
-    </div>
-    <div class="col">
-      <br/>
-      <!-- <image class="sizeImage" src='https://eshoreltd.com/wp-content/uploads/2016/10/lock-icon.png'> -->
-    </div>
-    <div class="col">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-    </div>
-    <div class="col">
-      <br/><br/>
-       <button type="button" class="btn btn-info btn-block">Visit Website</button>
-    </div>
-    <div class="col">
-    </div>
-  </div>
-  
-  </div>
-</div>
-     
+      <h1 class="card-title text-info texcenter">VERIFICATION</h1>
+      <p>Thank you for signing up with OPD BOOKS. Please verify your email account by clicking the link below.</p>
+      <button type="button" class="btn btn-info btn-block">Confirm Email</button>
       <br/>
       <h6 class=" text-muted"><b>Thank you, OPD BOOKS</b></h6>
       <h6 class=" mb-2 text-muted"><a href="opdbooksblockchain@gmail.com">opdbooksblockchain@gmail.com </a> </h6>
@@ -128,3 +94,6 @@
   crossorigin="anonymous"></script>
 
 </html>
+`)
+
+module.exports = html

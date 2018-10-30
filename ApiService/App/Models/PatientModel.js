@@ -26,6 +26,7 @@ const patientScheme = {
             homePhonenumber: 'byte',
             mobileNumber: 'byte',
             email: 'byte',
+            verifyEmail: 'boolean'
         }
     ],
     address: [
@@ -77,6 +78,7 @@ const patientScheme = {
             firstname: 'byte',
             lastname: 'byte',
             email: 'byte',
+            // verifyEmail : 'boolean'
         }
     ]
 }
