@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Message, Segment,Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import BackgroundImage from "../Static/Img/BG.png";
 import styled from "styled-components";
 import { login } from "../Services/AuthenticationMethod";
+import BGLogoLogin from '../Static/Img/LogoLogin.svg'
 import BGcomputer from '../Static/Img/Wallpaper/BGcomputer.png'
 import BGIPad1 from '../Static/Img/Wallpaper/BGIPad1.png'
 import BGIPad2 from '../Static/Img/Wallpaper/BGIPad2.png'
@@ -76,7 +76,7 @@ export default class PatientRecord extends Component {
                     body > div,
                     body > div > div,
                     body > div > div > div.login-form {
-                        height: 100vh;
+                        height: 100%;
                     }
                 `}</style>
                 <Grid
@@ -85,9 +85,10 @@ export default class PatientRecord extends Component {
                   verticalAlign="middle"
                 >
                     <Grid.Column style={{ maxWidth: 450 }}>
-                <Header style={{ fontSize: "4em", color:'#31A5BA' }} textAlign="center">
+            <Image verticalAlign='middle' src={BGLogoLogin} size='medium' />
+                {/* <Header style={{ fontSize: "4em", color:'#31A5BA' }} textAlign="center">
                         OPD BOOKS
-                      </Header>
+                      </Header> */}
                       <Form size="large">
                         <Segment style={{ borderRadius: "1.5rem", padding: "5%" }}>
                           <p style={{ color: "red" }}>{this.state.checklogin}</p>

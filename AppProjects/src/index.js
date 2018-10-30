@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Home from "./Containers/Home";
-import RegisterAPI from "./Containers/RegisterAPI";
 import Login from "./Containers/Login";
 import OTPfactor from "./Components/DemoExamples/OTPfactor";
 import ManagePatientRecord from "./Containers/ManagePatientRecord";
@@ -33,7 +32,6 @@ ReactDOM.render(
       <Route component={scrollToTop} />
       <Route exact path="/" component={Home} />
       {/* patient */}
-      <Route path="/RegisterAPI" component={RegisterAPI} />
       <Route path="/FormEditProfile" component={FormEditProfile} />
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={ManagePatientRecord} />
