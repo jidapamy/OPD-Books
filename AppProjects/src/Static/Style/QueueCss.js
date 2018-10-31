@@ -1,6 +1,47 @@
+import styled from "styled-components";
+import BGcomputer from '../Img/Wallpaper/BGcomputer.png'
+import BGIPad1 from '../Img/Wallpaper/BGIPad1.png'
+import BGIPad2 from '../Img/Wallpaper/BGIPad2.png'
+import BGIPad3 from '../Img/Wallpaper/BGIPad3.png'
+import BGIPhone from '../Img/Wallpaper/BGIPhone.png'
+import BGIPhonePlus from '../Img/Wallpaper/BGIPhonePlus.png'
+import BGIPhonX from '../Img/Wallpaper/BGIPhonX.png'
+
+export const Wrapper = styled.div`
+
+@media only screen and (max-width: 1366px) and (min-width: 1024px) {
+  background: url(${BGIPad3}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 1112px) and (min-width: 834px) {
+  background: url(${BGIPad2}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  background: url(${BGIPad1}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 812px) and (min-width: 315px) {
+  background: url(${BGIPhonX}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 736px) and (min-width: 414px) {
+  background: url(${BGIPhonePlus}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 667px) and (min-width: 375px) {
+  background: url(${BGIPhone}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (min-width: 1025px)  {
+  background: url(${BGcomputer}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+
+`
 export const style = {
 
-
+    
     centerr: {
         textAlign: 'center',
     },
@@ -774,7 +815,7 @@ export const style = {
     Container: {
         textAlign: 'center',
         //marginTop: '15%',
-        paddingTop: '5%',
+        paddingTop: '3%',
         height: '100%',
         width: '50%',
 
@@ -784,8 +825,8 @@ export const style = {
         borderRadius: '25px',
         border: '0px solid',
         // backgroundColor:'#000000',
-        height: '530px',
-        marginBottom: '8%',
+        height: '560px',
+        marginBottom: '20%',
 
     }
     ,
@@ -823,14 +864,15 @@ export const style = {
 
     circularZone: {
         textAlign: 'center',
-        marginLeft: '20%',
-        marginTop: '10%'
+        marginLeft: '37%',
+        marginTop: '5%',
+        marginBottom:'6%'
 
     },
 
     inputForgotZone: {
         textAlign: 'center !important',
-        marginTop: '2%',
+        marginTop: '-10%',
 
     },
 
@@ -878,13 +920,6 @@ export const style = {
 
     },
 
-    // PaddingDate:{
-    //     paddingLeft:'3rem',
-    //     width: '60rem !important',
-    //     display: 'flex',
-
-    // },
-
     ForgotDescrip: {
         fontSize: '16px',
         color: '#666666',
@@ -898,12 +933,36 @@ export const style = {
     },
 
     twoColumnButton: {
-        width: '87%',
+        width: '87.5%',
+        marginLeft:'-2%',
+        marginTop:'1.5%'
+
+
+    },
+    twoColumnButton2: {
+        width: '78%',
+        marginLeft:'-6%',
+        margintop:'15%',
+        marginBottom:'2%'
 
 
     },
 
+
+    decoDescription:{
+        width:'84%'
+    },
+
     //ForgotPassword On mobile
+
+    ContainerMobile: {
+        textAlign: 'center',
+        //marginTop: '15%',
+        paddingTop: '3%',
+        height: '100%',
+        width: '50%',
+
+    },
 
     sidebarEdit: {
         color: 'black',
@@ -940,6 +999,100 @@ export const style = {
         width:'100%',
     },
 
+    DecoSegmentMobile: {
+        borderRadius: '15px',
+        border: '0px solid',
+        height: '560px',
+        marginBottom: '20%',
+
+    },
+
+    circularZoneMobile: {
+        textAlign: 'center',
+        marginLeft: '20%',
+        marginTop: '10%'
+
+    },
+    circularZoneMobile2: {
+        textAlign: 'center',
+        marginLeft: '25%',
+        marginTop: '5%',
+        marginBottom:'-12%'
+
+    },
+
+    bgDescriptionMobile: {
+        width: '96%',
+        textAlign: 'left',
+        marginLeft: '0%',
+        marginBottom:'5%'
+    },
+
+    inputForgotZoneMobile: {
+        width: '100%',
+        marginBottom: '0%',
+        marginLeft:'0%',
+    },
+
+    inputIDMobile:{
+        width: '96%',
+        marginBottom: '5%',
+        marginLeft:'0%'
+    },
+
+    inputDateMobile:{
+        width:'50%',
+    },
+
+    twoColumnButtonMobile1:{
+        width: '100%',
+        marginLeft:'-2%',
+        marginBottom:'5%',
+        marginTop:'5%'
+
+    },
+    twoColumnButtonMobile2:{
+        width: '100%',
+        marginLeft:'-2%',
+
+    },
+
+    buttonSelecctSend:{
+        backgroundColor:'',
+    },
+
+    twoColumnButton2Mobile: {
+        
+        marginLeft:'-21.5%',
+        width:'10%',
+        marginTop:'10%',
+        marginBottom:'-5%'
+
+
+    },
+
+    areaButton:{
+        width: '100%',
+    },
+
+    circularZoneMobile: {
+        textAlign: 'center',
+        marginLeft: '28%',
+        marginTop: '5%',
+        marginBottom:'6%'
+
+    },
+
+    inputForgotMobile: {
+        width: '96%',
+        marginBottom: '1%',
+        marginBottom: '4%'
+    },
+
+    
+
+
+    
 
     //API Mobile 
 
@@ -976,6 +1129,13 @@ export const style = {
     
     AreaCodeMirrorMobile: {
         marginLeft: '7%',
+    },
+
+    ForgotTopicMobile: {
+        fontSize: '30px',
+        marginBottom: '1%',
+        paddingTop: '10%',
+        color: '#ffffff',
     },
     
    

@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label, Divider } from 'semantic-ui-react'
+import {  Container, Grid, Segment,  } from 'semantic-ui-react'
 
 import swal from 'sweetalert2';
-import WOW from 'wowjs';
 import styled from 'styled-components'
-import ScrollUpButton from "react-scroll-up-button";
 import moment from 'moment';
 
 //Component
-import InfoPatient from '../Components/Patients/ManagePatientProfile/InfoPatient';
-import HomeAddress from '../Components/Patients/ManagePatientProfile/HomeAddress'
-import EmergencyContact from '../Components/Patients/ManagePatientProfile/EmergencyContact'
-import PatientParent from '../Components/Patients/ManagePatientProfile/PatientParent'
-import Allergy from '../Components/Patients/ManagePatientProfile/Allergy'
-import ErrorMessage from '../Components/Patients/ManagePatientProfile/ErrorMessage'
 import Register from '../Components/Patients/ManagePatientProfile/Register'
 import EditProfile from '../Components/Patients/ManagePatientProfile/EditProfile'
 
@@ -23,30 +14,7 @@ import { setErrorMsg, setErrorMsgSplice } from '../Services/Utils';
 import { insertPatient, editProfile, confirmChangePassword, validateOTP } from "../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, successTXPopup, errorPopup } from "../Components/SweetAlert"
 
-//static
-import BackgroundImage from './../Static/Img/BG.png'
-import { patientField, groupInfoPatientField } from "../Static/Data/Field"
-// import EditProfile from '../Components/Patients/ManagePatientProfile/FormEditProfile';
 
-//css
-const Wrapper = styled.div`
-  background: url(${BackgroundImage}) no-repeat center fixed;
-  background-size: 100% 100%;
-`
-
-const ContanierTop = styled(Container)`
-    padding-top:4%;
-`
-
-const GridColumn = styled(Grid.Column)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-const SegmentForm = styled(Segment)`
-    border-radius: 1rem !important;
-    padding: 2rem !important;
-`
 
 export default class ManagePatientRecord extends Component {
   state = {
