@@ -35,8 +35,8 @@ const Wrapper = styled.div`
 
 const DateBirthday = styled(DatePicker)`
     padding-left: 3rem !important;
-    width: 32rem !important;
-    margin-left: -3.5% !important; 
+    /* width: 32rem !important;
+    margin-left: -3.5% !important;  */
 `
 
 const styles = {
@@ -63,7 +63,7 @@ export default class ForgotPassword extends Component {
         newPassword: '',
         newPasswordConfirm: '',
         dob: null,
-        step: 2,
+        step: 1,
         openOTP: false,
         requestId: "",
         mobileNumber: "",
@@ -234,7 +234,7 @@ export default class ForgotPassword extends Component {
         console.log(this.state)
         return (
             <span>
-                <Responsive {...Responsive.onlyComputer}>
+                {/* <Responsive {...Responsive.onlyComputer}> */}
                     <Dimmer.Dimmable blurring dimmed={this.state.loader}>
                         <Dimmer page active={this.state.loader}>
                             <Loader size='massive' indeterminate>Loading</Loader>
@@ -273,7 +273,9 @@ export default class ForgotPassword extends Component {
                                                             >E-mail Authentication</Button>
                                                         </Button.Group>
                                                     </Form>
-                                                    <Form style={{ paddingLeft: '15.5%' }}>
+                                                    <Form 
+                                                    style={{ padding: '0 8%' }}
+                                                    >
                                                         <Form.Group>
                                                             <Message style={style.decoDescription}>
                                                                 <Message.List>
@@ -284,8 +286,18 @@ export default class ForgotPassword extends Component {
                                                             </Message>
 
                                                         </Form.Group>
-                                                        <Form.Group>
-                                                            <Input
+                                                        <Form.Group widths="equal">
+                                                        <Form.Field
+                                                            control={Input}
+                                                                icon='user'
+                                                                iconPosition='left'
+                                                                placeholder={patientField.citizenId.label}
+                                                                // style={style.inputForgot}
+                                                                autoFocus
+                                                                onChange={(e, { value }) => this.setState({ citizenId: e.target.value })}
+                                                                value={this.state.citizenId}
+                                                        />
+                                                            {/* <Input
                                                                 icon='user'
                                                                 iconPosition='left'
                                                                 placeholder={patientField.citizenId.label}
@@ -293,16 +305,13 @@ export default class ForgotPassword extends Component {
                                                                 autoFocus
                                                                 onChange={(e, { value }) => this.setState({ citizenId: e.target.value })}
                                                                 value={this.state.citizenId}
-                                                            />
-                                                            <br />
+                                                            /> */}
                                                         </Form.Group>
-                                                        <Form.Group>
+                                                        <Form.Group widths="equal">
                                                             <Form.Field style={{ display: 'flex' }} >
                                                                 {this.DateInput()}
                                                                 <Icon name="birthday" style={styles.icon} />
                                                             </Form.Field>
-                                                        </Form.Group>
-                                                        <Form.Group>
                                                         </Form.Group>
                                                         <Form.Group style={style.twoColumnButton}>
                                                             <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify</Button>
@@ -389,8 +398,8 @@ export default class ForgotPassword extends Component {
                             </Container>
                         </Wrapper>
                     </Dimmer.Dimmable>
-                </Responsive>
-                <ForgotPasswordOnMobile />
+                {/* </Responsive>
+                <ForgotPasswordOnMobile /> */}
             </span>
         )
     }

@@ -65,7 +65,7 @@ export default class ForgotPassword extends Component {
         newPassword: '',
         newPasswordConfirm: '',
         dob: null,
-        step: 2,
+        step: 1,
         openOTP: false,
         requestId: "",
         mobileNumber: "",
