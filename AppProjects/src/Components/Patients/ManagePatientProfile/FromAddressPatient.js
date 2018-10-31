@@ -14,7 +14,9 @@ export default class FromAddressPatient extends React.Component {
                         <Icon color='yellow' name='pills' />
                         <span style={{ color: '#FFB100' }}> {patientField.allergy.label} : </span> {this.props.patient.allergy} <br />
                         <Icon color='yellow' name='medkit' />
-                        <span style={{ color: '#FABD08' }}> {patientField.privilege.label} : </span> {this.props.patient.privilege}
+                        <span style={{ color: '#FABD08' }}> {patientField.privilege.label} : </span> {this.props.patient.privilege}<br />
+                        <Icon color='yellow' name='heartbeat' />
+                        <span style={{ color: '#FFB100' }}> {patientField.congenitalDisease.label} : </span> {this.props.patient.congenitalDisease} <br />
                     </Segment>
                 </Segment.Group >
                 <Segment.Group >
@@ -58,16 +60,16 @@ export default class FromAddressPatient extends React.Component {
                                         {patientField.address.label}
                                     </Header.Subheader>
                                     <Header.Subheader >
-                                        {patientField.address.label}
+                                        {patientField.subDistrict.label}
                                     </Header.Subheader>
                                     <Header.Subheader >
-                                        {patientField.address.label}
+                                        {patientField.district.label}
                                     </Header.Subheader>
                                     <Header.Subheader >
-                                        {patientField.address.label}
+                                        {patientField.province.label}
                                     </Header.Subheader>
                                     <Header.Subheader >
-                                        {patientField.address.label}
+                                        {patientField.zipcode.label}
                                     </Header.Subheader>
                                 </Grid.Column>
                                 <Grid.Column width={10}>

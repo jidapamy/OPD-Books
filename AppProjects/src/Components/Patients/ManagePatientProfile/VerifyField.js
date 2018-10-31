@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Label, Segment, Form, Header, Divider, Input, Icon, Button } from 'semantic-ui-react'
-import ErrorMessage from './ErrorMessage'
-import { setErrorMsg, setErrorMsgSplice } from '../../../Services/Utils';
-import { patientField, pattern } from "../../../Static/Data/Field"
-import { checkEmail } from "../../../Services/ManagePatientMethod";
+import { Form, Button, Icon } from 'semantic-ui-react'
+import { patientField, groupInfoPatientField, pattern } from "../../../Static/Data/Field"
+import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
+import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/ManagePatientMethod";
+import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
+import { checkPassword, checkEmail } from '../../../Services/ManagePatientMethod'
 import ReactPhoneInput from 'react-phone-input-2';
 import styled from "styled-components";
+import swal from 'sweetalert2';
 
 // const PhoneCountry = styled(ReactPhoneInput)`
 //     padding-left: 45px !important;
@@ -19,148 +21,340 @@ const LabelField = styled.label`
     text-transform: none;
 `
 
+const style = {
+    verifiedButton: {
+        width: '100%',
+        backgroundColor: '#FFF',
+        color: '#31A5BA',
+        fontSize: '12px',
+        border: '1px #31A5BA solid',
+        height: '38px'
+    },
+    validateButton: {
+        width: '100%',
+        backgroundColor: '#393d3e',
+        color: '#FFF',
+        height: '38px',
+        fontSize: '12px',
+    },
+    successButton: {
+        width: '100%',
+        backgroundColor: '#FFF',
+        color: '#4CAF50',
+        fontSize: '12px',
+        border: '1px #4CAF50 solid',
+        height: '38px'
+    },
+    cancelButton: {
+        width: '100%',
+        backgroundColor: '#FFF',
+        color: '#ba3131',
+        fontSize: '12px',
+        border: '1px #ba3131 solid',
+        height: '38px'
+    }
+
+}
+
 export default class VerifyField extends Component {
     state = {
         email: '',
-        verifyCodeEmail: '',
+        sendEmail: false,
+        genVerificationCode: '',
+        userVerificationCode: '',
 
         mobileNumber: '',
         otp: '',
-        phone:''
+        requestId: '',
+        mobileNumberbind: '',
+        sendOTP: false,
+        successOTP: false
     }
 
-    validateEmail = (value) => {
-        if (value.match(pattern.email.pattern)) {
-            // /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/
-            this.props.errorField.email = false
-            const result = setErrorMsgSplice('email', this.props.errorText)
-            this.props.setField('errorInfo', result)
-            return true;
-        } else {
-            this.props.errorField.email = true
-            const result = setErrorMsg('email', pattern.email.label, this.props.errorText)
-            this.props.setField('errorInfo', result)
-            return false;
-        }
+    showButtonVerified = (text, onClick) => {
+        return <Form.Field
+            width={4}
+            style={style.verifiedButton}
+            control={Button}
+            onClick={() => onClick()}
+        >
+            {text} &nbsp;&nbsp;
+        </Form.Field>
     }
 
-    checkEmailDuplicate = async (value) => {
-        if (this.validateEmail(value)) {
-            // syntax pass
-            checkEmail(value).then(res => {
-                if (res) {
-                    let error = 'This E-mail is already exists in the system'
-                    this.props.errorField.email = true;
-                    const result = setErrorMsg('email', error, this.props.errorText)
-                    this.props.setField('errorInfo', result)
-                } else {
-                    this.props.setFieldAndValidate('email', value)
-                }
+    showButtonSuccess = (onClick) => {
+        return <Form.Field
+            width={4}
+            style={style.successButton}
+            control={Button}
+            onClick={() => onClick()}
+        >
+            Successful &nbsp;
+            <Icon name="check circle" style={{ color: '#4CAF50', paddingLeft: '9px', fontSize: '15px' }} />
+        </Form.Field>
+    }
+
+    showButtonValidate = (text, onClick, disabled) => {
+        return <Form.Field
+            width={4}
+            style={style.validateButton}
+            control={Button}
+            onClick={() => onClick()}
+            disabled={disabled}
+        >
+            {text} &nbsp;&nbsp;
+        </Form.Field>
+    }
+
+    requestOTP = (requestId = null) => {
+        if (this.state.mobileNumber) {
+            let data = {
+                requestId: requestId,
+                // citizenId: this.props.patient.citizenId,
+                mobileNumber: this.state.mobileNumber
+            }
+            console.log(data)
+            swal({
+                title: 'The system is sending OTP Password to your mobile phone',
+                html: 'Please do not close this popup.!',
+                onOpen: () => {
+                    swal.showLoading()
+                    requestOTP(data).then(res => {
+                        swal.close()
+                        if (res.status) {
+                            this.setState({
+                                requestId: res.data.requestId,
+                                mobileNumberbind: res.data.mobileNumber,
+                                sendOTP: true,
+                                mobileNumber: data.mobileNumber
+                            });
+                        } else {
+                            errorPopup(res.message)
+                        }
+                    })
+                },
             })
         }
     }
 
-    sendVerifyEmail = () => {
-        console.log("On click")
+    cancelRequestOTP = (requestOTP) => {
+        console.log(requestOTP)
+        swal({
+            title: 'The system is cenceling your request OTP',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                cancelRequestOTP(requestOTP).then(res => {
+                    console.log(res)
+                    swal.close()
+                    if (res.status) {
+                        this.setState({
+                            otp: "",
+                            sendOTP: false,
+                            mobileNumber: ''
+                        })
+                    } else {
+                        errorPopup(res.message)
+                    }
+                })
+            }
+        })
     }
 
-    checkVerifyEmail = () => {
-        console.log('checkVerifyEmail')
+    submitValidateOTP = () => {
+        let data = {
+            pin: this.state.otp,
+            requestId: this.state.requestId,
+            citizenId: this.props.patient.citizenId
+        }
+        console.log(data)
+        swal({
+            title: 'System is saving data.',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                validateOTP(data).then(res => {
+                    swal.close()
+                    if (res.status) {
+                        this.setState({
+                            successOTP: true,
+                            sendOTP: false,
+                            otp: ''
+                        })
+                    } else {
+                        if (res.statusCode == '17') {
+                            // ผิดเกิด 3 ครั้ง
+                            // patient.mobileNumber = this.props.patient.mobileNumber;
+                            this.setState({
+                                sendOTP: false,
+                                otp: ''
+                            })
+                        }
+                        errorPopup(res.message, 'OTP Password incorrect!')
+                    }
+                })
+            }
+        })
     }
 
-    handleOnChange = (value) => {
-        console.log(value)
-        this.setState({
-            mobileNumber: value
-        });
+
+    generateVerificationCode = () => {
+        let ran = Math.floor((Math.random() * 999999) + 100000);
+        // this.setState({ verificationCode: "" + ran })
+        return ran + ''
     }
+
+
+    requestVerifyEmail = async() => {
+        if (this.state.email) {
+            if (!await checkEmail(this.state.email)) {
+                let data = {
+                    patient: this.props.patient,
+                    email: this.state.email,
+                    genVerificationCode: this.generateVerificationCode()
+                }
+                swal({
+                    title: 'The system is sending verification code to your new email address.',
+                    html: 'Please do not close this popup.!',
+                    onOpen: () => {
+                        swal.showLoading()
+                        sendVerifyEmail(data).then(res => {
+                            swal.close()
+                            console.log(res)
+                            if (res.status) {
+                                this.setState({
+                                    sendEmail: true,
+                                    genVerificationCode: data.genVerificationCode
+                                })
+                            } else {
+                                errorPopup(res.message)
+                            }
+                        })
+                    }
+                })
+            } else {
+                errorPopup('This E-mail is already exists in the system. Please re-enter your new email', 'Email Duplicated!').then(res => {
+                    this.setState({ errorDupEmail: true })
+                })
+            }
+        }
+    }
+
+    submitEmail = async () => {
+        if (this.state.genVerificationCode === this.state.userVerificationCode) {
+            this.setState({
+                sendEmail : false,
+                successEmail: true,
+                userVerificationCode:'',
+                generateVerificationCode:''
+            })
+        } else {
+            errorPopup('Verification code was incorrect').then(res => {
+                this.setState({ userVerifiedCode: '' })
+            })
+        }
+    }
+
+
+
     render() {
+        console.log(this.state)
         return (
             <div>
                 {/* <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p> */}
+                {this.state.sendOTP &&
+                    <p style={{ color: '#277e8e', fontSize: '12px', marginBottom: '5px' }}>
+                        The system has sent OTP Password to your mobile phone : <span style={{ color: "#000" }}>{this.state.mobileNumberbind}</span> <br />
+                        Reference Code : <span style={{ color: "#000" }}>{this.state.requestId}</span><br />
+                        *If you want to change your mobile phone, please push <span style={{ color: '#ba3131', fontSize: '15px', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => this.cancelRequestOTP(this.state.requestId)} > Cancel </span>
+                    </p>
+                }
+
                 <Form>
-                    
-                    <LabelField>{patientField.email.label}</LabelField>
+                    <LabelField>{patientField.mobileNumber.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
+                    <Form.Group widths={2}>
+                        <Form.Field required readOnly={this.state.sendOTP}>
+                            <ReactPhoneInput
+                                disabled={this.state.sendOTP || this.state.successOTP}
+                                readOnly={this.state.sendOTP}
+                                inputStyle={{ paddingLeft: 50, height: '38px' }}
+                                defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
+                                value={this.state.mobileNumber}
+                                onChange={(e) => { this.setState({ mobileNumber: e }) }}
+                                inputExtraProps={{
+                                    required: true,
+                                }}
+                            />
+                        </Form.Field>
+                        {!this.state.sendOTP && !this.state.successOTP && this.showButtonVerified('Request OTP', this.requestOTP)}
+                        {this.state.sendOTP && this.showButtonVerified('Request again', () => this.requestOTP(this.state.requestId))}
+                        {this.state.successOTP && this.showButtonSuccess(() => {
+                            this.setState({
+                                otp: "",
+                                sendOTP: false
+                            })
+                            this.props.setFieldAndValidate('mobileNumber', this.state.mobileNumber)
+                        })
+                        }
+
+                        <Form.Input
+                            disabled={!this.state.sendOTP}
+                            placeholder='OTP Password'
+                            onChange={e => this.setState({ otp: e.target.value })}
+                            type='password'
+                            value={this.state.otp}
+                        />
+                        {this.showButtonValidate('Validation', this.submitValidateOTP, !this.state.sendOTP)}
+                    </Form.Group>
+                </Form>
+
+                <Form>
+                    <LabelField>{patientField.email.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
                     <Form.Group widths={2}>
                         <Form.Field required>
                             <Form.Input
                                 placeholder={patientField.email.label} vb
                                 onChange={e => this.setState({ email: e.target.value })}
-                                // onBlur={e => { this.checkEmailDuplicate(e.target.value) }}
                                 required
                                 type='email'
-                                error={this.props.errorField ? this.props.errorField.email : false}
-                                value={this.props.patient.email}
+                                value={this.state.email}
+                                readOnly={this.state.sendEmail}
                             />
                         </Form.Field>
-                        <Form.Field
-                        width={4}
-                            style={{ width: '100%', backgroundColor: '#42C1D8', color: '#FFF' }}
-                            control={Button}>&nbsp;Verifycation &nbsp;
-                            <Icon name="sent" style={{ color: '#FFF', paddingLeft: '9px', fontSize: '15px' }} />
-                        </Form.Field>
+                        {/* {this.showButtonVerified('Verification', this.editEmail)} */}
+                        {!this.state.sendEmail && !this.state.successEmail && this.showButtonVerified('Verification', this.requestVerifyEmail)}
+                        {this.state.sendEmail && <Form.Field
+                            width={4}
+                            style={style.cancelButton}
+                            control={Button}
+                            onClick={() => this.setState({
+                                sendEmail: false,
+                                generateVerificationCode: '',
+                                userVerificationCode: ''
+                            })}
+                        >
+                            Cancel &nbsp;&nbsp;<Icon name="cancel" style={{ color: '#ba3131', paddingLeft: '9px', fontSize: '15px' }} />
+                        </Form.Field>}
+                        {this.state.successEmail && this.showButtonSuccess(() => {
+                            this.setState({
+                                email: "",
+                                sendEmail: false
+                            })
+                            this.props.setFieldAndValidate('email', this.state.email)
+                        })}
+
                         <Form.Input
-                            // label='Verify Code for Email'
-                            placeholder='Verify Code'
-                            onChange={e => this.setState({ verifyCodeEmail: e.target.value })}
+                            disabled={!this.state.sendEmail}
+                            placeholder="Verification code"
+                            onChange={e => this.setState({ userVerificationCode: e.target.value })}
                             required
-                            type='email'
-                            value={this.state.verifyCodeEmail}
+                            type='password'
+                            value={this.state.userVerificationCode}
                         />
-                        <Form.Field
-                            width={4}
-                            style={{ width: '100%', backgroundColor: '#42C1D8', color: '#FFF' }}
-                            control={Button}>&nbsp;Validation&nbsp;
-                            <Icon name="sent" style={{ color: '#FFF', paddingLeft: '9px', fontSize: '15px' }} />
-                        </Form.Field>
-
-                    </Form.Group>
-                </Form>
-                <Form>
-                    
-                    <LabelField>{patientField.mobileNumber.label}</LabelField>
-                    <Form.Group widths={2}>
-                        <Form.Field required>
-                            <ReactPhoneInput
-                                inputStyle={{ paddingLeft: 50 }}
-                                icon={<Icon style={{ backgroundColor: '#42C1D8', color: '#FFFFFF' }} name='send' onClick={() => this.requestOTP()} />}
-                                defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
-                                value={this.state.mobileNumber}
-
-                            />
-                        </Form.Field>
-                        <Form.Field
-                            width={4}
-                            style={{ width: '100%', backgroundColor: '#42C1D8', color: '#FFF' }}
-                            control={Button}>&nbsp; Request OTP &nbsp;
-                            <Icon name="sent" style={{ color: '#FFF', paddingLeft: '9px', fontSize: '15px' }} />
-                        </Form.Field>
-                        <Form.Input
-                            placeholder='OTP Code'
-                            onChange={e => this.setState({ otp: e.target.value })}
-                            type='email'
-                            value={this.state.otp}
-                        />
-                        <Form.Field
-                            width={4}
-                            style={{ width: '100%', backgroundColor: '#42C1D8', color: '#FFF' }}
-                            control={Button}>&nbsp; Validation &nbsp;
-                            <Icon name="sent" style={{ color: '#FFF', paddingLeft: '9px', fontSize: '15px' }} />
-                        </Form.Field>
-                  
+                        {this.showButtonValidate('Validation', this.submitEmail, !this.state.sendEmail)}
                     </Form.Group>
                 </Form>
 
-
-
-
-
-
-
-
-
-
-                
             </div>
         )
     }
