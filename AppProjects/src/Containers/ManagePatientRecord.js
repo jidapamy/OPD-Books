@@ -288,7 +288,7 @@ export default class ManagePatientRecord extends Component {
     if (dataForOTP) {
       console.log("newMobileNumber", this.state.patient, this.props.patient)
       if (this.state.patient.newMobileNumber && this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
-        patient.mobileNumber = this.state.patient.mobileNumber
+        patient.mobileNumber = this.state.patient.newMobileNumber
         patient.editInfoPart4 = true;
         statusChange = true
         this.submitValidateOTP(patient, { group, ...dataForOTP })

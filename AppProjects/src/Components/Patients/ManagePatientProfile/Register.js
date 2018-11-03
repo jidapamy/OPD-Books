@@ -112,6 +112,11 @@ export default class Register extends Component {
                                 errorText={this.state.errorVerify}
 
                                 patient={this.props.state.patient}
+                                errorField={this.props.state.errorField}
+                                
+                                setPatientDetail={this.props.setPatientDetail}
+                                setField={this.props.setField}
+                                setFieldAndValidate={this.props.setFieldAndValidate}
                             />
                         </SegmentForm>
                         <br></br>
