@@ -20,6 +20,7 @@ import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/ManagePatientMethod";
 import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
 import styled from "styled-components";
+import ReactPhoneInput from 'react-phone-input-2';
 
 const provincesData = require('../../../Static/Data/Provinces')
 
@@ -173,26 +174,6 @@ export default class EditProfile extends React.Component {
                         })
                     }
                 })
-
-                // if (this.state.editEmail === false) {
-                //     // false > true : ถ้าเป็น true >> พิมพ์ได้
-                //     this.inputEmail.focus()
-                // }
-                // if (this.state.email == null) {
-                //     console.log("this.state.email == null")
-                //     this.setState({
-                //         email: this.props.state.patient.email,
-                //         editEmail: true,
-                //         passwordConfirmEmail: ''
-                //     })
-                // } else {
-                //     console.log("else email != null")
-                //     this.setState({
-                //         editEmail: true,
-                //         passwordConfirmEmail: '',
-                //         errorEmail: false
-                //     })
-                // }
             } else {
                 errorPopup("Your Email has not been changed.")
             }
@@ -257,19 +238,6 @@ export default class EditProfile extends React.Component {
                 </Form.Group>
                 <p style={{ color: '#277e8e', fontSize: '12px' }}> * For your security, you must re-enter your password to continue. </p>
                 {this.submitButton(!this.state.passwordConfirmEmail || !this.state.userVerificationCode, this.submitEmail)}
-                {/* <Form.Group widths={5}>
-                <Form.Button
-                    style={{
-                        width: '100%',
-                        backgroundColor: '#FF9D3F',
-                        color: '#fff'
-                    }}
-                    disabled={!this.state.passwordConfirmEmail}
-                    onClick={() => this.submitEmail()}
-                >
-                    Submit
-                </Form.Button>
-                </Form.Group> */}
             </Form>
         }
     }
@@ -362,17 +330,6 @@ export default class EditProfile extends React.Component {
                     <span style={{ color: '#ba3131' }}> Cancel </span> button. <br />
                 </p>
                 {this.submitButton(!this.state.otp, this.submitValidateOTP)}
-                {/* <Form.Button
-                    width={2}
-                    style={{
-                        width: '100%',
-                        backgroundColor: '#FF9D3F',
-                        color: '#fff'}}
-                    disabled={!this.state.otp}
-                    onClick={() => this.submitValidateOTP(this.state.otp)}
-                >
-                    Submit
-                </Form.Button> */}
             </Form>
         }
     }
@@ -664,6 +621,35 @@ export default class EditProfile extends React.Component {
                     </Segment>}
                 </Transition.Group>
 
+                <Segment style={changeMobileNumber ? itemActiveStyle : itemStyle} vertical
+                    onClick={() => this.setState({
+                        changeMobileNumber: !this.state.changeMobileNumber,
+                        sendOTP: false,
+                        mobileNumber: this.props.state.patient.mobileNumber
+                    })}
+                >
+                    <h4 ><Icon name='mail' />Change Mobile Number <Icon style={{ float: 'right' }} name={changeMobileNumber ? 'angle down' : 'angle left'} /></h4></Segment>
+                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
+                    {changeMobileNumber && <Segment style={elimentStyle} vertical >
+                        <Form text >
+                            <LabelField>{patientField.mobileNumber.label}</LabelField>
+                            <Form.Group widths="3">
+                                <Form.Field required>
+                                    <ReactPhoneInput
+                                        readOnly={this.state.sendOTP}
+                                        inputStyle={{ paddingLeft: 50 }}
+                                        defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
+                                        value={this.state.mobileNumber}
+                                        onChange={(e) => { this.setState({ mobileNumber: e }) }}
+                                    />
+                                </Form.Field>
+                                {this.showButtonStatusRequest()}
+                            </Form.Group>
+                        </Form>
+                        {this.showRequestOTP()}
+
+                    </Segment>}
+                </Transition.Group>
 
                 <Segment style={changeEmail ? itemActiveStyle : itemStyle} vertical onClick={() => this.setState({ editEmail: false, changeEmail: !this.state.changeEmail, email: this.props.state.patient.email, passwordConfirmEmail: '', errorDupEmail: false })}>
                     <h4 ><Icon name='mail' />Change Email <Icon style={{ float: 'right' }} name={changeEmail ? 'angle down' : 'angle left'} /></h4></Segment>
@@ -690,45 +676,6 @@ export default class EditProfile extends React.Component {
                             </Form.Group>
                         </Form>
                         {this.showComfirmChangeEmail()}
-                    </Segment>}
-                </Transition.Group>
-
-
-                <Segment style={changeMobileNumber ? itemActiveStyle : itemStyle} vertical
-                    onClick={() => this.setState({
-                        changeMobileNumber: !this.state.changeMobileNumber,
-                        sendOTP: false,
-                        mobileNumber: this.props.state.patient.mobileNumber,
-                    })}
-                >
-                    <h4 ><Icon name='mail' />Change Mobile Number <Icon style={{ float: 'right' }} name={changeMobileNumber ? 'angle down' : 'angle left'} /></h4></Segment>
-                <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
-                    {changeMobileNumber && <Segment style={elimentStyle} vertical >
-                        <Form text >
-                            <LabelField>{patientField.mobileNumber.label}</LabelField>
-                            <Form.Group widths="3">
-                                <Form.Field required>
-                                    <input
-                                        readOnly={this.state.sendOTP}
-                                        value={this.state.mobileNumber != null ? this.state.mobileNumber : this.props.state.patient.mobileNumber}
-                                        onChange={(e) => { this.setState({ mobileNumber: e.target.value }) }}
-                                    />
-                                </Form.Field>
-                                {this.showButtonStatusRequest()}
-                            </Form.Group>
-                            {/* <Form.Group widths="3">
-                                <Form.Input
-                                    label={patientField.mobileNumber.label}
-                                    required
-                                    value={this.state.mobileNumber != null ? this.state.mobileNumber : this.props.state.patient.mobileNumber}
-                                    onChange={(e) => { this.setState({ mobileNumber: e.target.value }) }}
-                                    readOnly={this.state.sendOTP}
-                                />
-                                {this.showButtonStatusRequest()}
-                            </Form.Group> */}
-                        </Form>
-                        {this.showRequestOTP()}
-                        
                     </Segment>}
                 </Transition.Group>
             </div>

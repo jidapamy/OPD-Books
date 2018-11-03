@@ -1,6 +1,47 @@
+import styled from "styled-components";
+import BGcomputer from '../Img/Wallpaper/BGcomputer.png'
+import BGIPad1 from '../Img/Wallpaper/BGIPad1.png'
+import BGIPad2 from '../Img/Wallpaper/BGIPad2.png'
+import BGIPad3 from '../Img/Wallpaper/BGIPad3.png'
+import BGIPhone from '../Img/Wallpaper/BGIPhone.png'
+import BGIPhonePlus from '../Img/Wallpaper/BGIPhonePlus.png'
+import BGIPhonX from '../Img/Wallpaper/BGIPhonX.png'
+
+export const Wrapper = styled.div`
+
+@media only screen and (max-width: 1366px) and (min-width: 1024px) {
+  background: url(${BGIPad3}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 1112px) and (min-width: 834px) {
+  background: url(${BGIPad2}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  background: url(${BGIPad1}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 812px) and (min-width: 315px) {
+  background: url(${BGIPhonX}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 736px) and (min-width: 414px) {
+  background: url(${BGIPhonePlus}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (max-width: 667px) and (min-width: 375px) {
+  background: url(${BGIPhone}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+@media only screen and (min-width: 1025px)  {
+  background: url(${BGcomputer}) no-repeat center fixed;
+  background-size: 100% 100%;
+}
+
+`
 export const style = {
 
-
+    
     centerr: {
         textAlign: 'center',
     },
@@ -784,10 +825,11 @@ export const style = {
     DecoSegment: {
         // opacity: '0.7',
         borderRadius: '25px',
-        border: '0px solid',
+        // border: '0px solid',
         // backgroundColor:'#000000',
-        height: '550px',
+        height: '200%',
         marginBottom: '20%',
+        
 
     }
     ,
@@ -963,10 +1005,8 @@ export const style = {
 
     DecoSegmentMobile: {
         borderRadius: '15px',
-        border: '0px solid',
-        // height: '100% !important',
         marginBottom: '20%',
-        height: '640px',
+        // height: '640px',
 
     },
 

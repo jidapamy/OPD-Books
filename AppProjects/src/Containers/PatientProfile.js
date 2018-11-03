@@ -238,7 +238,6 @@ export default class PatientProfile extends Component {
           </Dimmer>
 
           <Responsive {...Responsive.onlyComputer} minWidth={1023}>
-
             <BG>
               {/* <EditProfile /> */}
               <Segment>

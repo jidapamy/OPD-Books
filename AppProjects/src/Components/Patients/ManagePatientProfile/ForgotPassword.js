@@ -14,8 +14,7 @@ import {
     Modal, Dimmer, Loader
 
 } from "semantic-ui-react";
-import { style } from "../../../Static/Style/QueueCss";
-import BackgroundImage from "../../../Static/Img/BGForgot.png";
+import { style ,Wrapper} from "../../../Static/Style/QueueCss";
 import styled, { ThemeProvider } from "styled-components";
 import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
 import DatePicker from 'react-datepicker';
@@ -27,11 +26,7 @@ import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import logo from "../../../Static/Img/Contianer/my.jpg";
-
-const Wrapper = styled.div`
-    background: url('${BackgroundImage}') no-repeat center fixed;
-    background-size: 100% 100%;
-`;
+import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
 
 const DateBirthday = styled(DatePicker)`
     padding-left: 40px !important;
@@ -74,6 +69,12 @@ export default class ForgotPassword extends Component {
         selectSend: "sms",
 
     }
+
+    style = {
+        ImButton: {
+          cursor: 'pointer'
+        }
+      }
 
 
     componentWillReceiveProps = (nextProps) => {
@@ -229,6 +230,8 @@ export default class ForgotPassword extends Component {
 
     render() {
         console.log(this.state)
+
+        
         return (
             <span>
                 <Responsive {...Responsive.onlyComputer} minWidth={Responsive.onlyTablet.minWidth}>
@@ -246,10 +249,11 @@ export default class ForgotPassword extends Component {
 
                         <Container style={style.Container}>
                             <p style={style.ForgotTopic}>FORGOT PASSWORD</p>
+                            <div style={{ margin: '3% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
                             <Segment style={style.DecoSegment}>
                                 {this.state.step == 1 &&
                                     <div>
-                                        <div style={{ margin: '3% 5%' }}> <ImageSizeRow centered src={logo} /> </div>
+                                        
                                         <div centered>
                                             <Form.Group>
                                                 <Message style={{ padding: '3% 2%' }}>
@@ -327,7 +331,7 @@ export default class ForgotPassword extends Component {
 
                                 {this.state.step == 2 &&
                                     <div >
-                                        <div style={{ margin: '5% 5%' }}> <ImageSizeRow centered src={logo} /> </div>
+                                        <div style={{ margin: '5% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
                                         {/* <Container> */}
 
                                         {/* <Grid.Row style={style.inputForgotZone}> */}

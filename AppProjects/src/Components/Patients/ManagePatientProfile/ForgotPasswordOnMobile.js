@@ -15,8 +15,7 @@ import {
     Modal, Dimmer, Loader
 
 } from "semantic-ui-react";
-import { style } from "../../../Static/Style/QueueCss";
-import BackgroundImage from "../../../Static/Img/BGForgot.png";
+import { style,Wrapper } from "../../../Static/Style/QueueCss";
 import styled from "styled-components";
 import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
 import DatePicker from 'react-datepicker';
@@ -28,12 +27,8 @@ import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import logo from "../../../Static/Img/Contianer/my.jpg";
+import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
 
-
-const Wrapper = styled.div`
-    background: url('${BackgroundImage}') no-repeat center fixed;
-    background-size: 100% 100%;
-`;
 
 const DateBirthday = styled(DatePicker)`
     padding-left: 3rem !important;
@@ -59,6 +54,7 @@ const ImageSizeRow = styled(Image)`
 
 
 
+
 export default class ForgotPassword extends Component {
     state = {
         citizenId: '',
@@ -73,6 +69,13 @@ export default class ForgotPassword extends Component {
         loader: false,
         selectSend: "sms",
     }
+
+
+    style = {
+        ImButton: {
+          cursor: 'pointer'
+        }
+      }
 
     DateInput = () => {
         if (this.state.dob !== null || this.state.dob != undefined) {
@@ -239,13 +242,11 @@ export default class ForgotPassword extends Component {
                 `}</style>
                         <Container style={style.ContainerMobile}>
 
-                            <p style={style.ForgotTopicMobile}>FORGOT PASSWORD</p>
+                          <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' />
                             <Segment style={style.DecoSegmentMobile}>
                                 {this.state.step == 1 && <Grid>
                                     <Grid.Row style={style.circularZoneMobile2}>
-                                            <Grid.Column>
-                                            <ImageSizeRow src={logo} />
-                                            </Grid.Column>
+                                            
                                         </Grid.Row>
                                     <Grid.Row style={style.twoColumnButton2Mobile}>
                                         <Grid.Column>
@@ -310,7 +311,7 @@ export default class ForgotPassword extends Component {
 
                                 {this.state.step == 2 &&
                                     <div >
-                                        <div style={{ margin: '5% 5%' }}> <ImageSizeRow centered src={logo} /> </div>
+                                        <div style={{ margin: '5% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
                                         {/* <Container> */}
 
                                         {/* <Grid.Row style={style.inputForgotZone}> */}
