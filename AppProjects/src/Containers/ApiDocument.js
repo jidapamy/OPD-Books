@@ -266,7 +266,7 @@ export default class apiDocument extends Component {
 
 
 
-        <Responsive {...Responsive.onlyMobile}>
+        <Responsive {...Responsive.onlyMobile}minWidth={0} maxWidth={1023}>
 
           <Visibility
             onBottomPassed={this.stickTopMenu}

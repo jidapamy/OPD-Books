@@ -164,7 +164,7 @@ export default class Home extends React.Component {
               
             </Visibility>
             <Image src={HBG}></Image>
-            <Responsive minWidth={768} maxWidth={1023}> 
+            <Responsive minWidth={768} maxWidth={991}> 
               <box>
                 <Header style={{ fontSize: '20px' }}>Hello, we are</Header>
                 <Header style={{ fontSize: '20px' }}>OPD BOOKS </Header>
@@ -480,7 +480,7 @@ export default class Home extends React.Component {
           </Segment>
         </Segment.Group>
         </Responsive>
-
+  
         <Responsive {...Responsive.onlyMobile}>
           <HomeOnMobile 
             goToPage={this.goToPage}
