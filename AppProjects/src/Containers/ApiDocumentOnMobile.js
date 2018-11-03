@@ -99,14 +99,15 @@ export default class apiDocument extends Component {
     return (
 
       <div>
-        <Responsive {...Responsive.onlyComputer}>
-        <div>
+        <Responsive {...Responsive.onlyMobile} minWidth={Responsive.onlyTablet.minWidth}>
+        console.log("Mobile");
+       
           <Menu pointing secondary vertical position='fixed' style={style.bgApi} fixed='left' >
             <br />
             <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
             {this.showData()}<br />
           </Menu>
-        </div>
+        
         <Body>
           <Grid columns={2}>
             <Grid.Column width={8}>
