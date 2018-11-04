@@ -3,12 +3,12 @@ import ScanButton from "./../../Static/Img/ScanButton.svg";
 import styled from "styled-components";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
-import { getPatient, requestOTP, getPatientWithOTP, cancelRequestOTP } from "../../Services/ManagePatientMethod";
+import { getPatient, requestOTP, getPatientWithOTP, cancelRequestOTP, checkIdcard } from "../../Services/ManagePatientMethod";
 import BGRegistra from "./../../Static/Img/BGRegistra.svg";
-import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, Loader } from "semantic-ui-react";
+import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, Loader, Icon } from "semantic-ui-react";
 import OTPfactor from "./OTPfactor";
 import { confirmPopup, successPopup, errorPopup } from "../SweetAlert"
-
+import { addQueueFromDB, checkPatientFromDB, addPatientFromDB, getPatientFromDB} from "../../Services/DbService";
 const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
@@ -55,30 +55,78 @@ class Registration extends Component {
     employee: {},
     citizenIdSearch: '',
     loader: false,
-    openOTP:false,
-    requestId:"",
-    mobileNumber:"",
-    pin:""
+    openOTP: false,
+    requestId: "",
+    mobileNumber: "",
+    pin: "",
+
+    duplicatePatient: false,
   };
 
   getPatient = citizenId => {
-    let patient = getPatient(citizenId);
-    this.setState({
-      patient: patient,
-      openScan: false,
-      openDetail: true
-    });
+    getPatient(citizenId).then(res => {
+      if (res.status) {
+        checkPatientFromDB(res.data.citizenId).then(boolean => {
+          console.log("checkPatient", boolean)
+          this.setState({
+            patient: res.data,
+            openScan: false,
+            openDetail: true,
+            duplicatePatient: boolean
+          });
+        })
+      }
+    })
   };
 
-  closeModal = () => this.setState({ openDetail: false, openOTP: false, citizenIdSearch: '',});
-
+  closeModal = () => this.setState({ openDetail: false, openOTP: false, citizenIdSearch: '', });
+  closeOTP = () => { this.cancelRequestOTP(this.state.requestId) }
   scanQRCode = citizenId => {
     // Decrypt
     if (citizenId) {
-      this.setState({
-        openScan: false,
+      checkPatientFromDB(citizenId).then(async boolean => {
+        this.setState({ duplicatePatient: boolean })
+        if(boolean){
+           // มี >> Show patient เลย
+          this.setState({ loader: true })
+          getPatientFromDB(citizenId).then(async data => {
+            this.setState({ loader: false })
+            if (data.status) {
+              this.setState({
+                patient: data.data,
+                openScan: false,
+                openDetail: true,
+              });
+            } else {
+              errorPopup(data.message)
+            }
+          })
+        }else{
+          // ไม่มีใน db
+          if(await checkIdcard(citizenId)){
+            confirmPopup("Do you want to retrieve patient information from the blockchain system ?", "No patient in the system").then(res => {
+              if (res.value) {
+                this.requestOTP(citizenId, null)
+              }
+            })
+          }else{
+            errorPopup("No patient in the system")
+          }
+        }
       })
-      this.requestOTP()
+
+
+
+
+
+
+      
+      // this.getPatient(citizenId)
+      // this.setState({
+      //   openScan: false,
+      //   citizenIdSearch: citizenId
+      // })
+      // this.requestOTP(citizenId,null)
     }
   }
 
@@ -87,12 +135,42 @@ class Registration extends Component {
   }
 
   confirm = () => {
-    this.setState({ 
-      openDetail: false,
-     })
-    successPopup("Add Queue Success!")
+    let data = {
+      status: 2,
+      citizenId: this.state.patient.citizenId
+    }
+    if (!this.state.duplicatePatient) {
+      // ยังไม่มีในระบบ
+      confirmPopup("Will you add this patients to database.?", "No patient in the system").then(res => {
+        if (res.value) {
+          addPatientFromDB(this.state.patient).then(res => {
+            if (res.status) {
+              addQueueFromDB(data).then(res => {
+                this.setState({
+                  openDetail: false,
+                  citizenIdSearch: '',
+                  duplicatePatient: true,
+                })
+                successPopup("Add Queue Success!")
+              })
+            } else {
+              errorPopup(res.message)
+            }
+          })
+        }
+      })
+    }else{
+      addQueueFromDB(data).then(res => {
+        this.setState({
+          openDetail: false,
+          citizenIdSearch: '',
+          duplicatePatient: true,
+        })
+        successPopup("Add Queue Success!")
+      })
+    }
   }
-  
+
 
   validateOTP = (pin) => {
     let data = {
@@ -104,8 +182,8 @@ class Registration extends Component {
     this.setState({ loader: true })
     getPatientWithOTP(data).then(res => {
       // this.props.setField("loader", false)
-      if(res.status){
-        this.setState({ 
+      if (res.status) {
+        this.setState({
           openOTP: false,
           openDetail: true,
           patient: res.data,
@@ -113,12 +191,12 @@ class Registration extends Component {
           loader: false,
           citizenIdSearch: '',
         })
-      }else{
+      } else {
         this.setState({
           pin: "",
           loader: false,
         })
-        if (res.statusCode == '17'){
+        if (res.statusCode == '17') {
           this.setState({
             pin: "",
             openOTP: false,
@@ -130,10 +208,10 @@ class Registration extends Component {
     })
   }
 
-  requestOTP = (requestId=null) => {
+  requestOTP = (citizenId, requestId = null, ) => {
     let data = {
       requestId: requestId,
-      citizenId: this.state.citizenIdSearch
+      citizenId: citizenId
     }
     // this.props.setField("loader", true)
     this.setState({ loader: true })
@@ -143,8 +221,8 @@ class Registration extends Component {
         this.setState({
           requestId: res.data.requestId,
           mobileNumber: res.data.mobileNumber,
-          openOTP: true,
           loader: false,
+          openOTP: true,
         });
       } else {
         this.setState({
@@ -157,90 +235,109 @@ class Registration extends Component {
 
   cancelRequestOTP = (requestOTP) => {
     cancelRequestOTP(requestOTP).then(res => {
-      if(res.status){
+      if (res.status) {
         this.setState({
           openOTP: false,
           openDetail: false,
           pin: "",
           citizenIdSearch: '',
         })
-    } else {
+      } else {
+        errorPopup(res.message)
+      }
+    })
+  }
+
+
+  addPatient = (data) => {
+    addPatientFromDB(data).then(res => {
+      if (res.status) {
+        successPopup("Add Patient Success!").then(res => {
+          this.setState({ duplicatePatient: true, })
+        })
+      } else {
         errorPopup(res.message)
       }
     })
   }
 
   render() {
-    return  (
-    <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-      <Dimmer page active={this.state.loader}>
-        <Loader size='massive' indeterminate>Loading</Loader>
-      </Dimmer>
-    <Wrapper>
-        <Container>
-          <Header as="h1" style={style.h1} textAlign="center">
-            <Header.Content>
+    return (
+      <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+        <Dimmer page active={this.state.loader}>
+          <Loader size='massive' indeterminate>Loading</Loader>
+        </Dimmer>
+        <Wrapper>
+          <Container>
+            <Header as="h1" style={style.h1} textAlign="center">
+              <Header.Content>
                 <span style={{ fontSize: "2em", color: "#31A5BA" }}>
-                OPD BOOKS
+                  OPD BOOKS
               </span>
-              <Header.Subheader>Medical Record on Blockchain</Header.Subheader>
-            </Header.Content>
-          </Header>
-
-        <Image centered style={style.d1} rounded src={ScanButton} 
-            onClick={() => this.setState({ openScan: true })} />
-        <Form onSubmit={() => this.searchPatient()} style={{ margin: " 0% 15% ", borderRadius: '10px'}}>
-          <Form.Input 
-            size='large' 
-            label='Citizen Id'  
-            type='text' 
-            icon='search'
-            placeholder='x-xxxx-xxxxx-xx-x' 
-            onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}
-            value={this.state.citizenIdSearch}
-            style={{ bloodgroupColor:'#31A5BA', color:'#FFF'}}
-          />
-          </Form>
-        </Container>
-
-        <PopupQRCode
-          size={"mini"}
-          open={this.state.openScan}
-          onClose={() => { this.setState({ openScan: !this.state.openScan }) }}>
-          <Header textAlign="center" size="large">Scan QR Code</Header>
-          <Modal.Content>
-            <QrReader delay={this.state.delay} onError={this.handleError} onScan={this.scanQRCode} style={{ width: "100%" }} />
-            <Button
-              floated="left" size="huge"
-              basic color="teal"
-              onClick={() => this.setState({ openScan: false })}
-              style={{ marginTop: "5%", marginBottom: "5%" }} fluid>
-              Close
-          </Button>
-          </Modal.Content>
-        </PopupQRCode>
-
-      <Modal open={this.state.openOTP} onClose={this.closeModal}>
-        <OTPfactor 
-          requestId={this.state.requestId}
-          mobileNumber={this.state.mobileNumber}
-          validateOTP={this.validateOTP}
-          requestOTP={this.requestOTP}
-          pin={this.state.pin}
-          cancelRequestOTP={this.cancelRequestOTP}
-        />
-      </Modal>
-
-
-
-
-        <Modal open={this.state.openDetail} onClose={this.closeModal}>
-          <Modal.Content>
-            <Modal.Description>
-              <Header as="h2" textAlign="center">
-                Patient Information
+                <Header.Subheader>Medical Record on Blockchain</Header.Subheader>
+              </Header.Content>
             </Header>
-              <Divider />
+
+            <Image centered style={style.d1} rounded src={ScanButton}
+              onClick={() => this.setState({ openScan: true })} />
+            <Form onSubmit={() => this.searchPatient()} style={{ margin: " 0% 15% ", borderRadius: '10px' }}>
+              <Form.Input
+                size='large'
+                label='Citizen Id'
+                type='text'
+                icon='search'
+                placeholder='x-xxxx-xxxxx-xx-x'
+                onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}
+                value={this.state.citizenIdSearch}
+                icon={<Icon name='search' circular link style={{ backgroundColor: '#31A5BA', color: '#FFF' }} onClick={() => this.searchPatient() } />}
+              />
+            </Form>
+          </Container>
+
+          <PopupQRCode
+            size={"mini"}
+            open={this.state.openScan}
+            onClose={() => { this.setState({ openScan: !this.state.openScan }) }}>
+            <Header textAlign="center" size="large">Scan QR Code</Header>
+            <Modal.Content>
+              <QrReader delay={this.state.delay} onError={this.handleError} onScan={this.scanQRCode} style={{ width: "100%" }} />
+              <Button
+                floated="left" size="huge"
+                basic color="teal"
+                onClick={() => this.setState({ openScan: false })}
+                style={{ marginTop: "5%", marginBottom: "5%" }} fluid>
+                Close
+          </Button>
+            </Modal.Content>
+          </PopupQRCode>
+
+          <Modal open={this.state.openOTP} onClose={this.closeOTP}>
+            <OTPfactor
+              citizenId={this.state.citizenIdSearch}
+              requestId={this.state.requestId}
+              mobileNumber={this.state.mobileNumber}
+              validateOTP={this.validateOTP}
+              requestOTP={this.requestOTP}
+              pin={this.state.pin}
+              cancelRequestOTP={this.cancelRequestOTP}
+            />
+          </Modal>
+
+          <Modal open={this.state.openDetail} onClose={this.closeModal}>
+            <Modal.Content>
+              <Modal.Description>
+                <Header as="h2" textAlign="center">
+                  Patient Information
+                 {/* <Button floated='right'>
+                    Add this patient  <Icon circular link name='user plus' style={{ backgroundColor: "#31A5BA", color: "#fff" }} />
+                  </Button> */}
+                  {!this.state.duplicatePatient &&
+                    <Icon link name='user plus'
+                      style={{ color: '#31a5ba', float: 'right', fontSize: '23px' }}
+                      onClick={() => this.addPatient(this.state.patient)} />
+                  }
+                </Header>
+                <Divider />
                 <Grid textAlign="center">
                   <br />
                   <Grid.Row>
@@ -255,9 +352,9 @@ class Registration extends Component {
 
                   <Grid.Row>
                     <Grid.Column textAlign="center" as="h3">
-                      <p> Name: <span style={style.DataBlock}> 
-                      {this.state.patient[patientField.nametitle.variable]}{" "}{this.state.patient[patientField.firstname.variable]}{"  "}{this.state.patient[patientField.lastname.variable]}
-                        </span>
+                      <p> Name: <span style={style.DataBlock}>
+                        {this.state.patient[patientField.nametitle.variable]}{" "}{this.state.patient[patientField.firstname.variable]}{"  "}{this.state.patient[patientField.lastname.variable]}
+                      </span>
                       </p>
                     </Grid.Column>
                   </Grid.Row>
@@ -272,7 +369,7 @@ class Registration extends Component {
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.dob.label} <br />
+                        {patientField.dob.label} <br />
                         <span style={style.DataBlock}>
                           {this.state.patient[patientField.dob.variable]}
                         </span>
@@ -282,7 +379,7 @@ class Registration extends Component {
                       <p>
                         {patientField.congenitalDisease.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.congenitalDisease.variable]}
+                          {this.state.patient[patientField.congenitalDisease.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -292,15 +389,15 @@ class Registration extends Component {
                       <p>
                         {patientField.gender.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.gender.variable]}
+                          {this.state.patient[patientField.gender.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.bloodgroup.label}<br />
+                        {patientField.bloodgroup.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.bloodgroup.variable]}
+                          {this.state.patient[patientField.bloodgroup.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -308,7 +405,7 @@ class Registration extends Component {
                       <p>
                         {patientField.religion.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.religion.variable]}
+                          {this.state.patient[patientField.religion.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -318,7 +415,7 @@ class Registration extends Component {
                       <p>
                         {patientField.nationality.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.nationality.variable]}
+                          {this.state.patient[patientField.nationality.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -326,7 +423,7 @@ class Registration extends Component {
                       <p>
                         {patientField.country.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.country.variable]}
+                          {this.state.patient[patientField.country.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -334,7 +431,7 @@ class Registration extends Component {
                       <p>
                         {patientField.status.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.status.variable]}
+                          {this.state.patient[patientField.status.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -344,7 +441,7 @@ class Registration extends Component {
                       <p>
                         {patientField.occupartion.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.occupartion.variable]}
+                          {this.state.patient[patientField.occupartion.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -352,7 +449,7 @@ class Registration extends Component {
                       <p>
                         {patientField.homePhonenumber.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.homePhonenumber.variable]}
+                          {this.state.patient[patientField.homePhonenumber.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -360,7 +457,7 @@ class Registration extends Component {
                       <p>
                         {patientField.mobileNumber.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.mobileNumber.variable]}
+                          {this.state.patient[patientField.mobileNumber.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -383,7 +480,7 @@ class Registration extends Component {
                       <p>
                         {patientField.typeofHouse.label} <br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.typeofHouse.variable]}
+                          {this.state.patient[patientField.typeofHouse.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -391,7 +488,7 @@ class Registration extends Component {
                       <p>
                         {patientField.address.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.address.variable]}
+                          {this.state.patient[patientField.address.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -399,7 +496,7 @@ class Registration extends Component {
                       <p>
                         {patientField.subDistrict.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.subDistrict.variable]}
+                          {this.state.patient[patientField.subDistrict.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -409,7 +506,7 @@ class Registration extends Component {
                       <p>
                         {patientField.district.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.district.variable]}
+                          {this.state.patient[patientField.district.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -417,15 +514,15 @@ class Registration extends Component {
                       <p>
                         {patientField.province.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.province.variable]}
+                          {this.state.patient[patientField.province.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.zipcode.label}<br />
+                        {patientField.zipcode.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.zipcode.variable]}
+                          {this.state.patient[patientField.zipcode.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -444,17 +541,17 @@ class Registration extends Component {
                   </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={5}>
-                      <p> Name: <br/>
-                        <span style={style.DataBlock}> 
-                        {this.state.patient[patientField.emerTitle.variable]} {this.state.patient[patientField.emerFirstname.variable]} {this.state.patient[patientField.emerLastname.variable]}
+                      <p> Name: <br />
+                        <span style={style.DataBlock}>
+                          {this.state.patient[patientField.emerTitle.variable]} {this.state.patient[patientField.emerFirstname.variable]} {this.state.patient[patientField.emerLastname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.emerRelationship.label}<br />
+                        {patientField.emerRelationship.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.emerRelationship.variable]}
+                          {this.state.patient[patientField.emerRelationship.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -486,7 +583,7 @@ class Registration extends Component {
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.emerAddress.label}<br />
+                        {patientField.emerAddress.label}<br />
                         <span style={style.DataBlock}>
                           {this.state.patient[patientField.emerAddress.variable]}
                         </span>
@@ -498,7 +595,7 @@ class Registration extends Component {
                       <p>
                         {patientField.emerSubDistrict.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.emerSubDistrict.variable]}
+                          {this.state.patient[patientField.emerSubDistrict.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -506,7 +603,7 @@ class Registration extends Component {
                       <p>
                         {patientField.emerDistrict.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.emerDistrict.variable]}
+                          {this.state.patient[patientField.emerDistrict.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -514,7 +611,7 @@ class Registration extends Component {
                       <p>
                         {patientField.emerProvince.label}<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.emerProvince.variable]}
+                          {this.state.patient[patientField.emerProvince.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -555,7 +652,7 @@ class Registration extends Component {
                     </Grid.Column>
                     <Grid.Column width={5}>
                       <p>
-                      {patientField.allergy.label}<br />
+                        {patientField.allergy.label}<br />
                         <span style={style.DataBlock}>
                           {this.state.patient[patientField.allergy.variable]}
                         </span>
@@ -581,7 +678,7 @@ class Registration extends Component {
                       <p>
                         Father's Name<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.fatherFirstname.variable]} {this.state.patient[patientField.fatherLastname.variable]}
+                          {this.state.patient[patientField.fatherFirstname.variable]} {this.state.patient[patientField.fatherLastname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
@@ -589,24 +686,34 @@ class Registration extends Component {
                       <p>
                         Mother's Name<br />
                         <span style={style.DataBlock}>
-                        {this.state.patient[patientField.motherFirstname.variable]} {this.state.patient[patientField.motherFirstname.variable]}
+                          {this.state.patient[patientField.motherFirstname.variable]} {this.state.patient[patientField.motherFirstname.variable]}
                         </span>
                       </p>
                     </Grid.Column>
                     <Grid.Column width={5} />
                   </Grid.Row>
                 </Grid>
-            </Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button basic color="black" onClick={this.closeModal}>
-              Nope
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              {/* <Button onClick={this.closeModal} style={{ color: "#31A5BA !important", border: '#31A5BA 1px solid'}} >
+              Cancel
             </Button>
-            <Button basic positive icon="checkmark" labelPosition="right" content="Yep, that's me" onClick={() => this.confirm()} />
-          </Modal.Actions>
-        </Modal>
-    </Wrapper>
-    </Dimmer.Dimmable>
+              <Button style={{ color: "#31A5BA !important", border: '#31A5BA 1px solid' }} basic icon="checkmark" labelPosition="right" content="Add Queues" onClick={() => this.confirm()} /> */}
+              <Button
+                onClick={() => this.closeModal()}
+                style={{ color: '#fff', backgroundColor: '#d33', }}>
+                Cancel
+              </Button>
+              <Button
+                onClick={() => this.confirm()}
+                style={{ color: '#fff', backgroundColor: '#31A5BA', }}>
+                Add Queues
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Wrapper>
+      </Dimmer.Dimmable>
     )
   }
 }

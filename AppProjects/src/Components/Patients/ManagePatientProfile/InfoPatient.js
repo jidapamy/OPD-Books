@@ -95,7 +95,7 @@ export default class InfoPateint extends Component {
                             required
                         />
                     </Form.Group>
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Input
                             label={patientField.email.label}
                             placeholder={patientField.email.label} vb
@@ -116,7 +116,7 @@ export default class InfoPateint extends Component {
                             setFieldAndValidate={this.props.setFieldAndValidate}
                             errorField={this.props.errorField}
                         />
-                    </Form.Group>
+                    </Form.Group> */}
                 </div>
             )
         }

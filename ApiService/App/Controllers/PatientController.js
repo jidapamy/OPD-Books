@@ -58,12 +58,20 @@ const editCtr = async (req, res) => {
 
 const checkPasswordCtr = (req, res) => {
     console.log("checkPasswordCtr")
-    res.send(checkPassword(req.body.citizenId,req.body.password))
+    res.send(checkPassword(req.body.citizenId, req.body.password))
 }
 
 const requestOTPCtr = async (req, res) => {
     console.log('requestOTPCtr', req.body)
-    if (req.body.mobileNumber) {
+    // without citizenId
+    if (req.body.requestId) {
+        const statusCancel = await cancelRequestOTP(req.body.requestId)
+        if (!statusCancel.status) {
+            res.send(statusCancel)
+            return
+        }
+    }
+    if (req.body.mobileNumber ) {
         console.log('mobileNumber', req.body.mobileNumber)
         const requestOTP = await requestOTPwithMobile(req.body.mobileNumber)
         if (requestOTP) {
@@ -72,13 +80,7 @@ const requestOTPCtr = async (req, res) => {
         }
     }
     if (isPatient(req.body.citizenId)) {
-        if (req.body.requestId){
-            const statusCancel = await cancelRequestOTP(req.body.requestId)
-            if (!statusCancel.status){
-                res.send(statusCancel)
-                return
-            }
-        }
+        // without mobile number
         const result = await verifiedByCitizenId(req.body.citizenId)
         res.send(result)
         return;
@@ -104,10 +106,10 @@ const forgotPasswordVerifyCtr = async (req, res) => {
     if (isPatient(req.body.citizenId)) {
         try {
             const result = await forgotPasswordVerify(req.body.citizenId, req.body.dob)
-            if(result){
+            if (result) {
                 res.send(msg.getMsgSuccess())
-            }else{
-                res.send(msg.getMsgNotMatch(msg.msgVariable.citizenID,msg.msgVariable.dob))
+            } else {
+                res.send(msg.getMsgNotMatch(msg.msgVariable.citizenID, msg.msgVariable.dob))
             }
             return
         } catch (error) {
@@ -119,8 +121,8 @@ const forgotPasswordVerifyCtr = async (req, res) => {
 }
 
 const confirmChangePasswordCtr = async (req, res) => {
-    console.log("confirmChangePasswordCtr", req.body.newPassword ,req.body.newPasswordConfirm)
-    if (req.body.newPassword === req.body.newPasswordConfirm){
+    console.log("confirmChangePasswordCtr", req.body.newPassword, req.body.newPasswordConfirm)
+    if (req.body.newPassword === req.body.newPasswordConfirm) {
         if (isPatient(req.body.citizenId)) {
             try {
                 const result = await confirmChangePassword(req.body.citizenId, req.body.newPassword, req.body.oldPassword)
@@ -136,8 +138,8 @@ const confirmChangePasswordCtr = async (req, res) => {
     res.send(msg.getMsgError("Those password didn't match. Try again."))
 }
 
-const validateOTPCtr = async (req, res)  => {
-    const result = await validateOTPvalue(req.body.requestId,req.body.pin)
+const validateOTPCtr = async (req, res) => {
+    const result = await validateOTPvalue(req.body.requestId, req.body.pin)
     res.send(result)
 }
 

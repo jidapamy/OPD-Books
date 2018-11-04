@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { login } from "../Services/AuthenticationMethod";
 import BGLogoLogin from '../Static/Img/LogoLogin.svg'
 import { Wrapper } from  '../Static/Style/QueueCss'
-
+import { UserProvider } from "../Services/UserProvider"
 
 export default class PatientRecord extends Component {
   state = {
@@ -21,9 +21,10 @@ export default class PatientRecord extends Component {
     }
     login(data).then(res => {
       if (res.status) {
+        UserProvider.setUserLogin({ citizenId: this.state.citizenId })
         this.props.history.push({
           pathname: "/profile",
-          state: { citizenId: this.state.citizenId }
+          // state: { citizenId: this.state.citizenId }
         });
       } else {
         this.setState({ checklogin: res.message });

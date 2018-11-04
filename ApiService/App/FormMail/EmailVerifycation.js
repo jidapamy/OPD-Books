@@ -1,3 +1,4 @@
+const html = (data) => (`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,15 +68,16 @@
 <body>
   <div class="jumbotron BackColorCon ">
     <!-- <h6 class="text-hide" style="background-image: url('./img/logoWeb.ico'); width: 50px; height: 50px;">Bootstrap</h6> -->
-    <h1 class="display-4 text-info texcenter">OPD BOOKS</h1>
-    <p class="card-subtitle mb-2 text-muted texcenter"><b>Hello, we are OPD BOOKS </b>By storing data across its peer
+    <h1 class="display-4 text-info texcenter">OPD Books</h1>
+    <p class="card-subtitle mb-2 text-muted texcenter" >You have entered <b>${data.email}</b> as the contact email for OPD Books (Blockchian for patient). To complete the process, please enter verification code below in Settings on OPD Books to confirm that this email belongs to you.</p>
+    <!-- <p class="card-subtitle mb-2 text-muted texcenter"><b>Hello, we are OPD BOOKS </b>By storing data across its peer
       to peer network,</p>
     <p class="card-subtitle mb-2 text-muted texcenter">the blockchain eliminates a number of risks that come with data
       being
       held centrally.</p>
-    <h4 class="display-6 text-info texcenter"><b>Dear Stickercap@hotmail.com</b></h4>
-    <!-- <span class="badge badge-pill badge-info paddingName texcenter" style="font-size:15px">Dear Mr.Surakiti Sopnnacap</span> -->
+    <h4 class="display-6 text-info texcenter"><b>Dear </b></h4>-->
     <hr class="my-4">
+    
 
 
     <!-- 
@@ -83,14 +85,16 @@
 <a href="#" class="card-link">Another link</a> -->
 <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="container paddingCon">
-      <h1 class="card-title text-info texcenter">THANK YOU VERIFY</h1>
+      <h4 class="card-title text-info texcenter">You can now have your special security </h4>
+      <h2 class="card-title text-info texcenter">Code: ${data.genVerificationCode} </h2>
+       <h6 class="card-title text-info texcenter">Please, do not pass this code to a third party, for your account security.  </h1>
       <div class="container">
   <div class="row">
     <div class="col">
     </div>
     <div class="col">
       <br/>
-      <image class="sizeImage" src='https://www.datavalidation.com/assets/images/15469571.validation-icon.png'>
+      <!-- <image class="sizeImage" src='https://eshoreltd.com/wp-content/uploads/2016/10/lock-icon.png'> -->
     </div>
     <div class="col">
     </div>
@@ -126,3 +130,6 @@
   crossorigin="anonymous"></script>
 
 </html>
+`)
+
+module.exports = html

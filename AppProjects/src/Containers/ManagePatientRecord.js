@@ -166,6 +166,7 @@ export default class ManagePatientRecord extends Component {
   }
 
   validate = () => {
+    console.log("validate!!",this.state.patient)
     let statusErrInfo = false;
     let statusErrAddr = false;
     let statusErrEmer = false;
@@ -250,6 +251,7 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirm = async () => {
+    // console.log("showPopupConfirm",this.state.patient)
     confirmPopup().then(async res => {
       if (res.value) {
         swal({
