@@ -6,7 +6,7 @@ import ManagePatientRecord from '../../../../Containers/ManagePatientRecord'
 import { groupInfoPatientField, patientField } from "../../../../Static/Data/Field"
 
 const BGMobiles = styled(Segment) `
-  background: url('http://www.biocenit.cat/mypics/0/7161/best-phone-wallpapers-hd.jpg') !important;
+  background: url('https://pre00.deviantart.net/cbe4/th/pre/f/2016/161/9/3/wallpaper_galaxy_s7_active_by_mrjon2016-da5sc03.jpg') !important;
   background-size: 100% 100%;
 `
 const labelInfo = {
