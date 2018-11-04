@@ -39,7 +39,7 @@ export default class HeaderPatient extends React.Component {
             <Container style={{ paddingTop: "1em" }} >
                     <Grid>
                         <Grid.Column width={2}>
-                        <Image src="https://react.semantic-ui.com/images/avatar/small/matthew.png"  size="small" spaced="left" circular />
+                        <Image src={this.state.patient[patientField.gender.variable] == 'Male' ?  'https://react.semantic-ui.com/images/avatar/small/matthew.png': 'https://react.semantic-ui.com/images/avatar/large/stevie.jpg'}  size="small" spaced="left" circular />
                         </Grid.Column> 
                         <Grid.Column width={this.props.show ? 4 : 5}>
                             <Header as="h2">

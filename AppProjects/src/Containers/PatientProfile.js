@@ -359,7 +359,7 @@ export default class PatientProfile extends Component {
                     <Icon size="big" name='bars' style={{ color: 'black' }} />
                   </Menu.Item>
                   <Menu.Item textAlign='Center' style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                    <Image size='mini' src={LogoWebpage} />
+                    <Image size='mini' src={LogoWebpage}  />
                     <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                       OPD BOOKS
                   </span>

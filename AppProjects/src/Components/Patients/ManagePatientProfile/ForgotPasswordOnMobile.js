@@ -15,8 +15,7 @@ import {
     Modal, Dimmer, Loader
 
 } from "semantic-ui-react";
-import { style } from "../../../Static/Style/QueueCss";
-import BackgroundImage from "../../../Static/Img/BGForgot.png";
+import { style,Wrapper } from "../../../Static/Style/QueueCss";
 import styled from "styled-components";
 import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
 import DatePicker from 'react-datepicker';
@@ -28,12 +27,8 @@ import OTPfactor from "../../DemoExamples/OTPfactor";
 import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVerify, confirmChangePassword } from "../../../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import logo from "../../../Static/Img/Contianer/my.jpg";
+import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
 
-
-const Wrapper = styled.div`
-    background: url('${BackgroundImage}') no-repeat center fixed;
-    background-size: 100% 100%;
-`;
 
 const DateBirthday = styled(DatePicker)`
     padding-left: 3rem !important;
@@ -59,6 +54,7 @@ const ImageSizeRow = styled(Image)`
 
 
 
+
 export default class ForgotPassword extends Component {
     state = {
         citizenId: '',
@@ -73,6 +69,13 @@ export default class ForgotPassword extends Component {
         loader: false,
         selectSend: "sms",
     }
+
+
+    style = {
+        ImButton: {
+          cursor: 'pointer'
+        }
+      }
 
     DateInput = () => {
         if (this.state.dob !== null || this.state.dob != undefined) {
@@ -239,13 +242,11 @@ export default class ForgotPassword extends Component {
                 `}</style>
                         <Container style={style.ContainerMobile}>
 
-                            <p style={style.ForgotTopicMobile}>FORGOT PASSWORD</p>
+                          <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' />
                             <Segment style={style.DecoSegmentMobile}>
                                 {this.state.step == 1 && <Grid>
                                     <Grid.Row style={style.circularZoneMobile2}>
-                                            <Grid.Column>
-                                            <ImageSizeRow src={logo} />
-                                            </Grid.Column>
+                                            
                                         </Grid.Row>
                                     <Grid.Row style={style.twoColumnButton2Mobile}>
                                         <Grid.Column>
@@ -254,11 +255,11 @@ export default class ForgotPassword extends Component {
                                                     <Button basic={this.state.selectSend != "sms"} color='black'
                                                         onClick={() => this.setState({ selectSend: "sms" })}
                                                         style={style.areaButton}
-                                                    >SMS Authentication</Button>
+                                                    >SMS</Button>
                                                     <Button basic={this.state.selectSend != "email"} color='black'
                                                         onClick={() => this.setState({ selectSend: "email" })}
                                                         style={style.areaButton}
-                                                    >E-mail Authentication</Button>
+                                                    >E-mail</Button>
                                                 </Button.Group>
                                             </Form>
                                         </Grid.Column>
@@ -306,61 +307,70 @@ export default class ForgotPassword extends Component {
 
                                 </Grid>}
 
+{/*----------------- ตั้ง Password ใหม่ ---------------------*/}
 
-                                {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
-                                {/* <Grid.Row style={style.twoColumnButton2Mobile}> */}
-                                {this.state.step == 2 && <Grid>
-                                        <Grid.Row style={style.circularZoneMobile}>
-                                            <Grid.Column>
-                                            <ImageSizeRow src={logo} />
-                                            </Grid.Column>
-                                        </Grid.Row>
-                                    {/* </Grid.Row> */}
+                                {this.state.step == 2 &&
+                                    <div >
+                                        <div style={{ margin: '5% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
+                                        {/* <Container> */}
 
-                                    <Grid.Row style={style.inputForgotZoneMobile}>
-                                        <Grid.Column>
-                                            <Form style={{ paddingLeft: '5%' }}>
-                                                <Form.Group>
-                                                    <Message style={style.bgDescriptionMobile}>
-                                                        <Message.List>
-                                                        <Message.Item>Enter new password and confirm new password.&nbsp;<Icon name='key' /></Message.Item>
-                                                        </Message.List>
-                                                    </Message>
-                                                </Form.Group>
-                                                <Form.Group>
+                                        {/* <Grid.Row style={style.inputForgotZone}> */}
+
+                                        
+                                            {/* <Form style={{ paddingLeft: '15.5%' }}> */}
+                                            <div centered></div>
+                                            <Form.Group>
+                                                <Message style={{ padding: '3% 2%' }}>
+                                                    {/* <Message style={style.decoDescription}> */}
+                                                    <Message.List style={{ width: '100%' }}>
+                                                        <Message.Item>Enter new password and confirm new password.&nbsp;<Icon name='key' />
+                                                        </Message.Item>
+                                                    </Message.List>
+                                                </Message>
+                                            </Form.Group>
+
+                                            <div>
+                                                <Form style={{ padding: '3% 2%' ,}}>
+                                                <Form.Group style={{ marginBottom: '1%' ,marginBottom:'0%' }}>
+                                            {/* <Form.Group style={{ width: '100%' }}> */}
                                                 <Input
-                                                        type="password"
-                                                        icon='lock'
-                                                        iconPosition='left'
-                                                        placeholder='New Password ...'
-                                                        style={style.inputForgotMobile}
-                                                        onChange={(e) => this.setState({ newPassword: e.target.value })}
-                                                        value={this.state.newPassword}
-                                                    />
-                                                    <br />
-                                                </Form.Group>
-                                                <Form.Group>
-                                                <Input 
-                                                        type="password"
-                                                        icon='lock'
-                                                        iconPosition='left'
-                                                        placeholder='Confirm New Password ...'
-                                                        style={style.inputForgotMobile}
-                                                        onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
-                                                        value={this.state.newPasswordConfirm}
-                                                    />
-                                                    
-                                                </Form.Group>
-                                                <Form.Group>
-                                                </Form.Group>
-                                                <Form.Group style={style.twoColumnButtonMobile1}>
-                                                    <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Submit</Button>
-                                                </Form.Group>
+                                                    type="password"
+                                                    icon='lock'
+                                                    iconPosition='left'
+                                                    placeholder='New Password ...'
+                                                    style={{ width:'100%' }}
+                                                    // style={style.inputForgot}
+                                                    onChange={(e) => this.setState({ newPassword: e.target.value })}
+                                                    value={this.state.newPassword}
+                                                />
+                                            </Form.Group>
                                             </Form>
-                                            <br />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    </Grid>}
+                                            </div>
+
+                                            <Form.Group>
+                                                <Input
+                                                    type="password"
+                                                    icon='lock'
+                                                    iconPosition='left'
+                                                    placeholder='Confirm New Password ...'
+                                                    style={{ width:'100%', marginBottom:'3%' }}
+                                                    // style={style.inputForgot}
+                                                    onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
+                                                    value={this.state.newPasswordConfirm}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group style={{ widths:'100%' }}>
+                                                {/* <Form.Group style={style.twoColumnButton}> */}
+                                                <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Submit</Button>
+                                            </Form.Group>
+                                        
+                                        <br />
+
+
+                                        {/* </Container> */}
+                                    </div>
+                                }
+
                                 <Modal open={this.state.openOTP} onClose={() => this.setState({ openOTP: false, step: 1 })}>
                                     <OTPfactor
                                         requestId={this.state.requestId}

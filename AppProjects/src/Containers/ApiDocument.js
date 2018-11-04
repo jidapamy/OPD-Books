@@ -174,7 +174,7 @@ export default class apiDocument extends Component {
     return (
 
       <span>
-        <Responsive {...Responsive.onlyComputer}>
+        <Responsive {...Responsive.onlyComputer} >
           <div>
             <Menu pointing secondary vertical position='fixed' style={style.bgApi} fixed='left' >
               <br />
@@ -188,6 +188,7 @@ export default class apiDocument extends Component {
             </Menu>
           </div>
           <Body>
+
             <Grid columns={2}>
               <Grid.Column width={8}>
                 <Header size='large' style={style.HeaderColor}>{this.state.chooseMethod.title}&nbsp;Method</Header>
@@ -226,7 +227,7 @@ export default class apiDocument extends Component {
                 </div>
                 <br /><br /> */}
                 {/* <Scrollbars autoHide style={{ width: 495, height: 350 }} > */}
-                <Table fixed style={style.tableWidth}>
+                <Table fixed style={style.tableWidth} >
                   <Table.Header >
                     <Table.Row style={style.tableWidth}>
                       <Table.HeaderCell>Field</Table.HeaderCell>
@@ -266,7 +267,7 @@ export default class apiDocument extends Component {
 
 
 
-        <Responsive {...Responsive.onlyMobile}>
+        <Responsive {...Responsive.onlyMobile}minWidth={0} maxWidth={1023}>
 
           <Visibility
             onBottomPassed={this.stickTopMenu}

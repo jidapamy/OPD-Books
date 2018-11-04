@@ -757,7 +757,7 @@ export const style = {
         marginLeft: '17%',
     },
     AreaCodeMirror: {
-        marginLeft: '7%',
+        marginLeft: '3%',
     },
     HeaderTextCodeMirror3: {
         color: '#4D8B87',
@@ -796,6 +796,8 @@ export const style = {
         height: 'auto',
     },
 
+    
+
     footerBeforClick: {
         color: '#ffffff',
         fontSize: '13.5px',
@@ -824,10 +826,11 @@ export const style = {
     DecoSegment: {
         // opacity: '0.7',
         borderRadius: '25px',
-        border: '0px solid',
+        // border: '0px solid',
         // backgroundColor:'#000000',
-        height: '560px',
+        height: '200%',
         marginBottom: '20%',
+        
 
     }
     ,
@@ -857,7 +860,7 @@ export const style = {
     },
 
     ForgotTopic: {
-        fontSize: '40px',
+        fontSize: '35px',
         marginBottom: '1%',
         marginTop: '1.5%',
         color: '#ffffff',
@@ -878,7 +881,8 @@ export const style = {
     },
 
     inputForgot: {
-        width: '84%',
+        // width: '84%',
+        width: '100%',
         marginBottom: '1%',
         // height: '16%'
     },
@@ -901,7 +905,7 @@ export const style = {
         // width:'40%',
         textAlign: 'center',
         opacity: '0.5',
-        paddingRight: '10%',
+        // paddingRight: '10%',
 
 
 
@@ -930,19 +934,19 @@ export const style = {
     bgDescription: {
         width: '73%',
         textAlign: 'left',
-        marginLeft: '14%',
+        // marginLeft: '14%',
     },
 
     twoColumnButton: {
         width: '87.5%',
-        marginLeft:'-2%',
+        // marginLeft:'-2%',
         marginTop:'1.5%'
 
 
     },
     twoColumnButton2: {
         width: '78%',
-        marginLeft:'-6%',
+        // marginLeft:'-6%',
         margintop:'15%',
         marginBottom:'2%'
 
@@ -1002,9 +1006,8 @@ export const style = {
 
     DecoSegmentMobile: {
         borderRadius: '15px',
-        border: '0px solid',
-        height: '560px',
         marginBottom: '20%',
+        // height: '640px',
 
     },
 
@@ -1031,7 +1034,7 @@ export const style = {
 
     inputForgotZoneMobile: {
         width: '100%',
-        marginBottom: '0%',
+        marginTop: '-20% !important',
         marginLeft:'0%',
     },
 
@@ -1048,8 +1051,8 @@ export const style = {
     twoColumnButtonMobile1:{
         width: '100%',
         marginLeft:'-2%',
-        marginBottom:'5%',
-        marginTop:'5%'
+        marginBottom:'10%',
+        marginTop:'8%'
 
     },
     twoColumnButtonMobile2:{
@@ -1085,9 +1088,9 @@ export const style = {
     },
 
     inputForgotMobile: {
-        width: '96%',
-        marginBottom: '1%',
-        marginBottom: '4%'
+        width: '100%',
+        // marginBottom: '1%',
+        // marginBottom: '4%'
     },
 
     
@@ -1124,12 +1127,12 @@ export const style = {
         width: '100%',
         height: 'auto',
         // margin: '3%',
-        marginTop: '-10%',
+        marginTop: '-5%',
         marginBottom: '8%'
     },
     
     AreaCodeMirrorMobile: {
-        marginLeft: '7%',
+        marginLeft: '3%',
     },
 
     ForgotTopicMobile: {
@@ -1139,8 +1142,6 @@ export const style = {
         color: '#ffffff',
     },
     
-   
-
 
 
 
