@@ -4,10 +4,9 @@ import styled from "styled-components";
 import EditProfile from '../../../../Containers/EditProfile';
 import ManagePatientRecord from '../../../../Containers/ManagePatientRecord'
 import { groupInfoPatientField, patientField } from "../../../../Static/Data/Field"
-import { color } from "../../../../Static/Data/ColorPattern"
 
 const BGMobiles = styled(Segment) `
-  background: url('https://www.pcrevue.sk/files/photo/2018-04/42366/40c02e/bg.jpg') !important;
+  background: url('http://www.biocenit.cat/mypics/0/7161/best-phone-wallpapers-hd.jpg') !important;
   background-size: 100% 100%;
 `
 const labelInfo = {
@@ -46,8 +45,8 @@ export default class ProfilePatientMobile extends React.Component {
                             <Icon name='setting' onClick={() => this.props.setField("showEditPage" ,true)}></Icon>
                     </Grid.Column>
                 </Grid>
-                {/* https://react.semantic-ui.com/images/avatar/large/nan.jpg */}
-                <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} src='https://react.semantic-ui.com/images/avatar/small/matthew.png' size='small' circular centered />
+                <Image bordered={true} style={{ borderColor: 'white', borderWidth: '3px' }} 
+                src={this.props.patient.gender == 'Male' ?  'https://react.semantic-ui.com/images/avatar/small/matthew.png': 'https://react.semantic-ui.com/images/avatar/large/stevie.jpg'} size='small' circular centered />
                 <Statistic size='mini'>
                     <Header as="h2" style={{ color: '#31A5BA' }}>
                         {this.props.patient.nametitle} {this.props.patient[patientField.firstname.variable]} {this.props.patient[patientField.lastname.variable]}
@@ -72,9 +71,9 @@ export default class ProfilePatientMobile extends React.Component {
                         <Icon name="home" />
                         {this.props.patient[patientField.homePhonenumber.variable]}
                     </Label>
+                    <br/>
                 </Header.Content>
             </BGMobiles>
-
             <Menu fluid widths={2} style={{ marginTop: '-2px' }}>
                 <Menu.Item name='Information' onClick={this.handleItemClick} icon='clipboard outline'  onClick={() => { this.props.setField("tab", 0) }} />
                 <Menu.Item name='Address'  onClick={this.handleItemClick} icon='home'  onClick={() => { this.props.setField("tab",1) }} />
