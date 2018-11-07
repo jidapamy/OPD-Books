@@ -1,7 +1,12 @@
-projects/config.env
-project/node_modules/
+# projects/config.env
+AppProject/node_modules/
+AppProject/package-lock.json
+
 ApiService/node_modules/
+ApiService/package-lock.json
+
+DbService/node_modules/
+DbService/package-lock.json
+DbService/config.js
+
 .DS_Store
-
-
-projects/package-lock.json

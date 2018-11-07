@@ -35,3 +35,10 @@ export const getTreatmentHistoryOfPatient = async (citizentId, treatmentYear=nul
     let res = await axios.post(`/medicalRecords/getHistoryMedicalRecord`, { patientCitizenId: citizentId, treatmentYear: treatmentYear })
     return res.data
 };
+
+export const insertMDR = async (data) => {
+    let res = await axios.post(`/medicalRecords/insertMDR`, data )
+    return res.data
+};
+
+// router.post("/insertMDR", insertMDRCtr);

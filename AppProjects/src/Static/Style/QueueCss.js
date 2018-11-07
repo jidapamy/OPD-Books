@@ -564,16 +564,18 @@ export const style = {
 
     hnNoNav: {
         // marginLeft: '-11%',
-        color: '#ffffff',
+        color: '#849695',
+        fontSize: '10px'
     },
     textQueueNav: {
         textAlign: 'left',
         // marginLeft: '-11%',
         color: '#ffffff',
+        fontSize: '14px'
 
     },
     queueNoNav: {
-        color: '#00b5ad',
+        color: '#31a5ba',
         fontSize: '25px',
         // marginTop: '5%',
         textAlign: 'right',
@@ -597,6 +599,7 @@ export const style = {
     hnNoNav2: {
         // marginLeft: '-11%',
         color: '#083E3B',
+        fontSize: '10px'
     },
     textQueueNav2: {
         textAlign: 'left',
@@ -604,9 +607,7 @@ export const style = {
         color: '#ffffff',
     },
     widthNav2: {
-
-        background: '#2C7E79',
-        borderColor: '#2C7E79',
+        background: '#31a5ba',
     },
     bgDoc: {
         background: '#FFFFFF',

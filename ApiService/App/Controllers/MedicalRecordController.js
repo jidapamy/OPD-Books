@@ -1,7 +1,7 @@
 const { setMedicalRecordForNurse, setMedicalRecordForDoctor, getMedicalRecordForNurse,
     getMedicalRecordForDoctor, isMedicalRecord, alreadyMedicalRecord, haveMedicalRecordsOfPatient,
     getMedicalRecord, getHistoryMedicalRecord, lengthPatientHistory, haveMDRinPatientHistory,
-    getMedicalRecordForPharmacy } = require("../Repositories/MedicalRecordRepo")
+    getMedicalRecordForPharmacy, insertMedicalRecord } = require("../Repositories/MedicalRecordRepo")
 const { isPatient, isEmail } = require("../Repositories/PatientRepo")
 const { lockAccount } = require('../Services/Utils')
 
@@ -111,6 +111,21 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
+const insertMDRCtr = async (req, res) => {
+    if (isPatient(req.body.patientCitizenId)) {
+        insertMedicalRecord(req.body)
+            .then(result => { res.send(result); })
+            .catch(err => {
+                console.log(err)
+                res.send(msg.getMsgError(err.text))
+                lockAccount()
+            })
+    } else {
+        res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
+    }
+}
+
+
 module.exports = {
     setMRForNurseCtr,
     setMRForDoctorCtr,
@@ -119,4 +134,6 @@ module.exports = {
     getMedicalRecordCtr,
     getHistoryMedicalRecordCtr,
     getMRForPharmacyCtr,
+
+    insertMDRCtr
 };

@@ -6,6 +6,7 @@ import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/Man
 import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
 import { checkPassword, checkEmail } from '../../../Services/ManagePatientMethod'
 import ReactPhoneInput from 'react-phone-input-2';
+import Password from './Password'
 import styled from "styled-components";
 import swal from 'sweetalert2';
 
@@ -181,6 +182,7 @@ export default class VerifyField extends Component {
                             sendOTP: false,
                             otp: ''
                         })
+                        this.props.setFieldAndValidate('mobileNumber', this.state.mobileNumber)
                     } else {
                         if (res.statusCode == '17') {
                             // ผิดเกิด 3 ครั้ง
@@ -241,24 +243,35 @@ export default class VerifyField extends Component {
     }
 
     submitEmail = async () => {
-        if (this.state.genVerificationCode === this.state.userVerificationCode) {
-            this.setState({
-                sendEmail : false,
-                successEmail: true,
-                userVerificationCode:'',
-                generateVerificationCode:''
-            })
-        } else {
-            errorPopup('Verification code was incorrect').then(res => {
-                this.setState({ userVerifiedCode: '' })
-            })
-        }
+        swal({
+            title: 'System is saving data.',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                setTimeout(() => {
+                    swal.close()
+                    if (this.state.genVerificationCode === this.state.userVerificationCode) {
+                        this.setState({
+                            sendEmail: false,
+                            successEmail: true,
+                            userVerificationCode: '',
+                            generateVerificationCode: ''
+                        })
+                        this.props.setFieldAndValidate('email', this.state.email)
+                    } else {
+                        errorPopup('Verification code was incorrect').then(res => {
+                            this.setState({ userVerifiedCode: '' })
+                        })
+                    }
+                }, 150);
+            }
+        })
     }
 
 
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div>
                 {/* <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p> */}
@@ -269,6 +282,28 @@ export default class VerifyField extends Component {
                         *If you want to change your mobile phone, please push <span style={{ color: '#ba3131', fontSize: '15px', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => this.cancelRequestOTP(this.state.requestId)} > Cancel </span>
                     </p>
                 }
+                <Form.Group widths="equal">
+                    {/* <Form.Input
+                        label={patientField.email.label}
+                        placeholder={patientField.email.label} vb
+                        width={6}
+                        onChange={e => this.props.setFieldAndValidate('email', e.target.value)}
+                        onBlur={e => {
+                            this.checkEmailDuplicate(e.target.value)
+                        }}
+                        required
+                        type='email'
+                        error={this.props.errorField ? this.props.errorField.email : false}
+                        value={this.props.patient.email}
+                    /> */}
+                    <Password
+                        setPatientDetail={this.props.setPatientDetail}
+                        errorText={this.props.errorText}
+                        setField={this.props.setField}
+                        setFieldAndValidate={this.props.setFieldAndValidate}
+                        errorField={this.props.errorField}
+                    />
+                </Form.Group>
 
                 <Form>
                     <LabelField>{patientField.mobileNumber.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
@@ -288,14 +323,7 @@ export default class VerifyField extends Component {
                         </Form.Field>
                         {!this.state.sendOTP && !this.state.successOTP && this.showButtonVerified('Request OTP', this.requestOTP)}
                         {this.state.sendOTP && this.showButtonVerified('Request again', () => this.requestOTP(this.state.requestId))}
-                        {this.state.successOTP && this.showButtonSuccess(() => {
-                            this.setState({
-                                otp: "",
-                                sendOTP: false
-                            })
-                            this.props.setFieldAndValidate('mobileNumber', this.state.mobileNumber)
-                        })
-                        }
+                        {this.state.successOTP && this.showButtonSuccess()}
 
                         <Form.Input
                             disabled={!this.state.sendOTP}
@@ -335,13 +363,7 @@ export default class VerifyField extends Component {
                         >
                             Cancel &nbsp;&nbsp;<Icon name="cancel" style={{ color: '#ba3131', paddingLeft: '9px', fontSize: '15px' }} />
                         </Form.Field>}
-                        {this.state.successEmail && this.showButtonSuccess(() => {
-                            this.setState({
-                                email: "",
-                                sendEmail: false
-                            })
-                            this.props.setFieldAndValidate('email', this.state.email)
-                        })}
+                        {this.state.successEmail && this.showButtonSuccess()}
 
                         <Form.Input
                             disabled={!this.state.sendEmail}

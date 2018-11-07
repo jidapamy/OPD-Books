@@ -71,7 +71,7 @@ export default class OTPfactor extends React.Component {
                                                 maxLength={1}
                                                 id="1"
                                                 ref="1"
-                                                type="text"
+                                                type="password"
                                                 onChange={(e) => this.onChange(e)}
                                                 autoFocus 
                                                 value={this.state.pin1}
@@ -87,7 +87,7 @@ export default class OTPfactor extends React.Component {
                                                 maxLength={1}
                                                 id="2"
                                                 ref="2"
-                                                type="text"
+                                                type="password"
                                                 onChange={(e) => this.onChange(e)}
                                                 value={this.state.pin2}
                                             />
@@ -102,7 +102,7 @@ export default class OTPfactor extends React.Component {
                                                 maxLength={1}
                                                 id="3"
                                                 ref="3"
-                                                type="text"
+                                                type="password"
                                                 onChange={(e) => this.onChange(e)}
                                                 value={this.state.pin3}
                                             />
@@ -117,7 +117,7 @@ export default class OTPfactor extends React.Component {
                                                 maxLength={1}
                                                 id="4"
                                                 ref="4"
-                                                type="text"
+                                                type="password"
                                                 onChange={(e) => this.onChange(e)}
                                                 value={this.state.pin4}
                                             />
@@ -129,7 +129,7 @@ export default class OTPfactor extends React.Component {
 
                         <Grid textAlign='center'>
                             <Grid.Row >
-                                <a onClick={() => this.props.requestOTP(this.props.requestId)}>Request for OTP Password again </a>
+                            <a onClick={() => this.props.requestOTP(this.props.citizenIdSearch,this.props.requestId)}>Request for OTP Password again </a>
                         </Grid.Row>
                         <Grid.Row >
                                 <a onClick={() => this.props.cancelRequestOTP(this.props.requestId)}>Cancel </a>

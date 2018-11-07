@@ -18,7 +18,6 @@ export default class FooterDemo extends Component {
   }
   
   render() {
-    console.log("PROPS",this.props)
     return (
       <span>
         <Responsive {...Responsive.onlyComputer}>

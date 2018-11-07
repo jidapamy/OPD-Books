@@ -15,6 +15,7 @@ export default class Document extends Component {
 
   chooseTab = (tab) => {
     this.setState({ activeTab: tab })
+    window.scrollTo(0, 0)
     if(tab === "home"){
         this.props.history.push({
             pathname: "/"

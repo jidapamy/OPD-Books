@@ -54,7 +54,7 @@ const cancelOTP = (requestId) => new Promise((resolve, reject) => {
 
 const successfullyEmail = (data) => new Promise((resolve, reject) => {
     console.log("createEmail")
-    const html = require("./mailWeb")
+    const html = require("../FormMail/MailWeb")
     var template = handlebars.compile(html(data));
     var replacements = {
         username: "OPD BOOKS"
@@ -95,22 +95,18 @@ const sendEmail = async (data) => {
 
 const emailVerified = (data) => new Promise((resolve, reject) => {
     console.log("emailVerified")
-    // const html = require("./mailWeb")
-    // var template = handlebars.compile(html(data));
-    // var replacements = {
-    //     username: "OPD BOOKS"
-    // };
-    // var htmlToSend = template(replacements);
+    const html = require("../FormMail/EmailVerifycation")
+    var template = handlebars.compile(html(data));
+    var replacements = {
+        username: "OPD BOOKS"
+    };
+    var htmlToSend = template(replacements);
     let mailOptions = {
         from: '"OPDBOOKS" <opdbooksblockchain@gmail.com>', // sender address
         to: data.email, // list of receivers
         subject: 'Email Verification - OPD Books ( Blockchain for patients )', // Subject line
         text: 'need to verify your email address. Please verify your email address to confirm your account registration', // plain text body
-        html: `<p>Hello ${data.patient.nametitle}${data.patient.firstname} ${data.patient.lastname}</p>
-        In order for your OPD Books application to be processed, we need to verify your email address. 
-        <h3>${data.genVerificationCode}</h3>
-        Thank you.
-        ` // html body
+        html: htmlToSend // html body 
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

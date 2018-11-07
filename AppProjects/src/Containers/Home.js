@@ -35,6 +35,10 @@ import "../Static/Style/Navbar.css";
 import "../Static/Style/HomeCss.css";
 import { Link } from "react-router-dom";
 
+
+
+import NavBarPatient from '../Components/UtilsPage/NavBarPatient'
+import { UserProvider } from "../Services/UserProvider"
 const style = {
   cursors: {
     cursor: 'pointer'
@@ -122,7 +126,7 @@ export default class Home extends React.Component {
         <Segment.Group>
            
             {/* <box className="images"> */}
-            <Visibility
+            {/* <Visibility
               onBottomPassed={this.stickTopMenu}
               onBottomVisible={this.unStickTopMenu}
               once={false}
@@ -162,7 +166,15 @@ export default class Home extends React.Component {
                 </Menu.Menu>
               </Menu>
               
+            </Visibility> */}
+            <Visibility
+              onBottomPassed={this.stickTopMenu}
+              onBottomVisible={this.unStickTopMenu}
+              once={false}
+            >
+              <NavBarPatient menuFixed={this.state.menuFixed} goToPage={this.goToPage} propsHistory={this.props.history}/>
             </Visibility>
+
             <Image src={HBG}></Image>
             <Responsive minWidth={768} maxWidth={991}> 
               <box>
@@ -170,7 +182,7 @@ export default class Home extends React.Component {
                 <Header style={{ fontSize: '20px' }}>OPD BOOKS </Header>
                 <Header.Content style={{ fontSize: '15px', color: '#434444' }} >By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.</Header.Content>
                 <br />
-                <Link to="/signup"><Button size='mini' style={{ fontSize: '5px', borderRadius: '100px', backgroundColor: '#31A5BA', color: 'white' }} >Sign UP</Button></Link>
+                {UserProvider.getUserLogin() ? '' : <Link to="/signup"><Button size='mini' style={{ fontSize: '5px', borderRadius: '100px', backgroundColor: '#31A5BA', color: 'white' }} >Sign UP</Button></Link>}
                 <Link to="/apiDocument"><Button size='mini' style={{ fontSize: '5px', borderRadius: '100px' }}>DEMO</Button></Link>
               </box>
             </Responsive> 
@@ -180,7 +192,7 @@ export default class Home extends React.Component {
               <Header style={{ fontSize: '50px' }}>OPD BOOKS </Header>
               <Header.Content style={{ fontSize: '20px', color:'#434444' }} >By storing data across its peer to peer network, the blockchain eliminates a number of risks that come with data being held centrally.</Header.Content>
               <br/>
-              <Link to="/signup"><Button size='huge' style={{ fontSize: '25px', borderRadius: '100px', backgroundColor:'#31A5BA',color:'white' }} >Sign UP</Button></Link>
+                {UserProvider.getUserLogin() ? '' : <Link to="/signup"><Button size='huge' style={{ fontSize: '25px', borderRadius: '100px', backgroundColor:'#31A5BA',color:'white' }} >Sign UP</Button></Link>}
               <Link to="/apiDocument"><Button  size='huge' style={{ fontSize: '25px', borderRadius: '100px' }}>DEMO</Button></Link>
             </box>
               </Responsive> 

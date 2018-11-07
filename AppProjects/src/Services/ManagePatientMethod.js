@@ -26,6 +26,7 @@ export const getInfoPatient = async (citizenId) => {
 
 export const checkIdcard = async (citizenId) => {
   let res = await axios.post(`/patients/isCitizenId`, { citizenId: citizenId })
+  console.log("checkIdcard", res.data)
   return res.data
 }
 

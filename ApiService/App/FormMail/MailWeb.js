@@ -64,7 +64,7 @@ const html = (data) => (`
     <p class="card-subtitle mb-2 text-muted texcenter">the blockchain eliminates a number of risks that come with data
       being
       held centrally.</p>
-    <h4 class="display-6 text-info texcenter"><b>Dear ${data.nametitle}${data.firstname} ${data.lastname}</b></h4>
+    <h4 class="display-6 text-info texcenter"><b>Dear ${data.nametitle} ${data.firstname} ${data.lastname}</b></h4>
     <!-- <span class="badge badge-pill badge-info paddingName texcenter" style="font-size:15px">Dear Mr.Surakiti Sopnnacap</span> -->
     <hr class="my-4">
 
