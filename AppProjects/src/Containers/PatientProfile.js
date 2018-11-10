@@ -12,6 +12,8 @@ import MedicalPatient from '../Components/Patients/Profile/MedicalPatient';
 import LogoWebpage from "../../src/Static/Img/logoWebpage.svg";
 import EditProfile from './EditProfile';
 import FormEditProfile from '../Components/Patients/ManagePatientProfile/FormEditProfile'
+import NavBarPatient from '../Components/UtilsPage/NavBarPatient'
+
 
 //components
 import HeaderPatient from "../Components/Patients/Profile/HeaderPatient"
@@ -22,7 +24,7 @@ import { Link } from "react-router-dom";
 import { getPatient } from '../Services/ManagePatientMethod'
 import { getTreatmentHistoryOfPatient, getMedicalRecord } from "../Services/MedicalRecordMethod";
 import ManagePatientRecord from "./ManagePatientRecord";
-
+import { UserProvider } from '../Services/UserProvider'
 const BG = styled.div`
   background: url('${BackgroundImage}') no-repeat center fixed;
   background-size: 100% 100%;
@@ -134,8 +136,16 @@ export default class PatientProfile extends Component {
     return <InfoPatientMobile patient={this.state.patient} />
   }
   setStateHistory = () => this.setState({ statusShowHistory: true });
-  stickTopMenu = () => this.setState({ menuFixed: true });
-  unStickTopMenu = () => this.setState({ menuFixed: false });
+  stickTopMenu = () => {
+    // เลื่อนลง onBottomPassed
+    console.log("onBottomPassed + เลื่อนลง true ")
+    this.setState({ menuFixed: true });
+  }
+  unStickTopMenu = () => {
+    // เลื่อนชิดบน onBottomVisible
+    console.log("onBottomVisible + เลื่อนชิดบน false")
+    this.setState({ menuFixed: false });
+  }
 
   // showPage = () => {
   //   if (this.props.showEditProfile) {
@@ -158,25 +168,27 @@ export default class PatientProfile extends Component {
 
   //Connect API
   componentDidMount = async () => {
-    if (!this.props.location.state) {
+    if (!UserProvider.getUserLogin()) {
       this.props.history.push("/signin");
       return
     }
     console.log("componentDidMount Patient")
-    this.setState(this.props.location.state)
-    let citizenId = this.props.location.state.citizenId;
-    getPatient(citizenId).then(patient => {
-      let patientData = patient.data;
-      let patientOriginalData = patient.data;
-      getTreatmentHistoryOfPatient(citizenId).then(history => {
-        this.setState({
-          patient: {...patientData},
-          historyTreatment: history.data,
-          historyMsg: history.message,
-          loader: false
-        });
+    // this.setState(this.props.location.state)
+    let citizenId = UserProvider.getUserLogin().citizenId
+    if(citizenId){
+      getPatient(citizenId).then(patient => {
+        let patientData = patient.data;
+        UserProvider.setUserLogin(patientData)
+        getTreatmentHistoryOfPatient(citizenId).then(history => {
+          this.setState({
+            patient: { ...patientData },
+            historyTreatment: history.data,
+            historyMsg: history.message,
+            loader: false
+          });
+        })
       })
-    })
+    }
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -222,6 +234,11 @@ export default class PatientProfile extends Component {
     this.setState({ loader: boolean })
   }
 
+  goToPage = (path) => {
+    this.props.history.push({
+      pathname: path,
+    });
+  }
 
 
 
@@ -229,19 +246,38 @@ export default class PatientProfile extends Component {
   render() {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
+    console.log('this.state.menuFixed', this.state.menuFixed)
     return (
       <div>
-        
+        <Visibility
+          onBottomPassed={this.stickTopMenu}
+          onBottomVisible={this.unStickTopMenu}
+          once={false}
+        >
+          <NavBarPatient 
+            menuFixed={true} 
+            loader={this.state.loader} 
+            goToPage={this.goToPage} 
+            propsHistory={this.props.history}
+            setField={this.setField}
+            />
+        </Visibility>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
           <Dimmer page active={this.state.loader}>
             <Loader indeterminate size='massive'>Loading</Loader>
           </Dimmer>
-
           <Responsive {...Responsive.onlyComputer} minWidth={1023}>
             <BG>
               {/* <EditProfile /> */}
-              <Segment>
-                <Menu borderless={true} size='large'>
+              <Segment style={{ marginTop: '60.17px' }}>
+                {/* <Visibility
+                  onBottomPassed={this.stickTopMenu}
+                  onBottomVisible={this.unStickTopMenu}
+                  once={false}
+                >
+                  <NavBarPatient menuFixed={this.state.menuFixed} />
+                </Visibility> */}
+                {/* <Menu borderless={true} size='large'>
                   <Menu.Item onClick={() => this.goToPage('/')}>
                     <Image size='mini' src={LogoWebpage} />
                     <span style={{ fontSize: "1.3em", color: "#31A5BA", fontWeight: 900 }}>
@@ -258,7 +294,7 @@ export default class PatientProfile extends Component {
                       <Button onClick={() => this.goToPage('/')} color='google plus'>Logout</Button>
                     </Menu.Item>
                   </Menu.Menu>
-                </Menu>
+                </Menu> */}
                 <HeaderPatient
                   patient={this.state.patient}
                   show={this.show} />
@@ -323,7 +359,7 @@ export default class PatientProfile extends Component {
                     <Icon size="big" name='bars' style={{ color: 'black' }} />
                   </Menu.Item>
                   <Menu.Item textAlign='Center' style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                    <Image size='mini' src={LogoWebpage} />
+                    <Image size='mini' src={LogoWebpage}  />
                     <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                       OPD BOOKS
                   </span>

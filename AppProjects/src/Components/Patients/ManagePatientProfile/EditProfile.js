@@ -83,7 +83,7 @@ export default class EditProfile extends React.Component {
         newPasswordConfirm: '',
         errorPassword: false,
 
-        mobileNumber: null,
+        mobileNumber: '',
         otp: '',
         requestId: '',
         mobileNumberbind: '',
@@ -106,7 +106,7 @@ export default class EditProfile extends React.Component {
                 errorPassword: false,
                 passwordConfirmEmail: '',
                 errorEmail: false,
-                mobileNumber: null,
+                mobileNumber: '',
                 otp: ''
             })
         }
@@ -410,7 +410,7 @@ export default class EditProfile extends React.Component {
                         this.setState({
                             otp: "",
                             sendOTP: false,
-                            mobileNumber: null
+                            mobileNumber: ''
                         })
                     } else {
                         errorPopup(res.message)

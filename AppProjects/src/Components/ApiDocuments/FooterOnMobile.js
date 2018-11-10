@@ -18,7 +18,6 @@ export default class FooterOnMobile extends Component {
       }
       
       render() {
-        console.log("PROPS",this.props)
     return (
         
         <Responsive {...Responsive.onlyMobile}>

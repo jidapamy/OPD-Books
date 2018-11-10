@@ -24,6 +24,7 @@ export default class ShowFormNurse extends Component {
       recommendation: '',
       appointment: null,
     })
+    this.props.setField("resetState",false)
   }
 
   showPopupConfirm = () => {
@@ -42,7 +43,22 @@ export default class ShowFormNurse extends Component {
             color="teal"
             content="Send To Pharmacy"
             icon="send"
-            style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#31A5BA', color: '#FFF' }}
+            style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#393d3e', color: '#FFF' }}
+            onClick={() => this.showPopupConfirm()}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    } else if (this.props.empPosition === 4){
+      return <Grid.Row columns={3} style={{ padding: 0 }}>
+        <Grid.Column></Grid.Column>
+        <Grid.Column></Grid.Column>
+        <Grid.Column>
+          <Button
+            fluid
+            color="teal"
+            content="Save on Blockhchain"
+            icon="send"
+            style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#393d3e', color: '#FFF' }}
             onClick={() => this.showPopupConfirm()}
           />
         </Grid.Column>
@@ -91,6 +107,7 @@ export default class ShowFormNurse extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
+    console.log("componentWillReceiveProps",nextProps)
     this.setState(nextProps.medicalRecord);
     if (nextProps.resetState) {
       this.defaultState()

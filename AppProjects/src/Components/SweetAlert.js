@@ -1,15 +1,16 @@
 import swal from "sweetalert2";
 
-export const confirmPopup = (text=null) => (
+export const confirmPopup = (text = null, title = null) => (
     swal({
-        title: 'Are you sure?',
+        title: title ? title :'Are you sure?',
         text: !text ? "Please check that your information is correct and true." : text,
         type: 'warning',
         showCancelButton: true,
         cancelButtonColor: '#d33',
         confirmButtonColor: '#31A5BA',
-        confirmButtonText: 'Confirm',
         cancelButtonText: 'Cancel',
+        confirmButtonText: 'Confirm',
+        reverseButtons: true
     })
 )
 

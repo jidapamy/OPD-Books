@@ -15,14 +15,18 @@ export default class ShowFormNurse extends Component {
         BP2: "",
         BP3: "",
         chiefComplaint: "",
-        nurseName: "Mr. Dorothy Kendall",
+        nurseName: this.props.medicalRecord ? '' : "Mr. Dorothy Kendall",
     }
  
     componentWillMount = () => {
+        console.log('this.props.medicalRecord',this.props.medicalRecord)
         if (this.props.medicalRecord){
             this.setState(this.props.medicalRecord);
+        }else{
+            this.setState({ nurseName: "Mr. Dorothy Kendall", })
         }
     }
+
     defaultState = () => {
         this.setState({
             height: 0,
@@ -35,8 +39,9 @@ export default class ShowFormNurse extends Component {
             BP2: "",
             BP3: "",
             chiefComplaint: "",
-            nurseName: ""
+            // nurseName: "",
         })
+        this.props.setField("resetState", false)
     }
 
     showPopupConfirm = () => {
@@ -49,7 +54,7 @@ export default class ShowFormNurse extends Component {
                 fluid
                 content="Send To Doctor"
                 icon="send"
-                style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#31A5BA', color: '#FFF' }}
+                style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#393d3e', color: '#FFF' }}
                 onClick={() => this.showPopupConfirm()}
             />
         }
@@ -71,6 +76,7 @@ export default class ShowFormNurse extends Component {
     }
 
     render() {
+        console.log("Nurse",this.state)
         const readOnly = this.props.empPosition != 2 ? true : false
         return <Segment style={{ marginTop: -20 }}>
             <Container style={{ padding: "1% 3%" }}>
