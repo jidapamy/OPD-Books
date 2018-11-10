@@ -135,45 +135,45 @@ const sendVerifyEmail = async (data) => {
 }
 
 
-const verifiedEmail = async (hashCode) => {
-    // click link in email to verify email
-    // contract.verifyEmail( bytes32  _citizenId )
-    console.log("hashCode",hashCode)
-    let plaintext = decryptEmail(hashCode)
-    console.log("plaintext", plaintext)
-    const byteCitizenId = convertString(plaintext.citizenId)
-    let nameAndEmail = await contract.getPatientNameAndEmail(byteCitizenId)
-    const combindedData = bindData(patientScheme, [nameAndEmail], 'patientAndEmail')
-    if (combindedData.email === plaintext.email){
-        if (!combindedData.verifyEmail){
-            let result = await contract.setVerifyEmail(byteCitizenId, true);
-            if (result) {
-                return ({ status: true, message: "SUCCESS" })
-            } else {
-                return ({ status: false, message: "ERROR" })
-            }
-        }else{
-            return ({ status: false, message: "Email is verified already" })
-        }
-    }
-    return ({ status: false, message: "Email not match in system" })
-}
+// const verifiedEmail = async (hashCode) => {
+//     // click link in email to verify email
+//     // contract.verifyEmail( bytes32  _citizenId )
+//     console.log("hashCode",hashCode)
+//     let plaintext = decryptEmail(hashCode)
+//     console.log("plaintext", plaintext)
+//     const byteCitizenId = convertString(plaintext.citizenId)
+//     let nameAndEmail = await contract.getPatientNameAndEmail(byteCitizenId)
+//     const combindedData = bindData(patientScheme, [nameAndEmail], 'patientAndEmail')
+//     if (combindedData.email === plaintext.email){
+//         if (!combindedData.verifyEmail){
+//             let result = await contract.setVerifyEmail(byteCitizenId, true);
+//             if (result) {
+//                 return ({ status: true, message: "SUCCESS" })
+//             } else {
+//                 return ({ status: false, message: "ERROR" })
+//             }
+//         }else{
+//             return ({ status: false, message: "Email is verified already" })
+//         }
+//     }
+//     return ({ status: false, message: "Email not match in system" })
+// }
 
 
-decryptEmail = (hashCode) => {
-    if (hashCode){
-        bytes = CryptoJS.AES.decrypt(hashCode, "OPDEMAIL");
-        let plaintext = bytes.toString(CryptoJS.enc.Utf8);
-        let res = plaintext.split("/andemailopdbooks/")
-        return { citizenId : res[0], email : res[1] }
+// decryptEmail = (hashCode) => {
+//     if (hashCode){
+//         bytes = CryptoJS.AES.decrypt(hashCode, "OPDEMAIL");
+//         let plaintext = bytes.toString(CryptoJS.enc.Utf8);
+//         let res = plaintext.split("/andemailopdbooks/")
+//         return { citizenId : res[0], email : res[1] }
 
-    }
-    return null
-};
+//     }
+//     return null
+// };
 
-encryptEmail = (citizenId,email) => {
-    return ciphertext = CryptoJS.AES.encrypt(citizenId + '/andemailopdbooks/' + email,"OPDEMAIL");
-}
+// encryptEmail = (citizenId,email) => {
+//     return ciphertext = CryptoJS.AES.encrypt(citizenId + '/andemailopdbooks/' + email,"OPDEMAIL");
+// }
 
 
 module.exports = {
@@ -182,5 +182,5 @@ module.exports = {
     cancelOTP,
     sendEmail,
     sendVerifyEmail,
-    verifiedEmail
+    // verifiedEmail
 };

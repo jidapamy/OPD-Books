@@ -383,6 +383,13 @@ validateOTPvalue = async (requestId, pin) => {
     }
 }
 
+getEmailUser = async(citizenId) => {
+    const byteCitizenId = convertString(citizenId)
+    let nameAndEmail = await contract.getPatientNameAndEmail(byteCitizenId)
+    const combindedData = bindData(patientScheme, [nameAndEmail], 'patientAndEmail')
+    return combindedData
+}
+
 module.exports = {
     isPatient,
     login,
@@ -401,5 +408,7 @@ module.exports = {
 
     forgotPasswordVerify,
     confirmChangePassword,
-    requestOTPwithMobile
+    requestOTPwithMobile,
+    
+    getEmailUser
 };
