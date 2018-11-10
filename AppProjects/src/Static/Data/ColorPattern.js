@@ -1,4 +1,4 @@
 export const color = {
-    teal: "#848788",
+    teal: "#217e8f",
     gray: "#a5a5a5"
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Header, Button, Segment, Image, Form, Grid, Dimmer, Loader } from 'semantic-ui-react'
 import ReactCountdownClock from 'react-countdown-clock'
 import onetimepass from './../../Static/Img/2fa.svg'
+import { color } from './../../Static/Data/ColorPattern'
 
 export default class OTPfactor extends React.Component {
     state = {
@@ -12,7 +13,7 @@ export default class OTPfactor extends React.Component {
         pin3:'',
         pin4: '',
     }
-
+    
     onChange = (event) => {
         // let otp = this.state.pin + event.target.value
         // this.setState({ pin: otp })
@@ -40,14 +41,12 @@ export default class OTPfactor extends React.Component {
             //     <Dimmer page active={this.state.loader}>
             //         <Loader indeterminate size='massive'>Loading</Loader>
             //     </Dimmer>
-                <Container >
-                    <br /><br />
-                    <br /><br />
+               
                     <Segment >
                         <br />
+                        <Image centered  src={onetimepass} style={{hieght:150,width:150}} />
                         <Header as='h3' icon textAlign='center'>
-                            <Image centered src={onetimepass} size='massive' />
-                            <br /><br />
+                            
                             Confirm OTP Password
                             <Header.Subheader>
                                 The system has sent OTP Password to your mobile phone : {this.props.mobileNumber} <br /> 
@@ -128,16 +127,16 @@ export default class OTPfactor extends React.Component {
                         </Grid>
 
                         <Grid textAlign='center'>
-                            <Grid.Row >
-                            <a onClick={() => this.props.requestOTP(this.props.citizenIdSearch,this.props.requestId)}>Request for OTP Password again </a>
+                    <Grid.Row >
+                        <p  style={{ color: color.teal, cursor: 'pointer'}} onClick={() => this.props.requestOTP(this.props.citizenIdSearch,this.props.requestId)}>Request for OTP Password again </p>
                         </Grid.Row>
                         <Grid.Row >
-                                <a onClick={() => this.props.cancelRequestOTP(this.props.requestId)}>Cancel </a>
+                        <Button  color='google plus' onClick={() => this.props.cancelRequestOTP(this.props.requestId)}>Cancel </Button>
                         </Grid.Row>
                         </Grid>
                         <br />
                     </Segment>
-                </Container>
+                
                 // </Dimmer.Dimmable>
         )
 

@@ -6,6 +6,7 @@ import { login } from "../Services/AuthenticationMethod";
 import BGLogoLogin from '../Static/Img/LogoLogin.svg'
 import { Wrapper } from  '../Static/Style/QueueCss'
 import { UserProvider } from "../Services/UserProvider"
+import { color } from './../Static/Data/ColorPattern' ;
 
 export default class PatientRecord extends Component {
   state = {
@@ -98,11 +99,11 @@ export default class PatientRecord extends Component {
                         </Segment>
                       </Form>
                       <Message style={{ borderRadius: "1.5rem" }}>
-                      <Link to="/forgotPassword">
-                          Forgot Passoword?{" "}
+                        <Link style={{ color: color.teal}} to="/forgotPassword">
+                          Forgot Password?{" "}
                         </Link>
                         New to us?{" "}
-                        <Link to="/signup">
+                        <Link style={{ color: color.teal }} to="/signup">
                           Sign Up
                         </Link>
                       </Message>
