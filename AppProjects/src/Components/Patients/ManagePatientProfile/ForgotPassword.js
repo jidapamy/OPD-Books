@@ -30,6 +30,7 @@ import logo from "../../../Static/Img/Contianer/my.jpg";
 import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
 import { generateVerificationCode } from '../../../Services/Utils'
 import { pattern } from "../../../Static/Data/Field"
+import mailverify from '../../../Static/Img/mailverify.svg'
 
 
 const DateBirthday = styled(DatePicker)`
@@ -177,7 +178,7 @@ export default class ForgotPassword extends Component {
             //Validate
             // if (this.state.selectSend == 'sms') {
             //SMS
-            if(this.validatePassword()){
+            if (this.validatePassword()) {
                 let data = {
                     citizenId: this.state.citizenId,
                     newPassword: this.state.newPassword,
@@ -208,10 +209,10 @@ export default class ForgotPassword extends Component {
                         })
                     }
                 })
-            }else{
-                if (this.state.newPassword === this.state.newPasswordConfirm){
+            } else {
+                if (this.state.newPassword === this.state.newPasswordConfirm) {
                     errorPopup('Password must be 8-20 characters long, including a number, and a letter.')
-                }else{
+                } else {
                     errorPopup('Your password and confirm password does not match.')
                 }
             }
@@ -407,20 +408,14 @@ export default class ForgotPassword extends Component {
                                                     </Form.Group>
                                                     <Form.Group widths="equal" style={{ marginBottom: '0px' }}>
                                                         <Form.Button disabled={!this.state.dob || !this.state.citizenId} style={style.ButtonNext} fluid onClick={() => this.nextStep(1)} >Send To Verify</Form.Button>
-                                                        {/* <Form.Button disabled={!this.state.dob || !this.state.citizenId} style={style.ButtonNext} fluid onClick={() => this.setState({ openEmailOTP: true })} >Send To Verify</Form.Button> */}
-
+                                                        {/* <Form.Button disabled={!this.state.dob || !this.state.citizenId} style={style.ButtonNext} fluid onClick={() => this.setState({ openSMSOTP: true })} >Send To Verify</Form.Button> */}
                                                     </Form.Group>
                                                 </Form>
                                             </div>
                                         </div>
                                     </div>}
 
-
-
-
-
                                 {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
-
                                 {this.state.step == 2 &&
                                     <div >
                                         <div centered>
@@ -437,7 +432,7 @@ export default class ForgotPassword extends Component {
                                              </p>
                                                 }
                                                 {this.state.errorPassword && this.state.newPassword != this.state.newPasswordConfirm &&
-                                                <p style={{ color: '#dd1037', fontSize: '12px', textAlign: 'left'  }}>
+                                                    <p style={{ color: '#dd1037', fontSize: '12px', textAlign: 'left' }}>
                                                         * Your password and confirm password does not match.
                                             </p>
                                                 }
@@ -465,7 +460,7 @@ export default class ForgotPassword extends Component {
                                                     />
                                                 </Form.Group>
                                                 <Form.Group widths="equal" style={{ marginBottom: '0px' }}>
-                                                <Form.Button disabled={!this.state.newPassword || !this.state.newPasswordConfirm || this.state.errorPassword } style={style.ButtonNext} fluid onClick={() => this.nextStep(2)} >Submit</Form.Button>
+                                                    <Form.Button disabled={!this.state.newPassword || !this.state.newPasswordConfirm || this.state.errorPassword} style={style.ButtonNext} fluid onClick={() => this.nextStep(2)} >Submit</Form.Button>
                                                 </Form.Group>
                                             </Form>
 
@@ -484,15 +479,57 @@ export default class ForgotPassword extends Component {
                                     />
                                 </Modal>
 
-                                <Modal open={this.state.openEmailOTP} onClose={() => this.setState({ openEmailOTP: false, step: 1 })}>
+                                <Modal open={this.state.openEmailOTP} onClose={() => this.setState({ openEmailOTP: false})}>
                                     <Segment >
+                                        
+                                        <div style={{ textAlign: 'right', fontSize: '18px', color:'#d33',cursor:'pointer' }} 
+                                            onClick={() => this.setState({ openEmailOTP: false })}
+                                        ><Icon name="close"/></div>
+                                        {/* <br /> */}
+                                        <Image centered src={mailverify} style={{ hieght: 150, width: 150 }} />
+                                        <Header as='h3' icon textAlign='center'>
+                                           Confirm verification password
+                                           <Header.Subheader>
+                                                The system has sent verification password to your email: <span style={{ fontWeight: '900', color: 'rgb(50, 135, 150)' }}>{this.state.email} </span>
+                                                {/* The system has sent verification password to your email: <span style={{ fontWeight:'900',color: 'rgb(50, 135, 150)' }}>jidapa40@hotmail.com</span> */}
+                                            </Header.Subheader>
+                                        </Header>
+                                        <br />
+                                        <Container style={{ width: '50%' }}>
+                                            <Form>
+                                                <Form.Group widths="equal">
+                                                    <Form.Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='Verification password'
+                                                        onChange={(e) => this.setState({ userVerificationCode: e.target.value })}
+                                                        value={this.state.userVerificationCode}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group widths="equal">
+                                                    <Form.Button
+                                                        disabled={!this.state.userVerificationCode}
+                                                        style={style.ButtonNext} fluid
+                                                        onClick={() => this.validateEmail()} >
+                                                        Submit
+                                                    </Form.Button>
+                                                </Form.Group>
+                                            </Form>
+                                        </Container>
+                                        <br />
+                                    </Segment>
+
+
+
+
+                                    {/* <Segment >
                                         <br />
                                         <Header as='h3' icon textAlign='center'>
                                             <Icon name="mail" size='massive' />
                                             Confirm verification password
                                             <Header.Subheader>
                                                 The system has sent verification password to your email: <span style={{ fontWeight: '900', color: 'rgb(50, 135, 150)' }}>{this.state.email} </span>
-                                                {/* The system has sent verification password to your email: <span style={{ fontWeight:'900',color: 'rgb(50, 135, 150)' }}>jidapa40@hotmail.com</span> */}
                                             </Header.Subheader>
                                         </Header>
                                         <Container style={{ width: '50%' }}>
@@ -518,6 +555,8 @@ export default class ForgotPassword extends Component {
                                             </Form>
                                         </Container>
                                     </Segment>
+
+                                     */}
                                 </Modal>
 
 

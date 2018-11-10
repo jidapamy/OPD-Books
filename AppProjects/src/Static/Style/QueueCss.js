@@ -633,6 +633,12 @@ export const style = {
         color: '#31A5BA',
         textAlign: 'center',
     },
+
+    HeaderColor3: {
+        color: '#31A5BA',
+        textAlign: 'center',
+        marginTop:'17%'
+    },
     headTable: {
         background: '#444040',
         color: '#FFFFFF',
@@ -664,6 +670,7 @@ export const style = {
         fontWeight: '100',
         color: '#000000',
         marginBottom: '4%',
+        width:'100%'
     },
     apiMethodName: {
         fontSize: '15px',
@@ -693,17 +700,21 @@ export const style = {
         fontSize: '15px'
     },
 
+    
+
     beforeClick: {
         color: '#31A5BA',
         textAlign: 'left',
+        // borderBottom: 'none'
 
     },
 
     afterClick: {
         textAlign: 'left',
-        color: '#31A5BA',
-        background: '#FFFFFF',
-        fontWeight: 'bold'
+        color: 'white',
+        background: '#31A5BA',
+        fontWeight: 'bold',
+        // borderBottom: '0px !important'
 
 
     },
@@ -1149,6 +1160,13 @@ export const style = {
         color: '#ffffff',
     },
 
+
+    // New Menu
+
+    NavSize:{
+        width: '18.5%',
+
+    }
 
 
 
