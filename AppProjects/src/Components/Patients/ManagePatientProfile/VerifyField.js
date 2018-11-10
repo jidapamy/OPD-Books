@@ -5,6 +5,7 @@ import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/ManagePatientMethod";
 import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
 import { checkPassword, checkEmail } from '../../../Services/ManagePatientMethod'
+import { generateVerificationCode } from '../../../Services/Utils'
 import ReactPhoneInput from 'react-phone-input-2';
 import Password from './Password'
 import styled from "styled-components";
@@ -199,21 +200,13 @@ export default class VerifyField extends Component {
         })
     }
 
-
-    generateVerificationCode = () => {
-        let ran = Math.floor((Math.random() * 999999) + 100000);
-        // this.setState({ verificationCode: "" + ran })
-        return ran + ''
-    }
-
-
     requestVerifyEmail = async() => {
         if (this.state.email) {
             if (!await checkEmail(this.state.email)) {
                 let data = {
                     patient: this.props.patient,
                     email: this.state.email,
-                    genVerificationCode: this.generateVerificationCode()
+                    genVerificationCode: generateVerificationCode()
                 }
                 swal({
                     title: 'The system is sending verification code to your new email address.',
@@ -367,7 +360,7 @@ export default class VerifyField extends Component {
 
                         <Form.Input
                             disabled={!this.state.sendEmail}
-                            placeholder="Verification code"
+                            placeholder="Verification password"
                             onChange={e => this.setState({ userVerificationCode: e.target.value })}
                             required
                             type='password'

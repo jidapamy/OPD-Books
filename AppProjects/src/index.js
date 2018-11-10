@@ -16,6 +16,8 @@ import FooterOnMobile from "./Components/ApiDocuments/FooterOnMobile"
 import VerifyEmail from "./Components/UtilsPage/VerifyEmail"
 import EditProfile from "./Components/Patients/ManagePatientProfile/EditProfile"
 
+import Test from "./Containers/Test"
+
 import 'semantic-ui-css/semantic.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -49,6 +51,7 @@ ReactDOM.render(
 
       <Route path="/auth/verifyEmail" component={VerifyEmail} />
       <Route path="/editProfile" component={EditProfile} />
+      <Route path="/Test" component={Test} />
 
 
     </div>

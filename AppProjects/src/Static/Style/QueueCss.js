@@ -12,36 +12,43 @@ export const Wrapper = styled.div`
 @media only screen and (max-width: 1366px) and (min-width: 1024px) {
   background: url(${BGIPad3}) no-repeat center fixed;
   background-size: 100% 100%;
+  height:100vh
 }
 @media only screen and (max-width: 1112px) and (min-width: 834px) {
   background: url(${BGIPad2}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   background: url(${BGIPad1}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 @media only screen and (max-width: 812px) and (min-width: 315px) {
   background: url(${BGIPhonX}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 @media only screen and (max-width: 736px) and (min-width: 414px) {
   background: url(${BGIPhonePlus}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 @media only screen and (max-width: 667px) and (min-width: 375px) {
   background: url(${BGIPhone}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 @media only screen and (min-width: 1025px)  {
   background: url(${BGcomputer}) no-repeat center fixed;
   background-size: 100% 100%;
+   height:100vh
 }
 
 `
 export const style = {
 
-    
+
     centerr: {
         textAlign: 'center',
     },
@@ -796,7 +803,7 @@ export const style = {
         height: 'auto',
     },
 
-    
+
 
     footerBeforClick: {
         color: '#ffffff',
@@ -830,7 +837,7 @@ export const style = {
         // backgroundColor:'#000000',
         height: '200%',
         marginBottom: '20%',
-        
+
 
     }
     ,
@@ -870,7 +877,7 @@ export const style = {
         textAlign: 'center',
         marginLeft: '37%',
         marginTop: '5%',
-        marginBottom:'6%'
+        marginBottom: '6%'
 
     },
 
@@ -887,11 +894,11 @@ export const style = {
         // height: '16%'
     },
     ButtonNext: {
-        width: '100%',
+        // width: '100%',
         backgroundColor: '#31A5BA',
         color: '#ffffff',
         // marginBottom: '1.5%',
-        height: '16%',
+        // height: '16%',
     },
     ButtonCancel: {
         width: '100%',
@@ -940,22 +947,22 @@ export const style = {
     twoColumnButton: {
         width: '87.5%',
         // marginLeft:'-2%',
-        marginTop:'1.5%'
+        marginTop: '1.5%'
 
 
     },
     twoColumnButton2: {
         width: '78%',
         // marginLeft:'-6%',
-        margintop:'15%',
-        marginBottom:'2%'
+        margintop: '15%',
+        marginBottom: '2%'
 
 
     },
 
 
-    decoDescription:{
-        width:'84%'
+    decoDescription: {
+        width: '84%'
     },
 
     //ForgotPassword On mobile
@@ -985,15 +992,15 @@ export const style = {
         background: '#298C9F',
         color: '#262626',
         height: 'auto',
-        padding:"0px",
-        
+        padding: "0px",
+
     },
 
     footerMobileBeforClick: {
         color: '#ffffff',
         fontSize: '20px',
         fontWeight: 'bold',
-        width:'100%',
+        width: '100%',
     },
     footerMobileAfterClick: {
         color: '#ffffff',
@@ -1001,7 +1008,7 @@ export const style = {
         fontSize: '20px',
         backgroundColor: '#262626',
         borderRadius: '0px',
-        width:'100%',
+        width: '100%',
     },
 
     DecoSegmentMobile: {
@@ -1021,7 +1028,7 @@ export const style = {
         textAlign: 'center',
         marginLeft: '25%',
         marginTop: '5%',
-        marginBottom:'-12%'
+        marginBottom: '-12%'
 
     },
 
@@ -1029,53 +1036,53 @@ export const style = {
         width: '96%',
         textAlign: 'left',
         marginLeft: '0%',
-        marginBottom:'5%'
+        marginBottom: '5%'
     },
 
     inputForgotZoneMobile: {
         width: '100%',
         marginTop: '-20% !important',
-        marginLeft:'0%',
+        marginLeft: '0%',
     },
 
-    inputIDMobile:{
+    inputIDMobile: {
         width: '96%',
         marginBottom: '5%',
-        marginLeft:'0%'
+        marginLeft: '0%'
     },
 
-    inputDateMobile:{
-        width:'50%',
+    inputDateMobile: {
+        width: '50%',
     },
 
-    twoColumnButtonMobile1:{
+    twoColumnButtonMobile1: {
         width: '100%',
-        marginLeft:'-2%',
-        marginBottom:'10%',
-        marginTop:'8%'
+        marginLeft: '-2%',
+        marginBottom: '10%',
+        marginTop: '8%'
 
     },
-    twoColumnButtonMobile2:{
+    twoColumnButtonMobile2: {
         width: '100%',
-        marginLeft:'-2%',
+        marginLeft: '-2%',
 
     },
 
-    buttonSelecctSend:{
-        backgroundColor:'',
+    buttonSelecctSend: {
+        backgroundColor: '',
     },
 
     twoColumnButton2Mobile: {
-        
-        marginLeft:'-21.5%',
-        width:'10%',
-        marginTop:'10%',
-        marginBottom:'-5%'
+
+        marginLeft: '-21.5%',
+        width: '10%',
+        marginTop: '10%',
+        marginBottom: '-5%'
 
 
     },
 
-    areaButton:{
+    areaButton: {
         width: '100%',
     },
 
@@ -1083,7 +1090,7 @@ export const style = {
         textAlign: 'center',
         marginLeft: '28%',
         marginTop: '5%',
-        marginBottom:'6%'
+        marginBottom: '6%'
 
     },
 
@@ -1093,10 +1100,10 @@ export const style = {
         // marginBottom: '4%'
     },
 
-    
 
 
-    
+
+
 
     //API Mobile 
 
@@ -1111,7 +1118,7 @@ export const style = {
         // textAlign: 'Left',
         height: '35%',
         marginBottom: '-2%',
-        
+
 
     },
 
@@ -1130,7 +1137,7 @@ export const style = {
         marginTop: '-5%',
         marginBottom: '8%'
     },
-    
+
     AreaCodeMirrorMobile: {
         marginLeft: '3%',
     },
@@ -1141,7 +1148,7 @@ export const style = {
         paddingTop: '10%',
         color: '#ffffff',
     },
-    
+
 
 
 

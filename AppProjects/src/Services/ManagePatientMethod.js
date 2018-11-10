@@ -80,8 +80,8 @@ export const confirmChangePassword = async (patient) => {
   return res.data
 }
 
-export const forgotPasswordVerify = async (citizenId,dob) => {
+export const forgotPasswordVerify = async (citizenId, dob, genVerificationCode=null) => {
   console.log("forgotPasswordVerify")
-  let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob })
+  let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob, genVerificationCode: genVerificationCode })
   return res.data
 }

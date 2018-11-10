@@ -1,5 +1,7 @@
 const { isPatient, isEmail, insert, get, getBasicData, edit, checkPassword, getPatientWithOTP, verifiedByCitizenId, cancelRequestOTP,
-    forgotPasswordVerify, confirmChangePassword, validateOTPvalue, requestOTPwithMobile } = require("../Repositories/PatientRepo")
+    forgotPasswordVerify, confirmChangePassword, validateOTPvalue, requestOTPwithMobile, getEmailUser } = require("../Repositories/PatientRepo")
+
+const { sendVerifyEmail } = require("../Repositories/AuthenticationRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
@@ -71,7 +73,7 @@ const requestOTPCtr = async (req, res) => {
             return
         }
     }
-    if (req.body.mobileNumber ) {
+    if (req.body.mobileNumber) {
         console.log('mobileNumber', req.body.mobileNumber)
         const requestOTP = await requestOTPwithMobile(req.body.mobileNumber)
         if (requestOTP) {
@@ -106,6 +108,20 @@ const forgotPasswordVerifyCtr = async (req, res) => {
     if (isPatient(req.body.citizenId)) {
         try {
             const result = await forgotPasswordVerify(req.body.citizenId, req.body.dob)
+            if (req.body.genVerificationCode) {
+                if (result) {
+                    try {
+                        const nameAndEmail = await getEmailUser(req.body.citizenId)
+                        await sendVerifyEmail({ ...nameAndEmail, ...{ genVerificationCode: req.body.genVerificationCode } })
+                        res.send(msg.getMsgSuccess(null, nameAndEmail))
+                    } catch (error) {
+                        res.send(msg.getMsgError(error))
+                    }
+                } else {
+                    res.send(msg.getMsgNotMatch(msg.msgVariable.citizenID, msg.msgVariable.dob))
+                }
+                return
+            }
             if (result) {
                 res.send(msg.getMsgSuccess())
             } else {
@@ -121,7 +137,7 @@ const forgotPasswordVerifyCtr = async (req, res) => {
 }
 
 const confirmChangePasswordCtr = async (req, res) => {
-    console.log("confirmChangePasswordCtr", req.body.newPassword, req.body.newPasswordConfirm)
+    console.log("confirmChangePasswordCtr", req.body)
     if (req.body.newPassword === req.body.newPasswordConfirm) {
         if (isPatient(req.body.citizenId)) {
             try {

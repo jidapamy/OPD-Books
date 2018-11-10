@@ -21,6 +21,7 @@ import { requestOTP, cancelRequestOTP, validateOTP } from "../../../Services/Man
 import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
 import styled from "styled-components";
 import ReactPhoneInput from 'react-phone-input-2';
+import { generateVerificationCode } from '../../../Services/Utils'
 
 const provincesData = require('../../../Static/Data/Provinces')
 
@@ -139,11 +140,11 @@ export default class EditProfile extends React.Component {
         this.setState({ [field]: value })
     }
 
-    generateVerificationCode = () => {
-        let ran = Math.floor((Math.random() * 999999) + 100000);
-        // this.setState({ verificationCode: "" + ran })
-        return ran+''
-    }
+    // generateVerificationCode = () => {
+    //     let ran = Math.floor((Math.random() * 999999) + 100000);
+    //     // this.setState({ verificationCode: "" + ran })
+    //     return ran+''
+    // }
 
     editEmail = async (e) => {
         if (!await checkEmail(this.state.email)) {
@@ -152,7 +153,7 @@ export default class EditProfile extends React.Component {
                 let data = { 
                     patient : this.props.state.patient,
                     email: this.state.email,
-                    genVerificationCode: this.generateVerificationCode()
+                    genVerificationCode: generateVerificationCode()
                 }
                 swal({
                     title: 'The system is sending verification code to your new email address.',
