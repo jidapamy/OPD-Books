@@ -615,7 +615,7 @@ export const style = {
 
     bgApi: {
         // background:'#EAE8E8',
-        background: '#FFFFFF',
+        background: '#1B1C1C',
         height: '',
     },
     HeaderColor: {
@@ -629,8 +629,8 @@ export const style = {
 
     HeaderColor3: {
         color: '#31A5BA',
-        textAlign: 'center',
-        marginTop:'17%'
+        fontSize:'25px',
+        
     },
     headTable: {
         background: '#444040',
@@ -690,13 +690,15 @@ export const style = {
     //api Document Css
     menuAPI: {
         fontWeight: 'bold',
-        fontSize: '15px'
+        fontSize: '15px',
+        color:'white'
+
     },
 
     
 
     beforeClick: {
-        color: '#31A5BA',
+        color: '#8D8E8E',
         textAlign: 'left',
         // borderBottom: 'none'
 
@@ -1157,7 +1159,8 @@ export const style = {
     // New Menu
 
     NavSize:{
-        width: '18.5%',
+        
+        backgroundColor: '#1B1C1C'
 
     }
 
