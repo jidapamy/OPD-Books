@@ -48,9 +48,6 @@ export default class apiDocument extends Component {
 
   };
 
-
-
-
   // web
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   state = {
@@ -64,9 +61,10 @@ export default class apiDocument extends Component {
   choose = (name, i, j) => {
     this.setState({
       activeItem: name,
-      chooseMethod: apiData[i].method[j], statusJson: 1
+      chooseMethod: apiData[i].method[j], statusJson: 1 ,sidebarOpened: false
     })
   }
+
 
   showMethod = (index) => {
     let tmp = ""
@@ -83,17 +81,20 @@ export default class apiDocument extends Component {
     tmp = apiData.map((data, i) => {
       return <div key={i}>
         <Menu.Item name={data.system}
-          onClick={() => { this.setState({ open: data.system }) }}
+          onClick={() => { this.setState({ open: data.system}) }}
           style={style.menuAPI} />
 
         <MySlidedown open={this.state.open === data.system ? true : false}>
           {this.showMethod(i)}
         </MySlidedown>
-        
+
       </div>
     })
     return tmp
   }
+
+
+
 
   showAttribute = () => {
     let arrAttr = []
@@ -150,15 +151,13 @@ export default class apiDocument extends Component {
     return tmp
   }
 
-
-  //mobile
-
-  stickTopMenu = () => this.setState({ menuFixed: true });
+  stickTopMenu = () => this.setState({ menuFixed: true  });
   unStickTopMenu = () => this.setState({ menuFixed: false });
 
   render() {
     const Body = styled.div`
-    margin-left: 205px;
+    margin-left: 230px;
+    m
     max-width: 100%;
     height:725px;
     background-color: #FFFFFF !important;
@@ -168,27 +167,18 @@ export default class apiDocument extends Component {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
 
-    //mobile
-
 
     return (
 
       <span>
         <Responsive {...Responsive.onlyComputer} >
           <div>
-            <Menu pointing secondary vertical position='fixed' style={style.bgApi} fixed='left' >
-              <br />
-              <Header size='huge' style={style.HeaderColor2}>API Documents</Header>
+            <Menu fixed='left' secondary vertical style={style.NavSize}>
+              <Header size='huge' style={style.HeaderColor3}>API Documents</Header>
               {this.showData()}<br />
-              <Menu.Item  style={{ backgroundColor: '#31A5BA' }}>
-                <Header  >
-                  <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
-                </Header>
-              </Menu.Item>
             </Menu>
           </div>
           <Body>
-
             <Grid columns={2}>
               <Grid.Column width={8}>
                 <Header size='large' style={style.HeaderColor}>{this.state.chooseMethod.title}&nbsp;Method</Header>
@@ -207,10 +197,8 @@ export default class apiDocument extends Component {
                     active={this.state.statusJson === 2}
                     onClick={() => this.setState({ statusJson: 2 })}
                   />
-                 
-                  
                 </Menu>
-                {/* <div style={style.tableHead}>
+                <div style={style.tableHead}>
                   <Grid divided='vertically'>
                     <Grid.Row>
                       <Grid.Column width={6}>
@@ -225,22 +213,14 @@ export default class apiDocument extends Component {
                     </Grid.Row>
                   </Grid>
                 </div>
-                <br /><br /> */}
-                {/* <Scrollbars autoHide style={{ width: 495, height: 350 }} > */}
-                <Table fixed style={style.tableWidth} >
-                  <Table.Header >
-                    <Table.Row style={style.tableWidth}>
-                      <Table.HeaderCell>Field</Table.HeaderCell>
-                      <Table.HeaderCell>Type</Table.HeaderCell>
-                      <Table.HeaderCell>Description</Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Header>
+                <br /><br />
+                <Scrollbars autoHide style={{ width: 495, height: 350 }} >
+                  <Table basic='very' collapsing style={style.tableWidth}>
                     <Table.Body style={style.tableBody}>
                       {this.showAttribute()}
                     </Table.Body>
                   </Table>
-                  <br /><br />
-                {/* </Scrollbars> */}
+                </Scrollbars>
               </Grid.Column>
               <Grid.Column width={8}>
                 <div style={style.bgCodeMirror}>
@@ -260,6 +240,7 @@ export default class apiDocument extends Component {
                   </Scrollbars>
                 </div>
               </Grid.Column>
+              <br /><br />
             </Grid>
           </Body>
         </Responsive>
@@ -267,8 +248,16 @@ export default class apiDocument extends Component {
 
 
 
-        <Responsive {...Responsive.onlyMobile}minWidth={0} maxWidth={1023}>
 
+
+
+
+
+
+
+
+
+        <Responsive {...Responsive.onlyMobile} minWidth={0} maxWidth={1023}>
           <Visibility
             onBottomPassed={this.stickTopMenu}
             onBottomVisible={this.unStickTopMenu}
@@ -283,6 +272,7 @@ export default class apiDocument extends Component {
               secondary={!this.state.menuFixed}
               fixed={this.state.menuFixed && "top"}
             >
+
               <Boderhide style={style.colorNavMobile} pointing secondary size='mini' >
 
                 <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.setState({ sidebarOpened: !this.state.sidebarOpened })}>
@@ -294,27 +284,18 @@ export default class apiDocument extends Component {
 
                   <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
                     API Documents
-            </span>
+                  </span>
                 </Menu.Item>
               </Boderhide>
             </Menu>
           </Visibility>
+
           <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
-            {/* <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}> */}
-            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened} pointing secondary vertical position='fixed' style={style.bgApi} fixed='left'>
+            <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}  secondary vertical position='fixed' style={style.bgApi} fixed='left'>
 
               {this.showData()}<br />
-
-
-
-              {/* <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false, showEditPage: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
-                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
-                <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link> */}
-
-
-
-
             </Sidebar>
+
             <Sidebar.Pusher
               dimmed={sidebarOpened}
               onClick={this.handlePusherClick}
@@ -369,7 +350,7 @@ export default class apiDocument extends Component {
                     <Table basic='very' collapsing style={style.tableWidth}>
                       <Table.Body style={style.tableBodyMobile}>
                         {this.showAttributeOmMobile()}
-                        <br/><br/>
+                        <br /><br />
                       </Table.Body>
                     </Table>
                   </Grid.Row>
@@ -378,18 +359,18 @@ export default class apiDocument extends Component {
                     <Grid.Column>
                       <div style={style.bgCodeMirrorMobile}>
                         <Message floating style={this.state.statusJson === 1 ? style.HeadCodeMirror2 : style.HeadCodeMirror3} color='black'>{this.state.statusJson === 1 ? "Request !" : "Response !"}</Message>
-                          <div style={style.AreaCodeMirrorMobile}>
-                            <br />
-                            <ReactJson
-                              src={this.state.statusJson === 1 ? this.state.chooseMethod.reqJson : this.state.chooseMethod.resJson}
-                              theme="railscasts"
-                              displayDataTypes={false}
-                              displayObjectSize={false}
-                              name={false}
-                            />
-                            
-                          </div>
-                          <br /><br /><br /><br />
+                        <div style={style.AreaCodeMirrorMobile}>
+                          <br />
+                          <ReactJson
+                            src={this.state.statusJson === 1 ? this.state.chooseMethod.reqJson : this.state.chooseMethod.resJson}
+                            theme="railscasts"
+                            displayDataTypes={false}
+                            displayObjectSize={false}
+                            name={false}
+                          />
+
+                        </div>
+                        <br /><br /><br /><br />
                       </div>
                     </Grid.Column>
                   </Grid.Row>
@@ -402,12 +383,6 @@ export default class apiDocument extends Component {
           </Sidebar.Pushable>
 
         </Responsive>
-
-
-
-
-       
-
       </span>
 
 
