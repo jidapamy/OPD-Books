@@ -12,37 +12,30 @@ export const Wrapper = styled.div`
 @media only screen and (max-width: 1366px) and (min-width: 1024px) {
   background: url(${BGIPad3}) no-repeat center fixed;
   background-size: 100% 100%;
-  height:100vh
 }
 @media only screen and (max-width: 1112px) and (min-width: 834px) {
   background: url(${BGIPad2}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   background: url(${BGIPad1}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 @media only screen and (max-width: 812px) and (min-width: 315px) {
   background: url(${BGIPhonX}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 @media only screen and (max-width: 736px) and (min-width: 414px) {
   background: url(${BGIPhonePlus}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 @media only screen and (max-width: 667px) and (min-width: 375px) {
   background: url(${BGIPhone}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 @media only screen and (min-width: 1025px)  {
   background: url(${BGcomputer}) no-repeat center fixed;
   background-size: 100% 100%;
-   height:100vh
 }
 
 `
