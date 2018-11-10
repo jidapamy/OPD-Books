@@ -11,12 +11,13 @@ import {
     Form,
     Message,
     Image,
-    Modal, Dimmer, Loader
-
+    Modal, Dimmer, Loader, Header
 } from "semantic-ui-react";
-import { style ,Wrapper} from "../../../Static/Style/QueueCss";
+import { Link } from "react-router-dom";
+
+import { style, Wrapper } from "../../../Static/Style/QueueCss";
 import styled, { ThemeProvider } from "styled-components";
-import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
+// import ForgotPasswordOnMobile from "./ForgotPasswordOnMobile";
 import DatePicker from 'react-datepicker';
 import onetimepass from '../../../Static/Img/2fa.svg'
 import { patientField } from "../../../Static/Data/Field"
@@ -27,12 +28,31 @@ import { getPatient, requestOTP, validateOTP, cancelRequestOTP, forgotPasswordVe
 import { confirmPopup, successPopup, errorPopup } from "../../SweetAlert"
 import logo from "../../../Static/Img/Contianer/my.jpg";
 import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
+import { generateVerificationCode } from '../../../Services/Utils'
+import { pattern } from "../../../Static/Data/Field"
+import mailverify from '../../../Static/Img/mailverify.svg'
+
 
 const DateBirthday = styled(DatePicker)`
     padding-left: 40px !important;
-    width: 43em !important;
-    margin-left: -3% !important; 
+    /* margin-left: -3% !important;  */
 `
+const FixDatePickerTimer = styled.span`
+  & .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    padding-left: unset;
+    padding-right: unset;
+    width: 100px;
+  }
+  & .react-datepicker__input-container {
+    width:100%;
+  }
+  & .react-datepicker-wrapper {
+    width:100%;
+  }
+  /* & .react-datepicker {
+    width: 314px;
+  } */
+`;
 
 const styles = {
     icon: {
@@ -41,6 +61,7 @@ const styles = {
         position: "absolute",
         color: '#868686',
         display: 'flex',
+        left: '7px'
     },
 
 };
@@ -57,24 +78,33 @@ const ImageSizeRow = styled(Image)`
 export default class ForgotPassword extends Component {
     state = {
         citizenId: '',
-        newPassword: '',
-        newPasswordConfirm: '',
         dob: null,
-        step: 1,
-        openOTP: false,
-        requestId: "",
-        mobileNumber: "",
-        pin: "",
         loader: false,
         selectSend: "sms",
 
+        newPassword: '',
+        newPasswordConfirm: '',
+        errorPassword: false,
+
+        step: 1,
+
+        openSMSOTP: false,
+        openEmailOTP: false,
+
+        requestId: "",
+        mobileNumber: "",
+        pin: "",
+
+        email: '',
+        genVerificationCode: '',
+        userVerificationCode: '',
     }
 
     style = {
         ImButton: {
-          cursor: 'pointer'
+            cursor: 'pointer'
         }
-      }
+    }
 
 
     componentWillReceiveProps = (nextProps) => {
@@ -83,7 +113,7 @@ export default class ForgotPassword extends Component {
 
     DateInput = () => {
         if (this.state.dob !== null || this.state.dob != undefined) {
-            return <DateBirthday
+            return <FixDatePickerTimer><DateBirthday
                 placeholderText={patientField.dob.label}
                 selected={moment(this.state.dob, 'DD/MM/YYYY')}
                 onChange={(value) => this.setState({ dob: value.format('DD/MM/YYYY') })}
@@ -95,8 +125,9 @@ export default class ForgotPassword extends Component {
                 required
                 value={this.state.dob}
             />
+            </FixDatePickerTimer>
         }
-        return <DateBirthday
+        return <FixDatePickerTimer><DateBirthday
             placeholderText={patientField.dob.label}
             selected={this.state.dob}
             onChange={(value) => this.setState({ dob: value.format('DD/MM/YYYY') })}
@@ -107,52 +138,84 @@ export default class ForgotPassword extends Component {
             showMonthDropdown
             required
             value={this.state.dob}
-        />
+        /></FixDatePickerTimer >
     }
 
     nextStep = (pageNumber) => {
         // pageNumber = 1, pageNumber =2
         if (pageNumber == 1) {
-            forgotPasswordVerify(this.state.citizenId, this.state.dob).then(res => {
-                if (res.status) {
-                    // ผ่าน
-                    this.requestOTP()
-                } else {
-                    errorPopup(res.message)
-                }
-            })
-        }
-        if (pageNumber == 2) {
-            let data = {
-                citizenId: this.state.citizenId,
-                newPassword: this.state.newPassword,
-                newPasswordConfirm: this.state.newPasswordConfirm,
+            //Request
+            this.setState({ loader: true })
+            if (this.state.selectSend == 'sms') {
+                //SMS
+                forgotPasswordVerify(this.state.citizenId, this.state.dob).then(res => {
+                    if (res.status) {
+                        // ผ่าน
+                        this.requestOTP()
+                    } else {
+                        this.setState({ loader: false })
+                        errorPopup(res.message)
+                    }
+                })
+            } else {
+                //EMAIL
+                let genVerificationCode = generateVerificationCode()
+                forgotPasswordVerify(this.state.citizenId, this.state.dob, genVerificationCode).then(res => {
+                    if (res.status) {
+                        this.setState({
+                            email: res.data.email,
+                            genVerificationCode: genVerificationCode,
+                            openEmailOTP: true,
+                            loader: false
+                        })
+                    } else {
+                        this.setState({ loader: false })
+                        errorPopup(res.message)
+                    }
+                })
             }
-            swal({
-                title: 'System is saving data.',
-                html: 'Please do not close this popup.!',
-                onOpen: () => {
-                    swal.showLoading()
-                    confirmChangePassword(data).then(res => {
-                        if (res) {
-                            swal.disableLoading()
-                            if (res.status) {
-                                successPopup('You have successfully logged into the system').then(res => {
-                                    if (res) {
-                                        this.props.history.push("/signin")
-                                        return true
-                                    }
-                                    return false
-                                })
-
-                            } else {
-                                errorPopup(res.message)
-                            }
-                        }
-                        return false
-                    })
+        } else if (pageNumber == 2) {
+            //Validate
+            // if (this.state.selectSend == 'sms') {
+            //SMS
+            if (this.validatePassword()) {
+                let data = {
+                    citizenId: this.state.citizenId,
+                    newPassword: this.state.newPassword,
+                    newPasswordConfirm: this.state.newPasswordConfirm,
                 }
-            })
+                swal({
+                    title: 'System is saving data.',
+                    html: 'Please do not close this popup.!',
+                    onOpen: () => {
+                        swal.showLoading()
+                        confirmChangePassword(data).then(res => {
+                            if (res) {
+                                swal.disableLoading()
+                                if (res.status) {
+                                    successPopup('You have successfully logged into the system').then(res => {
+                                        if (res) {
+                                            this.props.history.push("/signin")
+                                            return
+                                        }
+                                        return
+                                    })
+
+                                } else {
+                                    errorPopup(res.message)
+                                }
+                            }
+                            return
+                        })
+                    }
+                })
+            } else {
+                if (this.state.newPassword === this.state.newPasswordConfirm) {
+                    errorPopup('Password must be 8-20 characters long, including a number, and a letter.')
+                } else {
+                    errorPopup('Your password and confirm password does not match.')
+                }
+            }
         }
     }
 
@@ -168,7 +231,7 @@ export default class ForgotPassword extends Component {
             if (res.status) {
                 this.setState({
                     step: 2,
-                    openOTP: false,
+                    openSMSOTP: false,
                     pin: "",
                     loader: false,
                 })
@@ -180,7 +243,7 @@ export default class ForgotPassword extends Component {
                 if (res.statusCode == '17') {
                     this.setState({
                         pin: "",
-                        openOTP: false,
+                        openSMSOTP: false,
                         citizenIdSearch: '',
                     })
                 }
@@ -200,7 +263,7 @@ export default class ForgotPassword extends Component {
                 this.setState({
                     requestId: res.data.requestId,
                     mobileNumber: res.data.mobileNumber,
-                    openOTP: true,
+                    openSMSOTP: true,
                     loader: false,
                 });
             } else {
@@ -217,7 +280,7 @@ export default class ForgotPassword extends Component {
         cancelRequestOTP(requestOTP).then(res => {
             if (res.status) {
                 this.setState({
-                    openOTP: false,
+                    openSMSOTP: false,
                     openDetail: false,
                     pin: "",
                     citizenIdSearch: '',
@@ -228,171 +291,184 @@ export default class ForgotPassword extends Component {
         })
     }
 
-    render() {
-        console.log(this.state)
 
-        
+    validateEmail = () => {
+        swal({
+            title: 'System is saving data.',
+            html: 'Please do not close this popup.!',
+            onOpen: () => {
+                swal.showLoading()
+                setTimeout(() => {
+                    swal.close()
+                    if (this.state.genVerificationCode === this.state.userVerificationCode) {
+                        this.setState({
+                            email: '',
+                            genVerificationCode: '',
+                            openEmailOTP: false,
+                            userVerificationCode: '',
+                            generateVerificationCode: '',
+                            dob: null,
+                            step: 2,
+                        })
+                    } else {
+                        errorPopup('Verification code was incorrect').then(res => {
+                            this.setState({ userVerifiedCode: '' })
+                        })
+                    }
+                }, 150);
+            }
+        })
+    }
+
+    validatePassword = () => {
+        if (this.state.newPassword && this.state.newPasswordConfirm) {
+            if (this.state.newPassword === this.state.newPasswordConfirm) {
+                if (!this.state.newPassword.match(pattern.password.pattern)) {
+                    this.setState({ errorPassword: true })
+                    return false
+                } else {
+                    this.setState({ errorPassword: false })
+                    return true
+                }
+            } else {
+                this.setState({ errorPassword: true })
+                return false
+            }
+        }
+    }
+
+    render() {
         return (
             <span>
-                <Responsive {...Responsive.onlyComputer} minWidth={Responsive.onlyTablet.minWidth}>
                 <Dimmer.Dimmable blurring dimmed={this.state.loader}>
                     <Dimmer page active={this.state.loader}>
                         <Loader size='massive' indeterminate>Loading</Loader>
                     </Dimmer>
-                    <Wrapper className="login-form">
-                        <style>{`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.login-form {
-                    }
-                `}</style>
-
+                    <Wrapper style={{ height: '100vh' }}>
                         <Container style={style.Container}>
                             <p style={style.ForgotTopic}>FORGOT PASSWORD</p>
-                            <div style={{ margin: '3% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
-                            <Segment style={style.DecoSegment}>
+                            <div style={{ margin: '3% 5%' }}>
+                                <Link to="/">  <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </Link>
+                            </div>
+                            <Segment style={{ borderRadius: '1.5rem', padding: '5%' }}>
                                 {this.state.step == 1 &&
                                     <div>
-                                        
                                         <div centered>
-                                            <Form.Group>
-                                                <Message style={{ padding: '3% 2%' }}>
-                                                    {/* <Message style={style.decoDescription}> */}
-                                                    <Message.List style={{ width: '100%' }}>
+                                            <Form>
+                                                <Message>
+                                                    <Message.List>
                                                         <Message.Item>Choose authentication type.</Message.Item>
                                                         <Message.Item>Please, fill in the field , then click 'Send To Verify' button.</Message.Item>
-                                                        <Message.Item>Waiting for <u>OTP</u> authentication.</Message.Item>
+                                                        <Message.Item>Waiting for <u>{this.state.selectSend == 'sms' ? 'OTP password' : 'verification password'}</u> to authentication.</Message.Item>
                                                     </Message.List>
                                                 </Message>
-                                            </Form.Group>
 
-                                            <div>
-                                                {/* <Form style={{ padding: '2% 8%' , margin: '0% 5%' }}> */}
-                                                <Form style={{ padding: '4% 2%', }}>
-                                                    {/* <Form style={{ paddingLeft: '15.5%' }}> */}
-                                                    <Form.Group style={{ marginBottom: '-8%', marginBottom: '0%' }}>
-                                                        <Button.Group style={{ width: '100%' }} >
-                                                            {/* <Button.Group style={style.twoColumnButton2}> */}
-                                                            <Button basic={this.state.selectSend != "sms"} color='black'
-                                                                onClick={() => this.setState({ selectSend: "sms" })}
-                                                            >SMS</Button>
-                                                            <Button basic={this.state.selectSend != "email"} color='black'
-                                                                onClick={() => this.setState({ selectSend: "email" })}
-                                                            >E-mail</Button>
+                                                <Form.Group widths="equal">
+                                                    <Form.Field>
+                                                        <Button.Group widths='2'>
+                                                            <Button
+                                                                basic={this.state.selectSend != "sms"}
+                                                                color='black'
+                                                                fluid
+                                                                onClick={() => this.setState({ selectSend: "sms" })}>
+                                                                SMS
+                                                            </Button>
+                                                            <Button
+                                                                basic={this.state.selectSend != "email"}
+                                                                fluid
+                                                                color='black'
+                                                                onClick={() => this.setState({ selectSend: "email" })}>
+                                                                E-mail
+                                                            </Button>
                                                         </Button.Group>
-                                                    </Form.Group>
-                                                </Form>
-                                            </div>
+                                                    </Form.Field>
+                                                </Form.Group>
+                                            </Form>
 
                                             <div>
-                                                <Form style={{ padding: '0% 2%', }}>
-                                                    <Form.Group >
-                                                        <Input
+                                                <Form>
+                                                    <Form.Group widths="equal" >
+                                                        <Form.Input
                                                             icon='user'
                                                             iconPosition='left'
                                                             placeholder={patientField.citizenId.label}
-                                                            style={style.inputForgot}
                                                             autoFocus
                                                             onChange={(e, { value }) => this.setState({ citizenId: e.target.value })}
                                                             value={this.state.citizenId}
                                                         />
-                                                        <br />
                                                     </Form.Group>
-                                                    <Form.Group style={{ widths: '100%' }}>
-                                                        <Form.Field style={{ display: 'flex' }} >
-                                                            {this.DateInput()}
-                                                            <Icon name="birthday" style={styles.icon} />
-                                                        </Form.Field>
-                                                        {/* </Form.Group>
-                                                        <Form.Group> */}
+                                                    <Form.Group widths='equal' >
+                                                        <Form.Field
+                                                            style={{ display: 'flex' }}
+                                                            control={this.DateInput}
+                                                            required
+                                                            placeholderText="ex. 01/01/1990"
+                                                        />
+                                                        <Icon name="birthday" style={styles.icon} />
                                                     </Form.Group>
-                                                    <Form.Group style={{ widths: '100%' }}>
-                                                        {/* <Form.Group style={style.twoColumnButton}> */}
-                                                        {/* <Form.Group style={style.twoColumnButton}> */}
-                                                        <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Send To Verify</Button>
+                                                    <Form.Group widths="equal" style={{ marginBottom: '0px' }}>
+                                                        <Form.Button disabled={!this.state.dob || !this.state.citizenId} style={style.ButtonNext} fluid onClick={() => this.nextStep(1)} >Send To Verify</Form.Button>
+                                                        {/* <Form.Button disabled={!this.state.dob || !this.state.citizenId} style={style.ButtonNext} fluid onClick={() => this.setState({ openSMSOTP: true })} >Send To Verify</Form.Button> */}
                                                     </Form.Group>
                                                 </Form>
                                             </div>
                                         </div>
-                                        <br />
-                                        {/* </Grid.Column>
-                                            </Grid.Row> */}
-
-                                        {/* </Container> */}
-                                        {/*</Grid>}*/}
                                     </div>}
 
-
-
-
-
-
                                 {/*----------------- ตั้ง Password ใหม่ ---------------------*/}
-
                                 {this.state.step == 2 &&
                                     <div >
-                                        <div style={{ margin: '5% 5%' }}> <Image style={this.style.ImButton} verticalAlign='middle' src={BGLogoLogin} size='medium' /> </div>
-                                        {/* <Container> */}
-
-                                        {/* <Grid.Row style={style.inputForgotZone}> */}
-
-                                        
-                                            {/* <Form style={{ paddingLeft: '15.5%' }}> */}
-                                            <div centered></div>
-                                            <Form.Group>
-                                                <Message style={{ padding: '3% 2%' }}>
-                                                    {/* <Message style={style.decoDescription}> */}
-                                                    <Message.List style={{ width: '100%' }}>
-                                                        <Message.Item>Enter new password and confirm new password.&nbsp;<Icon name='key' />
-                                                        </Message.Item>
+                                        <div centered>
+                                            <Form>
+                                                <Message>
+                                                    <Message.List>
+                                                        <Message.Item>Enter new password and confirm new password.&nbsp;<Icon name='key' /></Message.Item>
+                                                        <Message.Item>Password must be 8-20 characters long, including a number, and a letter.</Message.Item>
                                                     </Message.List>
                                                 </Message>
-                                            </Form.Group>
+                                                {this.state.errorPassword && this.state.newPassword === this.state.newPasswordConfirm &&
+                                                    <p style={{ color: '#dd1037', fontSize: '12px', textAlign: 'left' }}>
+                                                        * Password must be 8-20 characters long, including a number, and a letter.
+                                             </p>
+                                                }
+                                                {this.state.errorPassword && this.state.newPassword != this.state.newPasswordConfirm &&
+                                                    <p style={{ color: '#dd1037', fontSize: '12px', textAlign: 'left' }}>
+                                                        * Your password and confirm password does not match.
+                                            </p>
+                                                }
+                                                <Form.Group widths="equal" >
+                                                    <Form.Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='New Password ...'
+                                                        autoFocus
+                                                        onChange={(e) => this.setState({ newPassword: e.target.value })}
+                                                        value={this.state.newPassword}
+                                                        onBlur={() => this.validatePassword()}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group widths="equal" >
+                                                    <Form.Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='Confirm New Password ...'
+                                                        onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
+                                                        value={this.state.newPasswordConfirm}
+                                                        onBlur={() => this.validatePassword()}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group widths="equal" style={{ marginBottom: '0px' }}>
+                                                    <Form.Button disabled={!this.state.newPassword || !this.state.newPasswordConfirm || this.state.errorPassword} style={style.ButtonNext} fluid onClick={() => this.nextStep(2)} >Submit</Form.Button>
+                                                </Form.Group>
+                                            </Form>
 
-                                            {/* <div> */}
-                                                {/* <Form style={{ padding: '3% 2%' ,}}> */}
-                                                <Form.Group style={{ margin: '4% 0%' }}>
-                                            {/* <Form.Group style={{ width: '100%' }}> */}
-                                                <Input
-                                                    type="password"
-                                                    icon='lock'
-                                                    iconPosition='left'
-                                                    placeholder='New Password ...'
-                                                    style={{ width:'100%' }}
-                                                    // style={style.inputForgot}
-                                                    onChange={(e) => this.setState({ newPassword: e.target.value })}
-                                                    value={this.state.newPassword}
-                                                />
-                                            </Form.Group>
-                                            {/* </Form> */}
-                                            {/* </div> */}
-
-                                            <Form.Group>
-                                                <Input
-                                                    type="password"
-                                                    icon='lock'
-                                                    iconPosition='left'
-                                                    placeholder='Confirm New Password ...'
-                                                    style={{ width:'100%', marginBottom:'4%' }}
-                                                    // style={style.inputForgot}
-                                                    onChange={(e) => this.setState({ newPasswordConfirm: e.target.value })}
-                                                    value={this.state.newPasswordConfirm}
-                                                />
-                                            </Form.Group>
-                                            
-                                            <Form.Group style={{ widths:'100%' }}>
-                                                {/* <Form.Group style={style.twoColumnButton}> */}
-                                                <Button style={style.ButtonNext} onClick={() => this.setState({ openOTP: true })} >Submit</Button>
-                                            </Form.Group>
-                                        
-                                        <br />
-
-
-                                        {/* </Container> */}
+                                        </div>
                                     </div>
                                 }
 
-                                <Modal open={this.state.openOTP} onClose={() => this.setState({ openOTP: false, step: 1 })}>
+                                <Modal open={this.state.openSMSOTP} onClose={() => this.cancelRequestOTP(this.state.requestId)}>
                                     <OTPfactor
                                         requestId={this.state.requestId}
                                         mobileNumber={this.state.mobileNumber}
@@ -403,16 +479,92 @@ export default class ForgotPassword extends Component {
                                     />
                                 </Modal>
 
+                                <Modal open={this.state.openEmailOTP} onClose={() => this.setState({ openEmailOTP: false})}>
+                                    <Segment >
+                                        
+                                        <div style={{ textAlign: 'right', fontSize: '18px', color:'#d33',cursor:'pointer' }} 
+                                            onClick={() => this.setState({ openEmailOTP: false })}
+                                        ><Icon name="close"/></div>
+                                        {/* <br /> */}
+                                        <Image centered src={mailverify} style={{ hieght: 150, width: 150 }} />
+                                        <Header as='h3' icon textAlign='center'>
+                                           Confirm verification password
+                                           <Header.Subheader>
+                                                The system has sent verification password to your email: <span style={{ fontWeight: '900', color: 'rgb(50, 135, 150)' }}>{this.state.email} </span>
+                                                {/* The system has sent verification password to your email: <span style={{ fontWeight:'900',color: 'rgb(50, 135, 150)' }}>jidapa40@hotmail.com</span> */}
+                                            </Header.Subheader>
+                                        </Header>
+                                        <br />
+                                        <Container style={{ width: '50%' }}>
+                                            <Form>
+                                                <Form.Group widths="equal">
+                                                    <Form.Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='Verification password'
+                                                        onChange={(e) => this.setState({ userVerificationCode: e.target.value })}
+                                                        value={this.state.userVerificationCode}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group widths="equal">
+                                                    <Form.Button
+                                                        disabled={!this.state.userVerificationCode}
+                                                        style={style.ButtonNext} fluid
+                                                        onClick={() => this.validateEmail()} >
+                                                        Submit
+                                                    </Form.Button>
+                                                </Form.Group>
+                                            </Form>
+                                        </Container>
+                                        <br />
+                                    </Segment>
+
+
+
+
+                                    {/* <Segment >
+                                        <br />
+                                        <Header as='h3' icon textAlign='center'>
+                                            <Icon name="mail" size='massive' />
+                                            Confirm verification password
+                                            <Header.Subheader>
+                                                The system has sent verification password to your email: <span style={{ fontWeight: '900', color: 'rgb(50, 135, 150)' }}>{this.state.email} </span>
+                                            </Header.Subheader>
+                                        </Header>
+                                        <Container style={{ width: '50%' }}>
+                                            <Form>
+                                                <Form.Group widths="equal">
+                                                    <Form.Input
+                                                        type="password"
+                                                        icon='lock'
+                                                        iconPosition='left'
+                                                        placeholder='Verification password'
+                                                        onChange={(e) => this.setState({ userVerificationCode: e.target.value })}
+                                                        value={this.state.userVerificationCode}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group widths="equal">
+                                                    <Form.Button
+                                                        disabled={!this.state.userVerificationCode}
+                                                        style={style.ButtonNext} fluid
+                                                        onClick={() => this.validateEmail()} >
+                                                        Submit
+                                                    </Form.Button>
+                                                </Form.Group>
+                                            </Form>
+                                        </Container>
+                                    </Segment>
+
+                                     */}
+                                </Modal>
+
 
 
                             </Segment>
                         </Container>
                     </Wrapper>
                 </Dimmer.Dimmable>
-                </Responsive> 
-                <Responsive> 
-              <ForgotPasswordOnMobile /> 
-                </Responsive> 
             </span>
         )
     }

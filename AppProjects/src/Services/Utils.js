@@ -47,3 +47,8 @@ export const calculateAge = (dob) => {
     }
     return tmp
 }
+
+export const generateVerificationCode = () => {
+    let ran = Math.floor((Math.random() * 999999) + 100000);
+    return ran + ''
+}
