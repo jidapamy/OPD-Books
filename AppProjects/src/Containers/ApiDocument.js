@@ -69,7 +69,7 @@ export default class apiDocument extends Component {
   showMethod = (index) => {
     let tmp = ""
     tmp = apiData[index].method.map((method, j) => {
-      return <Menu.Item name={method.title} key={index + "/" + j}
+      return <Menu.Item  name={method.title} key={index + "/" + j}
         active={this.state.activeItem === method.title}
         onClick={(e, { name }) => this.choose(name, index, j)}
         style={this.state.activeItem === method.title ? style.afterClick : style.beforeClick} />
@@ -157,9 +157,8 @@ export default class apiDocument extends Component {
   render() {
     const Body = styled.div`
     margin-left: 230px;
-    m
     max-width: 100%;
-    height:725px;
+    height:100vh;
     background-color: #FFFFFF !important;
     padding: 2%;
     `;
@@ -174,7 +173,8 @@ export default class apiDocument extends Component {
         <Responsive {...Responsive.onlyComputer} >
           <div>
             <Menu fixed='left' secondary vertical style={style.NavSize}>
-              <Header size='huge' style={style.HeaderColor3}>API Documents</Header>
+             <br/>
+                <Header textAlign='center' style={style.HeaderColor3}>API Documents</Header>
               {this.showData()}<br />
             </Menu>
           </div>
