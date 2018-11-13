@@ -293,7 +293,7 @@ export default class EditProfile extends React.Component {
                     {allergy &&
                         <Segment style={elimentStyle} vertical>
                             <Form>
-                                <h3 >{groupInfoPatientField.allergy.label}<span style={{ color: 'red' }}> * </span></h3 >
+                            <h3 >{groupInfoPatientField.allergy.label}<span style={{ color: '#db2828' }}> * </span></h3 >
                                 <Form.Group inline>
                                     <Form.Radio
                                         label=' No '
@@ -324,7 +324,7 @@ export default class EditProfile extends React.Component {
 
 
 
-                                <h3>{groupInfoPatientField.privilege.label}<span style={{ color: 'red' }}>*</span></h3>
+                                <h3>{groupInfoPatientField.privilege.label}<span style={{ color: '#db2828' }}>*</span></h3>
                                 <Form.Group inline>
                                     <Form.Radio
                                         value='government officer'

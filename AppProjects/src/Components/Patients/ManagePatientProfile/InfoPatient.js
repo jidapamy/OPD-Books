@@ -91,6 +91,7 @@ export default class InfoPateint extends Component {
                             label={patientField.age.label}
                             placeholder={patientField.age.label}
                             value={this.props.patient.age}
+                            error={this.props.errorField ? this.props.errorField.dob : false}
                             readOnly
                             required
                         />

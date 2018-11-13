@@ -10,3 +10,4 @@ DbService/package-lock.json
 DbService/config.js
 
 .DS_Store
+ApiService/App/Lib/Web3.js

@@ -13,7 +13,6 @@ import ErrorTimeOut from "./Components/UtilsPage/ErrorTimeOut";
 import ForgotPassword from "./Components/Patients/ManagePatientProfile/ForgotPassword";
 import FooterOnMobile from "./Components/ApiDocuments/FooterOnMobile"
 
-import VerifyEmail from "./Components/UtilsPage/VerifyEmail"
 import EditProfile from "./Components/Patients/ManagePatientProfile/EditProfile"
 
 import 'semantic-ui-css/semantic.min.css';
@@ -47,7 +46,6 @@ ReactDOM.render(
       <Route path="/forgotPassword" component={ForgotPassword} />
       <Route path="/footerMobile" component={FooterOnMobile} />
 
-      <Route path="/auth/verifyEmail" component={VerifyEmail} />
       <Route path="/editProfile" component={EditProfile} />
     </div>
   </Router>,

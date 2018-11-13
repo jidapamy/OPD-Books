@@ -82,43 +82,43 @@ class Registration extends Component {
   closeModal = () => this.setState({ openDetail: false, openOTP: false, citizenIdSearch: '', });
   closeOTP = () => { this.cancelRequestOTP(this.state.requestId) }
   scanQRCode = citizenId => {
-    this.setState({ openOTP: true })
+    // this.setState({ openOTP: true })
 
 
 
     // Decrypt
-    // if (citizenId) {
-    //   checkPatientFromDB(citizenId).then(async boolean => {
-    //     this.setState({ duplicatePatient: boolean })
-    //     if(boolean){
-    //        // มี >> Show patient เลย
-    //       this.setState({ loader: true })
-    //       getPatientFromDB(citizenId).then(async data => {
-    //         this.setState({ loader: false })
-    //         if (data.status) {
-    //           this.setState({
-    //             patient: data.data,
-    //             openScan: false,
-    //             openDetail: true,
-    //           });
-    //         } else {
-    //           errorPopup(data.message)
-    //         }
-    //       })
-    //     }else{
-    //       // ไม่มีใน db
-    //       if(await checkIdcard(citizenId)){
-    //         confirmPopup("Do you want to retrieve patient information from the blockchain system ?", "No patient in the system").then(res => {
-    //           if (res.value) {
-    //             this.requestOTP(citizenId, null)
-    //           }
-    //         })
-    //       }else{
-    //         errorPopup("No patient in the system")
-    //       }
-    //     }
-    //   })
-    // }
+    if (citizenId) {
+      checkPatientFromDB(citizenId).then(async boolean => {
+        this.setState({ duplicatePatient: boolean })
+        if(boolean){
+           // มี >> Show patient เลย
+          this.setState({ loader: true })
+          getPatientFromDB(citizenId).then(async data => {
+            this.setState({ loader: false })
+            if (data.status) {
+              this.setState({
+                patient: data.data,
+                openScan: false,
+                openDetail: true,
+              });
+            } else {
+              errorPopup(data.message)
+            }
+          })
+        }else{
+          // ไม่มีใน db
+          if(await checkIdcard(citizenId)){
+            confirmPopup("Do you want to retrieve patient information from the blockchain system ?", "No patient in the system").then(res => {
+              if (res.value) {
+                this.requestOTP(citizenId, null)
+              }
+            })
+          }else{
+            errorPopup("No patient in the system")
+          }
+        }
+      })
+    }
   }
 
   searchPatient = () => {

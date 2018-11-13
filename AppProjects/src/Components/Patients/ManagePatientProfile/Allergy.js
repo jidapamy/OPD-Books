@@ -5,17 +5,23 @@ import { groupInfoPatientField } from "../../../Static/Data/Field"
 
 const style = { 
     topicAllergy : {
-        color: '#217e8f',
+        color: '#31A5BA',
         margin: 0,
         marginBottom:' 1%'
     },
     topicPrivilage: {
-        color: '#217e8f',
+        color: '#31A5BA',
         margin: 0,
         marginBottom: ' 2%'
     },
     element : {
         padding: '0 2%'
+    },
+    errorElement : {
+        padding: '0 2%',
+        background: '#fff6f6',
+        borderRadius: '5px',
+        border: '1px solid #e0b4b4'
     }
 }
 
@@ -70,8 +76,8 @@ export default class Allergy extends Component {
         return (
             <div>
                 <Form>
-                    <h5 style={style.topicAllergy}>{groupInfoPatientField.allergy.label}<span style={{ color: 'red' }}> * </span></h5>
-                    <Form.Group inline style={style.element}>
+                    <h5 style={{ ...style.topicAllergy, ...{ color: this.props.errorField.allergy ? '#9f3a38' : '#31A5BA' } }}>{groupInfoPatientField.allergy.label}<span style={{ color: '#db2828' }}> * </span> </h5>
+                    <Form.Group inline style={this.props.errorField.allergy ? style.errorElement : style.element}>
                         <Form.Radio
                             label='No'
                             value='not have'
@@ -99,9 +105,10 @@ export default class Allergy extends Component {
                         />
                         <br></br>
                     </Form.Group>
-
-                    <h5 style={style.topicPrivilage}>{groupInfoPatientField.privilege.label}<span style={{ color: 'red' }}> *</span></h5>
+                    <h5 style={{ ...style.topicPrivilage, ...{ color: this.props.errorField.privilege ? '#9f3a38' : '#31A5BA', marginBottom: this.props.errorField.privilege ? '1%' : ' 2%'} }}>{groupInfoPatientField.privilege.label}<span style={{ color: '#db2828' }}> *</span></h5>
+                    <div style={this.props.errorField.privilege ? { ...style.errorElement, ...{ paddingTop: '1em' }} : {}}>
                     <Form.Group inline style={style.element}>
+                    {/* <div> */}
                         <Form.Radio
                             value='Government officer'
                             label='Government officer'
@@ -123,9 +130,11 @@ export default class Allergy extends Component {
                             onChange={(e, { value }) => this.chooseChoice('privilege', value)}
                             width={3}
                         />
+                        {/* </div> */}
                     </Form.Group>
 
                     <Form.Group inline style={style.element}>
+                    {/* <div> */}
                         <Form.Radio
                             value='State enterprise officer'
                             label='State enterprise officer'
@@ -158,7 +167,9 @@ export default class Allergy extends Component {
                             width={4}
                             value={this.state.otherprivilege}
                         />
+                        {/* </div> */}
                     </Form.Group>
+                    </div>
                 </Form>
             </div>
         )

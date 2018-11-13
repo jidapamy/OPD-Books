@@ -53,7 +53,7 @@ export default class EditProfile extends React.Component {
                     
                         </Modal.Content>
                         <Modal.Actions style={{ border: 0 }} >
-                            <Button size='hug' onClick={this.close} style={{ borderRadius: '2rem' }} color='red'>
+                            <Button size='hug' onClick={this.close} style={{ borderRadius: '2rem' }} color='#db2828'>
                                 Cancel
                             </Button>
                             <Button size='hug'style={{ borderRadius: '2rem' }} color='green'>

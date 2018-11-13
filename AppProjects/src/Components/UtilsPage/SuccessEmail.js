@@ -15,7 +15,7 @@ export default class SuccessEmail extends React.Component {
                     style={{ border: "0px" }}
                 >
                     <Menu.Item>
-                        <Icon color="red" size="big" name="heartbeat" />
+                        <Icon color="#db2828" size="big" name="heartbeat" />
                         <span style={{ fontSize: "2em", color: "#00B5AD" }}>
                             OPD BOOKS
                   </span>

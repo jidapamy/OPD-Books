@@ -21,9 +21,6 @@ const FixDatePickerTimer = styled.span`
   & .react-datepicker-wrapper {
     width:100%;
   }
-  & .react-datepicker {
-    width: 314px;
-  }
 `;
 
 export default class DateField extends Component {

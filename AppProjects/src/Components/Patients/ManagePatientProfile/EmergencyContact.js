@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Segment, Checkbox, Form, Dropdown, Divider, Header } from 'semantic-ui-react'
+import { Label, Segment, Checkbox, Form, Dropdown, Divider, Header, Button, Icon } from 'semantic-ui-react'
 import { titleNameParentData } from '../../../Static/Data/FormData'
 import { patientField } from "../../../Static/Data/Field"
 
@@ -87,6 +87,7 @@ export default class EmergencyContact extends Component {
             this.props.setPatientDetail(field, '');
         })
         this.props.setField('requiredAllEmerField', false)
+        this.props.setField('errorEmer',[])
         this.setState({
             statusSameAddress: false,
             emerTitle: '',
@@ -124,22 +125,26 @@ export default class EmergencyContact extends Component {
     showCheckbox = () => {
         if(!this.props.editStatus){
             return (
-                <div>
-                    <Form.Field
-                        label='Clear'
-                        onClick={() => this.clearField()}
-                    />
-                    <br />
-                    <Form.Group>
+                    <Form.Group widths="equal">
                         <Form.Field
                             control={Checkbox}
                             label='Similar to the present address'
                             onChange={() => this.changeStatusSameAddress()}
                             checked={this.state.statusSameAddress}
                         />
+                        <Form.Field>
+                            <Form>
+                            <Button floated='right'
+                                style={{ backgroundColor: '#FFF', color: '#31A5BA', border: '1px solid' }}
+                                width={3}
+                                 onClick={() => this.clearField()}
+                            >
+                                Clear &nbsp;&nbsp;<Icon name="undo" style={{ color: '#31A5BA', paddingLeft: '9px', fontSize: '15px' }} />
+                            </Button>
+                            </Form>
+                        </Form.Field>
+
                     </Form.Group>
-                    <br />
-                </div>
             )
         }
     }

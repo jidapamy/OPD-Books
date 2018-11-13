@@ -26,12 +26,12 @@ const ContanierTop = styled(Container)`
     padding-top:4%;
 `
 const ColorHeader = {
-    color:'#31A5BA',
+    color: '#31A5BA',
 }
 const ButtonRegis = {
-    color:'#FFF',
+    color: '#FFF',
     backgroundColor: '#31A5BA',
-    borderRadius:20,
+    borderRadius: 20,
 }
 
 const GridColumn = styled(Grid.Column)`
@@ -46,30 +46,57 @@ const SegmentForm = styled(Segment)`
 
 export default class Register extends Component {
     state = {
-        requiredAllParentField: false,
-        requiredAllEmerField: false,
-        errorInfo: [],
-        errorAddr: [],
-        errorEmer: [],
-        errorParent: [],
-        errorAllergy: [],
-        errorVerify:[],
+        // requiredAllParentField: false,
+        // requiredAllEmerField: false,
+        // errorInfo: [],
+        // errorAddr: [],
+        // errorEmer: [],
+        // errorParent: [],
+        // errorAllergy: [],
+        // errorVerify:[],
         agreement: false,
+        validateStatus: false,
+    }
+
+
+    showParent = () => {
+        if (this.props.state.requiredAllParentField) {
+            return <span><SegmentForm>
+                <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: '#db2828' }}>{this.props.state.requiredAllParentField ? '*' : ''}</span></h2></Header>
+                <Divider />
+                <ErrorMessage
+                    cardType={this.state.cardType}
+                    errorText={this.props.state.errorParent}
+                />
+                <PatientParent
+                    errorText={this.props.state.errorParent}
+
+                    errorField={this.props.state.errorField}
+                    patient={this.props.state.patient}
+                    cardType={this.props.state.cardType}
+
+                    setPatientDetail={this.props.setPatientDetail}
+                    setFieldAndValidate={this.props.setFieldAndValidate}
+                />
+            </SegmentForm>
+                <br></br>
+            </span>
+        }
     }
 
     componentWillMount = () => {
-        if (this.props.state){
-            if (!this.props.state.patient.registerDate){
+        if (this.props.state) {
+            if (!this.props.state.patient.registerDate) {
                 this.props.state.patient.registerDate = moment().format('LLLL')
             }
-            if (!this.props.cardType === 'idcard'){
+            if (this.props.cardType === 'idcard') {
                 this.props.state.patient.country = 'Thailand'
             }
             this.setState(this.props.state)
         }
     }
 
-  
+
 
     render() {
         return (
@@ -81,11 +108,11 @@ export default class Register extends Component {
                             <Header as='h2' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.info.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
-                                errorText={this.state.errorInfo}
+                                errorText={this.props.state.errorInfo}
                                 cardType={this.state.cardType}
                             />
                             <InfoPatient style={{ borderRadius: '20px' }}
-                                errorText={this.state.errorInfo}
+                                errorText={this.props.state.errorInfo}
 
                                 patient={this.props.state.patient}
                                 age={this.props.state.age}
@@ -97,23 +124,23 @@ export default class Register extends Component {
                                 setPatientDetail={this.props.setPatientDetail}
                                 setField={this.props.setField}
                                 setFieldAndValidate={this.props.setFieldAndValidate}
-                                
+
                             />
                         </SegmentForm>
                         <br></br>
                         <SegmentForm >
-                            <Header as='h2' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>Contract Patient</h2></Header>
+                            <Header as='h2' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>Security and login</h2></Header>
                             <Divider />
                             <ErrorMessage
-                                errorText={this.state.errorVerify}
+                                errorText={this.props.state.errorVerify}
                                 cardType={this.state.cardType}
                             />
                             <VerifyField
-                                errorText={this.state.errorVerify}
+                                errorText={this.props.state.errorVerify}
 
                                 patient={this.props.state.patient}
                                 errorField={this.props.state.errorField}
-                                
+
                                 setPatientDetail={this.props.setPatientDetail}
                                 setField={this.props.setField}
                                 setFieldAndValidate={this.props.setFieldAndValidate}
@@ -124,10 +151,12 @@ export default class Register extends Component {
                             <Header as='a' style={ColorHeader} ribbon ><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.address.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
-                                errorText={this.state.errorAddr}
+                                errorText={this.props.state.errorAddr}
                                 cardType={this.state.cardType}
                             />
                             <HomeAddress
+                                errorText={this.props.state.errorAddr}
+
                                 field='home'
                                 errorField={this.props.state.errorField}
                                 patient={this.props.state.patient}
@@ -138,17 +167,29 @@ export default class Register extends Component {
                         </SegmentForm>
                         <br></br>
 
-                       <SegmentForm>
-                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.emerContact.label}</h2></Header>
+                        <SegmentForm>
+                            <Form>
+                                <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.emerContact.label}</h2></Header>
+                                {/* <Button floated='right'>Right Floated</Button> */}
+                                {/* <Form.Field
+                                width={3}
+                                style={{ width: '100%', backgroundColor: '#FFF', color: '#31A5BA', border: '1px solid'}}
+                                control={Button}
+                                onClick={() => this.editEmail()}
+                                floated='right'
+                            >
+                                Clear &nbsp;&nbsp;<Icon name="undo" style={{ color: '#31A5BA', paddingLeft: '9px', fontSize: '15px' }} />
+                            </Form.Field> */}
+                            </Form>
                             <Divider />
                             <ErrorMessage
-                                errorText={this.state.errorEmer}
+                                errorText={this.props.state.errorEmer}
                                 cardType={this.state.cardType}
                             />
                             <EmergencyContact
                                 errorField={this.props.state.errorField}
                                 patient={this.props.state.patient}
-                                errorText={this.state.errorEmer}
+                                errorText={this.props.state.errorEmer}
                                 cardType={this.props.state.cardType}
                                 requiredAllEmerField={this.props.state.requiredAllEmerField}
 
@@ -159,36 +200,40 @@ export default class Register extends Component {
                         </SegmentForm>
                         <br></br>
 
-                       <SegmentForm>
-                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: 'red' }}>{this.props.requiredAllParentField ? '*' : ''}</span></h2></Header>
+                        {this.props.state.requiredAllParentField && <span><SegmentForm>
+                            <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.parent.label} <span style={{ color: '#db2828' }}>{this.props.state.requiredAllParentField ? '*' : ''}</span></h2></Header>
                             <Divider />
                             <ErrorMessage
                                 cardType={this.state.cardType}
-                                errorText={this.state.errorParent}
+                                errorText={this.props.state.errorParent}
                             />
                             <PatientParent
+                                errorText={this.props.state.errorParent}
+
                                 errorField={this.props.state.errorField}
                                 patient={this.props.state.patient}
-                                errorText={this.state.errorEmer}
                                 cardType={this.props.state.cardType}
 
                                 setPatientDetail={this.props.setPatientDetail}
                                 setFieldAndValidate={this.props.setFieldAndValidate}
                             />
                         </SegmentForm>
-                        <br></br>
+                            <br></br>
+                        </span>
+                        }
 
-                         <SegmentForm>
+                        <SegmentForm>
                             <Header as='a' style={ColorHeader} ribbon><h2 style={{ fontFamily: 'Kanit' }}>{groupInfoPatientField.allergyNPrivilege.label}</h2></Header>
                             <Divider />
                             <ErrorMessage
                                 cardType={this.state.cardType}
-                                errorText={this.state.errorAllergy}
+                                errorText={this.props.state.errorAllergy}
                             />
                             <Allergy
+                                errorText={this.props.state.errorAllergy}
+
                                 errorField={this.props.state.errorField}
                                 patient={this.props.state.patient}
-                                errorText={this.state.errorEmer}
                                 cardType={this.props.state.cardType}
 
                                 setPatientDetail={this.props.setPatientDetail}
@@ -200,28 +245,36 @@ export default class Register extends Component {
                         <Form.Group inline>
                             <Form.Field control={Checkbox}
                                 label='ข้าพเจ้าขอรับรองว่าข้อมูลบุคคลทั้งหมดตามที่แจ้งแก่เจ้าหน้าที่ของคลินิกนี้ถูกต้อง และตรงกับความเป็นจริงทุกประการ หากมีข้อความใดไม่ถูกต้องหรือไม่ตรงกับความจริง และอาจจะทำให้เกิดความเสียหายแก่ตัวข้าพเจ้าหรือบุคคลอื่นใด ข้าพเจ้ายินยอมรับผิดชอบในความเสียหายที่เกิดขึ้นทุกประการ และอนุญาตให้เผยแพร่ข้อมูลข้องข้าพเจ้าในระบบในเครือของคลินิก'
-                                onChange={() => this.setState({ agreement: !this.state.agreement })}
+                                checked={this.state.agreement}
+                                onChange={() => {
+                                    this.setState({ agreement: !this.state.agreement })
+                                }}
+                                // onChange={() => {
+                                //     let validate = this.props.validate()
+                                //     this.setState({ agreement: validate ? !this.state.agreement : false, validateStatus: validate })
+                                // }}
                             />
                         </Form.Group>
                         <GridColumn width={16}>
-                            
-                            <Button 
+                            <Link to='/'>
+                                <Button style={{ borderRadius: 20 }} color='google plus'><h3>CANCEL</h3></Button>
+                            </Link>
+                            <Button
                                 disabled={!this.state.agreement}
-                                onClick={() => this.props.validate()}
+                                onClick={() => {
+                                    let validate = this.props.validate()
+                                    this.setState({ validateStatus: validate })
+                                }}
                                 style={ButtonRegis}>
                                 <h3>CONFIRM</h3>
                             </Button>
-
-                            <Link to='/'>
-                                <Button style={{ borderRadius: 20}}color='google plus'><h3>CANCEL</h3></Button>
-                            </Link>
 
                         </GridColumn>
                         <br></br><br></br>
                     </Form>
                 </ContanierTop>
-                <ScrollUpButton style={{ borderRadius: 60, backgroundColor:'#31A5BA',borderColor:'#D6F2F2',color:'#FFF'}} ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
-            </Wrapper> 
+                <ScrollUpButton style={{ borderRadius: 60, backgroundColor: '#31A5BA', borderColor: '#D6F2F2', color: '#FFF' }} ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
+            </Wrapper>
         )
     }
 }

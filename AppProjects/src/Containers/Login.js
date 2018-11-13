@@ -60,7 +60,7 @@ export default class PatientRecord extends Component {
                        
                       <Form size="large">
                         <Segment style={{ borderRadius: "1.5rem", padding: "5%" }}>
-                          {this.state.checklogin && <p style={{ color: "red" }}>{this.state.checklogin}</p>}
+                          {this.state.checklogin && <p style={{ color: "#db2828" }}>{this.state.checklogin}</p>}
                           <Form.Input
                             className="setfeild"
                             style={{ width: "100%" }}

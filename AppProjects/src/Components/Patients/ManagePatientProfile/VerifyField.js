@@ -149,7 +149,7 @@ export default class VerifyField extends Component {
                 cancelRequestOTP(requestOTP).then(res => {
                     console.log(res)
                     swal.close()
-                    if (res.status) {
+                    if (res.status || res.statusCode == '6' || res.statusCode == '19') {
                         this.setState({
                             otp: "",
                             sendOTP: false,
@@ -202,7 +202,8 @@ export default class VerifyField extends Component {
 
     requestVerifyEmail = async() => {
         if (this.state.email) {
-            if (!await checkEmail(this.state.email)) {
+            if (this.state.email.match(pattern.email)){
+                 if (!await checkEmail(this.state.email)) {
                 let data = {
                     patient: this.props.patient,
                     email: this.state.email,
@@ -229,6 +230,11 @@ export default class VerifyField extends Component {
                 })
             } else {
                 errorPopup('This E-mail is already exists in the system. Please re-enter your new email', 'Email Duplicated!').then(res => {
+                    this.setState({ errorDupEmail: true })
+                })
+            }
+            }else{
+                errorPopup(pattern.email.label).then(res => {
                     this.setState({ errorDupEmail: true })
                 })
             }
@@ -299,16 +305,20 @@ export default class VerifyField extends Component {
                 </Form.Group>
 
                 <Form>
-                    <LabelField>{patientField.mobileNumber.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
+                    <LabelField style={{ color: this.props.errorField.mobileNumber ? '#9f3a38' : '' }}>{patientField.mobileNumber.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
                     <Form.Group widths={2}>
                         <Form.Field required readOnly={this.state.sendOTP}>
                             <ReactPhoneInput
                                 disabled={this.state.sendOTP || this.state.successOTP}
                                 readOnly={this.state.sendOTP}
-                                inputStyle={{ paddingLeft: 50, height: '38px' }}
+                                inputStyle={{ paddingLeft: 50, height: '38px', background: this.props.errorField.mobileNumber ? '#fff6f6' : '', borderColor: this.props.errorField.mobileNumber ? '#e0b4b4' : '' }}
                                 defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
                                 value={this.state.mobileNumber}
-                                onChange={(e) => { this.setState({ mobileNumber: e }) }}
+
+                                onChange={(e) => { 
+                                    this.props.setFieldAndValidate('mobileNumber', '')
+                                    this.setState({ mobileNumber: e }) 
+                                }}
                                 inputExtraProps={{
                                     required: true,
                                 }}
@@ -330,16 +340,20 @@ export default class VerifyField extends Component {
                 </Form>
 
                 <Form>
-                    <LabelField>{patientField.email.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
+                    <LabelField style={{ color: this.props.errorField.email ? '#9f3a38' : '' }}>{patientField.email.label}<span style={{ margin: '-.2em 0 0 .2em', color: "#db2828" }}>* </span></LabelField>
                     <Form.Group widths={2}>
                         <Form.Field required>
                             <Form.Input
                                 placeholder={patientField.email.label} vb
-                                onChange={e => this.setState({ email: e.target.value })}
+                                onChange={e => {
+                                    this.props.setFieldAndValidate('email', '')
+                                    this.setState({ email: e.target.value })}
+                                }
                                 required
-                                type='email'
+                                // type='email'
                                 value={this.state.email}
                                 readOnly={this.state.sendEmail}
+                                error={this.props.errorField.email}
                             />
                         </Form.Field>
                         {/* {this.showButtonVerified('Verification', this.editEmail)} */}

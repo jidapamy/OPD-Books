@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Container, Grid, Segment,  } from 'semantic-ui-react'
+import { Container, Grid, Segment, } from 'semantic-ui-react'
 
 import swal from 'sweetalert2';
 import styled from 'styled-components'
@@ -30,6 +30,7 @@ export default class ManagePatientRecord extends Component {
     errorEmer: [],
     errorParent: [],
     errorAllergy: [],
+    errorVerify: [],
     agreement: false,
     reState: '',
     editSuccess: '',
@@ -38,32 +39,32 @@ export default class ManagePatientRecord extends Component {
 
   allField = {
     info: [
-      { field: 'citizenId', key: 'non', required: true, validateKey:'info' },
-      { field: 'dob', key: 'non', required: true, validateKey: 'info'  },
+      { field: 'citizenId', key: 'non', required: true, validateKey: 'info' },
+      { field: 'dob', key: 'non', required: true, validateKey: 'info' },
       // { field: 'email', key: 'info' },
       // { field: 'password', key: 'info' },
-      { field: 'nametitle', key: 'editInfoPart2', required: true, validateKey: 'info'  },
-      { field: 'firstname', key: 'editInfoPart2', required: true, validateKey: 'info'  },
-      { field: 'lastname', key: 'editInfoPart2', required: true, validateKey: 'info'  },
-      { field: 'congenitalDisease', key: 'editInfoPart3', required: true, validateKey: 'info'  },
+      { field: 'nametitle', key: 'editInfoPart2', required: true, validateKey: 'info' },
+      { field: 'firstname', key: 'editInfoPart2', required: true, validateKey: 'info' },
+      { field: 'lastname', key: 'editInfoPart2', required: true, validateKey: 'info' },
+      { field: 'congenitalDisease', key: 'editInfoPart3', required: true, validateKey: 'info' },
       { field: 'gender', key: 'non', required: true, validateKey: 'info' },
       { field: 'bloodgroup', key: 'non', required: true, validateKey: 'info' },
       // { field: 'password', key: 'info' },
       { field: 'religion', key: 'editInfoPart3', required: true, validateKey: 'info' },
       { field: 'nationality', key: 'editInfoPart3', required: true, validateKey: 'info' },
-      { field: 'country', key: 'editInfoPart3', required: true, validateKey: 'info'},
+      { field: 'country', key: 'editInfoPart3', required: true, validateKey: 'info' },
       { field: 'status', key: 'editInfoPart4', required: true, validateKey: 'info' },
       // { field: 'mobileNumber', key: 'editInfoPart4', required: true },
       { field: 'occupartion', key: 'editInfoPart4', required: false, validateKey: null },
-      { field: 'homePhonenumber', key: 'editInfoPart4', required: false, validateKey: null  },
+      { field: 'homePhonenumber', key: 'editInfoPart4', required: false, validateKey: null },
     ],
     address: [
       //Address
-      { field: 'typeofHouse', key: 'editAddress', required: true, validateKey:'homeAddress' },
+      { field: 'typeofHouse', key: 'editAddress', required: true, validateKey: 'homeAddress' },
       { field: 'address', key: 'editAddress', required: true, validateKey: 'homeAddress' },
       { field: 'province', key: 'editAddress', required: true, validateKey: 'homeAddress' },
       { field: 'district', key: 'editAddress', required: true, validateKey: 'homeAddress' },
-      { field: 'subDistrict', key: 'editAddress', required: true, validateKey: 'homeAddress'},
+      { field: 'subDistrict', key: 'editAddress', required: true, validateKey: 'homeAddress' },
       { field: 'zipcode', key: 'editAddress', required: true, validateKey: 'homeAddress' },
     ],
     emer: [
@@ -166,90 +167,139 @@ export default class ManagePatientRecord extends Component {
     this.state.patient[field] = value;
   }
 
-  validate = () => {
-    console.log("validate!!",this.state.patient)
-    let statusErrInfo = false;
-    let statusErrAddr = false;
-    let statusErrEmer = false;
-    let statusErrParent = false;
-    let statusErrAllergy = false;
-    let statusErrPrivilege = false;
-
-    // required field
-    // info
-    var tmp = [];
-    this.messageErrorRequired.filter(field => this.state.patient[field.field] === '')
-      .map(field => {
-        this.state.errorField[field.field] = true
-        switch (field.key) {
-          case 'info':
-            statusErrInfo = true;
-            return (setErrorMsg('info', 'กรุณากรอกข้อมูลส่วนประวัติส่วนตัวให้ครบถ้วน', this.state.errorInfo))
-          case 'homeAddress':
-            statusErrAddr = true;
-            return (setErrorMsg('homeAddress', 'กรุณากรอกข้อมูลส่วนที่อยู่ปัจจุบันให้ครบถ้วน', this.state.errorAddr))
-          case 'allergy':
-            statusErrAllergy = true;
-            return (setErrorMsg('allergy', 'กรุณากรอกข้อมูลส่วนของการแพ้ยาให้ครบถ้วน', this.state.errorAllergy))
-          case 'privilege':
-            statusErrPrivilege = true;
-            return (setErrorMsg('privilege', 'กรุณากรอกข้อมูลส่วนสิทธิการรักษาให้ครบถ้วน', this.state.errorAllergy))
-        }
-      })
-
-    // allergy
-    if (this.state.patient.allergy === 'other') {
-      statusErrAllergy = true;
-      setErrorMsg('allergy', 'กรุณาระบุประวัติการแพ้', this.state.errorAllergy)
-    }
-
-    // privilege
-    if (this.state.patient.privilege === 'other') {
-      statusErrPrivilege = true;
-      setErrorMsg('privilege', 'กรุณาระบุสิทธิ์การรักษา', this.state.errorAllergy)
-    }
-
-    if (!statusErrInfo) { setErrorMsgSplice('info', this.state.errorInfo) }
-    if (!statusErrAddr) { setErrorMsgSplice('homeAddress', this.state.errorAddr) }
-    if (!statusErrAllergy) { setErrorMsgSplice('allergy', this.state.errorAllergy) }
-    if (!statusErrPrivilege) { setErrorMsgSplice('privilege', this.state.errorAllergy) }
-
-    // optional field
-    // emer
-    if (this.state.requiredAllEmerField) {
-      this.messageErrorEmerField.filter(field => (this.state.patient[field.field] === '' || this.state.patient[field.field] === undefined))
-        .map(field => {
-          statusErrAddr = true
-          this.state.errorField[field.field] = true
-          setErrorMsg('emer', 'กรุณากรอกข้อมูลส่วนข้อมูลติดต่อฉุกเฉินให้ครบถ้วน', this.state.errorEmer)
-        })
-      if (!statusErrAddr) {
-        setErrorMsgSplice('emer', this.state.errorEmer)
-      }
-    }
-
-    // parent
-    if (this.state.requiredAllParentField) {
-      if ((this.state.patient.motherFirstname !== '' && this.state.patient.motherLastname != '') ||
-        (this.state.patient.fatherFirstname !== '' && this.state.patient.fatherLastname != '')) {
-        this.messageErrorParentField.map(field => {
-          this.state.errorField[field.field] = false
-        })
-        setErrorMsgSplice('parent', this.state.errorParent)
-      } else {
-        statusErrParent = true
-        this.messageErrorParentField.map(field => {
-          this.state.errorField[field.field] = true
-        })
-        setErrorMsg('parent', 'กรุณากรอกข้อมูลส่วนข้อมูลผู้ปกครองให้ครบถ้วนอย่างน้อย 1 คน', this.state.errorParent)
-      }
-    }
-    this.setState({ reState: '' })
-
-    if (!statusErrInfo && !statusErrAddr && !statusErrEmer && !statusErrParent && !statusErrAllergy && !statusErrPrivilege) {
-      this.showPopupConfirm()
+  filterReturn = (field) => {
+    // if (field.field == 'fatherFirstname' && this.state.patient.fatherFirstname){
+    //   if (this.state.patient.motherFirstname || this.state.patient.motherLastname){
+    //     return field
+    //   }
+    // }
+    // if (field.field == 'fatherLastname' && this.state.patient.fatherLastname){
+    //   if (!this.state.patient.fatherLastname) {
+    //     return field
+    //   }
+    // }
+    if (field.required && !this.state.patient[field.field] ||
+      field.field == 'allergy' && this.state.patient.allergy === 'other' ||
+      field.field == 'privilege' && this.state.patient.allergy === 'other') {
+      this.state.errorField[field.field] = true;
+      return field
     }
   }
+
+  validate = () => {
+    console.log("validate!!", this.state.patient)
+    let statusErr = false;
+
+    //required field >> info, 
+    const keys = Object.keys(this.allField)
+    let tmp = []
+    keys.map(key => {
+      if (key == 'parent' && !this.state.requiredAllParentField ||
+        key == 'emer' && !this.state.requiredAllEmerField) {
+        return
+      }
+      if (key == 'parent') {
+        if (this.state.patient.motherFirstname && this.state.patient.motherLastname 
+          ||  this.state.patient.fatherFirstname && this.state.patient.fatherLastname ) {
+          return
+        }
+      }
+      tmp = [...tmp, ...this.allField[key].filter(field => this.filterReturn(field))]
+    })
+    console.log('errorField', this.state.errorField)
+    console.log('tmp', tmp)
+    if (tmp.length > 0) {
+      errorPopup("Please fill in all information.", "Incomplete")
+      return false
+    }
+    this.showPopupConfirm()
+    return true
+  }
+
+  // validate = () => {
+  //   console.log("validate!!",this.state.patient)
+  //   let statusErrInfo = false;
+  //   let statusErrAddr = false;
+  //   let statusErrEmer = false;
+  //   let statusErrParent = false;
+  //   let statusErrAllergy = false;
+  //   let statusErrPrivilege = false;
+
+  //   // required field
+  //   // info
+  //   var tmp = [];
+  //   this.messageErrorRequired.filter(field => this.state.patient[field.field] === '')
+  //     .map(field => {
+  //       this.state.errorField[field.field] = true
+  //       switch (field.key) {
+  //         case 'info':
+  //           statusErrInfo = true;
+  //           return (setErrorMsg('info', 'กรุณากรอกข้อมูลส่วนประวัติส่วนตัวให้ครบถ้วน', this.state.errorInfo))
+  //         case 'homeAddress':
+  //           statusErrAddr = true;
+  //           return (setErrorMsg('homeAddress', 'กรุณากรอกข้อมูลส่วนที่อยู่ปัจจุบันให้ครบถ้วน', this.state.errorAddr))
+  //         case 'allergy':
+  //           statusErrAllergy = true;
+  //           return (setErrorMsg('allergy', 'กรุณากรอกข้อมูลส่วนของการแพ้ยาให้ครบถ้วน', this.state.errorAllergy))
+  //         case 'privilege':
+  //           statusErrPrivilege = true;
+  //           return (setErrorMsg('privilege', 'กรุณากรอกข้อมูลส่วนสิทธิการรักษาให้ครบถ้วน', this.state.errorAllergy))
+  //       }
+  //     })
+
+  //   // allergy
+  //   if (this.state.patient.allergy === 'other') {
+  //     statusErrAllergy = true;
+  //     setErrorMsg('allergy', 'กรุณาระบุประวัติการแพ้', this.state.errorAllergy)
+  //   }
+
+  //   // privilege
+  //   if (this.state.patient.privilege === 'other') {
+  //     statusErrPrivilege = true;
+  //     setErrorMsg('privilege', 'กรุณาระบุสิทธิ์การรักษา', this.state.errorAllergy)
+  //   }
+
+  //   if (!statusErrInfo) { setErrorMsgSplice('info', this.state.errorInfo) }
+  //   if (!statusErrAddr) { setErrorMsgSplice('homeAddress', this.state.errorAddr) }
+  //   if (!statusErrAllergy) { setErrorMsgSplice('allergy', this.state.errorAllergy) }
+  //   if (!statusErrPrivilege) { setErrorMsgSplice('privilege', this.state.errorAllergy) }
+
+  //   // optional field
+  //   // emer
+  //   if (this.state.requiredAllEmerField) {
+  //     this.messageErrorEmerField.filter(field => (this.state.patient[field.field] === '' || this.state.patient[field.field] === undefined))
+  //       .map(field => {
+  //         statusErrAddr = true
+  //         this.state.errorField[field.field] = true
+  //         setErrorMsg('emer', 'กรุณากรอกข้อมูลส่วนข้อมูลติดต่อฉุกเฉินให้ครบถ้วน', this.state.errorEmer)
+  //       })
+  //     if (!statusErrAddr) {
+  //       setErrorMsgSplice('emer', this.state.errorEmer)
+  //     }
+  //   }
+
+  //   // parent
+  //   if (this.state.requiredAllParentField) {
+  //     if ((this.state.patient.motherFirstname !== '' && this.state.patient.motherLastname != '') ||
+  //       (this.state.patient.fatherFirstname !== '' && this.state.patient.fatherLastname != '')) {
+  //       this.messageErrorParentField.map(field => {
+  //         this.state.errorField[field.field] = false
+  //       })
+  //       setErrorMsgSplice('parent', this.state.errorParent)
+  //     } else {
+  //       statusErrParent = true
+  //       this.messageErrorParentField.map(field => {
+  //         this.state.errorField[field.field] = true
+  //       })
+  //       setErrorMsg('parent', 'กรุณากรอกข้อมูลส่วนข้อมูลผู้ปกครองให้ครบถ้วนอย่างน้อย 1 คน', this.state.errorParent)
+  //     }
+  //   }
+  //   this.setState({ reState: '' })
+
+  //   if (!statusErrInfo && !statusErrAddr && !statusErrEmer && !statusErrParent && !statusErrAllergy && !statusErrPrivilege) {
+  //     this.showPopupConfirm()
+  //   }
+  // }
 
   showPopupConfirm = async () => {
     // console.log("showPopupConfirm",this.state.patient)
