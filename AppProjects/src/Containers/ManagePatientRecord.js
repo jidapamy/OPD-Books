@@ -13,6 +13,7 @@ import EditProfile from '../Components/Patients/ManagePatientProfile/EditProfile
 import { setErrorMsg, setErrorMsgSplice } from '../Services/Utils';
 import { insertPatient, editProfile, confirmChangePassword, validateOTP } from "../Services/ManagePatientMethod";
 import { confirmPopup, successPopup, successTXPopup, errorPopup } from "../Components/SweetAlert"
+import { pattern } from '../Static/Data/Field';
 
 
 
@@ -168,19 +169,17 @@ export default class ManagePatientRecord extends Component {
   }
 
   filterReturn = (field) => {
-    // if (field.field == 'fatherFirstname' && this.state.patient.fatherFirstname){
-    //   if (this.state.patient.motherFirstname || this.state.patient.motherLastname){
-    //     return field
-    //   }
-    // }
-    // if (field.field == 'fatherLastname' && this.state.patient.fatherLastname){
-    //   if (!this.state.patient.fatherLastname) {
-    //     return field
-    //   }
-    // }
+    this.state.patient[field.field] = typeof this.state.patient[field.field] == 'string' ? this.state.patient[field.field].trim() : this.state.patient[field.field]
     if (field.required && !this.state.patient[field.field] ||
       field.field == 'allergy' && this.state.patient.allergy === 'other' ||
-      field.field == 'privilege' && this.state.patient.allergy === 'other') {
+      field.field == 'privilege' && this.state.patient.allergy === 'other' || 
+      field.field == 'password' && this.state.patient.password.match(pattern.password.pattern) ||
+      field.field == 'email' && this.state.patient.email.match(pattern.email.pattern)
+      // field.field == 'mobileNumber' && this.state.patient.mobileNumber.match(pattern.mobileNumber.pattern) ||
+      // field.field == 'homePhonenumber' && this.state.patient.homePhonenumber.match(pattern.homePhonenumber.pattern) ||
+      // field.field == 'emerMobileNumber' && this.state.patient.emerMobileNumber.match(pattern.emerMobileNumber.pattern)
+      // field.field == 'homePhonenumber' && this.state.patient.homePhonenumber.match(pattern.homePhonenumber.pattern) ||
+      ) {
       this.state.errorField[field.field] = true;
       return field
     }
@@ -188,9 +187,6 @@ export default class ManagePatientRecord extends Component {
 
   validate = () => {
     console.log("validate!!", this.state.patient)
-    let statusErr = false;
-
-    //required field >> info, 
     const keys = Object.keys(this.allField)
     let tmp = []
     keys.map(key => {
@@ -210,6 +206,10 @@ export default class ManagePatientRecord extends Component {
     console.log('tmp', tmp)
     if (tmp.length > 0) {
       errorPopup("Please fill in all information.", "Incomplete")
+      return false
+    } else if (this.state.errorInfo.length > 0 || this.state.errorAddr.length > 0 || this.state.errorEmer.length > 0 ||
+          this.state.errorParent.length > 0 || this.state.errorAllergy.length > 0 || this.state.errorVerify.length > 0 ){
+      errorPopup("Please fill in the information correctly.")
       return false
     }
     this.showPopupConfirm()
@@ -302,7 +302,7 @@ export default class ManagePatientRecord extends Component {
   // }
 
   showPopupConfirm = async () => {
-    // console.log("showPopupConfirm",this.state.patient)
+    console.log("showPopupConfirm",this.state.patient)
     confirmPopup().then(async res => {
       if (res.value) {
         swal({

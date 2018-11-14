@@ -38,7 +38,7 @@ export default class CitizenIdField extends Component {
             return true;
         }else{
             if (this.props.cardType === 'idcard') {
-                error = 'Citizen Id pattern missing exactly 13 characters.';
+                error = 'Citizen Id pattern missing exactly 13 characters and only numeric.';
             } else {
                 error = 'Passport number pattern missing exactly 9 characters.'
             }
