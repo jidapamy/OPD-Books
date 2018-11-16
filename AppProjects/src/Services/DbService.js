@@ -1,5 +1,5 @@
 import axios from 'axios'
-let db = 'http://localhost:3003'
+let db = 'https://db.opdbooks.tk'
 
 export const addPatientFromDB = async (data) => {
   let res = await axios.post(db+'/addPatient', data)

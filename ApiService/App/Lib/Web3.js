@@ -1,15 +1,15 @@
 const Web3 = require('web3');
 let web3 = new Web3();
 
-// try {
-	// web3 = new Web3(new Web3.providers.HttpProvider("http://54.169.9.198:8545"));
-	// web3.eth.defaultAccount = web3.eth.accounts[0];
-	// console.log("------- have server -------")
-// } catch (err) {
+try {
+	web3 = new Web3(new Web3.providers.HttpProvider("https://api.opdbooks.tk/"));
+	web3.eth.defaultAccount = web3.eth.accounts[0];
+	console.log("------- have server -------")
+} catch (err) {
 	web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	web3.eth.defaultAccount = web3.eth.accounts[0];
 	console.log("------- don't have server -------")
-// }
+}
 console.log(web3.eth.defaultAccount)
 
 const PatientRecordContract = web3.eth.contract(
