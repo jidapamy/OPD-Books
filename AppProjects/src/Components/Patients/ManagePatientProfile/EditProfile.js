@@ -22,6 +22,7 @@ import { sendVerifyEmail } from "../../../Services/AuthenticationMethod";
 import styled from "styled-components";
 import ReactPhoneInput from 'react-phone-input-2';
 import { generateVerificationCode } from '../../../Services/Utils'
+import { setErrorMsg, setErrorMsgSplice } from '../../../Services/Utils';
 
 const provincesData = require('../../../Static/Data/Provinces')
 
@@ -96,7 +97,6 @@ export default class EditProfile extends React.Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        console.log('ReceiveProps', nextProps.state.editSuccess)
         if (nextProps.state.editSuccess) {
             this.setState({
                 [nextProps.state.editSuccess]: false,
@@ -280,16 +280,25 @@ export default class EditProfile extends React.Component {
     }
 
     validatePassword = () => {
+        let errMsg = ''
         if (this.state.newPassword && this.state.newPasswordConfirm) {
             if (this.state.newPassword === this.state.newPasswordConfirm) {
                 if (!this.state.newPassword.match(pattern.password.pattern)) {
                     this.setState({ errorPassword: true })
+                    errMsg = pattern.password.label
                 } else {
                     this.setState({ errorPassword: false })
+                    setErrorMsgSplice('password', this.props.state.errorVerify)
+                    return
                 }
             } else {
                 this.setState({ errorPassword: true })
+                errMsg = 'Your password and confirm password does not match.'
             }
+            setErrorMsg('password', errMsg, this.props.state.errorVerify)
+        } else if (!this.state.newPassword && !this.state.newPasswordConfirm){
+            this.setState({ errorPassword: false })
+            setErrorMsgSplice('password', this.props.state.errorVerify)
         }
     }
 
@@ -436,16 +445,18 @@ export default class EditProfile extends React.Component {
     render() {
         const { info, address, emer, parent, allergy, changePassword, changeEmail, editEmail, changeMobileNumber } = this.state
         return (
-
             <div>
                 <h3 style={headerSetting}>General Account Setting</h3>
                 <Segment style={info ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("info", !this.state.info)}>
                     <h4 ><Icon name='file alternate outline' />{groupInfoPatientField.info.label}<Icon style={{ float: 'right' }} name={info ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {info && <Segment style={elimentStyle} vertical >
+                        <ErrorMessage
+                            errorText={this.props.state.errorInfo}
+                        />
                         <Form>
                             <InfoPatient style={{ borderRadius: '20px' }}
-                                errorText={this.state.errorInfo}
+                                errorText={this.props.state.errorInfo}
 
                                 patient={this.props.state.patient}
                                 age={this.props.state.age}
@@ -469,8 +480,12 @@ export default class EditProfile extends React.Component {
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {address &&
                         <Segment style={elimentStyle} vertical>
+                        <ErrorMessage
+                            errorText={this.props.state.errorAddr}
+                        />
                             <Form>
                                 <HomeAddress
+                                    errorText={this.props.state.errorAddr}
                                     field='home'
                                     errorField={this.props.state.errorField}
                                     patient={this.props.state.patient}
@@ -491,6 +506,9 @@ export default class EditProfile extends React.Component {
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {emer &&
                         <Segment style={elimentStyle} vertical>
+                        <ErrorMessage
+                            errorText={this.state.errorEmer}
+                        />
                             <Form>
                                 <EmergencyContact
                                     errorField={this.props.state.errorField}
@@ -512,16 +530,19 @@ export default class EditProfile extends React.Component {
 
 
 
-                <Segment style={parent ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("parent", !this.state.parent)}>
+                {this.props.state.patient.age && +(this.props.state.patient.age.split(" years")[0].trim()) < 15 && <div> <Segment style={parent ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("parent", !this.state.parent)}>
                     <h4><Icon name='child' />{groupInfoPatientField.parent.label}<Icon style={{ float: 'right' }} name={parent ? 'angle down' : 'angle left'} /></h4></Segment>
                 <Transition.Group animation={'slide down'} duration={350} divided  >
                     {parent &&
                         <Segment style={elimentStyle} vertical>
+                            <ErrorMessage
+                                errorText={this.props.state.errorParent}
+                            />
                             <Form>
                                 <PatientParent
                                     errorField={this.props.state.errorField}
                                     patient={this.props.state.patient}
-                                    errorText={this.state.errorEmer}
+                                    errorText={this.props.state.errorParent}
                                     cardType={this.props.state.cardType}
                                     requiredAllParentField={this.props.state.requiredAllParentField}
 
@@ -533,6 +554,8 @@ export default class EditProfile extends React.Component {
                             </Form>
                         </Segment >}
                 </Transition.Group>
+                </div>
+                }
 
                 {/* <Segment style={allergy ? itemActiveStyle : itemStyle} vertical onClick={() => this.setField("allergy", !this.state.allergy)}>
                     <h4><Icon name='pills' />{groupInfoPatientField.allergyNPrivilege.label}<Icon style={{ float: 'right' }} name={allergy ? 'angle down' : 'angle left'} /></h4>
@@ -561,7 +584,10 @@ export default class EditProfile extends React.Component {
                 <Transition.Group animation={'slide down'} duration={350} divided size='mini' >
                     {changePassword && <Segment style={elimentStyle} vertical >
                         <Form>
-                            {this.state.errorPassword && this.state.newPassword === this.state.newPasswordConfirm &&
+                            <ErrorMessage
+                                errorText={this.props.state.errorVerify}
+                            />
+                            {/* {this.state.errorPassword && this.state.newPassword === this.state.newPasswordConfirm &&
                                 <p style={{ color: '#dd1037', fontSize: '12px' }}>
                                     * Password must be 8-20 characters long, including a number, and a letter.
                                 </p>
@@ -570,7 +596,7 @@ export default class EditProfile extends React.Component {
                                 <p style={{ color: '#dd1037', fontSize: '12px' }}>
                                     * Your password and confirm password does not match.
                                 </p>
-                            }
+                            } */}
                             {!this.state.errorPassword && <p style={{ color: '#277e8e', fontSize: '12px' }}> * Password must be 8-20 characters long, including a number, and a letter. </p>}
                             <Form.Group widths={3}>
                                 <Form.Field required>
@@ -591,7 +617,13 @@ export default class EditProfile extends React.Component {
                                     required
                                     type='password'
                                     value={this.state.newPassword}
-                                    onChange={(e) => { this.setState({ newPassword: e.target.value }) }}
+                                    onChange={(e) => { 
+                                        this.setState({ newPassword: e.target.value }) 
+                                        if (!this.state.newPassword && !this.state.newPasswordConfirm) {
+                                            this.setState({ errorPassword: false })
+                                            setErrorMsgSplice('password', this.props.state.errorVerify)
+                                        }
+                                    }}
                                     error={this.state.errorPassword}
                                     onBlur={() => this.validatePassword()}
                                     placeholder="New Password"
@@ -605,7 +637,13 @@ export default class EditProfile extends React.Component {
                                     type='password'
                                     value={this.state.newPasswordConfirm}
                                     onBlur={() => this.validatePassword()}
-                                    onChange={(e) => { this.setState({ newPasswordConfirm: e.target.value }) }}
+                                    onChange={(e) => { 
+                                        this.setState({ newPasswordConfirm: e.target.value }) 
+                                        if (!this.state.newPassword && !this.state.newPasswordConfirm) {
+                                            this.setState({ errorPassword: false })
+                                            setErrorMsgSplice('password', this.props.state.errorVerify)
+                                        }
+                                    }}
                                     error={this.state.errorPassword}
                                     placeholder='Comfirm New Password'
                                 />

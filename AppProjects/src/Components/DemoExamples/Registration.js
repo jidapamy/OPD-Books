@@ -115,6 +115,7 @@ class Registration extends Component {
             })
           }else{
             errorPopup("No patient in the system")
+            this.setState({ loader: false })
           }
         }
       })
@@ -218,6 +219,7 @@ class Registration extends Component {
       } else {
         this.setState({
           pin: "",
+          loader: false 
         })
         errorPopup(res.message)
       }
@@ -235,6 +237,7 @@ class Registration extends Component {
         })
       } else {
         errorPopup(res.message)
+        this.setState({ loader: false })
       }
     })
   }
@@ -248,6 +251,7 @@ class Registration extends Component {
         })
       } else {
         errorPopup(res.message)
+        this.setState({ loader: false })
       }
     })
   }

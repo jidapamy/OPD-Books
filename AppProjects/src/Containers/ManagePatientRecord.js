@@ -172,14 +172,10 @@ export default class ManagePatientRecord extends Component {
     this.state.patient[field.field] = typeof this.state.patient[field.field] == 'string' ? this.state.patient[field.field].trim() : this.state.patient[field.field]
     if (field.required && !this.state.patient[field.field] ||
       field.field == 'allergy' && this.state.patient.allergy === 'other' ||
-      field.field == 'privilege' && this.state.patient.allergy === 'other' || 
-      field.field == 'password' && this.state.patient.password.match(pattern.password.pattern) ||
-      field.field == 'email' && this.state.patient.email.match(pattern.email.pattern)
-      // field.field == 'mobileNumber' && this.state.patient.mobileNumber.match(pattern.mobileNumber.pattern) ||
-      // field.field == 'homePhonenumber' && this.state.patient.homePhonenumber.match(pattern.homePhonenumber.pattern) ||
-      // field.field == 'emerMobileNumber' && this.state.patient.emerMobileNumber.match(pattern.emerMobileNumber.pattern)
-      // field.field == 'homePhonenumber' && this.state.patient.homePhonenumber.match(pattern.homePhonenumber.pattern) ||
-      ) {
+      field.field == 'privilege' && this.state.patient.allergy === 'other' ||
+      field.field == 'password' && !this.state.patient.password.match(pattern.password.pattern) ||
+      field.field == 'email' && !this.state.patient.email.match(pattern.email.pattern)
+    ) {
       this.state.errorField[field.field] = true;
       return field
     }
@@ -195,20 +191,18 @@ export default class ManagePatientRecord extends Component {
         return
       }
       if (key == 'parent') {
-        if (this.state.patient.motherFirstname && this.state.patient.motherLastname 
-          ||  this.state.patient.fatherFirstname && this.state.patient.fatherLastname ) {
+        if (this.state.patient.motherFirstname && this.state.patient.motherLastname
+          || this.state.patient.fatherFirstname && this.state.patient.fatherLastname) {
           return
         }
       }
       tmp = [...tmp, ...this.allField[key].filter(field => this.filterReturn(field))]
     })
-    console.log('errorField', this.state.errorField)
-    console.log('tmp', tmp)
     if (tmp.length > 0) {
-      errorPopup("Please fill in all information.", "Incomplete")
+      // errorPopup("Please fill in all information.", "Incomplete")
       return false
     } else if (this.state.errorInfo.length > 0 || this.state.errorAddr.length > 0 || this.state.errorEmer.length > 0 ||
-          this.state.errorParent.length > 0 || this.state.errorAllergy.length > 0 || this.state.errorVerify.length > 0 ){
+      this.state.errorParent.length > 0 || this.state.errorAllergy.length > 0 || this.state.errorVerify.length > 0) {
       errorPopup("Please fill in the information correctly.")
       return false
     }
@@ -216,93 +210,8 @@ export default class ManagePatientRecord extends Component {
     return true
   }
 
-  // validate = () => {
-  //   console.log("validate!!",this.state.patient)
-  //   let statusErrInfo = false;
-  //   let statusErrAddr = false;
-  //   let statusErrEmer = false;
-  //   let statusErrParent = false;
-  //   let statusErrAllergy = false;
-  //   let statusErrPrivilege = false;
-
-  //   // required field
-  //   // info
-  //   var tmp = [];
-  //   this.messageErrorRequired.filter(field => this.state.patient[field.field] === '')
-  //     .map(field => {
-  //       this.state.errorField[field.field] = true
-  //       switch (field.key) {
-  //         case 'info':
-  //           statusErrInfo = true;
-  //           return (setErrorMsg('info', 'กรุณากรอกข้อมูลส่วนประวัติส่วนตัวให้ครบถ้วน', this.state.errorInfo))
-  //         case 'homeAddress':
-  //           statusErrAddr = true;
-  //           return (setErrorMsg('homeAddress', 'กรุณากรอกข้อมูลส่วนที่อยู่ปัจจุบันให้ครบถ้วน', this.state.errorAddr))
-  //         case 'allergy':
-  //           statusErrAllergy = true;
-  //           return (setErrorMsg('allergy', 'กรุณากรอกข้อมูลส่วนของการแพ้ยาให้ครบถ้วน', this.state.errorAllergy))
-  //         case 'privilege':
-  //           statusErrPrivilege = true;
-  //           return (setErrorMsg('privilege', 'กรุณากรอกข้อมูลส่วนสิทธิการรักษาให้ครบถ้วน', this.state.errorAllergy))
-  //       }
-  //     })
-
-  //   // allergy
-  //   if (this.state.patient.allergy === 'other') {
-  //     statusErrAllergy = true;
-  //     setErrorMsg('allergy', 'กรุณาระบุประวัติการแพ้', this.state.errorAllergy)
-  //   }
-
-  //   // privilege
-  //   if (this.state.patient.privilege === 'other') {
-  //     statusErrPrivilege = true;
-  //     setErrorMsg('privilege', 'กรุณาระบุสิทธิ์การรักษา', this.state.errorAllergy)
-  //   }
-
-  //   if (!statusErrInfo) { setErrorMsgSplice('info', this.state.errorInfo) }
-  //   if (!statusErrAddr) { setErrorMsgSplice('homeAddress', this.state.errorAddr) }
-  //   if (!statusErrAllergy) { setErrorMsgSplice('allergy', this.state.errorAllergy) }
-  //   if (!statusErrPrivilege) { setErrorMsgSplice('privilege', this.state.errorAllergy) }
-
-  //   // optional field
-  //   // emer
-  //   if (this.state.requiredAllEmerField) {
-  //     this.messageErrorEmerField.filter(field => (this.state.patient[field.field] === '' || this.state.patient[field.field] === undefined))
-  //       .map(field => {
-  //         statusErrAddr = true
-  //         this.state.errorField[field.field] = true
-  //         setErrorMsg('emer', 'กรุณากรอกข้อมูลส่วนข้อมูลติดต่อฉุกเฉินให้ครบถ้วน', this.state.errorEmer)
-  //       })
-  //     if (!statusErrAddr) {
-  //       setErrorMsgSplice('emer', this.state.errorEmer)
-  //     }
-  //   }
-
-  //   // parent
-  //   if (this.state.requiredAllParentField) {
-  //     if ((this.state.patient.motherFirstname !== '' && this.state.patient.motherLastname != '') ||
-  //       (this.state.patient.fatherFirstname !== '' && this.state.patient.fatherLastname != '')) {
-  //       this.messageErrorParentField.map(field => {
-  //         this.state.errorField[field.field] = false
-  //       })
-  //       setErrorMsgSplice('parent', this.state.errorParent)
-  //     } else {
-  //       statusErrParent = true
-  //       this.messageErrorParentField.map(field => {
-  //         this.state.errorField[field.field] = true
-  //       })
-  //       setErrorMsg('parent', 'กรุณากรอกข้อมูลส่วนข้อมูลผู้ปกครองให้ครบถ้วนอย่างน้อย 1 คน', this.state.errorParent)
-  //     }
-  //   }
-  //   this.setState({ reState: '' })
-
-  //   if (!statusErrInfo && !statusErrAddr && !statusErrEmer && !statusErrParent && !statusErrAllergy && !statusErrPrivilege) {
-  //     this.showPopupConfirm()
-  //   }
-  // }
-
   showPopupConfirm = async () => {
-    console.log("showPopupConfirm",this.state.patient)
+    console.log("showPopupConfirm", this.state.patient)
     confirmPopup().then(async res => {
       if (res.value) {
         swal({
@@ -334,12 +243,10 @@ export default class ManagePatientRecord extends Component {
   }
 
   validateEdit = async (group, dataForOTP = null) => {
-    console.log("patient", this.state.patient)
-    console.log("props", this.props.patient)
     let patient = { ...this.state.patient }
     let statusChange = false;
     if (dataForOTP) {
-      console.log("newMobileNumber", this.state.patient, this.props.patient)
+      this.state.patient.newMobileNumber = this.state.patient.newMobileNumber.trim()
       if (this.state.patient.newMobileNumber && this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
         patient.mobileNumber = this.state.patient.newMobileNumber
         patient.editInfoPart4 = true;
@@ -349,76 +256,50 @@ export default class ManagePatientRecord extends Component {
       }
     }
 
+    console.log("validateEdit", this.state.patient, group)
     if (this.allField[group]) {
-      this.allField[group].map(field => {
-        if (field.field == 'email') {
-          if (this.state.patient.email != this.props.patient.newEmail) {
-            patient[field.key] = true;
-            patient.newEmail = this.state.patient.newEmail
-            this.state.patient.email = this.state.patient.newEmail
-            statusChange = true
-            return
-          }
-        }
-        if (field.field == 'password') {
-          patient[field.key] = true;
-          statusChange = true
-          return
-        }
-        if (this.state.patient[field.field] && this.state.patient[field.field] != this.props.patient[field.field]) {
-          console.log("change", field.field)
+      let tmp = this.allField[group].filter(field => {
+        if ((this.state.patient[field.field] && field.required || !field.required ||
+          group == 'emer' && this.state.patient[field.field] != '-' && field.required
+          ) && this.state.patient[field.field] != this.props.patient[field.field]) {
           patient[field.field] = this.state.patient[field.field]
           patient[field.key] = true;
           statusChange = true
-          return
+        } else if (field.required && !this.state.patient[field.field] || 
+          group == 'emer' && this.state.patient[field.field] == '-' && field.required){
+          this.state.errorField[field.field] = true;
+          return field
         }
       })
+      this.setState({ errorField: this.state.errorField })
+      if (tmp.length > 0) {
+        return false
+      }else if (this.state.errorInfo.length > 0 || this.state.errorAddr.length > 0 || this.state.errorEmer.length > 0 ||
+        this.state.errorParent.length > 0 || this.state.errorAllergy.length > 0 || this.state.errorVerify.length > 0) {
+        errorPopup("Please fill in the information correctly.")
+        return false
+      }
+      if (statusChange) {
+        this.showPopupConfirmEdit(patient, group);
+      }
+      return true
     }
-    if (statusChange) {
-      this.showPopupConfirmEdit(patient, group);
-    }
-
-
-
-
-
-
-    // let patient = { ...this.props.patient }
-    // let statusChange = false;
-    // console.log("--Before--")
-    // console.log(this.props.patient, this.state.patient)
-    // console.log("---------")
-    // let arr = [];
-    // if (dataForOTP) {
-    //   console.log("newMobileNumber", this.state.patient, this.props.patient)
-    //   if (this.state.patient.newMobileNumber && this.state.patient.newMobileNumber != this.props.patient.mobileNumber) {
-    //     patient.mobileNumber = this.state.patient.mobileNumber
-    //     // this.state.patient.editInfoPart4 = true;
-    //     patient.editInfoPart4 = true;
-    //     console.log("patient", patient, this.props.patient, this.state.patient)
-    //     statusChange = true
-    //     this.submitValidateOTP(patient, { ...{ group: group }, ...dataForOTP })
-    //     return
-    //   }
+    console.log(this.state.patient)
+    // if (statusChange) {
+    //   this.showPopupConfirmEdit(patient, group);
     // }
+
     // if (this.allField[group]) {
     //   this.allField[group].map(field => {
-    //     debugger
-    //     // if (this.state.patient[field.field] != '-' && group === 'emer' ){
-    //     if (this.state.patient[field.field] && this.state.patient[field.field] != '') {
-    //       if (this.state.patient[field.field] != this.props.patient[field.field]) {
-    //         console.log("change", field.field)
-    //         patient[field.field] = this.state.patient[field.field]
-    //         // this.state.patient[field.key] = true;
-    //         patient[field.key] = true;
-    //         console.log("patient", patient, this.props.patient, this.state.patient)
-    //         statusChange = true
-    //         return
-    //       }
+    //     this.state.patient[field.field] = typeof this.state.patient[field.field] == 'string' ? this.state.patient[field.field].trim() : this.state.patient[field.field]
+    //     if (field.required && !this.state.patient[field.field] ||
+    //       field.field == 'allergy' && this.state.patient.allergy === 'other' ||
+    //       field.field == 'privilege' && this.state.patient.allergy === 'other' ||
+    //       field.field == 'password' && !this.state.patient.password.match(pattern.password.pattern) ||
+    //       field.field == 'email' && !this.state.patient.email.match(pattern.email.pattern)
+    //     ) {
     //       if (field.field == 'email') {
     //         if (this.state.patient.email != this.props.patient.newEmail) {
-    //           // this.state.patient[field.key] = true;
-    //           // patient.email = this.state.patient.newEmail
     //           patient[field.key] = true;
     //           patient.newEmail = this.state.patient.newEmail
     //           this.state.patient.email = this.state.patient.newEmail
@@ -426,52 +307,23 @@ export default class ManagePatientRecord extends Component {
     //           return
     //         }
     //       }
-    //     } else {
     //       if (field.field == 'password') {
-    //         // this.state.patient[field.key] = true;
     //         patient[field.key] = true;
     //         statusChange = true
     //         return
     //       }
-    //       if (field.required) {
-    //         arr.push(field.field)
+    //       if (this.state.patient[field.field] && this.state.patient[field.field] != this.props.patient[field.field]) {
+    //         patient[field.field] = this.state.patient[field.field]
+    //         patient[field.key] = true;
+    //         statusChange = true
+    //         return
     //       }
     //     }
-    //     // }
-    //     // else {
-    //     //   if (field.required) {
-    //     //     arr.push(field.field)
-    //     //   }
-    //     // }
     //   })
-    //   if (statusChange) {
-    //     console.log("--After--")
-    //     console.log(patient, this.state.patient)
-    //     console.log("---------")
-    //     let message = ""
-
-    //     if (arr.length > 0) {
-    //       if (arr.length == 1) {
-    //         message = arr[0] + " is required!"
-    //       } else if (arr.length > 1) {
-    //         arr.map((text, i) => {
-    //           if (i === arr.length - 1) {
-    //             message += text + " are required!";
-    //             return
-    //           }
-    //           message += text + ", ";
-    //         })
-    //       }
-    //       // errorPopup(message,"Invalid!")
-    //       return
-    //     }
-    //     this.showPopupConfirmEdit(patient, group);
-    //     return
-    //   } else {
-    //     return
-    //   }
     // }
-    // return
+    // if (statusChange) {
+    //   this.showPopupConfirmEdit(patient, group);
+    // }
   }
 
   processMethod = async (group, patient) => {
@@ -495,17 +347,23 @@ export default class ManagePatientRecord extends Component {
               if (res) {
                 swal.disableLoading()
                 if (res.status) {
+                  this.allField[group].map(field => {
+                    this.props.patient[field.field] = this.state.patient[field.field]
+                    if (!this.props.patient[field.field]){
+                      this.props.patient[field.field] = '-'
+                    }
+                  })
                   if (res.data.transaction) {
                     successTXPopup('You can check your profile on the profile page.', res.data.transaction).then(res => {
                       if (res) {
-                        this.props.setField("patient", { ...this.state.patient })
+                        this.props.setField("patient", this.props.patient)
                         this.setState({ editSuccess: group })
                       }
                     })
                   } else {
                     successPopup('You can check your profile on the profile page.').then(res => {
                       if (res) {
-                        this.props.setField("patient", { ...this.state.patient })
+                        this.props.setField("patient", this.props.patient)
                         this.setState({ editSuccess: group })
                       }
                     })
@@ -645,7 +503,7 @@ export default class ManagePatientRecord extends Component {
       // state.patient = patient;
       return (
         <EditProfile
-          state={{ ...this.state }}
+          state={this.state}
           setPatientDetail={this.setPatientDetail}
           setField={this.setField}
           cardType={this.state.cardType}

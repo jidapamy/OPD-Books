@@ -246,7 +246,7 @@ export default class PatientProfile extends Component {
   render() {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
-    console.log('this.state.menuFixed', this.state.menuFixed)
+    console.log("patient",this.state.patient)
     return (
       <div>
         <Visibility

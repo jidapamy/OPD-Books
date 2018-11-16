@@ -18,7 +18,7 @@ export default class CitizenIdField extends Component {
                         this.props.errorField.citizenId = true;
                     }
                     const result = setErrorMsg('citizenId', error, this.props.errorText)
-                    this.props.setField('errorInfo', result)
+                    this.props.setField(this.props.errorText, result)
                 } else {
                     this.props.setFieldAndValidate('citizenId', this.state.citizenId)
                 }
@@ -34,7 +34,7 @@ export default class CitizenIdField extends Component {
             if (this.props.errorField) {
                 this.props.errorField.citizenId = false; 
             }
-            this.props.setField('errorInfo', result)
+            this.props.setField(this.props.errorText, result)
             return true;
         }else{
             if (this.props.cardType === 'idcard') {
@@ -47,7 +47,7 @@ export default class CitizenIdField extends Component {
             this.props.errorField.citizenId = true;
         }
         const result = setErrorMsg('citizenId', error, this.props.errorText)
-        this.props.setField('errorInfo', result)
+        this.props.setField(this.props.errorText, result)
         return false;
     }
 

@@ -21,7 +21,7 @@ export default class PatientParent extends Component {
     render(){
         return (
             <div>
-                <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p>
+                <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label}. Please fill at least one of parents information</p>
                     <Form.Group widths="equal">
                         <Form.Input
                             label={patientField.fatherFirstname.label}

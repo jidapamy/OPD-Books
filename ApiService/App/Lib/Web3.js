@@ -1493,10 +1493,13 @@ const PatientRecordContract = web3.eth.contract(
 		}
 	]
 );
-const contract = PatientRecordContract.at("0xbff942ccdf87592208f1da80a2ba67a50f5bac93");
+const contract = PatientRecordContract.at("0x4941e040c5087f1dd27bc85a67124f5fa088dfe3");
 
 const defaultAccount = { to: web3.eth.accounts[0], gas: 10000000 }
 
+
+console.log('text : ',web3.fromAscii("มายมาย"))
+console.log('thai text : ', web3.toAscii("0xe21e32e22e21e32e22"))
 module.exports = {
 	web3,
 	contract,

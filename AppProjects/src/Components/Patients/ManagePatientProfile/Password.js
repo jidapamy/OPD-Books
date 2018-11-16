@@ -52,7 +52,7 @@ export default class Password extends Component {
                 result = setErrorMsgSplice('password', this.props.errorText)
                 this.props.setPatientDetail('password', this.state.password)
             }
-            this.props.setField('errorInfo', result)
+            this.props.setField(this.props.errorText, result)
         }
     }
 

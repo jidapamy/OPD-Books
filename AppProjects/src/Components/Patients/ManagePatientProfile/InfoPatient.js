@@ -18,36 +18,36 @@ import Phone from './Phone'
 export default class InfoPateint extends Component {
     state = { errorText: [] }
 
-    validateEmail = (value) => {
-        if (value.match(pattern.email.pattern)) {
-            // /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/
-            this.props.errorField.email = false
-            const result = setErrorMsgSplice('email', this.props.errorText)
-            this.props.setField('errorInfo', result)
-            return true;
-        } else {
-            this.props.errorField.email = true
-            const result = setErrorMsg('email', pattern.email.label , this.props.errorText)
-            this.props.setField('errorInfo', result)
-            return false;
-        }
-    }
+    // validateEmail = (value) => {
+    //     if (value.match(pattern.email.pattern)) {
+    //         // /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/
+    //         this.props.errorField.email = false
+    //         const result = setErrorMsgSplice('email', this.props.errorText)
+    //         this.props.setField('errorInfo', result)
+    //         return true;
+    //     } else {
+    //         this.props.errorField.email = true
+    //         const result = setErrorMsg('email', pattern.email.label , this.props.errorText)
+    //         this.props.setField('errorInfo', result)
+    //         return false;
+    //     }
+    // }
 
-    checkEmailDuplicate = async (value) => {
-        if (this.validateEmail(value)) {
-            // syntax pass
-            checkEmail(value).then(res => {
-                if (res) {
-                    let error = 'This E-mail is already exists in the system'
-                    this.props.errorField.email = true;
-                    const result = setErrorMsg('email', error, this.props.errorText)
-                    this.props.setField('errorInfo', result)
-                } else {
-                    this.props.setFieldAndValidate('email', value)
-                }
-            })
-        }
-    }
+    // checkEmailDuplicate = async (value) => {
+    //     if (this.validateEmail(value)) {
+    //         // syntax pass
+    //         checkEmail(value).then(res => {
+    //             if (res) {
+    //                 let error = 'This E-mail is already exists in the system'
+    //                 this.props.errorField.email = true;
+    //                 const result = setErrorMsg('email', error, this.props.errorText)
+    //                 this.props.setField('errorInfo', result)
+    //             } else {
+    //                 this.props.setFieldAndValidate('email', value)
+    //             }
+    //         })
+    //     }
+    // }
 
     showTag = () => {
         if (!this.props.editStatus) {

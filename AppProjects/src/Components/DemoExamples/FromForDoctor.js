@@ -56,7 +56,7 @@ export default class ShowFormNurse extends Component {
           <Button
             fluid
             color="teal"
-            content="Save on Blockhchain"
+            content="Submit"
             icon="send"
             style={{ display: "block", marginLeft: "auto", marginRight: "auto", backgroundColor: '#393d3e', color: '#FFF' }}
             onClick={() => this.showPopupConfirm()}

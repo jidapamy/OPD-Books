@@ -49,13 +49,13 @@ export default class PhoneNumber extends Component {
         if(!error.status){
             this.props.errorField[field] = false
             result = setErrorMsgSplice(field, this.props.errorText)
-            this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
+            this.props.setField(this.props.errorText, result)
         }else{
             this.props.errorField[field] = true
             result = setErrorMsg(field, error.message, this.props.errorText)
-            this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
+            this.props.setField(this.props.errorText, result)
         }
-        this.props.setField(this.props.field === 'emer' ? 'errorEmer' : 'errorInfo', result)
+        this.props.setField(this.props.errorText, result)
     }
 
     render() {

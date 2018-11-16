@@ -357,6 +357,9 @@ requestOTPwithMobile = async (mobileNumber) => {
         const res = await requestOTP(mobileNumberConvert)
         return ({ status: true, message: "SUCCESS", data: { requestId: res.requestId, mobileNumber: hideNumber } });
     } catch (err) {
+        if (err.message.status == '3'){
+            err.message.error_text = "Invalid phone number"
+        }
         if (err.message.status == '10'){
             let result = await cancelRequestOTP(err.requestId)
             if(result.status){
