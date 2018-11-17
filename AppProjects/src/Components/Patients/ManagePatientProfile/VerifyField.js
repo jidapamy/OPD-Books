@@ -310,7 +310,7 @@ export default class VerifyField extends Component {
                         <Form.Field required readOnly={this.state.sendOTP}>
                             <ReactPhoneInput
                                 disabled={this.state.sendOTP || this.state.successOTP}
-                                readOnly={this.state.sendOTP}
+                                // readOnly={this.state.sendOTP}
                                 inputStyle={{ paddingLeft: 50, height: '38px', background: this.props.errorField.mobileNumber ? '#fff6f6' : '', borderColor: this.props.errorField.mobileNumber ? '#e0b4b4' : '' }}
                                 defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
                                 value={this.state.mobileNumber}

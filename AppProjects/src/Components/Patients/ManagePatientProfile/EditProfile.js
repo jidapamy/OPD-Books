@@ -420,7 +420,8 @@ export default class EditProfile extends React.Component {
                         this.setState({
                             otp: "",
                             sendOTP: false,
-                            mobileNumber: ''
+                            requestId : '',
+                            mobileNumber: this.props.state.patient.mobileNumber
                         })
                     } else {
                         errorPopup(res.message)
@@ -675,7 +676,7 @@ export default class EditProfile extends React.Component {
                             <Form.Group widths="3">
                                 <Form.Field required>
                                     <ReactPhoneInput
-                                        readOnly={this.state.sendOTP}
+                                        disabled={this.state.sendOTP || this.state.requestId}
                                         inputStyle={{ paddingLeft: 50 }}
                                         defaultCountry={'th'} onChange={(e) => this.setState({ mobileNumber: e })}
                                         value={this.state.mobileNumber}

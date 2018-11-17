@@ -32,17 +32,21 @@ export default class OTPfactor extends React.Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        this.setState({ pin: "" })
-        this.refs[1].focus();
+        if(!nextProps.pin){
+            console.log("clear")
+            this.setState({
+                pin1: '',
+                pin2: '',
+                pin3: '',
+                pin4: ''
+            })
+            this.refs[1].focus();
+        }
     }
 
     render() {
         return (
-            // <Dimmer.Dimmable blurring dimmed={this.state.loader}>
-            //     <Dimmer page active={this.state.loader}>
-            //         <Loader indeterminate size='massive'>Loading</Loader>
-            //     </Dimmer>
-
+            <Dimmer.Dimmable blurring dimmed={this.props.loader}>
             <Segment >
                 <div style={{ textAlign: 'right', fontSize: '18px', color: '#d33', cursor: 'pointer' }}
                     onClick={() => this.props.cancelRequestOTP(this.props.requestId)}
@@ -135,6 +139,7 @@ export default class OTPfactor extends React.Component {
                 </Container>
                 <br />
             </Segment>
+            </Dimmer.Dimmable>
         )
 
     }

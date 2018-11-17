@@ -21,6 +21,7 @@ export const errorPopup = (text,title=null) => (
         text: text,
         showConfirmButton: false,
         showCloseButton: true,
+        focusConfirm: false,
     })
 )
 

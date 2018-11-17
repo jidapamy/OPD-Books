@@ -414,10 +414,9 @@ export default class HomeOnMobile extends React.Component {
                     </Segment>
                     <Segment
                         inverted
-                        color="teal"
                         tertiary
                         vertical
-                        style={{ padding: "2em 0em" }}
+                        style={{ padding: "2em 0em", backgroundColor: '#31A5BA'}}
                     >
                         <Container>
                             <Grid divided inverted stackable>

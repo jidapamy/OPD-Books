@@ -49,13 +49,14 @@ export default class Document extends Component {
        
         <Dimmer page active={this.state.loader}>
             <Loader size='massive' indeterminate>Loading</Loader>
-          </Dimmer>
+        </Dimmer>
         
         {this.showPage()}
         <FooterDemo
             history={this.props.history}
             chooseTab={this.chooseTab}
             tab={this.state.activeTab}
+            loader={this.state.loader}
         />
         {/* </Dimmer.Dimmable> */}
 

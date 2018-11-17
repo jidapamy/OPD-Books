@@ -83,9 +83,6 @@ class Registration extends Component {
   closeOTP = () => { this.cancelRequestOTP(this.state.requestId) }
   scanQRCode = citizenId => {
     // this.setState({ openOTP: true })
-
-
-
     // Decrypt
     if (citizenId) {
       checkPatientFromDB(citizenId).then(async boolean => {
@@ -171,32 +168,28 @@ class Registration extends Component {
       citizenId: this.state.citizenIdSearch
     }
     // this.props.setField("loader", true)
-    this.setState({ loader: true })
-    getPatientWithOTP(data).then(res => {
+    this.setState({ loader: true, pin: pin })
+    getPatientWithOTP(data).then( async res => {
+      await this.setState({ loader: false, pin: '' })
       // this.props.setField("loader", false)
       if (res.status) {
         this.setState({
           openOTP: false,
           openDetail: true,
           patient: res.data,
-          pin: "",
-          loader: false,
           citizenIdSearch: '',
         })
       } else {
-        this.setState({
-          pin: "",
-          loader: false,
-        })
+        console.log("validate false")
         if (res.statusCode == '17') {
           this.setState({
-            pin: "",
             openOTP: false,
             citizenIdSearch: '',
           })
         }
         errorPopup(res.message)
       }
+      // this.setState({ loader: false, pin: '' })
     })
   }
 
@@ -315,6 +308,7 @@ class Registration extends Component {
               requestOTP={this.requestOTP}
               pin={this.state.pin}
               cancelRequestOTP={this.cancelRequestOTP}
+              loader={this.state.loader}
             />
           </Modal>
 
