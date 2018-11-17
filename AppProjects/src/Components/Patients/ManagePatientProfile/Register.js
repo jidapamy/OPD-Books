@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label, Divider } from 'semantic-ui-react'
+import { Message, Header, Icon, Image, Form, Container, Modal, Button, Checkbox, Grid, Segment, Label, Divider, Visibility } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import moment from 'moment';
@@ -13,17 +13,19 @@ import PatientParent from './PatientParent'
 import Allergy from './Allergy'
 import ErrorMessage from './ErrorMessage'
 import VerifyField from './VerifyField'
+import NavBarPatient from '../../UtilsPage/NavBarPatient'
 
 
 //static
 import { Wrapper } from './../../../Static/Style/QueueCss'
+import BGLogoLogin from '../../../Static/Img/LogoLogin.svg'
 
 import { patientField, groupInfoPatientField } from "../../../Static/Data/Field"
 
 //css
 
 const ContanierTop = styled(Container)`
-    padding-top:4%;
+    padding-top:80px;
 `
 const ColorHeader = {
     color: '#31A5BA',
@@ -56,8 +58,8 @@ export default class Register extends Component {
         // errorVerify:[],
         agreement: false,
         validateStatus: false,
+        menuFixed: true 
     }
-
 
     showParent = () => {
         if (this.props.state.requiredAllParentField) {
@@ -96,10 +98,13 @@ export default class Register extends Component {
         }
     }
 
-
-
     render() {
         return (
+            <div>
+                <Visibility
+                >
+                    <NavBarPatient menuFixed={this.state.menuFixed} goToPage={this.props.goToPage} propsHistory={this.props.history} />
+                </Visibility>
             <Wrapper>
                 <ContanierTop>
                     <Header size='huge' style={ColorHeader} textAlign='center' >NEW PATIENT REGISTRATION FORM </Header>
@@ -275,6 +280,7 @@ export default class Register extends Component {
                 </ContanierTop>
                 <ScrollUpButton style={{ borderRadius: 60, backgroundColor: '#31A5BA', borderColor: '#D6F2F2', color: '#FFF' }} ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled" />
             </Wrapper>
+            </div>
         )
     }
 }

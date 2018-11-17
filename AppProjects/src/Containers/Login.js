@@ -67,7 +67,7 @@ export default class PatientRecord extends Component {
                             fluid
                             icon="user"
                             iconPosition="left"
-                            placeholder="citizenId"
+                            placeholder="Citizen Id"
                             onChange={e => this.setState({ citizenId: e.target.value })}
                             onFocus={() =>
                               this.setState({

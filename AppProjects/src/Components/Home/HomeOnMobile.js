@@ -32,6 +32,8 @@ import WOW from "wowjs";
 import "../../Static/Style/Navbar.css";
 import "../../Static/Style/HomeCss.css";
 import { Link } from "react-router-dom";
+import NavBarPatient from '../UtilsPage/NavBarPatient'
+import { UserProvider } from "../../Services/UserProvider"
 
 const GridColumn = styled(Grid.Column)`
   display: flex;
@@ -57,30 +59,29 @@ const Images = styled(Image)`
   z-index:-1;
 `;
 export default class HomeOnMobile extends React.Component {
-    state = {
-        menuFixed: false,
-        overlayFixed: false
-    };
+    // state = {
+    //     menuFixed: false,
+    //     overlayFixed: false
+    // };
 
-    stickTopMenu = () => this.setState({ menuFixed: true });
-    unStickTopMenu = () => this.setState({ menuFixed: false });
+    // stickTopMenu = () => this.setState({ menuFixed: true });
+    // unStickTopMenu = () => this.setState({ menuFixed: false });
 
     componentDidMount() {
         new WOW.WOW().init();
     }
 
-
     render() {
-        const { menuFixed } = this.state;
         return (
             <div>
                 <Segment.Group>
                     <Visibility
-                        onBottomPassed={this.stickTopMenu}
-                        onBottomVisible={this.unStickTopMenu}
+                        onBottomPassed={this.props.stickTopMenu}
+                        onBottomVisible={this.props.unStickTopMenu}
                         once={false}
                     >
-                        <Menu
+                        <NavBarPatient menuFixed={this.props.menuFixed} goToPage={this.props.goToPage} propsHistory={this.props.history} />
+                        {/* <Menu
                             color='teal'
                             size="mini"
                             pointing={true}
@@ -107,7 +108,7 @@ export default class HomeOnMobile extends React.Component {
                                             </Button>
                                 </Menu.Item>
                             </Menu.Menu>
-                        </Menu>
+                        </Menu> */}
 
                         <Images src={BGMobile} style={{ marginTop: -15 }} />
                         
@@ -148,7 +149,7 @@ export default class HomeOnMobile extends React.Component {
                                     color: '#FFFFFF'
                                     }}
                     />
-                            <Grid textAlign='center'>
+                            {!UserProvider.getUserLogin() && <Grid textAlign='center'>
                                 <Grid.Column width={4}>
                                 </Grid.Column>
                                 <Grid.Column width={8}>
@@ -162,7 +163,7 @@ export default class HomeOnMobile extends React.Component {
                                 </Grid.Column>
                                 <Grid.Column width={4}>
                                 </Grid.Column>
-                            </Grid>
+                            </Grid>}
                         </Contents>
                         <br />
                     </Visibility>
@@ -348,7 +349,7 @@ export default class HomeOnMobile extends React.Component {
                             as="h5"
                             style={{ fontSize: "2em", paddingBottom: "3%" }}
                         >
-                            MEMBER
+                            MEMBERS
             </HeaderCenter>
                         <Grid columns="equal" stackable width={4}>
                             <Grid.Row textAlign="center">

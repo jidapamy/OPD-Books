@@ -131,6 +131,14 @@ export default class VerifyField extends Component {
                                 mobileNumber: data.mobileNumber
                             });
                         } else {
+                            if (res.message.indexOf("re-deliver")) {
+                                console.log("!!re-deliver")
+                                this.setState({
+                                    otp: "",
+                                    sendOTP: false,
+                                    mobileNumber: ''
+                                })
+                            }
                             errorPopup(res.message)
                         }
                     })
@@ -156,6 +164,14 @@ export default class VerifyField extends Component {
                             mobileNumber: ''
                         })
                     } else {
+                        if (res.message.indexOf("re-deliver")) {
+                            console.log("!!re-deliver")
+                            this.setState({
+                                otp: "",
+                                sendOTP: false,
+                                mobileNumber: ''
+                            })
+                        }
                         errorPopup(res.message)
                     }
                 })

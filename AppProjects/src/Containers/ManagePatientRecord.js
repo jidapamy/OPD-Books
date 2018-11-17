@@ -259,14 +259,29 @@ export default class ManagePatientRecord extends Component {
     console.log("validateEdit", this.state.patient, group)
     if (this.allField[group]) {
       let tmp = this.allField[group].filter(field => {
-        if ((this.state.patient[field.field] && field.required || !field.required ||
-          group == 'emer' && this.state.patient[field.field] != '-' && field.required
-          ) && this.state.patient[field.field] != this.props.patient[field.field]) {
+        if (field.field == 'email') {
+          if (this.state.patient.email != this.props.patient.newEmail) {
+            patient[field.key] = true;
+            patient.newEmail = this.state.patient.newEmail
+            this.state.patient.email = this.state.patient.newEmail
+            statusChange = true
+            return
+          }
+        }
+        if (field.field == 'password') {
+          patient[field.key] = true;
+          statusChange = true
+          return
+        }
+
+        if ((this.state.patient[field.field] && field.required ||
+          !field.required || group == 'emer' && this.state.patient[field.field] != '-' && field.required
+        ) && this.state.patient[field.field] != this.props.patient[field.field]) {
           patient[field.field] = this.state.patient[field.field]
           patient[field.key] = true;
           statusChange = true
-        } else if (field.required && !this.state.patient[field.field] || 
-          group == 'emer' && this.state.patient[field.field] == '-' && field.required){
+        } else if (field.required && !this.state.patient[field.field] ||
+          group == 'emer' && this.state.patient[field.field] == '-' && field.required) {
           this.state.errorField[field.field] = true;
           return field
         }
@@ -274,7 +289,7 @@ export default class ManagePatientRecord extends Component {
       this.setState({ errorField: this.state.errorField })
       if (tmp.length > 0) {
         return false
-      }else if (this.state.errorInfo.length > 0 || this.state.errorAddr.length > 0 || this.state.errorEmer.length > 0 ||
+      } else if (this.state.errorInfo.length > 0 || this.state.errorAddr.length > 0 || this.state.errorEmer.length > 0 ||
         this.state.errorParent.length > 0 || this.state.errorAllergy.length > 0 || this.state.errorVerify.length > 0) {
         errorPopup("Please fill in the information correctly.")
         return false
@@ -349,7 +364,7 @@ export default class ManagePatientRecord extends Component {
                 if (res.status) {
                   this.allField[group].map(field => {
                     this.props.patient[field.field] = this.state.patient[field.field]
-                    if (!this.props.patient[field.field]){
+                    if (!this.props.patient[field.field]) {
                       this.props.patient[field.field] = '-'
                     }
                   })
@@ -485,6 +500,11 @@ export default class ManagePatientRecord extends Component {
     }
   }
 
+  goToPage = (path) => {
+    this.props.history.push({
+      pathname: path,
+    });
+  }
 
   render() {
     if (this.props.editStatus) {
@@ -516,6 +536,7 @@ export default class ManagePatientRecord extends Component {
     }
     return (
       <Register
+        goToPage={this.goToPage}
         state={this.state}
         setPatientDetail={this.setPatientDetail}
         setField={this.setField}

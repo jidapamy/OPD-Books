@@ -244,7 +244,7 @@ export default class ForgotPassword extends Component {
                     this.setState({
                         pin: "",
                         openSMSOTP: false,
-                        citizenIdSearch: '',
+                        citizenId: '',
                     })
                 }
                 errorPopup(res.message)
@@ -271,6 +271,13 @@ export default class ForgotPassword extends Component {
                     pin: "",
                     loader: false,
                 })
+                if (res.message.indexOf("re-deliver")) {
+                    console.log("!!re-deliver")
+                    this.setState({
+                        openSMSOTP: false,
+                        citizenId: '',
+                    })
+                }
                 errorPopup(res.message)
             }
         })
@@ -281,11 +288,18 @@ export default class ForgotPassword extends Component {
             if (res.status) {
                 this.setState({
                     openSMSOTP: false,
-                    openDetail: false,
                     pin: "",
-                    citizenIdSearch: '',
+                    citizenId: '',
                 })
             } else {
+                if (res.message.indexOf("re-deliver")) {
+                    console.log("!!re-deliver")
+                    this.setState({
+                        openSMSOTP: false,
+                        pin: "",
+                        citizenId: '',
+                    })
+                }
                 errorPopup(res.message)
             }
         })

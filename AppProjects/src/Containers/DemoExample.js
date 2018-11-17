@@ -58,8 +58,8 @@ export default class DemoExample extends React.Component {
         historyTreatment: [],
         historyMsg: "",
         resetState: false,
-        choosePatient : {},
-        statusPatientInBC:false
+        choosePatient: {},
+        statusPatientInBC: false
     }
 
     setMedicalRecordDetail = (obj) => {
@@ -70,15 +70,23 @@ export default class DemoExample extends React.Component {
         this.setState({ resetState: false })
         let mdr = { ...this.state.medicalRecord, ...obj, ...{ patientCitizenId: this.state.patient.citizenId }, ...this.state.choosePatient }
         mdr.date = moment(mdr.date).format("l")
-        console.log("mdr",mdr)
-        confirmPopup(this.state.empPosition === 4 && this.state.statusPatientInBC ? 'Treatment of patient will save on the blockchain system. Please check that your information is correct and true.': null).then(res => {
+        console.log("mdr", mdr)
+        confirmPopup(this.state.empPosition === 4 && this.state.statusPatientInBC ? 'Treatment of patient will save on the blockchain system. Please check that your information is correct and true.' : null).then(res => {
             if (res.value) {
                 if (this.state.empPosition === 2) {
                     return this.sendToDoctor(mdr);
                 } else if (this.state.empPosition === 3) {
                     this.sendToPharmacy(mdr);
-                } else  if (this.state.empPosition === 4 ){
-                    this.saveMdrOnBlockchain(mdr)
+                } else if (this.state.empPosition === 4) {
+                    if (this.state.statusPatientInBC) {
+                        this.saveMdrOnBlockchain(mdr)
+                    } else {
+                        updateQueueFromDB(this.state.choosePatient.queueId, this.state.empPosition).then(() => {
+                            successPopup('Patient information is recorded on database successfully.').then(res => {
+                                this.resetState()
+                            })
+                        })
+                    }
                 }
             }
         })
@@ -207,10 +215,10 @@ export default class DemoExample extends React.Component {
                 empPosition={empPosition}
                 showPopupConfirm={this.showPopupConfirm}
                 tab={this.state.tab}
-                medicalRecord={this.state.medicalRecord} 
+                medicalRecord={this.state.medicalRecord}
                 resetState={this.state.resetState}
                 setField={this.setField}
-                />
+            />
         }
         return ""
     }
@@ -294,8 +302,8 @@ export default class DemoExample extends React.Component {
                 clinic: "SIT KMUTT Clinic",
                 treatmentYear: new Date().getFullYear()
             },
-            historyTreatment:[],
-            historyMsg:''
+            historyTreatment: [],
+            historyMsg: ''
         })
     }
 
@@ -312,17 +320,20 @@ export default class DemoExample extends React.Component {
                 getPatientFromDB(citizenId).then(async data => {
                     console.log("data", data)
                     if (data.status) {
-                        if (await checkIdcard(citizenId)){
+                        await this.getMedicalRecordFromDB(this.state.choosePatient.mdrId)
+                        this.setState({
+                            patient: data.data,
+                            tab: 0,
+                        });
+                        if (await checkIdcard(citizenId)) {
+                            // in blockchain
                             await this.getTreatmentHistory(citizenId)
-                            await this.getMedicalRecordFromDB(this.state.choosePatient.mdrId)
+                            this.setState({ statusPatientInBC: true });
+                        } else {
                             this.setState({
-                                patient: data.data,
-                                statusPatientInBC: true
-                                // loader: false,
-                            });
-                        }else{
-                            this.setState({
-                                statusPatientInBC : false
+                                statusPatientInBC: false,
+                                historyTreatment: [],
+                                historyMsg: "",
                             });
                         }
                     } else {
@@ -341,7 +352,7 @@ export default class DemoExample extends React.Component {
         if (this.state.empPosition === 3) { // หมอ
             try {
                 let history = await getTreatmentHistoryOfPatient(citizenId)
-                console.log("getTreatmentHistory",history)
+                console.log("getTreatmentHistory", history)
                 if (history.status) {
                     this.setState({
                         historyTreatment: history.data,
@@ -375,7 +386,7 @@ export default class DemoExample extends React.Component {
                 console.log("CATCH ", error)
                 errorPopup(error)
             }
-        }else if(this.state.empPosition === 4 ){
+        } else if (this.state.empPosition === 4) {
             try {
                 let medicalRecord = await getMedicalRecordFromDB(mdrId);
                 console.log(medicalRecord)
@@ -529,9 +540,9 @@ export default class DemoExample extends React.Component {
                                 value={this.state.id} />
                         </Form> */}
                         <br />
-                        <NavbarQueues 
-                            empPosition={this.state.empPosition} 
-                            getPatientData={this.getPatientData} 
+                        <NavbarQueues
+                            empPosition={this.state.empPosition}
+                            getPatientData={this.getPatientData}
                             setField={this.setField}
                             choosePatient={this.state.choosePatient}
                         />

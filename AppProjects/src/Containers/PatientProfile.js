@@ -18,6 +18,7 @@ import NavBarPatient from '../Components/UtilsPage/NavBarPatient'
 //components
 import HeaderPatient from "../Components/Patients/Profile/HeaderPatient"
 //static
+import BGLogoLogin from '../Static/Img/LogoLogin.svg'
 import BackgroundImage from "../Static/Img/BGGs.png";
 import { Link } from "react-router-dom";
 //service
@@ -110,11 +111,15 @@ export default class PatientProfile extends Component {
           patient={this.state.patient}
           historyTreatment={this.state.historyTreatment}
           historyMsg={this.state.historyMsg}
-          setField={this.setField} />
+          setField={this.setField}
+          viewMedicalRecord={this.viewMedicalRecord}
+          sortMedicalRecord={this.sortMedicalRecord}
+        />
       } else if (this.state.statusShowHistory == false) {
-        return <span><Icon name='arrow left' size='big' onClick={this.setStateHistory} /><MedicalPatient
-          chooseMedicalRecord={this.state.chooseMedicalRecord}
-        /></span>
+        return <span>
+          <Icon name='arrow left' size='big' onClick={() => this.setState({ statusShowHistory: true })} />
+          <MedicalPatient chooseMedicalRecord={this.state.chooseMedicalRecord} />
+        </span>
       }
     }
   }
@@ -135,7 +140,6 @@ export default class PatientProfile extends Component {
     }
     return <InfoPatientMobile patient={this.state.patient} />
   }
-  setStateHistory = () => this.setState({ statusShowHistory: true });
   stickTopMenu = () => {
     // เลื่อนลง onBottomPassed
     console.log("onBottomPassed + เลื่อนลง true ")
@@ -172,7 +176,7 @@ export default class PatientProfile extends Component {
       this.props.history.push("/signin");
       return
     }
-    console.log("componentDidMount Patient")
+    console.log("componentDidMount Patient", this.props.location.pathname )
     // this.setState(this.props.location.state)
     let citizenId = UserProvider.getUserLogin().citizenId
     if(citizenId){
@@ -240,6 +244,10 @@ export default class PatientProfile extends Component {
     });
   }
 
+  logout = () => {
+    UserProvider.setUserLogin(undefined)
+    this.goToPage('/')
+  }
 
 
 
@@ -249,24 +257,24 @@ export default class PatientProfile extends Component {
     console.log("patient",this.state.patient)
     return (
       <div>
-        <Visibility
-          onBottomPassed={this.stickTopMenu}
-          onBottomVisible={this.unStickTopMenu}
-          once={false}
-        >
-          <NavBarPatient 
-            menuFixed={true} 
-            loader={this.state.loader} 
-            goToPage={this.goToPage} 
-            propsHistory={this.props.history}
-            setField={this.setField}
-            />
-        </Visibility>
         <Dimmer.Dimmable blurring dimmed={this.state.loader}>
           <Dimmer page active={this.state.loader}>
             <Loader indeterminate size='massive'>Loading</Loader>
           </Dimmer>
           <Responsive {...Responsive.onlyComputer} minWidth={1023}>
+            <Visibility
+              onBottomPassed={this.stickTopMenu}
+              onBottomVisible={this.unStickTopMenu}
+              once={false}
+            >
+              <NavBarPatient
+                menuFixed={true}
+                loader={this.state.loader}
+                goToPage={this.goToPage}
+                propsHistory={this.props.history}
+                setField={this.setField}
+              />
+            </Visibility>
             <BG>
               {/* <EditProfile /> */}
               <Segment style={{ marginTop: '60.17px' }}>
@@ -358,11 +366,13 @@ export default class PatientProfile extends Component {
                   <Menu.Item style={{ borderColor: 'rgba(255,255,255,10)' }} onClick={() => this.handleToggle()}>
                     <Icon size="big" name='bars' style={{ color: 'black' }} />
                   </Menu.Item>
-                  <Menu.Item textAlign='Center' style={{ borderColor: 'rgba(255,255,255,10)' }} position='right'>
-                    <Image size='mini' src={LogoWebpage}  />
-                    <span style={{ fontSize: "2em", color: "#31A5BA", fontWeight: 900 }}>
-                      OPD BOOKS
-                  </span>
+                  <Menu.Item 
+                    textAlign='Center' 
+                    style={{ borderColor: 'rgba(255,255,255,10)', width: '100%' }} 
+                    position='center'
+                    onClick={()=> this.goToPage('/') } 
+                  >
+                    <Image size='small' src={BGLogoLogin} centered/>
                   </Menu.Item>
                 </Boderhide>
               </Menu>
@@ -370,8 +380,8 @@ export default class PatientProfile extends Component {
             <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
               <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
                 <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false, showEditPage: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
-                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history' /> History</Menu.Item>
-                <Link to="/" ><Menu.Item as='a'  ><Icon name='log out' /> Logout</Menu.Item></Link>
+                <Menu.Item as='a' onClick={() => { this.setState({ menuTab: 1, sidebarOpened: false, statusShowHistory: true }) }}><Icon name='history'/> History</Menu.Item>
+                <Menu.Item as='a' onClick={() => this.logout()} ><Icon name='log out'/> Logout</Menu.Item>
               </Sidebar>
               <Sidebar.Pusher
                 dimmed={sidebarOpened}
@@ -381,7 +391,6 @@ export default class PatientProfile extends Component {
                 {this.menuTab()}
               </Sidebar.Pusher>
             </Sidebar.Pushable>
-
           </Responsive>
         </Dimmer.Dimmable>  
       </div>

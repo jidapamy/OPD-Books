@@ -107,7 +107,7 @@ export default class EditProfile extends React.Component {
                 errorPassword: false,
                 passwordConfirmEmail: '',
                 errorEmail: false,
-                mobileNumber: '',
+                mobileNumber: this.props.state.patient.mobileNumber,
                 otp: ''
             })
         }
@@ -395,9 +395,17 @@ export default class EditProfile extends React.Component {
                                 requestId: res.data.requestId,
                                 mobileNumberbind: res.data.mobileNumber,
                                 sendOTP: true,
-                                mobileNumber: data.mobileNumber
                             });
                         } else {
+                            if (res.message.indexOf("re-deliver")) {
+                                console.log("!!re-deliver")
+                                this.setState({
+                                    otp: "",
+                                    sendOTP: false,
+                                    requestId: '',
+                                    mobileNumber: this.props.state.patient.mobileNumber
+                                })
+                            }
                             errorPopup(res.message)
                         }
                     })
@@ -424,6 +432,15 @@ export default class EditProfile extends React.Component {
                             mobileNumber: this.props.state.patient.mobileNumber
                         })
                     } else {
+                        if (res.message.indexOf("re-deliver")) {
+                            console.log("!!re-deliver")
+                            this.setState({
+                                otp: "",
+                                sendOTP: false,
+                                requestId: '',
+                                mobileNumber: this.props.state.patient.mobileNumber
+                            })
+                        }
                         errorPopup(res.message)
                     }
                 })

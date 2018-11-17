@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Visibility, Menu, Header, Button, Image, Dimmer, Loader, Dropdown, Icon } from "semantic-ui-react";
+import { Visibility, Menu, Header, Button, Image, Dimmer, Loader, Dropdown, Icon, Responsive } from "semantic-ui-react";
 import LogoWebpage from "../../Static/Img/logoWebpage.svg";
 import BGLogoLogin from '../../Static/Img/LogoLogin.svg'
 
@@ -21,8 +21,8 @@ const menuStyle = {
 };
 
 export default class NavBarPatient extends Component {
-    state={
-        menuFixed:false,
+    state = {
+        menuFixed: false,
     }
 
     stickTopMenu = () => {
@@ -42,8 +42,8 @@ export default class NavBarPatient extends Component {
     }
 
     userStatus = (menuFixed) => {
-        if (UserProvider.getUserLogin()){
-            if (this.props.propsHistory.location.pathname == "/"){
+        if (UserProvider.getUserLogin()) {
+            if (this.props.propsHistory.location.pathname !== "/profile") {
                 return <span style={{ display: 'flex' }}>
                     <Menu.Item>
                         <Button
@@ -66,7 +66,7 @@ export default class NavBarPatient extends Component {
                 <Menu.Item>
                     <Button onClick={() => this.logout()} color='google plus'>Sign out &nbsp;&nbsp; <Icon name='sign-out' /></Button>
                 </Menu.Item>
-                </span>
+            </span>
         }
         return <span style={{ display: 'flex' }}>
             <Menu.Item>
@@ -96,21 +96,51 @@ export default class NavBarPatient extends Component {
         </span>
     }
 
-    render(){
+    userStatusOnMobile = (menuFixed) => {
+        if (UserProvider.getUserLogin()) {
+            // if (this.props.propsHistory.location.pathname == "/") {
+                return <span style={{ display: 'flex' }}>
+                    <Dropdown item text={UserProvider.getUserLogin().firstname + ' ' + UserProvider.getUserLogin().lastname} >
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => this.props.goToPage('/profile')} > 
+                                <Icon name='user' /> &nbsp;&nbsp; View Profile
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.logout()} >
+                                <Icon name='sign-out' /> &nbsp;&nbsp; Sign out
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </span>
+            // }
+        }
+        return <span style={{ display: 'flex' }}>
+            <Menu.Item>
+                <Button
+                    // color={!menuFixed ? '' : ''}
+                    // inverted={!menuFixed}
+                    onClick={() => this.props.goToPage('/signin')}>
+                    Sign In
+                                </Button>
+            </Menu.Item>
+            <Menu.Item>
+                <Button
+                    style={{ backgroundColor: '#31A5BA', color: '#FFF' }}
+                    // inverted={!menuFixed}
+                    onClick={() => this.props.goToPage('/signup')}>
+                    Sign Up
+                                </Button>
+            </Menu.Item>
+        </span>
+    }
+
+    render() {
         let menuFixed = this.props.menuFixed
         let loader = this.props.loader
-        console.log("propsHistory",this.props.propsHistory)
+        console.log("propsHistory", this.props.propsHistory)
         return (
-            <Dimmer.Dimmable blurring dimmed={loader}>
-                {/* <Dimmer page active={loader}>
-                    <Loader indeterminate size='massive'>Loading</Loader>
-                </Dimmer> */}
-
-                {/* <Visibility
-                    onBottomPassed={this.stickTopMenu}
-                    onBottomVisible={this.unStickTopMenu}
-                    once={false}
-                >  */}
+            <div>
+                <Responsive {...Responsive.onlyComputer} minWidth={Responsive.onlyTablet.minWidth}> 
+                    <Dimmer.Dimmable blurring dimmed={loader}>
                     <Menu
                         size='large'
                         pointing={true}
@@ -120,47 +150,50 @@ export default class NavBarPatient extends Component {
                         style={menuFixed ? fixedMenuStyle : menuStyle}
                         style={{ border: "0px" }}
                     >
-                        <Menu.Item  onClick={() => this.props.goToPage('/')}>
-                        <Image size='small' src={BGLogoLogin} />
+                        <Menu.Item onClick={() => this.props.goToPage('/')}>
+                            <Image size='small' src={BGLogoLogin} />
                         </Menu.Item>
                         <Menu.Menu position="right">
-                        {this.userStatus(menuFixed)}
-                            {/* <Dropdown item text={'Name Surname'} >
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => this.setState({ showEditPage : true })} ><Icon name='setting'></Icon>Edit Profile</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Menu.Item>
-                                <Button onClick={() => this.goToPage('/')} color='google plus'>Logout</Button>
-                            </Menu.Item> */}
+                            {this.userStatus(menuFixed)}
+                        </Menu.Menu>
+                    </Menu>
+                    </Dimmer.Dimmable>
+                </Responsive>
+                <Responsive {...Responsive.onlyMobile}>
+                    <Dimmer.Dimmable blurring dimmed={loader}>
+                    <Menu
+                        color='teal'
+                        size="mini"
+                        pointing={true}
+                        borderless={true}
+                        fixed={menuFixed && "top"}
+                        style={{ border: "0px" }}
+                    >
+                        <Menu.Item onClick={() => this.props.goToPage('/')}>
+                            <Image size='small' src={BGLogoLogin} />
+                        </Menu.Item>
+
+                        <Menu.Menu position="right">
+                            {this.userStatusOnMobile(menuFixed)}
                             {/* <Menu.Item>
-                                <Header     
-                                    style={{ cursor: 'pointer' }} 
-                                    inverted={!menuFixed} 
-                                    onClick={() => this.props.goToPage('/apiDocument')}>
-                                    API Document
-                                </Header>
-                            </Menu.Item>
-                            <Menu.Item>
-                                <Button 
-                                    color={!menuFixed ? '' : ''} 
-                                    inverted={!menuFixed} 
-                                    onClick={() => this.props.goToPage('/signin')}>
+                                <Button color='teal' basic onClick={() => this.props.goToPage('/signin')}>
                                     Sign In
-                                </Button>
+                                            </Button>
                             </Menu.Item>
                             <Menu.Item>
-                                <Button 
-                                    style={{ backgroundColor: !menuFixed ? '' : '#31A5BA' }}
-                                    inverted={!menuFixed} 
-                                    onClick={() => this.props.goToPage('/signup')}>
-                                        Sign Up
+                                <Button color='teal' onClick={() => this.props.goToPage('/signup')}>
+                                    Sign Up
                                 </Button>
                             </Menu.Item> */}
                         </Menu.Menu>
                     </Menu>
-                    {/* </Visibility> */}
-            </Dimmer.Dimmable>
-        )
-    }
+                    </Dimmer.Dimmable>
+                </Responsive>
+                </div>
+
+
+
+
+                    )
+                }
 }

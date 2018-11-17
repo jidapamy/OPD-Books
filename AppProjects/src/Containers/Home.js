@@ -495,6 +495,10 @@ export default class Home extends React.Component {
   
         <Responsive {...Responsive.onlyMobile}>
           <HomeOnMobile 
+            stickTopMenu={this.stickTopMenu}
+            unStickTopMenu={this.unStickTopMenu}
+            menuFixed={this.state.menuFixed}
+            history={this.props.history}
             goToPage={this.goToPage}
           />
         </Responsive>

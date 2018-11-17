@@ -85,11 +85,11 @@ class Registration extends Component {
     // this.setState({ openOTP: true })
     // Decrypt
     if (citizenId) {
+      this.setState({ openScan: false, loader : true })
       checkPatientFromDB(citizenId).then(async boolean => {
         this.setState({ duplicatePatient: boolean })
         if(boolean){
            // มี >> Show patient เลย
-          this.setState({ loader: true })
           getPatientFromDB(citizenId).then(async data => {
             this.setState({ loader: false })
             if (data.status) {
@@ -104,6 +104,7 @@ class Registration extends Component {
           })
         }else{
           // ไม่มีใน db
+          this.setState({ loader: false })
           if(await checkIdcard(citizenId)){
             confirmPopup("Do you want to retrieve patient information from the blockchain system ?", "No patient in the system").then(res => {
               if (res.value) {
@@ -112,7 +113,6 @@ class Registration extends Component {
             })
           }else{
             errorPopup("No patient in the system")
-            this.setState({ loader: false })
           }
         }
       })
@@ -210,6 +210,12 @@ class Registration extends Component {
           openOTP: true,
         });
       } else {
+        if (res.message.indexOf("re-deliver")){
+          console.log("!!re-deliver")
+          this.setState({
+            openOTP: false,
+          })
+        }
         this.setState({
           pin: "",
           loader: false 
@@ -229,6 +235,12 @@ class Registration extends Component {
           citizenIdSearch: '',
         })
       } else {
+        if (res.message.indexOf("re-deliver")) {
+          console.log("!!re-deliver")
+          this.setState({
+            openOTP: false,
+          })
+        }
         errorPopup(res.message)
         this.setState({ loader: false })
       }
