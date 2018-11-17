@@ -28,7 +28,7 @@ import {
     insertMDR
 } from "../Services/MedicalRecordMethod";
 
-import { getInfoPatient } from '../Services/ManagePatientMethod'
+import { getInfoPatient, checkIdcard } from '../Services/ManagePatientMethod'
 import {
     addMedicalRecordForNurseFromDB, updateMedicalRecordFromDB, checkPatientFromDB, getPatientFromDB,
     addPatientFromDB, getMedicalRecordFromDB, updateQueueFromDB, getMedicalRecordForNurseFromDB, addMedicalRecordForDoctorFromDB
@@ -58,7 +58,8 @@ export default class DemoExample extends React.Component {
         historyTreatment: [],
         historyMsg: "",
         resetState: false,
-        choosePatient : {}
+        choosePatient : {},
+        statusPatientInBC:false
     }
 
     setMedicalRecordDetail = (obj) => {
@@ -70,7 +71,7 @@ export default class DemoExample extends React.Component {
         let mdr = { ...this.state.medicalRecord, ...obj, ...{ patientCitizenId: this.state.patient.citizenId }, ...this.state.choosePatient }
         mdr.date = moment(mdr.date).format("l")
         console.log("mdr",mdr)
-        confirmPopup(this.state.empPosition === 4 ? 'Treatment of patient will save on the blockchain system. Please check that your information is correct and true.': null).then(res => {
+        confirmPopup(this.state.empPosition === 4 && this.state.statusPatientInBC ? 'Treatment of patient will save on the blockchain system. Please check that your information is correct and true.': null).then(res => {
             if (res.value) {
                 if (this.state.empPosition === 2) {
                     return this.sendToDoctor(mdr);
@@ -225,9 +226,7 @@ export default class DemoExample extends React.Component {
     }
 
     showTabMenu = (empPosition) => {
-        if (empPosition === 2) {
-            return ""
-        } else if (empPosition === 3) {
+        if (empPosition === 3) {
             return <Menu pointing secondary>
                 <Menu.Item name='Treatment of nurse'
                     active={this.state.tab == 0}
@@ -244,10 +243,7 @@ export default class DemoExample extends React.Component {
                     onClick={() => { this.setState({ tab: 2 }) }}
                 />
             </Menu>
-        } else if (empPosition === 4) {
-            return ""
         }
-        return ""
     }
 
     showDependOnPosition = () => {
@@ -307,8 +303,6 @@ export default class DemoExample extends React.Component {
         console.log(citizenId)
         window.scrollTo(0, 0)
         // if (await checkPatientFromDB(citizenId)) {
-
-
         // ใน db มีอยู่แล้ว เพราะต้อง add patient ลง DB ก่อนถึงจะสร้าง Queue ได้
         swal({
             title: 'System is preparing data.',
@@ -318,12 +312,19 @@ export default class DemoExample extends React.Component {
                 getPatientFromDB(citizenId).then(async data => {
                     console.log("data", data)
                     if (data.status) {
-                        await this.getTreatmentHistory(citizenId)
-                        await this.getMedicalRecordFromDB(this.state.choosePatient.mdrId)
-                        this.setState({
-                            patient: data.data,
-                            // loader: false,
-                        });
+                        if (await checkIdcard(citizenId)){
+                            await this.getTreatmentHistory(citizenId)
+                            await this.getMedicalRecordFromDB(this.state.choosePatient.mdrId)
+                            this.setState({
+                                patient: data.data,
+                                statusPatientInBC: true
+                                // loader: false,
+                            });
+                        }else{
+                            this.setState({
+                                statusPatientInBC : false
+                            });
+                        }
                     } else {
                         errorPopup(data.message)
                         // this.setLoader(false)
@@ -332,67 +333,6 @@ export default class DemoExample extends React.Component {
                 })
             }
         })
-        // } 
-        // else {
-        //     confirmPopup("Will you add this patients to database.?", "No patient in the system").then(res => {
-        //         if (res.value) {
-        //             swal({
-        //                 title: 'System is saving data.',
-        //                 html: 'Please do not close this popup.!',
-        //                 onOpen: () => {
-        //                     swal.showLoading()
-        //                     getInfoPatient(citizenId).then(async data => {
-        //                         await this.getTreatmentHistory(citizenId)
-        //                         swal.disableLoading()
-        //                         if (data.status) {
-        //                             addPatientFromDB(data.data).then(res => {
-        //                                 successPopup("Add Patient Success!").then(res => {
-        //                                     this.setState({
-        //                                         patient: data.data,
-        //                                         loader: false,
-        //                                     })
-        //                                 })
-        //                             })
-        //                         } else {
-        //                             errorPopup(data.message).then(res => {
-        //                                 this.setLoader(false)
-        //                             })
-        //                         }
-        //                     })
-        //                 }
-        //             })
-        //         } else {
-        //             confirmPopup("After this, the patient must agree to access the information by entering the patient's OTP.", "Need to retrieve patient data from Blockchain?").then(res => {
-        //                 if (res.value) {
-        //                     swal({
-        //                         title: 'System is saving data.',
-        //                         html: 'Please do not close this popup.!',
-        //                         onOpen: () => {
-        //                             swal.showLoading()
-        //                             // OTP
-        //                             getInfoPatient(citizenId).then(async data => {
-        //                                 await this.getTreatmentHistory(citizenId)
-        //                                 swal.disableLoading()
-        //                                 if (data.status) {
-        //                                     successPopup("Successful!").then(res => {
-        //                                         this.setState({
-        //                                             patient: data.data,
-        //                                             loader: false,
-        //                                         })
-        //                                     })
-        //                                 } else {
-        //                                     errorPopup(data.message).then(res => {
-        //                                         this.setLoader(false)
-        //                                     })
-        //                                 }
-        //                             })
-        //                         }
-        //                     })
-        //                 }
-        //             })
-        //         }
-        //     })
-        // }
     }
 
 

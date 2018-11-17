@@ -40,7 +40,7 @@ const getBasicDataCtr = (req, res) => {
     res.send(msg.getMsgNotFound(msg.msgVariable.citizenID));
 }
 
-const isCitizenIdCtr = (req, res) => {
+const isPatientCtr = (req, res) => {
     res.send(isPatient(req.body.citizenId))
 }
 
@@ -163,7 +163,7 @@ const validateOTPCtr = async (req, res) => {
 module.exports = {
     insertCtr,
     getCtr,
-    isCitizenIdCtr,
+    isPatientCtr,
     isEmailCtr,
     getBasicDataCtr,
     editCtr,

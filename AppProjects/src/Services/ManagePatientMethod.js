@@ -18,9 +18,6 @@ export const getPatient = async (citizenId) => {
 
 export const getInfoPatient = async (citizenId) => {
   let res = await axios.post(`/patients/getBasicData`, { citizenId: citizenId })
-  if (res.data.status) {
-    res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
-  }
   return res.data
 }
 
@@ -58,7 +55,6 @@ export const getPatientWithOTP = async (data) => {
   // validateOTP
   let res = await axios.post(`/patients/getPatientWithOTP`, data)
   if (res.data.status) {
-    res.data.data.gender = res.data.data.gender === "M" ? "Male" : "Female"
     res.data.data.age = calculateAge(res.data.data.dob)
   }
   return res.data
