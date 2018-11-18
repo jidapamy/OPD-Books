@@ -397,7 +397,7 @@ export default class EditProfile extends React.Component {
                                 sendOTP: true,
                             });
                         } else {
-                            if (res.message.indexOf("re-deliver")) {
+                            if (res.message.indexOf("re-deliver") != -1) {
                                 console.log("!!re-deliver")
                                 this.setState({
                                     otp: "",
@@ -432,7 +432,7 @@ export default class EditProfile extends React.Component {
                             mobileNumber: this.props.state.patient.mobileNumber
                         })
                     } else {
-                        if (res.message.indexOf("re-deliver")) {
+                        if (res.message.indexOf("re-deliver") != -1) {
                             console.log("!!re-deliver")
                             this.setState({
                                 otp: "",

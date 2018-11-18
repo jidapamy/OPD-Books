@@ -21,12 +21,6 @@ export const getInfoPatient = async (citizenId) => {
   return res.data
 }
 
-export const checkIdcard = async (citizenId) => {
-  let res = await axios.post(`/patients/isCitizenId`, { citizenId: citizenId })
-  console.log("checkIdcard", res.data)
-  return res.data
-}
-
 export const checkEmail = async (email) => {
   let res = await axios.post(`/patients/isEmail`, { email : email })
   return res.data
@@ -44,6 +38,29 @@ export const checkPassword = async (citizenId,password) => {
   return res.data
 }
 
+export const validateOTP = async (data) => {
+  let res = await axios.post(`/patients/validateOTP`, data)
+  return res.data
+}
+
+export const confirmChangePassword = async (patient) => {
+    let res = await axios.post(`/patients/confirmChangePassword`, patient)
+    console.log("checkPassword", res.data)
+    return res.data
+}
+
+export const forgotPasswordVerify = async (citizenId, dob, genVerificationCode = null) => {
+    console.log("forgotPasswordVerify")
+    let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob, genVerificationCode: genVerificationCode })
+    return res.data
+}
+
+// for clinic
+export const checkIdcard = async (citizenId) => {
+  let res = await axios.post(`/patients/isCitizenId`, { citizenId: citizenId })
+  console.log("checkIdcard", res.data)
+  return res.data
+}
 
 export const requestOTP = async (data) => {
   console.log("requestOTP")
@@ -62,22 +79,5 @@ export const getPatientWithOTP = async (data) => {
 
 export const cancelRequestOTP = async (requestId) => {
   let res = await axios.post(`/patients/cancelRequestOTP`, { requestId: requestId })
-  return res.data
-}
-
-export const validateOTP = async (data) => {
-  let res = await axios.post(`/patients/validateOTP`, data)
-  return res.data
-}
-
-export const confirmChangePassword = async (patient) => {
-  let res = await axios.post(`/patients/confirmChangePassword`, patient)
-  console.log("checkPassword", res.data)
-  return res.data
-}
-
-export const forgotPasswordVerify = async (citizenId, dob, genVerificationCode=null) => {
-  console.log("forgotPasswordVerify")
-  let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob, genVerificationCode: genVerificationCode })
   return res.data
 }

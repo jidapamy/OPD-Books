@@ -279,8 +279,12 @@ const insertMedicalRecord = async (medicalRecord) => {
 
         lockAccount()
         if (arrTx.length == 4) {
-            //sendemail
-            await sendEmail(medicalRecord)
+            //send email
+
+            let patientNameAndEmail = contract.getPatientNameAndEmail(convertString(medicalRecord.patientCitizenId))
+            const combindedData = bindData(patientScheme, [patientNameAndEmail], 'patientAndEmail')
+            await sendEmail(combindedData)
+            
             return { status: true, message: "SUCCESS", data: { medicalRecordId: medicalRecordId, transaction: arrTx } };
         }else{
             return { status: false, message: "ERROR" };

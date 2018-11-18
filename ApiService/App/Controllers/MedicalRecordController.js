@@ -112,9 +112,12 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
 }
 
 const insertMDRCtr = async (req, res) => {
+    console.log("insertMDRCtr",req.body)
     if (isPatient(req.body.patientCitizenId)) {
         insertMedicalRecord(req.body)
-            .then(result => { res.send(result); })
+            .then(result => { 
+                console.log(result)
+                res.send(result); })
             .catch(err => {
                 console.log(err)
                 res.send(msg.getMsgError(err.text))

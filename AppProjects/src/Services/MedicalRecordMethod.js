@@ -25,7 +25,7 @@ export const getMedicalRecordForPharmacy = async (medicalRecordId) => {
     return res.data
 };
 
-
+// for clinic
 export const getMedicalRecord = async (medicalRecordId) => {
     let res = await axios.post(`/medicalRecords/getMedicalRecord`, { medicalRecordId: medicalRecordId })
     return res.data
@@ -41,4 +41,3 @@ export const insertMDR = async (data) => {
     return res.data
 };
 
-// router.post("/insertMDR", insertMDRCtr);

@@ -218,7 +218,7 @@ class Registration extends Component {
           openOTP: true,
         });
       } else {
-        if (res.message.indexOf("re-deliver")){
+        if (res.message.indexOf("re-deliver") != -1){
           console.log("!!re-deliver")
           this.setState({
             openOTP: false,
@@ -243,7 +243,7 @@ class Registration extends Component {
           citizenIdSearch: '',
         })
       } else {
-        if (res.message.indexOf("re-deliver")) {
+        if (res.message.indexOf("re-deliver") != -1) {
           console.log("!!re-deliver")
           this.setState({
             openOTP: false,

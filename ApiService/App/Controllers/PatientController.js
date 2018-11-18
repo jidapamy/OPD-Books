@@ -91,8 +91,10 @@ const requestOTPCtr = async (req, res) => {
 }
 
 const getPatientWithOTPCtr = async (req, res) => {
+    console.log(req.body)
     if (isPatient(req.body.citizenId)) {
         const result = await getPatientWithOTP(req.body)
+        console.log("result",result)
         res.send(result)
         return;
     }
@@ -100,6 +102,7 @@ const getPatientWithOTPCtr = async (req, res) => {
 }
 
 const cancelRequestOTPCtr = async (req, res) => {
+    console.log(req.body)
     const result = await cancelRequestOTP(req.body.requestId)
     res.send(result)
 }

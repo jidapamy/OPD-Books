@@ -8,9 +8,10 @@ router.post("/setMedicalRecordForDoctor", setMRForDoctorCtr);
 router.post("/getMedicalRecordForNurse", getMRForNurseCtr);
 router.post("/getMedicalRecordForDoctor", getMRForDoctorCtr);
 router.post("/getMedicalRecordForPharmacy", getMRForPharmacyCtr);
+
+// for clinic
 router.post("/getMedicalRecord", getMedicalRecordCtr);
 router.post("/getHistoryMedicalRecord", getHistoryMedicalRecordCtr);
-
 router.post("/insertMDR", insertMDRCtr);
 
 

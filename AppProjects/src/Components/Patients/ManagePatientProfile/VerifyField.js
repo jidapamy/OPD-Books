@@ -131,7 +131,7 @@ export default class VerifyField extends Component {
                                 mobileNumber: data.mobileNumber
                             });
                         } else {
-                            if (res.message.indexOf("re-deliver")) {
+                            if (res.message.indexOf("re-deliver") != -1) {
                                 console.log("!!re-deliver")
                                 this.setState({
                                     otp: "",
@@ -164,7 +164,7 @@ export default class VerifyField extends Component {
                             mobileNumber: ''
                         })
                     } else {
-                        if (res.message.indexOf("re-deliver")) {
+                        if (res.message.indexOf("re-deliver") != -1) {
                             console.log("!!re-deliver")
                             this.setState({
                                 otp: "",
