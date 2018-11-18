@@ -140,7 +140,11 @@ class Registration extends Component {
                   citizenIdSearch: '',
                   duplicatePatient: true,
                 })
-                successPopup("Add Queue Success!")
+                if(res.status){
+                  successPopup("Add Queue Success!")
+                }else{
+                  errorPopup(res.message)
+                }
               })
             } else {
               errorPopup(res.message)
@@ -155,7 +159,11 @@ class Registration extends Component {
           citizenIdSearch: '',
           duplicatePatient: true,
         })
-        successPopup("Add Queue Success!")
+        if (res.status) {
+          successPopup("Add Queue Success!")
+        } else {
+          errorPopup(res.message)
+        }
       })
     }
   }

@@ -121,14 +121,24 @@ const addQueue = async (req, res) => {
     let vn = date.getDate() + '' + date.getMonth() + '' + date.getFullYear() + '' + date.getMinutes() + '' + ran
     // console.log(vn)
     try {
-        await knex
-            .table("Queues")
-            .insert({
-                status: req.body.status,
-                visitNumber: vn,
-                citizenId: req.body.citizenId
-            })
-        res.send(msg.getMsgSuccess())
+        let data = await knex.select()
+            .from('Queues')
+            .where("citizenId", req.body.citizenId)
+            .where('status',"!=", 5)
+        console.log("patient in queue" , data)
+        if(data.length === 0){
+            console.log('data',data)
+            await knex
+                .table("Queues")
+                .insert({
+                    status: req.body.status,
+                    visitNumber: vn,
+                    citizenId: req.body.citizenId
+                })
+            res.send(msg.getMsgSuccess())
+        }else{
+            res.send(msg.getMsgError("Cannot add queue. this patient is already in queues"))
+        }
     } catch (error) {
         res.send(msg.getMsgError(error))
     }
@@ -198,7 +208,6 @@ addMedicalRecordForNurse = async (req, res) => {
         attributesNurse.map(attr => {
             tmp[attr] = req.body[attr] ? req.body[attr] : null
         })
-        console.log("addMedicalRecordForNurse",tmp)
         await knex('InitialTreatment')
             .insert(tmp)
             .then(result => {
@@ -223,8 +232,6 @@ addMedicalRecordForNurse = async (req, res) => {
 
 
 getMedicalRecordForNurse = async (req, res) => {
-    console.log("---------------------")
-    console.log("getMedicalRecordForNurse",req.body)
     try {
         let data = await knex.select()
             .where("MedicalRecords.mdrId", req.params.mdrId)
@@ -242,11 +249,9 @@ addMedicalRecordForDoctor = async (req, res) => {
         attributesDoctor.map(attr => {
             tmp[attr] = req.body[attr] ? req.body[attr] : null
         })
-        console.log("addMedicalRecordForDoctor", req.body)
         await knex('Diagnosis')
             .insert(tmp)
             .then(async result => {
-                console.log("diagnosisId:" + result, " mdrId:" + req.body.mdrId)
                 await knex('MedicalRecords')
                     .where("mdrId", req.body.mdrId)
                     .update({

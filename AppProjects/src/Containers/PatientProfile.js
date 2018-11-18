@@ -257,11 +257,12 @@ export default class PatientProfile extends Component {
     console.log("patient",this.state.patient)
     return (
       <div>
-        <Dimmer.Dimmable blurring dimmed={this.state.loader}>
+        {/* <Dimmer.Dimmable blurring dimmed={this.state.loader}>*/}
           <Dimmer page active={this.state.loader}>
             <Loader indeterminate size='massive'>Loading</Loader>
-          </Dimmer>
+          </Dimmer> 
           <Responsive {...Responsive.onlyComputer} minWidth={1023}>
+         
             <Visibility
               onBottomPassed={this.stickTopMenu}
               onBottomVisible={this.unStickTopMenu}
@@ -275,6 +276,7 @@ export default class PatientProfile extends Component {
                 setField={this.setField}
               />
             </Visibility>
+          <Dimmer.Dimmable blurring dimmed={this.state.loader}>
             <BG>
               {/* <EditProfile /> */}
               <Segment style={{ marginTop: '60.17px' }}>
@@ -345,6 +347,7 @@ export default class PatientProfile extends Component {
               
             </Modal>
             {this.showQRCode()}
+          </Dimmer.Dimmable>
           </Responsive>
           
             <Responsive {...Responsive.onlyMobile} minWidth={0} maxWidth={1023}>
@@ -377,6 +380,7 @@ export default class PatientProfile extends Component {
                 </Boderhide>
               </Menu>
             </Visibility>
+          <Dimmer.Dimmable blurring dimmed={this.state.loader}>
             <Sidebar.Pushable style={{ backgroundColor: 'white' }}>
               <Sidebar as={Menu} animation='uncover' vertical visible={sidebarOpened}>
                 <Menu.Item color='teal' as='a' icon onClick={() => { this.setState({ menuTab: 0, sidebarOpened: false, showEditPage: false }) }}><Icon name='file alternate outline' /> Profile</Menu.Item>
@@ -391,8 +395,9 @@ export default class PatientProfile extends Component {
                 {this.menuTab()}
               </Sidebar.Pusher>
             </Sidebar.Pushable>
+            </Dimmer.Dimmable>
           </Responsive>
-        </Dimmer.Dimmable>  
+        {/* </Dimmer.Dimmable>   */}
       </div>
     )
   }
