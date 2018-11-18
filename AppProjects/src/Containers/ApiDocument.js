@@ -51,8 +51,8 @@ export default class apiDocument extends Component {
   // web
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   state = {
-    open: "Manage Patient Profile",
-    activeItem: "Insert Patient Method",
+    open: apiData[0].system,
+    activeItem: apiData[0].method[0].title,
     chooseMethod: apiData[0].method[0],
     statusJson: 1,
     activePage: '1'
@@ -182,7 +182,7 @@ export default class apiDocument extends Component {
             <Grid columns={2}>
               <Grid.Column width={8}>
                 <Header size='large' style={style.HeaderColor}>{this.state.chooseMethod.title}&nbsp;Method</Header>
-                <p style={style.apiDescription} >{this.state.chooseMethod.titleDes}</p>
+                <p style={style.apiDescription}>{this.state.chooseMethod.titleDes}</p>
                 <p style={style.apiMethodName}><b>HTTP REQUEST</b></p>
                 <Label style={style.apiMethod}><i>
                   {this.state.chooseMethod.method}&nbsp;&nbsp;{this.state.chooseMethod.path}
