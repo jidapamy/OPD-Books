@@ -85,7 +85,7 @@ class Registration extends Component {
     // this.setState({ openOTP: true })
     // Decrypt
     if (citizenId) {
-      this.setState({ openScan: false, loader : true })
+      this.setState({ openScan: false, loader: true, citizenIdSearch: citizenId })
       checkPatientFromDB(citizenId).then(async boolean => {
         this.setState({ duplicatePatient: boolean })
         if(boolean){
