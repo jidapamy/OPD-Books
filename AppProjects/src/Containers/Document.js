@@ -61,11 +61,12 @@ export default class Document extends Component {
       <Modal.Content image>
         {/* <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' /> */}
         <Modal.Description>
-          <Header>Default Clinic</Header>
-          <p>Please select the clinic you are going to treat.</p>
-          <p>Is it okay to use this clnic</p>
-          <Button color="teal">SIT Clinic</Button>
-          <Button>KMUTT Clinic</Button>
+          <p>Please select the clinic you are going to treat. Is it okay to use this clnic.</p>
+          <Button.Group fluid>
+            <Button color="teal">SIT Clinic</Button>
+            <Button.Or text='or' />
+            <Button style={{ color: '#FFF', backgroundColor:'#FA636F'}}>KMUTT Clinic</Button>
+          </Button.Group>
           <br /><br />
           <Checkbox 
             label='Remember'  
@@ -74,9 +75,7 @@ export default class Document extends Component {
             />
         </Modal.Description>
       </Modal.Content>
-      <Modal.Actions>
-        <Button positive icon='checkmark' labelPosition='right' content='Confirm' />
-      </Modal.Actions>
+      
     </Modal>
   }
 
