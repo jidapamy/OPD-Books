@@ -19,7 +19,7 @@ import styled from "styled-components";
 import { apiData } from "../Static/Data/ApiData"
 import { MySlidedown } from "../Components/ApiDocuments/Slide"
 import ReactJson from 'react-json-view'
-import { Link } from "react-router-dom";
+import { BrowserRouter,Link } from "react-router-dom";
 
 
 
@@ -87,8 +87,9 @@ export default class apiDocument extends Component {
         <MySlidedown open={this.state.open === data.system ? true : false}>
           {this.showMethod(i)}
         </MySlidedown>
-
+        
       </div>
+      
     })
     return tmp
   }
@@ -176,6 +177,11 @@ export default class apiDocument extends Component {
              <br/>
                 <Header textAlign='center' style={style.HeaderColor3}>API Documents</Header>
               {this.showData()}<br />
+              <Menu.Item style={{ backgroundColor: '#FACC2D  ' }}>
+                <Header  >
+                  <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
+                </Header>
+              </Menu.Item>
             </Menu>
           </div>
           <Body>
