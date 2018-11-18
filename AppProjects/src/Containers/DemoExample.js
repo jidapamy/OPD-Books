@@ -49,7 +49,7 @@ export default class DemoExample extends React.Component {
         medicalRecord: {
             date: moment().format("LL"),
             time: moment().format("LT"),
-            clinic: "SIT KMUTT Clinic",
+            clinic: "SIT Clinic",
             treatmentYear: new Date().getFullYear()
         },
         loader: false,

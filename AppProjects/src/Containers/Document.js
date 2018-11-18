@@ -1,20 +1,28 @@
 import React, { Component } from "react";
 import {
-  Dimmer, Loader, Menu, Button
+  Dimmer, Loader, Menu, Button, Modal, Image, Header, Checkbox
 } from "semantic-ui-react";
 import FooterDemo from '../Components/ApiDocuments/FooterDemo'
 import ApiDocument from "./ApiDocument";
 import DemoExample from "./DemoExample"
 import Registration from "../Components/DemoExamples/Registration"
+import { ClinicProvider }  from "../Services/ClinicProvider"
 
 export default class Document extends Component {
   state = {
     activeTab: "api",
-    loader: false
+    loader: false,
+    showChooseClinic : false
   }
 
   chooseTab = (tab) => {
-    this.setState({ activeTab: tab })
+    // this.setState({ activeTab: tab })
+
+    if (!ClinicProvider.getRememberClinic()) {
+      this.setState({ showChooseClinic: true, activeTab: tab })
+    } else {
+      this.setState({ showChooseClinic: false,activeTab: tab })
+    }
     window.scrollTo(0, 0)
     if(tab === "home"){
         this.props.history.push({
@@ -41,6 +49,37 @@ export default class Document extends Component {
     this.setState({ loader: boolean })
   }
 
+  showChooseClinic = () => {
+    return <Modal 
+      size='tiny'
+    open={this.state.showChooseClinic} 
+          onClose={() => { 
+            this.setState({ showChooseClinic: false })
+          ClinicProvider.setClinic('SIT Clinic')
+        }}centered>
+      <Modal.Header>Select a clinic</Modal.Header>
+      <Modal.Content image>
+        {/* <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' /> */}
+        <Modal.Description>
+          <Header>Default Clinic</Header>
+          <p>Please select the clinic you are going to treat.</p>
+          <p>Is it okay to use this clnic</p>
+          <Button color="teal">SIT Clinic</Button>
+          <Button>KMUTT Clinic</Button>
+          <br /><br />
+          <Checkbox 
+            label='Remember'  
+            checked={ClinicProvider.getRememberClinic()}
+            onChange={() => { ClinicProvider.setRememberClinic(!ClinicProvider.getRememberClinic()) }}
+            />
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button positive icon='checkmark' labelPosition='right' content='Confirm' />
+      </Modal.Actions>
+    </Modal>
+  }
+
   render() {
     console.log("Document!!")
     return (
@@ -50,7 +89,7 @@ export default class Document extends Component {
         <Dimmer page active={this.state.loader}>
             <Loader size='massive' indeterminate>Loading</Loader>
         </Dimmer>
-        
+        {this.showChooseClinic()}
         {this.showPage()}
         <FooterDemo
             history={this.props.history}
