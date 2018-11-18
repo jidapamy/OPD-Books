@@ -1,6 +1,6 @@
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-    apiKey: "b8a8a070",
-    apiSecret: "sseiQQrkDaaT644k"
+    apiKey: "41004246",
+    apiSecret: "scGNsW0U6VykNiZ0"
 });
 module.exports = nexmo
