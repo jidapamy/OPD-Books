@@ -107,7 +107,6 @@ export default class ShowFormNurse extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log("componentWillReceiveProps",nextProps)
     this.setState(nextProps.medicalRecord);
     if (nextProps.resetState) {
       this.defaultState()

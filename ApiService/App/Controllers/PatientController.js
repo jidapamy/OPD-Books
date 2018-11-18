@@ -5,7 +5,6 @@ const { sendVerifyEmail } = require("../Repositories/AuthenticationRepo")
 const msg = require("../Services/Message")
 
 const insertCtr = async (req, res) => {
-    console.log("Insert ",req.body)
     if (!isPatient(req.body.citizenId)) {
         if (!isEmail(req.body.email)) {
             try {
@@ -13,7 +12,6 @@ const insertCtr = async (req, res) => {
                 res.send(result)
                 return;
             } catch (error) {
-                console.log(error)
                 res.send(msg.getMsgError(error))
                 lockAccount()
                 return;
@@ -94,7 +92,6 @@ const requestOTPCtr = async (req, res) => {
 const getPatientWithOTPCtr = async (req, res) => {
     if (isPatient(req.body.citizenId)) {
         const result = await getPatientWithOTP(req.body)
-        console.log("result",result)
         res.send(result)
         return;
     }
@@ -142,7 +139,6 @@ const forgotPasswordVerifyCtr = async (req, res) => {
 }
 
 const confirmChangePasswordCtr = async (req, res) => {
-    console.log("confirmChangePasswordCtr", req.body)
     if (req.body.newPassword === req.body.newPasswordConfirm) {
         if (isPatient(req.body.citizenId)) {
             try {

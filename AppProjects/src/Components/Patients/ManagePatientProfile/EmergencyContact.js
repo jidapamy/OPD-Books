@@ -56,7 +56,6 @@ export default class EmergencyContact extends Component {
             emerZipcode: this.props.patient.zipcode,
         }
         if (status) {
-            console.log("check same!")
             this.emerOldAddress = {
                 emerAddress: this.state.emerAddress,
                 emerDistrict: this.state.emerDistrict,

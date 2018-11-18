@@ -32,7 +32,6 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
             defaultAccount
         ))
         let medicalRecordId = await contract.getMedicalRecordId(key).toString()
-        // console.log("medicalRecordId",medicalRecordId)
         arrTx.push(await contract.setMedicalRecordForNursePart2(
             medicalRecordId,
             convertString(medicalRecord.pulseRate),
@@ -44,27 +43,18 @@ const setMedicalRecordForNurse = async (medicalRecord) => {
             convertString(notRequiredField(medicalRecord.nurseName)),
             defaultAccount
         ))
-        // console.log("Success")
         lockAccount()
 
         if (arrTx.length > 1) {
             return { status: true, message: "SUCCESS", data: { medicalRecordId: medicalRecordId, transaction: arrTx } };
         }
 
-        // let check = false
-        // while (check === false) {
-        //     check = isMedicalRecord(medicalRecordId);
-        //     if (check) {
-        //         return { status: true, message: "SUCCESS", data: { medicalRecordId: medicalRecordId } };
-        //     }
-        // }
     } else {
         return { status: false, message: "ERROR" };
     }
 }
 
 const setMedicalRecordForDoctor = async medicalRecord => {
-    // console.log("setMedicalRecordForDoctor")
     let arrTx = [];
     if (unlockAccount()) {
         arrTx.push(await contract.setMedicalRecordForDoctor(
@@ -94,26 +84,12 @@ const setMedicalRecordForDoctor = async medicalRecord => {
             await sendEmail(tmp)
         })
 
-        // console.log("Success")
         lockAccount()
 
         if (arrTx.length > 1) {
             return { status: true, message: "SUCCESS", data: { transaction: arrTx } };
         }
 
-
-        // let checkTxDoctor = false;
-        // let checkTxAddHistory = false;
-        // while (!checkTxDoctor || !checkTxAddHistory) {
-        //     checkTxDoctor = alreadyMedicalRecord(medicalRecord.medicalRecordId)
-        //     checkTxAddHistory = haveMDRinPatientHistory(
-        //         medicalRecord.patientCitizenId,
-        //         medicalRecord.medicalRecordId
-        //     )
-        //     if (checkTxDoctor && checkTxAddHistory) {
-        //         return { status: true, message: "SUCCESS" };
-        //     }
-        // }
     } else {
         return { status: false, message: "ERROR" };
     }
@@ -129,12 +105,10 @@ const getMedicalRecordForNurse = async (medicalRecordId) => {
     let medicalRecord = { ...combindedNurseData, ...combindedInfoData }
     medicalRecord.medicalRecordId = medicalRecordId;
 
-    console.log("getMedicalRecordForNurse", medicalRecord)
     return { status: true, message: "SUCCESS", data: medicalRecord };
 };
 
 const getMedicalRecordForDoctor = async (medicalRecordId) => {
-    // const byteMedicalRecordId = convertString(medicalRecordId)
     const doctor = await contract.getMedicalRecordForDoctor(medicalRecordId);
     const mdrInfo = await contract.getMedicalRecordInfo(medicalRecordId);
 
@@ -147,8 +121,6 @@ const getMedicalRecordForDoctor = async (medicalRecordId) => {
 };
 
 const getMedicalRecordForPharmacy = async (medicalRecordId) => {
-    // console.log(medicalRecordId)
-    // const byteMedicalRecordId = convertString(medicalRecordId)
     const nurse = await contract.getMedicalRecordForNursePart1(medicalRecordId);
     const pharmacy = await contract.getMedicalRecordForPharmacy(medicalRecordId);
     const combindedPharmacyData = bindData(medicalRecordScheme, [nurse, pharmacy], 'pharmacy')
@@ -210,7 +182,6 @@ const alreadyMedicalRecord = medicalRecordId => {
 const haveMedicalRecordsOfPatient = (patientCitizenId, medicalRecordId) => {
     // const byteMedicalRecordId = convertString(medicalRecordId)
     const bytePatientCitizenId = convertString(patientCitizenId)
-    // console.log("bytePatientCitizenId", bytePatientCitizenId)
     return contract.haveMedicalRecordsOfPatient(bytePatientCitizenId, medicalRecordId)
 }
 

@@ -32,7 +32,6 @@ export default class EditProfile extends React.Component {
     }
     render() {
         const { open,infoPatient} = this.state
-        console.log("EDIT")
 
         return (
             <div>

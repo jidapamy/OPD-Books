@@ -28,7 +28,6 @@ export default class NavbarQueues extends Component {
     componentWillMount = () => {
         if (this.props.empPosition){
             getQueuesWithRoleFromDB(this.props.empPosition).then(res => {
-                console.log(res)
                 this.setState({
                     empPosition: this.props.empPosition,
                     queues: res.data
@@ -40,7 +39,6 @@ export default class NavbarQueues extends Component {
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.empPosition !== this.state.empPosition){
             getQueuesWithRoleFromDB(nextProps.empPosition).then(res => {
-                console.log(res)
                 this.setState({ 
                     empPosition: nextProps.empPosition,
                     queues: res.data,
@@ -49,7 +47,6 @@ export default class NavbarQueues extends Component {
             })
         }else if (nextProps.choosePatient.queueId !== this.state.chooseQueue) {
             getQueuesWithRoleFromDB(nextProps.empPosition).then(res => {
-                console.log(res)
                 this.setState({
                     empPosition: nextProps.empPosition,
                     queues: res.data,
@@ -73,7 +70,6 @@ export default class NavbarQueues extends Component {
     showQueues = () => {
         const { chooseQueue } = this.state
         let tmp = ''
-        console.log(this.state.queues.length)
         if (this.state.queues && this.state.queues.length != 0){
             tmp = this.state.queues.map((q) => (
                 <Menu.Item 

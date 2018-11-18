@@ -177,7 +177,7 @@ export default class apiDocument extends Component {
              <br/>
                 <Header textAlign='center' style={style.HeaderColor3}>API Documents</Header>
               {this.showData()}<br />
-              <Menu.Item style={{ backgroundColor: '#FACC2D  ' }}>
+              <Menu.Item style={{ backgroundColor: '#FF661E    ' }}>
                 <Header  >
                   <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
                 </Header>

@@ -23,7 +23,6 @@ const sendEmailCtr = async (req, res) => {
 const sendVerifyEmailCtr = async (req, res) => {
 try {
     const result = await sendVerifyEmail(req.body)
-    console.log("sendVerifyEmailCtr",result)
     res.send(result)
     return;
 } catch (error) {

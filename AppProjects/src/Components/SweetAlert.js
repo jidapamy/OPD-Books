@@ -47,7 +47,6 @@ export const successTXPopup = (text, arrtx, title = null) => {
     arrtx.map((data, index) => {
         inside += '<span style="font-size:10px;text-align: left">' + '[' + index + '] : ' + data + '</span><br>'
     })
-    console.log("successTXPopup")
     return swal({
         title: !title ? 'Successful' : title,
         text: text,

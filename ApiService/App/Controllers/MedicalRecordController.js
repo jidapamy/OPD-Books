@@ -9,11 +9,9 @@ const msg = require("../Services/Message")
 
 const setMRForNurseCtr = async (req, res) => {
     if (isPatient(req.body.patientCitizenId)) {
-        console.log("ispatient", req.body)
         setMedicalRecordForNurse(req.body)
             .then(result => { res.send(result); })
             .catch(err => {
-                console.log(err)
                 res.send(msg.getMsgError(err.text))
                 lockAccount()
             })
@@ -99,7 +97,6 @@ const getMedicalRecordCtr = async (req, res) => {
 const getHistoryMedicalRecordCtr = async (req, res) => {
     if (isPatient(req.body.patientCitizenId)) {
         let length = lengthPatientHistory(req.body.patientCitizenId)
-        console.log("Length ",length)
         if (length > 0) {
             const result = await getHistoryMedicalRecord(req.body.patientCitizenId, length, req.body.treatmentYear)
             res.send(result)
@@ -112,14 +109,11 @@ const getHistoryMedicalRecordCtr = async (req, res) => {
 }
 
 const insertMDRCtr = async (req, res) => {
-    console.log("insertMDRCtr",req.body)
     if (isPatient(req.body.patientCitizenId)) {
         insertMedicalRecord(req.body)
             .then(result => { 
-                console.log(result)
                 res.send(result); })
             .catch(err => {
-                console.log(err)
                 res.send(msg.getMsgError(err.text))
                 lockAccount()
             })

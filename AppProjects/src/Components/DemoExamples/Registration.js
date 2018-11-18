@@ -67,7 +67,6 @@ class Registration extends Component {
     getPatient(citizenId).then(res => {
       if (res.status) {
         checkPatientFromDB(res.data.citizenId).then(boolean => {
-          console.log("checkPatient", boolean)
           this.setState({
             patient: res.data,
             openScan: false,
@@ -188,7 +187,6 @@ class Registration extends Component {
           citizenIdSearch: '',
         })
       } else {
-        console.log("validate false")
         if (res.statusCode == '17') {
           this.setState({
             openOTP: false,
@@ -219,7 +217,6 @@ class Registration extends Component {
         });
       } else {
         if (res.message.indexOf("re-deliver") != -1){
-          console.log("!!re-deliver")
           this.setState({
             openOTP: false,
           })
@@ -244,7 +241,6 @@ class Registration extends Component {
         })
       } else {
         if (res.message.indexOf("re-deliver") != -1) {
-          console.log("!!re-deliver")
           this.setState({
             openOTP: false,
           })

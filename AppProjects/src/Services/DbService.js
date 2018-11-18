@@ -7,7 +7,6 @@ export const addPatientFromDB = async (data) => {
 };
 export const checkPatientFromDB = async (citizenId) => {
   let res = await axios.post(db + '/checkPatient', { citizenId: citizenId})
-  console.log(res.data)
   return res.data
 };
 export const getPatientFromDB = async (citizenId) => {
@@ -23,7 +22,6 @@ export const getAllQueuesFromDB = async () => {
 };
 export const getQueuesWithRoleFromDB = async (empRole) => {
   let res = await axios.get(db +`/getQueuesWithRole/${empRole}`)
-  console.log("getQueuesWithRoleFromDB",res.data)
   return res.data
 };
 export const getQueueFromDB = async (queueId) => {
@@ -56,7 +54,6 @@ export const addMedicalRecordForNurseFromDB = async (data) => {
 };
 export const getMedicalRecordForNurseFromDB = async (mdrId) => {
   let res = await axios.get(db + `/getMedicalRecordForNurse/${mdrId}`)
-  // console.log(res.data)
   return res.data
 };
 export const addMedicalRecordForDoctorFromDB = async (data) => {
@@ -69,15 +66,3 @@ export const updateMedicalRecordFromDB = async (data) => {
   let res = await axios.post(db + `/updateMedicalRecord`, data)
   return res.data
 };
-
-
-// router.get("/getAllMedicalRecords", async (req, res) => getAllMedicalRecords(req, res));
-// router.get("/getMedicalRecord/:mdrId", async (req, res) => getMedicalRecord(req, res))
-// router.post("/addMedicalRecordForNurse", async (req, res) => addMedicalRecordForNurse(req, res))
-// router.get("/getMedicalRecordForNurse/:mdrId", async (req, res) => getMedicalRecordForNurse(req, res))
-// router.post("/updateMedicalRecord", async (req, res) => updateMedicalRecord(req, res))
-
-
-// router.get("/getAllMedicalRecords", async (req, res) => getAllMedicalRecords(req, res));
-// router.post("/addMedicalRecord", async (req, res) => addMedicalRecord(req, res))
-// router.post("/updateMedicalRecord", async (req, res) => updateMedicalRecord(req, res))

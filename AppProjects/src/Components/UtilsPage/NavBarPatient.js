@@ -27,12 +27,10 @@ export default class NavBarPatient extends Component {
 
     stickTopMenu = () => {
         // เลื่อนลง onBottomPassed
-        console.log("onBottomPassed + เลื่อนลง true ")
         this.setState({ menuFixed: true });
     }
     unStickTopMenu = () => {
         // เลื่อนชิดบน onBottomVisible
-        console.log("onBottomVisible + เลื่อนชิดบน false")
         this.setState({ menuFixed: false });
     }
 
@@ -136,7 +134,6 @@ export default class NavBarPatient extends Component {
     render() {
         let menuFixed = this.props.menuFixed
         let loader = this.props.loader
-        console.log("propsHistory", this.props.propsHistory)
         return (
             <div>
                 <Responsive {...Responsive.onlyComputer} minWidth={Responsive.onlyTablet.minWidth}> 

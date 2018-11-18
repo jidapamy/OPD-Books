@@ -99,12 +99,10 @@ export default class Home extends React.Component {
 
   stickTopMenu = () => {
     // เลื่อนลง onBottomPassed
-    console.log("onBottomPassed + เลื่อนลง true ")
     this.setState({ menuFixed: true });
   }
   unStickTopMenu = () => {
     // เลื่อนชิดบน onBottomVisible
-    console.log("onBottomVisible + เลื่อนชิดบน false")
     this.setState({ menuFixed: false });
   }
 
