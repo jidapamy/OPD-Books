@@ -34,6 +34,7 @@ import {
     addPatientFromDB, getMedicalRecordFromDB, updateQueueFromDB, getMedicalRecordForNurseFromDB, addMedicalRecordForDoctorFromDB
 } from '../Services/DbService'
 import { confirmPopup, successPopup, errorPopup, successTXPopup } from "../Components/SweetAlert"
+import { ClinicProvider } from "../Services/ClinicProvider"
 
 
 import moment from "moment";
@@ -49,7 +50,7 @@ export default class DemoExample extends React.Component {
         medicalRecord: {
             date: moment().format("LL"),
             time: moment().format("LT"),
-            clinic: "SIT Clinic",
+            clinic: "SIT",
             treatmentYear: new Date().getFullYear()
         },
         loader: false,
@@ -299,7 +300,7 @@ export default class DemoExample extends React.Component {
             medicalRecord: {
                 date: moment().format("LL"),
                 time: moment().format("LT"),
-                clinic: "SIT KMUTT Clinic",
+                clinic: ClinicProvider.getClinic(),
                 treatmentYear: new Date().getFullYear()
             },
             historyTreatment: [],
@@ -482,14 +483,19 @@ export default class DemoExample extends React.Component {
 
     componentWillMount = async () => {
         let empPosition = this.props.empPosition ? this.props.empPosition : this.state.empPosition
+        this.state.medicalRecord.clinic = ClinicProvider.getClinic()
+        console.log("componentWillMount", this.state.medicalRecord)
         this.setState({
-            empPosition: empPosition
+            empPosition: empPosition,
+            medicalRecord : this.state.medicalRecord
         })
     }
 
     componentWillReceiveProps = (nextProps) => {
         window.scrollTo(0, 0)
+        this.state.medicalRecord.clinic = ClinicProvider.getClinic()
         this.setState({
+            medicalRecord: this.state.medicalRecord,
             empPosition: nextProps.empPosition,
             tab: 0
         });

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Grid, Segment, Form } from 'semantic-ui-react'
 import { Container, Divider, Input } from 'semantic-ui-react'
-import { mdrField } from "../../Static/Data/Field"
+import { mdrField, demoField } from "../../Static/Data/Field"
+import { ClinicProvider } from "../../Services/ClinicProvider"
 
 export default class ShowFormNurse extends Component {
     state = {
@@ -15,7 +16,7 @@ export default class ShowFormNurse extends Component {
         BP2: "",
         BP3: "",
         chiefComplaint: "",
-        nurseName: this.props.medicalRecord ? '' : "Mr. Dorothy Kendall",
+        nurseName: this.props.medicalRecord ? '' : demoField[ClinicProvider.getClinic()].nurseName,
     }
  
     componentWillMount = () => {
@@ -23,7 +24,7 @@ export default class ShowFormNurse extends Component {
         if (this.props.medicalRecord){
             this.setState(this.props.medicalRecord);
         }else{
-            this.setState({ nurseName: "Mr. Dorothy Kendall", })
+            this.setState({ nurseName: demoField[ClinicProvider.getClinic()].nurseName, })
         }
     }
 
@@ -39,7 +40,7 @@ export default class ShowFormNurse extends Component {
             BP2: "",
             BP3: "",
             chiefComplaint: "",
-            // nurseName: "",
+            nurseName: demoField[ClinicProvider.getClinic()].nurseName,
         })
         this.props.setField("resetState", false)
     }
@@ -69,6 +70,7 @@ export default class ShowFormNurse extends Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
+        this.setState({ nurseName: demoField[ClinicProvider.getClinic()].nurseName})
         this.setState(nextProps.medicalRecord);
         if (nextProps.resetState){
             this.defaultState()

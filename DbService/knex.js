@@ -6,8 +6,17 @@ const config = require("./config")
 //     database: ${DATABASE SCHEMA},
 // }
 
-var knex = require("knex")({
+
+var knexSIT = require("knex")({
     client: "mysql",
-    connection: config
+    connection: config('SIT')
 });
-module.exports = knex
+
+var knexKMUTT = require("knex")({
+    client: "mysql",
+    connection: config('KMUTT')
+});
+module.exports = {
+    knexSIT,
+    knexKMUTT
+}

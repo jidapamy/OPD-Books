@@ -10,7 +10,7 @@ import {
   Container,
   Responsive,
   Sidebar,
-  Visibility,
+  Visibility, Divider
 
 } from "semantic-ui-react";
 import { style } from "../Static/Style/QueueCss";
@@ -20,6 +20,7 @@ import { apiData } from "../Static/Data/ApiData"
 import { MySlidedown } from "../Components/ApiDocuments/Slide"
 import ReactJson from 'react-json-view'
 import { BrowserRouter,Link } from "react-router-dom";
+import { ClinicProvider } from "../Services/ClinicProvider"
 
 
 
@@ -31,7 +32,6 @@ const Boderhide = styled(Menu)`
 export default class apiDocument extends Component {
 
   //mobile
-
   state = {
     statusShowHistory: true,
     avtiveMenuTab: false,
@@ -94,9 +94,6 @@ export default class apiDocument extends Component {
     return tmp
   }
 
-
-
-
   showAttribute = () => {
     let arrAttr = []
     let tmp = "";
@@ -155,6 +152,11 @@ export default class apiDocument extends Component {
   stickTopMenu = () => this.setState({ menuFixed: true  });
   unStickTopMenu = () => this.setState({ menuFixed: false });
 
+  componentWillMount = () => {
+    ClinicProvider.setClinic('SIT')
+    ClinicProvider.setRememberClinic(false)
+  }
+
   render() {
     const Body = styled.div`
     margin-left: 230px;
@@ -173,11 +175,15 @@ export default class apiDocument extends Component {
       <span>
         <Responsive {...Responsive.onlyComputer} >
           <div>
-            <Menu fixed='left' secondary vertical style={style.NavSize}>
+            {/* <Menu fixed='left' secondary vertical style={style.NavSize}> */}
+            <Menu secondary vertical fixed='left' style={{ width: "17rem" , backgroundColor: '#1B1C1C'}}>
              <br/>
                 <Header textAlign='center' style={style.HeaderColor3}>API Documents</Header>
               {this.showData()}<br />
-              <Menu.Item style={{ backgroundColor: '#FACC2D  ' }}>
+              <Divider horizontal inverted>
+                For Clinic
+    </Divider>
+              <Menu.Item style={{ backgroundColor: 'rgb(204, 120, 51)' }}>
                 <Header  >
                   <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
                 </Header>

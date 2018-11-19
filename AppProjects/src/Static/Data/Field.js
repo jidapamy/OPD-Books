@@ -104,3 +104,14 @@ export const pattern = {
         label: 'Home phone number must start with 0 and only 9 digits!'
     }
 }
+
+export const demoField = {
+    SIT : {
+        doctorName: 'Dr. Harlow Kirby',
+        nurseName: 'Miss Mared Baird'
+    },
+    KMUTT: {
+        doctorName: 'Dr. Damon Zavala',
+        nurseName: 'Miss Sanjeev Heaton'
+    }
+}

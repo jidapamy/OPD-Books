@@ -39,6 +39,10 @@ import { Link } from "react-router-dom";
 
 import NavBarPatient from '../Components/UtilsPage/NavBarPatient'
 import { UserProvider } from "../Services/UserProvider"
+import { ClinicProvider } from "../Services/ClinicProvider"
+
+
+
 const style = {
   cursors: {
     cursor: 'pointer'
@@ -109,6 +113,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    ClinicProvider.setClinic('SIT')
+    ClinicProvider.setRememberClinic(false)
     new WOW.WOW().init();
   }
 

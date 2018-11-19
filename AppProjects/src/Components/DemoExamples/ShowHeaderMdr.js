@@ -1,10 +1,12 @@
 import React from "react";
 import { patientField, mdrField } from "../../Static/Data/Field"
 import { Segment, Icon, Form } from "semantic-ui-react";
+import { ClinicProvider } from "../../Services/ClinicProvider"
+
 export default class ShowHeaderMdr extends React.Component {
     render(){
         return (
-            <Segment style={{ backgroundColor: '#859695', color: '#FFFFFF', border: 0 }}>
+            <Segment style={{ backgroundColor: ClinicProvider.getClinic() == "KMUTT" ? '#af8e91' : '#859695', color: '#FFFFFF', border: 0 }}>
                 <Form>
                     <Form.Group widths="equal">
                         <Form.Field>
@@ -14,7 +16,7 @@ export default class ShowHeaderMdr extends React.Component {
                             <div><Icon name='clock outline' /> {mdrField.time.label} : {this.props[mdrField.time.variable]}</div>
                         </Form.Field>
                         <Form.Field>
-                            <div><Icon name='hospital outline' /> {mdrField.clinic.label} : {this.props[mdrField.clinic.variable]}</div>
+                            <div><Icon name='hospital outline' /> {mdrField.clinic.label} : {this.props[mdrField.clinic.variable]} Clinic</div>
                         </Form.Field>
                     </Form.Group>
                     <Form.Group widths="equal">

@@ -594,7 +594,6 @@ export const style = {
         fontSize: '25px',
         // marginTop: '5%',
         textAlign: 'right',
-
     },
     hnNoNav2: {
         // marginLeft: '-11%',
@@ -1159,9 +1158,7 @@ export const style = {
     // New Menu
 
     NavSize:{
-        
         backgroundColor: '#1B1C1C'
-
     }
 
 

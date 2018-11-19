@@ -5,11 +5,8 @@ import {
 import myQR from "../../../Static/Img/myQR.svg";
 import { patientField } from "../../../Static/Data/Field"
 import { color } from "../../../Static/Data/ColorPattern"
+import { ClinicProvider } from "../../../Services/ClinicProvider"
 
-const labelInfo = {
-    backgroundColor: '#31A5BA',
-    color:'#FFF',
-};
 export default class HeaderPatient extends React.Component {
     state = {
         patient: this.props.patient ? this.props.patient : {}
@@ -34,6 +31,10 @@ export default class HeaderPatient extends React.Component {
     }
 
     render() {
+        const labelInfo = {
+            backgroundColor: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : '#31A5BA',
+            color: '#FFF',
+        };
         return (
             // <Segment>
             <Container style={{ paddingTop: "1em" }} >
@@ -47,16 +48,16 @@ export default class HeaderPatient extends React.Component {
                             </Header>
                             <Grid.Row>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.citizenId.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.citizenId.label} : </span>
                                     {this.state.patient[patientField.citizenId.variable]}
                                 </Header.Subheader>
                                 { this.props.show && <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.email.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.email.label} : </span>
                                     {this.state.patient[patientField.email.variable]}
                                 </Header.Subheader>
                                 }
                                  { !this.props.show && <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.congenitalDisease.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.congenitalDisease.label} : </span>
                                 {this.state.patient[patientField.congenitalDisease.variable]}
                                 </Header.Subheader>
                                 }
@@ -79,22 +80,22 @@ export default class HeaderPatient extends React.Component {
                             <Header as="h2">Information</Header>
                             <Grid.Row>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.dob.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.dob.label} : </span>
                                     {this.state.patient[patientField.dob.variable]}
                                 </Header.Subheader>
                             </Grid.Row>
                             <Grid.Row>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.gender.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.gender.label} : </span>
                                     {this.state.patient[patientField.gender.variable]}
                                 </Header.Subheader>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>
                                         {patientField.bloodgroup.label}  : 
                                     </span> {this.state.patient[patientField.bloodgroup.variable]}
                                 </Header.Subheader>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>
                                         {patientField.status.label}  : 
                                     </span> {this.state.patient[patientField.status.variable]}
                                 </Header.Subheader>
@@ -107,22 +108,22 @@ export default class HeaderPatient extends React.Component {
                             </Header>
                             <Grid.Row>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.nationality.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.nationality.label} : </span>
                                     {this.state.patient[patientField.nationality.variable]}
                                 </Header.Subheader>
                             </Grid.Row>
                             <Grid.Row>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>{patientField.country.label} : </span>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>{patientField.country.label} : </span>
                                     {this.state.patient[patientField.country.variable]}
                                 </Header.Subheader>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>
                                         {patientField.religion.label} : 
                                     </span> {this.state.patient[patientField.religion.variable]}
                                 </Header.Subheader>
                                 <Header.Subheader>
-                                    <span style={{ color: color.teal }}>
+                                    <span style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#c74545' : color.teal }}>
                                         {patientField.occupartion.label} : 
                                     </span> {this.state.patient[patientField.occupartion.variable]}
                                 </Header.Subheader>

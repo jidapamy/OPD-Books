@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ScanButton from "./../../Static/Img/ScanButton.svg";
+import ScanButton2 from "./../../Static/Img/ScanButton2.svg";
 import styled from "styled-components";
 import QrReader from "react-qr-reader";
 import { patientField } from "../../Static/Data/Field"
@@ -9,6 +10,10 @@ import { Button, Container, Grid, Image, Header, Divider, Modal, Form, Dimmer, L
 import OTPfactor from "./OTPfactor";
 import { confirmPopup, successPopup, errorPopup } from "../SweetAlert"
 import { addQueueFromDB, checkPatientFromDB, addPatientFromDB, getPatientFromDB} from "../../Services/DbService";
+import { ClinicProvider } from "../../Services/ClinicProvider"
+
+
+
 const PopupQRCode = styled(Modal)`
   position: fixed;
   top: 50%;
@@ -43,7 +48,7 @@ const style = {
     color: "#AFB4B7"
   },
   colorHeader: {
-    color: "#31A5BA"
+    color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA"
   }
 };
 
@@ -279,14 +284,14 @@ class Registration extends Component {
           <Container>
             <Header as="h1" style={style.h1} textAlign="center">
               <Header.Content>
-                <span style={{ fontSize: "2em", color: "#31A5BA" }}>
+                <span style={{ fontSize: "2em", color: ClinicProvider.getClinic() == "KMUTT" ?'#FA636F': "#31A5BA" }}>
                   OPD BOOKS
               </span>
                 <Header.Subheader>Medical Record on Blockchain</Header.Subheader>
               </Header.Content>
             </Header>
 
-            <Image centered style={style.d1} rounded src={ScanButton}
+            <Image centered style={style.d1} rounded src={ClinicProvider.getClinic() == "KMUTT" ? ScanButton2 : ScanButton}
               onClick={() => this.setState({ openScan: true })} />
             <Form onSubmit={() => this.searchPatient()} style={{ margin: " 0% 15% ", borderRadius: '10px' }}>
               <Form.Input
@@ -297,7 +302,7 @@ class Registration extends Component {
                 placeholder='x-xxxx-xxxxx-xx-x'
                 onChange={(e) => this.setState({ citizenIdSearch: e.target.value })}
                 value={this.state.citizenIdSearch}
-                icon={<Icon name='search' circular link style={{ backgroundColor: '#31A5BA', color: '#FFF' }} onClick={() => this.searchPatient() } />}
+                icon={<Icon name='search' circular link style={{ backgroundColor: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" , color: '#FFF' }} onClick={() => this.searchPatient() } />}
               />
             </Form>
           </Container>
@@ -342,7 +347,7 @@ class Registration extends Component {
                   </Button> */}
                   {!this.state.duplicatePatient &&
                     <Icon link name='user plus'
-                      style={{ color: '#31a5ba', float: 'right', fontSize: '23px' }}
+                      style={{ color: ClinicProvider.getClinic() == "KMUTT" ?'#FA636F': "#31A5BA" , float: 'right', fontSize: '23px' }}
                       onClick={() => this.addPatient(this.state.patient)} />
                   }
                 </Header>
@@ -352,7 +357,7 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>
+                        <Header.Content style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" }}>
                           PROFILE PATIENT
                         </Header.Content>
                       </Header>
@@ -477,7 +482,7 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>
+                        <Header.Content style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" }}>
                           PATIENT ADDRESS
                         </Header.Content>
                       </Header>
@@ -542,7 +547,7 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>
+                        <Header.Content style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" }}>
                           EMERGENCY CONTACT
                         </Header.Content>
                       </Header>
@@ -643,7 +648,7 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>
+                        <Header.Content style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" }}>
                           ALLERGY / PRIVILEGE
                         </Header.Content>
                       </Header>
@@ -675,7 +680,7 @@ class Registration extends Component {
                   <Grid.Row>
                     <Grid.Column width={5}>
                       <Header as="h3">
-                        <Header.Content style={style.colorHeader}>
+                        <Header.Content style={{ color: ClinicProvider.getClinic() == "KMUTT" ? '#FA636F' : "#31A5BA" }}>
                           IN CASE UNDER 15 YEAR OLD
                         </Header.Content>
                       </Header>
@@ -716,7 +721,7 @@ class Registration extends Component {
               </Button>
               <Button
                 onClick={() => this.confirm()}
-                style={{ color: '#fff', backgroundColor: '#31A5BA', }}>
+                style={{ color: '#fff', backgroundColor: ClinicProvider.getClinic() == "KMUTT" ? '#4CAF50' : "#31A5BA" , }}>
                 Add Queues
               </Button>
             </Modal.Actions>

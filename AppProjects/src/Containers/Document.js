@@ -12,23 +12,32 @@ export default class Document extends Component {
   state = {
     activeTab: "api",
     loader: false,
-    showChooseClinic : false
+    showChooseClinic : false,
+
+    chooseClinic : '',
+    rememberStatus : true
+
   }
 
   chooseTab = (tab) => {
-    // this.setState({ activeTab: tab })
-
-    if (!ClinicProvider.getRememberClinic()) {
-      this.setState({ showChooseClinic: true, activeTab: tab })
-    } else {
-      this.setState({ showChooseClinic: false,activeTab: tab })
-    }
+    this.setState({ activeTab: tab })
     window.scrollTo(0, 0)
     if(tab === "home"){
         this.props.history.push({
             pathname: "/"
         });
         return 
+    }
+    if (tab != "api"){
+      console.log('ClinicProvider.getRememberClinic()', ClinicProvider.getRememberClinic())
+      if (!ClinicProvider.getRememberClinic()) {
+        this.setState({ showChooseClinic: true, rememberStatus: true })
+      } else {
+        this.setState({ showChooseClinic: false, rememberStatus: false })
+      }
+    }else{
+      ClinicProvider.setClinic('SIT')
+      ClinicProvider.setRememberClinic(false)
     }
   }
 
@@ -40,6 +49,7 @@ export default class Document extends Component {
       }else{
           return <DemoExample 
             empPosition={+(this.state.activeTab)} 
+            chooseClinic={this.state.chooseClinic}
             // setLoader={this.setLoader}
             />
       }
@@ -49,29 +59,39 @@ export default class Document extends Component {
     this.setState({ loader: boolean })
   }
 
+  chooseClinic = (clinic) => {
+    this.setState({ showChooseClinic : false })
+    ClinicProvider.setClinic(clinic)
+    ClinicProvider.setRememberClinic(this.state.rememberStatus)
+  }
+
   showChooseClinic = () => {
     return <Modal 
       size='tiny'
     open={this.state.showChooseClinic} 
           onClose={() => { 
             this.setState({ showChooseClinic: false })
-          ClinicProvider.setClinic('SIT Clinic')
         }}centered>
       <Modal.Header>Select a clinic</Modal.Header>
       <Modal.Content image>
         {/* <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' /> */}
         <Modal.Description>
-          <p>Please select the clinic you are going to treat. Is it okay to use this clnic.</p>
+          <p>
+            Please select the clinic you are going to treat. <br/>
+            We're set 'SIT Clinic' as default. Is it okay to use this clinic? 
+          </p>
           <Button.Group fluid>
-            <Button color="teal">SIT Clinic</Button>
+            <Button style={{ color: '#FFF', backgroundColor: '#31A5BA' }} onClick={() => this.chooseClinic("SIT")} >SIT Clinic</Button>
             <Button.Or text='or' />
-            <Button style={{ color: '#FFF', backgroundColor:'#FA636F'}}>KMUTT Clinic</Button>
+            <Button style={{ color: '#FFF', backgroundColor:'#FA636F'}}
+              onClick={() => this.chooseClinic("KMUTT")}
+            >KMUTT Clinic</Button>
           </Button.Group>
           <br /><br />
           <Checkbox 
             label='Remember'  
-            checked={ClinicProvider.getRememberClinic()}
-            onChange={() => { ClinicProvider.setRememberClinic(!ClinicProvider.getRememberClinic()) }}
+            checked={this.state.rememberStatus}
+            onChange={() => this.setState({ rememberStatus: !this.state.rememberStatus }) }
             />
         </Modal.Description>
       </Modal.Content>

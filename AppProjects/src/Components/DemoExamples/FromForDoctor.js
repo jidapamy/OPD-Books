@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Grid, Segment, Container, Divider, Button, Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import {  mdrField } from "../../Static/Data/Field"
+import { mdrField, demoField } from "../../Static/Data/Field"
+import { ClinicProvider } from "../../Services/ClinicProvider"
 
 export default class ShowFormNurse extends Component {
   state = {
@@ -12,7 +13,7 @@ export default class ShowFormNurse extends Component {
     treatment: '',
     recommendation: '',
     appointment: null,
-    doctorName: "Dr. Carmen Fulton"
+    doctorName: demoField[ClinicProvider.getClinic()].doctorName,
   };
 
   defaultState = () => {
