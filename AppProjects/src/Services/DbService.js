@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { ClinicProvider } from './ClinicProvider'
 
-// let db = `https://db.opdbooks.tk/${ClinicProvider.getClinic()}`
-let db = `http://localhost:3003/`
+let db = `https://db.opdbooks.tk/`
+// let db = `http://localhost:3003/`
 
 export const addPatientFromDB = async (data) => {
   let res = await axios.post(db + ClinicProvider.getClinic() +'/addPatient', data)
