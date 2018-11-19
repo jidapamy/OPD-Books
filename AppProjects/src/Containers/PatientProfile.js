@@ -142,20 +142,12 @@ export default class PatientProfile extends Component {
   }
   stickTopMenu = () => {
     // เลื่อนลง onBottomPassed
-    console.log("onBottomPassed + เลื่อนลง true ")
     this.setState({ menuFixed: true });
   }
   unStickTopMenu = () => {
     // เลื่อนชิดบน onBottomVisible
-    console.log("onBottomVisible + เลื่อนชิดบน false")
     this.setState({ menuFixed: false });
   }
-
-  // showPage = () => {
-  //   if (this.props.showEditProfile) {
-  //     return <EditProfile/>
-  //   }
-  // }
 
   show = () => {
     this.setState({ open: true })
@@ -176,7 +168,6 @@ export default class PatientProfile extends Component {
       this.props.history.push("/signin");
       return
     }
-    console.log("componentDidMount Patient", this.props.location.pathname )
     // this.setState(this.props.location.state)
     let citizenId = UserProvider.getUserLogin().citizenId
     if(citizenId){
@@ -254,7 +245,6 @@ export default class PatientProfile extends Component {
   render() {
     const { sidebarOpened } = this.state;
     const { fixed } = this.state;
-    console.log("patient",this.state.patient)
     return (
       <div>
         {/* <Dimmer.Dimmable blurring dimmed={this.state.loader}>*/}

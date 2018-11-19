@@ -398,7 +398,6 @@ export default class EditProfile extends React.Component {
                             });
                         } else {
                             if (res.message.indexOf("re-deliver") != -1) {
-                                console.log("!!re-deliver")
                                 this.setState({
                                     otp: "",
                                     sendOTP: false,
@@ -433,7 +432,6 @@ export default class EditProfile extends React.Component {
                         })
                     } else {
                         if (res.message.indexOf("re-deliver") != -1) {
-                            console.log("!!re-deliver")
                             this.setState({
                                 otp: "",
                                 sendOTP: false,
@@ -449,13 +447,11 @@ export default class EditProfile extends React.Component {
     }
 
     submitValidateOTP = () => {
-        // console.log('submitValidateOTP')
         let data = {
             pin: this.state.otp,
             requestId: this.state.requestId,
             citizenId: this.props.state.patient.citizenId
         }
-        // console.log(data)
         this.props.setFieldAndValidate("newMobileNumber", this.state.mobileNumber)
         this.confirm('changeMobileNumber', data)
     }

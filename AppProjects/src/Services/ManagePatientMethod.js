@@ -8,11 +8,9 @@ export const insertPatient = async (data) => {
 
 export const getPatient = async (citizenId) => {
   let res = await axios.post(`/patients/get`, { citizenId: citizenId })
-  // console.log(res)
   if (res.data.status){
     res.data.data.age = calculateAge(res.data.data.dob)
   }
-  console.log(res.data)
   return res.data
 }
 
@@ -27,14 +25,12 @@ export const checkEmail = async (email) => {
 }
 
 export const editProfile = async (data) => {
-  console.log("editProfile Method")
   let res = await axios.post(`/patients/edit`, data)
   return res.data
 }
 
 export const checkPassword = async (citizenId,password) => {
   let res = await axios.post(`/patients/checkPassword`, { citizenId: citizenId , password: password })
-  console.log("checkPassword",res.data)
   return res.data
 }
 
@@ -45,12 +41,10 @@ export const validateOTP = async (data) => {
 
 export const confirmChangePassword = async (patient) => {
     let res = await axios.post(`/patients/confirmChangePassword`, patient)
-    console.log("checkPassword", res.data)
     return res.data
 }
 
 export const forgotPasswordVerify = async (citizenId, dob, genVerificationCode = null) => {
-    console.log("forgotPasswordVerify")
     let res = await axios.post(`/patients/forgotPasswordVerify`, { citizenId: citizenId, dob: dob, genVerificationCode: genVerificationCode })
     return res.data
 }
@@ -58,12 +52,10 @@ export const forgotPasswordVerify = async (citizenId, dob, genVerificationCode =
 // for clinic
 export const checkIdcard = async (citizenId) => {
   let res = await axios.post(`/patients/isCitizenId`, { citizenId: citizenId })
-  console.log("checkIdcard", res.data)
   return res.data
 }
 
 export const requestOTP = async (data) => {
-  console.log("requestOTP")
   let res = await axios.post(`/patients/requestOTP`, data)
   return res.data
 }

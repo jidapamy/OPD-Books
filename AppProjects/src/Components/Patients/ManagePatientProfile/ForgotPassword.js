@@ -272,7 +272,6 @@ export default class ForgotPassword extends Component {
                     loader: false,
                 })
                 if (res.message.indexOf("re-deliver") != -1) {
-                    console.log("!!re-deliver")
                     this.setState({
                         openSMSOTP: false,
                         citizenId: '',
@@ -293,7 +292,6 @@ export default class ForgotPassword extends Component {
                 })
             } else {
                 if (res.message.indexOf("re-deliver") != -1) {
-                    console.log("!!re-deliver")
                     this.setState({
                         openSMSOTP: false,
                         pin: "",

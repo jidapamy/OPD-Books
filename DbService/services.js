@@ -22,7 +22,6 @@ const getMsgNotFound = (field, data = null) => {
 const getMsgSuccess = (msg=null,data = null) => {
     status = true;
     message = msg ? msg : "SUCCESS";
-    console.log(data)
     if (data) {
         data = data;
         return { status: status, message: message, data: data };

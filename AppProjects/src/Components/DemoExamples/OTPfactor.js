@@ -28,12 +28,10 @@ export default class OTPfactor extends React.Component {
                 this.props.validateOTP(otp)
             }
         }
-        console.log(event.target.value, "otp " + otp)
     }
 
     componentWillReceiveProps = (nextProps) => {
         if(!nextProps.pin){
-            console.log("clear")
             this.setState({
                 pin1: '',
                 pin2: '',

@@ -100,7 +100,6 @@ export default class Document extends Component {
   }
 
   render() {
-    console.log("Document!!")
     return (
       <div>
         {/* <Dimmer.Dimmable blurring dimmed={this.state.loader}> */}

@@ -115,7 +115,6 @@ export default class VerifyField extends Component {
                 // citizenId: this.props.patient.citizenId,
                 mobileNumber: this.state.mobileNumber
             }
-            console.log(data)
             swal({
                 title: 'The system is sending OTP Password to your mobile phone',
                 html: 'Please do not close this popup.!',
@@ -132,7 +131,6 @@ export default class VerifyField extends Component {
                             });
                         } else {
                             if (res.message.indexOf("re-deliver") != -1) {
-                                console.log("!!re-deliver")
                                 this.setState({
                                     otp: "",
                                     sendOTP: false,
@@ -148,14 +146,12 @@ export default class VerifyField extends Component {
     }
 
     cancelRequestOTP = (requestOTP) => {
-        console.log(requestOTP)
         swal({
             title: 'The system is cenceling your request OTP',
             html: 'Please do not close this popup.!',
             onOpen: () => {
                 swal.showLoading()
                 cancelRequestOTP(requestOTP).then(res => {
-                    console.log(res)
                     swal.close()
                     if (res.status || res.statusCode == '6' || res.statusCode == '19') {
                         this.setState({
@@ -165,7 +161,6 @@ export default class VerifyField extends Component {
                         })
                     } else {
                         if (res.message.indexOf("re-deliver") != -1) {
-                            console.log("!!re-deliver")
                             this.setState({
                                 otp: "",
                                 sendOTP: false,
@@ -185,7 +180,6 @@ export default class VerifyField extends Component {
             requestId: this.state.requestId,
             citizenId: this.props.patient.citizenId
         }
-        console.log(data)
         swal({
             title: 'System is saving data.',
             html: 'Please do not close this popup.!',
@@ -232,7 +226,6 @@ export default class VerifyField extends Component {
                         swal.showLoading()
                         sendVerifyEmail(data).then(res => {
                             swal.close()
-                            console.log(res)
                             if (res.status) {
                                 this.setState({
                                     sendEmail: true,
@@ -286,7 +279,6 @@ export default class VerifyField extends Component {
 
 
     render() {
-        // console.log(this.state)
         return (
             <div>
                 {/* <p style={{ color: '#277e8e', fontSize: '12px' }}> * {groupInfoPatientField.descriptionParent.label} </p> */}
@@ -298,19 +290,6 @@ export default class VerifyField extends Component {
                     </p>
                 }
                 <Form.Group widths="equal">
-                    {/* <Form.Input
-                        label={patientField.email.label}
-                        placeholder={patientField.email.label} vb
-                        width={6}
-                        onChange={e => this.props.setFieldAndValidate('email', e.target.value)}
-                        onBlur={e => {
-                            this.checkEmailDuplicate(e.target.value)
-                        }}
-                        required
-                        type='email'
-                        error={this.props.errorField ? this.props.errorField.email : false}
-                        value={this.props.patient.email}
-                    /> */}
                     <Password
                         setPatientDetail={this.props.setPatientDetail}
                         errorText={this.props.errorText}

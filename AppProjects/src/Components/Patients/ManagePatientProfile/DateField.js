@@ -61,11 +61,8 @@ export default class DateField extends Component {
     }
 
     setDate = (value) => {
-        console.log(value)
         let dob = value.format('DD/MM/YYYY')
-        console.log(dob)
         let year = ((+(moment().format('YYYY'))) - (+dob.substring(6)));
-        console.log(year)
         if (year < 15) {
             this.props.setField('requiredAllParentField', true)
         } else {

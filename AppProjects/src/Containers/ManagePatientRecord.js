@@ -182,7 +182,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   validate = () => {
-    console.log("validate!!", this.state.patient)
     const keys = Object.keys(this.allField)
     let tmp = []
     keys.map(key => {
@@ -211,7 +210,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirm = async () => {
-    console.log("showPopupConfirm", this.state.patient)
     confirmPopup().then(async res => {
       if (res.value) {
         swal({
@@ -256,7 +254,6 @@ export default class ManagePatientRecord extends Component {
       }
     }
 
-    console.log("validateEdit", this.state.patient, group)
     if (this.allField[group]) {
       let tmp = this.allField[group].filter(field => {
         if (field.field == 'email') {
@@ -299,46 +296,6 @@ export default class ManagePatientRecord extends Component {
       }
       return true
     }
-    console.log(this.state.patient)
-    // if (statusChange) {
-    //   this.showPopupConfirmEdit(patient, group);
-    // }
-
-    // if (this.allField[group]) {
-    //   this.allField[group].map(field => {
-    //     this.state.patient[field.field] = typeof this.state.patient[field.field] == 'string' ? this.state.patient[field.field].trim() : this.state.patient[field.field]
-    //     if (field.required && !this.state.patient[field.field] ||
-    //       field.field == 'allergy' && this.state.patient.allergy === 'other' ||
-    //       field.field == 'privilege' && this.state.patient.allergy === 'other' ||
-    //       field.field == 'password' && !this.state.patient.password.match(pattern.password.pattern) ||
-    //       field.field == 'email' && !this.state.patient.email.match(pattern.email.pattern)
-    //     ) {
-    //       if (field.field == 'email') {
-    //         if (this.state.patient.email != this.props.patient.newEmail) {
-    //           patient[field.key] = true;
-    //           patient.newEmail = this.state.patient.newEmail
-    //           this.state.patient.email = this.state.patient.newEmail
-    //           statusChange = true
-    //           return
-    //         }
-    //       }
-    //       if (field.field == 'password') {
-    //         patient[field.key] = true;
-    //         statusChange = true
-    //         return
-    //       }
-    //       if (this.state.patient[field.field] && this.state.patient[field.field] != this.props.patient[field.field]) {
-    //         patient[field.field] = this.state.patient[field.field]
-    //         patient[field.key] = true;
-    //         statusChange = true
-    //         return
-    //       }
-    //     }
-    //   })
-    // }
-    // if (statusChange) {
-    //   this.showPopupConfirmEdit(patient, group);
-    // }
   }
 
   processMethod = async (group, patient) => {
@@ -350,7 +307,6 @@ export default class ManagePatientRecord extends Component {
   }
 
   showPopupConfirmEdit = (patient, group) => {
-    console.log("showPopupConfirmEdit PATIENT : ", patient)
     confirmPopup("You won't be able to revert this!").then(result => {
       if (result.value) {
         swal({
@@ -397,7 +353,6 @@ export default class ManagePatientRecord extends Component {
 
   submitValidateOTP = (patient, data) => {
     // data = pin, requestId, citizenId, group
-    console.log('submitValidateOTP', patient, data, this.state.patient)
     confirmPopup("You won't be able to revert this!").then(result => {
       if (result.value) {
         swal({
@@ -439,7 +394,6 @@ export default class ManagePatientRecord extends Component {
                 if (res.statusCode == '17') {
                   // ผิดเกิด 3 ครั้ง
                   // patient.mobileNumber = this.props.patient.mobileNumber;
-                  console.log("3 times patient", patient)
                   this.props.setField("patient", patient)
                   this.setState({ editSuccess: "sendOTP" })
                 }
@@ -449,40 +403,6 @@ export default class ManagePatientRecord extends Component {
           }
         })
       }
-
-      // validateOTP(data).then(res => {
-      //   console.log('validateOTP')
-      //   if (res.status) {
-      //     swal({
-      //       title: 'System is saving data.',
-      //       html: 'Please do not close this popup.!',
-      //       onOpen: () => {
-      //         swal.showLoading()
-      //         this.processMethod(data.group).then(res => {
-      //           if (res) {
-      //             swal.disableLoading()
-      //             if (res.status) {
-      //               successPopup('You can check your profile on the profile page.').then(res => {
-      //                 if (res) {
-      //                   this.props.setField("patient", patient)
-      //                   this.setState({ editSuccess: data.group })
-      //                 }
-      //               })
-      //             } else {
-      //               errorPopup(res.message)
-      //             }
-      //           }
-      //         })
-      //       }
-      //     })
-      //   } else {
-      //     if (res.statusCode == '17') {
-      //       // ผิดเกิด 3 ครั้ง
-      //       this.setState({ editSuccess: data.group })
-      //     }
-      //     errorPopup(res.message, 'OTP Password incorrect!')
-      //   }
-      // })
     })
   }
 
@@ -508,19 +428,6 @@ export default class ManagePatientRecord extends Component {
 
   render() {
     if (this.props.editStatus) {
-      // let patient = { ...this.state.patient }
-      // if (patient.emerTitle == '-') {
-      //   this.allField.emer.map(field => {
-      //     patient[field.field] = ''
-      //   })
-      // }
-      // if (patient.fatherFirstname == '-' && patient.fatherLastname == '-' || patient.motherFirstname == '-' && patient.motherLastname == '-'){
-      //   this.allField.parent.map(field => {
-      //     patient[field.field] = ''
-      //   })
-      // }
-      // let state = {...this.state }
-      // state.patient = patient;
       return (
         <EditProfile
           state={this.state}

@@ -20,7 +20,6 @@ export default class ShowFormNurse extends Component {
     }
  
     componentWillMount = () => {
-        console.log('this.props.medicalRecord',this.props.medicalRecord)
         if (this.props.medicalRecord){
             this.setState(this.props.medicalRecord);
         }else{
@@ -78,7 +77,6 @@ export default class ShowFormNurse extends Component {
     }
 
     render() {
-        console.log("Nurse",this.state)
         const readOnly = this.props.empPosition != 2 ? true : false
         return <Segment style={{ marginTop: -20 }}>
             <Container style={{ padding: "1% 3%" }}>

@@ -182,7 +182,7 @@ export default class apiDocument extends Component {
               {this.showData()}<br />
               <Divider horizontal inverted>
                 For Clinic
-    </Divider>
+             </Divider>
               <Menu.Item style={{ backgroundColor: 'rgb(204, 120, 51)' }}>
                 <Header  >
                   <a style={{ color: '#FFFFFF'}} href='https://goo.gl/forms/sI4fh0beP6bffv8x2'>Register API</a>
